@@ -16,12 +16,14 @@ class CreateProtofolioSiswaTable extends Migration
         Schema::create('portofolio_siswa', function (Blueprint $table) {
             $table->id();
             $table->string('judul');
-            $table->integer('NIPD');
+            $table->bigInteger('NIPD')->unsigned();
             $table->longText('deskripsi');
             $table->longText('sumber_link');
             $table->longText('vidio_link');
-            $table->string('id_siswa')->foreign('id_siswa')->references('id')->on('siswa');
             $table->timestamps();
+        });
+        Schema::table('portofolio_siswa', function (Blueprint $table) {
+            $table->foreign('NIPD')->references('NIPD')->on('siswa')->onDelete('cascade')->onUpdate("cascade");
         });
     }
 

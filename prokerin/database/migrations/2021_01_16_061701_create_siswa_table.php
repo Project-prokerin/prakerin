@@ -18,11 +18,14 @@ class CreateSiswaTable extends Migration
             $table->string('nama');
             $table->string('Kelas');
             $table->string('jurusan');
-            $table->integer('NIPD');
+            $table->bigInteger('NIPD')->unsigned()->index();
             $table->string('email');
             $table->integer('nomor_siswa');
-            $table->string('user_id')->foreign('user_id')->references('id')->on('users');
+            $table->bigInteger('user_id')->unsigned();
             $table->timestamps();
+        });
+        Schema::table('siswa', function (Blueprint $table) {
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade')->onUpdate("cascade");
         });
     }
 

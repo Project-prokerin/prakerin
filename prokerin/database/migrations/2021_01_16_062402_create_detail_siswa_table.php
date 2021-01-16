@@ -15,7 +15,7 @@ class CreateDetailSiswaTable extends Migration
     {
         Schema::create('detail_siswa', function (Blueprint $table) {
             $table->id();
-            $table->integer('id_siswa')->foreign('id_siswa')->references('id')->on('siswa');
+            $table->bigInteger('id_siswa')->unsigned();
             $table->string('umur')->nullable();
             $table->string('tempat')->nullable();
             $table->date('tangal_lahir')->nullable();
@@ -24,6 +24,9 @@ class CreateDetailSiswaTable extends Migration
             $table->string('nama_ibu')->nullable();
             $table->string('nomor_orangtua')->nullable();
             $table->timestamps();
+        });
+        Schema::table('detail_siswa', function (Blueprint $table) {
+            $table->foreign('id_siswa')->references('id')->on('siswa')->onDelete('cascade')->onUpdate("cascade");
         });
     }
 

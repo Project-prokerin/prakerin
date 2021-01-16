@@ -15,15 +15,21 @@ class CreateKelompokProkerin extends Migration
     {
         Schema::create('kelompok_prakerin', function (Blueprint $table) {
             $table->id();
-            $table->integer('id_siswa')->foreign('id_siswa')->references('id')->on('siswa');
+            $table->bigInteger('id_siswa')->unsigned();
             $table->string('nama');
             $table->string('kelas');
             $table->string('jurusan');
-            $table->integer('id_perusahaan')->foreign('id_perusahaan')->references('id')->on('perusahaan');
+            $table->bigInteger('id_perusahaan')->unsigned();
             $table->date('tgl_pengajuan');
             $table->date('tgl_mulai');
             $table->date('tgl_selesai');
             $table->timestamps();
+        });
+        Schema::table('kelompok_prakerin', function (Blueprint $table) {
+            $table->foreign('id_perusahaan')->references('id')->on('perusahaan')->onDelete('cascade')->onUpdate("cascade");
+        });
+        Schema::table('kelompok_prakerin', function (Blueprint $table) {
+            $table->foreign('id_siswa')->references('id')->on('siswa')->onDelete('cascade')->onUpdate("cascade");
         });
     }
 

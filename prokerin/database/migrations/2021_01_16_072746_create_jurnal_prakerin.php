@@ -15,10 +15,17 @@ class CreateJurnalPrakerin extends Migration
     {
         Schema::create('jurnal_prakerin', function (Blueprint $table) {
             $table->id();
-            $table->integer('id_siswa')->foreign('id_siswa')->references('id')->on('siswa');
-            $table->integer('id_perusahaan')->foreign('id_perusahaan')->references('id')->on('perusahaan');
+            $table->bigInteger('id_siswa')->unsigned();
+            $table->bigInteger('id_perusahaan')->unsigned();
+            $table->string('nama_kegiatan');
             $table->longText('deskripsi_kegiatan');
             $table->timestamps();
+        });
+        Schema::table('jurnal_prakerin', function (Blueprint $table) {
+            $table->foreign('id_perusahaan')->references('id')->on('perusahaan')->onDelete('cascade')->onUpdate("cascade");
+        });
+        Schema::table('jurnal_prakerin', function (Blueprint $table) {
+            $table->foreign('id_siswa')->references('id')->on('siswa')->onDelete('cascade')->onUpdate("cascade");
         });
     }
 
