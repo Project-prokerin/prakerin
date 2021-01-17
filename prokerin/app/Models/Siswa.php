@@ -30,7 +30,7 @@ class Siswa extends Model
     }
     public function kelompok_laporan()
     {                                              // foreign , owner
-        return $this->hasMany(kelompok_laporan::class, 'id_siswa', 'id');
+        return $this->hasOne(kelompok_laporan::class, 'id_siswa', 'id');
     }
     public function jurnal_prakerin()
     {                                              // foreign , owner

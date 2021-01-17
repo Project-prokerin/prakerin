@@ -11,7 +11,7 @@ class kelompok_laporan extends Model
 
     public function siswa()
     {
-        return $this->belongsTo(Siswa::class, 'id');
+        return $this->hasOne(Siswa::class, 'id');
     }
     public function perusahaan()
     {
