@@ -8,9 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class kelompok_prakerin extends Model
 {
     protected $table = 'kelompok_prakerin';
+    protected $guarded = [];
     public function siswa()
     {
-        return $this->belongsTo(Siswa::class,'id_siswa');
+        return $this->hasOne(Siswa::class,'id_siswa');
     }
     public function perusahaan()
     {

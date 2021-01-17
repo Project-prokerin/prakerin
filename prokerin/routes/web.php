@@ -1,7 +1,10 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\siswaController;
+use App\Http\Controllers\viewController;
 use Illuminate\Support\Facades\Route;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -20,15 +23,13 @@ Route::get('/', [AuthController::class, 'index'])->name('login');
 Route::post('/postlogin', [AuthController::class, 'postlogin']);
 
 
-// untuk siswa
+// untuk siswa disini
 Route::middleware(['web', 'auth', 'role:siswa'])->group(function () {
-    Route::get('/wellcome', function () {
-        return view('welcome');
-    });
+    // memakai route view untuk view saja
+    Route::get('/siswa', [viewController::class, 'indexSiswa']);
 });
-// untuk admin
-Route::middleware(['web', 'auth', 'role:kaprok,hubin'])->group(function () {
-    Route::get('/coba', function () {
-        return view('testAdmin');
-    });
+// untuk admin disini
+Route::middleware(['web', 'auth', 'role:kaprog,hubin'])->group(function () {
+    // memakai route view untuk view saja
+    Route::get('/admin', [viewController::class, 'adminSiswa']);
 });

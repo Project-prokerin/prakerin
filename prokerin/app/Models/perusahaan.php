@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class perusahaan extends Model
 {
     protected $table = 'perusahaan';
+    protected $guarded = [];
     public function kelompok_prakerin()
     {
         return $this->hasMany(kelompok_prakerin::class, 'id_perusahaan', 'id');

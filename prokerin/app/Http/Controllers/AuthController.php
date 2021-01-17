@@ -6,7 +6,6 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
-use App\Models\Profile;
 use Illuminate\Support\Str;
 
 class AuthController extends Controller
@@ -20,17 +19,14 @@ class AuthController extends Controller
             'email' => 'required|email',
             'password' => 'required|max:8'
         ]);
-        // rememberme
-        // $ingat = $request->rememberme ? true : false;
-        // $re = $request->only('email', 'password');
         if (Auth::attempt($request->only('email', 'password'))) {
             //  jika rolenya kaprok
-            if (Auth()->user()->role == 'kaprok') {
-                return redirect('/coba');
+            if (Auth()->user()->role == 'kaprog') {
+                return redirect('/admin');
             } else if (Auth()->user()->role == 'hubin') {
-                return redirect('/coba');
+                return redirect('/admin');
             } else if (Auth()->user()->role == 'siswa') {
-                return redirect('/wellcome');
+                return redirect('/siswa');
             }
         } else {
             return redirect('/login')->with('status', 'password anda salah');

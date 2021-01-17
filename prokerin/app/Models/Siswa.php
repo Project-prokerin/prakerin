@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Siswa extends Model
 {
     protected $table = 'siswa';
+    protected $guarded = [];
     public function user()
     {
         return $this->hasOne(User::class,'id');
@@ -26,7 +27,7 @@ class Siswa extends Model
     }
     public function kelompok_prakerin()
     {
-        return $this->hasMany(kelompok_prakerin::class, 'id_siswa', 'id');
+        return $this->hasOne(kelompok_prakerin::class, 'id_siswa', 'id');
     }
     public function kelompok_laporan()
     {                                              // foreign , owner

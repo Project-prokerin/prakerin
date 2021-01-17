@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class jurnal_prakerin extends Model
 {
     protected $table = 'jurnal_prakerin';
-
+    protected $guarded = [];
     public function siswa()
     {
         return $this->belongsTo(Siswa::class, 'id');

@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class pengalaman extends Model
 {
     protected $table = 'pengalaman';
+    protected $guarded = [];
     public function siswa()
     {
         return $this->belongsTo(Siswa::class, 'id');
