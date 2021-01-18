@@ -20,7 +20,7 @@ class CreateSiswaTable extends Migration
             $table->string('jurusan');
             $table->bigInteger('NIPD')->unsigned()->index();
             $table->string('email');
-            $table->integer('nomor_siswa');
+            $table->string('nomor_siswa');
             $table->bigInteger('user_id')->unsigned();
             $table->timestamps();
         });

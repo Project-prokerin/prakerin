@@ -31,5 +31,5 @@ Route::middleware(['web', 'auth', 'role:siswa'])->group(function () {
 // untuk admin disini
 Route::middleware(['web', 'auth', 'role:kaprog,hubin'])->group(function () {
     // memakai route view untuk view saja
-    Route::get('/admin', [viewController::class, 'adminSiswa']);
+    Route::get('/admin', [viewController::class, 'indexAdmin']);
 });

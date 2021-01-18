@@ -18,7 +18,8 @@ class CreatePengalamanTable extends Migration
             $table->bigInteger('id_siswa')->unsigned();
             $table->string('judul')->nullable();
             $table->longText('deskripsi')->nullable();
-            $table->date('tanggal')->nullable();
+            $table->date('tanggal_mulai')->nullable();
+            $table->date('tanggal_selesai')->nullable();
             $table->timestamps();
         });
         Schema::table('pengalaman', function (Blueprint $table) {

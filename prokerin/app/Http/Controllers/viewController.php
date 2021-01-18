@@ -6,13 +6,13 @@ use Illuminate\Http\Request;
 
 class viewController extends Controller
 {
-    // admin
-    public function indexSiswa(){
-        return view('admin.siswa.index');
-    }
     // siswa
+    public function indexSiswa(){
+        return view('user.index');
+    }
+    // admin
     public function indexAdmin()
     {
-        return view('admin.admin.index');
+        return view('admin.siswa.index');
     }
 }

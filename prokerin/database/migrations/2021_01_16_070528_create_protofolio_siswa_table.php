@@ -15,8 +15,8 @@ class CreateProtofolioSiswaTable extends Migration
     {
         Schema::create('portofolio_siswa', function (Blueprint $table) {
             $table->id();
-            $table->string('judul');
             $table->bigInteger('NIPD')->unsigned();
+            $table->string('judul');
             $table->longText('deskripsi');
             $table->longText('sumber_link');
             $table->longText('vidio_link');

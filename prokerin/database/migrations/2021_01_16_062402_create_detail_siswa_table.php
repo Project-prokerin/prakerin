@@ -20,7 +20,7 @@ class CreateDetailSiswaTable extends Migration
             $table->string('tempat')->nullable();
             $table->date('tangal_lahir')->nullable();
             $table->string('alamat')->nullable();
-            $table->string('nama_bapa')->nullable();
+            $table->string('nama_ayah')->nullable();
             $table->string('nama_ibu')->nullable();
             $table->string('nomor_orangtua')->nullable();
             $table->timestamps();
