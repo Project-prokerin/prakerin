@@ -4,5 +4,5 @@
 4. php artisan migrate
 5. php artisan db:seed
 
-user role = "Siswa",
-admin role = "Kaprog / admin"
+user role = "Siswa"
+admin role = "Kaprog / hubin"
