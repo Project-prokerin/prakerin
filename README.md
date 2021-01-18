@@ -1,3 +1,4 @@
+Cara install nya (buat yang belom ngerti)
 1. ganti .env.example menjadi .env
 2. php artisan key:generate
 3. php i nstall composer
