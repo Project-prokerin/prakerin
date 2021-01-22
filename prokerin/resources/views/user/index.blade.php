@@ -1,1 +1,10 @@
-<h1>{{Auth::user()->name}}</h1>
+@extends('template.master')
+@section('title')
+    judul
+@endsection
+@section('content')
+
+@endsection
+@push('script')
+
+@endpush
