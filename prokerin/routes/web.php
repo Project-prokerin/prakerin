@@ -23,6 +23,10 @@ Route::get('/', [AuthController::class, 'index'])->name('login');
 Route::post('/postlogin', [AuthController::class, 'postlogin']);
 
 
+// Route::get('/test', function () {
+//     return view('coba');
+// });
+
 // untuk siswa disini
 Route::middleware(['web', 'auth', 'role:siswa'])->group(function () {
     // memakai route view untuk view saja

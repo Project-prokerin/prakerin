@@ -11,35 +11,65 @@
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 
 <!-- CSS Libraries -->
-
+  <link rel="stylesheet" href="stisla-master/node_modules/dropzone/dist/min/dropzone.min.css">
+@stack('link')
 <!-- Template CSS -->
 <link rel="stylesheet" href="{{asset('stisla-master/assets/css/style.css')}}">
 <link rel="stylesheet" href="{{asset('stisla-master/assets/css/components.css')}}">
+<style>
+    body{
+        background-color: #fafdfb
+    }
+    .table-responsive{
+        overflow-x: hidden;
+    }
+</style>
 </head>
 
 <body>
 <div id="app">
-    <div class="main-wrapper">
-    <div class="navbar-bg"></div>
+    <div class="main-wrapper main-wrapper-1">
+    <div class="navbar-bg"> </div>
     {{-- navbar  --}}
-    @include('template.navbar.navbar')
+    @include('template.partial.navbar')
+
     {{-- end navbar --}}
     {{-- sidebar --}}
-
-    @include('template.sidebar.sidebar')
+    @include('template.partial.sidebar')
     {{-- endsidebar --}}
     <!-- Main Content -->
-    <div class="main-content">
+    {{-- <div class="main-content">
         <section class="section">
-        <div class="section-header">
-            <h1>@yield('title')</h1>
-        </div>
+            <div class="section-header" >
+                <h1>Default Layout</h1>
+                @yield('breadcrump')
+                <div class="section-header-breadcrumb">
+                <div class="breadcrumb-item active"><a href="#">Dashboard</a></div>
+                <div class="breadcrumb-item"><a href="#">Layout</a></div>
+                <div class="breadcrumb-item">Default Layout</div>
+                </div>
+            </div>
         </section>
         <section class="section">
-        <div class="section-paragraf">
+        <div class="section-body">
         @yield('content')
         </div>
         </section>
+    </div> --}}
+
+        <!-- Main Content -->
+            <div class="main-content" style="min-height: 545px;">
+            <section class="section">
+            <div class="section-header" style="height: 60px">
+                @yield('breadcrump')
+                </div>
+            </div>
+
+            <div class="section-body">
+                @yield('content')
+            </div>
+            </section>
+        </div>
 <!-- General JS Scripts -->
 <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
@@ -55,5 +85,6 @@
 <script src="stisla-master/assets/js/custom.js"></script>
 
 <!-- Page Specific JS File -->
+<script src="stisla-master/assets/js/page/components-multiple-upload.js"></script>
 </body>
 </html>

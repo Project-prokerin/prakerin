@@ -15,21 +15,19 @@ class AuthController extends Controller
     }
     public function postlogin(Request $request)
     {
-        $request->validate([
-            'email' => 'required|email',
-            'password' => 'required|max:8'
-        ]);
+        // $request->validate([
+        //     'email' => 'email',
+        //     'password' =>    'min:7'
+        // ]);
         if (Auth::attempt($request->only('email', 'password'))) {
             //  jika rolenya kaprok
-            if (Auth()->user()->role == 'kaprog') {
-                return redirect('/admin');
-            } else if (Auth()->user()->role == 'hubin') {
+            if (Auth()->user()->role == 'kaprog ' || 'hubin') {
                 return redirect('/admin');
             } else if (Auth()->user()->role == 'siswa') {
                 return redirect('/siswa');
             }
         } else {
-            return redirect('/login')->with('status', 'password anda salah');
+            return redirect('/')->withInput($request->only('email', 'password'));
         }
     }
 }
