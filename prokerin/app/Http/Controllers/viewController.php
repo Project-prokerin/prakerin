@@ -12,18 +12,7 @@ class viewController extends Controller
 
         return view('siswa.index', compact('user'));
     }
-    // test pimage
-    public function imageTest(Request $request){
 
-        dd($request->image);
-    }
-    public function post(Request $request)
-    {
-
-        foreach ($request->quantity as $index) {
-            dd($request->quantity   );
-        }
-    }
     // admin
     public function indexAdmin()
     {

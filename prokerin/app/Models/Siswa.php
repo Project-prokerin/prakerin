@@ -13,28 +13,12 @@ class Siswa extends Model
     {
         return $this->hasOne(User::class,'id');
     }
-    public function detail_siswa()
+    public function data_prakerin()
     {
-        return $this->hasOne(detail_siswa::class, 'id_siswa', 'id');
-    }
-    public function portofolio_siswa()
-    {
-        return $this->hasMany(portofolio_siswa::class, 'NIPD', 'NIPD');
-    }
-    public function pengalaman()
-    {
-        return $this->hasMany(pengalaman::class, 'id_siswa', 'id');
-    }
-    public function kelompok_prakerin()
-    {
-        return $this->hasOne(kelompok_prakerin::class, 'id_siswa', 'id');
-    }
-    public function kelompok_laporan()
-    {                                              // foreign , owner
-        return $this->hasOne(kelompok_laporan::class, 'id_siswa', 'id');
+        return $this->hasOne(data_prakerin::class, 'id_siswa', 'id');
     }
     public function jurnal_prakerin()
-    {                                              // foreign , owner
+    {
         return $this->hasMany(jurnal_prakerin::class, 'id_siswa', 'id');
     }
 }

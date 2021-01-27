@@ -16,10 +16,9 @@ class CreateKelompokLaporanTable extends Migration
         Schema::create('kelompok_laporan', function (Blueprint $table) {
             $table->id();
             $table->integer('no')->unsigned();
-            $table->bigInteger('id_perusahaan')->unsigned();
-            $table->foreign('id_perusahaan')->references('id')->on('perusahaan')->onDelete('cascade')->onUpdate('cascade');
-            $table->bigInteger('data_prakerin_id')->unsigned();
-            $table->foreign('data_prakerin_id')->references('id')->on('data_prakerin')->onDelete('cascade')->onUpdate('cascade');
+            $table->bigInteger('id_guru')->unsigned();
+            $table->bigInteger('id_data_prakerin')->unsigned();
+            $table->foreign('id_data_prakerin')->references('id')->on('data_prakerin')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
         });
     }

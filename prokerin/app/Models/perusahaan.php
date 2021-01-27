@@ -9,13 +9,9 @@ class perusahaan extends Model
 {
     protected $table = 'perusahaan';
     protected $guarded = [];
-    public function kelompok_prakerin()
+    public function data_prakerin()
     {
-        return $this->hasMany(kelompok_prakerin::class, 'id_perusahaan', 'id');
-    }
-    public function kelompok_laporan()
-    {
-        return $this->hasMany(kelompok_laporan::class, 'id_perusahaan', 'id');
+        return $this->hasMany(data_prakerin::class, 'id_perusahaan', 'id');
     }
     public function jurnal_prakerin()
     {
