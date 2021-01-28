@@ -15,6 +15,7 @@ class CreatePerusahaanTable extends Migration
     {
         Schema::create('perusahaan', function (Blueprint $table) {
             $table->id();
+            $table->string('foto')->default('default.png');
             $table->string('nama', 100);
             $table->longText('lokasi');
             $table->string('nama_petinggi');

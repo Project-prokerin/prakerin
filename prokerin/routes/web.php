@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\PDFController;
 use App\Http\Controllers\siswaController;
 use App\Http\Controllers\viewController;
 use Illuminate\Support\Facades\Route;
@@ -31,6 +32,11 @@ Route::post('/postlogin', [AuthController::class, 'postlogin']);
 Route::middleware(['web', 'auth', 'role:siswa'])->group(function () {
     // memakai route view untuk view saja
     Route::get('/siswa', [viewController::class, 'indexSiswa']);
+
+
+
+    // test pdf perusahaan
+    Route::get('/perusahaan', [PDFController::class, 'perusahaan']);
 });
 // untuk admin disini
 Route::middleware(['web', 'auth', 'role:kaprog,hubin'])->group(function () {
