@@ -1,3 +1,4 @@
+## Prakerin
 Prakerin adalah praktek kerja industri yang di gunakan untuk mengelola data magang di [SMK Taruna Bhakti Depok.](https://www.smktarunabhakti.net)
 
 ## How to use
@@ -19,9 +20,8 @@ Prakerin adalah praktek kerja industri yang di gunakan untuk mengelola data maga
 - [framework laravel](https://laravel.com/)
 - [jquery](https://jquery.com/)
 - [fontawesome icon](https://fontawesome.com/)
-- [phospor icon](https://github.com/phosphor-icons/phosphor-icons)
 - [bootstrap](https://getbootstrap.com/docs/4.6/getting-started/introduction/)
-- [bootstrap](https://getbootstrap.com/docs/4.6/getting-started/introduction/)
+
 
 ## team project
 - [Rafie Aydin ](https://github.com/Rafieaydin) - team leader + requirement analysis
