@@ -1,10 +1,12 @@
 <?php
 
 use App\Http\Controllers\AuthController;
-use App\Http\Controllers\PDFController;
-use App\Http\Controllers\siswaController;
 use App\Http\Controllers\viewController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\siswaController;
+// for pakage only
+use App\Http\Controllers\PDFController;
+use App\Http\Controllers\ExcelController;
 
 
 /*
@@ -33,7 +35,7 @@ Route::middleware(['web', 'auth', 'role:siswa'])->group(function () {
     // memakai route view untuk view saja
     Route::get('/siswa', [viewController::class, 'indexSiswa']);
 
-
+    // Route::get('/test', [siswaController::class, 'test']);
 
     // test pdf perusahaan
     Route::get('/perusahaan', [PDFController::class, 'perusahaan']);

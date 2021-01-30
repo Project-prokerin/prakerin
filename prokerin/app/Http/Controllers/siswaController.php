@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Siswa;
 use App\Models\User;
+use App\Models\kelompok_laporan;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 
@@ -12,8 +13,9 @@ class siswaController extends Controller
 {
 
     public function index(){
+
         $siswa = Siswa::all();
-        return view('admin.siswa.index', compact('siswa'));
+        return view('admin.siswa.index', compact('siswa','data'));
     }
     // menambahkan data user (jangan di ubah)
     public function store(Request $request){
@@ -28,5 +30,12 @@ class siswaController extends Controller
         $profile = Siswa::create($request->all());
         return redirect('/index')->with('data anda sudah di tambahkan');
     }
+    // public function test(){
+    //     $siswa = User::where('role','siswa')
+    //             ->orderBy('id','ASC')
+    //             ->get();
+    //     dd($siswa);
+
+    // }
 
 }

@@ -11,11 +11,10 @@
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 
 <!-- CSS Libraries -->
-  <link rel="stylesheet" href="stisla-master/node_modules/dropzone/dist/min/dropzone.min.css">
 @stack('link')
 <!-- Template CSS -->
-<link rel="stylesheet" href="{{asset('stisla-master/assets/css/style.css')}}">
-<link rel="stylesheet" href="{{asset('stisla-master/assets/css/components.css')}}">
+<link rel="stylesheet" href="{{asset('template/assets/css/style.css')}}">
+<link rel="stylesheet" href="{{asset('template/assets/css/components.css')}}">
 <style>
     body{
         background-color: #fafdfb
@@ -32,7 +31,6 @@
     <div class="navbar-bg"> </div>
     {{-- navbar  --}}
     @include('template.partial.navbar')
-
     {{-- end navbar --}}
     {{-- sidebar --}}
     @include('template.partial.sidebar')
@@ -76,15 +74,13 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.nicescroll/3.7.6/jquery.nicescroll.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
-<script src="stisla-master/assets/js/stisla.js"></script>
+<script src="{{ asset('template/assets/js/stisla.js') }}"></script>
 
 <!-- JS Libraies -->
 @stack('script')
 <!-- Template JS File -->
-<script src="stisla-master/assets/js/scripts.js"></script>
-<script src="stisla-master/assets/js/custom.js"></script>
+<script src="{{ asset('template/assets/js/scripts.js') }}"></script>
+<script src="{{ asset('template/assets/js/custom.js') }}"></script>
 
-<!-- Page Specific JS File -->
-<script src="stisla-master/assets/js/page/components-multiple-upload.js"></script>
 </body>
 </html>

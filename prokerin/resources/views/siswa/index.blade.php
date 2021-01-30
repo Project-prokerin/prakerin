@@ -5,10 +5,10 @@
   <link rel="stylesheet" href="stisla-master/node_modules/datatables.net-select-bs4/css/select.bootstrap4.min.css">
 @endpush
 @section('breadcrump')
-                <h1 style="font-size: 20px;">Template table</h1>
-                <div class="section-header-breadcrumb">
-                <div class="breadcrumb-item active">Dashboard</a></div>
-                <div class="breadcrumb-item">template</a></div>
+        <h1 style="font-size: 20px;">Template table</h1>
+        <div class="section-header-breadcrumb">
+        <div class="breadcrumb-item active">Dashboard</a></div>
+        <div class="breadcrumb-item">template</a></div>
 @endsection
 @section('content')
             <div class="card" style="height: 45rem">
@@ -34,14 +34,18 @@
                             <thead>
                             <tr>
                                 <th class="text-center">#</th>
-                                <th>Task Name</th>
-                                <th>Progress</th>
+                                <th>Username</th>
+                                <th>siswa name</th>
+                                <th>nama  perusahaan</th>
+                                <th>created as user</th>
                             </tr>
                             </thead>
                             <tbody>
-                            @foreach ($user as $item)
+                                @foreach($user as $item)
                                 <tr>
                                     <td>{{ $item->name }}</td>
+                                    <td>{{ !empty($item->siswa->nama) ?$item->siswa->nama :$item->name }}</td>
+                                    <td>{{ !empty($item->siswa->data_prakerin->nama) ?$item->siswa->data_prakerin->nama:'' }}</td>
                                     <td>{{ $item->role }}</td>
                                     <td>{{ \Carbon\Carbon::parse($item->created_at)->Isoformat('DD MMMM YYYY')}}</td>
                                 </tr>
@@ -53,6 +57,9 @@
                     </div>
                 </div>
             </div>
+            @foreach ($unique as $item)
+                <a href="">{{ 'kelompok no ='. $item->no }}</a>
+            @endforeach
 @endsection
 @push('script')
     <!-- JS Libraies -->
@@ -66,7 +73,7 @@
     <script>
         $(document).ready( function () {
             $('#table-1').DataTable({
-                 "dom": 't<"bottom"<"row"<"col-6"i><"col-6"p>>>'
+                "dom": 't<"bottom"<"row"<"col-6"i><"col-6"p>>>'
             });
         });
     </script>
