@@ -8,12 +8,14 @@ Prakerin adalah praktek kerja industri yang di gunakan untuk mengelola data maga
 4. buka cmd cd ke path prakerin
 5. tikkan composer update
 6. lalu tikkan php artisan key:generate
-7. tikkan php artisan migrate
-8. tikkan php artisan db seed
+7. tikkan php artisan migrate:fresh -- seed
 
-## role
-- user = siswa
-- admin = admin
+
+## account + role
+- Hubin : admin | pass = admin
+- kaprog : kaprog | pass = admin
+- bkk : bkk | pass = admin
+- siswa :   | pass = password
 
 ## credit
 - [design web stisla](https://getstisla.com/)
