@@ -17,8 +17,11 @@ class CreatePerusahaanTable extends Migration
             $table->id();
             $table->string('foto')->default('default.png');
             $table->string('nama', 100);
-            $table->longText('lokasi');
-            $table->string('nama_petinggi');
+            $table->string('bidang_usaha', 100);
+            $table->longText('alamat');
+            $table->longText('link');
+            $table->string('email', 100);
+            $table->string('nama_pemimpin');
             $table->longText('deskripsi_perusahaan');
             $table->date('tanggal_mou');
             $table->string('status_mou', 150);

@@ -21,6 +21,7 @@ class CreateGuruTable extends Migration
             $table->string('jurusan',100);
             $table->bigInteger('user_id')->unsigned();
             $table->string('foto')->default('default.jpg');
+            $table->string('no_telp');
             $table->foreign('user_id')->references('id')->on('users')->onUpdate('cascade')->onDelete('cascade');
             $table->timestamps();
         });

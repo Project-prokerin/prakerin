@@ -9,6 +9,8 @@ use Faker\Provider\Lorem;
 use Faker\Provider\DateTime;
 use Illuminate\Support\Facades\DB;
 use Faker\Factory as Faker;
+use Faker\Provider\Internet;
+use Carbon\Carbon;
 
 class perusahaanSeeder extends Seeder
 {
@@ -22,13 +24,17 @@ class perusahaanSeeder extends Seeder
         $faker = Faker::create();
         for ($i = 0; $i < 2; $i++) {
         DB::table('perusahaan')->insert([
-                'foto' => 'default.png',
                 'nama' => $faker->company,
-                'lokasi' => $faker->address,
-                'nama_petinggi' => $faker->name,
+                'foto' => 'default.png',
+                'bidang_usaha' => 'null',
+                'alamat' => $faker->address,
+                'link' => $faker->url,
+                'email' => $faker->email,
+                'nama_pemimpin' => $faker->name,
                 'deskripsi_perusahaan' => $faker->text($maxNbChars = 200),
                 'tanggal_mou' => $faker->date($format = 'Y-m-d', $max = 'now'),
-                'status_mou' => $faker->randomElement($array = array('7 Tahun', '8 Tahun', '9 Tahun', '10 Tahun')),
+                'status_mou' => $faker->randomElement($array = array('7 Tahun', '8  Tahun', '9 Tahun', '10 Tahun')),
+                'created_at' => Carbon::now()
         ]);
     }
 }

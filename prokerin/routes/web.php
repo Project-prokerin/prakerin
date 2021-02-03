@@ -36,7 +36,6 @@ Route::middleware(['web', 'auth', 'role:siswa'])->group(function () {
     Route::get('/siswa', [viewController::class, 'indexSiswa']);
 
     // Route::get('/test', [siswaController::class, 'test']);
-
     // test pdf perusahaan
     Route::get('/perusahaan', [PDFController::class, 'perusahaan']);
 });
@@ -44,4 +43,7 @@ Route::middleware(['web', 'auth', 'role:siswa'])->group(function () {
 Route::middleware(['web', 'auth', 'role:kaprog,hubin'])->group(function () {
     // memakai route view untuk view saja
     Route::get('/admin', [viewController::class, 'indexAdmin']);
+
 });
+
+

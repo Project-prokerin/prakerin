@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateJurnalPrakerinTable extends Migration
+class CreateJurnalHarianTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,15 +13,11 @@ class CreateJurnalPrakerinTable extends Migration
      */
     public function up()
     {
-        Schema::create('jurnal_prakerin', function (Blueprint $table) {
+        Schema::create('jurnal_harian', function (Blueprint $table) {
             $table->id();
-            $table->string('fasilitas_prakerin', 50);
-            $table->longtext('kompetisi_dasar');
-            $table->longtext('topik_pekerjaan');
-            $table->date('tanggal_pelaksanaan');
-            $table->date('jam_masuk');
-            $table->date('jam_istirahat');
-            $table->date('jam_pulang');
+            $table->date('tanggal');
+            $table->date('datang');
+            $table->date('pulang');
             $table->bigInteger('id_perusahaan')->unsigned();
             $table->foreign('id_perusahaan')->references('id')->on('perusahaan')->onDelete('cascade')->onUpdate('cascade');
             $table->bigInteger('id_siswa')->unsigned();
@@ -37,6 +33,6 @@ class CreateJurnalPrakerinTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('jurnal_prakerin');
+        Schema::dropIfExists('jurnal_harian');
     }
 }

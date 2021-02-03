@@ -21,4 +21,12 @@ class Siswa extends Model
     {
         return $this->hasMany(jurnal_prakerin::class, 'id_siswa', 'id');
     }
+    public function jurnal_harian()
+    {
+        return $this->hasMany(jurnal_harian::class, 'id_siswa', 'id');
+    }
+    public function pembekalan_magang()
+    {
+        return $this->hasOne(pembekalan_magang::class,'id_siswa','id');
+    }
 }

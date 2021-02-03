@@ -18,4 +18,8 @@ class guru extends Model
     {
         return $this->hasOne(kelompok_laporan::class, 'id_guru', 'id');
     }
+    public function pembekalan_magang()
+    {
+        return $this->hasMany(pembekalan_magang::class, 'id_guru', 'id');
+    }
 }

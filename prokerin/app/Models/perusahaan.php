@@ -17,5 +17,9 @@ class perusahaan extends Model
     {
         return $this->hasMany(jurnal_prakerin::class, 'id_perusahaan', 'id');
     }
+    public function jurnal_harian()
+    {
+        return $this->hasMany(jurnal_harian::class, 'id_perusahaan', 'id');
+    }
 
 }
