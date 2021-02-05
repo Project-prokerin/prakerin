@@ -7,8 +7,8 @@ use Illuminate\Http\Request;
 
 class viewController extends Controller
 {
-    // siswa
-    public function indexSiswa(){
+    // siswa view
+    public function index(){
         // untuk perucobaan mengambil data di table no tapi dengan cara unique
         $test = kelompok_laporan::all();
         $unique = $test->unique('no');
@@ -19,9 +19,9 @@ class viewController extends Controller
         return view('siswa.index', compact('user','unique'));
     }
 
-    // admin
-    public function indexAdmin()
+    // admin view
+    public function dashboard()
     {
-        return view('admin.siswa.index');
+        return view('admin.dashboard');
     }
 }

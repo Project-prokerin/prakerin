@@ -16,12 +16,12 @@
 <link rel="stylesheet" href="{{asset('template/assets/css/style.css')}}">
 <link rel="stylesheet" href="{{asset('template/assets/css/components.css')}}">
 <style>
-    body{
+    /* body{
         background-color: #fafdfb
     }
     .table-responsive{
         overflow-x: hidden;
-    }
+    } */
 </style>
 </head>
 

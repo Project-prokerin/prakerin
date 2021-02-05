@@ -1,3 +1,4 @@
+@if (Auth::user()->role == 'hubin' || 'kaprog' || 'bkk')
 <div class="main-sidebar">
         <aside id="sidebar-wrapper">
         <div class="sidebar-brand">
@@ -7,10 +8,12 @@
             <a style="color:#6777ef;" href="{{'/'}}">DP</a>
         </div>
         <ul class="sidebar-menu">
+            @if (Auth::user()->role == 'kaprog' || 'hubin')
             <li class="menu-header">STATUS</li>
             <li class="">
             <a href="{{'status'}}" class="nav-link"><i class="fas fa-fire"></i><span>Status Prakerin</span></a>
             </li>
+            @endif
             <li class="menu-header">PROFILE</li>
             <li class="dropdown">
             <a href="{{'profile'}}" class="nav-link"><i class="fas fa-th"></i> <span>Profile</span></a>
@@ -35,4 +38,7 @@
             </ul>
         </aside>
     </div>
+@endif
+
+
 
