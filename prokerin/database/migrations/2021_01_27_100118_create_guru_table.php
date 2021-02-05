@@ -19,7 +19,7 @@ class CreateGuruTable extends Migration
             $table->string('nama', 100);
             $table->string('jabatan', 100);
             $table->string('jurusan',100);
-            $table->bigInteger('user_id')->unsigned();
+            $table->bigInteger('user_id')->unsigned()->nullable();;
             $table->string('foto')->default('default.jpg');
             $table->string('no_telp');
             $table->foreign('user_id')->references('id')->on('users')->onUpdate('cascade')->onDelete('cascade');

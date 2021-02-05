@@ -12,14 +12,17 @@ class kelompok_laporan extends Model
     protected $guarded = [];
     public function data_prakerin()
     {
-        return $this->hasOne(data_prakerin::class, 'id');
+                                              // foreign owner key
+        return $this->hasOne(data_prakerin::class,'id','id_data_prakerin');
     }
     public function laporan_prakerin()
     {
+                                                    // foreign             owner key
         return $this->hasOne(laporan_prakerin::class, 'id_kelompok_laporan','id');
     }
     public function guru()
     {
-        return $this->hasOne(guru::class, 'id');
+                                    // foreign  owner key
+        return $this->hasOne(guru::class, 'id','id_guru');
     }
 }

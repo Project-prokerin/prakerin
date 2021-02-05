@@ -12,10 +12,12 @@ class jurnal_prakerin extends Model
     protected $guarded = [];
     public function siswa()
     {
-        return $this->belongsTo(Siswa::class, 'id');
+                                            // owner key
+        return $this->belongsTo(Siswa::class, 'id_siswa');
     }
     public function perusahaan()
     {
-        return $this->belongsTo(perusahaan::class, 'id');
+                                                // owner key
+        return $this->belongsTo(perusahaan::class, 'id_perusahaan');
     }
 }

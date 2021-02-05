@@ -12,6 +12,7 @@ class laporan_prakerin extends Model
     protected $guarded = [];
     public function kelompok_laporan()
     {
-        return $this->hasOne(kelompok_laporan::class, 'id');
+                                                // foreign owner key
+        return $this->hasOne(kelompok_laporan::class, 'id','id_kelompok_laporan');
     }
 }

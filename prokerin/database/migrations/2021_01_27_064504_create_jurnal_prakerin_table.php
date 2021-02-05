@@ -19,9 +19,9 @@ class CreateJurnalPrakerinTable extends Migration
             $table->longtext('kompetisi_dasar');
             $table->longtext('topik_pekerjaan');
             $table->date('tanggal_pelaksanaan');
-            $table->date('jam_masuk');
-            $table->date('jam_istirahat');
-            $table->date('jam_pulang');
+            $table->time('jam_masuk');
+            $table->time('jam_istirahat');
+            $table->time('jam_pulang');
             $table->bigInteger('id_perusahaan')->unsigned();
             $table->foreign('id_perusahaan')->references('id')->on('perusahaan')->onDelete('cascade')->onUpdate('cascade');
             $table->bigInteger('id_siswa')->unsigned();

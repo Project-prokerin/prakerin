@@ -13,7 +13,7 @@ class data_prakerin extends Model
     protected $guarded = [];
     public function siswa()
     {
-        return $this->hasOne(Siswa::class, 'id');
+        return $this->hasOne(Siswa::class, 'id','id_siswa');
     }
     public function kelompok_laporan()
     {
@@ -21,10 +21,12 @@ class data_prakerin extends Model
     }
     public function perusahaan()
     {
-        return $this->belongsTo(perusahaan::class, 'id');
+                                             // foreign dari field perusahaan ke perusahaan id
+        return $this->belongsTo(perusahaan::class, 'id_perusahaan');
     }
     public function guru()
     {
-        return $this->belongsTo(guru::class, 'id');
+                                        // owner key
+        return $this->belongsTo(guru::class, 'id_guru');
     }
 }

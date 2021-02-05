@@ -11,10 +11,12 @@ class pembekalan_magang extends Model
     protected $table = 'pembekalan_magang';
     protected $guarded = [];
     public function siswa(){
-        return $this->hasOne(Siswa::class,'id');
+                                    // foreign field id_siswa di siwa
+        return $this->hasOne(Siswa::class,'id','id_siswa');
     }
     public function guru()
     {
-        return $this->belongsTo(guru::class, 'id');
+                                        // owner key
+        return $this->belongsTo(guru::class, 'id_guru');
     }
 }
