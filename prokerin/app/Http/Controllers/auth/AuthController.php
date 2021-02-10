@@ -17,9 +17,9 @@ class AuthController extends Controller
         // dd($request->username);
         if (Auth::attempt($request->only('username', 'password'))) {
             if (Auth()->user()->role == 'siswa') {
-                return redirect('/siswa');
+                return redirect('/dashboard/user');
             } else if (Auth()->user()->role == 'kaprog' || 'hubin' || 'bkk') {
-                return redirect('/dashboard');
+                return redirect('/dashboard/admin');
             }
         } else {
             return back()->withInput($request->only('usernamae', 'password'));

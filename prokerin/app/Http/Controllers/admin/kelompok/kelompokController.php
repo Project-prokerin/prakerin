@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Controllers\admin\pembekalan_magang;
+namespace App\Http\Controllers\admin\kelompok;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class pembekalan_magangController extends Controller
+class kelompokController extends Controller
 {
     /**
      * Display a listing of the resource.

@@ -20,4 +20,7 @@ class jurnal_prakerin extends Model
                                                 // owner key
         return $this->belongsTo(perusahaan::class, 'id_perusahaan');
     }
+    public function fasilitas_prakerin(){
+        return $this->hasMany(fasilitas_prakerin::class, 'id_jurnal_prakerin', 'id');
+    }
 }

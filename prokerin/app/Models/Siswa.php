@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Siswa extends Model
 {
     protected $table = 'siswa';
+    protected $dates = ['tanggal_lahir'];
     protected $guarded = [];
     public function user()
     {

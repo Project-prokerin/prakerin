@@ -15,14 +15,6 @@
 <!-- Template CSS -->
 <link rel="stylesheet" href="{{asset('template/assets/css/style.css')}}">
 <link rel="stylesheet" href="{{asset('template/assets/css/components.css')}}">
-<style>
-    /* body{
-        background-color: #fafdfb
-    }
-    .table-responsive{
-        overflow-x: hidden;
-    } */
-</style>
 </head>
 
 <body>
@@ -36,33 +28,16 @@
     @include('template.partial.sidebar')
     {{-- endsidebar --}}
     <!-- Main Content -->
-    {{-- <div class="main-content">
-        <section class="section">
-            <div class="section-header" >
-                <h1>Default Layout</h1>
-                @yield('breadcrump')
-                <div class="section-header-breadcrumb">
-                <div class="breadcrumb-item active"><a href="#">Dashboard</a></div>
-                <div class="breadcrumb-item"><a href="#">Layout</a></div>
-                <div class="breadcrumb-item">Default Layout</div>
-                </div>
-            </div>
-        </section>
-        <section class="section">
-        <div class="section-body">
-        @yield('content')
-        </div>
-        </section>
-    </div> --}}
-
         <!-- Main Content -->
-            <div class="main-content" style="min-height: 545px;">
+            <div class="main-content" >
             <section class="section">
-            <div class="section-header" style="height: 60px">
-                @yield('breadcrump')
-                </div>
-            </div>
+            <div class="section-header">
 
+                        <ol class="breadcrumb  " style="width: 100%;">
+                            @yield('breadcrump')
+                        </ol>
+
+                </div>
             <div class="section-body">
                 @yield('content')
             </div>

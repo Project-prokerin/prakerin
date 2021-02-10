@@ -15,7 +15,6 @@ class CreateJurnalPrakerinTable extends Migration
     {
         Schema::create('jurnal_prakerin', function (Blueprint $table) {
             $table->id();
-            $table->string('fasilitas_prakerin', 50);
             $table->longtext('kompetisi_dasar');
             $table->longtext('topik_pekerjaan');
             $table->date('tanggal_pelaksanaan');

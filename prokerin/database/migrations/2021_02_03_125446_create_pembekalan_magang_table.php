@@ -15,8 +15,12 @@ class CreatePembekalanMagangTable extends Migration
     {
         Schema::create('pembekalan_magang', function (Blueprint $table) {
             $table->id();
+            // $table->enum('text_wpt_iq', ['sudah', 'belum']);
+            // $table->enum('personality_interview', ['sudah', 'belum']);
+            // $table->enum('soft_skill', ['sudah', 'belum']);
             $table->string('text_wpt_iq');
             $table->string('personality_interview');
+            $table->string('soft_skill');
             $table->string('file_portofolio');
             $table->unsignedBigInteger('id_guru');
             $table->foreign('id_guru')->references('id')->on('guru')->onDelete('cascade')->onUpdate('cascade');

@@ -17,7 +17,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name',
+        'username',
         'email',
         'password',
         'role',
@@ -46,5 +46,10 @@ class User extends Authenticatable
     {
           // foreign, owner key
         return $this->hasOne(Siswa::class, 'user_id','id');
+    }
+    public function guru()
+    {
+        // foreign, owner key
+        return $this->hasOne(guru::class, 'user_id', 'id');
     }
 }

@@ -25,4 +25,9 @@ class guru extends Model
           // foreign, owner key
         return $this->hasMany(pembekalan_magang::class, 'id_guru', 'id');
     }
+    public function user()
+    {
+        // foreign, owner key
+        return $this->hasOne(User::class, 'id', 'user_id');
+    }
 }

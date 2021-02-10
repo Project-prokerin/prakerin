@@ -10,6 +10,12 @@ class pembekalan_magang extends Model
     use HasFactory;
     protected $table = 'pembekalan_magang';
     protected $guarded = [];
+
+    const STATUS_COLOR = [
+        'pending'  => '#FFFF99',
+        'active'   => '#90EE90',
+        'archived' => '#00BFFF',
+    ];
     public function siswa(){
                                     // foreign field id_siswa di siwa
         return $this->hasOne(Siswa::class,'id','id_siswa');
