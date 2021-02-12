@@ -1,23 +1,21 @@
 <?php
 
-namespace App\Http\Controllers\admin\perusahaan;
+namespace App\Http\Controllers\admin\data_prakerin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\perusahaan;
-use Yajra\DataTables\DataTables;
 
-class perusahaanController extends Controller
+class data_prakerinController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index()
     {
-        $sidebar = 'perusahaan';
-        return view('admin.perusahaan.index', compact('sidebar'));
+        $sidebar = 'data_prakerin';
+        return view('admin.data_prakerin.index', compact('sidebar'));
     }
 
     /**
@@ -83,9 +81,6 @@ class perusahaanController extends Controller
      */
     public function destroy($id)
     {
-
-    }
-    public function delete_all(Request $request){
-
+        //
     }
 }

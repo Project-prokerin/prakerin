@@ -14,7 +14,8 @@ class jurnal_prakerinController extends Controller
      */
     public function index()
     {
-        //
+        $sidebar = 'jurnal';
+        return view('admin.jurnal_prakerin.index', compact('sidebar'));
     }
 
     /**

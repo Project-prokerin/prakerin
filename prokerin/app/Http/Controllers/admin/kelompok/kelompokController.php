@@ -14,7 +14,8 @@ class kelompokController extends Controller
      */
     public function index()
     {
-        //
+        $sidebar = 'kelompok';
+        return view('admin.kelompok_prakerin.index', compact('sidebar'));
     }
 
     /**

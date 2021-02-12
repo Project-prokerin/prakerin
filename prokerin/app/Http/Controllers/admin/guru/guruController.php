@@ -17,7 +17,8 @@ class guruController extends Controller
      */
     public function index(Request $request)
     {
-        return view('admin.guru.index');
+        $sidebar = 'guru';
+        return view('admin.guru.index', compact('sidebar'));
     }
 
     /**

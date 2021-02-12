@@ -1,11 +1,12 @@
 @extends('template.master')
 @push('link')
-    <!-- CSS Libraries -->
 
 @endpush
+@section('title', 'Prakerin | Data Pembekalan Magang')
+@section('judul', 'DATA PEMBEKALAN MAGANG')
 @section('breadcrump')
-    <li class="breadcrumb-item">Admin</a></li>
-    <li class="breadcrumb-item active" aria-current="page"><i class="far fa-user"></i>Data siswa</a></li>
+        <div class="breadcrumb-item "><a href="{{ route('admin.dashboard') }}"><i class="fas fa-tachometer-alt"></i> DASBOARD</a></div>
+        <div class="breadcrumb-item">  <i class="fas fa-newspaper"></i> DATA PEMBEKALAN MAGANG</div>
 @endsection
 @section('content')
 

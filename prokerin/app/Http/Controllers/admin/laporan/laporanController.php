@@ -14,7 +14,8 @@ class laporanController extends Controller
      */
     public function index()
     {
-        //
+        $sidebar = 'laporan';
+        return view('admin.laporan_prakerin.index', compact('sidebar'));
     }
 
     /**

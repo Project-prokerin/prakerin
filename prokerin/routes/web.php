@@ -54,14 +54,30 @@ Route::middleware(['web', 'auth', 'role:hubin'])->group(function () {
 
     // data perusahaan
     Route::resource('perusahaan', 'admin\perusahaan\perusahaanController');
-    Route::post('/perushaaan/destroy', [siswaController::class, 'delete_all'])->name('perushaaan.delete-all');
+    // Route::post('/perushaaan/destroy', [perusahaanController::class, 'delete_all'])->name('perushaaan.delete-all');
 
 
 });
 
 // kaprog
 Route::middleware(['web', 'auth', 'role:kaprog,hubin'])->group(function () {
+    // data prakerin
+    Route::resource('data_prakerin', 'admin\data_prakerin\data_prakerinController');
 
+    // jurnal harian
+    Route::resource('jurnalH', 'admin\jurnal\jurnal_harianController');
+
+    // jurnal prakerin
+    Route::resource('jurnal', 'admin\jurnal\jurnal_prakerinController');
+
+    // jurnal kelompok
+    Route::resource('kelompok', 'admin\kelompok\kelompokController');
+    // jurnal kelompok
+    Route::resource('laporan', 'admin\laporan\laporanController');
+
+    // data perusahaan
+    Route::resource('perusahaan', 'admin\perusahaan\perusahaanController');
+    // Route::post('/perushaaan/destroy', [perusahaanController::class, 'delete_all'])->name('perushaaan.delete-all');
 });
 
 // bkk
@@ -76,7 +92,7 @@ Route::middleware(['web', 'auth', 'role:bkk,hubin'])->group(function () {
 
 // all admin
 Route::middleware(['web', 'auth', 'role:bkk,hubin,kaprog'])->group(function () {
-    Route::get('/dashboard/admin',  [ViewController::class, 'dashboard']);  // memakai route view untuk view saja
+    Route::get('/dashboard/admin',  [ViewController::class, 'dashboard'])->name('admin.dashboard');  // memakai route view untuk view saja
 });
 
 
@@ -96,7 +112,7 @@ Route::middleware(['web', 'auth', 'role:siswa'])->group(function () {
     Route::post('/user/ganti_password', [userController::class, 'ganti_password_post'])->name('ganti_password.post');
 
     // list perusahaan
-    Route::get('/user/perusahaan', [userController::class, 'perusahaan'])->name('perusahaan');
+    Route::get('/user/perusahaan', [userController::class, 'perusahaan'])->name('user.perusahaan');
     Route::post('/user/perusahaan/{id}', [userController::class, 'perusahaan_detail'])->name('perusahaan_detail.post');
 
     // pembekalan magang
@@ -119,5 +135,5 @@ Route::middleware(['web', 'auth', 'role:siswa'])->group(function () {
 
 
     // test pdf perusahaan
-    Route::get('/perusahaan', [PDFController::class, 'perusahaan']);
+    Route::get('/perusahaanPDF', [PDFController::class, 'perusahaan']);
 });

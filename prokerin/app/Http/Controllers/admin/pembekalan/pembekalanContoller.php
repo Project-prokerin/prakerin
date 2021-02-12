@@ -17,7 +17,8 @@ class pembekalanContoller extends Controller
     public function index(Request $request)
     {
         $data = pembekalan_magang::all();
-        return view('admin.pembekalan.index', compact('data'));
+        $sidebar = 'pembekalan';
+        return view('admin.pembekalan.index', compact('data','sidebar'));
     }
 
     /**

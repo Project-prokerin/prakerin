@@ -14,7 +14,8 @@ class jurnal_harianController extends Controller
      */
     public function index()
     {
-        //
+        $sidebar = 'jurnalH';
+        return view('admin.jurnal_harian.index', compact('sidebar'));
     }
 
     /**

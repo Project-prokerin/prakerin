@@ -23,7 +23,8 @@ class siswaController extends Controller
      */
     public function index(Request $request)
     {
-        return view('admin.siswa.index');
+        $sidebar = 'siswa';
+        return view('admin.siswa.index', compact('sidebar'));
     }
 
     /**
