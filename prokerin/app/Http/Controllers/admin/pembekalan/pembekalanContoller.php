@@ -27,9 +27,7 @@ class pembekalanContoller extends Controller
      */
     public function create()
     {
-        // dd(Auth::user()->siswa);
-        $pembekalan = pembekalan_magang::where('id_siswa', 28)->first();
-        return view('admin.pembekalan.tambah', compact('pembekalan'));
+
     }
 
     /**
@@ -40,14 +38,7 @@ class pembekalanContoller extends Controller
      */
     public function store(Request $request)
     {
-        dd($request->file('file')->getClientOriginalName());
-        // dd($request->input('test_wp'));
-        // $pembekalan_magang = new pembekalan_magang;
-        // $pembekalan_magang->file = $request->file('file')->getClientOriginalName();
-        // $pembekalan_magang->test_wpt_iq = $request->test_wpt_iq;
-        // $pembekalan_magang->save();
-        // $pembekalan_magang = $request->file('file')->move('PDF/', $request->file('file')->getClientOriginalName());
-        // return view('pembekalan.index');
+
     }
 
     /**
@@ -69,8 +60,7 @@ class pembekalanContoller extends Controller
      */
     public function edit($id)
     {
-        $pem = pembekalan_magang::where('id', $id)->first();
-        return view('admin.pembekalan.edit', compact('pem'));
+
     }
 
     /**
@@ -82,8 +72,7 @@ class pembekalanContoller extends Controller
      */
     public function update(Request $request, $id)
     {
-        $pem = pembekalan_magang::where('id', $id)->update($request->all());
-        return view('pembelakan.index');
+
     }
 
     /**
@@ -94,20 +83,13 @@ class pembekalanContoller extends Controller
      */
     public function destroy($id)
     {
-        $pembekalan = pembekalan_magang::where('id', $id)->delete();
-        return response()->json(['success' => 'success']);
+
     }
     public function delete_all(Request $request){
-        $pembekalan = pembekalan_magang::whereIn('id', $request->id)->delete();
-        return response()->jsonp(['success' => 'success']);
+
     }
     public function download($id)
     {
-        $file = public_path() . "/PDF/$id";
 
-        $headers = array(
-            'Content-Type: application/pdf',
-        );
-        return Response()->download($file, $id, $headers);
     }
 }

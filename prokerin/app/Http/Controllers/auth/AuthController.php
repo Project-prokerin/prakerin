@@ -14,15 +14,18 @@ class AuthController extends Controller
     }
     public function postlogin(Request $request)
     {
-        // dd($request->username);
+        $request->validate([
+            'username' => 'required|min:5',
+            'password' => 'required|min:5'
+        ]);
         if (Auth::attempt($request->only('username', 'password'))) {
             if (Auth()->user()->role == 'siswa') {
-                return redirect('/dashboard/user');
+                return redirect('/user/dashboard');
             } else if (Auth()->user()->role == 'kaprog' || 'hubin' || 'bkk') {
                 return redirect('/dashboard/admin');
             }
         } else {
-            return back()->withInput($request->only('usernamae', 'password'));
+            return back()->withInput($request->only('username', 'password'));
         }
     }
 }

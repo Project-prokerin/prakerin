@@ -170,6 +170,8 @@ return [
         Maatwebsite\Excel\ExcelServiceProvider::class,
         // DataTable
         Yajra\DataTables\DataTablesServiceProvider::class,
+        // Sweet alert
+        RealRashid\SweetAlert\SweetAlertServiceProvider::class,
         /*
          * Application Service Providers...
          */
@@ -233,6 +235,7 @@ return [
         'PDF' => Barryvdh\DomPDF\Facade::class,
         'Excel' => Maatwebsite\Excel\Facades\Excel::class,
         'DataTables' => Yajra\DataTables\Facades\DataTables::class,
+        'Alert' => RealRashid\SweetAlert\Facades\Alert::class,
     ],
 
 ];

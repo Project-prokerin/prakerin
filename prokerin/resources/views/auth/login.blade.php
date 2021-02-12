@@ -27,7 +27,7 @@
                     <span class="login100-form-title">
                         Login Prakerin
                     </span>
-                    <div class="wrap-input100 validate-input" data-validate="Valid username is required: ex@abc.xyz">
+                    <div class="wrap-input100 validate-input  {{ Request::old('username')?'alert-validate':'' }}" data-validate="{{ Request::old('username')?'username salah':'masukan username' }}">
                         <input class="input100" type="text" name="username" placeholder="username" value="{{ Request::old('username') }}">
                         <span class="focus-input100"></span>
                         <span class="symbol-input100">
@@ -49,17 +49,13 @@
                     </div>
                     <div class="text-center p-t-12">
                         <span class="txt1">
-                            Forgot
                         </span>
                         <a class="txt2" href="#">
-                            Username / Password?
                         </a>
                     </div>
 
-                    <div class="text-center p-t-50">
+                    <div class="text-center mb-3 p-t-50">
                         <a class="txt2" href="#">
-                            Create your Account
-                            <i class="fa fa-long-arrow-right m-l-5" aria-hidden="true"></i>
                         </a>
                     </div>
                 </form>

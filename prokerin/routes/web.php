@@ -80,28 +80,28 @@ Route::middleware(['web', 'auth', 'role:bkk,hubin,kaprog'])->group(function () {
 });
 
 
-// untuk siswa/user disiniz
+// untuk siswa/user di sini
 Route::middleware(['web', 'auth', 'role:siswa'])->group(function () {
     // memakai route view untuk view saja
-    Route::get('/dashboard/user', [viewController::class, 'index'])->name('index.user');
-    Route::get('/user/status', [userController::class, 'status'])->name('status');
+    Route::get('/user/dashboard', [userController::class, 'index'])->name('index.user'); //dashboard
+    Route::get('/user/status', [userController::class, 'status'])->name('user.status');
 
     //profile
-    Route::get('/user/profile', [userController::class, 'profile'])->name('user.prrofie');
+    Route::get('/user/profile', [userController::class, 'profile'])->name('user.profile');
     Route::get('/user/profile/edit', [userController::class, 'profile_edit'])->name('user.edit.profile');
     Route::put('/user/profile/{id}', [userController::class, 'profile_update'])->name('user.edit.profile');
 
     // ganti password
-    Route::get('/user/change_password', [userController::class, 'password'])->name('password');
-    Route::post('/user/change_password', [userController::class, 'password_post'])->name('password.post');
+    Route::get('/user/ganti_password', [userController::class, 'ganti_password'])->name('ganti_password');
+    Route::post('/user/ganti_password', [userController::class, 'ganti_password_post'])->name('ganti_password.post');
 
     // list perusahaan
     Route::get('/user/perusahaan', [userController::class, 'perusahaan'])->name('perusahaan');
     Route::post('/user/perusahaan/{id}', [userController::class, 'perusahaan_detail'])->name('perusahaan_detail.post');
 
     // pembekalan magang
-    Route::get('/user/pembekalan', [userController::class, 'pembekalan'])->name('pembekalan');
-    Route::post('/user/pembekalan', [userController::class, 'pembekalan_post'])->name('pembekalan.post');
+    Route::get('/user/pembekalan', [userController::class, 'pembekalan'])->name('user.pembekalan');
+    Route::post('/user/pembekalan', [userController::class, 'pembekalan_post'])->name('user.pembekalan.post');
 
     // jurnal prakerin
     Route::get('/user/jurnal', [userController::class, 'jurnal'])->name('user.jurnal');
