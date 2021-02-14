@@ -4,18 +4,18 @@ namespace App\Http\Controllers\user;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use app\Models\User;
-use app\models\Siswa;
-use app\Models\guru;
-use app\Models\perusahaan;
-use app\Models\orang_tua;
-use app\Models\sekolah_asal;
-use app\Models\data_prakerin;
-use app\Models\jurnal_harian;
-use app\Models\pembekalan_magang;
+use App\Models\User;
+use App\models\Siswa;
+use App\Models\guru;
+use App\Models\perusahaan;
+use App\Models\orang_tua;
+use App\Models\sekolah_asal;
+use App\Models\data_prakerin;
+use App\Models\jurnal_harian;
+use App\Models\pembekalan_magang;
 use App\Models\jurnal_prakerin;
 use App\Models\kelompok_laporan;
-use app\Models\laporan_prakerin;
+use App\Models\laporan_prakerin;
 use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
 

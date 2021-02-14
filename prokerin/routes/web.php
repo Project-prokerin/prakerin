@@ -31,10 +31,10 @@ use App\Http\Controllers\Excel\ExcelController;
 */
 
 
-// login
+// Auth
 Route::get('/', [AuthController::class, 'index'])->name('login');
 Route::post('/postlogin', [AuthController::class, 'postlogin']);
-
+Route::get('users/{id}', [AuthController::class, 'logout'])->name('logout');
 
 // route template
 Route::get('/pagesSiswa', [viewController::class, 'pagesSiswa']);
@@ -121,12 +121,10 @@ Route::middleware(['web', 'auth', 'role:siswa'])->group(function () {
 
     // jurnal prakerin
     Route::get('/user/jurnal', [userController::class, 'jurnal'])->name('user.jurnal');
-    Route::get('/user/jurnal/create', [userController::class, 'jurnal_create'])->name('user.jurnal.create');
     Route::post('/user/jurnal', [userController::class, 'jurnal_post'])->name('user.jurnal.post');
 
     // jurnal harian
     Route::get('/user/jurnalH', [userController::class, 'jurnalH'])->name('user.jurnalH');
-    Route::get('/user/jurnalH/create', [userController::class, 'jurnalH_create'])->name('user.jurnalH.create');
     Route::post('/user/jurnalH', [userController::class, 'jurnalH_post'])->name('user.jurnalH.post');
 
     // kelompok laporan

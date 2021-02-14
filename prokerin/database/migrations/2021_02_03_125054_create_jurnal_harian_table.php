@@ -16,8 +16,9 @@ class CreateJurnalHarianTable extends Migration
         Schema::create('jurnal_harian', function (Blueprint $table) {
             $table->id();
             $table->date('tanggal');
-            $table->date('datang');
-            $table->date('pulang');
+            $table->time('datang');
+            $table->time('pulang');
+            $table->longtext('kegiatan_harian');
             $table->bigInteger('id_perusahaan')->unsigned();
             $table->foreign('id_perusahaan')->references('id')->on('perusahaan')->onDelete('cascade')->onUpdate('cascade');
             $table->bigInteger('id_siswa')->unsigned();
