@@ -1,13 +1,27 @@
 @extends('template.master')
 @push('link')
 <style>
+    *{
+        font-family: sans-serif;
+        text-decoration: none;
+    }
     .card-body h6,p{
-        margin-top: -17px;
+        margin: 0;
+        padding: 0;
+        text-align: left;
+        position: inherit;
+
     }
-    .content{
-        text-align: center;
-        padding-bottom: 20px;
+    div.content {
+        border-style: solid;
+        background-color: #bec4c0;
+        color: white;
+        opacity: 0.5;
+        background-color: #0098db;
+        background-repeat: no-repeat;
+        height: 200px;
     }
+}
 </style>
 @endpush
 @section('title', 'Prakerin | DASHBOARD')
@@ -16,89 +30,87 @@
         <div class="breadcrumb-item "><i class="fas fa-tachometer-alt"></i> DASBOARD</div>
 @endsection
 @section('main')
-
-{{-- content --}}
-<div class="content">
-    <h1>Prakerin SMK Taruna Bhakti</h1>
-    <h5>Praktek Kerja Industri 2021-2022</h5>
+<div class="card" >
+<div class="container-fluid text-center H-100 mb-3  content" >
+    <h3 class="ml-3" style="margin-top: 70px">PRAKERIN SMK TARUNA BHAKTI</h3>
+    <h6 class="ml-3 mb-5">Praktek Kerja Industri 2021-2022</h6>
 </div>
 {{--  --}}
 
 
-{{-- itemdashboard --}}
+{{-- itesmashboard --}}
+<div class="container-fluid mt-4">
 <div class="row">
     <div class="col-sm-4">
-        <div class="card" style="width: 20rem;">
-            <a href="http://127.0.0.1:8000/user/perusahaan" class="pb-2 ml-2">
-                <img src="http://127.0.0.1:8000/login/photos/dashboard.png" alt="" height="75">
-            </a>
+        <a href="{{ route('user.perusahaan') }}" style="text-decoration: none">
+        <div class="card"  >
+                <img src="{{ asset('login/photos/dashboard.png') }}" class="card-img-top" alt="" >
             <div class="card-body">
-                <p class="">List Perusahaan</p>
-                <a href="http://127.0.0.1:8000/user/perusahaan" class=""><h6>List Perusahaan</h6></a>
+                <p class="text-dark">List Perusahaan</p>
+                <p class="text-dark"> <h6>List Perusahaan</h6></p>
             </div>
         </div>
+        </a>
     </div>
     <div class="col-sm-4">
-        <div class="card" style="width: 20rem;">
-            <a href="http://127.0.0.1:8000/user/pembekalan" class="pb-2 ml-2">
-                <img src="http://127.0.0.1:8000/login/photos/dashboard.png" alt="" height="75">
-            </a>
+        <a href="{{ route('user.pembekalan') }}"   style="text-decoration: none">
+        <div class="card" >
+                <img src="{{ asset('login/photos/dashboard.png') }}" class="card-img-top"  alt="" >
             <div class="card-body">
-                <p class="">Pembekalan Magang</p>
-                <a href="http://127.0.0.1:8000/user/pembekalan" class=""><h6>Pembekalan Magang</h6></a>
+                <p class="text-dark">Pembekalan Magang</p>
+                <p class="text-dark"> <h6>Pembekalan Magang</h6></p>
             </div>
         </div>
+        </a>
     </div>
     <div class="col-sm-4">
-        <div class="card" style="width: 20rem;">
-            <a href="http://127.0.0.1:8000/user/status" class="pb-2 ml-2">
-                <img src="http://127.0.0.1:8000/login/photos/dashboard.png" alt="" height="75">
-            </a>
+    <a href="{{ route('user.status') }}"  style="text-decoration: none">
+        <div class="card" >
+                <img src="{{ asset('login/photos/dashboard.png') }}" class="card-img-top" alt="" >
             <div class="card-body">
-                <p class="">Status Magang</p>
-                <a href="http://127.0.0.1:8000/user/status" class=""><h6>Status Magang</h6></a>
+                <p class="text-dark">Status Magang</p>
+                <p class="text-dark"><h6>Status Magang</h6></p>
             </div>
         </div>
+    </a>
+    </div>
+    <div class="col-sm-4">
+    <a href="{{ route('user.jurnal') }}"  style="text-decoration: none">
+        <div class="card"  >
+                <img src="{{ asset('login/photos/dashboard.png') }}"  class="card-img-top" alt="" >
+            <div class="card-body">
+                <p class="text-dark">Jurnal Prakerin</p>
+                <p class="text-dark"><h6>Jurnal Prakerin</h6></p>
+            </div>
+        </div>
+        </a>
+    </div>
+    <div class="col-sm-4">
+        <a href="{{ route('user.jurnalH') }}"   style="text-decoration: none">
+        <div class="card">
+                <img src="{{ asset('login/photos/dashboard.png') }}"  class="card-img-top" alt="" >
+            <div class="card-body">
+                <p class="text-dark">Jurnal Harian</p>
+                <p class="text-dark"><h6>Jurnal Harian</h6></p>
+            </div>
+        </div>
+        </a>
+    </div>
+    <div class="col-sm-4">
+        <a href="{{ route('user.kelompok_laporan') }}"  style="text-decoration: none">
+        <div class="card" >
+                <img src="{{ asset('login/photos/dashboard.png') }}"  class="card-img-top" alt="" >
+            <div class="card-body">
+                <p class="text-dark">Kelompok Harian</p>
+                <p class="text-dark"><h6>Kelompok Harian</h6></p>
+            </div>
+        </div>
+        </a>
     </div>
 </div>
-
-<div class="row pt-4">
-    <div class="col-sm-4">
-        <div class="card" style="width: 20rem;">
-            <a href="http://127.0.0.1:8000/user/jurnal" class="pb-2 ml-2">
-                <img src="http://127.0.0.1:8000/login/photos/dashboard.png" alt="" height="75">
-            </a>
-            <div class="card-body">
-                <p class="">Jurnal Prakerin</p>
-                <a href="http://127.0.0.1:8000/user/jurnal" class=""><h6>Jurnal Prakerin</h6></a>
-            </div>
-        </div>
-    </div>
-    <div class="col-sm-4">
-        <div class="card" style="width: 20rem;">
-            <a href="http://127.0.0.1:8000/user/jurnalH" class="pb-2 ml-2">
-                <img src="http://127.0.0.1:8000/login/photos/dashboard.png" alt="" height="75">
-            </a>
-            <div class="card-body">
-                <p class="">Jurnal Harian</p>
-                <a href="http://127.0.0.1:8000/user/jurnalH" class=""><h6>Jurnal Harian</h6></a>
-            </div>
-        </div>
-    </div>
-    <div class="col-sm-4">
-        <div class="card" style="width: 20rem;">
-            <a href="http://127.0.0.1:8000/user/kelompok_laporan" class="pb-2 ml-2">
-                <img src="http://127.0.0.1:8000/login/photos/dashboard.png" alt="" height="75">
-            </a>
-            <div class="card-body">
-                <a href="http://127.0.0.1:8000/user/kelompok_laporan" class=""><h6>Kelompok Harian</h6></a>
-                <p class="">Kelompok Harian</p>
-            </div>
-        </div>
-    </div>
 </div>
-{{-- itemdashboard end --}}
-
+{{-- itesmashboard end --}}
+</div>
 @endsection
 @push('script')
 <script>
