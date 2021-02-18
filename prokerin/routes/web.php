@@ -113,7 +113,8 @@ Route::middleware(['web', 'auth', 'role:siswa'])->group(function () {
 
     // list perusahaan
     Route::get('/user/perusahaan', [userController::class, 'perusahaan'])->name('user.perusahaan');
-    Route::get('/user/perusahaan/{id}', [userController::class, 'perusahaan_detail'])->name('perusahaan_detail.post');
+    Route::get('/user/perusahaan/api', [userController::class, 'ajaxperusahaan'])->name('user.perusahaan.api');
+    Route::get('/user/perusahaan/{id}', [userController::class, 'perusahaan_detail'])->name('user.perusahaan.detail');
 
     // pembekalan magang
     Route::get('/user/pembekalan', [userController::class, 'pembekalan'])->name('user.pembekalan');

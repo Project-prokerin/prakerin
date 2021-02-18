@@ -28,16 +28,18 @@ class userController extends Controller
         return view('siswa.dashboard',compact('sidebar','siswa'));
     }
     // list perusahaan
-    public function perusahaan(Request $request)
+    public function perusahaan()
     {
-        if ($request->ajax()) {
-            $perusahaan = perusahaan::all();
-            return response()->json(compact('perusahaan'));
-        }
-        $sidebar = 'perusahaan';
         $perusahaan = perusahaan::all();
+        $sidebar = 'perusahaan';
         return view('siswa.list_perusahaan.index', compact('sidebar','perusahaan'));
     }
+    // ajax perusahaan
+    public function ajaxperusahaan(Request $request){
+        $perusahaan = perusahaan::all();
+        return response()->json(compact('perusahaan'));
+    }
+    // detail perusahaan
     public function perusahaan_detail(Request $request, $id){
         if ($request->ajax()) {
             $perusahaan = perusahaan::where('id', $id)->first();

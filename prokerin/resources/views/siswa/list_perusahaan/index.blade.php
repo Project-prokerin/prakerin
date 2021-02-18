@@ -86,14 +86,15 @@
 <script>
 
     $(document).ready(function() {
-        $.ajaxSetup({
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
-                }
-        });
+            $.ajaxSetup({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+                    }
+            });
             $.ajax({
-            url: '/user/perusahaan',
-            type: 'GET',
+            type: 'get',
+            url: '{{  route("user.perusahaan.api")  }}',
+            dataType:'json',
             success: function(result){
                     let len = result.perusahaan.length;
                     for (let i = 0; i < len; i++) {
