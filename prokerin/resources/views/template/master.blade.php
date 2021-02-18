@@ -24,7 +24,10 @@
 <body>
 <div id="app">
     <div class="main-wrapper main-wrapper-1">
-    <div class="navbar-bg"> </div>
+    <div class="navbar-bg">
+
+
+    </div>
     {{-- navbar  --}}
     @include('template.partial.navbar')
     {{-- end navbar --}}
@@ -35,7 +38,7 @@
         <!-- Main Content -->
             <div class="main-content">
                 <section class="section">
-                    <div class="section-header">
+                    <div class="section-header h-25">
                         <h1>@yield('judul')</h1>
                         <div class="section-header-breadcrumb mr-5" aria-label="breadcrumb">
                             @yield('breadcrump')

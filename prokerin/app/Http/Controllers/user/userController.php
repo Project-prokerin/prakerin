@@ -28,10 +28,24 @@ class userController extends Controller
         return view('siswa.dashboard',compact('sidebar','siswa'));
     }
     // list perusahaan
-    public function perusahaan()
+    public function perusahaan(Request $request)
     {
+        if ($request->ajax()) {
+            $perusahaan = perusahaan::all();
+            return response()->json(compact('perusahaan'));
+        }
         $sidebar = 'perusahaan';
-        return view('siswa.list_perusahaan.index', compact('sidebar'));
+        $perusahaan = perusahaan::all();
+        return view('siswa.list_perusahaan.index', compact('sidebar','perusahaan'));
+    }
+    public function perusahaan_detail(Request $request, $id){
+        if ($request->ajax()) {
+            $perusahaan = perusahaan::where('id', $id)->first();
+            return response()->json(compact('perusahaan'));
+        }
+        $perusahaan = perusahaan::where('id', $id)->first();
+        $sidebar = 'perusahaan';
+        return view('siswa.list_perusahaan.detail', compact('perusahaan','sidebar'));
     }
     // pembekalan magang
     public function pembekalan(){

@@ -5,6 +5,9 @@
         font-family: sans-serif;
         text-decoration: none;
     }
+    a{
+        text-decoration: none;
+    }
     @media screen and (max-width:680px){
 
     #maincontent{
@@ -27,7 +30,7 @@
         text-align: center;
         margin-top: -20px;
         height: 65px;
-        width: 350px; 
+        width: 350px;
         color: white;
         background: #475bf0;
     }
@@ -63,75 +66,71 @@
 @section('main')
 {{--  --}}
 <div class="card mt-5">
-                <div class="container-fluid text-center H-100 mb-3 teks" >  
-                    <h3>Perusahaan</h3>           
+                <div class="container-fluid text-center H-100 mb-3 teks" >
+                    <h3>Perusahaan</h3>
                 </div>
 {{--  --}}
 
 
 {{-- listperusahaan --}}
 <div class="container-fluid mt-4">
-    <div class="row">
-    {{-- 1 --}}
-    <div class="col-sm-11">
-        <div class="card">
-            <li class="media">
-                <div class="card mt-3 ml-3">
-                    <img alt="image" class="mr-3 altimg" src="{{ asset('login/photos/dashboard.png') }}">
-                </div>
-            <div class="media-body">
-                <div class="medcontent" >
-                    <div class="card-header">
-                        <h3>PT.Telkom.Net</h3>
-                    </div>
-                    <div class="content">
-                        <p>
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sequi, modi?
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sequi, modi?
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sequi, modi?
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sequi, modi?
-                        </p>
-                        <a href="" style="text-decoration: none; margin-left: 20px;">Read More</a>
-                    </div>
-              </div>
-            </div>
-            </li>
-        </div>
-    </div>
-    {{-- 1 --}}
+    <div class="row" id="row">
 
-    {{-- 2 --}}
-    <div class="col-sm-11">
-        <div class="card">
-            <li class="media">
-                <div class="card mt-3 ml-3">
-                    <img alt="image" class="mr-3 altimg" src="{{ asset('login/photos/dashboard.png') }}">
-                </div>
-            <div class="media-body">
-                <div class="medcontent">
-                    <div class="card-header">
-                        <h3>PT.Telkom.Net</h3>
-                    </div>
-                    <div class="content">
-                        <p>
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sequi, modi?
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sequi, modi?
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sequi, modi?
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sequi, modi?
-                        </p>
-                        <a href="" style="text-decoration: none; margin-left: 20px;">Read More</a>
-                    </div>
-              </div>
-            </div>
-            </li>
-        </div>
     </div>
-    {{-- 2 --}}
-    </div>
+
 </div>
 {{-- listperusahaan end --}}
 </div>
 @endsection
 @push('script')
+<script>
 
+    $(document).ready(function() {
+        $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+                }
+        });
+            $.ajax({
+            url: '/user/perusahaan',
+            type: 'GET',
+            success: function(result){
+                    let len = result.perusahaan.length;
+                    for (let i = 0; i < len; i++) {
+                            let perusahaan = result.perusahaan[i];
+                            deskripsi = perusahaan.deskripsi_perusahaan;
+                            console.log(perusahaan)
+                            let card = '<a href="/user/perusahaan/'+perusahaan.id+'" class="text-decoration-none text-dark">' +
+                                '<div class="col-sm-11">' +
+                                '<div class="card">' +
+                                    '<li class="media">' +
+                                    '<div class="card mt-3 ml-3">'+
+                                            "<img alt='image' class='mr-3 altimg' src='{{ url('images/perusahaan/') }}/"+perusahaan.foto+"'>"+
+                                        '</div>'+
+                                        '<div class="media-body">'+
+                                            '<div class="medcontent" >'+
+                                            ' <div class="card-header">'+
+                                                ' <h3>'+perusahaan.nama+'</h3>'+
+                                            ' </div>'+
+                                            '  <div class="content">'+
+                                                    '<p>' + deskripsi.substr(0,400)  + '</p>'+
+                                                    '<a href="/user/perusahaan/'+perusahaan.id+'" style="text-decoration: none; margin-left: 20px;">Read More</a>'+
+                                                '</div>'+
+                                        '</div>'+
+                                        '</div>'+
+                                        '</li>'+
+                                    '</div>'+
+                                '</div>'+
+                                '</a>';
+
+                    $('#row').append(card);
+                    }
+            },
+            fail: function(result){
+                console.log(data);
+            }
+        });
+
+    })
+</script>
 @endpush

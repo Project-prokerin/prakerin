@@ -22,16 +22,17 @@ class perusahaanSeeder extends Seeder
     public function run()
     {
         $faker = Faker::create();
-        for ($i = 0; $i < 2; $i++) {
+        $faker->addProvider(new \Xvladqt\Faker\LoremFlickrProvider($faker));
+        for ($i = 0; $i < 20 ; $i++) {
         DB::table('perusahaan')->insert([
                 'nama' => $faker->company,
-                'foto' => 'default.png',
+                'foto' => 'default.jpg',
                 'bidang_usaha' => 'null',
                 'alamat' => $faker->address,
                 'link' => $faker->url,
                 'email' => $faker->email,
                 'nama_pemimpin' => $faker->name,
-                'deskripsi_perusahaan' => $faker->text($maxNbChars = 200),
+                'deskripsi_perusahaan' => $faker->text(1000),
                 'tanggal_mou' => $faker->date($format = 'Y-m-d', $max = 'now'),
                 'status_mou' => $faker->randomElement($array = array('7 Tahun', '8  Tahun', '9 Tahun', '10 Tahun')),
                 'created_at' => Carbon::now()
