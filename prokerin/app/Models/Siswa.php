@@ -13,7 +13,7 @@ class Siswa extends Model
     public function user()
     {
           // foreign, owner key
-        return $this->hasOne(User::class,'id');
+        return $this->hasOne(User::class,'id_siswa','id');
     }
     public function data_prakerin()
     {

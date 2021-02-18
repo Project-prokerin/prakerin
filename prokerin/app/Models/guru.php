@@ -28,6 +28,6 @@ class guru extends Model
     public function user()
     {
         // foreign, owner key
-        return $this->hasOne(User::class, 'id', 'user_id');
+        return $this->hasOne(User::class, 'id_guru', 'id');
     }
 }

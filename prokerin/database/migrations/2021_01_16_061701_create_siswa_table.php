@@ -33,9 +33,10 @@ class CreateSiswaTable extends Migration
             $table->integer('jmlh_saudara')->length(2);
             $table->string('kebutuhan_khusus', 20);
             $table->string('no_akte', 20);
-            $table->bigInteger('user_id')->unsigned();
-            $table->foreign('user_id')->references('id')->on('users')->onUpdate('cascade')->onDelete('cascade');
             $table->timestamps();
+        });
+        Schema::table('users', function (Blueprint $table) {
+            $table->foreign('id_siswa')->references('id')->on('siswa')->onDelete('cascade')->onUpdate("cascade");
         });
 
     }
