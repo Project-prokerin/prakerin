@@ -25,24 +25,26 @@
 <div class="container">
 
     <div class="col pt-4 ">
-     <div>
-       Password sebelumnya
-      <p> <i class="fas fa-user"></i> <input type="password"> </div></p>
-      <div>
-       Password Baru
-      <p> <i class="fas fa-user"></i> <input type="password"> </div></p>
-      <div>
-       Password baru (ulangi)
-      <p> <i class="fas fa-user"></i> <input type="password"> </div></p>
+<form action="{{ route('ganti_password.post') }}" method="POST">
+@csrf
+        <div>
+        Password sebelumnya
+        <p> <i class="fas fa-user"></i> <input type="password" name="pas_old"> </div></p>
+        <div>
+        Password Baru
+        <p> <i class="fas fa-user"></i> <input type="password" name="pas_new"> </div></p>
+        <div>
+        Password baru (ulangi)
+        <p> <i class="fas fa-user"></i> <input type="password" name="pas_new2"> </div></p>
 
-      <div class="button">
-        <button type="button" class="btn btn-success">Save</button>
+        <div class="button">
+            <button type="button" class="btn btn-success">Save</button>
 
-        <button type="button" class="btn btn-danger">cancel</button>
-   </div>
-
+            <button type="button" class="btn btn-danger">cancel</button>
+    </div>
+</form>
 </div>
-   
+
 
 </div>
 @endsection
