@@ -55,6 +55,7 @@ Route::middleware(['web', 'auth', 'role:hubin'])->group(function () {
 
     // data perusahaan
     Route::resource('perusahaan', 'admin\perusahaan\perusahaanController');
+    Route::get('/export/perusahaan', [ExcelController::class, 'perusahaan'])->name('export.perusahaan');
     // Route::post('/perushaaan/destroy', [perusahaanController::class, 'delete_all'])->name('perushaaan.delete-all');
 
 
