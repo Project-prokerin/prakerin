@@ -11,6 +11,7 @@ class data_prakerin extends Model
     use HasFactory;
     protected $table = 'data_prakerin';
     protected $guarded = [];
+    protected $dates = ['tgl_mulai','tgl_selesai'];
     public function siswa()
     {
         return $this->hasOne(Siswa::class, 'id','id_siswa');

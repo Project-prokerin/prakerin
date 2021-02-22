@@ -22,43 +22,46 @@
         <div class="header " >
                <center> Anda belum masuk kelompok</center>
         </div>
-       
+
         <table class="table table-bordered">
   <thead>
     <tr>
     </tr>
   </thead>
-  <tbody>
-    <tr>
-      <th scope="col">Pembimbing</th>
-      <td>-</td>
-    
-    </tr>
-    <tr>
-      <th scope="col">Judul Laporan</th>
-      <td>-</td>
-     
-    </tr>
-    <tr>
-      <th scope="col">nama</th>
-      <td>-</td>
-     
-    </tr>
-    <tr>
-      <th scope="col">nama</th>
-      <td>-</td>
-     
-    </tr>
-    <tr>
-      <th scope="col">nama</th>
-      <td>-</td>
-     
-    </tr>
-    <tr>
-      <th scope="col">nama</th>
-      <td>-</td>
-      
-    </tr>
+<tbody>
+
+        <tr>
+        <th scope="col">Pembimbing</th>
+        <td>{{ $no_kelompok }}</td>
+
+        </tr>
+        <tr>
+        <th scope="col">Judul Laporan</th>
+        <td>{{ $guru_nama }}</td>
+        @foreach ($kelompok as $item)
+        </tr>
+        <tr>
+        <th scope="col">nama</th>
+        <td>{{ $item->data_prakerin->nama }}</td>
+        </tr>
+        @endforeach
+        {{-- <tr>
+        <th scope="col">nama</th>
+        <td>-</td>
+
+        </tr>
+        <tr>
+        <th scope="col">nama</th>
+        <td>-</td>
+
+        </tr>
+        <tr>
+        <th scope="col">nama</th>
+        <td>-</td>
+
+        </tr> --}}
+
+
   </tbody>
 </table>
         </div>

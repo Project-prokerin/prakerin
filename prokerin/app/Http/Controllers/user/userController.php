@@ -90,7 +90,11 @@ class userController extends Controller
     // kelompok + laporan prakerin
     public function kelompok_laporan()
     {
-            $sidebar  = 'kelompok_laporan';
-            return view('siswa.kelompok_laporan.index', compact('sidebar'));
+        $sidebar  = 'kelompok_laporan';
+        $no_kelompok = !empty(Auth::user()->siswa->data_prakerin->kelompok_laporan->no) ? Auth::user()->siswa->data_prakerin->kelompok_laporan->no : '';
+        $guru_nama = !empty(Auth::user()->siswa->data_prakerin->kelompok_laporan->guru->nama) ? Auth::user()->siswa->data_prakerin->kelompok_laporan->guru->nama : '';
+            // dd(Auth::user()->siswa->data_prakerin);
+            $kelompok = kelompok_laporan::where('no', $no_kelompok)->get();
+            return view('siswa.kelompok_laporan.index', compact('sidebar','kelompok','no_kelompok','guru_nama'));
     }
 }

@@ -51,6 +51,7 @@ Route::middleware(['web', 'auth', 'role:hubin'])->group(function () {
     // data guru
     Route::resource('guru', 'admin\guru\guruController');
     Route::post('/guru/destroy', [guruController::class, 'delete_all'])->name('guru.delete-all');
+    Route::get('/export/guru', [ExcelController::class, 'guru'])->name('export.guru');
 
     // data perusahaan
     Route::resource('perusahaan', 'admin\perusahaan\perusahaanController');
@@ -63,6 +64,7 @@ Route::middleware(['web', 'auth', 'role:hubin'])->group(function () {
 Route::middleware(['web', 'auth', 'role:kaprog,hubin'])->group(function () {
     // data prakerin
     Route::resource('data_prakerin', 'admin\data_prakerin\data_prakerinController');
+    Route::get('/export/data_prakern', [ExcelController::class, 'data_prakerin'])->name('export.data_prakerin');
 
     // jurnal harian
     Route::resource('jurnalH', 'admin\jurnal\jurnal_harianController');
@@ -93,6 +95,7 @@ Route::middleware(['web', 'auth', 'role:bkk,hubin'])->group(function () {
 // all admin
 Route::middleware(['web', 'auth', 'role:bkk,hubin,kaprog'])->group(function () {
     Route::get('/dashboard/admin',  [ViewController::class, 'dashboard'])->name('admin.dashboard');  // memakai route view untuk view saja
+    Route::get('/export/pembekalan', [ExcelController::class, 'pembekalan'])->name('export.pembekalan');
 });
 
 

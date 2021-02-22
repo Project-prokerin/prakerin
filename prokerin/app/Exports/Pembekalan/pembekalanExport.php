@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Exports;
+namespace App\Exports\pembekalan;
 
 use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\WithCustomStartCell;
@@ -17,11 +17,11 @@ use Maatwebsite\Excel\Concerns\WithColumnWidths;
 use Maatwebsite\Excel\Sheet;
 use PhpOffice\PhpSpreadsheet\Worksheet\Worksheet;
 
-class pembekalanExport implements FromCollection, WithHeadings,WithMapping,WithStyles,WithCustomStartCell, WithColumnWidths, ShouldAutoSize
+class pembekalanExport implements FromCollection, WithHeadings, WithMapping, WithStyles, WithCustomStartCell, WithColumnWidths, ShouldAutoSize
 {
     /**
-    * @return \Illuminate\Support\Collection
-    */
+     * @return \Illuminate\Support\Collection
+     */
     use Exportable;
     private $filename = 'pembekalan_magang.xlsx';
 
@@ -36,24 +36,26 @@ class pembekalanExport implements FromCollection, WithHeadings,WithMapping,WithS
     public function headings(): array
     {
         return
-        [
-            'nama_siswa',
-            'test_wpt_iq',
-            'personality_interview',
-            'soft_skill',
-            'file_portofolio',
-            'guru bk',
-        ];
+            [
+                'no',
+                'nama_siswa',
+                'test_wpt_iq',
+                'personality_interview',
+                'soft_skill',
+                'file_portofolio',
+                // 'guru bk',
+            ];
     }
     public function map($pembekalan): array
     {
         return [
+            'no',
             !empty($pembekalan->siswa) ? $pembekalan->siswa->nama_siswa : '',
             $pembekalan->text_wpt_iq,
             $pembekalan->personality_interview,
             $pembekalan->soft_skill,
             $pembekalan->file_portofolio,
-            !empty($pembekalan->guru) ? $pembekalan->guru->nama : '',
+            // !empty($pembekalan->guru) ? $pembekalan->guru->nama : '',
         ];
     }
     public function startCell(): string
@@ -79,12 +81,15 @@ class pembekalanExport implements FromCollection, WithHeadings,WithMapping,WithS
         $sheet->mergeCells('B4:E4')->setCellValue('B4', 'Pembekalan magang siswa');
 
         foreach (array_values($columnindex) as $i => $value) {
-            if ($value == $highestCol) {
-                $panjang_col = $i;
+            if ($value === $highestCol) {
+                // $panjang_col = $i;
+                $panjang_col = $i + 1;
             }
         }
+        // dd($panjang_col);
         for ($i = 1; $i <= $highestRow; $i++) {
             for ($j = 1; $j <= $panjang_col; $j++) {
+                // dd($columnindex[$i] . ($i + 6));
                 $cell =  $sheet->getCellByColumnAndRow($j, $i + 6);
                 if ($cell->getValue() === 'belum') {
                     $sheet->getCellByColumnAndRow($j, $i + 6)->getStyle($columnindex[$i] . ($i + 6))->getFont()->getColor('#FFFFFF')->setARGB(\PhpOffice\PhpSpreadsheet\Style\Color::COLOR_WHITE);
@@ -105,7 +110,6 @@ class pembekalanExport implements FromCollection, WithHeadings,WithMapping,WithS
                 )
             )
         ));
-
         $sheet->getStyle('A6:' . $highestCol . '6')->applyFromArray(array(
             'borders' => array(
                 'allBorders' => array(
@@ -139,23 +143,25 @@ class pembekalanExport implements FromCollection, WithHeadings,WithMapping,WithS
                 'bold' => true,
                 // 'color' => ['argb' => 'FFFFFFF'],
             )
-    ));
+        ));
         for ($i = 0; $i < $count[0]; $i++) {
-            $sheet->getRowDimension($i + 6)->setRowHeight(20);
+            $sheet->getRowDimension($i + 7)->setRowHeight(30);
         }
+        for ($i = 0; $i < $count[0]; $i++) {
+            $sheet->setCellValue('A' . ($i + 7), $i + 1);
+        };
     }
 
 
     public function columnWidths(): array
     {
         return [
-            'A' => 20,
-            'B' => 20,
-            'C' => 30,
+            'A' => 10,
+            'B' => 30,
+            'C' => 20,
             'D' => 20,
             'E' => 20,
             'F' => 20
         ];
     }
-
 }
