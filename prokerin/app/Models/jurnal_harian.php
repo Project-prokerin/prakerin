@@ -9,6 +9,7 @@ class jurnal_harian extends Model
 {
     protected $table = 'jurnal_harian';
     protected $guarded = [];
+    protected $dates = ['tanggal','datang','pulang'];
     public function siswa()
     {
                                             // owner key

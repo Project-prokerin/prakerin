@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\user;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\jurnal_harianRequest;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\models\Siswa;
@@ -86,7 +87,18 @@ class userController extends Controller
         $siswa = Auth::user()->siswa;
         return view('siswa.jurnal_harian.index', compact('sidebar','siswa'));
     }
+    public function jurnalH_post(jurnal_harianRequest $request){
+        $validated = $request->validated();
+        $jurnal = jurnal_harian::where('created_at', Carbon::now()->format('Y-m-d'))->first();
+        if ($request->datang > $request->pulang) {
+            return back()->with('fail', 'masuk tanggal tanggal yang bener ye');
+        }
+            $perusahaan = Auth::user()->siswa->data_prakerin->perusahaan->id;
+            $request->request->add(['id_perusahaan' => $perusahaan, 'id_siswa' => Auth::user()->siswa->id]);
+            jurnal_harian::create($request->all());
+            return back();
 
+    }
     // kelompok + laporan prakerin
     public function kelompok_laporan()
     {
