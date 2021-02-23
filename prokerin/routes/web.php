@@ -97,6 +97,8 @@ Route::middleware(['web', 'auth', 'role:bkk,hubin'])->group(function () {
 Route::middleware(['web', 'auth', 'role:bkk,hubin,kaprog'])->group(function () {
     Route::get('/dashboard/admin',  [ViewController::class, 'dashboard'])->name('admin.dashboard');  // memakai route view untuk view saja
     Route::get('/export/pembekalan', [ExcelController::class, 'pembekalan'])->name('export.pembekalan');
+    Route::get('/export/siswa', [ExcelController::class, 'siswa'])->name('export.siswa');
+
 });
 
 

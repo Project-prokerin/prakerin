@@ -6,7 +6,7 @@ use App\Exports\guru\multiExport;
 use App\Exports\pembekalan\pembekalanExport as PembekalanPembekalanExport;
 use App\Exports\perusahaan\multiExport as PerusahaanMultiExport;
 use App\Exports\prakerin\multiExport as PrakerinMultiExport;
-use App\Exports\SiswaExport;
+use App\Exports\siswa\SiswaExport as SiswaExportt;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Excel;
@@ -87,5 +87,12 @@ public function __construct(Excel $excel)
             'NAMA_PEMIMPIN',
             'ALAMAT',];
         return $this->excel->download(new PerusahaanMultiExport($perusahaan, $headings), 'LIST PERUSAHAAN PRAKERIN.xlsx');
+    }
+    public function siswa()
+    {
+        $siswa = Siswa::all();
+
+        // $heading =
+        return $this->excel->download(new SiswaExportt($siswa), 'data_siswa.xlsx');
     }
 }
