@@ -1,6 +1,7 @@
 <?php
 
-namespace App\Exports\siswa;
+namespace App\Exports\jurnalh;
+
 
 use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\WithCustomStartCell;
@@ -9,8 +10,9 @@ use Maatwebsite\Excel\Concerns\WithMapping;
 use Maatwebsite\Excel\Concerns\WithStyles;
 use Maatwebsite\Excel\Concerns\WithEvents;
 use Maatwebsite\Excel\Concerns\Exportable;
+use Illuminate\Support\Facades\Auth;
 
-use App\Models\Siswa;
+use App\Models\jurnal_harian;
 use Illuminate\Contracts\Support\Responsable;
 use Maatwebsite\Excel\Concerns\ShouldAutoSize;
 use Maatwebsite\Excel\Concerns\WithColumnFormatting;
@@ -18,61 +20,69 @@ use Maatwebsite\Excel\Concerns\WithColumnWidths;
 use Maatwebsite\Excel\Sheet;
 use PhpOffice\PhpSpreadsheet\Worksheet\Worksheet;
 
-
-
-class SiswaExport implements FromCollection, WithHeadings, WithMapping, WithCustomStartCell, WithStyles,WithColumnWidths, ShouldAutoSize
-
-
+class JurnalHExport implements FromCollection, WithHeadings, WithMapping, WithCustomStartCell, WithStyles,WithColumnWidths, ShouldAutoSize
 {
     /**
     * @return \Illuminate\Support\Collection
     */
+
     use Exportable;
-    private $filename = 'Data_siswa.xlsx';
-    // public function collection()
-    // {
-    //     return Siswa::all();
-    // }
-    public function __construct($siswa)
+    private $filename = 'Jurnal-Harian.xlsx';
+    public function __construct($jurnalh)
     {
-        return $this->siswa = $siswa;
+        return $this->jurnalh = $jurnalh;
     }
     public function collection()
     {
-        return collect($this->siswa);
+        return collect($this->jurnalh);
     }
     public function headings(): array
     {
         return
-            [
-                'no',
-                'NIP',
+            [   
+                'No',
                 'Nama',
-                'Email',
-                'JenisKelamin',
+                'Tanggal',
+                'Jam Datang',
+                'Jam Pulang',
+                'Perusahaan',
             ];
     }
-    public function map($siswa): array
+    public function map($jurnalh): array
     {
         return [
             '',
-            $siswa->nipd,
-            $siswa->nama_siswa,
-            $siswa->email,
-            $siswa->jk,
+            ($jurnalh->id_siswa == Auth::id()) ? $jurnalh->siswa->nama_siswa : 'Error',
+            $jurnalh->tanggal,
+            $jurnalh->datang,
+            $jurnalh->pulang,
+            $jurnalh->perusahaan->nama,
             // !empty($pembekalan->guru) ? $pembekalan->guru->nama : '',
         ];
     }
+
+
     public function startCell(): string
     {
-        return 'B6';
+        return 'B7';
     }
 
     public function styles(Worksheet $sheet)
     {
         $count = [
-            count($this->siswa),
+            count($this->jurnalh),
         ];
+        $jurnal = jurnal_harian::with('siswa')->get();
+        
+            // foreach ($jurnal as $jur ) {
+            //     echo "{$jur->siswa->nama_siswa}";
+            // }
+
+
+        // dd($jurnal);
+        
+
+
         $columnindex = array(
             'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z',
             'AA', 'AB', 'AC', 'AD', 'AE', 'AF', 'AG', 'AH', 'AI', 'AJ', 'AK', 'AL', 'AM', 'AN', 'AO', 'AP', 'AQ', 'AR', 'AS', 'AT', 'AU', 'AV', 'AW', 'AX', 'AY', 'AZ',
@@ -80,11 +90,16 @@ class SiswaExport implements FromCollection, WithHeadings, WithMapping, WithCust
         );
         $highestRow = $sheet->getHighestRow();
         $highestCol = $sheet->getHighestColumn();
-        $sheet->getStyle('B6:' . $highestCol . $highestRow)->getAlignment()->setVertical(\PhpOffice\PhpSpreadsheet\Style\Alignment::VERTICAL_CENTER);
-        $sheet->getStyle('B6:' . $highestCol . $highestRow)->getAlignment()->setHorizontal(\PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER);
+        $sheet->getStyle('B7:' . $highestCol . $highestRow)->getAlignment()->setVertical(\PhpOffice\PhpSpreadsheet\Style\Alignment::VERTICAL_CENTER);
+        $sheet->getStyle('B7:' . $highestCol . $highestRow)->getAlignment()->setHorizontal(\PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER);
 
-        $sheet->mergeCells('B3:F3')->setCellValue('B3', 'SMK TARUNA BHAKTI DEPOK');
-        $sheet->mergeCells('B4:F4')->setCellValue('B4', 'Data Siswa');
+        $sheet->mergeCells('C3:F3')->setCellValue('C3', 'SMK TARUNA BHAKTI DEPOK');
+        $sheet->mergeCells('C4:F4')->setCellValue('C4', 'Jurnal Harian');
+        if (is_Array($jurnal)||is_object($jurnal)) {
+            foreach ($jurnal as $jur ) {
+                $sheet->mergeCells('C5:F5')->setCellValue('C5', $jur->siswa->nama_siswa);
+            }
+        }
 
 
         foreach (array_values($columnindex) as $i => $value) {
@@ -93,7 +108,8 @@ class SiswaExport implements FromCollection, WithHeadings, WithMapping, WithCust
                 $panjang_col = $i + 1;
             }
         }
-        $sheet->getStyle('B6:' . $highestCol . $highestRow)->applyFromArray(array(
+
+        $sheet->getStyle('B7:' . $highestCol . $highestRow)->applyFromArray(array(
             'borders' => array(
                 'allBorders' => array(
                     'borderStyle' => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN,
@@ -101,7 +117,8 @@ class SiswaExport implements FromCollection, WithHeadings, WithMapping, WithCust
                 )
             )
         ));
-        $sheet->getStyle('B6:' . $highestCol . '6')->applyFromArray(array(
+        
+        $sheet->getStyle('B7:' . $highestCol . '7')->applyFromArray(array(
             'borders' => array(
                 'allBorders' => array(
                     'borderStyle' => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN,
@@ -125,7 +142,7 @@ class SiswaExport implements FromCollection, WithHeadings, WithMapping, WithCust
             )
         ));
 
-        $sheet->getStyle('B3:E4')->applyFromArray(array(
+        $sheet->getStyle('B3:F5')->applyFromArray(array(
             'alignment' => array(
                 'horizontal' => \PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER,
                 'vertical' => \PhpOffice\PhpSpreadsheet\Style\Alignment::VERTICAL_CENTER
@@ -139,21 +156,20 @@ class SiswaExport implements FromCollection, WithHeadings, WithMapping, WithCust
             $sheet->getRowDimension($i + 7)->setRowHeight(30);
         }
         for ($i = 0; $i < $count[0]; $i++) {
-            $sheet->setCellValue('B' . ($i + 7), $i + 1);
+            $sheet->setCellValue('B' . ($i + 8), $i + 1);
         };
-        
+ 
 
     }
-
     public function columnWidths(): array
     {
         return [
-            'A' => 15,
-            'B' => 15,
-            'C' => 15,
-            'D' => 15,
-            'E' => 15,
-            'F' => 15,
+            'A' => 17,
+            'B' => 17,
+            'C' => 17,
+            'D' => 17,
+            'E' => 17,
         ];
     }
+
 }

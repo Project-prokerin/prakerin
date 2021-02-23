@@ -98,6 +98,8 @@ Route::middleware(['web', 'auth', 'role:bkk,hubin,kaprog'])->group(function () {
     Route::get('/dashboard/admin',  [ViewController::class, 'dashboard'])->name('admin.dashboard');  // memakai route view untuk view saja
     Route::get('/export/pembekalan', [ExcelController::class, 'pembekalan'])->name('export.pembekalan');
     Route::get('/export/siswa', [ExcelController::class, 'siswa'])->name('export.siswa');
+    Route::get('/export/jurnalh', [ExcelController::class, 'jurnalh'])->name('export.jurnalh');
+    Route::get('/export/jurnalp', [ExcelController::class, 'jurnalp'])->name('export.jurnalp');
 
 });
 
