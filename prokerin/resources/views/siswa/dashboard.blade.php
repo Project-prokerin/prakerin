@@ -2,7 +2,6 @@
 @push('link')
 <style>
     *{
-        font-family: sans-serif;
         text-decoration: none;
     }
     .card-body h6,p{
@@ -19,7 +18,30 @@
         opacity: 0.5;
         background-color: #0098db;
         background-repeat: no-repeat;
-        height: 200px;
+        height: 140px;
+        width: 870px;
+        margin-top: 20px;
+    }
+    .card-body h6{
+        font-weight: normal;
+        text-decoration: underline;
+        margin-bottom: 10px;
+    }
+    .button-course{
+        margin-left: 15px;
+        width: 100px;
+        height: 30px;
+    }
+    .button-course h5{
+        margin-top: px;
+        font-size: 15px;
+    }
+    div .box{
+        /* box-shadow: 0 0 5px grey; */
+        transition: all .2s ease-in-out;
+    }
+    div .box:hover{
+        transform: scale(1.1); 
     }
 }
 </style>
@@ -30,19 +52,38 @@
         <div class="breadcrumb-item "><i class="fas fa-tachometer-alt"></i> DASBOARD</div>
 @endsection
 @section('main')
-<div class="" >
+<div class="card" >
 <div class="container-fluid text-center H-100 mb-3  content" >
-    <h3 class="ml-3" style="margin-top: 70px">PRAKERIN SMK TARUNA BHAKTI</h3>
+    <h3 class="ml-3" style="margin-top: 35px">PRAKERIN SMK TARUNA BHAKTI</h3>
     <h6 class="ml-3 mb-5">Praktek Kerja Industri 2021-2022</h6>
 </div>
 {{--  --}}
 
 {{-- itesmashboard --}}
-<div class="container-fluid mt-4">
+<div class="card-body">
+    <h6>Ringkasan Khusus</h6>
+        <!-- Example single danger button -->
+    <div class="btn-group dropright">
+        <button type="button" class="btn btn-secondary dropdown-toggle button-course" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <h5>Detail</h5>
+        </button>
+        <div class="dropdown-menu">
+            <a class="dropdown-item" href="{{ route('user.perusahaan') }}">List Perusahaan</a>
+            <a class="dropdown-item" href="{{ route('user.pembekalan') }}">Pembekalan Magang</a>
+            <a class="dropdown-item" href="{{ route('user.status') }}">Status Magang</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="{{ route('user.jurnal') }}">Jurnal Prakerin</a>
+            <a class="dropdown-item" href="{{ route('user.jurnalH') }}">Jurnal Harian</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="{{ route('user.kelompok_laporan') }}">Kelompok Harian</a>
+        </div>
+    </div>
+</div>
+<div class="card-body  container-fluid mt-2">
 <div class="row">
     <div class="col-sm-4">
         <a href="{{ route('user.perusahaan') }}" style="text-decoration: none">
-        <div class="card"  >
+        <div class="card box">
                 <img src="{{ asset('login/photos/dashboard.png') }}" class="card-img-top" alt="" >
             <div class="card-body">
                 <p class="text-dark">List Perusahaan</p>
@@ -53,7 +94,7 @@
     </div>
     <div class="col-sm-4">
         <a href="{{ route('user.pembekalan') }}"   style="text-decoration: none">
-        <div class="card" >
+        <div class="card  box" >
                 <img src="{{ asset('login/photos/dashboard.png') }}" class="card-img-top"  alt="" >
             <div class="card-body">
                 <p class="text-dark">Pembekalan Magang</p>
@@ -64,7 +105,7 @@
     </div>
     <div class="col-sm-4">
     <a href="{{ route('user.status') }}"  style="text-decoration: none">
-        <div class="card" >
+        <div class="card  box" >
                 <img src="{{ asset('login/photos/dashboard.png') }}" class="card-img-top" alt="" >
             <div class="card-body">
                 <p class="text-dark">Status Magang</p>
@@ -75,7 +116,7 @@
     </div>
     <div class="col-sm-4">
     <a href="{{ route('user.jurnal') }}"  style="text-decoration: none">
-        <div class="card"  >
+        <div class="card  box"  >
                 <img src="{{ asset('login/photos/dashboard.png') }}"  class="card-img-top" alt="" >
             <div class="card-body">
                 <p class="text-dark">Jurnal Prakerin</p>
@@ -86,7 +127,7 @@
     </div>
     <div class="col-sm-4">
         <a href="{{ route('user.jurnalH') }}"   style="text-decoration: none">
-        <div class="card">
+        <div class="card  box">
                 <img src="{{ asset('login/photos/dashboard.png') }}"  class="card-img-top" alt="" >
             <div class="card-body">
                 <p class="text-dark">Jurnal Harian</p>
@@ -97,7 +138,7 @@
     </div>
     <div class="col-sm-4">
         <a href="{{ route('user.kelompok_laporan') }}"  style="text-decoration: none">
-        <div class="card" >
+        <div class="card  box" >
                 <img src="{{ asset('login/photos/dashboard.png') }}"  class="card-img-top" alt="" >
             <div class="card-body">
                 <p class="text-dark">Kelompok Harian</p>
