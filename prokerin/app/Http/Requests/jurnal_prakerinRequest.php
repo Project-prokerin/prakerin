@@ -33,7 +33,7 @@ class jurnal_prakerinRequest extends FormRequest
             'mess' => 'required',
             'makan_siang' => 'required',
             'bus_antar_jemput' => 'required',
-            'intentif' => 'required'
+            'intensif' => 'required'
         ];
     }
     public function messages()
@@ -45,6 +45,10 @@ class jurnal_prakerinRequest extends FormRequest
             'jam_masuk.required' => 'jam_masuk tidak boleh kosong',
             'jam_istiharat.required' => 'jam_istiharat tidak boleh kosong',
             'jam_pulang.required' => 'am_pulang tidak boleh kosong',
+            'mess.required' => 'Mess tidak boleh kosong',
+            'makan_siang.required' => 'makan_siang tidak boleh kosong',
+            'Bus antar jemput.required' => 'bus_antar_jemput tidak boleh kosong',
+            'intensif.required' => 'intensif tidak boleh kosong',
         ];
     }
 }

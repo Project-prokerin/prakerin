@@ -138,18 +138,23 @@
                                     <div class="col-sm-6">
                                     <div class="">
                                         <div class="card-body">
-                                        <h5 class="card-title mb-5">Fasilitas Prakerin</h5>
+                                        <h5 class="card-title">Fasilitas Prakerin</h5>
+                                        <div class="alert alert-danger">
+                                            <div class="alert-body">
+
+                                            </div>
+                                        </div>
                                         <div class="row">
                                             {{-- mess --}}
                                             <div class="col-sm-6">
                                                     <h6 class="card-title">Mess</h6>
                                                     <div class="row checkbox"  >
                                                             <div class="form-check form-check-inline box-jurnal">
-                                                                    <input class="form-check-input mess" data_id="mess" type="checkbox" id="mess" name="mess"  value="iya">
+                                                                    <input class="form-check-input mess " data_id="mess" type="checkbox" id="" name="mess"  value="iya">
                                                                     <label class="form-check-label" for="mess">Iya</label>
                                                                 </div>
                                                                 <div class="form-check form-check-inline box-jurnal">
-                                                                    <input class="form-check-input mess" data_id="mess" type="checkbox" id="mess" name="mess"  value="tidak">
+                                                                    <input class="form-check-input mess" data_id="mess" type="checkbox" id="" name="mess"  value="tidak">
                                                                     <label class="form-check-label" for="mess">Tidak</label>
                                                                 </div>
                                                     </div>
@@ -161,11 +166,11 @@
                                                     <h6 class="card-title">Bus Antar Jemput</h6>
                                                     <div class="row checkbox">
                                                             <div class="form-check form-check-inline box-jurnal">
-                                                                    <input class="form-check-input bus_antar_jemput" type="checkbox" id="bus_antar_jemput" name="bus_antar_jemput" value="iya">
+                                                                    <input class="form-check-input bus_antar_jemput" type="checkbox" id="" name="bus_antar_jemput" value="iya">
                                                                     <label class="form-check-label" for="inlineCheckbox1">Iya</label>
                                                                 </div>
                                                                 <div class="form-check form-check-inline box-jurnal">
-                                                                    <input class="form-check-input bus_antar_jemput" type="checkbox" id="bus_antar_jemput" name="bus_antar_jemput" value="tidak">
+                                                                    <input class="form-check-input bus_antar_jemput" type="checkbox" id="" name="bus_antar_jemput" value="tidak">
                                                                     <label class="form-check-label" for="bus_antar_jemput">Tidak</label>
                                                                 </div>
                                                     </div>
@@ -178,11 +183,11 @@
                                                     <h6 class="card-title">Makan Siang</h6>
                                                     <div class="row checkbox">
                                                             <div class="form-check form-check-inline box-jurnal">
-                                                                    <input class="form-check-input makan_siang" type="checkbox" id="makan_siang" name="makan_siang" value="iya">
+                                                                    <input class="form-check-input makan_siang" type="checkbox" id="" name="makan_siang" value="iya">
                                                                     <label class="form-check-label" for="makan_siang">Iya</label>
                                                                 </div>
                                                                 <div class="form-check form-check-inline box-jurnal">
-                                                                    <input class="form-check-input makan_siang" type="checkbox" id="makan_siang" name="makan_siang" value="tidak">
+                                                                    <input class="form-check-input makan_siang" type="checkbox" id="" name="makan_siang" value="tidak">
                                                                     <label class="form-check-label" for="makan_siang">Tidak</label>
                                                                 </div>
                                                     </div>
@@ -329,6 +334,7 @@
             $(this).prop('checked',true);
         });
     // ajax add modal
+    $('.alert').hide();
     $('#submit').click(function (event) {
             event.preventDefault();
             var form = $('#form'),
@@ -336,7 +342,9 @@
                 method = form.attr('method');
             console.log(method);
                 // console.log(form.serialize());
+
             form.find('.invalid-feedback').remove();
+            form.find('li').remove();
             form.find('.form-control').removeClass('is-invalid');
             $.ajax({
                 url:url,
@@ -352,12 +360,22 @@
                     console.log(xhr.responseJSON)
                     var err = xhr.responseJSON;
                     console.log(err.errors.mess)
+                    if (err.errors.mess == undefined && err.errors.bus_antar_jemput == undefined && err.errors.makan_siang == undefined && err.errors.intensif == undefined) {
+                            $('.alert').hide();
+                    }else{
+                        $('.alert').show();
+                        $('.alert-body').append((err.errors.mess == undefined) ? '' : '<li>'+err.errors.mess +'</li>');
+                        $('.alert-body').append((err.errors.bus_antar_jemput == undefined) ? '' :'<li>'+err.errors.bus_antar_jemput +'</li>');
+                        $('.alert-body').append((err.errors.makan_siang == undefined) ? '' :'<li>'+err.errors.makan_siang +'</li>');
+                        $('.alert-body').append((err.errors.intensif == undefined) ? '' :'<li>'+err.errors.intensif +'</li>');
+                    }
+                    //    $('.alert-body').append(err.errors.mess);
                     if ($.isEmptyObject(err)==false) {
                         $.each(err.errors, function (key,value) {
                             $('#' + key).addClass('is-invalid').closest('.input-group,.textarea').append('<div class="invalid-feedback">'+ value +'</div>')
 
 
-                            console.log(value);
+                            console.log(err.errors);
                         })
                     }
                 }
