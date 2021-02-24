@@ -13,8 +13,8 @@ class data_prakerin extends Model
     protected $guarded = [];
     protected $dates = ['tgl_mulai','tgl_selesai'];
     public function siswa()
-    {
-        return $this->hasOne(Siswa::class, 'id','id_siswa');
+    {   // belongsto invers dari relasi
+        return $this->belongsTo(Siswa::class, 'id_siswa');
     }
     public function kelompok_laporan()
     {

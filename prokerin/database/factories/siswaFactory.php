@@ -1,12 +1,13 @@
 <?php
 
 namespace Database\Factories;
-use App\Models\siswa;
+use App\Models\Siswa;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Faker\Provider\Base;
 use Faker\Provider\en_US\PhoneNumber;
 use Carbon\Carbon;
 use App\Models\User;
+use aker\Provider\DateTime;
 class siswaFactory extends Factory
 {
     /**
@@ -23,17 +24,24 @@ class siswaFactory extends Factory
      */
     public function definition(){
             return [
-                'user_id' => User::factory(),
-                'nama'=> function (array $attributes) {
-                        return User::find($attributes['user_id'])->name;
-                },
-                'email' => function (array $attributes) {
-                    return User::find($attributes['user_id'])->email;
-                },
-                'kelas' => $this->faker->randomElement($array = array('XI')),
-                'jurusan' => $this->faker->randomElement($array = array('Rekayasa perangkat lunak', 'Multimedia', 'Tehnik Jaringan industru', 'Broatcasting')),
-                'nomof_siswa' =>$this->faker->phoneNumber,
-                'created_at' => Carbon::now()
+                'nama_siswa' => $this->faker->name,
+                'nipd' => $this->faker->randomNumber(8),
+                'jk' =>  $this->faker->randomElement($array = array('L', 'P')),
+                'tempat_lahir' => 'depok',
+                'tanggal_lahir' => $this->faker->dateTimeBetween(Carbon::now()->format('Y-m-d'),Carbon::now()->addMonth(6)->format('Y-m-d')),
+                'nik' => $this->faker->randomNumber(8),
+                'agama' =>  $this->faker->randomElement($array = array('islam', 'kristen', 'ateis')),
+                'alamat'=> $this->faker->address,
+                'jenis_tinggal'=>  $this->faker->randomElement($array = array('rumah', 'ngontrak', 'hotal','pulau')),
+                'transportasi'=> $this->faker->randomElement($array = array('rumah', 'ngontrak', 'hotal','pulau')),
+                'no_hp' =>  $this->faker->randomNumber(8),
+                'email' => $this->faker->email,
+                'bb'=> $this->faker->randomNumber(2),
+                'tb' => $this->faker->randomNumber(2),
+                'anak_ke' => $this->faker->randomNumber(2),
+                'jmlh_saudara'=> $this->faker->randomNumber(2),
+                'kebutuhan_khusus' => $this->faker->randomElement($array = array('tidak', 'iya')),
+                'no_akte' => $this->faker->randomNumber(2)
             ];
     }
 }

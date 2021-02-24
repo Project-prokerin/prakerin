@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class jurnal_harian extends Model
 {
+    use HasFactory;
     protected $table = 'jurnal_harian';
     protected $guarded = [];
     protected $dates = ['tanggal','datang','pulang'];

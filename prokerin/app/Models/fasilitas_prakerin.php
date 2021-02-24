@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class fasilitas_prakerin extends Model
 {
+    use HasFactory;
     protected $table = 'fasilitas_prakerin';
     protected $guarded = [];
     public function jurnal_prakerin()

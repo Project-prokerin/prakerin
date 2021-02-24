@@ -8,6 +8,7 @@ use Faker\Provider\en_US\Company;
 use Faker\Provider\en_US\Address;
 use Faker\Provider\Lorem;
 use Faker\Provider\DateTime;
+use Carbon\Carbon;
 class perusahaanFactory extends Factory
 {
     /**
@@ -25,14 +26,17 @@ class perusahaanFactory extends Factory
     public function definition()
     {
         return [
-            'foto' => 'default.png',
-            'name' => $this->faker->company,
-            'lokasi' => $this->faker->address,
-            'nama_petinggi' => $this->faker->name,
-            'deskripsi_perusahaan' => $this->faker->text($maxNbChars = 200),
-            'tanggal_mou' => $this->daker->date($format = 'Y-m-d', $max = 'now')
-
-
+            'nama' => $this->faker->company,
+            'foto' => 'default.jpg',
+            'bidang_usaha' => $this->faker->randomElement($array = array('RPL', 'MM', 'TKJ', 'BC')),
+            'alamat' => $this->faker->address,
+            'link' => $this->faker->url,
+            'email' => $this->faker->email,
+            'nama_pemimpin' => $this->faker->name,
+            'deskripsi_perusahaan' => $this->faker->text(1000),
+            'tanggal_mou' =>$this->faker->date($format = 'Y-m-d', $max = 'now'),
+            'status_mou' => $this->faker->randomElement($array = array('7 Tahun', '8  Tahun', '9 Tahun', '10 Tahun')),
+            'created_at' => Carbon::now()
         ];
     }
 }

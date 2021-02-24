@@ -18,11 +18,11 @@ class CreatePembekalanMagangTable extends Migration
             // $table->enum('text_wpt_iq', ['sudah', 'belum']);
             // $table->enum('personality_interview', ['sudah', 'belum']);
             // $table->enum('soft_skill', ['sudah', 'belum']);
-            $table->string('text_wpt_iq');
+            $table->string('test_wpt_iq');
             $table->string('personality_interview');
             $table->string('soft_skill');
             $table->string('file_portofolio');
-            $table->unsignedBigInteger('id_guru');
+            $table->unsignedBigInteger('id_guru')->nullable();
             $table->foreign('id_guru')->references('id')->on('guru')->onDelete('cascade')->onUpdate('cascade');
             $table->unsignedBigInteger('id_siswa');
             $table->foreign('id_siswa')->references('id')->on('siswa')->onDelete('cascade')->onUpdate('cascade');

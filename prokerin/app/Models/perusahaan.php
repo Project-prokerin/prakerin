@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class perusahaan extends Model
 {
+    use HasFactory;
     protected $table = 'perusahaan';
     protected $guarded = [];
     public function data_prakerin()

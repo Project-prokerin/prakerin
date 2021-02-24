@@ -33,11 +33,11 @@ class UserSeeder extends Seeder
             'password' => Hash::make('admin'),
             'role' => 'bkk'
         ]);
-        DB::table('users')->insert([
-            'username' => 'siswa',
-            'password' => Hash::make('123456'),
-            'role' => 'siswa'
-        ]);
+        // DB::table('users')->insert([
+        //     'username' => 'siswa',
+        //     'password' => Hash::make('123456'),
+        //     'role' => 'siswa'
+        // ]);
         // for ($i = 0; $i < 2; $i++) {
         // DB::table('users')->insert([
         //     'username' => Str::random(9),
