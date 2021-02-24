@@ -13,7 +13,7 @@ class jurnal_prakerinRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,27 @@ class jurnal_prakerinRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'kompetisi_dasar' => 'required',
+            'topik_pekerjaan' => 'required',
+            'tanggal_pelaksanaan' => 'required',
+            'jam_masuk' => 'required',
+            'jam_istiharat' => 'required',
+            'jam_pulang' => 'required',
+            'mess' => 'required',
+            'makan_siang' => 'required',
+            'bus_antar_jemput' => 'required',
+            'intentif' => 'required'
+        ];
+    }
+    public function messages()
+    {
+        return [
+            'kompetisi_dasar.required' => 'kompetisi dasar tidak boleh kosong',
+            'topik_pekerjaan.required' => 'topik pekerjaan tidak boleh kosong',
+            'tanggal_pelaksanaan.required' => 'tanggal pelaksanaan tidak boleh kosong',
+            'jam_masuk.required' => 'jam_masuk tidak boleh kosong',
+            'jam_istiharat.required' => 'jam_istiharat tidak boleh kosong',
+            'jam_pulang.required' => 'am_pulang tidak boleh kosong',
         ];
     }
 }

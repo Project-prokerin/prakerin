@@ -30,6 +30,8 @@
             background-image: none !important;
             border-color:red;
             padding-right: 0.75em;
+        }tr.odd,.even{
+            height: 50px
         }
 </style>
     <link rel="stylesheet" href="{{ asset('template/node_modules/datatables.net-bs4/css/dataTables.bootstrap4.min.css') }}">
@@ -115,11 +117,15 @@
             <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-body">
+                <form action="/user/jurnalH"  method="POST" id="contact_form">
+                                        @csrf
+
                     <div class="row mt-3">
                             <div class="col-sm-12">
                             <div class="/user/jurnal">
                                 <div class="card-body">
                                 <h5 class="card-title mb-5">Jurnal Harian</h5>
+
                                 <div class="row">
                                     @if(session('fail'))
                                         <div class="alert alert-danger alert-dismissible show fade" style="width: 100%">
@@ -131,9 +137,6 @@
                                         </div>
                                         </div>
                                     @endif
-                                    <form action="/user/jurnalH"  method="POST" id="contact_form">
-                                        @csrf
-
                                     {{-- tgl pelaksanaan --}}
                                     <div class="col-sm-12">
 
@@ -209,10 +212,11 @@
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                 <button type="submit"  id="submit" class="btn btn-primary">Save changes</button>
                 </div>
-                </form>
+
                 {{-- button save --}}
             </div>
             </div>
+             </form>
         </div>
 {{-- modal --}}
 @endsection
@@ -232,14 +236,15 @@
                 "filtering":false,
                 "searching": false
         });
-
+        $('.dataTables_empty').html('Jurnal anda masih kosong');
         $('#submit').click(function (event) {
             event.preventDefault();
             var form = $('#contact_form'),
                 url = form.attr('action'),
                 method = form.attr('method');
 
-                // console.log(form.serialize());
+                form.find('.invalid-feedback').remove();
+                form.find('.form-control').removeClass('is-invalid')
             $.ajax({
                 url:url,
                 method:method,
@@ -255,6 +260,7 @@
                     var err = xhr.responseJSON;
                     if ($.isEmptyObject(err)==false) {
                         $.each(err.errors, function (key,value) {
+
                             $('#' + key).addClass('is-invalid').closest('.input-group').append('<div class="invalid-feedback">'+ value +'</div>')
                             console.log(key);
                         })

@@ -21,6 +21,18 @@
                 margin-left: 130px;
                 margin-top: 43px;
         }
+         /* remove validation icons */
+        .form-control.is-invalid, .was-validated .form-control:invalid {
+            background-image: none !important;
+            border-color: red;
+            padding-right: 0.75em;
+        }
+
+        .form-control.is-valid, .was-validated .form-control:valid {
+            background-image: none !important;
+            border-color:red;
+            padding-right: 0.75em;
+        }
 </style>
 @endpush
 @section('title', 'Prakerin | jurnal prakerin')
@@ -30,25 +42,25 @@
         <div class="breadcrumb-item"> <i class="far fa-newspaper"></i> JURNAL PRAKERIN</div>
 @endsection
 @section('main')
-        <div class="card">
+            <div class="card">
                 <div class="card-header" style="margin-bottom: -30px;">
                         <div class="card-body">
                                 <div class="form-group row">
                                     <label for="" class="col-sm-3 pl-4"><h6>Nama</h6></label>
                                     <div class="col-sm-9">
-                                        <label for=""><h6>: Nur FIrdaus</h6></label>
+                                        <label for=""><h6>: {{ empty(Auth::user()->siswa->nama_siswa) ? 'Eror please call developer -- Stisla' : Auth::user()->siswa->nama_siswa }}</h6></label>
                                     </div>
                                 </div>
                                 <div class="form-group row" style="margin-top: -35px;">
                                     <label for="" class="col-sm-3 pl-4"><h6>Nama Perusahaan</h6></label>
                                     <div class="col-sm-9">
-                                        <label for=""><h6>: TelkomNet.Co</h6></label>
+                                        <label for=""><h6>: {{ empty(Auth::user()->siswa->data_prakerin->Perusahaan->nama) ? 'Eror please call developer -- Stisla' : Auth::user()->siswa->data_prakerin->Perusahaan->nama }}</h6></label>
                                     </div>
                                 </div>
                                 <div class="form-group row" style="margin-top: -35px;">
                                     <label for="" class="col-sm-3 pl-4"><h6>Lokasi</h6></label>
                                     <div class="col-sm-9">
-                                        <label for=""><h6>: Jakarta Pusat. Jl.Blok B</h6></label>
+                                        <label for=""><h6>: {{ empty(Auth::user()->siswa->data_prakerin->Perusahaan->alamat) ? 'Eror please call developer -- Stisla' : Auth::user()->siswa->data_prakerin->Perusahaan->alamat }}</h6></label>
                                     </div>
                                 </div>
                         </div>
@@ -57,100 +69,34 @@
                                     Tambah
                             </button>
                         </div>
-                </div>
+                </div> --}}
 
 
         {{-- table --}}
         <div class="card-body p-4" style="margin-top: -45px;">
             <div class="table-responsive">
-                <table class="table table-striped mb-0">
-                   <thead class="text-white">
-                      <tr class="bg-primary table-th pb-2">
-                         <th scope="col"><p>No</p></th>
-                         <th scope="col"><p>Kompetisi Dasar</p></th>
-                         <th scope="col" style=""><p>Topik Pembelajaran</p></th>
-                         <th scope="col" style=""><p>Tanggal Pelaksanaan</p></th>
-                      </tr>
-                   </thead>
-                   <tbody style="padding-top: 200px">
-                      <tr>
-                            <th scope="row">1</th>
-                        <td>
-                            <p class="font-weight-600">
-                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsum, dolorem!
-                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsum, dolorem!
-                            </p>
-                        </td>
-                        <td>
-                            <p class="font-weight-600">
-                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsum, dolorem!
-                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsum, dolorem!
-                            </p>
-                        </td>
-                        <td>
-                            <p class="font-weight-600">
-                                    22/02/2022
-                            </p>
-                        </td>
-                      </tr>
-                      <tr>
-                            <th scope="row">2</th>
-                        <td>
-                            <p class="font-weight-600">
-                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsum, dolorem!
-                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsum, dolorem!
-                            </p>
-                        </td>
-                        <td>
-                            <p class="font-weight-600">
-                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsum, dolorem!
-                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsum, dolorem!
-                            </p>
-                        </td>
-                        <td>
-                            <p class="font-weight-600">
-                                22/02/2022
-                            </p>
-                        </td>
-                      </tr>
-                      <tr>
-                            <th scope="row">3</th>
-                        <td>
-                            <p class="font-weight-600">
-                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsum, dolorem!
-                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsum, dolorem!
-                            </p>
-                        </td>
-                        <td>
-                            <p class="font-weight-600">
-                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsum, dolorem!
-                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsum, dolorem!
-                            </p>
-                        </td>
-                        <td>
-                            <p class="font-weight-600">
-                                22/02/2022
-                            </p>
-                        </td>
-                      </tr>
-                   </tbody>
+                <table class="table table-striped mb-0" id="table">
+                    <thead class="text-white">
+                        <tr class="bg-primary table-th pb-2">
+                            <th scope="col"><p>No</p></th>
+                            <th scope="col"><p>Kompetisi Dasar</p></th>
+                            <th scope="col" style=""><p>Topik Pembelajaran</p></th>
+                            <th scope="col" style=""><p>Tanggal Pelaksanaan</p></th>
+                        </tr>
+                    </thead>
+                    <tbody style="padding-top: 200px">
+                    @foreach ($siswa->jurnal_prakerin as $jurnal)
+                            <tr>
+                            <td>{{ $loop->iteration }}</td>
+                            <td>{{ $jurnal->kompetisi_dasar  }}</td>
+                            <td>{{ $jurnal->topik_pekerjaan }}</td>
+                            <td>{{ $jurnal->tanggal_pelaksanaan}}</td>
+                        </tr>
+                    @endforeach
+                    </tbody>
                 </table>
-           </div>
         </div>
-        {{-- table --}}
-
-        {{-- pagelink footer --}}
-        <div class="card-footer">
-              <div class="card-body" style="float: right; margin-top: -20px;">
-                 <nav aria-label="Page navigation example">
-                    <ul class="pagination">
-                       <li class="page-item"><a class="page-link" href="#">1</a></li>
-                       <li class="page-item"><a class="page-link" href="#">2</a></li>
-                    </ul>
-                 </nav>
-              </div>
         </div>
-        {{-- pagelink footer --}}
         </div>
 
 
@@ -172,185 +118,253 @@
 
 
 
-        
 
-      {{-- modal --}}
-        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-backdrop="false">
-                <div class="modal-dialog modal-lg">
-                  <div class="modal-content">
-                    <div class="modal-body">
-                        <div class="row mt-3">
-                                <div class="col-sm-6">
-                                  <div class="">
-                                    <div class="card-body">
-                                      <h5 class="card-title mb-5">Fasilitas Prakerin</h5>
-                                      <div class="row">
-                                        {{-- mess --}}
-                                        <div class="col-sm-6">
-                                                <h6 class="card-title">Mess</h6>
-                                                <div class="row">
-                                                        <div class="form-check form-check-inline box-jurnal">
-                                                                <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
-                                                                <label class="form-check-label" for="inlineCheckbox1">Iya</label>
-                                                              </div>
-                                                              <div class="form-check form-check-inline box-jurnal">
-                                                                <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
-                                                                <label class="form-check-label" for="inlineCheckbox2">Tidak</label>
-                                                              </div>
-                                                </div>
-                                          </div>
-                                        {{-- mess --}}
 
-                                        {{-- bus antar jemput --}}
-                                          <div class="col-sm-6">
-                                                <h6 class="card-title">Bus Antar Jemput</h6>
-                                                <div class="row">
-                                                        <div class="form-check form-check-inline box-jurnal">
-                                                                <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
-                                                                <label class="form-check-label" for="inlineCheckbox1">Iya</label>
-                                                              </div>
-                                                              <div class="form-check form-check-inline box-jurnal">
-                                                                <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
-                                                                <label class="form-check-label" for="inlineCheckbox2">Tidak</label>
-                                                              </div>
-                                                </div>
-                                          </div>
-                                        {{-- bus antar jemput --}}
-                                      </div>
-                                      <div class="row">
-                                        {{-- makan siang --}}
-                                        <div class="col-sm-6">
-                                                <h6 class="card-title">Makan Siang</h6>
-                                                <div class="row">
-                                                        <div class="form-check form-check-inline box-jurnal">
-                                                                <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
-                                                                <label class="form-check-label" for="inlineCheckbox1">Iya</label>
-                                                              </div>
-                                                              <div class="form-check form-check-inline box-jurnal">
-                                                                <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
-                                                                <label class="form-check-label" for="inlineCheckbox2">Tidak</label>
-                                                              </div>
-                                                </div>
-                                          </div>
-                                        {{-- makan siang --}}
 
-                                        {{-- intensif --}}
-                                          <div class="col-sm-6">
-                                                <h6 class="card-title">Intensif</h6>
-                                                <div class="row">
-                                                        <div class="form-check form-check-inline box-jurnal">
-                                                                <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
-                                                                <label class="form-check-label" for="inlineCheckbox1">Iya</label>
-                                                              </div>
-                                                              <div class="form-check form-check-inline box-jurnal">
-                                                                <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
-                                                                <label class="form-check-label" for="inlineCheckbox2">Tidak</label>
-                                                              </div>
-                                                </div>
-                                          </div>
-                                        {{-- intensif --}}
-                                      </div>
-                                      <br>
 
-                                      {{-- textarea --}}
-                                      <h6 class="card-title">Kompetensi Dasar</h6>
-                                      <div class="">
-                                        <textarea class="form-control" ></textarea>
-                                      </div>
-                                      <br>
-                                      <h6 class="card-title">Topik Pekerjaan</h6>
-                                      <div class="">
-                                        <textarea class="form-control" ></textarea>
-                                      </div>
-                                      {{-- textarea --}}
 
-                                    </div>
-                                  </div>
-                                </div>
 
-                                {{-- tgl-jam --}}
-                                <div class="col-sm-6">
-                                    <div class="card-body">
+
+
+        {{-- modal --}}
+            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-backdrop="false">
+                    <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-body">
+                            <form action="/user/jurnal" method="POST" id="form">
+                                @csrf
+
+                            <div class="row mt-3">
+                                    <div class="col-sm-6">
+                                    <div class="">
+                                        <div class="card-body">
+                                        <h5 class="card-title mb-5">Fasilitas Prakerin</h5>
+                                        <div class="row">
+                                            {{-- mess --}}
+                                            <div class="col-sm-6">
+                                                    <h6 class="card-title">Mess</h6>
+                                                    <div class="row checkbox"  >
+                                                            <div class="form-check form-check-inline box-jurnal">
+                                                                    <input class="form-check-input mess" data_id="mess" type="checkbox" id="mess" name="mess"  value="iya">
+                                                                    <label class="form-check-label" for="mess">Iya</label>
+                                                                </div>
+                                                                <div class="form-check form-check-inline box-jurnal">
+                                                                    <input class="form-check-input mess" data_id="mess" type="checkbox" id="mess" name="mess"  value="tidak">
+                                                                    <label class="form-check-label" for="mess">Tidak</label>
+                                                                </div>
+                                                    </div>
+                                            </div>
+                                            {{-- mess --}}
+
+                                            {{-- bus antar jemput --}}
+                                            <div class="col-sm-6">
+                                                    <h6 class="card-title">Bus Antar Jemput</h6>
+                                                    <div class="row checkbox">
+                                                            <div class="form-check form-check-inline box-jurnal">
+                                                                    <input class="form-check-input bus_antar_jemput" type="checkbox" id="bus_antar_jemput" name="bus_antar_jemput" value="iya">
+                                                                    <label class="form-check-label" for="inlineCheckbox1">Iya</label>
+                                                                </div>
+                                                                <div class="form-check form-check-inline box-jurnal">
+                                                                    <input class="form-check-input bus_antar_jemput" type="checkbox" id="bus_antar_jemput" name="bus_antar_jemput" value="tidak">
+                                                                    <label class="form-check-label" for="bus_antar_jemput">Tidak</label>
+                                                                </div>
+                                                    </div>
+                                            </div>
+                                            {{-- bus antar jemput --}}
+                                        </div>
+                                        <div class="row">
+                                            {{-- makan siang --}}
+                                            <div class="col-sm-6">
+                                                    <h6 class="card-title">Makan Siang</h6>
+                                                    <div class="row checkbox">
+                                                            <div class="form-check form-check-inline box-jurnal">
+                                                                    <input class="form-check-input makan_siang" type="checkbox" id="makan_siang" name="makan_siang" value="iya">
+                                                                    <label class="form-check-label" for="makan_siang">Iya</label>
+                                                                </div>
+                                                                <div class="form-check form-check-inline box-jurnal">
+                                                                    <input class="form-check-input makan_siang" type="checkbox" id="makan_siang" name="makan_siang" value="tidak">
+                                                                    <label class="form-check-label" for="makan_siang">Tidak</label>
+                                                                </div>
+                                                    </div>
+                                            </div>
+                                            {{-- makan siang --}}
+
+                                            {{-- intensif --}}
+                                            <div class="col-sm-6">
+                                                    <h6 class="card-title">Intensif</h6>
+                                                    <div class="row checkbox">
+                                                            <div class="form-check form-check-inline box-jurnal">
+                                                                    <input class="form-check-input intensif" type="checkbox" id="intensif" name="intensif" value="iya">
+                                                                    <label class="form-check-label" for="intensif">Iya</label>
+                                                                </div>
+                                                                <div class="form-check form-check-inline box-jurnal">
+                                                                    <input class="form-check-input intensif" type="checkbox" id="intensif i-2" name="intensif" value="tidak">
+                                                                    <label class="form-check-label" for="i-2">Tidak</label>
+                                                                </div>
+                                                    </div>
+                                            </div>
+                                            {{-- intensif --}}
+                                        </div>
                                         <br>
-                                      <div class="">
-                                          <div class="form-group">
-                                            <label><h6>Tanggal Pelaksanaan</h6></label>
-                                            <div class="input-group in-jurnal">
-                                              <div class="input-group-prepend">
-                                                <div class="input-group-text">
-                                                  <i class="fas fa-calendar"></i>
-                                                </div>
-                                              </div>
-                                              <input type="date" class="form-control daterange-cus">
-                                            </div>
-                                          </div>
-                                          <div class="form-group">
-                                            <label><h6>Jam Masuk</h6></label>
-                                            <div class="input-group in-jurnal">
-                                              <div class="input-group-prepend">
-                                                <div class="input-group-text">
-                                                  <i class="fas fa-clock"></i>
-                                                </div>
-                                              </div>
-                                              <input type="time" class="form-control timepicker">
-                                            </div>
-                                          </div>
-                                          <div class="form-group">
-                                            <label><h6>Jam Istirahat</h6></label>
-                                            <div class="input-group in-jurnal">
-                                              <div class="input-group-prepend">
-                                                <div class="input-group-text">
-                                                  <i class="fas fa-clock"></i>
-                                                </div>
-                                              </div>
-                                              <input type="time" class="form-control timepicker">
-                                            </div>
-                                          </div>
-                                          <div class="form-group">
-                                            <label><h6>Jam Pulang</h6></label>
-                                            <div class="input-group in-jurnal">
-                                              <div class="input-group-prepend">
-                                                <div class="input-group-text">
-                                                  <i class="fas fa-clock"></i>
-                                                </div>
-                                              </div>
-                                              <input type="time" class="form-control timepicker">
-                                            </div>
-                                          </div>
-                                      </div>
+
+                                        {{-- textarea --}}
+                                        <h6 class="card-title">Kompetensi Dasar</h6>
+                                        <div class="textarea">
+                                            <textarea class="form-control" name="kompetisi_dasar" id="kompetisi_dasar"></textarea>
+                                        </div>
+                                        <br>
+                                        <h6 class="card-title">Topik Pekerjaan</h6>
+                                        <div class="textarea">
+                                            <textarea class="form-control" name="topik_pekerjaan" id="topik_pekerjaan"></textarea>
+                                        </div>
+                                        {{-- textarea --}}
+
+                                        </div>
                                     </div>
-                                </div>
-                                {{-- tgl-jam --}}
+                                    </div>
+
+                                    {{-- tgl-jam --}}
+                                    <div class="col-sm-6">
+                                        <div class="card-body">
+                                            <br>
+                                        <div class="">
+                                            <div class="form-group">
+                                                <label><h6>Tanggal Pelaksanaan</h6></label>
+                                                <div class="input-group in-jurnal">
+                                                <div class="input-group-prepend">
+                                                    <div class="input-group-text">
+                                                    <i class="fas fa-calendar"></i>
+                                                    </div>
+                                                </div>
+                                                <input type="date" class="form-control daterange-cus" name="tanggal_pelaksanaan" id="tanggal_pelaksanaan">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label><h6>Jam Masuk</h6></label>
+                                                <div class="input-group in-jurnal">
+                                                <div class="input-group-prepend">
+                                                    <div class="input-group-text">
+                                                    <i class="fas fa-clock"></i>
+                                                    </div>
+                                                </div>
+                                                <input type="time" class="form-control timepicker" name="jam_masuk" id="jam_masuk">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label><h6>Jam Istirahat</h6></label>
+                                                <div class="input-group in-jurnal">
+                                                <div class="input-group-prepend">
+                                                    <div class="input-group-text">
+                                                    <i class="fas fa-clock"></i>
+                                                    </div>
+                                                </div>
+                                                <input type="time" class="form-control timepicker" name="jam_istiharat" id="jam_istiharat">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label><h6>Jam Pulang</h6></label>
+                                                <div class="input-group in-jurnal">
+                                                <div class="input-group-prepend">
+                                                    <div class="input-group-text">
+                                                    <i class="fas fa-clock"></i>
+                                                    </div>
+                                                </div>
+                                                <input type="time" class="form-control timepicker" name="jam_pulang" id="jam_pulang" >
+                                                </div>
+                                            </div>
+                                        </div>
+                                        </div>
+                                    </div>
+                                    {{-- tgl-jam --}}
+                            </div>
                         </div>
+                        {{-- button save --}}
+                        <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" id="submit" class="btn btn-primary">Save changes</button>
+                        </div>
+                        {{-- button save --}}
                     </div>
-                    {{-- button save --}}
-                    <div class="modal-footer">
-                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                      <button type="button" class="btn btn-primary">Save changes</button>
                     </div>
-                    {{-- button save --}}
-                  </div>
                 </div>
-              </div>
-      {{-- modal --}}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+                </form>
+        {{-- modal --}}
 @endsection
 @push('script')
+<script src="{{ asset('template/node_modules/datatables/media/js/jquery.dataTables.min.js') }}"></script>
+<script src="{{ asset('template/node_modules/datatables.net-bs4/js/dataTables.bootstrap4.min.js') }}"></script>
+<script src="{{ asset('template/node_modules/datatables.net-select-bs4/js/select.bootstrap4.min.js') }}"></script>
+<script>
+  $(document).ready(function () {
+    // data table
+    var table = $('#table').DataTable({
+                // "dom": 't<"bottom"<"row"<"col-6"><"col-6"p>>>',
+                "bLengthChange": false,
+                ordering:false,
+                processing: false,
+                serverSide: false,
+                "info": false,
+                "filtering":false,
+                "searching": false
+        });
+    // checkbox
+    $(".mess").change(function()
+        {
+            $(".mess").prop('checked',false);
+            $(this).prop('checked',true);
+        });
+    $(".bus_antar_jemput").change(function()
+        {
+            $(".bus_antar_jemput").prop('checked',false);
+            $(this).prop('checked',true);
+        });
+    $(".makan_siang").change(function()
+        {
+            $(".makan_siang").prop('checked',false);
+            $(this).prop('checked',true);
+        });
+    $(".intensif").change(function()
+        {
+            $(".intensif").prop('checked',false);
+            $(this).prop('checked',true);
+        });
+    // ajax add modal
+    $('#submit').click(function (event) {
+            event.preventDefault();
+            var form = $('#form'),
+                url = form.attr('action'),
+                method = form.attr('method');
+            console.log(method);
+                // console.log(form.serialize());
+            form.find('.invalid-feedback').remove();
+            form.find('.form-control').removeClass('is-invalid');
+            $.ajax({
+                url:url,
+                method:method,
+                data:form.serialize(),
+                success: function name(params) {
+                form.trigger('reset');
+                $('#exampleModal').modal('hide');
+                table.draw();
+                location.reload();
+                },
+                error: function(xhr) {
+                    console.log(xhr.responseJSON)
+                    var err = xhr.responseJSON;
+                    console.log(err.errors.mess)
+                    if ($.isEmptyObject(err)==false) {
+                        $.each(err.errors, function (key,value) {
+                            $('#' + key).addClass('is-invalid').closest('.input-group,.textarea').append('<div class="invalid-feedback">'+ value +'</div>')
 
+
+                            console.log(value);
+                        })
+                    }
+                }
+            });
+        })
+  })
+</script>
 @endpush
 
 

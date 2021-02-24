@@ -4,6 +4,7 @@ namespace App\Http\Controllers\user;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\jurnal_harianRequest;
+use App\Http\Requests\jurnal_prakerinRequest;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\models\Siswa;
@@ -12,6 +13,7 @@ use App\Models\perusahaan;
 use App\Models\orang_tua;
 use App\Models\sekolah_asal;
 use App\Models\data_prakerin;
+use App\Models\fasilitas_prakerin;
 use App\Models\jurnal_harian;
 use App\Models\pembekalan_magang;
 use App\Models\jurnal_prakerin;
@@ -68,6 +70,11 @@ class userController extends Controller
         $siswa = Auth::user();
         return view('siswa.profile.index', compact('sidebar','siswa'));
     }
+    // edit profile
+    public function profile_edit(){
+        $sidebar = '';
+        return view('siswa.profile.edit', compact('sidebar'));
+    }
     // ganti password
     public function ganti_password(){
         $sidebar  = '';
@@ -79,7 +86,15 @@ class userController extends Controller
         $siswa = Auth::user()->siswa;
         return view('siswa.jurnal_prakerin.index', compact('sidebar','siswa'));
     }
-
+    public function jurnal_post(jurnal_prakerinRequest $request){
+        $validated = $request->validated(); // untuk validasi
+        $jurnal = jurnal_prakerin::create(['kompetisi_dasar' => $request->kompetisi_dasar, 'topik_pekerjaan' => $request->topik_pekerjaan, 'tanggal_pelaksanaan' => $request->tanggal_pelaksanaan, 'jam_masuk' => $request->jam_masuk, 'jam_istirahat' => $request->jam_istiharat, 'jam_pulang' => $request->jam_pulang, 'id_siswa' => Auth::user()->siswa->id,'id_perusahaan'=>Auth::user()->siswa->data_prakerin->perusahaan->id, 'created_at' => Carbon::now()->format('Y-m-d')]);
+        // mendapat jurnal id
+        $request->request->add(['id_jurnal_prakerin' => $jurnal->id]);
+        // nambah fasilitas
+        $fasilitas_prakerin = fasilitas_prakerin::create(['id_jurnal_prakerin' => $request->id_jurnal_prakerin, 'mess' => $request->mess, 'buss_antar_jemput' => $request->bus_antar_jemput, 'makan_siang' => $request->makan_siang, 'intensif' => $request->intensif]);
+        return back();
+    }
     // jurnal prakerin
     public function jurnalH()
     {
@@ -91,7 +106,7 @@ class userController extends Controller
         $validated = $request->validated();
         $jurnal = jurnal_harian::where('created_at', Carbon::now()->format('Y-m-d'))->first();
         if ($request->datang > $request->pulang) {
-            return back()->with('fail', 'masuk tanggal tanggal yang bener ye');
+            return back();
         }
             $perusahaan = Auth::user()->siswa->data_prakerin->perusahaan->id;
             $request->request->add(['id_perusahaan' => $perusahaan, 'id_siswa' => Auth::user()->siswa->id]);

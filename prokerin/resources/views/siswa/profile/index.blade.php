@@ -129,14 +129,14 @@
           </div>
         </li>
         <li class="media" style="margin-top: -15px; margin-left: 32px;">
-          <a href="#">
+          <a href="/user/profile/edit">
             <div class="media-body ml-3" style="margin-top: 4px;">
               <div class="media-title"><p>Edit Profile</p></div>
             </div>
           </a>
         </li>
         <li class="media" style="margin-top: -15px; margin-left: 32px;">
-          <a href="#">
+          <a href="{{ route('ganti_password') }}">
             <div class="media-body ml-3">
               <div class="media-title"><p>Change Password</p></div>
             </div>

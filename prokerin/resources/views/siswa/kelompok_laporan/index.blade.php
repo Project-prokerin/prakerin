@@ -32,20 +32,13 @@
 
         <tr>
         <th scope="col">Pembimbing</th>
-        <td>{{ $no_kelompok }}</td>
+        <td></td>
 
         </tr>
         <tr>
         <th scope="col">Judul Laporan</th>
-        <td>{{ $guru_nama }}</td>
-        @foreach ($kelompok as $item)
-        </tr>
+        <td></td>
         <tr>
-        <th scope="col">nama</th>
-        <td>{{ $item->data_prakerin->nama }}</td>
-        </tr>
-        @endforeach
-        {{-- <tr>
         <th scope="col">nama</th>
         <td>-</td>
 
@@ -59,7 +52,18 @@
         <th scope="col">nama</th>
         <td>-</td>
 
-        </tr> --}}
+        </tr>
+        {{-- @else
+            @foreach ($kelompok as $item)
+            </tr>
+            <tr>
+            <th scope="col">nama</th>
+            <td>{{ $item->data_prakerin->nama }}</td>
+            </tr>
+            @endforeach --}}
+        {{-- @endif --}}
+
+
 
 
   </tbody>

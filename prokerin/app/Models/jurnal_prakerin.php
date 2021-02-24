@@ -10,6 +10,7 @@ class jurnal_prakerin extends Model
     use HasFactory;
     protected $table = 'jurnal_prakerin';
     protected $guarded = [];
+    protected $datas = ['tanggal_pelaksanaan'];
     public function siswa()
     {
                                             // owner key
