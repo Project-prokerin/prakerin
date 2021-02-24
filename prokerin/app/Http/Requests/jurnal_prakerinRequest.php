@@ -28,8 +28,9 @@ class jurnal_prakerinRequest extends FormRequest
             'topik_pekerjaan' => 'required',
             'tanggal_pelaksanaan' => 'required',
             'jam_masuk' => 'required',
-            'jam_istiharat' => 'required',
-            'jam_pulang' => 'required',
+            // 'jam_istiharat' => 'required|after:jam_masuk|between:10,12',
+            'jam_istiharat' => 'required|after:jam_masuk',
+            'jam_pulang' => 'required|after:jam_istiharat|after:jam_masuk',
             'mess' => 'required',
             'makan_siang' => 'required',
             'bus_antar_jemput' => 'required',
@@ -39,16 +40,18 @@ class jurnal_prakerinRequest extends FormRequest
     public function messages()
     {
         return [
-            'kompetisi_dasar.required' => 'kompetisi dasar tidak boleh kosong',
-            'topik_pekerjaan.required' => 'topik pekerjaan tidak boleh kosong',
-            'tanggal_pelaksanaan.required' => 'tanggal pelaksanaan tidak boleh kosong',
-            'jam_masuk.required' => 'jam_masuk tidak boleh kosong',
-            'jam_istiharat.required' => 'jam_istiharat tidak boleh kosong',
-            'jam_pulang.required' => 'am_pulang tidak boleh kosong',
+            'kompetisi_dasar.required' => 'Kompetisi dasar tidak boleh kosong',
+            'topik_pekerjaan.required' => 'Topik pekerjaan tidak boleh kosong',
+            'tanggal_pelaksanaan.required' => 'Tanggal pelaksanaan tidak boleh kosong',
+            'jam_masuk.required' => 'Jam masuk tidak boleh kosong',
+            'jam_istiharat.required' => 'Jam istiharat tidak boleh kosong',
+            'jam_pulang.required' => 'Jam pulang tidak boleh kosong',
             'mess.required' => 'Mess tidak boleh kosong',
-            'makan_siang.required' => 'makan_siang tidak boleh kosong',
-            'Bus antar jemput.required' => 'bus_antar_jemput tidak boleh kosong',
+            'makan_siang.required' => 'Makan siang tidak boleh kosong',
+            'Bus antar jemput.required' => 'Bus antar jemput tidak boleh kosong',
             'intensif.required' => 'intensif tidak boleh kosong',
+            'jam_istiharat.after'=>'Masukan Jam istirahat yang benar',
+            'jam_pulang.after' =>'Masukan jam pulang yang benar'
         ];
     }
 }

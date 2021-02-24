@@ -346,6 +346,14 @@
             form.find('.invalid-feedback').remove();
             form.find('li').remove();
             form.find('.form-control').removeClass('is-invalid');
+            a = $('#jam_masuk').val();
+            b = $('#jam_istirahat').val();
+            c = $('#jam_pulang').val();
+            // console,log(b);
+            // if (a>b) {
+            //     location.reload();
+            // }
+            // break;
             $.ajax({
                 url:url,
                 method:method,

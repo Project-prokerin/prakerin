@@ -105,9 +105,9 @@ class userController extends Controller
     public function jurnalH_post(jurnal_harianRequest $request){
         $validated = $request->validated();
         $jurnal = jurnal_harian::where('created_at', Carbon::now()->format('Y-m-d'))->first();
-        if ($request->datang > $request->pulang) {
-            return back();
-        }
+        // if ($request->datang > $request->pulang) {
+        //     return back();
+        // }
             $perusahaan = Auth::user()->siswa->data_prakerin->perusahaan->id;
             $request->request->add(['id_perusahaan' => $perusahaan, 'id_siswa' => Auth::user()->siswa->id]);
             jurnal_harian::create($request->all());

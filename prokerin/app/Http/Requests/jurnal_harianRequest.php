@@ -26,7 +26,7 @@ class jurnal_harianRequest extends FormRequest
         return [
             'tanggal' => 'required|date',
             'datang' => 'required',
-            'pulang' => 'required',
+            'pulang' => 'required|after:datang',
             'kegiatan_harian' => 'required'
         ];
     }
@@ -36,7 +36,9 @@ class jurnal_harianRequest extends FormRequest
             'tanggal.required' => 'Tanggal tidak boleh kosong',
             'datang.required' => 'Jam datang tidak boleh kosong',
             'pulang.required' => 'Jam pulang tidak boleh kosong',
-            'kegiatan_harian.required' => 'Kegiatan harian tidak boleh kosong'
+            'kegiatan_harian.required' => 'Kegiatan harian tidak boleh kosong',
+            'pulang.after'=> 'Masukan jam pulang yang benar',
+            // 'datang.before'=>'Masukan jam datang yang benar '
         ];
     }
 }
