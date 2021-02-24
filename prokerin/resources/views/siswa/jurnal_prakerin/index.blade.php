@@ -99,33 +99,6 @@
         </div>
         </div>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
         {{-- modal --}}
             <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-backdrop="false">
                     <div class="modal-dialog modal-lg">
@@ -199,11 +172,11 @@
                                                     <h6 class="card-title">Intensif</h6>
                                                     <div class="row checkbox">
                                                             <div class="form-check form-check-inline box-jurnal">
-                                                                    <input class="form-check-input intensif" type="checkbox" id="intensif" name="intensif" value="iya">
+                                                                    <input class="form-check-input intensif" type="checkbox" id="" name="intensif" value="iya">
                                                                     <label class="form-check-label" for="intensif">Iya</label>
                                                                 </div>
                                                                 <div class="form-check form-check-inline box-jurnal">
-                                                                    <input class="form-check-input intensif" type="checkbox" id="intensif i-2" name="intensif" value="tidak">
+                                                                    <input class="form-check-input intensif" type="checkbox" id="" name="intensif" value="tidak">
                                                                     <label class="form-check-label" for="i-2">Tidak</label>
                                                                 </div>
                                                     </div>
@@ -346,14 +319,6 @@
             form.find('.invalid-feedback').remove();
             form.find('li').remove();
             form.find('.form-control').removeClass('is-invalid');
-            a = $('#jam_masuk').val();
-            b = $('#jam_istirahat').val();
-            c = $('#jam_pulang').val();
-            // console,log(b);
-            // if (a>b) {
-            //     location.reload();
-            // }
-            // break;
             $.ajax({
                 url:url,
                 method:method,
