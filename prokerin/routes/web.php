@@ -143,4 +143,7 @@ Route::middleware(['web', 'auth', 'role:siswa'])->group(function () {
 
     // test pdf perusahaan
     Route::get('/perusahaanPDF', [PDFController::class, 'perusahaan']);
+    Route::get('/user/pdf',[PDFController::class,'kelompokPrakerin']);
+ 
+ 
 });
