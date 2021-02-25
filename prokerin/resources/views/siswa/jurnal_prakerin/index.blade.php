@@ -4,10 +4,22 @@
         .card-body h6{
                 font-size: 15px;
         }
+        .card-name{
+            border-radius: 10px;
+            box-shadow: 0 0 7px grey;
+            height: 125px;
+            margin-top: 20px;
+            margin-right: 180px;
+            margin-bottom: 70px;
+        }
         .table-th p{
                 text-align: center;
                 margin-bottom: -3px;
                 color: white;
+        }
+        tr td{
+            font-weight: 100;
+            color: black
         }
         .in-jurnal{
                 margin-top: -10px;
@@ -20,6 +32,9 @@
         .modal{
                 margin-left: 130px;
                 margin-top: 43px;
+        }
+        .pagination{
+            margin-left: 390px
         }
          /* remove validation icons */
         .form-control.is-invalid, .was-validated .form-control:invalid {
@@ -44,7 +59,7 @@
 @section('main')
             <div class="card">
                 <div class="card-header" style="margin-bottom: -30px;">
-                        <div class="card-body">
+                        <div class="card-body card-name">
                                 <div class="form-group row">
                                     <label for="" class="col-sm-3 pl-4"><h6>Nama</h6></label>
                                     <div class="col-sm-9">
@@ -64,33 +79,33 @@
                                     </div>
                                 </div>
                         </div>
-                        <div class="card-header-action" style="margin-bottom: -15px;">
+                        <div class="card-header-action" style="margin-bottom: -40px;">
                             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
                                     Tambah
                             </button>
                         </div>
-                </div> --}}
+                </div>
 
 
         {{-- table --}}
         <div class="card-body p-4" style="margin-top: -45px;">
-            <div class="table-responsive">
-                <table class="table table-striped mb-0" id="table">
+            <div class="">
+                <table class="table table-striped mb-3" id="table">
                     <thead class="text-white">
                         <tr class="bg-primary table-th pb-2">
-                            <th scope="col"><p>No</p></th>
-                            <th scope="col"><p>Kompetisi Dasar</p></th>
+                            <th scope="col" style=""><p>No</p></th>
+                            <th scope="col" style="width: 400px;"><p>Kompetisi Dasar</p></th>
                             <th scope="col" style=""><p>Topik Pembelajaran</p></th>
                             <th scope="col" style=""><p>Tanggal Pelaksanaan</p></th>
                         </tr>
                     </thead>
                     <tbody style="padding-top: 200px">
                     @foreach ($siswa->jurnal_prakerin as $jurnal)
-                            <tr>
-                            <td>{{ $loop->iteration }}</td>
+                        <tr>
+                            <td class="text-center">{{ $loop->iteration }}</td>
                             <td>{{ $jurnal->kompetisi_dasar  }}</td>
                             <td>{{ $jurnal->topik_pekerjaan }}</td>
-                            <td>{{ $jurnal->tanggal_pelaksanaan}}</td>
+                            <td class="text-center">{{ $jurnal->tanggal_pelaksanaan }}</td>
                         </tr>
                     @endforeach
                     </tbody>

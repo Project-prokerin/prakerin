@@ -4,6 +4,14 @@
         .card-body h6{
                 font-size: 15px;
         }
+        .card-name{
+            border-radius: 10px;
+            box-shadow: 0 0 7px grey;
+            height: 125px;
+            margin-top: 20px;
+            margin-right: 180px;
+            margin-bottom: 70px;
+        }
         .table-th p{
                 text-align: center;
                 margin-bottom: -3px;
@@ -15,7 +23,8 @@
         .modal{
                 margin-left: 130px;
                 margin-top: 43px;
-        }tr td{
+        }
+        tr td{
             font-weight: 100;
             color: black
         }
@@ -47,7 +56,7 @@
 @section('main')
 <div class="card">
         <div class="card-header" style="margin-bottom: -30px;">
-                <div class="card-body">
+                <div class="card-body card-name">
                         <div class="form-group row">
                             <label for="" class="col-sm-3 pl-4"><h6>Nama Perusahaan</h6></label>
                             <div class="col-sm-9">
@@ -67,7 +76,7 @@
                             </div>
                         </div>
                 </div>
-                <div class="card-header-action" style="margin-bottom: -15px;">
+                <div class="card-header-action" style="margin-bottom: -40px;">
                     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
                             Tambah
                     </button>
@@ -76,13 +85,13 @@
 
 
 {{-- table --}}
-<div class="card-body p-4" style="margin-top: -45px;">
+<div class="card-body p-4" style="margin-top: -50px;">
         <div class="table-responsive">
         <table class="table table-striped mb-0" id="example">
             <thead class="text-white">
                 <tr class="bg-primary table-th">
                     <th scope="col"  style="width: 30px;"><p>No</p></th>
-                    <th scope="col "style="width: 280px;"><p>Tanggal</p></th>
+                    <th scope="col "style="width: 180px;"><p>Tanggal</p></th>
                     <th scope="col" style="width: 130px;"><p>Jam Datang</p></th>
                     <th scope="col" style="width: 130px;"><p>Jam Pulang</p></th>
                     <th scope="col" style="width: 400px;"><p>Kegiatan Harian</p></th>
@@ -92,7 +101,7 @@
                 @foreach ($siswa->jurnal_harian as $item)
                 <tr>
                     <td class="text-center">{{ $loop->iteration }}</td>
-                    <td>{{ $item->tanggal->isoFormat('DD MMMM YYYY') }}</td>
+                    <td class="text-center">{{ $item->tanggal->isoFormat('DD MMMM YYYY') }}</td>
                     <td class="text-center">{{ $item->datang->format('H:i') }}</td>
                     <td class="text-center">{{ $item->pulang->format('H:i') }}</td>
                     <td>{{ $item->kegiatan_harian }}</td>
