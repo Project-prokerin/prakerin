@@ -1,3 +1,4 @@
+[![Pull Requests Welcome](link)
 
 ## Prakerin
 Prakerin adalah praktek kerja industri yang di gunakan untuk mengelola data magang di [SMK Taruna Bhakti Depok.](https://www.smktarunabhakti.net)
