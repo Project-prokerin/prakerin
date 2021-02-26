@@ -10,28 +10,31 @@ use Maatwebsite\Excel\Concerns\WithStyles;
 use Maatwebsite\Excel\Concerns\Exportable;
 
 use App\Models\pembekalan_magang;
+use App\Models\Siswa;
 use Illuminate\Contracts\Support\Responsable;
+use Maatwebsite\Excel\Concerns\FromQuery;
 use Maatwebsite\Excel\Concerns\ShouldAutoSize;
 use Maatwebsite\Excel\Concerns\WithColumnFormatting;
 use Maatwebsite\Excel\Concerns\WithColumnWidths;
+use Maatwebsite\Excel\Concerns\WithTitle;
 use Maatwebsite\Excel\Sheet;
 use PhpOffice\PhpSpreadsheet\Worksheet\Worksheet;
 
-class pembekalanExport implements FromCollection, WithHeadings, WithMapping, WithStyles, WithCustomStartCell, WithColumnWidths, ShouldAutoSize
+class pembekalanExport implements FromQuery, WithHeadings, WithMapping, WithStyles, WithCustomStartCell, WithColumnWidths, ShouldAutoSize, WithTitle
 {
-    /**
-     * @return \Illuminate\Support\Collection
-     */
     use Exportable;
     private $filename = 'pembekalan_magang.xlsx';
 
-    public function __construct($pembekalan)
+    public function __construct($pembekalan, $jurusan, $kelas, $getData)
     {
-        return $this->pembekalan = $pembekalan;
+        $this->pembekalan = $pembekalan;
+        $this->kelas = $kelas;
+        $this->jurusan = $jurusan;
+        $this->getData = $getData;
     }
-    public function collection()
+    public function query()
     {
-        return collect($this->pembekalan);
+        return Siswa::query()->with('pembekalan_magang')->where('jurusan', $this->jurusan);
     }
     public function headings(): array
     {
@@ -46,15 +49,15 @@ class pembekalanExport implements FromCollection, WithHeadings, WithMapping, Wit
                 // 'guru bk',
             ];
     }
-    public function map($pembekalan): array
+    public function map($siswa): array
     {
         return [
             'no',
-            !empty($pembekalan->siswa) ? $pembekalan->siswa->nama_siswa : '',
-            $pembekalan->text_wpt_iq,
-            $pembekalan->personality_interview,
-            $pembekalan->soft_skill,
-            $pembekalan->file_portofolio,
+            !empty($siswa->pembekalan_magang->siswa) ? $siswa->pembekalan_magang->siswa->nama_siswa : '',
+            $siswa->pembekalan_magang->test_wpt_iq,
+            $siswa->pembekalan_magang->personality_interview,
+            $siswa->pembekalan_magang->soft_skill,
+            !empty($siswa->pembekalan_magang->file_portofolio) ? 'sudah' : 'belum' ,
             // !empty($pembekalan->guru) ? $pembekalan->guru->nama : '',
         ];
     }
@@ -64,8 +67,12 @@ class pembekalanExport implements FromCollection, WithHeadings, WithMapping, Wit
     }
     public function styles(Worksheet $sheet)
     {
+        $query = [];
+        foreach ($this->getData as $key => $value) {
+                $query[] = $value->pembekalan_magang;
+        }
         $count = [
-            count($this->pembekalan),
+            count($query),
         ];
         $columnindex = array(
             'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z',
@@ -163,5 +170,9 @@ class pembekalanExport implements FromCollection, WithHeadings, WithMapping, Wit
             'E' => 20,
             'F' => 20
         ];
+    }
+    public function title():string
+    {
+        return $this->kelas.' '.$this->jurusan;
     }
 }

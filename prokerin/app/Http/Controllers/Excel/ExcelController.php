@@ -9,6 +9,7 @@ use App\Exports\prakerin\multiExport as PrakerinMultiExport;
 use App\Exports\siswa\SiswaExport as SiswaExportt;
 use App\Exports\jurnalh\JurnalHExport as JurnalHExportt;
 use App\Exports\jurnalp\JurnalPExport as JurnalPExportt;
+use App\Exports\pembekalan\multiExport as PembekalanMultiExport;
 use App\Exports\siswa\multiExport as SiswaMultiExport;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -32,9 +33,9 @@ public function __construct(Excel $excel)
 // pembekalan magang export
     public function pembekalan()
     {
-        $pembekalan = pembekalan_magang::all();
+        $pembekalan = Siswa::select('kelas', 'jurusan')->distinct()->get();
         // $heading =
-        return $this->excel->download(new PembekalanPembekalanExport($pembekalan), 'pembekalan.xlsx');
+        return $this->excel->download(new PembekalanMultiExport($pembekalan), 'pembekalan.xlsx');
     }
 
     //export excel data_prakerin
