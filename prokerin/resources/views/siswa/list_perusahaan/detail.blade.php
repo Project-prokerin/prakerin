@@ -2,7 +2,6 @@
 @push('link')
 <style>
         *{
-            font-family: sans-serif;
             text-decoration: none;
         }
         @media screen and (max-width:680px){
@@ -57,7 +56,7 @@
     {{--  --}}
     
     {{-- detailperusahaan --}}
-    <div class="container-fluid mt-4">
+    <div class="container-fluid">
         <div class="row">
         {{-- 1 --}}
         <div class="col-sm-6">
@@ -84,7 +83,7 @@
                                 </a>
                                 <div class="media-body" style="margin-top: -8px;">
                                     <div class="media-title"><p>Nama Perusahaan</p></div>
-                                    <div class="text-muted"><h6>contoh</h6></div>
+                                    <div class=""><h6 style="font-size: 14px;">PT.Telkom.Net</h6></div>
                                 </div>
                             </li>
                             <li class="media">
@@ -96,8 +95,8 @@
                                     </table>
                                 </a>
                                 <div class="media-body" style="margin-top: -8px;">
-                                    <div class="media-title"><p>Nama Perusahaan</p></div>
-                                    <div class="text-muted text-small"><h6>contoh</h6></div>
+                                    <div class="media-title"><p>Bidang Perusahaan</p></div>
+                                    <div class=""><h6 style="font-size: 14px;">Isi Pulsa</h6></div>
                                 </div>
                             </li>
                             <li class="media">
@@ -109,8 +108,8 @@
                                     </table>
                                 </a>
                                 <div class="media-body" style="margin-top: -8px;">
-                                    <div class="media-title"><p>Nama Perusahaan</p></div>
-                                    <div class="text-muted text-small"><h6>contoh</h6></div>
+                                    <div class="media-title"><p>Nama Pemimpin</p></div>
+                                    <div class=""><h6 style="font-size: 14px;">H.Drs.Ir. Dadang Syuaib</h6></div>
                                 </div>
                             </li>
                             <li class="media">
@@ -122,8 +121,8 @@
                                     </table>
                                 </a>
                                 <div class="media-body" style="margin-top: -8px;">
-                                    <div class="media-title"><p>Nama Perusahaan</p></div>
-                                    <div class="text-muted text-small"><h6>contoh</h6></div>
+                                    <div class="media-title"><p>Status Perusahaan</p></div>
+                                    <div class=""><h6 style="font-size: 14px;">Aktif Lah Bor</h6></div>
                                 </div>
                             </li>
                         </ul>
@@ -152,8 +151,8 @@
                                 </table>
                             </a>
                             <div class="media-body" style="margin-top: -8px;">
-                              <div class="media-title"><p>Nama Perusahaan</p></div>
-                              <div class="text-muted"><h6>contoh</h6></div>
+                              <div class="media-title"><p>Alamat Perusahaan</p></div>
+                              <div class=""><h6 style="font-size: 14px;">Lurus belok kanan ada pertigaan belok kiri No.223 Jl.Bungur1</h6></div>
                             </div>
                           </li>
                       <li class="media">
@@ -165,8 +164,8 @@
                             </table>
                         </a>
                         <div class="media-body" style="margin-top: -8px;">
-                          <div class="media-title"><p>Nama Perusahaan</p></div>
-                          <div class="text-muted text-small"><h6>contoh</h6></div>
+                          <div class="media-title"><p>Link Perusahaan</p></div>
+                          <div class=""><h6 style="font-size: 14px;">TelkomIndonesia.com</h6></div>
                         </div>
                       </li>
                       <li class="media">
@@ -178,8 +177,8 @@
                             </table>
                         </a>
                         <div class="media-body" style="margin-top: -8px;">
-                          <div class="media-title"><p>Nama Perusahaan</p></div>
-                          <div class="text-muted text-small"><h6>contoh</h6></div>
+                          <div class="media-title"><p>Email Perusahaan</p></div>
+                          <div class=""><h6 style="font-size: 14px;">telkomindonesia@email.com</h6></div>
                         </div>
                       </li>
                       <li class="media">
@@ -191,8 +190,8 @@
                             </table>
                         </a>
                         <div class="media-body" style="margin-top: -8px;">
-                          <div class="media-title"><p>Nama Perusahaan</p></div>
-                          <div class="text-muted text-small"><h6>contoh</h6></div>
+                          <div class="media-title"><p>No Tlp Perusahaan</p></div>
+                          <div class=""><h6 style="font-size: 14px;">+6283896802804</h6></div>
                         </div>
                       </li>
                       <li class="media">
@@ -204,9 +203,9 @@
                             </table>
                         </a>
                         <div class="media-body" style="margin-top: -8px;">
-                          <div class="media-title"><p>Nama Perusahaan</p></div>
-                          <div class="text-muted text-small">
-                              <h6>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Necessitatibus, nihil?
+                          <div class="media-title"><p>Deskripsi Perusahaan</p></div>
+                          <div class="">
+                              <h6 style="font-size: 14px;">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Necessitatibus, nihil?
                                 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Necessitatibus, nihil?
                                 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Necessitatibus, nihil?
                                 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Necessitatibus, nihil?

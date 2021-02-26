@@ -57,11 +57,7 @@ class userController extends Controller
         return view('siswa.pembekalan.index', compact('sidebar'));
     }
     // status maganag disini
-    public function status()
-    {
-        if (siswa('data_prakerin') === '' ) {
-            return back();
-        }
+    public function status(){
         $sidebar = 'status';
         return view('siswa.status.index', compact('sidebar'));
     }
