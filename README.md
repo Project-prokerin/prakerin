@@ -1,5 +1,3 @@
-[![Pull Requests Welcome](link)
-
 ## Prakerin
 Prakerin adalah praktek kerja industri yang di gunakan untuk mengelola data magang di [SMK Taruna Bhakti Depok.](https://www.smktarunabhakti.net)
 
@@ -45,3 +43,14 @@ Prakerin adalah praktek kerja industri yang di gunakan untuk mengelola data maga
 - [Nur Firdaus](https://github.com/NurFirdausR) - team requirement analysis
 - [walada Hulama Zaki](https://github.com/waladahlmzaqi) - custom design stisla
 - [Muhammad Raditya Nugraha Ilham](https://github.com/RadityaNugra) - custom design stisla
+
+<!-- MARKDOWN LINKS -->
+[contributors-shield]: https://img.shields.io/github/contributors/Project-prokerin/presensiRFID.svg?style=for-the-badge
+[contributors-url]: https://github.com/Project-prokerin/presensiRFID/graphs/contributors
+[forks-shield]: https://img.shields.io/github/forks/Project-prokerin/presensiRFID?style=for-the-badge
+[forks-url]: https://github.com/Project-prokerin/presensiRFID/network/members
+[stars-shield]: https://img.shields.io/github/stars/Project-prokerin/presensiRFID?style=for-the-badge
+[stars-url]: https://github.com/Project-prokerin/presensiRFID/stargazers
+[issues-shield]: https://img.shields.io/github/issues/Project-prokerin/presensiRFID?style=for-the-badge
+[issues-url]: https://github.com/Project-prokerin/prakerin/issues
+
