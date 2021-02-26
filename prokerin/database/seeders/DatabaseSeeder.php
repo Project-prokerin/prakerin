@@ -35,35 +35,7 @@ class DatabaseSeeder extends Seeder
         $this->call([perusahaanSeeder::class]);
         $this->call([dataprakerinSeeder::class]);
         $this->call([kelompoklaporanSeeder::class]);
-
-        // $perusahaan = perusahaan::factory()->create();
-        // $guru = guru::factory()->create();
-
-        // $siswa = Siswa::factory()
-        //     // ->has(data_prakerin::factory(), 'data_prakerin')
-        //     ->has(User::factory(), 'user')
-        //     ->has(orang_tua::factory(), 'orang_tua')
-        //     ->has(sekolah_asal::factory(), 'sekolah_asal')
-        //     ->has(pembekalan_magang::factory(), 'pembekalan_magang')
-        //     ->create();
-
-        // $data_prakerin = data_prakerin::factory()
-        //                 ->for($perusahaan)
-        //                 ->for($guru)
-        //                 ->for($siswa)
-        //                 ->count(5)
-        //                 ->create();
-
-        // $jurnal_harian = jurnal_harian::factory()
-        //             ->for($perusahaan)
-        //             ->for($siswa)
-        //             ->count(5)
-        //             ->create();
-        // $jurnal_prakerin = jurnal_prakerin::factory()
-        //             ->for($perusahaan)
-        //             ->for($siswa)
-        //             ->count(5)
-        //             ->has(fasilitas_prakerin::factory(),'fasilitas_prakerin')
-        //             ->create();
+        $this->call([kelompoklaporanSeeder::class]);
+        $this->call([pembekalanSeeder::class]);
     }
 }
