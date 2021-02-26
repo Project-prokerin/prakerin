@@ -49,42 +49,36 @@ class UserSeeder extends Seeder
         'username' => 'siswa1',
         'password' => Hash::make('123456'),
         'id_siswa' => '1',
-        'id_guru' =>  '2',
         'role' => 'siswa'
     ]);
     DB::table('users')->insert([
         'username' => 'siswa2',
         'password' => Hash::make('123456'),
         'id_siswa' => '2',
-        'id_guru' =>  '2',
         'role' => 'siswa'
     ]);
     DB::table('users')->insert([
         'username' => 'siswa3',
         'password' => Hash::make('123456'),
         'id_siswa' => '3',
-        'id_guru' =>  '2',
         'role' => 'siswa'
     ]);
     DB::table('users')->insert([
         'username' => 'siswa4',
         'password' => Hash::make('123456'),
         'id_siswa' => '4',
-        'id_guru' =>  '3',
         'role' => 'siswa'
     ]);
     DB::table('users')->insert([
         'username' => 'siswa5',
         'password' => Hash::make('123456'),
         'id_siswa' => '5',
-        'id_guru' =>  '3',
         'role' => 'siswa'
     ]);
     DB::table('users')->insert([
         'username' => 'siswa6',
         'password' => Hash::make('123456'),
         'id_siswa' =>  '6',
-        'id_guru' =>  '3',
         'role' => 'siswa'
     ]);
 }
