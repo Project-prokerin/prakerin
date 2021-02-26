@@ -1,7 +1,3 @@
-[![Contributors][contributors-shield]][contributors-url]
-[![Forks][forks-shield]][forks-url]
-[![Stargazers][stars-shield]][stars-url]
-[![Issues][issues-shield]][issues-url]
 
 ## Prakerin
 Prakerin adalah praktek kerja industri yang di gunakan untuk mengelola data magang di [SMK Taruna Bhakti Depok.](https://www.smktarunabhakti.net)
@@ -11,9 +7,9 @@ Prakerin adalah praktek kerja industri yang di gunakan untuk mengelola data maga
 2. taruh folder prokerin ke htdocs
 3. ubah .env.example ke .env
 4. buka cmd cd ke path prakerin
-5. tikkan  Markup :  ```composer update``` 
-6. lalu tikkan php artisan key:generate
-7. tikkan php artisan migrate:fresh -- seed
+5. tikkan  ```composer update``` 
+6. lalu tikkan  ```php artisan key:generate``
+7. tikkan ```php artisan migrate:fresh -- seed```
 
 
 ## account + role
