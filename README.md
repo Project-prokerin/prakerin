@@ -8,7 +8,7 @@ Prakerin adalah praktek kerja industri yang di gunakan untuk mengelola data maga
 3. ubah .env.example ke .env
 4. buka cmd cd ke path prakerin
 5. tikkan  ```composer update``` 
-6. lalu tikkan  ```php artisan key:generate``
+6. lalu tikkan  ```javascript php artisan key:generate```
 7. tikkan ```php artisan migrate:fresh -- seed```
 
 
