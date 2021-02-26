@@ -98,12 +98,12 @@
                 </tr>
             </thead>
             <tbody style="padding-top: 200px" class="">
-                @foreach ($siswa->jurnal_harian as $item)
+                @foreach (siswa('jurnal_harian') as $item)
                 <tr>
                     <td class="text-center">{{ $loop->iteration }}</td>
-                    <td class="text-center">{{ $item->tanggal->isoFormat('DD MMMM YYYY') }}</td>
-                    <td class="text-center">{{ $item->datang->format('H:i') }}</td>
-                    <td class="text-center">{{ $item->pulang->format('H:i') }}</td>
+                    <td class="text-center">{{ tanggal($item->tanggal) }}</td>
+                    <td class="text-center">{{ jam($item->datang) }}</td>
+                    <td class="text-center">{{ jam($item->pulang) }}</td>
                     <td>{{ $item->kegiatan_harian }}</td>
                 </tr>
                 @endforeach
@@ -277,52 +277,6 @@
                 }
             });
         })
-
-
-// $('#submit').click(function (event) {
-//      $('#outcomeFormDialog form').validate({
-//         rules: {
-//             amount: {
-//                 //money: true, // not a valid rule
-//                 required: true
-//             },
-//             comment: {
-//                 required: false
-//             }
-//         },
-//         highlight: function (element) {
-//             $(element).closest('.control-group')
-//                 .removeClass('success').addClass('error');
-//         },
-//         success: function (element) {
-//             element.addClass('valid').closest('.control-group')
-//                 .removeClass('error').addClass('success');
-//         },
-//         submitHandler: function (form) {
-//             vent.preventDefault();
-//             var form = $('#contact_form'),
-//             url = form.attr('action'),
-//             method = form.attr('method');
-
-//                 // console.log(form.serialize());
-//             $.ajax({
-//                 url:url,
-//                 method:method,
-//                 data:form.serialize(),
-//                 success: function name(params) {
-//                 form.trigger('reset');
-//                 $('#exampleModal').modal('hide');
-//                 table.draw();
-//                 location.reload();
-//                 },
-//                 error: function(xhr) {
-
-//                 }
-//             });
-//         }
-//         })
-//     });
-
     });
     </script>
     <script>

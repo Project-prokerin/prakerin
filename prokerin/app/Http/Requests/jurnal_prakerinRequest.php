@@ -48,7 +48,7 @@ class jurnal_prakerinRequest extends FormRequest
             'jam_pulang.required' => 'Jam pulang tidak boleh kosong',
             'mess.required' => 'Mess tidak boleh kosong',
             'makan_siang.required' => 'Makan siang tidak boleh kosong',
-            'Bus antar jemput.required' => 'Bus antar jemput tidak boleh kosong',
+            'bus_antar_jemput.required' => 'Bus antar jemput tidak boleh kosong',
             'intensif.required' => 'intensif tidak boleh kosong',
             'jam_istiharat.after'=>'Masukan Jam istirahat yang benar',
             'jam_pulang.after' =>'Masukan jam pulang yang benar'

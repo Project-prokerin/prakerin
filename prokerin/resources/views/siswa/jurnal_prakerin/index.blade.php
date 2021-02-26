@@ -63,19 +63,19 @@
                                 <div class="form-group row">
                                     <label for="" class="col-sm-3 pl-4"><h6>Nama</h6></label>
                                     <div class="col-sm-9">
-                                        <label for=""><h6>: {{ empty(Auth::user()->siswa->nama_siswa) ? 'Eror please call developer -- Stisla' : Auth::user()->siswa->nama_siswa }}</h6></label>
+                                        <label for=""><h6>: {{ empty(siswa('')->nama_siswa) ? 'Eror please call developer -- Stisla' : siswa('')->nama_siswa }}</h6></label>
                                     </div>
                                 </div>
                                 <div class="form-group row" style="margin-top: -35px;">
                                     <label for="" class="col-sm-3 pl-4"><h6>Nama Perusahaan</h6></label>
                                     <div class="col-sm-9">
-                                        <label for=""><h6>: {{ empty(Auth::user()->siswa->data_prakerin->Perusahaan->nama) ? 'Eror please call developer -- Stisla' : Auth::user()->siswa->data_prakerin->Perusahaan->nama }}</h6></label>
+                                        <label for=""><h6>: {{ empty(siswa('data_prakerin')->Perusahaan->nama) ? 'Eror please call developer -- Stisla' : siswa('data_prakerin')->Perusahaan->nama }}</h6></label>
                                     </div>
                                 </div>
                                 <div class="form-group row" style="margin-top: -35px;">
                                     <label for="" class="col-sm-3 pl-4"><h6>Lokasi</h6></label>
                                     <div class="col-sm-9">
-                                        <label for=""><h6>: {{ empty(Auth::user()->siswa->data_prakerin->Perusahaan->alamat) ? 'Eror please call developer -- Stisla' : Auth::user()->siswa->data_prakerin->Perusahaan->alamat }}</h6></label>
+                                        <label for=""><h6>: {{ empty(siswa('data_prakerin')->Perusahaan->alamat) ? 'Eror please call developer -- Stisla' : siswa('data_prakerin')->Perusahaan->alamat }}</h6></label>
                                     </div>
                                 </div>
                         </div>
@@ -100,12 +100,12 @@
                         </tr>
                     </thead>
                     <tbody style="padding-top: 200px">
-                    @foreach ($siswa->jurnal_prakerin as $jurnal)
+                    @foreach (siswa('jurnal_prakerin') as $jurnal)
                         <tr>
                             <td class="text-center">{{ $loop->iteration }}</td>
                             <td>{{ $jurnal->kompetisi_dasar  }}</td>
                             <td>{{ $jurnal->topik_pekerjaan }}</td>
-                            <td class="text-center">{{ $jurnal->tanggal_pelaksanaan }}</td>
+                            <td class="text-center">{{ tanggal($jurnal->tanggal_pelaksanaan) }}</td>
                         </tr>
                     @endforeach
                     </tbody>

@@ -5,7 +5,7 @@
     width: 1000px;
     height: 600px; */
 .header{
-     text-align:center;   
+     text-align:center;
 }
 @media screen and (max-width:413px){
 
@@ -30,39 +30,41 @@
 
         <div class="card  ">
 <div class="header border-bottom border-dark">
-        
+
         <H1>Pembekalan Magang</H1>
-      
-</div>
-<div class="row container mw-100 mx-auto ">
-<table class="table table-bordered  table-hover">
-  <thead>
-    <tr>
-      <th scope="col">Test</th>
-      <th scope="col">Status</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th scope="row">Test WPT IQ</th>
-      <td></td>
-    </tr>
-    <tr>
-      <th scope="row">Test Personality interview</th>
-      <td></td>
-    </tr>
-    <tr>
-      <th scope="row">Test soft skill</th>
-      <td></td>
-    </tr>
-    <tr>
-      <th scope="row">File Portofolio</th>
-      <td><input type="file"></td>
-    </tr>
-  </tbody>
-</table>
-        </div>
-       
+
+    </div>
+    <div class="row container mw-100 mx-auto ">
+    <table class="table table-bordered  table-hover">
+    <thead>
+        <tr>
+        <th scope="col">Test</th>
+        <th scope="col">Status</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+        <th scope="row">Test WPT IQ</th>
+        <td></td>
+        </tr>
+        <tr>
+        <th scope="row">Test Personality interview</th>
+        <td></td>
+        </tr>
+        <tr>
+        <th scope="row">Test soft skill</th>
+        <td></td>
+        </tr>
+        <tr>
+        <th scope="row">Portofolio</th>
+        <td>
+            <th scope="row">File Portofolio</th>
+        </td>
+        </tr>
+    </tbody>
+    </table>
+            </div>
+
         </div>
 
 @endsection
