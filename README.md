@@ -7,12 +7,18 @@ Prakerin adalah praktek kerja industri yang di gunakan untuk mengelola data maga
 2. taruh folder prokerin ke htdocs
 3. ubah .env.example ke .env
 4. buka cmd cd ke path prakerin
-5. tikkan  
-    ```shell
-    git add path/to/filename.ext
+5. lalu tikkan 
+    ```php
+   composer update
     ```
-7. lalu tikkan  ```php artisan key:generate```
-8. tikkan ```php artisan migrate:fresh -- seed```
+7. lalu tikkan  
+   ```php
+   php artisan key:generate
+   ```
+9. tikkan 
+   ```php
+   php artisan migrate:fresh -- seed
+   ```
 
 
 ## account + role
