@@ -7,17 +7,17 @@ Prakerin adalah praktek kerja industri yang di gunakan untuk mengelola data maga
 2. taruh folder prokerin ke htdocs
 3. ubah .env.example ke .env
 4. buka cmd cd ke path prakerin
-5. tikkan 
+5. ketik 
    
    ```php
    composer update
     ```
-7. lalu tikkan
+7. lalu ketik
  
    ```php
    php artisan key:generate
    ```
-9. tikkan
+9. terakhir ketik
 
 
    ```php
