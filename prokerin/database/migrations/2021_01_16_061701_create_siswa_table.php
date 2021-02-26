@@ -18,6 +18,8 @@ class CreateSiswaTable extends Migration
             $table->string('nama_siswa', 50);
             $table->string('nipd', 25);
             $table->enum('jk', ['L', 'P']);
+            $table->string('kelas', 20);
+            $table->string('jurusan', 50);
             $table->string('tempat_lahir');
             $table->date('tanggal_lahir');
             $table->string('nik');

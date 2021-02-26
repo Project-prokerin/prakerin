@@ -9,6 +9,7 @@ use App\Exports\prakerin\multiExport as PrakerinMultiExport;
 use App\Exports\siswa\SiswaExport as SiswaExportt;
 use App\Exports\jurnalh\JurnalHExport as JurnalHExportt;
 use App\Exports\jurnalp\JurnalPExport as JurnalPExportt;
+use App\Exports\siswa\multiExport as SiswaMultiExport;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Excel;
@@ -94,23 +95,24 @@ public function __construct(Excel $excel)
     }
     public function siswa()
     {
-        $siswa = Siswa::all();
-
-        // $heading =
-        return $this->excel->download(new SiswaExportt($siswa), 'data_siswa.xlsx');
+        $siswa = Siswa::select('kelas','jurusan')->distinct()->get();
+        if (count($siswa) < 1) {
+            return redirect('/siswa')->with('gagal', 'data anda masih kosong');
+        }
+        return $this->excel->download(new SiswaMultiExport($siswa), 'DATA SISWA SMK TARUNA BHAKTI DEPOK.xlsx');
     }
     public function jurnalh()
     {
         $jurnalh = jurnal_harian::all();
         return $this->excel->download(new JurnalHExportt($jurnalh), 'jurnal_harian.xlsx');
-         
+
     }
 
     public function jurnalp()
     {
         $jurnalp = jurnal_prakerin::all();
         return $this->excel->download(new JurnalPExportt($jurnalp), 'jurnal_prakerin.xlsx');
-         
+
     }
 
 }

@@ -12,15 +12,17 @@ use Maatwebsite\Excel\Concerns\Exportable;
 
 use App\Models\Siswa;
 use Illuminate\Contracts\Support\Responsable;
+use Maatwebsite\Excel\Concerns\FromQuery;
 use Maatwebsite\Excel\Concerns\ShouldAutoSize;
 use Maatwebsite\Excel\Concerns\WithColumnFormatting;
 use Maatwebsite\Excel\Concerns\WithColumnWidths;
+use Maatwebsite\Excel\Concerns\WithTitle;
 use Maatwebsite\Excel\Sheet;
 use PhpOffice\PhpSpreadsheet\Worksheet\Worksheet;
 
 
 
-class SiswaExport implements FromCollection, WithHeadings, WithMapping, WithCustomStartCell, WithStyles,WithColumnWidths, ShouldAutoSize
+class SiswaExport implements FromQuery, WithHeadings, WithMapping, WithCustomStartCell, WithStyles,WithColumnWidths, ShouldAutoSize, WithTitle
 
 
 {
@@ -33,20 +35,23 @@ class SiswaExport implements FromCollection, WithHeadings, WithMapping, WithCust
     // {
     //     return Siswa::all();
     // }
-    public function __construct($siswa)
+    public function __construct($siswa, $kelas, $jurusan, $getdata)
     {
-        return $this->siswa = $siswa;
+            $this->siswa = $siswa;
+            $this->kelas = $kelas;
+            $this->jurusan = $jurusan;
+            $this->getData = $getdata;
     }
-    public function collection()
+    public function query()
     {
-        return collect($this->siswa);
+        return Siswa::query()->where('jurusan', $this->jurusan)->where('kelas', $this->kelas);
     }
     public function headings(): array
     {
         return
             [
                 'no',
-                'NIP',
+                'NIPD',
                 'Nama',
                 'Email',
                 'JenisKelamin',
@@ -71,7 +76,7 @@ class SiswaExport implements FromCollection, WithHeadings, WithMapping, WithCust
     public function styles(Worksheet $sheet)
     {
         $count = [
-            count($this->siswa),
+            count($this->getData),
         ];
         $columnindex = array(
             'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z',
@@ -141,7 +146,7 @@ class SiswaExport implements FromCollection, WithHeadings, WithMapping, WithCust
         for ($i = 0; $i < $count[0]; $i++) {
             $sheet->setCellValue('B' . ($i + 7), $i + 1);
         };
-        
+
 
     }
 
@@ -152,8 +157,14 @@ class SiswaExport implements FromCollection, WithHeadings, WithMapping, WithCust
             'B' => 15,
             'C' => 15,
             'D' => 15,
-            'E' => 15,
+            'E' => 25,
             'F' => 15,
         ];
+    }
+
+
+    public function title() : string
+    {
+        return $this->kelas.' '.$this->jurusan;
     }
 }
