@@ -1,8 +1,25 @@
 @extends('template.master')
 @push('link')
 <style>
+    .teks{
+    text-align: center;
+    margin-top: -20px;
+    height: 65px;
+    width: 250px;
+    color: white;
+    background: #475bf0;
+    }
+    .teks h3{
+        margin-top: 15px;
+    }
+    .card{
+        height: 400px;
+    }
+    .media-body p{
+        color: #475bf0;
+    }
     *{
-    text-decoration: none;
+        text-decoration: none;
     }
 
 
@@ -29,51 +46,53 @@
 <form action="/user/profile/{{ siswa('main')->id }}" method="POST">
 @method('PUT')
 @csrf
-<div class="card">
-<div class="card-header  border-bottom border-dark">Edit Profile</div>
-  <div class="row container  mx-3 ">
-    <div class="col-6 col-lg-6 border-right border-dark pt-4 col-sm=12 ">
-        <div>
+<div class="card mt-5">
+  <div class="container text-center H-100 teks" >
+    <h3>Edit Profile</h3>
+  </div>
+  <div class="row container mx-3 ml-5">
+
+{{-- block1 --}}
+    <div class="col-4 pt-4">
+      <p style="font-size: 18px;">Detail Siswa</p>
         <li class="media">
-            </li>
-            <li class="media mt-3">
-            <a href="#">
-                <table border="1">
-                    <tr>
-                        <td style="height:30px; width:30px;"><i class="far fa-user" style="margin-left: 8px;"></i></td>
-                    </tr>
-                </table>
-            </a>
-            <div class="media-body ml-3" style="margin-top: -8px;">
-                <div class="media-title"><p>NIPD</p></div>
-                <div class="" style="margin-top: -14px;"><h6>{{ siswa('main')->nipd }}</h6></div>
-            </div>
-            </li>
-            <li class="media mt-4">
-            <a href="#">
-                <table border="1">
-                    <tr>
-                        <td style="height:30px; width:30px;"><i class="far fa-user" style="margin-left: 8px;"></i></td>
-                    </tr>
-                </table>
-            </a>
-            <div class="media-body ml-3" style="margin-top: -16px;">
-                <div class="media-title"><p>Nama Siswa</p></div>
-                <div class="" style="margin-top: -14px;"><h6><input type="text" value="{{ siswa('main')->nama_siswa }}" name="nama_siswa" id=""></h6></div>
-            </div>
-            </li>
-            <li class="media mt-4">
-            <a href="#">
-                <table border="1">
-                    <tr>
-                        <td style="height:30px; width:30px;"><i class="fas fa-cog" style="margin-left: 8px;"></i></td>
-                    </tr>
-                </table>
-            </a>
-            <div class="media-body ml-3" style="margin-top: -16px;">
-                <div class="media-title"><p>Jurusan</p></div>
-                <div class="" style="margin-top: -14px;"><h6><select name="jurusan" id="">
-                        <option value="">Pilih Jurusan</option>
+          <a href="#">
+              <table border="1">
+                  <tr>
+                      <td style="height:30px; width:30px;"><i class="far fa-user" style="margin-left: 8px;"></i></td>
+                  </tr>
+              </table>
+          </a>
+          <div class="media-body ml-3" style="margin-top: -8px;">
+              <div class="media-title"><p>NIPD</p></div>
+              <div class="" style="margin-top: -14px;"><h6>{{ siswa('main')->nipd }}</h6></div>
+          </div>
+        </li>
+        <li class="media mt-3">
+          <a href="#">
+              <table border="1">
+                  <tr>
+                      <td style="height:30px; width:30px;"><i class="far fa-user" style="margin-left: 8px;"></i></td>
+                  </tr>
+              </table>
+          </a>
+          <div class="media-body ml-3 mb-1" style="margin-top: -8px;">
+              <div class="media-title"><p>Nama Siswa</p></div>
+              <input type="text" style="width: 230px; margin-top: -8px;" class="form-control" value="{{ siswa('main')->nama_siswa }}" name="nama_siswa" id="">
+          </div>
+        </li>
+        <li class="media mt-3">
+          <a href="#">
+              <table border="1">
+                  <tr>
+                      <td style="height:30px; width:30px;"><i class="fas fa-cog" style="margin-left: 8px;"></i></td>
+                  </tr>
+              </table>
+          </a>
+          <div class="media-body ml-3" style="margin-top: -8px;">
+              <div class="media-title"><p>Jurusan</p></div>
+              <select style="width: 230px; margin-top: -8px;" class="form-control" name="jurusan" id="">
+                <option value="">Pilih Jurusan</option>
                         <option value="RPL 1" {{ (siswa('main')->jurusan == 'RPL 1') ? 'selected' : '' }}>RPL 1</option>
                         <option value="RPL 2" {{ (siswa('main')->jurusan == 'RPL 2') ? 'selected' : '' }}>RPL 2</option>
                         <option value="RPL 3" {{ (siswa('main')->jurusan == 'RPL 3') ? 'selected' : '' }}>RPL 3</option>
@@ -89,67 +108,69 @@
                         <option value="BC 2" {{ (siswa('main')->jurusan == 'BC 2') ? 'selected' : '' }}>BC 2</option>
                         <option value="BC 3" {{ (siswa('main')->jurusan == 'BC 3') ? 'selected' : '' }}>BC 3</option>
                         <option value="TEI" {{ (siswa('main')->jurusan == 'TEI') ? 'selected' : '' }}>TEI</option>
-                    </select></h6></div>
-            </div>
-            </li>
-            <li class="media mt-4">
-            <a href="#">
-                <table border="1">
-                    <tr>
-                        <td style="height:30px; width:30px;"><i class="far fa-user" style="margin-left: 8px;"></i></td>
-                    </tr>
-                </table>
-            </a>
-            <div class="media-body ml-3" style="margin-top: -16px;">
-                <div class="media-title"><p>Kelas</p></div>
-                <div class="" style="margin-top: -14px;"><h6><select name="kelas" id="">
-                        <option value="">Pilih kelas</option>
+              </select>
+          </div>
+        </li>
+        <li class="media mt-3">
+          <a href="#">
+              <table border="1">
+                  <tr>
+                      <td style="height:30px; width:30px;"><i class="far fa-user" style="margin-left: 8px;"></i></td>
+                  </tr>
+              </table>
+          </a>
+          <div class="media-body ml-3" style="margin-top: -8px;">
+              <div class="media-title"><p>Kelas</p></div>
+              <select style="width: 120px; margin-top: -8px;" class="form-control" name="kelas" id="">
+                <option value="">Pilih kelas</option>
                         <option value="X" {{ (siswa('main')->kelas == 'X') ? 'selected' : '' }}>X</option>
                         <option value="XI" {{ (siswa('main')->kelas == 'XI') ? 'selected' : '' }}>XI</option>
                         <option value="XII" {{ (siswa('main')->kelas == 'XII') ? 'selected' : '' }}>XII</option>
-                    </select></h6></div>
-            </div>
-            </li>
+              </select>
+          </div>
+        </li>
+    </div>
+{{-- block1 --}}
 
-        </div>
-        </div>
 
-        <div class="col pl-5 lg-6 ">
-        <br>
-        <div>
-            <li class="media mb-4">
-            <a href="#">
-                <table border="1">
-                    <tr>
-                        <td style="height:30px; width:30px;"><i class="far fa-user" style="margin-left: 8px;"></i></td>
-                    </tr>
-                </table>
-            </a>
-            <div class="media-body ml-3" style="margin-top: -16px;">
-                <div class="media-title"><p>Email</p></div>
-                <div class="" style="margin-top: -14px;"><h6><input type="text" name="email" value="{{ siswa('main')->email }}"></h6></div>
+{{-- block2 --}}
+    <div class="col-4 pt-4">
+      <p style="font-size: 18px; color: white;">.</p>
+        <li class="media">
+          <a href="#">
+              <table border="1">
+                  <tr>
+                      <td style="height:30px; width:30px;"><i class="far fa-user" style="margin-left: 8px;"></i></td>
+                  </tr>
+              </table>
+          </a>
+          <div class="media-body ml-3" style="margin-top: -8px;">
+              <div class="media-title"><p>No HP</p></div>
+              <input type="number" style="width: 230px; margin-top: -8px;" class="form-control" name="no_hp" value="{{ siswa('main')->no_hp }}">
+          </div>
+        </li>
+        <li class="media mt-3">
+          <a href="#">
+              <table border="1">
+                  <tr>
+                      <td style="height:30px; width:30px;"><i class="far fa-user" style="margin-left: 8px;"></i></td>
+                  </tr>
+              </table>
+          </a>
+          <div class="media-body ml-3" style="margin-top: -8px;">
+              <div class="media-title"><p>Email</p></div>
+              <input type="text" style="width: 230px; margin-top: -8px;" class="form-control" name="email" value="{{ siswa('main')->email }}">
+          </div>
+        </li>
+        <div class="card-body mt-4" style="margin-left: 59px;">
+            <div class="">
+              <a href="/user/profile" class="btn btn-icon icon-left btn-danger" style="margin-right: 15px;"><i class="fas fa-times"></i> Cancel</a>
+              <button type="submit" class="btn btn-icon icon-left btn-success"><i class="fas fa-check"></i> Simpan</button>
             </div>
-            </li>
-            <li class="media mt-3 mb-3">
-            <a href="#">
-                <table border="1">
-                    <tr>
-                        <td style="height:30px; width:30px;"><i class="far fa-user" style="margin-left: 8px;"></i></td>
-                    </tr>
-                </table>
-            </a>
-            <div class="media-body ml-3" style="margin-top: -16px;">
-                <div class="media-title"><p>No HP</p></div>
-                <div class="" style="margin-top: -14px;"><h6><input type="number" name="no_hp" value="{{ siswa('main')->no_hp }}"></h6></div>
-            </div>
-            </li>
-        </div>
-        <button type="submit" class="btn btn-success">Simpan</button>
-        <a href="/user/profile" class="btn btn-danger">cancel</a>
         </div>
     </div>
-    </div>
-    </form>
+{{-- block2 --}}
+</form>
 @endsection
 @push('script')
 

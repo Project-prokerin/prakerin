@@ -1,9 +1,6 @@
 @extends('template.master')
 @push('link')
 <style>
-  .header{
-    text-align:center;
-  }
   .teks{
     text-align: center;
     margin-top: -20px;
@@ -13,9 +10,6 @@
     background: #475bf0;
   }
   .teks h3{
-    margin-top: 15px;
-  }
-  .file{
     margin-top: 15px;
   }
 

@@ -1,11 +1,26 @@
 @extends('template.master')
 @push('link')
 <style>
+  .teks{
+    text-align: center;
+    margin-top: -20px;
+    height: 65px;
+    width: 250px;
+    color: white;
+    background: #475bf0;
+  }
+  .teks h3{
+    margin-top: 15px;
+  }
+  .card{
+    height: 400px;
+  }
+  .media-body p{
+    color: #475bf0;
+  }
   *{
     text-decoration: none;
-    }
-
-
+  }
 
       @media (max-width:432px) {
         .col-6.col-lg-6.border-right.border-dark.pt-4
@@ -24,11 +39,16 @@
 
 @endsection
 @section('main')
-<div class="card">
-<div class="card-header  border-bottom border-dark">Profile</div>
-  <div class="row container  mx-3 ">
-    <div class="col-6 col-lg-6 border-right border-dark pt-4 col-sm=12 ">
-      <div>
+<div class="card mt-5">
+  <div class="container text-center H-100 teks" >
+    <h3>Profile</h3>
+  </div>
+  <div class="row container mx-3 ml-5">
+
+
+{{-- block1 --}}
+    <div class="col-4 pt-4">
+      <p style="font-size: 18px;">Detail Siswa</p>
         <li class="media">
           <a href="#">
               <table border="1">
@@ -81,7 +101,14 @@
               <div class="" style="margin-top: -14px;"><h6>{{ siswa('main')->kelas }}</h6></div>
           </div>
         </li>
-        <li class="media mt-3 mb-3">
+    </div>
+{{-- block1 --}}
+
+
+{{-- block2 --}}
+    <div class="col-4 pt-4">
+      <p style="font-size: 18px; color: white;">.</p>
+        <li class="media">
           <a href="#">
               <table border="1">
                   <tr>
@@ -94,13 +121,7 @@
               <div class="" style="margin-top: -14px;"><h6>{{ siswa('main')->no_hp }}</h6></div>
           </div>
         </li>
-      </div>
-    </div>
-
-    <div class="col pl-5 lg-6 ">
-      <br>
-      <div>
-        <li class="media mb-3">
+        <li class="media mt-3">
           <a href="#">
               <table border="1">
                   <tr>
@@ -113,7 +134,12 @@
               <div class="" style="margin-top: -14px;"><h6>{{ siswa('main')->email }}</h6></div>
           </div>
         </li>
-      </div>
+    </div>
+{{-- block2 --}}
+
+
+{{-- block3 --}}
+    <div class="col-4">
       <br><br><br>
       <div>
         <li class="media">
@@ -151,8 +177,10 @@
         </li>
       </div>
     </div>
+{{-- block3 --}}
  </div>
 </div>
+
 @endsection
 @push('script')
 
