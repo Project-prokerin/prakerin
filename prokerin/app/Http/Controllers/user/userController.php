@@ -40,6 +40,11 @@ class userController extends Controller
         $sidebar = 'perusahaan';
         return view('siswa.list_perusahaan.index', compact('sidebar','perusahaan'));
     }
+    public function ajaxperusahaan(Request $request)
+    {
+        $perusahaan = perusahaan::all();
+        return response()->json(compact('perusahaan'));
+    }
     // detail perusahaan
     public function perusahaan_detail(Request $request, $id){
         $perusahaan = perusahaan::where('id', $id)->first();
