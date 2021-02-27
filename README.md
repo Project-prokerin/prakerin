@@ -22,7 +22,17 @@ Prakerin adalah praktek kerja industri yang di gunakan untuk mengelola data maga
    ```php
    php artisan migrate:fresh -- seed
    ```
+## Having bug?
+1. cara pertama install composer dulu seperti di bawah ini
 
+```php
+  composer install
+   ```
+2. jika masih tidak bisa cara kedua coba ketik seperti di bawah ini
+
+```php
+   composer dump-autoload
+   ```
 
 ## account + role
 - Hubin : admin | pass = admin
