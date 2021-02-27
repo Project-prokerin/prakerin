@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class pembekalan_magangRequest extends FormRequest
+class passwordRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,15 +24,9 @@ class pembekalan_magangRequest extends FormRequest
     public function rules()
     {
         return [
-            'file' => 'required|file|mimes:pdf'
-        ];
-    }
-    public function messages()
-    {
-        return [
-            'file.required' => 'File masih kosong',
-            'file.file' => 'Harus berformat file',
-            'file.mimes' => 'Harus berformat pdf'
+            'old_pass' => 'required',
+            'new_pass' => 'required',
+            'new_pass2' => 'required'
         ];
     }
 }

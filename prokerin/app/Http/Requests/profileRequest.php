@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class pembekalan_magangRequest extends FormRequest
+class profileRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,15 +24,19 @@ class pembekalan_magangRequest extends FormRequest
     public function rules()
     {
         return [
-            'file' => 'required|file|mimes:pdf'
+            "nama_siswa" => "required",
+            "email" => "required|email",
+            "no_hp" => "required|min:8"
         ];
     }
     public function messages()
     {
         return [
-            'file.required' => 'File masih kosong',
-            'file.file' => 'Harus berformat file',
-            'file.mimes' => 'Harus berformat pdf'
+            'nama_siswa.required' => 'nama_siswa tidak boleh kosong',
+            'email.required' => 'email tidak boleh kosong',
+            'no_hp.required' => 'no_hp tidak boleh kosong',
+            'no_hp.min' => 'minimal 8 character',
+            'email.email' => 'harus format email'
         ];
     }
 }

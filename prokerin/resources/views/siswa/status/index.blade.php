@@ -18,7 +18,7 @@
   .file{
     margin-top: 15px;
   }
-  
+
   @media screen and (max-width:413px){
   .card{
     width: auto;
@@ -35,46 +35,46 @@
 @endsection
 @section('main')
 <div class="card mt-5">
-  <div class="container text-center H-100 mb-3 teks" >
-      <h3>Status Magang</h3>
-  </div>
-    <div class="container-fluid mt-4 mb-4">
-      <div class="mw-100 mx-auto ">
-        <table class="table table-bordered table-hover">
-          <thead>
-              <tr>
-              </tr>
-          </thead>
-          <tbody>
-              <tr>
-                <th scope="row" style="width: 400px;" class="text-center">Nama</th>
-                <td class="">Nur Firdaus M</td>
-              </tr>
-              <tr>
-                <th scope="row" class="text-center">Status</th>
-                <td>Belum Mulai Magang</td>
-              </tr>
-              <tr>
-                <th scope="row" class="text-center">Tanggal Mulai</th>
-                <td>25 Februari 2021</td>
-              </tr>
-              <tr>
-                <th scope="row" class="text-center">Tanggal Selesai</th>
-                <td>25 Februari 2021</td>
-              </tr>
-              <tr>
-                <th scope="row" class="text-center">Nama Perusahaan</th>
-                <td>Telkom.Net.Co</td>
-              </tr>
-              <tr>
-                <th scope="row" class="text-center">Lokasi Perusahaan</th>
-                <td>Depok</td>
-              </tr>
-          </tbody>
-        </table>
-      </div>
+    <div class="container text-center H-100 mb-3 teks" >
+        <h3>Status Magang</h3>
     </div>
-</div>
+        <div class="container-fluid mt-4 mb-4">
+        <div class="mw-100 mx-auto ">
+            <table class="table table-bordered table-hover">
+            <thead>
+                <tr>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th scope="row" style="width: 400px;background-color:#f2f2f2;" class="text-left">Nama</th>
+                    <td class="" style="background-color:#f2f2f2" >{{ siswa('data_prakerin')->nama }}</td>
+                </tr>
+                <tr>
+                    <th scope="row" class="text-left" >Status</th>
+                    <td style="{{ statusWarna() }}">{{ status() }}</td>
+                </tr>
+                <tr>
+                    <th scope="row" class="text-left" style="background-color:#f2f2f2">Tanggal Mulai</th>
+                    <td style="background-color:#f2f2f2" > {{ tanggal(siswa('data_prakerin')->tgl_mulai) }}</td>
+                </tr>
+                <tr>
+                    <th scope="row" class="text-left"  >Tanggal Selesai</th>
+                    <td style="background-color:#f2f2f2">{{ tanggal(siswa('data_prakerin')->tgl_selesai) }}</td>
+                </tr>
+                <tr>
+                    <th scope="row" class="text-left" style="background-color:#f2f2f2">Nama Perusahaan</th>
+                    <td style="background-color:#f2f2f2" >{{ siswa('data_prakerin')->perusahaan->nama }}</td>
+                </tr>
+                <tr>
+                    <th scope="row" class="text-left" >Lokasi Perusahaan</th>
+                    <td style="background-color:#f2f2f2">  {{ siswa('data_prakerin')->perusahaan->alamat }}</td>
+                </tr>
+            </tbody>
+            </table>
+        </div>
+        </div>
+    </div>
 @endsection
 @push('script')
 

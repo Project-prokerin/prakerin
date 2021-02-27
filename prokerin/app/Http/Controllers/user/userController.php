@@ -5,6 +5,9 @@ namespace App\Http\Controllers\user;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\jurnal_harianRequest;
 use App\Http\Requests\jurnal_prakerinRequest;
+use App\Http\Requests\passwordRequest;
+use App\Http\Requests\pembekalan_magangRequest;
+use App\Http\Requests\profileRequest;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\models\Siswa;
@@ -21,6 +24,7 @@ use App\Models\kelompok_laporan;
 use App\Models\laporan_prakerin;
 use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Hash;
 
 class userController extends Controller
 {
@@ -36,17 +40,8 @@ class userController extends Controller
         $sidebar = 'perusahaan';
         return view('siswa.list_perusahaan.index', compact('sidebar','perusahaan'));
     }
-    // ajax perusahaan
-    public function ajaxperusahaan(Request $request){
-        $perusahaan = perusahaan::all();
-        return response()->json(compact('perusahaan'));
-    }
     // detail perusahaan
     public function perusahaan_detail(Request $request, $id){
-        if ($request->ajax()) {
-            $perusahaan = perusahaan::where('id', $id)->first();
-            return response()->json(compact('perusahaan'));
-        }
         $perusahaan = perusahaan::where('id', $id)->first();
         $sidebar = 'perusahaan';
         return view('siswa.list_perusahaan.detail', compact('perusahaan','sidebar'));
@@ -56,8 +51,31 @@ class userController extends Controller
         $sidebar = 'pembekalan';
         return view('siswa.pembekalan.index', compact('sidebar'));
     }
+    public function pembekalan_post(pembekalan_magangRequest $request){
+        $validated = $request->validated();
+        $file = $request->file('file')->getClientOriginalName();
+        $upload = pembekalan_magang::where('id_siswa', Auth::user()->siswa->id)->update(['file_portofolio' => $file]);
+        $upload = $request->file('file')->move('PDF/', $request->file('file')->getClientOriginalName());
+        return redirect('/user/pembekalan');
+    }
+    public function pembekalan_delete(){
+        $upload = pembekalan_magang::where('id_siswa', Auth::user()->siswa->id)->update(['file_portofolio' => '']);
+        return redirect('/user/pembekalan');
+    }
+    public function pembekalan_download($id)
+    {
+        $file = public_path() . "/PDF/$id";
+
+        $headers = array(
+            'Content-Type: application/pdf',
+        );
+        return Response()->download($file, $id , $headers);
+    }
     // status maganag disini
     public function status(){
+        if (siswa('data_prakerin') === '') {
+            return back();
+        }
         $sidebar = 'status';
         return view('siswa.status.index', compact('sidebar'));
     }
@@ -65,7 +83,6 @@ class userController extends Controller
     // profile disini
     public function profile(){
         $sidebar  = 'profile';
-        // $siswa = Auth::user();
         return view('siswa.profile.index', compact('sidebar'));
     }
     // edit profile
@@ -73,10 +90,37 @@ class userController extends Controller
         $sidebar = '';
         return view('siswa.profile.edit', compact('sidebar'));
     }
+    public function profile_update(profileRequest $request, $id){
+        $validated = $request->validated();
+        $update = Siswa::where('id', siswa('main')->id)->update([
+            'nama_siswa' => $request->nama_siswa,
+            'jurusan' => $request->jurusan,
+            'kelas' => $request->kelas,
+            'email' => $request->email,
+            'no_hp' => $request->no_hp
+        ]);
+        return redirect('/user/profile')->with('success','data_anda berhasil di ubah');
+    }
     // ganti password
     public function ganti_password(){
+
         $sidebar  = '';
         return view('siswa.profile.ganti_pass', compact('sidebar'));
+    }
+    public function ganti_password_post(passwordRequest $request){
+        $validated = $request->validated();
+        $password = $request->old_pass; // string
+        $check = siswa('user')->password; // hashed passowrd (ngambil dari user)
+        if (Hash::check($password,$check)) {
+            if ($request->new_pass == $request->new_pass2) {
+                User::where('id', siswa('user')->id)->update([
+                    'password' => Hash::make($request->new_pass)
+                ]);
+                return redirect('/user/profile')->with('success', 'password anda berhasil di ubah');
+            }
+            return back()->with('gagal', 'password anda gagal di ubah');
+        }
+        return back()->with('gagal', 'password anda gagal di ubah');
     }
     // jurnal prakerin
     public function jurnal(){
@@ -127,10 +171,11 @@ class userController extends Controller
             return back();
         }
         $sidebar  = 'kelompok_laporan';
-        $no_kelompok = !empty(siswa('kelompok_laporan')->no) ? siswa('kelompok_laporan')->no : '';
-        $guru_nama =   !empty(siswa('kelompok_laporan')->guru->name) ? siswa('kelompok_laporan')->guru->nama : '';
+        $no_kelompok = !empty(siswa('data_prakerin')->kelompok_laporan->no) ? siswa('data_prakerin')->kelompok_laporan->no : '';
+        $guru_nama =   !empty(siswa('data_prakerin')->kelompok_laporan->guru->nama) ? siswa('data_prakerin')->kelompok_laporan->guru->nama : '';
+        $laporan =  !empty(siswa('data_prakerin')->kelompok_laporan->laporan_prakerin->nama) ? siswa('data_prakerin')->kelompok_laporan->laporan_prakerin->nama : 'belum mendapat judul laporan';
             // dd(Auth::user()->siswa->data_prakerin);
             $kelompok = kelompok_laporan::where('no', $no_kelompok)->get();
-            return view('siswa.kelompok_laporan.index', compact('sidebar','kelompok','no_kelompok','guru_nama'));
+            return view('siswa.kelompok_laporan.index', compact('sidebar','kelompok','no_kelompok','guru_nama','laporan'));
     }
 }

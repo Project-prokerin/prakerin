@@ -39,7 +39,7 @@
           </a>
           <div class="media-body ml-3" style="margin-top: -8px;">
               <div class="media-title"><p>NIPD</p></div>
-              <div class="" style="margin-top: -14px;"><h6>000000000</h6></div>
+              <div class="" style="margin-top: -14px;"><h6> {{ siswa('main')->nipd }}</h6></div>
           </div>
         </li>
         <li class="media mt-3">
@@ -52,7 +52,7 @@
           </a>
           <div class="media-body ml-3" style="margin-top: -8px;">
               <div class="media-title"><p>Nama Siswa</p></div>
-              <div class="" style="margin-top: -14px;"><h6>Nur Firdaus</h6></div>
+              <div class="" style="margin-top: -14px;"><h6>{{ siswa('main')->nama_siswa }}</h6></div>
           </div>
         </li>
         <li class="media mt-3">
@@ -65,7 +65,7 @@
           </a>
           <div class="media-body ml-3" style="margin-top: -8px;">
               <div class="media-title"><p>Jurusan</p></div>
-              <div class="" style="margin-top: -14px;"><h6>Rekayasa Perangkat Lunak</h6></div>
+              <div class="" style="margin-top: -14px;"><h6>{{ siswa('main')->jurusan }}</h6></div>
           </div>
         </li>
         <li class="media mt-3">
@@ -78,7 +78,7 @@
           </a>
           <div class="media-body ml-3" style="margin-top: -8px;">
               <div class="media-title"><p>Kelas</p></div>
-              <div class="" style="margin-top: -14px;"><h6>XI</h6></div>
+              <div class="" style="margin-top: -14px;"><h6>{{ siswa('main')->kelas }}</h6></div>
           </div>
         </li>
         <li class="media mt-3 mb-3">
@@ -91,7 +91,7 @@
           </a>
           <div class="media-body ml-3" style="margin-top: -8px;">
               <div class="media-title"><p>No HP</p></div>
-              <div class="" style="margin-top: -14px;"><h6>083896802804</h6></div>
+              <div class="" style="margin-top: -14px;"><h6>{{ siswa('main')->no_hp }}</h6></div>
           </div>
         </li>
       </div>
@@ -110,7 +110,7 @@
           </a>
           <div class="media-body ml-3" style="margin-top: -8px;">
               <div class="media-title"><p>Email</p></div>
-              <div class="" style="margin-top: -14px;"><h6>nurfirdaus@gmail.com</h6></div>
+              <div class="" style="margin-top: -14px;"><h6>{{ siswa('main')->email }}</h6></div>
           </div>
         </li>
       </div>
@@ -143,7 +143,7 @@
           </a>
         </li>
         <li class="media" style="margin-top: -15px; margin-left: 32px;">
-          <a href="#">
+          <a href="{{ route('logout') }}">
             <div class="media-body ml-3">
               <div class="media-title"><p>Log Out</p></div>
             </div>

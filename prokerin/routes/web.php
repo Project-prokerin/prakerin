@@ -34,7 +34,7 @@ use App\Http\Controllers\Excel\ExcelController;
 // Auth
 Route::get('/', [AuthController::class, 'index'])->name('login');
 Route::post('/postlogin', [AuthController::class, 'postlogin']);
-Route::get('users/{id}', [AuthController::class, 'logout'])->name('logout');
+Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 
 // route template
 Route::get('/pagesSiswa', [viewController::class, 'pagesSiswa']);
@@ -126,6 +126,8 @@ Route::middleware(['web', 'auth', 'role:siswa'])->group(function () {
 
     // pembekalan magang
     Route::get('/user/pembekalan', [userController::class, 'pembekalan'])->name('user.pembekalan');
+    Route::get('/user/pembekalan/delete', [userController::class, 'pembekalan_delete'])->name('user.pembekalan.delete');
+    Route::get('/user/pembekalan/{id}', [userController::class, 'pembekalan_download'])->name('user.pembekalan.download');
     Route::post('/user/pembekalan', [userController::class, 'pembekalan_post'])->name('user.pembekalan.post');
 
     // jurnal prakerin
@@ -144,6 +146,6 @@ Route::middleware(['web', 'auth', 'role:siswa'])->group(function () {
     // test pdf perusahaan
     Route::get('/perusahaanPDF', [PDFController::class, 'perusahaan']);
     Route::get('/user/pdf',[PDFController::class,'kelompokPrakerin']);
- 
- 
+
+
 });
