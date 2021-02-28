@@ -20,18 +20,21 @@ function siswa($value)
 // untuk tanggal
 function tanggal($value)
 {
-    return $value->IsoFormat('DD MMMM YYYY');
+    return empty($value->IsoFormat('DD MMMM YYYY')) ? '' : $value->IsoFormat('DD MMMM YYYY') ;
 }
 // untuk jam
 function jam($value)
 {
     return $value->format('H:i');
 }
-
 // pemabakan maganag
 function warna($value)
 {
-    // file portofolio
+    // jika account siswa kosong
+    if (empty(siswa('main'))) {
+        return 'background-color:#e84118;color:white;text-decoration:none;';
+    }
+     // file portofolio
     if ($value === 'file_portofolio') {
         if (empty(Auth::user()->siswa->pembekalan_magang->$value)) {
             return 'background-color:#f2f2f2;color:black;text-decoration:none;';
@@ -56,8 +59,11 @@ function warna($value)
 }
 function PembekalanText($value)
 {
+    if (empty(siswa('main'))) {
+        return 'Anda tidak di izinkan untuk melihat status anda';
+    }
     if (empty(Auth::user()->siswa->pembekalan_magang->$value)) {
-        return 'belum mengumpulan';
+        return 'belum mengumpulkan';
     }
     $val = Auth::user()->siswa->pembekalan_magang->$value;
     if ($val == 'sudah') {
@@ -67,9 +73,16 @@ function PembekalanText($value)
     }
 }
 
-// stataus
+// stataus magang helper
 function status(){
     $tanggal = Carbon::now()->format('Y-m-d');
+    // validasi
+    if (empty(siswa('data_prakerin')->tgl_mulai)) {
+        return 'tanggal_mulai belum di tentukan';
+    }else if (empty(siswa('data_prakerin')->tgl_selesai)) {
+        return 'tanggal_selesai belum di tentukan';
+    }
+    // validasi
     if ( $tanggal <= siswa('data_prakerin')->tgl_mulai->format('Y-m-d')) {
         return 'Belum Mulai Magang';
     }else if($tanggal >= siswa('data_prakerin')->tgl_mulai->format('Y-m-d') and $tanggal <= siswa('data_prakerin')->tgl_selesai->format('Y-m-d')){
@@ -80,6 +93,14 @@ function status(){
 }
 function statusWarna()
 {
+    // validasi
+    if (empty(siswa('data_prakerin')->tgl_mulai)) {
+        return 'background-color:#4cd137;color:white';
+    } else if (empty(siswa('data_prakerin')->tgl_selesai)) {
+        return 'background-color:#4cd137;color:white';
+    }
+
+    // warna
     $tanggal = Carbon::now()->format('Y-m-d');
     if ($tanggal <= siswa('data_prakerin')->tgl_mulai->format('Y-m-d')) {
         return 'background-color:#4cd137;color:white';

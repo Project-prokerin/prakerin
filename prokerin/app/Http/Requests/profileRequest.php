@@ -36,7 +36,7 @@ class profileRequest extends FormRequest
             'email.required' => 'email tidak boleh kosong',
             'no_hp.required' => 'no_hp tidak boleh kosong',
             'no_hp.min' => 'minimal 8 character',
-            'email.email' => 'harus format email'
+            'email.email' => 'Email harus alamat email yang valid'
         ];
     }
 }

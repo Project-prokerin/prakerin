@@ -50,19 +50,19 @@
                 </tr>
                 <tr>
                     <th scope="row" class="text-left" style="background-color:#f2f2f2">Tanggal Mulai</th>
-                    <td style="background-color:#f2f2f2" > {{ tanggal(siswa('data_prakerin')->tgl_mulai) }}</td>
+                    <td style="background-color:#f2f2f2" > {{ empty(tanggal(siswa('data_prakerin')->tgl_mulai)) ? ' tanggal mulai magang belum di tentukan' : tanggal(siswa('data_prakerin')->tgl_mulai) }}</td>
                 </tr>
                 <tr>
                     <th scope="row" class="text-left"  >Tanggal Selesai</th>
-                    <td style="background-color:#f2f2f2">{{ tanggal(siswa('data_prakerin')->tgl_selesai) }}</td>
+                    <td style="background-color:#f2f2f2">{{ empty(tanggal(siswa('data_prakerin')->tgl_selesai)) ? 'tanggal selesai magang belum di tentukan' : tanggal(siswa('data_prakerin')->tgl_selesai)  }}</td>
                 </tr>
                 <tr>
                     <th scope="row" class="text-left" style="background-color:#f2f2f2">Nama Perusahaan</th>
-                    <td style="background-color:#f2f2f2" >{{ siswa('data_prakerin')->perusahaan->nama }}</td>
+                    <td style="background-color:#f2f2f2" >{{ empty(siswa('data_prakerin')->perusahaan->nama) ? 'nama perusahaan belum di tentuakan' : siswa('data_prakerin')->perusahaan->nama }}</td>
                 </tr>
                 <tr>
                     <th scope="row" class="text-left" >Lokasi Perusahaan</th>
-                    <td style="background-color:#f2f2f2">  {{ siswa('data_prakerin')->perusahaan->alamat }}</td>
+                    <td style="background-color:#f2f2f2">  {{ empty(siswa('data_prakerin')->perusahaan->alamat) ? 'alamat perusahaan belum di tentukan' : siswa('data_prakerin')->perusahaan->alamat }}</td>
                 </tr>
             </tbody>
             </table>

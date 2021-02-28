@@ -28,7 +28,7 @@ class CreatePerusahaanTable extends Migration
             $table->timestamps();
         });
         Schema::table('data_prakerin', function (Blueprint $table) {
-            $table->foreign('id_perusahaan')->references('id')->on('perusahaan')->onDelete('cascade')->onUpdate("cascade");
+            $table->foreign('id_perusahaan')->references('id')->on('perusahaan')->onDelete('set null')->onUpdate("cascade");
         });
     }
 

@@ -47,6 +47,8 @@
             background-image: none !important;
             border-color:red;
             padding-right: 0.75em;
+        }.dataTables_empty{
+            text-align: center;
         }
 </style>
 @endpush
@@ -63,26 +65,32 @@
                                 <div class="form-group row">
                                     <label for="" class="col-sm-3 pl-4"><h6>Nama</h6></label>
                                     <div class="col-sm-9">
-                                        <label for=""><h6>: {{ empty(siswa('')->nama_siswa) ? 'Eror please call developer -- Stisla' : siswa('')->nama_siswa }}</h6></label>
+                                        <label for=""><h6>: {{ empty(siswa('main')->nama_siswa) ? 'Eror please call developer' : siswa('main')->nama_siswa }}</h6></label>
                                     </div>
                                 </div>
                                 <div class="form-group row" style="margin-top: -35px;">
                                     <label for="" class="col-sm-3 pl-4"><h6>Nama Perusahaan</h6></label>
                                     <div class="col-sm-9">
-                                        <label for=""><h6>: {{ empty(siswa('data_prakerin')->Perusahaan->nama) ? 'Eror please call developer -- Stisla' : siswa('data_prakerin')->Perusahaan->nama }}</h6></label>
+                                        <label for=""><h6>: {{ empty(siswa('data_prakerin')->Perusahaan->nama) ? 'Nama perushaaan belum di tentukan' : siswa('data_prakerin')->Perusahaan->nama }}</h6></label>
                                     </div>
                                 </div>
                                 <div class="form-group row" style="margin-top: -35px;">
                                     <label for="" class="col-sm-3 pl-4"><h6>Lokasi</h6></label>
                                     <div class="col-sm-9">
-                                        <label for=""><h6>: {{ empty(siswa('data_prakerin')->Perusahaan->alamat) ? 'Eror please call developer -- Stisla' : siswa('data_prakerin')->Perusahaan->alamat }}</h6></label>
+                                        <label for=""><h6>: {{ empty(siswa('data_prakerin')->Perusahaan->alamat) ? 'Alamat perusahaan belum di tentukan ' : siswa('data_prakerin')->Perusahaan->alamat }}</h6></label>
                                     </div>
                                 </div>
                         </div>
                         <div class="card-header-action" style="margin-bottom: -40px;">
-                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-                                    Tambah
-                            </button>
+                                @if (empty(siswa('data_prakerin')->perusahaan))
+                                <button type="button" class="btn btn-primary disabled" data-toggle="modal" disabled data-target="#exampleModal">
+                                        Tambah
+                                </button>
+                                @else
+                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                                        Tambah
+                                </button>
+                                @endif
                         </div>
                 </div>
 
@@ -100,7 +108,7 @@
                         </tr>
                     </thead>
                     <tbody style="padding-top: 200px">
-                    @foreach (siswa('jurnal_prakerin') as $jurnal)
+                    @foreach ($jurnal_prakerin as $jurnal)
                         <tr>
                             <td class="text-center">{{ $loop->iteration }}</td>
                             <td>{{ $jurnal->kompetisi_dasar  }}</td>
@@ -113,7 +121,6 @@
         </div>
         </div>
         </div>
-
         {{-- modal --}}
             <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-backdrop="false">
                     <div class="modal-dialog modal-lg">
@@ -282,11 +289,13 @@
                 </div>
                 </form>
         {{-- modal --}}
+        @include('sweetalert::alert')
 @endsection
 @push('script')
 <script src="{{ asset('template/node_modules/datatables/media/js/jquery.dataTables.min.js') }}"></script>
 <script src="{{ asset('template/node_modules/datatables.net-bs4/js/dataTables.bootstrap4.min.js') }}"></script>
 <script src="{{ asset('template/node_modules/datatables.net-select-bs4/js/select.bootstrap4.min.js') }}"></script>
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 <script>
   $(document).ready(function () {
     // data table
@@ -300,6 +309,7 @@
                 "filtering":false,
                 "searching": false
         });
+    $('.dataTables_empty').html('Jurnal anda masih kosong');
     // checkbox
     $(".mess").change(function()
         {
@@ -343,6 +353,12 @@
                 $('#exampleModal').modal('hide');
                 table.draw();
                 location.reload();
+                Swal.fire({
+                    title: 'success',
+                    text: 'jurnal berhasil di tambahkan',
+                    icon: 'success',
+                    confirmButtonText: 'tutup'
+                })
                 },
                 error: function(xhr) {
                     console.log(xhr.responseJSON)

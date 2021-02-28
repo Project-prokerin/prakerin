@@ -45,7 +45,6 @@
 </style>
     <link rel="stylesheet" href="{{ asset('template/node_modules/datatables.net-bs4/css/dataTables.bootstrap4.min.css') }}">
     <link rel="stylesheet" href="{{ asset('template/node_modules/datatables.net-select-bs4/css/select.bootstrap4.min.css') }}">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.min.js"></script>
 @endpush
 @section('title', 'Prakerin | jurnal harian')
 @section('judul', 'JURNAL HARIAN')
@@ -60,13 +59,13 @@
                         <div class="form-group row">
                             <label for="" class="col-sm-3 pl-4"><h6>Nama Perusahaan</h6></label>
                             <div class="col-sm-9">
-                                <label for=""><h6>: {{ empty(Auth::user()->siswa->data_prakerin->Perusahaan->nama) ? 'Eror please call developer -- Stisla' : Auth::user()->siswa->data_prakerin->Perusahaan->nama }}</h6></label>
+                                <label for=""><h6>: {{ empty(Auth::user()->siswa->data_prakerin->Perusahaan->nama) ? 'Nama perusahaan belum di tentuakan' : Auth::user()->siswa->data_prakerin->Perusahaan->nama }}</h6></label>
                             </div>
                         </div>
                         <div class="form-group row" style="margin-top: -35px;">
                             <label for="" class="col-sm-3 pl-4"><h6>Lokasi</h6></label>
                             <div class="col-sm-9">
-                                <label for=""><h6>: {{ empty(Auth::user()->siswa->data_prakerin->Perusahaan->alamat) ? 'Eror please call developer -- Stisla' : Auth::user()->siswa->data_prakerin->Perusahaan->alamat }}</h6></label>
+                                <label for=""><h6>: {{ empty(Auth::user()->siswa->data_prakerin->Perusahaan->alamat) ? 'Alamat perusahaan belum di tentukan ' : Auth::user()->siswa->data_prakerin->Perusahaan->alamat }}</h6></label>
                             </div>
                         </div>
                         <div class="form-group row" style="margin-top: -35px;">
@@ -77,9 +76,16 @@
                         </div>
                 </div>
                 <div class="card-header-action" style="margin-bottom: -40px;">
+                    @if (empty(siswa('data_prakerin')->perusahaan))
+                    <button type="button" class="btn btn-primary disabled" data-toggle="modal" disabled data-target="#exampleModal">
+                            Tambah
+                    </button>
+                    @else
                     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
                             Tambah
                     </button>
+                    @endif
+
                 </div>
         </div>
 
@@ -98,7 +104,7 @@
                 </tr>
             </thead>
             <tbody style="padding-top: 200px" class="">
-                @foreach (siswa('jurnal_harian') as $item)
+                @foreach ($jurnal as $item)
                 <tr>
                     <td class="text-center">{{ $loop->iteration }}</td>
                     <td class="text-center">{{ tanggal($item->tanggal) }}</td>
@@ -227,12 +233,14 @@
             </div>
              </form>
         </div>
+    @include('sweetalert::alert')
 {{-- modal --}}
 @endsection
 @push('script')
     <script src="{{ asset('template/node_modules/datatables/media/js/jquery.dataTables.min.js') }}"></script>
     <script src="{{ asset('template/node_modules/datatables.net-bs4/js/dataTables.bootstrap4.min.js') }}"></script>
     <script src="{{ asset('template/node_modules/datatables.net-select-bs4/js/select.bootstrap4.min.js') }}"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
     <script>
         $(document).ready(function (params) {
                 var table = $('#example').DataTable({
@@ -263,6 +271,12 @@
                 $('#exampleModal').modal('hide');
                 table.draw();
                 location.reload();
+                Swal.fire({
+                    title: 'success',
+                    text: 'jurnal berhasil di tambahkan',
+                    icon: 'success',
+                    confirmButtonText: 'tutup'
+                })
                 },
                 error: function(xhr) {
                     console.log(xhr.responseJSON)

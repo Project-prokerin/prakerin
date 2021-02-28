@@ -20,8 +20,8 @@ class CreateDataPrakerinTable extends Migration
             $table->string('jurusan', 100);
             $table->bigInteger('id_siswa')->unsigned();
             $table->foreign('id_siswa')->references('id')->on('siswa')->onDelete('cascade')->onUpdate('cascade');
-            $table->bigInteger('id_perusahaan')->unsigned();
-            $table->bigInteger('id_guru')->unsigned();
+            $table->bigInteger('id_perusahaan')->unsigned()->nullable();
+            $table->bigInteger('id_guru')->unsigned()->nullable();
             $table->date('tgl_mulai');
             $table->date('tgl_selesai');
             $table->timestamps();

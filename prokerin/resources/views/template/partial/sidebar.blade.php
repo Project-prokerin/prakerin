@@ -109,9 +109,9 @@
             </li>
 
 
-            {{-- @if(empty(Auth::user()->siswa->data_prakerin))
+            @if(empty(Auth::user()->siswa->data_prakerin))
             ''
-            @else --}}
+            @else
             <li class="menu-header">MAGANG</li>
             <li class="{{ $sidebar == 'status' ? 'active' : '' }}">
             <a href="{{ route('user.status') }}" class="nav-link">
@@ -136,7 +136,7 @@
                 <span>Kelompok Laporan</span>
             </a>
             </li>
-            {{-- @endif --}}
+            @endif
         </aside>
     </div>
 
