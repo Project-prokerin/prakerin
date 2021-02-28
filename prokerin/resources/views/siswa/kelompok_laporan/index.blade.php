@@ -33,14 +33,14 @@
     </div>
         <div class="container-fluid mt-4 mb-4">
         <div class="mw-100 mx-auto ">
-            <table class="table table-bordered table-hover">
+            <table class="table table-bordered table-hover ">
             <thead>
                 <tr>
-                    <th scope="col" colspan="2" class="text-center">
+                    <th scope="col" colspan="2" class="text-center bg-primary text-white text-center">
                     @if (count($kelompok)<1)
-                        <center>anda belum masuk kelompok</center>
+                        Anda belum masuk kelompok
                     @else
-                        <center>Kelompok  {{ $no_kelompok }}</center>
+                        KELOMPOK  {{ $no_kelompok }}
                     @endif
                     </th>
                 </tr>

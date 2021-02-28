@@ -77,18 +77,20 @@
     </div>
 @endif
 
+
+
 {{-- user sidebar --}}
 @if (Auth::user()->role == 'siswa' )
+
 <div class="main-sidebar">
         <aside id="sidebar-wrapper">
-        <div class="sidebar-brand">
+        <div class="sidebar-brand ">
             <a href="{{'/'}}" style="color:#6777ef;">DATA PRAKERIN</a>
         </div>
         <div class="sidebar-brand sidebar-brand-sm">
             <a style="color:#6777ef;" href="{{'/'}}">DP</a>
         </div>
-        <ul class="sidebar-menu">
-            <li class="menu-header">MAIN</li>
+        <ul class="sidebar-menu mt-2">
             <li class="{{ $sidebar == 'dashboard' ? 'active' : ''  }}">
             <a href="{{ route('index.user') }}" class="nav-link">
                 <i class="fas fa-tachometer-alt"></i>
@@ -110,9 +112,8 @@
 
 
             @if(empty(Auth::user()->siswa->data_prakerin))
-            ''
+
             @else
-            <li class="menu-header">MAGANG</li>
             <li class="{{ $sidebar == 'status' ? 'active' : '' }}">
             <a href="{{ route('user.status') }}" class="nav-link">
                 <i class="fas fa-user"></i>

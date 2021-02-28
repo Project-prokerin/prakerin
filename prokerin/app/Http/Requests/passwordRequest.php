@@ -32,9 +32,9 @@ class passwordRequest extends FormRequest
     public function messages()
     {
         return [
-            'old_pass.required' => 'password lama tidak boleh kosong',
-            'new_pass.required' => 'password baru tidak boleh kosong',
-            'new_pass2.required' => 'harap ulangi password baru anda',
+            'old_pass.required' => 'Password lama tidak boleh kosong',
+            'new_pass.required' => 'Password baru tidak boleh kosong',
+            'new_pass2.required' => 'Harap ulangi password baru anda',
         ];
     }
 }

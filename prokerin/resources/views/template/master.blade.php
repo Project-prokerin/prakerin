@@ -17,6 +17,7 @@
 <!-- Template CSS -->
 <link rel="stylesheet" href="{{asset('template/assets/css/style.css')}}">
 <link rel="stylesheet" href="{{asset('template/assets/css/components.css')}}">
+<link rel="stylesheet" href="{{asset('assets/css/costom.css')}}">
 <style>
 
 </style>
@@ -25,21 +26,13 @@
 <body>
 <div id="app">
     <div class="main-wrapper main-wrapper-1">
-    <div class="navbar-bg">
-
-
-    </div>
-    {{-- navbar  --}}
     @include('template.partial.navbar')
-    {{-- end navbar --}}
-    {{-- sidebar --}}
     @include('template.partial.sidebar')
-    {{-- endsidebar --}}
-    <!-- Main Content -->
-        <!-- Main Content -->
+
+
             <div class="main-content">
                 <section class="section">
-                    <div class="section-header h-25">
+                    <div class="section-header" >
                         <h1>@yield('judul')</h1>
                         <div class="section-header-breadcrumb mr-5" aria-label="breadcrumb">
                             @yield('breadcrump')
@@ -50,7 +43,14 @@
                     </div>
                 </section>
             </div>
-
+             <footer class="main-footer">
+                <div class="footer-left">
+                    Copyright &copy 2021 <div class="bullet"></div> Develop By <a href="https://github.com/Rafieaydin">Rafie aydin ihsan</a>
+                </div>
+            </footer>
+    </div>
+</div>
+    <!-- Main Content -->
 <!-- General JS Scripts -->
 
 <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>

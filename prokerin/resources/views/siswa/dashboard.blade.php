@@ -41,7 +41,7 @@
         transition: all .2s ease-in-out;
     }
     div .box:hover{
-        transform: scale(1.1); 
+        transform: scale(1.1);
     }
 }
 </style>
@@ -70,12 +70,16 @@
         <div class="dropdown-menu">
             <a class="dropdown-item" href="{{ route('user.perusahaan') }}">List Perusahaan</a>
             <a class="dropdown-item" href="{{ route('user.pembekalan') }}">Pembekalan Magang</a>
+            @if (siswa('data_prakerin') == '')
+
+            @else
             <a class="dropdown-item" href="{{ route('user.status') }}">Status Magang</a>
             <div class="dropdown-divider"></div>
             <a class="dropdown-item" href="{{ route('user.jurnal') }}">Jurnal Prakerin</a>
             <a class="dropdown-item" href="{{ route('user.jurnalH') }}">Jurnal Harian</a>
             <div class="dropdown-divider"></div>
             <a class="dropdown-item" href="{{ route('user.kelompok_laporan') }}">Kelompok Harian</a>
+            @endif
         </div>
     </div>
 </div>
@@ -103,6 +107,9 @@
         </div>
         </a>
     </div>
+    @if (siswa('data_prakerin') == '')
+
+    @else
     <div class="col-sm-4">
     <a href="{{ route('user.status') }}"  style="text-decoration: none">
         <div class="card  box" >
@@ -147,28 +154,11 @@
         </div>
         </a>
     </div>
+    @endif
 </div>
 </div>
 {{-- itesmashboard end --}}
 </div>
 @endsection
 @push('script')
-<script>
-    // jangan di apa2 apain
-    $.ajax({
-        url:"{{ route('siswa.index') }}",
-        type:'get',
-        success: function (response) {
-            // var i;
-            // len = response.user;
-            // for (i = 0; i < len.length; i++) {
-            // text = '<p>'+response.user[i].username+'</p>';
-            //     $('.p').append(text);
-            // }
-        },
-        eror: function (eror){
-            console.log('eror')
-        }
-    });
-</script>
 @endpush

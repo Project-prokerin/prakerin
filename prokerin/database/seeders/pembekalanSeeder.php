@@ -24,7 +24,7 @@ class pembekalanSeeder extends Seeder
                 'test_wpt_iq' => $faker->randomElement($array = array('sudah','belum')),
                 'personality_interview' => $faker->randomElement($array = array('sudah', 'belum')),
                 'soft_skill' => $faker->randomElement($array = array('sudah', 'belum')),
-                'file_portofolio' => 'default.jpg',
+                'file_portofolio' => 'default.pdf',
                 'id_siswa' => $i ,
                 'created_at' => Carbon::now()
             ]);

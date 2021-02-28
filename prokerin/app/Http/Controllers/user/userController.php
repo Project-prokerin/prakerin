@@ -74,7 +74,7 @@ class userController extends Controller
     }
     public function pembekalan_delete(){
         $file = siswa('pembekalan_magang')->file_portofolio;
-        unlink(public_path() . "/portofolio_siswa/$file");
+        // unlink(public_path() . "/portofolio_siswa/$file"); // for deleting query
         $upload = pembekalan_magang::where('id_siswa', Auth::user()->siswa->id)->update(['file_portofolio' => '']);
         // Alert::toast('Portofolio berhasil di hapus', 'Toast Type');
         return redirect('/user/pembekalan');
@@ -120,7 +120,7 @@ class userController extends Controller
             'email' => $request->email,
             'no_hp' => $request->no_hp
         ]);
-        return redirect('/user/profile')->with('success','data_anda berhasil di ubah');
+        return redirect('/user/profile')->with('success','profile anda berhasil di ubah');
     }
 
 
@@ -140,14 +140,14 @@ class userController extends Controller
                 User::where('id', siswa('user')->id)->update([
                     'password' => Hash::make($request->new_pass)
                 ]);
-                return redirect('/user/profile')->with('success', 'password anda berhasil di ubah');
+                return redirect('/user/profile')->with('success', 'Password anda berhasil di ubah');
             }
-            return back()->withInput()->withErrors(['new_pass2' => 'ulangi password baru dengen benar']);
+            return back()->withInput()->withErrors(['new_pass2' => 'Ulangi password baru dengen benar']);
         }
         if ($request->new_pass != $request->new_pass2) { // jika password salah dan tidak sama
-            return back()->withInput()->withErrors(['old_pass' => 'password lama anda salah', 'new_pass2' => 'ulangi password baru dengen benar']);
+            return back()->withInput()->withErrors(['old_pass' => 'Password lama anda salah', 'new_pass2' => 'Ulangi password baru dengen benar']);
         }
-        return back()->withInput()->withErrors(['old_pass' => 'password lama anda salah']);
+        return back()->withInput()->withErrors(['old_pass' => 'Password lama anda salah']);
     }
 
 

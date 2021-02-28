@@ -15,9 +15,9 @@
     .card{
         height: 400px;
     }
-    .media-body p{
-        color: #475bf0;
-    }
+        .media-body p{
+            color: #475bf0;
+        }
     *{
         text-decoration: none;
     }
