@@ -1,6 +1,10 @@
 @extends('template.master')
 @push('link')
 <style>
+        .card{
+            width: 1070px;
+            margin-left: -10px
+        }
         .card-body h6{
                 font-size: 15px;
         }
