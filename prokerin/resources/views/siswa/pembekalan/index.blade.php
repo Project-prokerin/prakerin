@@ -144,23 +144,23 @@
     @push('script')
     <script>
         $(document).ready(function () {
-            $('#hapus').click(function (event) {
-            event.preventDefault() == true;
-            swal.fire({
-                title: "Apakah anda yakin ?",
-                showCancelButton: true,
-                confirmButtonClass: 'btn-danger',
-                confirmButtonText: "ya",
-                cancelButtonText: "tidak",
-                closeOnConfirm: true,
-                closeOnCancel: true
-            }).then((result) => {
-                    if (result.isConfirmed) {
-                    $(this).unbind('click').click();
-                    }
-                })
+            // $('#hapus').click(function (event) {
+            // event.preventDefault() == true;
+            // swal.fire({
+            //     title: "Apakah anda yakin ?",
+            //     showCancelButton: true,
+            //     confirmButtonClass: 'btn-danger',
+            //     confirmButtonText: "ya",
+            //     cancelButtonText: "tidak",
+            //     closeOnConfirm: true,
+            //     closeOnCancel: true
+            // }).then((result) => {
+            //         if (result.isConfirmed) {
+            //         $(this).unbind('click').click();
+            //         }
+            //     })
 
-            });
+            // });
 
             $('.btn-a').hide();
             $('.file').change(function () {

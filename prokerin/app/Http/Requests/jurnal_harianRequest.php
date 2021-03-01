@@ -23,8 +23,11 @@ class jurnal_harianRequest extends FormRequest
      */
     public function rules()
     {
+        $mulai = siswa('data_prakerin')->tgl_mulai;
+        $selesai = siswa('data_prakerin')->tgl_selesai;
+        $old = empty(siswa('main')->jurnal_harian->max('tanggal')) ?'' : siswa('main')->jurnal_harian->max('tanggal');
         return [
-            'tanggal' => 'required|date',
+            'tanggal' => 'required|date|unique:jurnal_harian,tanggal|after_or_equal:'.$mulai.'|before:'.$selesai,
             'datang' => 'required',
             'pulang' => 'required|after:datang',
             'kegiatan_harian' => 'required'
@@ -39,6 +42,9 @@ class jurnal_harianRequest extends FormRequest
             'kegiatan_harian.required' => 'Kegiatan harian tidak boleh kosong',
             'pulang.after'=> 'Masukan jam pulang yang benar',
             // 'datang.before'=>'Masukan jam datang yang benar '
+            "tanggal.unique" => "Masukan Tanggal Pelaksanaan yang benar",
+            "tanggal.after_or_equal" => "Tidak boleh melebihi tanggal mulai magang",
+            "tanggal.before" => "Tidak boleh melebihi tanggal selesai magang",
         ];
     }
 }

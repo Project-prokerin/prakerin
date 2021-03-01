@@ -2,20 +2,20 @@
 @push('link')
 <style>
         .card{
-            width: 1070px;
-            margin-left: -10px
+            /* width: 1070px;
+            margin-left: -10px */
         }
         .card-body h6{
                 font-size: 15px;
         }
-        .card-name{
+        /* .card-name{
             border-radius: 10px;
             box-shadow: 0 0 7px grey;
             height: 125px;
             margin-top: 20px;
             margin-right: 180px;
             margin-bottom: 70px;
-        }
+        } */
         .table-th p{
                 text-align: center;
                 margin-bottom: -3px;
@@ -59,6 +59,7 @@
 @section('title', 'Prakerin | jurnal prakerin')
 @section('judul', 'JURNAL PRAKERIN')
 @section('breadcrump')
+<meta name="csrf-token" content="{{ csrf_token() }}">
         <div class="breadcrumb-item "><a href="{{ route('index.user') }}"><i class="fas fa-tachometer-alt"></i> DASBOARD</a></div>
         <div class="breadcrumb-item"> <i class="far fa-newspaper"></i> JURNAL PRAKERIN</div>
 @endsection
@@ -85,16 +86,16 @@
                                     </div>
                                 </div>
                         </div>
-                        <div class="card-header-action" style="margin-bottom: -40px;">
-                                @if (empty(siswa('data_prakerin')->perusahaan))
-                                <button type="button" class="btn btn-primary disabled" data-toggle="modal" disabled data-target="#exampleModal">
-                                        Tambah
+                        <select name="filter" id="filter" class="form-control w-25 mr-3 " >
+                            <option value="">FILTER JURNAL</option>
+                            <option value="Hari">Hari ini</option>
+                            <option value="Minggu">Minggu ini</option>
+                            <option value="Bulan">Bulan ini</option>
+                        </select>
+                        <div class="card-header-action" >
+                                <button type="button" class="btn btn-primary {{ jurnal_p_stat() }}" data-toggle="modal"  {{ jurnal_p_stat() }} data-target="#exampleModal">
+                                    {{ jurnal_p_val() }}
                                 </button>
-                                @else
-                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-                                        Tambah
-                                </button>
-                                @endif
                         </div>
                 </div>
 
@@ -105,8 +106,8 @@
                 <table class="table table-striped mb-3" id="table">
                     <thead class="text-white">
                         <tr class="bg-primary table-th pb-2">
-                            <th scope="col" style=""><p>No</p></th>
-                            <th scope="col" style="width: 400px;"><p>Kompetisi Dasar</p></th>
+                            <th scope="col" style="width: 30px;"><p>No</p></th>
+                            <th scope="col" style=""><p>Kompetisi Dasar</p></th>
                             <th scope="col" style=""><p>Topik Pembelajaran</p></th>
                             <th scope="col" style=""><p>Tanggal Pelaksanaan</p></th>
                         </tr>
@@ -303,6 +304,7 @@
 <script>
   $(document).ready(function () {
     // data table
+      let filter = $('#filter').val();
     var table = $('#table').DataTable({
                 // "dom": 't<"bottom"<"row"<"col-6"><"col-6"p>>>',
                 bLengthChange: false,
@@ -314,7 +316,17 @@
                 searching: false,
                 responsive: true,
                 autoWidth: false,
-                ajax: "{{ route('user.jurnal.Api') }}",
+                "ajax": {
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    url: "{{ route('user.jurnal.Api') }}",
+                    type: "POST",
+                    data: function (data) {
+                        data.filter = filter;
+                        return data
+                    },
+                },
                 // colump dari controller
                 columns: [
                     {data: 'DT_RowIndex', name: 'DT_RowIndex'},
@@ -323,8 +335,15 @@
                     {data: 'tanggal_pelaksanaan', name: 'tanggal_pelaksanaan'}, //add colump di data tab;e
                 ],columnDefs: [
                 { className: 'text-center', targets: [0,3] },
-  ]
+            ]
         });
+
+    $('#filter').change(function () {
+                filter = $(this).val();
+                console.log(filter)
+                table.ajax.reload(null,false)
+    })
+
     $('.dataTables_empty').html('Jurnal anda masih kosong');
 
 

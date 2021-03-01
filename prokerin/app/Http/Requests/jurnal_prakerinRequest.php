@@ -23,10 +23,12 @@ class jurnal_prakerinRequest extends FormRequest
      */
     public function rules()
     {
+        $mulai = siswa('data_prakerin')->tgl_mulai;
+        $selesai = siswa('data_prakerin')->tgl_selesai;
         return [
             'kompetisi_dasar' => 'required',
             'topik_pekerjaan' => 'required',
-            'tanggal_pelaksanaan' => 'required',
+            'tanggal_pelaksanaan' => 'required|unique:jurnal_prakerin,tanggal_pelaksanaan|after_or_equal:' . $mulai . '|before:' . $selesai,
             'jam_masuk' => 'required',
             // 'jam_istiharat' => 'required|after:jam_masuk|between:10,12',
             'jam_istiharat' => 'required|after:jam_masuk',
@@ -51,7 +53,10 @@ class jurnal_prakerinRequest extends FormRequest
             'bus_antar_jemput.required' => 'Bus antar jemput tidak boleh kosong',
             'intensif.required' => 'intensif tidak boleh kosong',
             'jam_istiharat.after'=>'Masukan Jam istirahat yang benar',
-            'jam_pulang.after' =>'Masukan jam pulang yang benar'
+            'jam_pulang.after' =>'Masukan jam pulang yang benar',
+            "tanggal_pelaksanaan.unique" => "Masukan Tanggal Pelaksanaan yang benar",
+            "tanggal_pelaksanaan.after_or_equal" => "Tidak boleh melebihi tanggal mulai magang",
+            "tanggal_pelaksanaan.before" => "Tidak boleh melebihi tanggal selesai magang",
         ];
     }
 }

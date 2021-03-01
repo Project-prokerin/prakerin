@@ -1,6 +1,10 @@
 <?php
 use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
+use App\Models\jurnal_harian;
+use App\Models\jurnal_prakerin;
+
+;
 // untuk siswa
 function siswa($value)
 {
@@ -70,13 +74,13 @@ function PembekalanText($value)
         return 'Anda tidak di izinkan untuk melihat status anda';
     }
     if (empty(Auth::user()->siswa->pembekalan_magang->$value)) {
-        return 'belum mengumpulkan';
+        return 'Belum mengumpulkan';
     }
     $val = Auth::user()->siswa->pembekalan_magang->$value;
     if ($val == 'sudah') {
-        return 'sudah mengumpulkan';
+        return 'Sudah mengumpulkan';
     } else if ($val == 'belum') {
-        return 'belum mengumpulkan';
+        return 'Belum mengumpulkan';
     }
 }
 
@@ -85,9 +89,9 @@ function status(){
     $tanggal = Carbon::now()->format('Y-m-d');
     // validasi
     if (empty(siswa('data_prakerin')->tgl_mulai) ) {
-        return 'tanggal mulai belum di tentukan';
+        return 'Tanggal mulai belum di tentukan';
     }else if (empty(siswa('data_prakerin')->tgl_selesai)) {
-        return 'tanggal selesai belum di tentukan';
+        return 'Tanggal selesai belum di tentukan';
     }
     // validasi
     if ( $tanggal <= siswa('data_prakerin')->tgl_mulai->format('Y-m-d')) {
@@ -115,6 +119,57 @@ function statusWarna()
         return 'background-color:#fbc531;color:white';
     } else if ($tanggal >= siswa('data_prakerin')->tgl_selesai->format('Y-m-d')) {
         return 'background-color:#e84118;color:white';
+    }
+}
+// jurnal harian
+function jurnal_val(){
+    $tanggal = jurnal_harian::where('tanggal', Carbon::now()->format('Y-m-d'))->first();
+    if (empty(siswa('data_prakerin')->tgl_mulai) || empty(siswa('data_prakerin')->tgl_selesai)) {
+        return 'Tanggal belum di tetapkan';
+    }
+    if (empty(siswa('data_prakerin')->perusahaan)) {
+        return 'Data perusahan kosong';
+    }else if(!empty($tanggal)){
+        return 'Sudah Absen';
+    }else if (empty($tanggal)) {
+        return 'Absen';
+    }
+}
+// jurnal disable / enable
+function jurnal_status()
+{
+    $tanggal = jurnal_harian::where('tanggal', Carbon::now()->format('Y-m-d'))->first();
+    if (empty(siswa('data_prakerin')->tgl_mulai) || empty(siswa('data_prakerin')->tgl_selesai)) {
+        return 'disabled';
+    }
+    if (empty(siswa('data_prakerin')->perusahaan)) {
+        return 'disabled';
+    } else if (!empty($tanggal)) {
+        return 'disabled';
+    } else if (empty($tanggal)) {
+        return 'Absen';
+    }
+}
+
+// jurnal prakerin
+function jurnal_p_val()
+{
+    if (empty(siswa('data_prakerin')->tgl_mulai) || empty(siswa('data_prakerin')->tgl_selesai)) {
+        return 'Tanggal belum di tetapkan';
+    }
+    if (empty(siswa('data_prakerin')->perusahaan)) {
+        return 'Data perusahan kosong';
+    }else{
+        return 'Tambah jurnal';
+    }
+}
+// jurnal disable / enable
+function jurnal_p_stat()
+{
+    if (empty(siswa('data_prakerin')->tgl_mulai) || empty(siswa('data_prakerin')->tgl_selesai) || empty(siswa('data_prakerin')->perusahaan)) {
+        return 'disabled';
+    }else{
+        return '';
     }
 }
 

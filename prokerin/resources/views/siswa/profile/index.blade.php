@@ -45,8 +45,9 @@
     </div>
     <div class="row container mx-3 ml-5">
 
-
-    {{-- block1 --}}
+        @if (session('alert'))
+                        <div class="flash" data-id="{{ session('alert') }}"></div>
+        @endif
         <div class="col-4 pt-4">
         <p style="font-size: 18px;">Detail Siswa</p>
             <li class="media">
@@ -183,5 +184,17 @@
     @include('sweetalert::alert')
     @endsection
     @push('script')
-
+    <script>
+        $(document).ready(function () {
+            flash = $('.flash').data('id');
+            if (flash) {
+                Swal.fire({
+                    title: 'success',
+                    text: flash,
+                    icon: 'success',
+                    confirmButtonText: 'tutup'
+                })
+            }
+        })
+    </script>
     @endpush

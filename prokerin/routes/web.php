@@ -132,12 +132,12 @@ Route::middleware(['web', 'auth', 'role:siswa'])->group(function () {
 
     // jurnal prakerin
     Route::get('/user/jurnal', [userController::class, 'jurnal'])->name('user.jurnal');
-    Route::get('/user/jurnal/Api', [userController::class, 'jurnalApi'])->name('user.jurnal.Api');
+    Route::post('/user/jurnal/Api', [userController::class, 'jurnalApi'])->name('user.jurnal.Api');
     Route::post('/user/jurnal', [userController::class, 'jurnal_post'])->name('user.jurnal.post');
 
     // jurnal harian
     Route::get('/user/jurnalH', [userController::class, 'jurnalH'])->name('user.jurnalH');
-    Route::get('/user/jurnal/HApi', [userController::class, 'jurnalHApi'])->name('user.jurnalH.Api');
+    Route::post('/user/jurnal/HApi', [userController::class, 'jurnalHApi'])->name('user.jurnalH.Api');
     Route::post('/user/jurnalH', [userController::class, 'jurnalH_post'])->name('user.jurnalH.post');
 
     // kelompok laporan

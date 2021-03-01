@@ -4,14 +4,6 @@
         .card-body h6{
                 font-size: 15px;
         }
-        .card-name{
-            border-radius: 10px;
-            box-shadow: 0 0 7px grey;
-            height: 125px;
-            margin-top: 20px;
-            margin-right: 180px;
-            margin-bottom: 70px;
-        }
         .table-th p{
                 text-align: center;
                 margin-bottom: -3px;
@@ -49,46 +41,44 @@
 @section('title', 'Prakerin | jurnal harian')
 @section('judul', 'JURNAL HARIAN')
 @section('breadcrump')
+{{-- token --}}
+<meta name="csrf-token" content="{{ csrf_token() }}">
         <div class="breadcrumb-item "><a href="{{ route('index.user') }}"><i class="fas fa-tachometer-alt"></i> DASBOARD</a></div>
         <div class="breadcrumb-item"> <i class="far fa-newspaper"></i> JURNAL HARIAN</div>
 @endsection
 @section('main')
 <div class="card">
-        @if (session('alert'))
-                <div class="flash" data-id="{{ session('alert') }}"></div>
-        @endif
         <div class="card-header" style="margin-bottom: -30px;">
                 <div class="card-body card-name">
                         <div class="form-group row">
-                            <label for="" class="col-sm-3 pl-4"><h6>Nama Perusahaan</h6></label>
-                            <div class="col-sm-9">
+                            <label for="" class="col-sm-3 "><h6>Nama Perusahaan</h6></label>
+                            <div class="col-sm-7">
                                 <label for=""><h6>: {{ empty(Auth::user()->siswa->data_prakerin->Perusahaan->nama) ? 'Nama perusahaan belum di tentuakan' : Auth::user()->siswa->data_prakerin->Perusahaan->nama }}</h6></label>
                             </div>
                         </div>
                         <div class="form-group row" style="margin-top: -35px;">
-                            <label for="" class="col-sm-3 pl-4"><h6>Lokasi</h6></label>
-                            <div class="col-sm-9">
+                            <label for="" class="col-sm-3 "><h6>Lokasi</h6></label>
+                            <div class="col-sm-7">
                                 <label for=""><h6>: {{ empty(Auth::user()->siswa->data_prakerin->Perusahaan->alamat) ? 'Alamat perusahaan belum di tentukan ' : Auth::user()->siswa->data_prakerin->Perusahaan->alamat }}</h6></label>
                             </div>
                         </div>
                         <div class="form-group row" style="margin-top: -35px;">
-                            <label for="" class="col-sm-3 pl-4"><h6>Tanggal</h6></label>
-                            <div class="col-sm-9">
+                            <label for="" class="col-sm-3 "><h6>Tanggal</h6></label>
+                            <div class="col-sm-7">
                                 <label for=""><h6>: {{ \Carbon\Carbon::now()->isoFormat('dddd, DD MMMM YYYY') }}</h6></label>
                             </div>
                         </div>
                 </div>
-                <div class="card-header-action" style="margin-bottom: -40px;">
-                    @if (empty(siswa('data_prakerin')->perusahaan))
-                    <button type="button" class="btn btn-primary disabled" data-toggle="modal" disabled data-target="#exampleModal">
-                            Tambah
+                <select name="filter_absen" id="filter_absen" class="form-control w-25 mr-3 " >
+                        <option value="">FILTER ABSEN</option>
+                        {{-- <option value="Hari">Hari ini</option> --}}
+                        <option value="Minggu">Minggu ini</option>
+                        <option value="Bulan">Bulan ini</option>
+                    </select>
+                <div class="card-header-action" >
+                    <button type="button" class="btn btn-primary  {{ jurnal_status() }}" data-toggle="modal" {{ jurnal_status() }} data-target="#exampleModal">
+                            {{ jurnal_val() }}
                     </button>
-                    @else
-                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-                            Tambah
-                    </button>
-                    @endif
-
                 </div>
         </div>
 
@@ -145,16 +135,6 @@
                                 <h5 class="card-title mb-5">Jurnal Harian</h5>
 
                                 <div class="row">
-                                    @if(session('fail'))
-                                        <div class="alert alert-danger alert-dismissible show fade" style="width: 100%">
-                                        <div class="alert-body">
-                                            <button class="close" data-dismiss="alert">
-                                            <span>×</span>
-                                            </button>
-                                            {{session('fail')}}
-                                        </div>
-                                        </div>
-                                    @endif
                                     {{-- tgl pelaksanaan --}}
                                     <div class="col-sm-12">
 
@@ -247,7 +227,8 @@
     <script>
         $(document).ready(function (params) {
             console.log($('.flash').data('id'))
-                var table = $('#example').DataTable({
+            let absen = $('#filter-absen').val();
+            var table = $('#example').DataTable({
                 // "dom": 't<"bottom"<"row"<"col-6"><"col-6"p>>>',
                 bLengthChange: false,
                 ordering:false,
@@ -256,9 +237,19 @@
                 info: false,
                 filtering:false,
                 searching: false,
-                responsive: true,
-                autoWidth: false,
-                ajax: "{{ route('user.jurnalH.Api') }}",
+                "responsive": true,
+                "autoWidth": false,
+                "ajax": {
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    url: "{{ route('user.jurnalH.Api') }}",
+                    type: "POST",
+                    data: function (data) {
+                        data.absen = absen;
+                        return data
+                    },
+                },
                 // colump dari controller
                 columns: [
                     {data: 'DT_RowIndex', name: 'DT_RowIndex'},
@@ -273,6 +264,11 @@
         });
         $('.dataTables_empty').html('Jurnal anda masih kosong');
 
+        $('#filter_absen').change(function () {
+            absen = $(this).val();
+            console.log(absen)
+            table.ajax.reload(null,false)
+        })
 
      // submit modal
         $('#submit').click(function (event) {
@@ -293,10 +289,11 @@
                 table.draw();
                 $alert = Swal.fire({
                     title: 'success',
-                    text: 'jurnal berhasil di tambahkan',
+                    text: 'Anda sudah absen hari ini',
                     icon: 'success',
                     confirmButtonText: 'tutup'
                 })
+
                 },
                 error: function(xhr) {
                     console.log(xhr.responseJSON)

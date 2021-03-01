@@ -1,33 +1,34 @@
 <?php
 
 namespace App\Http\Controllers\user;
-
 use App\Http\Controllers\Controller;
-use App\Http\Requests\jurnal_harianRequest;
-use App\Http\Requests\jurnal_prakerinRequest;
-use App\Http\Requests\passwordRequest;
-use App\Http\Requests\pembekalan_magangRequest;
-use App\Http\Requests\profileRequest;
-use Illuminate\Http\Request;
+
+// models
 use App\Models\User;
 use App\models\Siswa;
-use App\Models\guru;
 use App\Models\perusahaan;
-use App\Models\orang_tua;
-use App\Models\sekolah_asal;
-use App\Models\data_prakerin;
 use App\Models\fasilitas_prakerin;
 use App\Models\jurnal_harian;
 use App\Models\pembekalan_magang;
 use App\Models\jurnal_prakerin;
 use App\Models\kelompok_laporan;
-use App\Models\laporan_prakerin;
+
+// requuest
+use Illuminate\Http\Request;
+use App\Http\Requests\jurnal_harianRequest;
+use App\Http\Requests\jurnal_prakerinRequest;
+use App\Http\Requests\pembekalan_magangRequest;
+use App\Http\Requests\profileRequest;
+use App\Http\Requests\passwordRequest;
+
+// pakage or ...
 use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Hash;
 use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Support\Facades\Validator;
 use Yajra\DataTables\DataTables;
+
 class userController extends Controller
 {
     // index / dashboard
@@ -36,7 +37,6 @@ class userController extends Controller
         return view('siswa.dashboard',compact('sidebar'));
     }
 
-
     // list perusahaan
     public function perusahaan()
     {
@@ -44,12 +44,14 @@ class userController extends Controller
         $sidebar = 'perusahaan';
         return view('siswa.list_perusahaan.index', compact('sidebar','perusahaan'));
     }
+
     // ajax untuk perusahaan
     public function ajaxperusahaan(Request $request)
     {
         $perusahaan = perusahaan::all();
         return response()->json(compact('perusahaan'));
     }
+
     // detail perusahaan
     public function perusahaan_detail(Request $request, $id){
         $perusahaan = perusahaan::where('id', $id)->first();
@@ -63,6 +65,7 @@ class userController extends Controller
         $sidebar = 'pembekalan';
         return view('siswa.pembekalan.index', compact('sidebar'));
     }
+
     // tambah pembekalan
     public function pembekalan_post(pembekalan_magangRequest $request){
         $validated = $request->validated();
@@ -72,6 +75,8 @@ class userController extends Controller
         // Alert::toast('Portofolio berhasil di tambahkan', 'Toast Type');
         return redirect('/user/pembekalan')->with('success', 'Portofolio anda sudah berhasil di kumpulkan');
     }
+
+    // hapus pembekaaln
     public function pembekalan_delete(Request $request){
         $file = siswa('pembekalan_magang')->file_portofolio;
         // unlink(public_path() . "/portofolio_siswa/$file"); // for deleting query
@@ -106,11 +111,13 @@ class userController extends Controller
         $sidebar  = 'profile';
         return view('siswa.profile.index', compact('sidebar'));
     }
+
     // edit profile
     public function profile_edit(){
         $sidebar = '';
         return view('siswa.profile.edit', compact('sidebar'));
     }
+
     public function profile_update(profileRequest $request, $id){
         $validated = $request->validated();
         $update = Siswa::where('id', siswa('main')->id)->update([
@@ -120,7 +127,7 @@ class userController extends Controller
             'email' => $request->email,
             'no_hp' => $request->no_hp
         ]);
-        return redirect('/user/profile')->with('success','profile anda berhasil di ubah');
+        return redirect('/user/profile')->with('alert','Profile anda berhasil di ubah');
     }
 
 
@@ -130,6 +137,7 @@ class userController extends Controller
         $sidebar  = '';
         return view('siswa.profile.ganti_pass', compact('sidebar'));
     }
+
     // update ganti password
     public function ganti_password_post(passwordRequest $request){
         $validated = $request->validated();
@@ -140,7 +148,7 @@ class userController extends Controller
                 User::where('id', siswa('user')->id)->update([
                     'password' => Hash::make($request->new_pass)
                 ]);
-                return redirect('/user/profile')->with('success', 'Password anda berhasil di ubah');
+                return redirect('/user/profile')->with('alert', 'Password anda berhasil di ubah');
             }
             return back()->withInput()->withErrors(['new_pass2' => 'Ulangi password baru dengen benar']);
         }
@@ -160,9 +168,24 @@ class userController extends Controller
         $jurnal_prakerin = jurnal_prakerin::where('id_siswa', siswa("main")->id)->orderBy('created_at', 'DESC')->get();
         return view('siswa.jurnal_prakerin.index', compact('sidebar','jurnal_prakerin'));
     }
-    public function jurnalApi()
+
+    public function jurnalApi(Request $request)
     {
         $data = jurnal_prakerin::where('id_siswa', siswa("main")->id)->orderBy('created_at', 'DESC')->get();
+        // filter
+        if ($request->filter) {
+            switch ($request->filter) {
+                case 'Hari':
+                    $data = jurnal_prakerin::where('id_siswa', siswa("main")->id)->where('tanggal_pelaksanaan', Carbon::now()->format('Y-m-d'))->orderBy('created_at', 'DESC')->get();
+                    break;
+                case 'Minggu':
+                    $data = jurnal_prakerin::where('id_siswa', siswa("main")->id)->whereBetween('tanggal_pelaksanaan', [Carbon::now()->startOfWeek(), Carbon::now()->endOfWeek()])->orderBy('created_at', 'DESC')->get();
+                    break;
+                case 'Bulan':
+                    $data = jurnal_prakerin::where('id_siswa', siswa("main")->id)->whereMonth('tanggal_pelaksanaan', Carbon::now()->format('m'))->orderBy('created_at', 'DESC')->get();
+                    break;
+            }
+        }
         return Datatables::of($data)
         ->addIndexColumn()
         ->editColumn('tanggal_pelaksanaan', function ($row) {
@@ -173,6 +196,7 @@ class userController extends Controller
         ->make(true);
         return response()->json(compact('data'));
     }
+
     // tambah jurnal
     public function jurnal_post(jurnal_prakerinRequest $request){
         if (siswa('data_prakerin') === '') {
@@ -188,7 +212,6 @@ class userController extends Controller
     }
 
 
-
     // jurnal harian
     public function jurnalH()
     {
@@ -199,26 +222,45 @@ class userController extends Controller
         $jurnal = jurnal_harian::where('id_siswa', siswa("main")->id)->orderBy('created_at','DESC')->get();
         return view('siswa.jurnal_harian.index', compact('sidebar','jurnal'));
     }
-    public function jurnalHApi(){
-        $data = jurnal_harian::where('id_siswa', siswa("main")->id)->orderBy('created_at','DESC')->get();
-        return Datatables::of($data)
-            ->addIndexColumn()
-            ->editColumn('tanggal', function ($row) {
-                $tanggal = !empty(tanggal($row->tanggal)) ? tanggal($row->tanggal) : ''; // relasi user->siswa
-                return $tanggal;
-            })
-            ->editColumn('datang', function ($row) {
-                $datang = !empty(jam($row->datang)) ? jam($row->datang) : ''; // relasi user->siswa
-                return $datang;
-            })
-            ->editColumn('pulang', function ($row) {
-                $pulang = !empty(jam($row->pulang)) ? jam($row->pulang) : ''; // relasi user->siswa
-                return $pulang;
-            })
-            ->rawColumns(['tanggal','datang','pulang'])
-            ->make(true);
-        return response()->json(compact('data'));
+
+    public function jurnalHApi(Request $request){
+        if ($request->ajax()) {
+            $data = jurnal_harian::where('id_siswa', siswa("main")->id)->orderBy('created_at', 'DESC')->get();
+            // filter
+            if ($request->absen) {
+                switch ($request->absen) {
+                    case 'Hari':
+                        $data = jurnal_harian::where('id_siswa', siswa("main")->id)->where('tanggal', Carbon::now()->format('Y-m-d'))->orderBy('created_at', 'DESC')->get();
+                        break;
+                    case 'Minggu':
+                        $data = jurnal_harian::where('id_siswa', siswa("main")->id)->whereBetween('tanggal', [Carbon::now()->startOfWeek(), Carbon::now()->endOfWeek()])->orderBy('created_at', 'DESC')->get();
+                        break;
+                    case 'Bulan':
+                        $data = jurnal_harian::where('id_siswa', siswa("main")->id)->whereMonth('tanggal', Carbon::now()->format('m'))->orderBy('created_at', 'DESC')->get();
+                        break;
+                }
+            }
+            // data tab;e
+            return Datatables::of($data)
+                ->addIndexColumn()
+                ->editColumn('tanggal', function ($row) {
+                    $tanggal = !empty(tanggal($row->tanggal)) ? tanggal($row->tanggal) : ''; // relasi user->siswa
+                    return $tanggal;
+                })
+                ->editColumn('datang', function ($row) {
+                    $datang = !empty(jam($row->datang)) ? jam($row->datang) : ''; // relasi user->siswa
+                    return $datang;
+                })
+                ->editColumn('pulang', function ($row) {
+                    $pulang = !empty(jam($row->pulang)) ? jam($row->pulang) : ''; // relasi user->siswa
+                    return $pulang;
+                })
+                ->rawColumns(['tanggal', 'datang', 'pulang'])
+                ->make(true);
+            return response()->json(compact('data'));
+        }
     }
+
     public function jurnalH_post(jurnal_harianRequest $request){
             if (siswa('data_prakerin') === '') {
                 return back();
