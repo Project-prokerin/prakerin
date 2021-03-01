@@ -97,7 +97,7 @@
 
         {{-- table --}}
         <div class="card-body p-4" style="margin-top: -45px;">
-            <div class="">
+            <div class="table-responsive">
                 <table class="table table-striped mb-3" id="table">
                     <thead class="text-white">
                         <tr class="bg-primary table-th pb-2">
@@ -108,14 +108,14 @@
                         </tr>
                     </thead>
                     <tbody style="padding-top: 200px">
-                    @foreach ($jurnal_prakerin as $jurnal)
+                    {{-- @foreach ($jurnal_prakerin as $jurnal)
                         <tr>
                             <td class="text-center">{{ $loop->iteration }}</td>
                             <td>{{ $jurnal->kompetisi_dasar  }}</td>
                             <td>{{ $jurnal->topik_pekerjaan }}</td>
                             <td class="text-center">{{ tanggal($jurnal->tanggal_pelaksanaan) }}</td>
                         </tr>
-                    @endforeach
+                    @endforeach --}}
                     </tbody>
                 </table>
         </div>
@@ -301,15 +301,30 @@
     // data table
     var table = $('#table').DataTable({
                 // "dom": 't<"bottom"<"row"<"col-6"><"col-6"p>>>',
-                "bLengthChange": false,
+                bLengthChange: false,
                 ordering:false,
-                processing: false,
-                serverSide: false,
-                "info": false,
-                "filtering":false,
-                "searching": false
+                processing: true,
+                serverSide: true,
+                info: false,
+                filtering:false,
+                searching: false,
+                responsive: true,
+                autoWidth: false,
+                ajax: "{{ route('user.jurnal.Api') }}",
+                // colump dari controller
+                columns: [
+                    {data: 'DT_RowIndex', name: 'DT_RowIndex'},
+                    {data: 'kompetisi_dasar', name: 'kompetisi_dasar'},
+                    {data: 'topik_pekerjaan', name: 'topik_pekerjaan'},
+                    {data: 'tanggal_pelaksanaan', name: 'tanggal_pelaksanaan'}, //add colump di data tab;e
+                ],columnDefs: [
+                { className: 'text-center', targets: [0,3] },
+  ]
         });
     $('.dataTables_empty').html('Jurnal anda masih kosong');
+
+
+
     // checkbox
     $(".mess").change(function()
         {
@@ -331,6 +346,9 @@
             $(".intensif").prop('checked',false);
             $(this).prop('checked',true);
         });
+
+
+
     // ajax add modal
     $('.alert').hide();
     $('#submit').click(function (event) {
@@ -352,7 +370,7 @@
                 form.trigger('reset');
                 $('#exampleModal').modal('hide');
                 table.draw();
-                location.reload();
+
                 Swal.fire({
                     title: 'success',
                     text: 'jurnal berhasil di tambahkan',

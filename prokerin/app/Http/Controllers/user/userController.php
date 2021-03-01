@@ -27,7 +27,7 @@ use Carbon\Carbon;
 use Illuminate\Support\Facades\Hash;
 use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Support\Facades\Validator;
-
+use Yajra\DataTables\DataTables;
 class userController extends Controller
 {
     // index / dashboard
@@ -70,14 +70,14 @@ class userController extends Controller
         $upload = pembekalan_magang::where('id_siswa', siswa('main')->id)->update(['file_portofolio' => $file]);
         $upload = $request->file('file')->move('portofolio_siswa/', $request->file('file')->getClientOriginalName());
         // Alert::toast('Portofolio berhasil di tambahkan', 'Toast Type');
-        return redirect('/user/pembekalan');
+        return redirect('/user/pembekalan')->with('success', 'Portofolio anda sudah berhasil di kumpulkan');
     }
-    public function pembekalan_delete(){
+    public function pembekalan_delete(Request $request){
         $file = siswa('pembekalan_magang')->file_portofolio;
         // unlink(public_path() . "/portofolio_siswa/$file"); // for deleting query
         $upload = pembekalan_magang::where('id_siswa', Auth::user()->siswa->id)->update(['file_portofolio' => '']);
         // Alert::toast('Portofolio berhasil di hapus', 'Toast Type');
-        return redirect('/user/pembekalan');
+        return redirect('/user/pembekalan')->with('erorr', 'Portofolio anda berhasil di hapus');
     }
     // bagian dari pembekalan
     public function pembekalan_download($id)
@@ -160,6 +160,19 @@ class userController extends Controller
         $jurnal_prakerin = jurnal_prakerin::where('id_siswa', siswa("main")->id)->orderBy('created_at', 'DESC')->get();
         return view('siswa.jurnal_prakerin.index', compact('sidebar','jurnal_prakerin'));
     }
+    public function jurnalApi()
+    {
+        $data = jurnal_prakerin::where('id_siswa', siswa("main")->id)->orderBy('created_at', 'DESC')->get();
+        return Datatables::of($data)
+        ->addIndexColumn()
+        ->editColumn('tanggal_pelaksanaan', function ($row) {
+            $tanggal_pelaksanaan = !empty(tanggal($row->tanggal_pelaksanaan)) ? tanggal($row->tanggal_pelaksanaan) : ''; // relasi user->siswa
+            return $tanggal_pelaksanaan;
+        })
+        ->rawColumns(['tanggal_pelaksanaan'])
+        ->make(true);
+        return response()->json(compact('data'));
+    }
     // tambah jurnal
     public function jurnal_post(jurnal_prakerinRequest $request){
         if (siswa('data_prakerin') === '') {
@@ -171,7 +184,6 @@ class userController extends Controller
         $request->request->add(['id_jurnal_prakerin' => $jurnal->id]);
         // nambah fasilitas
         $fasilitas_prakerin = fasilitas_prakerin::create(['id_jurnal_prakerin' => $request->id_jurnal_prakerin, 'mess' => $request->mess, 'buss_antar_jemput' => $request->bus_antar_jemput, 'makan_siang' => $request->makan_siang, 'intensif' => $request->intensif]);
-        Alert::success('Berhasil', 'jurnal Berhasil di tambahkan');
         return back();
     }
 
@@ -187,6 +199,26 @@ class userController extends Controller
         $jurnal = jurnal_harian::where('id_siswa', siswa("main")->id)->orderBy('created_at','DESC')->get();
         return view('siswa.jurnal_harian.index', compact('sidebar','jurnal'));
     }
+    public function jurnalHApi(){
+        $data = jurnal_harian::where('id_siswa', siswa("main")->id)->orderBy('created_at','DESC')->get();
+        return Datatables::of($data)
+            ->addIndexColumn()
+            ->editColumn('tanggal', function ($row) {
+                $tanggal = !empty(tanggal($row->tanggal)) ? tanggal($row->tanggal) : ''; // relasi user->siswa
+                return $tanggal;
+            })
+            ->editColumn('datang', function ($row) {
+                $datang = !empty(jam($row->datang)) ? jam($row->datang) : ''; // relasi user->siswa
+                return $datang;
+            })
+            ->editColumn('pulang', function ($row) {
+                $pulang = !empty(jam($row->pulang)) ? jam($row->pulang) : ''; // relasi user->siswa
+                return $pulang;
+            })
+            ->rawColumns(['tanggal','datang','pulang'])
+            ->make(true);
+        return response()->json(compact('data'));
+    }
     public function jurnalH_post(jurnal_harianRequest $request){
             if (siswa('data_prakerin') === '') {
                 return back();
@@ -196,7 +228,7 @@ class userController extends Controller
             $perusahaan = Auth::user()->siswa->data_prakerin->perusahaan->id;
             $request->request->add(['id_perusahaan' => $perusahaan, 'id_siswa' => Auth::user()->siswa->id]);
             $jurnall = jurnal_harian::create($request->all());
-            return back();
+            return back()->with('alert','Anda sudah absen hari ini');
 
     }
     // kelompok + laporan prakerin

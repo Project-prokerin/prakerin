@@ -27,15 +27,15 @@
                     <span class="login100-form-title">
                         Login Prakerin
                     </span>
-                    <div class="wrap-input100 validate-input  {{ Request::old('username')?'alert-validate':'' }}" data-validate="{{ Request::old('username')?'username salah':'masukan username' }}">
-                        <input class="input100" type="text" name="username" placeholder="username" value="{{ Request::old('username') }}">
+                    <div class="wrap-input100 validate-input   @error('username') alert-validate @enderror" data-validate="@error("username")  {{ $message }} @enderror">
+                        <input class="input100" type="text" name="username" placeholder="username" value="{{ old('username') }}">
                         <span class="focus-input100"></span>
                         <span class="symbol-input100">
                             <i class="fa fa-envelope" aria-hidden="true"></i>
                         </span>
                     </div>
 
-                    <div class="wrap-input100 validate-input {{ Request::old('password')?'alert-validate':'' }}" data-validate="{{ Request::old('password')?'password salah':'masukan password' }}" data-validate="Password is required">
+                    <div class="wrap-input100 validate-input   @error('password') alert-validate @enderror" data-validate="@error("password")  {{ $message }} @enderror">
                         <input class="input100" type="password" name="password" placeholder="Password" value="{{ old('password') }}">
                         <span class="focus-input100"></span>
                         <span class="symbol-input100">

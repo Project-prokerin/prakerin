@@ -42,7 +42,7 @@
             <tbody>
                 <tr>
                     <th scope="row" style="width: 400px;background-color:#f2f2f2;" class="text-left">Nama</th>
-                    <td class="" style="background-color:#f2f2f2" >{{ siswa('data_prakerin')->nama }}</td>
+                    <td class="" style="background-color:#f2f2f2" >{{ empty(siswa('data_prakerin')->nama) ? 'Nama di Status magang anda kosong ' : siswa('data_prakerin')->nama }}</td>
                 </tr>
                 <tr>
                     <th scope="row" class="text-left" >Status</th>
@@ -64,6 +64,15 @@
                     <th scope="row" class="text-left" >Lokasi Perusahaan</th>
                     <td style="background-color:#f2f2f2">  {{ empty(siswa('data_prakerin')->perusahaan->alamat) ? 'alamat perusahaan belum di tentukan' : siswa('data_prakerin')->perusahaan->alamat }}</td>
                 </tr>
+                @if (empty(siswa('data_prakerin')->tgl_selesai) || Carbon\carbon::now() < siswa('data_prakerin')->tgl_selesai)
+
+                @elseif(Carbon\carbon::now() > siswa('data_prakerin')->tgl_selesai)
+                <tr>
+                    <th scope="row" class="text-left" style="background-color:#f2f2f2">Hasil jurnal</th>
+                    <td style="background-color:#f2f2f2" ><a href="" class="btn btn-success">Download hasil jurnal</a></td>
+                </tr>
+                 @endif
+
             </tbody>
             </table>
         </div>

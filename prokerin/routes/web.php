@@ -126,16 +126,18 @@ Route::middleware(['web', 'auth', 'role:siswa'])->group(function () {
 
     // pembekalan magang
     Route::get('/user/pembekalan', [userController::class, 'pembekalan'])->name('user.pembekalan');
-    Route::get('/user/pembekalan/delete', [userController::class, 'pembekalan_delete'])->name('user.pembekalan.delete');
+    Route::put('/user/pembekalan/delete', [userController::class, 'pembekalan_delete'])->name('user.pembekalan.delete');
     Route::get('/user/pembekalan/{id}', [userController::class, 'pembekalan_download'])->name('user.pembekalan.download');
     Route::post('/user/pembekalan', [userController::class, 'pembekalan_post'])->name('user.pembekalan.post');
 
     // jurnal prakerin
     Route::get('/user/jurnal', [userController::class, 'jurnal'])->name('user.jurnal');
+    Route::get('/user/jurnal/Api', [userController::class, 'jurnalApi'])->name('user.jurnal.Api');
     Route::post('/user/jurnal', [userController::class, 'jurnal_post'])->name('user.jurnal.post');
 
     // jurnal harian
     Route::get('/user/jurnalH', [userController::class, 'jurnalH'])->name('user.jurnalH');
+    Route::get('/user/jurnal/HApi', [userController::class, 'jurnalHApi'])->name('user.jurnalH.Api');
     Route::post('/user/jurnalH', [userController::class, 'jurnalH_post'])->name('user.jurnalH.post');
 
     // kelompok laporan

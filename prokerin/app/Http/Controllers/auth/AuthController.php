@@ -4,20 +4,23 @@ namespace App\Http\Controllers\auth;
 
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\authRequest;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\Validator;
+use App\Models\User;
 class AuthController extends Controller
 {
     public function index()
     {
         return view('auth.login');
     }
-    public function postlogin(Request $request)
+    public function postlogin(authRequest $request)
     {
-        $request->validate([
-            'username' => 'required|min:5',
-            'password' => 'required|min:5'
-        ]);
+        $validate = $request->validated();
+        // $login = User::where('username', $request->username or 'password', $request->password)->first();
+        // if (empty($login->username) || $login->username != $request->username) { // jika login kosong
+        //     return redirect('/')->withInput()->withErrors(['username' => 'username anda salah']);
+        // }
         if (Auth::attempt($request->only('username', 'password'))) {
             if (Auth()->user()->role == 'siswa') {
                 return redirect('/user/dashboard');
@@ -25,7 +28,7 @@ class AuthController extends Controller
                 return redirect('/dashboard/admin');
             }
         } else {
-            return back()->withInput($request->only('username', 'password'));
+            return redirect('/')->withInput()->withErrors(['password' => 'password anda salah','username' => 'username anda salah']);
         }
     }
     public function logout(){

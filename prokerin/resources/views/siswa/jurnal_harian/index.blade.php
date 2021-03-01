@@ -54,6 +54,9 @@
 @endsection
 @section('main')
 <div class="card">
+        @if (session('alert'))
+                <div class="flash" data-id="{{ session('alert') }}"></div>
+        @endif
         <div class="card-header" style="margin-bottom: -30px;">
                 <div class="card-body card-name">
                         <div class="form-group row">
@@ -92,7 +95,7 @@
 
 {{-- table --}}
 <div class="card-body p-4" style="margin-top: -50px;">
-        <div class="table-responsive">
+
         <table class="table table-striped mb-0" id="example">
             <thead class="text-white">
                 <tr class="bg-primary table-th">
@@ -104,7 +107,7 @@
                 </tr>
             </thead>
             <tbody style="padding-top: 200px" class="">
-                @foreach ($jurnal as $item)
+                {{-- @foreach ($jurnal as $item)
                 <tr>
                     <td class="text-center">{{ $loop->iteration }}</td>
                     <td class="text-center">{{ tanggal($item->tanggal) }}</td>
@@ -112,12 +115,12 @@
                     <td class="text-center">{{ jam($item->pulang) }}</td>
                     <td>{{ $item->kegiatan_harian }}</td>
                 </tr>
-                @endforeach
+                @endforeach --}}
         </tbody>
         </table>
+
 </div>
-</div>
-</div>
+
 
 
 
@@ -243,17 +246,35 @@
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
     <script>
         $(document).ready(function (params) {
+            console.log($('.flash').data('id'))
                 var table = $('#example').DataTable({
                 // "dom": 't<"bottom"<"row"<"col-6"><"col-6"p>>>',
-                "bLengthChange": false,
+                bLengthChange: false,
                 ordering:false,
-                processing: false,
-                serverSide: false,
-                "info": false,
-                "filtering":false,
-                "searching": false
+                processing: true,
+                serverSide: true,
+                info: false,
+                filtering:false,
+                searching: false,
+                responsive: true,
+                autoWidth: false,
+                ajax: "{{ route('user.jurnalH.Api') }}",
+                // colump dari controller
+                columns: [
+                    {data: 'DT_RowIndex', name: 'DT_RowIndex'},
+                    {data: 'tanggal', name: 'tanggal'},
+                    {data: 'datang', name: 'datang'},
+                    {data: 'pulang', name: 'pulang'}, //add colump di data tab;e
+                    {data: 'kegiatan_harian', name: 'kegiatan_harian'}, //add colump di data tab;e
+                ],
+                columnDefs: [
+                { className: 'text-center', targets: [1,2,3] },
+  ]
         });
         $('.dataTables_empty').html('Jurnal anda masih kosong');
+
+
+     // submit modal
         $('#submit').click(function (event) {
             event.preventDefault();
             var form = $('#contact_form'),
@@ -270,8 +291,7 @@
                 form.trigger('reset');
                 $('#exampleModal').modal('hide');
                 table.draw();
-                location.reload();
-                Swal.fire({
+                $alert = Swal.fire({
                     title: 'success',
                     text: 'jurnal berhasil di tambahkan',
                     icon: 'success',
