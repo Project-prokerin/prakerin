@@ -52,11 +52,11 @@
                 @if(count($kelompok) < 1)
                 <tr>
                     <th scope="row" style="width: 400px;;" class="text-left">Pembimbing</th>
-                    <td class="" style="">>Anda belum mendapat kelompok</td>
+                    <td class="" style="">Anda belum mendapat kelompok</td>
                 </tr>
                 <tr>
                     <th scope="row" class="text-left">Judul Laporan</th>
-                    <td style="">>Anda belum mendapat kelompok</td>
+                    <td style="">Anda belum mendapat kelompok</td>
                 </tr>
 
                     <th scope="row" class="text-left" style="">Anggota 1</th>
