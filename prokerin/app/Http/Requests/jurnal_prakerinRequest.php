@@ -28,7 +28,7 @@ class jurnal_prakerinRequest extends FormRequest
         return [
             'kompetisi_dasar' => 'required',
             'topik_pekerjaan' => 'required',
-            'tanggal_pelaksanaan' => 'required|unique:jurnal_prakerin,tanggal_pelaksanaan|after_or_equal:' . $mulai . '|before:' . $selesai,
+            'tanggal_pelaksanaan' => 'required|after_or_equal:' . $mulai . '|before:' . $selesai,
             'jam_masuk' => 'required',
             // 'jam_istiharat' => 'required|after:jam_masuk|between:10,12',
             'jam_istiharat' => 'required|after:jam_masuk',

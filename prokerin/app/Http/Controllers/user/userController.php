@@ -29,6 +29,7 @@ use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Support\Facades\Validator;
 use Yajra\DataTables\DataTables;
 
+use Illuminate\Support\Facades\Session;
 class userController extends Controller
 {
     // index / dashboard
@@ -197,6 +198,14 @@ class userController extends Controller
         return response()->json(compact('data'));
     }
 
+    public function jurnal_tambah(){
+        if (siswa('data_prakerin') === '') {
+            return back();
+        }
+        $sidebar = 'jurnal';
+        return view('siswa.jurnal_prakerin.tambah', compact('sidebar'));
+    }
+
     // tambah jurnal
     public function jurnal_post(jurnal_prakerinRequest $request){
         if (siswa('data_prakerin') === '') {
@@ -208,7 +217,8 @@ class userController extends Controller
         $request->request->add(['id_jurnal_prakerin' => $jurnal->id]);
         // nambah fasilitas
         $fasilitas_prakerin = fasilitas_prakerin::create(['id_jurnal_prakerin' => $request->id_jurnal_prakerin, 'mess' => $request->mess, 'buss_antar_jemput' => $request->bus_antar_jemput, 'makan_siang' => $request->makan_siang, 'intensif' => $request->intensif]);
-        return back();
+       
+        return redirect('/user/jurnal')->with('alert','data berhasil di tambahkan');
     }
 
 

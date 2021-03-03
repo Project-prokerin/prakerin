@@ -64,6 +64,11 @@
         <div class="breadcrumb-item"> <i class="far fa-newspaper"></i> JURNAL PRAKERIN</div>
 @endsection
 @section('main')
+{{-- sweet alert --}}
+@if (session('alert'))
+    <div class="flesh" data-id="{{ session('alert') }}"></div>
+@endif
+{{-- ens sweet --}}
             <div class="card">
                 <div class="card-header" style="margin-bottom: -30px;">
                         <div class="card-body card-name">
@@ -93,13 +98,13 @@
                             <option value="Bulan">Bulan ini</option>
                         </select>
                         <div class="card-header-action" >
-                                <button type="button" class="btn btn-primary {{ jurnal_p_stat() }}" data-toggle="modal"  {{ jurnal_p_stat() }} data-target="#exampleModal">
+                                <a href="{{ route('user.jurnal.tambah') }}" class="btn btn-primary {{ jurnal_p_stat() }}" {{ jurnal_p_stat() }} >
                                     {{ jurnal_p_val() }}
-                                </button>
+                                </a>
                         </div>
                 </div>
 
-
+                
         {{-- table --}}
         <div class="card-body p-4" style="margin-top: -45px;">
             <div class="table-responsive">
@@ -282,6 +287,7 @@
                                     </div>
                                     {{-- tgl-jam --}}
                             </div>
+                            
                         </div>
                         {{-- button save --}}
                         <div class="modal-footer">
@@ -302,9 +308,8 @@
 <script src="{{ asset('template/node_modules/datatables.net-select-bs4/js/select.bootstrap4.min.js') }}"></script>
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 <script>
-  $(document).ready(function () {
-    // data table
-      let filter = $('#filter').val();
+$(document).ready(function () {
+    let filter = $('#filter').val();
     var table = $('#table').DataTable({
                 // "dom": 't<"bottom"<"row"<"col-6"><"col-6"p>>>',
                 bLengthChange: false,
@@ -346,87 +351,17 @@
 
     $('.dataTables_empty').html('Jurnal anda masih kosong');
 
-
-
-    // checkbox
-    $(".mess").change(function()
-        {
-            $(".mess").prop('checked',false);
-            $(this).prop('checked',true);
-        });
-    $(".bus_antar_jemput").change(function()
-        {
-            $(".bus_antar_jemput").prop('checked',false);
-            $(this).prop('checked',true);
-        });
-    $(".makan_siang").change(function()
-        {
-            $(".makan_siang").prop('checked',false);
-            $(this).prop('checked',true);
-        });
-    $(".intensif").change(function()
-        {
-            $(".intensif").prop('checked',false);
-            $(this).prop('checked',true);
-        });
-
-
-
-    // ajax add modal
-    $('.alert').hide();
-    $('#submit').click(function (event) {
-            event.preventDefault();
-            var form = $('#form'),
-                url = form.attr('action'),
-                method = form.attr('method');
-            console.log(method);
-                // console.log(form.serialize());
-
-            form.find('.invalid-feedback').remove();
-            form.find('li').remove();
-            form.find('.form-control').removeClass('is-invalid');
-            $.ajax({
-                url:url,
-                method:method,
-                data:form.serialize(),
-                success: function name(params) {
-                form.trigger('reset');
-                $('#exampleModal').modal('hide');
-                table.draw();
-
-                Swal.fire({
-                    title: 'success',
-                    text: 'jurnal berhasil di tambahkan',
+    // sweet alert
+    var flesh = $('.flesh').data('id');
+    if (flesh) {
+        Swal.fire({
+                    title: 'Berhasil',
+                    text: 'Jurnal berhasil di tambahkan',
                     icon: 'success',
                     confirmButtonText: 'tutup'
                 })
-                },
-                error: function(xhr) {
-                    console.log(xhr.responseJSON)
-                    var err = xhr.responseJSON;
-                    console.log(err.errors.mess)
-                    if (err.errors.mess == undefined && err.errors.bus_antar_jemput == undefined && err.errors.makan_siang == undefined && err.errors.intensif == undefined) {
-                            $('.alert').hide();
-                    }else{
-                        $('.alert').show();
-                        $('.alert-body').append((err.errors.mess == undefined) ? '' : '<li>'+err.errors.mess +'</li>');
-                        $('.alert-body').append((err.errors.bus_antar_jemput == undefined) ? '' :'<li>'+err.errors.bus_antar_jemput +'</li>');
-                        $('.alert-body').append((err.errors.makan_siang == undefined) ? '' :'<li>'+err.errors.makan_siang +'</li>');
-                        $('.alert-body').append((err.errors.intensif == undefined) ? '' :'<li>'+err.errors.intensif +'</li>');
-                    }
-                    //    $('.alert-body').append(err.errors.mess);
-                    if ($.isEmptyObject(err)==false) {
-                        $.each(err.errors, function (key,value) {
-                            $('#' + key).addClass('is-invalid').closest('.input-group,.textarea').append('<div class="invalid-feedback">'+ value +'</div>')
-
-
-                            console.log(err.errors);
-                        })
-                    }
-                }
-            });
-        })
-  })
+    }
+})
 </script>
 @endpush
 

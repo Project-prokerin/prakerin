@@ -118,7 +118,7 @@ function statusWarna()
 }
 // jurnal harian
 function jurnal_val(){
-    $tanggal = jurnal_harian::where('tanggal', Carbon::now()->format('Y-m-d'))->first();
+    $tanggal =  jurnal_harian::where('id_siswa', siswa('main')->id)->where('tanggal', Carbon::now()->format('Y-m-d'))->first();
     if (empty(siswa('data_prakerin')->tgl_mulai) || empty(siswa('data_prakerin')->tgl_selesai)) {
         return 'Tanggal belum di tetapkan';
     }
@@ -140,7 +140,7 @@ function jurnal_val(){
 // jurnal disable / enable
 function jurnal_status()
 {
-    $tanggal = jurnal_harian::where('tanggal', Carbon::now()->format('Y-m-d'))->first();
+    $tanggal = jurnal_harian::where('id_siswa', siswa('main')->id)->where('tanggal', Carbon::now()->format('Y-m-d'))->first();
     if (empty(siswa('data_prakerin')->tgl_mulai) || empty(siswa('data_prakerin')->tgl_selesai)) {
         return 'disabled';
     }

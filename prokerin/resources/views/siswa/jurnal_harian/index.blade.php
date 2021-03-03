@@ -262,6 +262,11 @@
                 { className: 'text-center', targets: [1,2,3] },
   ]
         });
+
+        // setInterval(() => {
+        //     table.draw();
+        // }, 3000);
+
         $('.dataTables_empty').html('Jurnal anda masih kosong');
 
         $('#filter_absen').change(function () {
@@ -287,13 +292,18 @@
                 form.trigger('reset');
                 $('#exampleModal').modal('hide');
                 table.draw();
-                $alert = Swal.fire({
-                    title: 'success',
+                alert = Swal.fire({
+                    title: 'Berhasil',
                     text: 'Anda sudah absen hari ini',
                     icon: 'success',
                     confirmButtonText: 'tutup'
                 })
 
+                setInterval(() => {
+                    alert
+                }, 3000);
+
+                location.reload();
                 },
                 error: function(xhr) {
                     console.log(xhr.responseJSON)

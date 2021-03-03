@@ -42,6 +42,11 @@
                             <i class="fa fa-lock" aria-hidden="true"></i>
                         </span>
                     </div>
+                    <div class="text-right p-t-10 p-b-10">
+                        <input type="checkbox" name="remember" id="remember" class="form-check-input mt-2">
+                        <label for="remember" class="mx-2 form-check-label">Ingat saya</label>
+                    </div>
+
                     <div class="container-login100-form-btn">
                         <button class="login100-form-btn">
                             Login

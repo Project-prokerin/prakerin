@@ -17,15 +17,12 @@ class AuthController extends Controller
     public function postlogin(authRequest $request)
     {
         $validate = $request->validated();
-        // $login = User::where('username', $request->username or 'password', $request->password)->first();
-        // if (empty($login->username) || $login->username != $request->username) { // jika login kosong
-        //     return redirect('/')->withInput()->withErrors(['username' => 'username anda salah']);
-        // }
-        if (Auth::attempt($request->only('username', 'password'))) {
+        $remember = $request->remember == 'on' ? true : false; // rememberme
+        if (Auth::attempt($request->only('username', 'password'), $remember)) {
             if (Auth()->user()->role == 'siswa') {
                 return redirect('/user/dashboard');
             } else if (Auth()->user()->role == 'kaprog' || 'hubin' || 'bkk') {
-                return redirect('/dashboard/admin');
+                return redirect('/admin/dashboard');
             }
         } else {
             return redirect('/')->withInput()->withErrors(['password' => 'password anda salah','username' => 'username anda salah']);
@@ -33,6 +30,7 @@ class AuthController extends Controller
     }
     public function logout(){
         Auth::logout();
+        session()->flush();
         return redirect('/');
     }
 }

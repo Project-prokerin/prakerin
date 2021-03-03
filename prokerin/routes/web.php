@@ -32,7 +32,7 @@ use App\Http\Controllers\Excel\ExcelController;
 
 
 // Auth
-Route::get('/', [AuthController::class, 'index'])->name('login');
+Route::get('/', [AuthController::class, 'index'])->name('login')->middleware('guest');
 Route::post('/postlogin', [AuthController::class, 'postlogin']);
 Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 
@@ -95,7 +95,7 @@ Route::middleware(['web', 'auth', 'role:bkk,hubin'])->group(function () {
 
 // all admin
 Route::middleware(['web', 'auth', 'role:bkk,hubin,kaprog'])->group(function () {
-    Route::get('/dashboard/admin',  [ViewController::class, 'dashboard'])->name('admin.dashboard');  // memakai route view untuk view saja
+    Route::get('/admin/dashboard',  [ViewController::class, 'dashboard'])->name('admin.dashboard');  // memakai route view untuk view saja
     Route::get('/export/pembekalan', [ExcelController::class, 'pembekalan'])->name('export.pembekalan');
     Route::get('/export/siswa', [ExcelController::class, 'siswa'])->name('export.siswa');
     Route::get('/export/jurnalh', [ExcelController::class, 'jurnalh'])->name('export.jurnalh');
@@ -133,6 +133,7 @@ Route::middleware(['web', 'auth', 'role:siswa'])->group(function () {
     // jurnal prakerin
     Route::get('/user/jurnal', [userController::class, 'jurnal'])->name('user.jurnal');
     Route::post('/user/jurnal/Api', [userController::class, 'jurnalApi'])->name('user.jurnal.Api');
+    Route::get('/user/jurnal/tambah', [userController::class, 'jurnal_tambah'])->name('user.jurnal.tambah');
     Route::post('/user/jurnal', [userController::class, 'jurnal_post'])->name('user.jurnal.post');
 
     // jurnal harian
