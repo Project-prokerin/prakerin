@@ -2,20 +2,11 @@
 @push('link')
 <style>
         .card{
-            /* width: 1070px;
-            margin-left: -10px */
+            width: 1040px;
         }
         .card-body h6{
                 font-size: 15px;
         }
-        /* .card-name{
-            border-radius: 10px;
-            box-shadow: 0 0 7px grey;
-            height: 125px;
-            margin-top: 20px;
-            margin-right: 180px;
-            margin-bottom: 70px;
-        } */
         .table-th p{
                 text-align: center;
                 margin-bottom: -3px;
@@ -131,175 +122,7 @@
         </div>
         </div>
         </div>
-        {{-- modal --}}
-            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-backdrop="false">
-                    <div class="modal-dialog modal-lg">
-                    <div class="modal-content">
-                        <div class="modal-body">
-                            <form action="/user/jurnal" method="POST" id="form">
-                                @csrf
-
-                            <div class="row mt-3">
-                                    <div class="col-sm-6">
-                                    <div class="">
-                                        <div class="card-body">
-                                        <h5 class="card-title">Fasilitas Prakerin</h5>
-                                        <div class="alert alert-danger">
-                                            <div class="alert-body">
-
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            {{-- mess --}}
-                                            <div class="col-sm-6">
-                                                    <h6 class="card-title">Mess</h6>
-                                                    <div class="row checkbox"  >
-                                                            <div class="form-check form-check-inline box-jurnal">
-                                                                    <input class="form-check-input mess " data_id="mess" type="checkbox" id="" name="mess"  value="iya">
-                                                                    <label class="form-check-label" for="mess">Iya</label>
-                                                                </div>
-                                                                <div class="form-check form-check-inline box-jurnal">
-                                                                    <input class="form-check-input mess" data_id="mess" type="checkbox" id="" name="mess"  value="tidak">
-                                                                    <label class="form-check-label" for="mess">Tidak</label>
-                                                                </div>
-                                                    </div>
-                                            </div>
-                                            {{-- mess --}}
-
-                                            {{-- bus antar jemput --}}
-                                            <div class="col-sm-6">
-                                                    <h6 class="card-title">Bus Antar Jemput</h6>
-                                                    <div class="row checkbox">
-                                                            <div class="form-check form-check-inline box-jurnal">
-                                                                    <input class="form-check-input bus_antar_jemput" type="checkbox" id="" name="bus_antar_jemput" value="iya">
-                                                                    <label class="form-check-label" for="inlineCheckbox1">Iya</label>
-                                                                </div>
-                                                                <div class="form-check form-check-inline box-jurnal">
-                                                                    <input class="form-check-input bus_antar_jemput" type="checkbox" id="" name="bus_antar_jemput" value="tidak">
-                                                                    <label class="form-check-label" for="bus_antar_jemput">Tidak</label>
-                                                                </div>
-                                                    </div>
-                                            </div>
-                                            {{-- bus antar jemput --}}
-                                        </div>
-                                        <div class="row">
-                                            {{-- makan siang --}}
-                                            <div class="col-sm-6">
-                                                    <h6 class="card-title">Makan Siang</h6>
-                                                    <div class="row checkbox">
-                                                            <div class="form-check form-check-inline box-jurnal">
-                                                                    <input class="form-check-input makan_siang" type="checkbox" id="" name="makan_siang" value="iya">
-                                                                    <label class="form-check-label" for="makan_siang">Iya</label>
-                                                                </div>
-                                                                <div class="form-check form-check-inline box-jurnal">
-                                                                    <input class="form-check-input makan_siang" type="checkbox" id="" name="makan_siang" value="tidak">
-                                                                    <label class="form-check-label" for="makan_siang">Tidak</label>
-                                                                </div>
-                                                    </div>
-                                            </div>
-                                            {{-- makan siang --}}
-
-                                            {{-- intensif --}}
-                                            <div class="col-sm-6">
-                                                    <h6 class="card-title">Intensif</h6>
-                                                    <div class="row checkbox">
-                                                            <div class="form-check form-check-inline box-jurnal">
-                                                                    <input class="form-check-input intensif" type="checkbox" id="" name="intensif" value="iya">
-                                                                    <label class="form-check-label" for="intensif">Iya</label>
-                                                                </div>
-                                                                <div class="form-check form-check-inline box-jurnal">
-                                                                    <input class="form-check-input intensif" type="checkbox" id="" name="intensif" value="tidak">
-                                                                    <label class="form-check-label" for="i-2">Tidak</label>
-                                                                </div>
-                                                    </div>
-                                            </div>
-                                            {{-- intensif --}}
-                                        </div>
-                                        <br>
-
-                                        {{-- textarea --}}
-                                        <h6 class="card-title">Kompetensi Dasar</h6>
-                                        <div class="textarea">
-                                            <textarea class="form-control" name="kompetisi_dasar" id="kompetisi_dasar"></textarea>
-                                        </div>
-                                        <br>
-                                        <h6 class="card-title">Topik Pekerjaan</h6>
-                                        <div class="textarea">
-                                            <textarea class="form-control" name="topik_pekerjaan" id="topik_pekerjaan"></textarea>
-                                        </div>
-                                        {{-- textarea --}}
-
-                                        </div>
-                                    </div>
-                                    </div>
-
-                                    {{-- tgl-jam --}}
-                                    <div class="col-sm-6">
-                                        <div class="card-body">
-                                            <br>
-                                        <div class="">
-                                            <div class="form-group">
-                                                <label><h6>Tanggal Pelaksanaan</h6></label>
-                                                <div class="input-group in-jurnal">
-                                                <div class="input-group-prepend">
-                                                    <div class="input-group-text">
-                                                    <i class="fas fa-calendar"></i>
-                                                    </div>
-                                                </div>
-                                                <input type="date" class="form-control daterange-cus" name="tanggal_pelaksanaan" id="tanggal_pelaksanaan">
-                                                </div>
-                                            </div>
-                                            <div class="form-group">
-                                                <label><h6>Jam Masuk</h6></label>
-                                                <div class="input-group in-jurnal">
-                                                <div class="input-group-prepend">
-                                                    <div class="input-group-text">
-                                                    <i class="fas fa-clock"></i>
-                                                    </div>
-                                                </div>
-                                                <input type="time" class="form-control timepicker" name="jam_masuk" id="jam_masuk">
-                                                </div>
-                                            </div>
-                                            <div class="form-group">
-                                                <label><h6>Jam Istirahat</h6></label>
-                                                <div class="input-group in-jurnal">
-                                                <div class="input-group-prepend">
-                                                    <div class="input-group-text">
-                                                    <i class="fas fa-clock"></i>
-                                                    </div>
-                                                </div>
-                                                <input type="time" class="form-control timepicker" name="jam_istiharat" id="jam_istiharat">
-                                                </div>
-                                            </div>
-                                            <div class="form-group">
-                                                <label><h6>Jam Pulang</h6></label>
-                                                <div class="input-group in-jurnal">
-                                                <div class="input-group-prepend">
-                                                    <div class="input-group-text">
-                                                    <i class="fas fa-clock"></i>
-                                                    </div>
-                                                </div>
-                                                <input type="time" class="form-control timepicker" name="jam_pulang" id="jam_pulang" >
-                                                </div>
-                                            </div>
-                                        </div>
-                                        </div>
-                                    </div>
-                                    {{-- tgl-jam --}}
-                            </div>
-                            
-                        </div>
-                        {{-- button save --}}
-                        <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="button" id="submit" class="btn btn-primary">Save changes</button>
-                        </div>
-                        {{-- button save --}}
-                    </div>
-                    </div>
-                </div>
-                </form>
-        {{-- modal --}}
+        
         @include('sweetalert::alert')
 @endsection
 @push('script')
