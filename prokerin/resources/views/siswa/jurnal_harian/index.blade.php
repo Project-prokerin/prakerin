@@ -260,7 +260,9 @@
                 ],
                 columnDefs: [
                 { className: 'text-center', targets: [1,2,3] },
-  ]
+                    ],
+
+
         });
 
         // setInterval(() => {

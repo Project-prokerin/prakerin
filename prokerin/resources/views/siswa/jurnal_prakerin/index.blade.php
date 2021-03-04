@@ -1,9 +1,9 @@
 @extends('template.master')
 @push('link')
 <style>
-        .card{
+        /* .card{
             width: 1040px;
-        }
+        } */
         .card-body h6{
                 font-size: 15px;
         }
@@ -95,7 +95,7 @@
                         </div>
                 </div>
 
-                
+
         {{-- table --}}
         <div class="card-body p-4" style="margin-top: -45px;">
             <div class="table-responsive">
@@ -122,7 +122,7 @@
         </div>
         </div>
         </div>
-        
+
         @include('sweetalert::alert')
 @endsection
 @push('script')
