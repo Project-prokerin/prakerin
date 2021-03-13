@@ -2,11 +2,11 @@
 @push('link')
 
 @endpush
-@section('title', 'Prakerin | Data Laporan Prakerin')
-@section('judul', 'DATA LAPOARAN PRAKERIN')
+@section('title', 'Prakerin | Data Perusahaan')
+@section('judul', 'DATA PERUSAHAAN')
 @section('breadcrump')
         <div class="breadcrumb-item "><a href="{{ route('admin.dashboard') }}"><i class="fas fa-tachometer-alt"></i> DASBOARD</a></div>
-        <div class="breadcrumb-item"> ><i class="fas fa-file-alt"></i> LAPOARAN PRAKERIN</div>
+        <div class="breadcrumb-item"> <i class="far fa-building"></i> DATA PERUSAHAAN</div>
 @endsection
 @section('content')
 

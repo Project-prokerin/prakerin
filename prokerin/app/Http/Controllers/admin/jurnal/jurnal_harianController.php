@@ -23,9 +23,14 @@ class jurnal_harianController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function ajax()
     {
-        //
+        return response()->json();
+    }
+    public function tambah(Request $request)
+    {
+        $sidebar = 'jurnalH';
+        return view('admin.jurnal_harian.tambah', compact('sidebar'));
     }
 
     /**
@@ -36,7 +41,6 @@ class jurnal_harianController extends Controller
      */
     public function store(Request $request)
     {
-        //
     }
 
     /**
@@ -45,9 +49,10 @@ class jurnal_harianController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function detail($id)
     {
-        //
+        $sidebar = 'jurnalH';
+        return view('admin.jurnal_harian.detail', compact('sidebar'));
     }
 
     /**
@@ -58,7 +63,8 @@ class jurnal_harianController extends Controller
      */
     public function edit($id)
     {
-        //
+        $sidebar = 'jurnalH';
+        return view('admin.jurnal_harian.edit', compact('sidebar'));
     }
 
     /**
@@ -70,7 +76,7 @@ class jurnal_harianController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+
     }
 
     /**
@@ -79,8 +85,12 @@ class jurnal_harianController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request, $id)
     {
-        //
+
+    }
+    public function delete_all(Request $request)
+    {
+
     }
 }

@@ -23,16 +23,18 @@ class siswaController extends Controller
      */
     public function index(Request $request)
     {
-        $sidebar = 'siswa';
-        return view('admin.siswa.index', compact('sidebar'));
+        return view('admin.siswa.index');
     }
-
     /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function ajax()
+    {
+        return response()->json();
+    }
+    public function tambah(Request $request)
     {
         return view('admin.siswa.tambah');
     }
@@ -54,9 +56,9 @@ class siswaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function detail($id)
     {
-
+        return view('admin.siswa.detail');
     }
 
     /**
@@ -67,7 +69,7 @@ class siswaController extends Controller
      */
     public function edit($id)
     {
-
+        return view('admin.siswa.update');
     }
 
     /**
@@ -79,7 +81,6 @@ class siswaController extends Controller
      */
     public function update(Request $request, $id)
     {
-
 
     }
 

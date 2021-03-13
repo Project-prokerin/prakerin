@@ -17,8 +17,7 @@ class guruController extends Controller
      */
     public function index(Request $request)
     {
-        $sidebar = 'guru';
-        return view('admin.guru.index', compact('sidebar'));
+        return view('admin.guru.index');
     }
 
     /**
@@ -26,7 +25,11 @@ class guruController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function ajax(request $request)
+    {
+        return response()->json();
+    }
+    public function tambah()
     {
         return view('admin.guru.tambah');
     }
@@ -48,9 +51,9 @@ class guruController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function detail($id)
     {
-        //
+        return view('admin.guru.detail');
     }
 
     /**
@@ -61,7 +64,7 @@ class guruController extends Controller
      */
     public function edit($id)
     {
-
+        return view('admin.guru.edit');
     }
 
     /**

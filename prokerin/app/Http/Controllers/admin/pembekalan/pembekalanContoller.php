@@ -16,9 +16,8 @@ class pembekalanContoller extends Controller
      */
     public function index(Request $request)
     {
-        $data = pembekalan_magang::all();
-        $sidebar = 'pembekalan';
-        return view('admin.pembekalan.index', compact('data','sidebar'));
+        $data = pembekalan_magang::all();;
+        return view('admin.pembekalan.index', compact('data'));
     }
 
     /**
@@ -26,9 +25,13 @@ class pembekalanContoller extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function ajax(Request $request)
     {
-
+        return response()->json();
+    }
+    public function tambah()
+    {
+        return view('admin.pembekalan.tambah');
     }
 
     /**
@@ -48,9 +51,9 @@ class pembekalanContoller extends Controller
      * @param  \App\Models\pembekalan_magang  $pembekalan_magang
      * @return \Illuminate\Http\Response
      */
-    public function show(pembekalan_magang $pembekalan_magang)
+    public function  detail(pembekalan_magang $pembekalan_magang)
     {
-        //
+        return view('admin.pembekalan.detail');
     }
 
     /**
@@ -61,7 +64,7 @@ class pembekalanContoller extends Controller
      */
     public function edit($id)
     {
-
+        return view('admin.pembekalan.edit');
     }
 
     /**

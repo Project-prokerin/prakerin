@@ -14,8 +14,7 @@ class kelompokController extends Controller
      */
     public function index()
     {
-        $sidebar = 'kelompok';
-        return view('admin.kelompok_prakerin.index', compact('sidebar'));
+        return view('admin.kelompok_prakerin.index');
     }
 
     /**
@@ -23,9 +22,13 @@ class kelompokController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function ajax()
     {
-        //
+        return response()->json();
+    }
+    public function tambah(Request $request)
+    {
+        return view('admin.kelompok_prakerin.tambah');
     }
 
     /**
@@ -36,7 +39,6 @@ class kelompokController extends Controller
      */
     public function store(Request $request)
     {
-        //
     }
 
     /**
@@ -45,9 +47,9 @@ class kelompokController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function detail($id)
     {
-        //
+        return view('admin.kelompok_prakerin.detail');
     }
 
     /**
@@ -58,7 +60,7 @@ class kelompokController extends Controller
      */
     public function edit($id)
     {
-        //
+        return view('admin.kelompok_prakerin.edit');
     }
 
     /**
@@ -70,8 +72,9 @@ class kelompokController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+
     }
+
 
     /**
      * Remove the specified resource from storage.
@@ -79,8 +82,12 @@ class kelompokController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request, $id)
     {
-        //
+
+    }
+    public function delete_all(Request $request)
+    {
+
     }
 }

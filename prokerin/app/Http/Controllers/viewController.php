@@ -11,11 +11,6 @@ class viewController extends Controller
     // admin view
     public function dashboard()
     {
-        $sidebar = 'dashboard';
-        return view('admin.dashboard', compact('sidebar'));
-    }
-
-    public function pagesSiswa(){
-        return view('admin.pages.siswa');
+        return view('admin.dashboard');
     }
 }

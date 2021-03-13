@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\admin\siswa;
 
 use App\Http\Controllers\Controller;
+use App\Models\Siswa;
 use Illuminate\Http\Request;
 
 class detail_siswaController extends Controller
@@ -14,7 +15,7 @@ class detail_siswaController extends Controller
      */
     public function index()
     {
-        //
+
     }
 
     /**

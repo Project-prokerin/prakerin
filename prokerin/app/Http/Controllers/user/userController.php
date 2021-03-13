@@ -33,17 +33,16 @@ use Illuminate\Support\Facades\Session;
 class userController extends Controller
 {
     // index / dashboard
-    public function index(Request $request){
-        $sidebar = 'dashboard';
-        return view('siswa.dashboard',compact('sidebar'));
+    public function index(Request $request)
+    {
+        return view('siswa.dashboard');
     }
 
     // list perusahaan
     public function perusahaan()
     {
         $perusahaan = perusahaan::all();
-        $sidebar = 'perusahaan';
-        return view('siswa.list_perusahaan.index', compact('sidebar','perusahaan'));
+        return view('siswa.list_perusahaan.index', compact('perusahaan'));
     }
 
     // ajax untuk perusahaan
@@ -54,17 +53,17 @@ class userController extends Controller
     }
 
     // detail perusahaan
-    public function perusahaan_detail(Request $request, $id){
+    public function perusahaan_detail(Request $request, $id)
+    {
         $perusahaan = perusahaan::where('id', $id)->first();
-        $sidebar = 'perusahaan';
-        return view('siswa.list_perusahaan.detail', compact('perusahaan','sidebar'));
+        return view('siswa.list_perusahaan.detail', compact('perusahaan'));
     }
 
 
     // pembekalan magang
-    public function pembekalan(){
-        $sidebar = 'pembekalan';
-        return view('siswa.pembekalan.index', compact('sidebar'));
+    public function pembekalan()
+    {
+        return view('siswa.pembekalan.index');
     }
 
     // tambah pembekalan
@@ -98,25 +97,25 @@ class userController extends Controller
 
 
     // status maganag disini
-    public function status(){
+    public function status()
+    {
         if (siswa('data_prakerin') === '') {
             return back();
         }
-        $sidebar = 'status';
-        return view('siswa.status.index', compact('sidebar'));
+        return view('siswa.status.index');
     }
 
 
     // profile disini
-    public function profile(){
-        $sidebar  = 'profile';
-        return view('siswa.profile.index', compact('sidebar'));
+    public function profile()
+    {
+        return view('siswa.profile.index');
     }
 
     // edit profile
-    public function profile_edit(){
-        $sidebar = '';
-        return view('siswa.profile.edit', compact('sidebar'));
+    public function profile_edit()
+    {
+        return view('siswa.profile.edit');
     }
 
     public function profile_update(profileRequest $request, $id){
@@ -133,10 +132,10 @@ class userController extends Controller
 
 
     // ganti password
-    public function ganti_password(){
+    public function ganti_password()
+    {
 
-        $sidebar  = '';
-        return view('siswa.profile.ganti_pass', compact('sidebar'));
+        return view('siswa.profile.ganti_pass');
     }
 
     // update ganti password
@@ -165,9 +164,8 @@ class userController extends Controller
         if (siswa('data_prakerin') === '') {
             return back();
         }
-        $sidebar  = 'jurnal';
         $jurnal_prakerin = jurnal_prakerin::where('id_siswa', siswa("main")->id)->orderBy('created_at', 'DESC')->get();
-        return view('siswa.jurnal_prakerin.index', compact('sidebar','jurnal_prakerin'));
+        return view('siswa.jurnal_prakerin.index', compact('jurnal_prakerin'));
     }
 
     public function jurnalApi(Request $request)
@@ -198,12 +196,12 @@ class userController extends Controller
         return response()->json(compact('data'));
     }
 
-    public function jurnal_tambah(){
+    public function jurnal_tambah()
+    {
         if (siswa('data_prakerin') === '') {
             return back();
         }
-        $sidebar = 'jurnal';
-        return view('siswa.jurnal_prakerin.tambah', compact('sidebar'));
+        return view('siswa.jurnal_prakerin.tambah');
     }
 
     // tambah jurnal
@@ -217,7 +215,7 @@ class userController extends Controller
         $request->request->add(['id_jurnal_prakerin' => $jurnal->id]);
         // nambah fasilitas
         $fasilitas_prakerin = fasilitas_prakerin::create(['id_jurnal_prakerin' => $request->id_jurnal_prakerin, 'mess' => $request->mess, 'buss_antar_jemput' => $request->bus_antar_jemput, 'makan_siang' => $request->makan_siang, 'intensif' => $request->intensif]);
-       
+
         return redirect('/user/jurnal')->with('alert','data berhasil di tambahkan');
     }
 
@@ -228,9 +226,8 @@ class userController extends Controller
         if (siswa('data_prakerin') === '') {
         return back();
         }
-        $sidebar  = 'jurnalH';
         $jurnal = jurnal_harian::where('id_siswa', siswa("main")->id)->orderBy('created_at','DESC')->get();
-        return view('siswa.jurnal_harian.index', compact('sidebar','jurnal'));
+        return view('siswa.jurnal_harian.index', compact('jurnal'));
     }
 
     public function jurnalHApi(Request $request){
@@ -289,12 +286,11 @@ class userController extends Controller
         if (siswa('data_prakerin') === '') {
             return back();
         }
-        $sidebar  = 'kelompok_laporan';
         $no_kelompok = !empty(siswa('data_prakerin')->kelompok_laporan->no) ? siswa('data_prakerin')->kelompok_laporan->no : '';
         $guru_nama =   !empty(siswa('data_prakerin')->kelompok_laporan->guru->nama) ? siswa('data_prakerin')->kelompok_laporan->guru->nama : 'Nama pembimbing belum di tentukan';
         $laporan =  !empty(siswa('data_prakerin')->kelompok_laporan->laporan_prakerin->nama) ? siswa('data_prakerin')->kelompok_laporan->laporan_prakerin->nama : 'Judul lapora belum di tentukan';
             // dd(Auth::user()->siswa->data_prakerin);
             $kelompok = kelompok_laporan::where('no', $no_kelompok)->get();
-            return view('siswa.kelompok_laporan.index', compact('sidebar','kelompok','no_kelompok','guru_nama','laporan'));
+            return view('siswa.kelompok_laporan.index', compact('kelompok','no_kelompok','guru_nama','laporan'));
     }
 }

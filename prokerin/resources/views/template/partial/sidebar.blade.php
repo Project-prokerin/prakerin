@@ -9,20 +9,20 @@
         </div>
         <ul class="sidebar-menu">
             <li class="menu-header">DASHBOARD</li>
-            <li class="{{ $sidebar == 'dashboard' ? 'active' : '' }}">
+            <li class="@if (Request::is('admin/dashboard')) active @endif">
             <a href="{{ route('admin.dashboard') }}" class="nav-link">
                 <i class="fas fa-tachometer-alt"></i>
                 <span>Dashboard</span></a>
-            </li>
+            </a>
             @if (Auth::user()->role == 'hubin' )
             <li class="menu-header">MASTER</li>
-            <li class="{{ $sidebar == 'siswa' ? 'active' : '' }}">
+            <li class="@if (Request::is('admin/siswa','admin/siswa/*')) active @endif">
             <a href="{{ route('siswa.index') }}" class="nav-link">
                 <i class="fas fa-user"></i>
                 <span>Data Siswa</span>
             </a>
             </li>
-            <li class="{{ $sidebar == 'guru' ? 'active' : '' }}">
+            <li class="@if (Request::is('admin/guru','admin/guru/*')) active @endif">
             <a href="{{ route('guru.index') }}" class="nav-link">
                 <i class="fas fa-user"></i>
                 <span>Data Guru</span>
@@ -31,8 +31,8 @@
             @endif
             @if (Auth::user()->role == 'kaprog' or Auth::user()->role == 'hubin')
             <li class="menu-header">PERUSAHAAN</li>
-            <li class="{{ $sidebar == 'perusahaan' ? 'active' : '' }}">
-            <a href="{{ url('perusahaan') }}" class="nav-link">
+            <li class="@if (Request::is('admin/perusahaan','admin/perusahaan/*')) active @endif">
+            <a href="{{ route('perusahaan.index') }}" class="nav-link">
                 <i class="far fa-building"></i>
                 <span>Data Perusahaan</span>
             </a>
@@ -40,7 +40,7 @@
             @endif
             @if (Auth::user()->role == 'bkk'  or Auth::user()->role == 'hubin' )
             <li class="menu-header">BKK</li>
-            <li class="{{ $sidebar == 'pembekalan' ? 'active' : '' }}">
+            <li class="@if (Request::is('admin/pembekalan','admin/pembekalan/*')) active @endif">
             <a href="{{ route('pembekalan.index') }}" class="nav-link">
                 <i class="fas fa-newspaper"></i>
                 <span>Pembekalan Magang</span>
@@ -49,25 +49,32 @@
             @endif
             @if (Auth::user()->role == 'kaprog' or Auth::user()->role == 'hubin')
             <li class="menu-header">PRAKERIN</li>
-            <li class="{{ $sidebar == 'data_prakerin' ? 'active' : '' }}">
+            <li class="@if (Request::is('admin/data_prakerin','admin/data_prakerin/*')) active @endif">
             <a href="{{ route('data_prakerin.index') }}" class="nav-link">
                 <i class="fas fa-th"></i>
                 <span>Data Prakerin</span>
             </a>
             </li>
-            <li class="dropdown {{ ( $sidebar == 'jurnal' or  $sidebar == 'jurnalH' ) ? 'active' : '' }}">
+            <li class="dropdown
+            @if (Request::is('admin/jurnalH','admin/jurnalH/*'))
+            active
+            @elseif(Request::is('admin/jurnal','admin/jurnal/*'))
+            active
+            @endif
+
+            ">
                 <a href="" class="nav-link has-dropdown"><i class="far fa-newspaper"></i><span>Jurnal</span></a>
                 <ul class="dropdown-menu" style="display: none;">
-                    <li class="{{ $sidebar == 'jurnal' ? 'active' : '' }}"><a class="nav-link " href="{{ route('jurnal.index') }}">Jurnal Prakerin</a></li>
-                    <li class="{{ $sidebar == 'jurnalH' ? 'active' : ''}}"><a class="nav-link " href="{{ route('jurnalH.index') }}">Jurnal Harian</a></li>
+                    <li class="@if (Request::is('admin/jurnal','admin/jurnal/*')) active @endif"><a class="nav-link " href="{{ route('jurnal.index') }}">Jurnal Prakerin</a></li>
+                    <li class="@if (Request::is('admin/jurnalH','admin/jurnalH/*')) active @endif"><a class="nav-link " href="{{ route('jurnalH.index') }}">Jurnal Harian</a></li>
                 </ul>
             </li>
-            <li class="{{ $sidebar == 'kelompok' ? 'active' : '' }}">
+            <li class="@if (Request::is('admin/kelompok','admin/kelompok/*')) active @endif">
             <a href="{{ route('kelompok.index') }}" class="nav-link"><i class="fas fa-users"></i>
                 <span>Kelompok Prakerin</span>
             </a>
             </li>
-            <li class="{{ $sidebar == 'laporan' ? 'active' : '' }}">
+            <li class="@if (Request::is('admin/laporan','admin/laporan/*')) active @endif">
             <a href="{{ route('laporan.index') }}" class="nav-link"><i class="fas fa-file-alt"></i>
                 <span>Laporan Prakerin</span>
             </a>
@@ -91,19 +98,19 @@
             <a style="color:#6777ef;" href="{{'/'}}">DP</a>
         </div>
         <ul class="sidebar-menu mt-2">
-            <li class="{{ $sidebar == 'dashboard' ? 'active' : ''  }}">
+            <li class="@if (Request::is('user/dashboard','user/dashboard/*')) active @endif">
             <a href="{{ route('index.user') }}" class="nav-link">
                 <i class="fas fa-tachometer-alt"></i>
                 <span>Dashboard</span>
             </a>
             </li>
-                <li class="{{ $sidebar == 'perusahaan' ? 'active' : '' }}">
+                <li class="@if (Request::is('user/perusahaan','user/perusahaan/*')) active @endif">
             <a href="{{ route('user.perusahaan') }}" class="nav-link">
                 <i class="far fa-building"></i>
                 <span>List Perusahaan</span>
             </a>
             </li>
-            <li class="{{ $sidebar == 'pembekalan' ? 'active' : '' }}">
+            <li class="@if (Request::is('user/pembekalan','user/pembekalan/*')) active @endif">
             <a href="{{ route('user.pembekalan') }}" class="nav-link">
                 <i class="fas fa-newspaper"></i>
                 <span>Pembekalan Magang</span>
@@ -114,24 +121,30 @@
             @if(empty(Auth::user()->siswa->data_prakerin))
 
             @else
-            <li class="{{ $sidebar == 'status' ? 'active' : '' }}">
+            <li class="@if (Request::is('user/status','user/status/*')) active @endif">
             <a href="{{ route('user.status') }}" class="nav-link">
                 <i class="fas fa-user"></i>
                 <span>Status Magang</span>
             </a>
             </li>
-            <li class="dropdown {{ ($sidebar == 'jurnal' || $sidebar == 'jurnalH')  ? 'active' : ''}}  ">
+            <li class="dropdown
+            @if (Request::is('user/jurnalH','user/jurnalH/*'))
+            active
+            @elseif(Request::is('user/jurnal','user/jurnal/*'))
+            active
+            @endif
+            ">
                 <a href="#" class="nav-link has-dropdown"><i class="far fa-newspaper"></i> <span>Jurnal</span></a>
                 <ul class="dropdown-menu" style="display: none;">
-                    <li class="{{ $sidebar == 'jurnal' ? 'active' : '' }}">
+                    <li class="@if (Request::is('user/jurnal','user/jurnal/*')) active @endif">
                     <a class="nav-link" href="{{ route('user.jurnal') }}">Jurnal Prakerin</a>
                     </li>
-                    <li class="{{ $sidebar == 'jurnalH' ? 'active' : '' }}">
+                    <li class="@if (Request::is('user/jurnalH','user/jurnalH/*')) active @endif">
                         <a class="nav-link" href="{{ route('user.jurnalH') }}">Jurnal Harian</a>
                     </li>
                 </ul>
             </li>
-            <li class="{{ $sidebar == 'kelompok_laporan' ? 'active' : '' }}">
+            <li class="@if (Request::is('user/kelompok_laporan','user/kelompok_laporan/*')) active @endif">
             <a href="{{ route('user.kelompok_laporan') }}" class="nav-link">
                 <i class="fas fa-users"></i>
                 <span>Kelompok Laporan</span>

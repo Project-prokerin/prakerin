@@ -14,8 +14,7 @@ class data_prakerinController extends Controller
      */
     public function index()
     {
-        $sidebar = 'data_prakerin';
-        return view('admin.data_prakerin.index', compact('sidebar'));
+        return view('admin.data_prakerin.index');
     }
 
     /**
@@ -23,9 +22,13 @@ class data_prakerinController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function ajax(Request $request)
     {
-        //
+        return response()->json();
+    }
+    public function tambah()
+    {
+        return view('admin.pembekalan.tambah');
     }
 
     /**
@@ -45,9 +48,9 @@ class data_prakerinController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function detail($id)
     {
-        //
+        return view('admin.pembekalan.detail');
     }
 
     /**
@@ -58,7 +61,7 @@ class data_prakerinController extends Controller
      */
     public function edit($id)
     {
-        //
+        return view('admin.pembekalan.edit');
     }
 
     /**

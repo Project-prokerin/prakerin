@@ -23,9 +23,14 @@ class jurnal_prakerinController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function ajax()
     {
-        //
+        return response()->json();
+    }
+    public function tambah(Request $request)
+    {
+        $sidebar = 'jurnal';
+        return view('admin.jurnal_prakerin.tambah', compact('sidebar'));
     }
 
     /**
@@ -36,7 +41,6 @@ class jurnal_prakerinController extends Controller
      */
     public function store(Request $request)
     {
-        //
     }
 
     /**
@@ -45,9 +49,10 @@ class jurnal_prakerinController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function detail($id)
     {
-        //
+        $sidebar = 'jurnal';
+        return view('admin.jurnal_prakerin.detail', compact('sidebar'));
     }
 
     /**
@@ -58,7 +63,8 @@ class jurnal_prakerinController extends Controller
      */
     public function edit($id)
     {
-        //
+        $sidebar = 'jurnal';
+        return view('admin.jurnal_prakerin.edit', compact('sidebar'));
     }
 
     /**
@@ -70,8 +76,8 @@ class jurnal_prakerinController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
     }
+
 
     /**
      * Remove the specified resource from storage.
@@ -79,8 +85,10 @@ class jurnal_prakerinController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request, $id)
     {
-        //
+    }
+    public function delete_all(Request $request)
+    {
     }
 }

@@ -16,8 +16,7 @@ class perusahaanController extends Controller
      */
     public function index(Request $request)
     {
-        $sidebar = 'perusahaan';
-        return view('admin.perusahaan.index', compact('sidebar'));
+        return view('admin.perusahaan.index');
     }
 
     /**
@@ -25,9 +24,13 @@ class perusahaanController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function ajax(Request $request)
     {
-        //
+        return response()->json();
+    }
+    public function tambah()
+    {
+        return view('admin.perusahaan.tambah');
     }
 
     /**
@@ -47,9 +50,9 @@ class perusahaanController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function detail($id)
     {
-        //
+        return view('admin.perusahaan.detail');
     }
 
     /**
@@ -60,7 +63,7 @@ class perusahaanController extends Controller
      */
     public function edit($id)
     {
-        //
+        return view('admin.perusahaan.edit');
     }
 
     /**
