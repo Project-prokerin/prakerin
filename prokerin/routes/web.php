@@ -42,6 +42,9 @@ Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 // route template
 Route::get('/pagesSiswa', [viewController::class, 'pagesSiswa']);
 
+// cek waktu login
+Route::post('/log', [AuthController::class,'waktu_log'])->name('auth.time');
+
 
     // admin
 // untuk hubin disin

@@ -42,6 +42,9 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+    protected $dates = [
+        'last_login_at','created_at','updated_at'
+    ];
     public function siswa()
     {
           // foreign, owner key

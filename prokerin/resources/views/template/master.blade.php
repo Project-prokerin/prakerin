@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+<meta name="csrf-token" content="{{ csrf_token() }}">
 <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
  <link rel="shortcut icon" href="{{ asset('images/tb.png') }}" />
 <title>@yield('title')</title>
@@ -61,6 +62,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
 <script src="{{ asset('template/assets/js/stisla.js') }}"></script>
 <script src="{{ asset('assets/js/sweetalert.all.js') }}"></script>
+<script src="{{ asset('assets/js/costom.js') }}"></script>
 <!-- JS Libraies -->
 @stack('script')
 

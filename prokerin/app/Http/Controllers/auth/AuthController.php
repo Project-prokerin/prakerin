@@ -8,6 +8,9 @@ use App\Http\Requests\authRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use App\Models\User;
+use Carbon\Carbon;
+// eevnt
+
 class AuthController extends Controller
 {
     public function index()
@@ -32,5 +35,9 @@ class AuthController extends Controller
         Auth::logout();
         session()->flush();
         return redirect('/');
+    }
+    public function waktu_log(Request $request){
+        $waktu = 'Logged in '. Auth::user()->last_login_at->locale('en_US')->diffForHumans();
+        return response()->json(compact('waktu'));
     }
 }
