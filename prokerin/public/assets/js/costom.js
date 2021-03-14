@@ -1,11 +1,11 @@
-// auth times session
+// waktu login
 $.ajax({
-     headers: {
+    headers: {
         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
     },
     url: '/log',
     data: '',
-    method: 'POST',
+    method: 'post',
     success:function name(data) {
         $('.waktu_log').html(data.waktu)
     },

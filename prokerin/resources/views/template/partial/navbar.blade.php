@@ -14,7 +14,7 @@
                 </div>
             </a>
             <div class="dropdown-menu dropdown-menu-right">
-                <div class="dropdown-title waktu_log">Logged in  5 min ago</span></div>
+                <div class="dropdown-title waktu_log">Logged in  5 min ago</div>
                 <a href="{{ route('user.profile') }}" class="dropdown-item has-icon">
                 <i class="far fa-user"></i> Profile</a></a>
                 <a href="{{url('/logout')}}" class="dropdown-item has-icon text-danger">
