@@ -24,7 +24,7 @@ class UserSeeder extends Seeder
             'password' => Hash::make('admin'),
             'role' => 'hubin',
             'created_at' => Carbon::now(),
-            'last_login_at' => NULL,
+
             'last_logout_at' => NULL
         ]);
         DB::table('users')->insert([
@@ -32,7 +32,7 @@ class UserSeeder extends Seeder
             'password' => Hash::make('admin'),
             'role' => 'kaprog',
             'created_at' => Carbon::now(),
-            'last_login_at' => NULL,
+
             'last_logout_at' => NULL
         ]);
         DB::table('users')->insert([
@@ -40,7 +40,7 @@ class UserSeeder extends Seeder
             'password' => Hash::make('admin'),
             'role' => 'bkk',
             'created_at' => Carbon::now(),
-            'last_login_at' => NULL,
+
             'last_logout_at' => NULL
         ]);
     DB::table('users')->insert([
@@ -49,7 +49,6 @@ class UserSeeder extends Seeder
         'id_siswa' => '1',
         'role' => 'siswa',
         'created_at' => Carbon::now(),
-        'last_login_at' => NULL,
         'last_logout_at' => NULL
     ]);
     DB::table('users')->insert([
@@ -58,7 +57,6 @@ class UserSeeder extends Seeder
         'id_siswa' => '2',
         'role' => 'siswa',
         'created_at' => Carbon::now(),
-        'last_login_at' => NULL,
         'last_logout_at' => NULL
     ]);
     DB::table('users')->insert([
@@ -67,7 +65,6 @@ class UserSeeder extends Seeder
         'id_siswa' => '3',
         'role' => 'siswa',
         'created_at' => Carbon::now(),
-        'last_login_at' => NULL,
         'last_logout_at' => NULL
     ]);
     DB::table('users')->insert([
@@ -76,7 +73,6 @@ class UserSeeder extends Seeder
         'id_siswa' => '4',
         'role' => 'siswa',
         'created_at' => Carbon::now(),
-        'last_login_at' => NULL,
         'last_logout_at' => NULL
     ]);
     DB::table('users')->insert([
@@ -85,7 +81,6 @@ class UserSeeder extends Seeder
         'id_siswa' => '5',
         'role' => 'siswa',
         'created_at' => Carbon::now(),
-        'last_login_at' => NULL,
         'last_logout_at' => NULL
     ]);
     DB::table('users')->insert([
@@ -94,7 +89,6 @@ class UserSeeder extends Seeder
         'id_siswa' =>  '6',
         'role' => 'siswa',
         'created_at' => Carbon::now(),
-        'last_login_at' => NULL,
         'last_logout_at' => NULL
     ]);
 }

@@ -31,7 +31,5 @@ class LoginListenner
                 'last_login_at' => Carbon::now()
             ]
         );
-        $event->user->last_login_at = session()->get('last_login_at');
-        $event->user->save();
     }
 }
