@@ -36,20 +36,18 @@ table {
   font-family: Arial, Helvetica, sans-serif;
   color: #666;
   text-shadow: 1px 1px 0px #fff;
-  background: #eaebec;
   border: #ccc 1px solid;
+  margin-left: 20px;
 }
  
 table th {
   padding: 15px 35px;
   border-left:1px solid #e0e0e0;
   border-bottom: 1px solid #e0e0e0;
-  background: #ededed;
+  background-color: #74b9ff;
 }
  
-table th:first-child{  
-  border-left:none;  
-}
+
  
 table tr {
   text-align: center;
@@ -67,33 +65,29 @@ table td {
   border-top: 1px solid #ffffff;
   border-bottom: 1px solid #e0e0e0;
   border-left: 1px solid #e0e0e0;
-  background: #fafafa;
-  background: -webkit-gradient(linear, left top, left bottom, from(#fbfbfb), to(#fafafa));
-  background: -moz-linear-gradient(top, #fbfbfb, #fafafa);
 }
- 
-table tr:last-child td {
-  border-bottom: 0;
+.garis{
+  width: auto;
+  height: 10px;
+  background-color: black;
+  margin-bottom: 20px;
 }
- 
-table tr:last-child td:first-child {
-  -moz-border-radius-bottomleft: 3px;
-  -webkit-border-bottom-left-radius: 3px;
-  border-bottom-left-radius: 3px;
-}
- 
-table tr:last-child td:last-child {
-  -moz-border-radius-bottomright: 3px;
-  -webkit-border-bottom-right-radius: 3px;
-  border-bottom-right-radius: 3px;
-}
- 
-table tr:hover td {
-  background: #f2f2f2;
-  background: -webkit-gradient(linear, left top, left bottom, from(#f2f2f2), to(#f0f0f0));
-  background: -moz-linear-gradient(top, #f2f2f2, #f0f0f0);
+.isi2{
+  width: auto;
+  font-size: 18px;
+  line-height: 20px;
+  padding-left: 40px;
+}.bawah{
+  width: auto;
+  font-size: 18px;
+  line-height: 20px;
+  padding-left: 40px;
+}.container{
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  font-size: 19px;
 }
 </style>
+<!-- header buka -->
 <body>
     <div >
         <div >
@@ -118,6 +112,37 @@ table tr:hover td {
          
             
         </div>
+        <!-- header tutup -->
+ 
+        <div class="container">
+      <!-- garis -->
+      <div class="garis" > 
+
+      </div>
+      <!-- garis tupp -->
+      <!-- lampiran -->
+      <div class="isi" >
+      <h6> No : 063/421.5-SMK.TB/HUBIN/PRAKERIN/II/2021 </h6>
+      <h6> Lamp : - </h6>
+      <h6> Hal : <b><u>Pelaksanaan Prakerin</u></b> </h6>
+    </div>
+      <!-- lampitup -->
+      
+      <h6>Kepada</h6>
+      <h6> Yth. 
+         <b >Bapak / Ibu Pimpinan PT Abadiri Paradipa  (ABDIRA)</b> </h6>
+      <div class="isi2">
+      <h6>jln Gama Setia Barat 2 No 8 Bhakti Jaya Kec. Sukmajaya Kota Depok 16418</h6>
+      <h6 >di</h6>
+      <h6>Tempat</h6>
+      <h6>Dengan hormat</h6>
+      <h6>Salam sejahtera kami sampaikan semoga Bapak/Ibu selalu dalam keadaaan sehat wal'afiat serta selalu diberikan kelancaran dalam menjalankan
+         segala aktivitasnya.</h6>
+         <h6>Dalam rangka pelaksanaan salah satu program SMK Taruna Bhakti di bidang Hubungan Industri yang salah satunya adalah pelaksanaan <b>Praktek Kerja Industri (PRAKERIN)</b> 
+        bagi peserta didik tingkat kelas XII(Dua Belas),dengan ini SMK Taruna Bhakti mengucapkan terima kasih atas kesediaannya menerima peserta didik kami untuk melaksanakan
+        prakerin di tempat saudara,dan untuk itu mulai hari selasa tanggal 22 Februari 2021 kami akan mengantarkan peserta didik kami untuk mulai melaksanakan prakerin di tempat
+        saudara selama 3 bulan sampai dengan tanggal 22 Mei 2021 dengan data sebagai berikut :</h6>
+        </div>
         
         
         <table cellspacing='0'>
@@ -141,6 +166,18 @@ table tr:hover td {
             
         </tbody>
     </table>
+    <!-- textbawah -->
+    <div class="bawah">
+      <h6>Besar harapan kami kepada saudara agar membimbing serta mendidik peserta didik kami dalam pelaksanaan prakerinnya agar bisa menjadi insan yang bermutu 
+        dan berkualitas.
+      </h6>
+      <h6>Demikian Surat ini kami sampaikan.Atas perhatian dan Kerjasamanya diucapkan terima kasih.</h6>
+
+    </div>
+  
+  </div>
+
+
 </div>
 </body>
 {{--  --}}
