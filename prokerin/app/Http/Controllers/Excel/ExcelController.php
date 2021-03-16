@@ -58,7 +58,6 @@ public function __construct(Excel $excel)
                     'TGL SELESAI',
                 ];
                  // dd($prakerin);
-            return 'halo';
             return $this->excel->download(new PrakerinMultiExport($prakerin, $headings), 'DATA PRAKERIN.xlsx');
     }
 

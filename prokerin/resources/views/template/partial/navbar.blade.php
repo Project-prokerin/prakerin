@@ -18,7 +18,7 @@
                 <a href="{{ route('user.profile') }}" class="dropdown-item has-icon">
                 <i class="far fa-user"></i> Profile</a></a>
                 <a href="{{url('/logout')}}" class="dropdown-item has-icon text-danger">
-                    <i class="ph ph-sign-out-bold"></i> Logout
+                    <i class="fas fa-sign-out-alt"></i> Logout
                 </a>
             </div>
         </li>

@@ -58,7 +58,7 @@ Route::middleware(['web', 'auth', 'role:hubin'])->group(function () {
     Route::put('admin/siswa/update', [siswaController::class, 'update'])->name('siswa.update');
     Route::delete('admin/siswa/delete', [siswaController::class, 'delete'])->name('siswa.delete');
     Route::post('admin/siswa/ajax', [siswaController::class, 'ajax'])->name('siswa.ajax');
-    Route::post('/siswa/destroy', [siswaController::class, 'delete_all'])->name('siswa.delete-all');
+    Route::post('/siswa/excel/destroy', [siswaController::class, 'delete_all'])->name('siswa.delete-all');
 
     // data guru
     Route::get('admin/guru', [guruController::class, 'index'])->name('guru.index');
@@ -69,7 +69,7 @@ Route::middleware(['web', 'auth', 'role:hubin'])->group(function () {
     Route::delete('admin/guru/delete', [guruController::class, 'delete'])->name('guru.delete');
     Route::post('admin/guru/ajax', [guruController::class, 'ajax'])->name('guru.ajax');
     Route::post('/guru/destroy', [guruController::class, 'delete_all'])->name('guru.delete-all');
-    Route::get('/export/guru', [ExcelController::class, 'guru'])->name('export.guru');
+    Route::get('/export/excel/guru', [ExcelController::class, 'guru'])->name('export.guru');
 
     // data perusahaan
     Route::get('admin/perusahaan', [perusahaanController::class, 'index'])->name('perusahaan.index');
@@ -80,15 +80,13 @@ Route::middleware(['web', 'auth', 'role:hubin'])->group(function () {
     Route::delete('admin/perusahaan/delete', [perusahaanController::class, 'delete'])->name('perusahaan.delete');
     Route::post('admin/perusahaan/ajax', [perusahaanController::class, 'ajax'])->name('perusahaan.ajax');
     Route::post('/perusahaan/destroy', [perusahaanController::class, 'delete_all'])->name('perusahaan.delete-all');
-    Route::get('/export/perusahaan', [ExcelController::class, 'perusahaan'])->name('export.perusahaan');
-
-    // Route::post('/perushaaan/destroy', [perusahaanController::class, 'delete_all'])->name('perushaaan.delete-all');
-
+    Route::get('/export/excel/perusahaan', [ExcelController::class, 'perusahaan'])->name('export.perusahaan');
 
 });
 
 // kaprog
 Route::middleware(['web', 'auth', 'role:kaprog,hubin'])->group(function () {
+
     // data prakerin
     Route::get('admin/data_prakerin', [data_prakerinController::class, 'index'])->name('data_prakerin.index');
     Route::get('admin/data_prakerin/tambah', [data_prakerinController::class, 'tambah'])->name('data_prakerin.tambah');
@@ -98,7 +96,7 @@ Route::middleware(['web', 'auth', 'role:kaprog,hubin'])->group(function () {
     Route::delete('admin/data_prakerin/delete', [data_prakerinController::class, 'destroy'])->name('data_prakerin.delete');
     Route::post('admin/data_prakerin/ajax', [data_prakerinController::class, 'ajax'])->name('data_prakerin.ajax');
     Route::post('/data_prakerin/destroy', [data_prakerinController::class, 'delete_all'])->name('data_prakerin.delete-all');
-    Route::get('/export/data_prakerin', [data_prakerinController::class, 'perusahaan'])->name('export.data_prakerin');
+    Route::get('/export/excel/data_prakerin', [ExcelController::class, 'data_prakerin'])->name('export.data_prakerin');
 
     // jurnal harian
     Route::get('admin/jurnalH', [jurnal_harianController::class, 'index'])->name('jurnalH.index');
@@ -109,7 +107,7 @@ Route::middleware(['web', 'auth', 'role:kaprog,hubin'])->group(function () {
     Route::delete('admin/jurnalH/delete', [jurnal_harianController::class, 'destroy'])->name('jurnalH.delete');
     Route::post('admin/jurnalH/ajax', [jurnal_harianController::class, 'ajax'])->name('jurnalH.ajax');
     Route::post('/jurnalH/destroy', [jurnal_harianController::class, 'delete_all'])->name('jurnalH.delete-all');
-    Route::get('/export/jurnalH', [jurnal_harianController::class, 'jurnalh'])->name('export.jurnalH');
+    Route::get('/export/excel/jurnalH', [ExcelController::class, 'jurnalh'])->name('export.jurnalH');
 
     // jurnal prakerin
     Route::get('admin/jurnal', [jurnal_prakerinController::class, 'index'])->name('jurnal.index');
@@ -120,7 +118,7 @@ Route::middleware(['web', 'auth', 'role:kaprog,hubin'])->group(function () {
     Route::delete('admin/jurnal/delete', [jurnal_prakerinController::class, 'destroy'])->name('jurnal.delete');
     Route::post('admin/jurnal/ajax', [jurnal_prakerinController::class, 'ajax'])->name('jurnal.ajax');
     Route::post('/jurnal/destroy', [jurnal_prakerinController::class, 'delete_all'])->name('jurnal.delete-all');
-    Route::get('/export/jurnal', [jurnal_prakerinController::class, 'jurnalh'])->name('export.jurnal');
+    Route::get('/export/excel/jurnal', [ExcelController::class, 'jurnalh'])->name('export.jurnal');
 
     // kelompok magang
     Route::get('admin/kelompok', [kelompokController::class, 'index'])->name('kelompok.index');
@@ -131,7 +129,8 @@ Route::middleware(['web', 'auth', 'role:kaprog,hubin'])->group(function () {
     Route::delete('admin/kelompok/delete', [kelompokController::class, 'destroy'])->name('kelompok.delete');
     Route::post('admin/kelompok/ajax', [kelompokController::class, 'ajax'])->name('kelompok.ajax');
     Route::post('/kelompok/destroy', [kelompokController::class, 'delete_all'])->name('kelompok.delete-all');
-    Route::get('/export/kelompok', [ExcelController::class, 'kelompok'])->name('export.kelompok');
+    Route::get('/export/excel/kelompok', [ExcelController::class, 'kelompok'])->name('export.kelompok');
+    Route::get('/export/pdf/kelompok', [PDFController::class, 'kelompokPrakerin']);
 
     // laporan magang
     Route::get('admin/laporan', [laporanController::class, 'index'])->name('laporan.index');
@@ -142,7 +141,7 @@ Route::middleware(['web', 'auth', 'role:kaprog,hubin'])->group(function () {
     Route::delete('admin/laporan/delete', [perusahaanController::class, 'destroy'])->name('laporan.delete');
     Route::post('admin/laporan/ajax', [laporanController::class, 'ajax'])->name('laporan.ajax');
     Route::post('/laporan/destroy', [laporanController::class, 'delete_all'])->name('laporan.delete-all');
-    Route::get('/export/laporan', [ExcelController::class, 'perusahaan'])->name('export.laporan');
+    Route::get('/export/excel/laporan', [ExcelController::class, 'perusahaan'])->name('export.laporan');
 
     // data perusahaan
     Route::get('admin/perusahaan', [perusahaanController::class, 'index'])->name('perusahaan.index');
@@ -153,7 +152,9 @@ Route::middleware(['web', 'auth', 'role:kaprog,hubin'])->group(function () {
     Route::delete('admin/perusahaan/delete', [perusahaanController::class, 'destroy'])->name('perusahaan.delete');
     Route::post('admin/perusahaan/ajax', [perusahaanController::class, 'ajax'])->name('perusahaan.ajax');
     Route::post('/perusahaan/destroy', [perusahaanController::class, 'delete_all'])->name('perusahaan.delete-all');
-    Route::get('/export/perusahaan', [ExcelController::class, 'perusahaan'])->name('export.perusahaan');
+    Route::get('/export/excel/perusahaan', [ExcelController::class, 'perusahaan'])->name('export.perusahaan');
+    Route::get('/export/pdf/perusahaan', [PDFController::class, 'perusahaan']);
+
 });
 
 // bkk
@@ -168,24 +169,26 @@ Route::middleware(['web', 'auth', 'role:bkk,hubin'])->group(function () {
     Route::delete('admin/pembekalan/delete', [pembekalanContoller::class, 'destroy'])->name('pembekalan.delete');
     Route::post('admin/pembekalan/ajax', [pembekalanContoller::class, 'ajax'])->name('pembekalan.ajax');
     Route::post('/pembekalan/destroy', [pembekalanContoller::class, 'delete_all'])->name('pembekalan.delete-all');
-    Route::get('/export/pembekalan', [pembekalanContoller::class, 'pembekalan'])->name('export.pembekalan');
+    Route::get('/export/excel/pembekalan', [pembekalanContoller::class, 'pembekalan'])->name('export.pembekalan');
     Route::get('/pembekalan/{id}/download', [pembekalanContoller::class, 'download'])->name('pembekalan.download');
 
 });
 
 // all admin
 Route::middleware(['web', 'auth', 'role:bkk,hubin,kaprog'])->group(function () {
+
     Route::get('/admin/dashboard',  [ViewController::class, 'dashboard'])->name('admin.dashboard');  // memakai route view untuk view saja
-    Route::get('/export/pembekalan', [ExcelController::class, 'pembekalan'])->name('export.pembekalan');
-    Route::get('/export/siswa', [ExcelController::class, 'siswa'])->name('export.siswa');
-    Route::get('/export/jurnalh', [ExcelController::class, 'jurnalh'])->name('export.jurnalh');
-    Route::get('/export/jurnalp', [ExcelController::class, 'jurnalp'])->name('export.jurnalp');
+    Route::get('/export/excel/pembekalan', [ExcelController::class, 'pembekalan'])->name('export.pembekalan');
+    Route::get('/export/excel/siswa', [ExcelController::class, 'siswa'])->name('export.siswa');
+    Route::get('/export/excel/jurnalh', [ExcelController::class, 'jurnalh'])->name('export.jurnalh');
+    Route::get('/export/excel/jurnalp', [ExcelController::class, 'jurnalp'])->name('export.jurnalp');
 
 });
 
 
 // untuk siswa/user di sini
 Route::middleware(['web', 'auth', 'role:siswa'])->group(function () {
+
     // memakai route view untuk view saja
     Route::get('/user/dashboard', [userController::class, 'index'])->name('index.user'); //dashboard
     Route::get('/user/status', [userController::class, 'status'])->name('user.status');
@@ -223,12 +226,5 @@ Route::middleware(['web', 'auth', 'role:siswa'])->group(function () {
 
     // kelompok laporan
     Route::get('/user/kelompok_laporan', [userController::class, 'kelompok_laporan'])->name('user.kelompok_laporan');
-
-
-
-    // test pdf perusahaan
-    Route::get('/perusahaanPDF', [PDFController::class, 'perusahaan']);
-    Route::get('/user/pdf',[PDFController::class,'kelompokPrakerin']);
-
 
 });
