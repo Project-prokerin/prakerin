@@ -24,6 +24,7 @@
 <div class="card">
 
 <!-- button tambah -->
+<<<<<<< Updated upstream
 <div class="buton">
 <form class="row g-3">
   <div class="col-auto">
@@ -42,6 +43,13 @@
     <a href="" class="btn btn-danger mr-5">Export to PDF</a>
   </div>
 </form>
+=======
+<div class="buton">  
+<a href="tambah.php"><button type="button" class="btn btn-primary">Tambah Data <i class="fas fa-plus"></i></button></a>
+<a href="http://"><button type="button" class="btn btn-success buten ">Export to Excel</button></a>
+<a href=""><button type="button" class="btn btn-danger butan">Export to PDF</button></a>
+
+>>>>>>> Stashed changes
 </div>
 
 <!-- table -->
