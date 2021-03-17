@@ -7,9 +7,15 @@
     .buton{
             margin-top: 20px;
             margin-left: 50px;
+            margin-bottom: 30px;
     }
     .table{
             margin-top: 20px;
+    }.buten{
+      margin-left: 865px;
+      position: absolute;
+    }.butan{
+      margin-left: 740px;
     }
 
     </style>
@@ -25,7 +31,7 @@
     @section('main')
     <div class="card">
     <!-- button tambah -->
-    <div class="buton">
+    <!-- <div class="buton">
     <form class="row g-3">
     <div class="col-auto">
         <a href="{{ route('data_prakerin.tambah') }}" type="button" class="btn btn-primary text-white">Tambah Data <i class="fas fa-plus"></i></a>
@@ -45,9 +51,7 @@
     </form>
     </div>
 
-<<<<<<< HEAD
-<!-- button tambah -->
-<<<<<<< Updated upstream
+
 <div class="buton">
 <form class="row g-3">
   <div class="col-auto">
@@ -65,16 +69,15 @@
   <div class="col-auto" style="margin-left: -20px;">
     <a href="" class="btn btn-danger mr-5">Export to PDF</a>
   </div>
-</form>
-=======
-<div class="buton">  
-<a href="tambah.php"><button type="button" class="btn btn-primary">Tambah Data <i class="fas fa-plus"></i></button></a>
-<a href="http://"><button type="button" class="btn btn-success buten ">Export to Excel</button></a>
-<a href=""><button type="button" class="btn btn-danger butan">Export to PDF</button></a>
+</form> -->
 
->>>>>>> Stashed changes
+<div class="buton">  
+<a href="{{ route('data_prakerin.tambah') }}"><button type="button" class="btn btn-primary">Tambah Data <i class="fas fa-plus"></i></button></a>
+<a href="/export/excel/data_prakerin"><button type="button" class="btn btn-success buten ">Export to Excel</button></a>
+<a href="/export/pdf/data_prakerin"><button type="button" class="btn btn-danger butan">Export to PDF</button></a>
+
+
 </div>
-=======
     <!-- table -->
     <div class="container">
     <table class="table table-bordered text-center" id="table">
@@ -133,7 +136,6 @@
         <button type="button" class="btn btn-danger"><i class="fas fa-trash"></i></button>
         </td>
         </tr>
->>>>>>> 04277abc30d24d2c780270263bc06005049dcad1
 
     </tbody>
     </table>
