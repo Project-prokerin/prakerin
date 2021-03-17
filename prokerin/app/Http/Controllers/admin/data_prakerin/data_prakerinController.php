@@ -26,9 +26,10 @@ class data_prakerinController extends Controller
     {
         return response()->json();
     }
+
     public function tambah()
     {
-        return view('admin.pembekalan.tambah');
+        return view('admin.data_prakerin.tambah');
     }
 
     /**
@@ -50,7 +51,7 @@ class data_prakerinController extends Controller
      */
     public function detail($id)
     {
-        return view('admin.pembekalan.detail');
+        return view('admin.data_prakerin.detail');
     }
 
     /**
@@ -61,7 +62,7 @@ class data_prakerinController extends Controller
      */
     public function edit($id)
     {
-        return view('admin.pembekalan.edit');
+        return view('admin.data_prakerin.edit');
     }
 
     /**

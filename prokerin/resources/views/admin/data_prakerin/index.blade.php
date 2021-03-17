@@ -19,7 +19,8 @@
     @section('breadcrump')
             <div class="breadcrumb-item "><a href="{{ route('admin.dashboard') }}"><i class="fas fa-tachometer-alt"></i> DASBOARD</a></div>
             <div class="breadcrumb-item"> <i class="fas fa-th mr-2"></i>DATA PRAKERIN</div>
-
+            <link rel="stylesheet" href="{{ asset('template/node_modules/datatables.net-bs4/css/dataTables.bootstrap4.min.css') }}">
+            <link rel="stylesheet" href="{{ asset('template/node_modules/datatables.net-select-bs4/css/select.bootstrap4.min.css') }}">
     @endsection
     @section('main')
     <div class="card">
@@ -27,7 +28,7 @@
     <div class="buton">
     <form class="row g-3">
     <div class="col-auto">
-        <button type="button" class="btn btn-primary">Tambah Data <i class="fas fa-plus"></i></button>
+        <a href="{{ route('data_prakerin.tambah') }}" type="button" class="btn btn-primary text-white">Tambah Data <i class="fas fa-plus"></i></a>
     </div>
     <div class="col-auto" style="margin-left: 300px;">
         <input style="width: 140px" class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
@@ -46,7 +47,7 @@
 
     <!-- table -->
     <div class="container">
-    <table class="table table-bordered text-center">
+    <table class="table table-bordered text-center" id="table">
     <thead>
         <tr>
         <th scope="col">No</th>
@@ -112,5 +113,19 @@
     </div>
     @endsection
     @push('script')
-
+    <script src="{{ asset('template/node_modules/datatables/media/js/jquery.dataTables.min.js') }}"></script>
+    <script src="{{ asset('template/node_modules/datatables.net-bs4/js/dataTables.bootstrap4.min.js') }}"></script>
+    <script>
+        $(document).ready( function () {
+            $('#table').DataTable({
+                bLengthChange: false,
+                ordering:false,
+                info: false,
+                filtering:false,
+                searching: false,
+                "responsive": true,
+                "autoWidth": false,
+            });
+        });
+    </script>
     @endpush
