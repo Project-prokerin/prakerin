@@ -3,19 +3,12 @@
 <style>
 .card{
         height: 600px;
-}.d-flex{
-        width: 600px;
-}.butan{
-        margin-left: 660px;
-        width: 150px;
-}.buten{
-        margin-left: 835px;
-        position: absolute;
-        width: 150px;
-}.buton{
+}
+.buton{
         margin-top: 20px;
         margin-left: 50px;
-}.table{
+}
+.table{
         margin-top: 20px;
 }       
 
@@ -25,17 +18,30 @@
 @section('judul', 'DATA PRAKERIN')
 @section('breadcrump')
         <div class="breadcrumb-item "><a href="{{ route('admin.dashboard') }}"><i class="fas fa-tachometer-alt"></i> DASBOARD</a></div>
-        <div class="breadcrumb-item"> <i class="fas fa-th"></i>>DATA PRAKERIN</div>
+        <div class="breadcrumb-item"> <i class="fas fa-th mr-2"></i>DATA PRAKERIN</div>
 @endsection
 @section('main')
 <div class="card">
 
 <!-- button tambah -->
 <div class="buton">
-<button type="button" class="btn btn-primary">Tambah Data <i class="fas fa-plus"></i></button>
-<a href="http://"><button type="button" class="btn btn-success buten ">Export to Excel</button></a>
-<a href=""><button type="button" class="btn btn-danger butan">Export to PDF</button></a>
-
+<form class="row g-3">
+  <div class="col-auto">
+    <button type="button" class="btn btn-primary">Tambah Data <i class="fas fa-plus"></i></button>
+  </div>
+  <div class="col-auto" style="margin-left: 300px;">
+    <input style="width: 140px" class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+  </div>
+  <div class="col-auto" style="margin-left: -30px;">
+    <button class="form-control btn btn-outline-success" type="submit"><i class="fas fa-search"></i></button>
+  </div>
+  <div class="col-auto">
+    <a href="http://" class="btn btn-success mr-4">Export to Excel</a>
+  </div>
+  <div class="col-auto" style="margin-left: -20px;">
+    <a href="" class="btn btn-danger mr-5">Export to PDF</a>
+  </div>
+</form>
 </div>
 
 <!-- table -->
