@@ -56,7 +56,7 @@
 <div class="card" >
         <div class="container-fluid text-center H-100 mb-3  content" >
             <h3 class="ml-3" style="margin-top: 35px">PRAKERIN SMK TARUNA BHAKTI</h3>
-            <h6 class="ml-3 mb-5">Praktek Kerja Industri 2021-2022</h6>
+            <h6 class="ml-3 mb-5">Praktek Kerja Industri {{$tahun}} - {{$tahunDepan}}</h6>
         </div>
         {{--  --}}
         
