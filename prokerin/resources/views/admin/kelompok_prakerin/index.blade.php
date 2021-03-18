@@ -26,14 +26,11 @@
         <div class="breadcrumb-item"> <i class="far fa-building"></i> Kelompok Prakerin</div>
 @endsection
 @section('main')
-
 <div class="card">
 <div class="buton">  
-<a href="{{ route('kelompok.tambah') }}"><button type="button" class="btn btn-primary">Tambah Data <i class="fas fa-plus"></i></button></a>
-<a href="/export/excel/data_prakerin"><button type="button" class="btn btn-success buten ">Export to Excel</button></a>
-<a href="/export/pdf/data_prakerin"><button type="button" class="btn btn-danger butan">Export to PDF</button></a>
-
-
+    <a href="{{ route('kelompok.tambah') }}"><button type="button" class="btn btn-primary">Tambah Data <i class="fas fa-plus"></i></button></a>
+    <a style="margin-left: -170px" href="/export/excel/data_prakerin"><button type="button" class="btn btn-success buten ">Export to Excel</button></a>
+    <a href="/export/pdf/data_prakerin"><button type="button" class="btn btn-danger butan">Export to PDF</button></a>
 </div>
     <!-- table -->
     <div class="container">
@@ -84,12 +81,10 @@
         <button type="button" class="btn btn-danger"><i class="fas fa-trash"></i></button>
         </td>
         </tr>
-
     </tbody>
     </table>
-
 </div>
-
+</div>
 @endsection
 @push('script')
 

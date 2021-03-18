@@ -24,16 +24,15 @@
     <div class="container text-center mt-5 mb-3 ml-1" >
         <h3>Tambah kelompok</h3>
     </div>
+
 <div class="container">
 <form action="">
-
-
 <div class="row mt-3 ml-4 ">   
         <div class="col-6  kanan">
         <!-- no kelom -->
         <div class="form-group col-lg-10">
         <label>No Kelompok</label>
-        <select  class="form-control  name="kelompok" id="">
+        <select  class="form-control"  name="kelompok" id="">
         <option value="">Pilih Nomor</option>
         <option value="">1</option>
         </select>
