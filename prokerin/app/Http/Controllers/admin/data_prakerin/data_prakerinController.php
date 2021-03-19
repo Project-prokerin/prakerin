@@ -4,7 +4,7 @@ namespace App\Http\Controllers\admin\data_prakerin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-
+// use App\Models\
 class data_prakerinController extends Controller
 {
     /**
@@ -14,7 +14,9 @@ class data_prakerinController extends Controller
      */
     public function index()
     {
+   
         return view('admin.data_prakerin.index');
+
     }
 
     /**

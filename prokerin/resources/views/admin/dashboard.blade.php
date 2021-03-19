@@ -69,15 +69,15 @@
                     <h5>Detail</h5>
                 </button>
                 <div class="dropdown-menu">
-                    <a class="dropdown-item" href="">Data Siswa</a>
-                    <a class="dropdown-item" href="">Data Guru</a>
-                    <a class="dropdown-item" href="">Data Perusahaan</a>
-                    <a class="dropdown-item" href="">Pembekalan Magang</a>
-                    <a class="dropdown-item" href="">Data Prakerin</a>
-                    <a class="dropdown-item" href="">Jurnal Prakerin</a>
-                    <a class="dropdown-item" href="">Jurnal Harian</a>
-                    <a class="dropdown-item" href="">Kelompok Prakerin</a>
-                    <a class="dropdown-item" href="">Laporan Prakerin</a>
+                    <a class="dropdown-item" href="{{route('siswa.index')}}">Data Siswa</a>
+                    <a class="dropdown-item" href="{{route('guru.index')}}">Data Guru</a>
+                    <a class="dropdown-item" href="{{route('perusahaan.index')}}">Data Perusahaan</a>
+                    <a class="dropdown-item" href="{{route('pembekalan.index')}}">Pembekalan Magang</a>
+                    <a class="dropdown-item" href="{{route('data_prakerin.index')}}">Data Prakerin</a>
+                    <a class="dropdown-item" href="{{route('jurnal.index')}}">Jurnal Prakerin</a>
+                    <a class="dropdown-item" href="{{route('jurnalH.index')}}">Jurnal Harian</a>
+                    <a class="dropdown-item" href="{{route('kelompok.index')}}">Kelompok Prakerin</a>
+                    <a class="dropdown-item" href="{{route('laporan.index')}}">Laporan Prakerin</a>
 
                     
                 </div>
