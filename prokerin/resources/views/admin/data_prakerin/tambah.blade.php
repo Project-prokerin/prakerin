@@ -3,7 +3,7 @@
 <style>
   .container{
           position: relative;
-  } 
+  }
 
 </style>
 @endpush
@@ -22,22 +22,28 @@
 <form action="">
 
 
-<div class="row mt-3 ml-4 ">   
+<div class="row mt-3 ml-4 ">
         <div class="col-6  kanan">
         <!-- perusa -->
         <div class="form-group col-lg-10 ">
-        <label for="">Nama Perusahaan</label>    
+        <label for="">Nama Perusahaan</label>
         <input class="form-control" type="text" placeholder="nama perusahaan" aria-label="default input example">
         </div>
         <!-- guru -->
         <div class="form-group col-lg-10 ">
-        <label for="">Nama Guru</label>    
+        <label for="">Nama Guru</label>
         <input class="form-control" type="text" placeholder="nama guru" aria-label="default input example">
         </div>
         <!-- siswa -->
         <div class="form-group col-lg-10 ">
-        <label for="">Nama Siswa</label>    
-        <input class="form-control" type="text" placeholder="nama siswa" aria-label="default input example">
+        <label for="">Nama Siswa</label>
+        <select  class="form-control"  name="id_siswa" id="">
+        <option value="">Pilih Siswa</option>
+        @foreach ($siswa as $item)
+        <option value="{{ $item->id }}">{{ $item->nama_siswa }}</option>
+        @endforeach
+        </select>
+        <div class="invalid_feedback"></div>
         </div>
         <!-- kelas -->
         <div class="form-group col-lg-10 ">
@@ -58,16 +64,16 @@
         <div class="invalid_feedback"></div>
         </div>
 
-        
-    
-    
+
+
+
     </div>
     <div class="col-6">
         <label>Nama Perusahaan</label>
         <div class="form-group col-lg-12 ">
         <input class="form-control" type="text" placeholder="Nama perusahaan" aria-label="default input example">
         </div>
-        
+
         <label for="">Tanggal Mulai</label>
         <div class="form-group col-lg-12  ">
         <input class="form-control" type="text" placeholder="mulai" aria-label="default input example">

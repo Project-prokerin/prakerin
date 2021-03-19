@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\admin\data_prakerin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Siswa;
 use Illuminate\Http\Request;
 
 class data_prakerinController extends Controller
@@ -28,7 +29,8 @@ class data_prakerinController extends Controller
     }
     public function tambah()
     {
-        return view('admin.pembekalan.tambah');
+        $siswa = Siswa::all();
+        return view('admin.data_prakerin.tambah', compact('siswa'));
     }
 
     /**
@@ -50,7 +52,7 @@ class data_prakerinController extends Controller
      */
     public function detail($id)
     {
-        return view('admin.pembekalan.detail');
+        return view('admin.data_prakerin.detail');
     }
 
     /**
@@ -61,7 +63,7 @@ class data_prakerinController extends Controller
      */
     public function edit($id)
     {
-        return view('admin.pembekalan.edit');
+        return view('admin.data_prakerin.edit');
     }
 
     /**
