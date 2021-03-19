@@ -87,16 +87,13 @@
         <div class="form-group col-lg-12 ">
         <input class="form-control" type="text" placeholder="Nama Siswa" aria-label="default input example">
         </div>
+
+        <button type="button" class="btn btn-success ml-3"><i class="fas fa-check"></i>   submit</button>
+        <button type="button" class="btn btn-danger"><i class="fas fa-times"></i>  Cancel</button>
         </div>
 
  </div>
 </form>
-
-<!-- buton -->
-<div class="buton">
-<button type="button" class="btn btn-success ml-3"><i class="fas fa-check"></i>   submit</button>
-<button type="button" class="btn btn-danger"><i class="fas fa-times"></i>  Cancel</button>
-</div>
 
 </div>
     

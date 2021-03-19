@@ -41,8 +41,7 @@ class userController extends Controller
     // list perusahaan
     public function perusahaan()
     {
-        $perusahaan = perusahaan::all();
-        return view('siswa.list_perusahaan.index', compact('perusahaan'));
+        return view('siswa.list_perusahaan.index');
     }
 
     // ajax untuk perusahaan

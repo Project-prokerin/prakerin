@@ -16,6 +16,19 @@ use Illuminate\Support\Facades\Auth;
 
 class siswaController extends Controller
 {
+    private $siswa;
+    private $orang_tua;
+    private $pembekalan_magang;
+    private $sekolah_asal;
+
+    public function __construct()
+    {
+        $this->siswa = Siswa::all();
+        $this->orang_tua = orang_tua::all();
+        $this->pembekalan_magang = pembekalan_magang::all();
+        $this->sekolah_asal = sekolah_asal::all();
+    }
+
     /**
      * Display a listing of the resource.
      *

@@ -88,7 +88,7 @@
     <div class="col-sm-4">
         <a href="{{ route('user.perusahaan') }}" style="text-decoration: none">
         <div class="card box">
-                <img src="{{ asset('login/photos/dashboard.png') }}" class="card-img-top" alt="" >
+                <img src="{{ asset('images/dashboard.png') }}" class="card-img-top" alt="" >
             <div class="card-body">
                 <p class="text-dark">List Perusahaan</p>
                 <p class="text-dark"> <h6>List Perusahaan</h6></p>
@@ -99,7 +99,7 @@
     <div class="col-sm-4">
         <a href="{{ route('user.pembekalan') }}"   style="text-decoration: none">
         <div class="card  box" >
-                <img src="{{ asset('login/photos/dashboard.png') }}" class="card-img-top"  alt="" >
+                <img src="{{ asset('images/dashboard.png') }}" class="card-img-top"  alt="" >
             <div class="card-body">
                 <p class="text-dark">Pembekalan Magang</p>
                 <p class="text-dark"> <h6>Pembekalan Magang</h6></p>
@@ -113,7 +113,7 @@
     <div class="col-sm-4">
     <a href="{{ route('user.status') }}"  style="text-decoration: none">
         <div class="card  box" >
-                <img src="{{ asset('login/photos/dashboard.png') }}" class="card-img-top" alt="" >
+                <img src="{{ asset('images/dashboard.png') }}" class="card-img-top" alt="" >
             <div class="card-body">
                 <p class="text-dark">Status Magang</p>
                 <p class="text-dark"><h6>Status Magang</h6></p>
@@ -124,7 +124,7 @@
     <div class="col-sm-4">
     <a href="{{ route('user.jurnal') }}"  style="text-decoration: none">
         <div class="card  box"  >
-                <img src="{{ asset('login/photos/dashboard.png') }}"  class="card-img-top" alt="" >
+                <img src="{{ asset('images/dashboard.png') }}"  class="card-img-top" alt="" >
             <div class="card-body">
                 <p class="text-dark">Jurnal Prakerin</p>
                 <p class="text-dark"><h6>Jurnal Prakerin</h6></p>
@@ -135,7 +135,7 @@
     <div class="col-sm-4">
         <a href="{{ route('user.jurnalH') }}"   style="text-decoration: none">
         <div class="card  box">
-                <img src="{{ asset('login/photos/dashboard.png') }}"  class="card-img-top" alt="" >
+                <img src="{{ asset('images/dashboard.png') }}"  class="card-img-top" alt="" >
             <div class="card-body">
                 <p class="text-dark">Jurnal Harian</p>
                 <p class="text-dark"><h6>Jurnal Harian</h6></p>
@@ -146,7 +146,7 @@
     <div class="col-sm-4">
         <a href="{{ route('user.kelompok_laporan') }}"  style="text-decoration: none">
         <div class="card  box" >
-                <img src="{{ asset('login/photos/dashboard.png') }}"  class="card-img-top" alt="" >
+                <img src="{{ asset('images/dashboard.png') }}"  class="card-img-top" alt="" >
             <div class="card-body">
                 <p class="text-dark">Kelompok Harian</p>
                 <p class="text-dark"><h6>Kelompok Harian</h6></p>
