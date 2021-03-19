@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <!--load all styles -->
-    <link rel="stylesheet" href="{{url('login/css/util.css')}}">
+    <link rel="stylesheet" href="{{url('assets/css/auth.css')}}">
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -65,7 +65,7 @@
                     </div>
                 </form>
                 <div class="login100-pic js-tilt" data-tilt>
-                    <img src="{{url('login/photos/logo_starbhak.png')}}" alt="SMK Taruna Bhakti">
+                    <img src="{{url('images/logo_starbhak.png')}}" alt="SMK Taruna Bhakti">
                 </div>
             </div>
         </div>

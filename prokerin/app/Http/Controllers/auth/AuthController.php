@@ -33,7 +33,8 @@ class AuthController extends Controller
             return redirect('/')->withInput()->withErrors(['password' => 'password anda salah','username' => 'username anda salah']);
         }
     }
-    public function logout(){
+    public function logout()
+    {
         Auth::logout();
         session()->flush();
         return redirect('/');
