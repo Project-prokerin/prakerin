@@ -5,9 +5,9 @@
             height: 600px;
     }
     .buton{
-            margin-top: 20px;
-            margin-left: 50px;
-            margin-bottom: 30px;
+            margin-top: 10px;
+            /* margin-left: 50px; */
+            /* margin-bottom: 30px; */
     }
     .table{
             margin-top: 20px;
@@ -17,6 +17,86 @@
     }.butan{
       margin-left: 740px;
     }
+
+    table.dataTable th:nth-child(1) {
+    width: 130px;
+    max-width: 130px;
+    word-break: break-all;
+    white-space: pre-line;
+  }
+  
+  table.dataTable td:nth-child(1) {
+    width: 130px;
+    max-width: 130px;
+    word-break: break-all;
+    white-space: pre-line;
+  }
+  table.dataTable th:nth-child(2) {
+    width: 35px;
+    max-width: 35px;
+    word-break: break-all;
+    white-space: pre-line;
+  }
+  
+  table.dataTable td:nth-child(2) {
+    width: 35px;
+    max-width: 35px;
+    word-break: break-all;
+    white-space: pre-line;
+  }
+  table.dataTable th:nth-child(4) {
+    width: 190px;
+    max-width: 190px;
+    word-break: break-all;
+    white-space: pre-line;
+  }
+  
+  table.dataTable td:nth-child(4) {
+    width: 190px;
+    max-width: 190px;
+    word-break: break-all;
+    white-space: pre-line;
+  }
+  table.dataTable th:nth-child(5) {
+    width: 90px;
+    max-width: 90px;
+    word-break: break-all;
+    white-space: pre-line;
+  }
+  
+  table.dataTable td:nth-child(5) {
+    width: 90px;
+    max-width: 90px;
+    word-break: break-all;
+    white-space: pre-line;
+  }
+  table.dataTable th:nth-child(6) {
+    width: 90px;
+    max-width: 90px;
+    word-break: break-all;
+    white-space: pre-line;
+  }
+  
+  table.dataTable td:nth-child(6) {
+    width: 90px;
+    max-width: 90px;
+    word-break: break-all;
+    white-space: pre-line;
+  }
+  table.dataTable th:nth-child(7) {
+    width: 90px;
+    max-width: 90px;
+    word-break: break-all;
+    white-space: pre-line;
+  }
+  
+  table.dataTable td:nth-child(7) {
+    width: 90px;
+    max-width: 90px;
+    word-break: break-all;
+    white-space: pre-line;
+  }
+
 
     </style>
     @endpush
@@ -70,31 +150,38 @@
     <a href="" class="btn btn-danger mr-5">Export to PDF</a>
   </div>
 </form> -->
+  <div class="buton">
 
-<div class="buton">  
-<a href="{{ route('data_prakerin.tambah') }}"><button type="button" class="btn btn-primary">Tambah Data <i class="fas fa-plus"></i></button></a>
-<a href="/export/excel/data_prakerin"><button type="button" class="btn btn-success buten ">Export to Excel</button></a>
-<a href="/export/pdf/data_prakerin"><button type="button" class="btn btn-danger butan">Export to PDF</button></a>
-
-
-</div>
+  </div>
     <!-- table -->
-    <div class="container">
+    <div class="container" >
+      <div class="row" style="margin-bottom: -30px;"> 
+        <div class="col-3">
+          <a href="{{ route('data_prakerin.tambah') }}"class="btn btn-primary"> Tambah Data <i class="fas fa-plus"></i></button></a>
+        </div>
+        <div class="col-9 d-flex justify-content-end" >
+          <a href="/export/excel/data_prakerin"class="btn btn-success "> Export to Excel</a>
+          &nbsp;&nbsp;&nbsp;
+          <a href="/export/pdf/data_prakerin"class="btn btn-danger "> Export to PDF</a>
+        </div>
+      </div>
+    <br><br>
+    
     <table class="table table-bordered text-center" id="table">
     <thead>
         <tr>
-        <th scope="col">No</th>
         <th scope="col">Nama</th>
         <th scope="col">Kelas</th>
         <th scope="col">Jurusan</th>
+        <th scope="col">perusahaan</th>
         <th scope="col">Tgl Mulai</th>
         <th scope="col">Tgl Selesai</th>
-        <th scope="col">perusahaan</th>
         <th scope="col">Action</th>
-        </tr>
+      </tr>
     </thead>
     <tbody>
-        <tr>
+      
+        {{-- <tr>
         <th scope="row">1</th>
         <td>marker</td>
         <td>11</td>
@@ -107,35 +194,7 @@
         <button type="button" class="btn btn-warning"><i class="fas fa-pencil-alt"></i></button>
         <button type="button" class="btn btn-danger"><i class="fas fa-trash"></i></button>
         </td>
-        </tr>
-        <tr>
-        <th scope="row">1</th>
-        <td>marker</td>
-        <td>11</td>
-        <td>RPL</td>
-        <td>121212</td>
-        <td>121212</td>
-        <td>Telkom</td>
-        <td>
-        <button type="button" class="btn btn-primary"><i class="fas fa-search"></i></button>
-        <button type="button" class="btn btn-warning"><i class="fas fa-pencil-alt"></i></button>
-        <button type="button" class="btn btn-danger"><i class="fas fa-trash"></i></button>
-        </td>
-        </tr>
-        <tr>
-        <th scope="row">1</th>
-        <td>marker</td>
-        <td>11</td>
-        <td>RPL</td>
-        <td>121212</td>
-        <td>121212</td>
-        <td>Telkom</td>
-        <td>
-        <button type="button" class="btn btn-primary"><i class="fas fa-search"></i></button>
-        <button type="button" class="btn btn-warning"><i class="fas fa-pencil-alt"></i></button>
-        <button type="button" class="btn btn-danger"><i class="fas fa-trash"></i></button>
-        </td>
-        </tr>
+        </tr> --}}
 
     </tbody>
     </table>
@@ -153,11 +212,41 @@
             $('#table').DataTable({
                 bLengthChange: false,
                 ordering:false,
-                info: false,
-                filtering:false,
-                searching: false,
+                info: true,
+                filtering:true,
+                searching: true,
+                serverside: true,
+                processing: true, 
+                serverSide: true, 
                 "responsive": true,
                 "autoWidth": false,
+                ajax:{
+                  url: "{{route('data_prakerin.index')}}",
+                  type: "get",
+                },
+                columns:[
+                  { data: 'nama',name:'nama'},
+                  { data: 'kelas',name:'kelas'},
+                  { data: 'jurusan',name:'jurusan'},
+                  { data: 'perusahaan',name:'perusahaan.nama'},
+                  {
+                   data: 'tgl_mulai',
+                   type: 'num',
+                   render: {
+                      _: 'display',
+                      sort: 'timestamp'
+                   }
+                },{
+                   data: 'tgl_selesai',
+                   type: 'num',
+                   render: {
+                      _: 'display',
+                      sort: 'timestamp'
+                   }
+                },
+                  { data: 'action',name:'action'}
+                ],
+                order: [[0,'asc']]
             });
         });
     </script>
