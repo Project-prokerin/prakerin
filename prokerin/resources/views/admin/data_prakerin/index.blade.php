@@ -5,18 +5,20 @@
             height: 600px;
     }
     .buton{
-            margin-top: 10px;
-            /* margin-left: 50px; */
-            /* margin-bottom: 30px; */
+        margin-top: 30px;
+        margin-left: 50px;
+        margin-bottom: 30px;
     }
     .table{
             margin-top: 20px;
-    }.buten{
+    }
+    /* .buten{
       margin-left: 865px;
       position: absolute;
-    }.butan{
-      margin-left: 740px;
     }
+    .butan{
+      margin-left: 740px;
+    } */
 
     table.dataTable th:nth-child(1) {
     width: 130px;
@@ -150,12 +152,12 @@
     <a href="" class="btn btn-danger mr-5">Export to PDF</a>
   </div>
 </form> -->
-  <div class="buton">
+  {{-- <div class="buton">
 
-  </div>
+  </div> --}}
     <!-- table -->
     <div class="container" >
-      <div class="row" style="margin-bottom: -30px;"> 
+      {{-- <div class="row" style="margin-bottom: -30px;"> 
         <div class="col-3">
           <a href="{{ route('data_prakerin.tambah') }}"class="btn btn-primary"> Tambah Data <i class="fas fa-plus"></i></button></a>
         </div>
@@ -164,7 +166,24 @@
           &nbsp;&nbsp;&nbsp;
           <a href="/export/pdf/data_prakerin"class="btn btn-danger "> Export to PDF</a>
         </div>
+      </div> --}}
+
+      {{-- update --}}
+      <div class="buton">  
+        <a href="{{ route('data_prakerin.tambah') }}"class="btn btn-primary"> Tambah Data <i class="fas fa-plus"></i></button></a>
       </div>
+      <form class="d-flex flex-row-reverse mr-5" style="margin-top: -66px;">
+          <button class="btn btn-outline-success" type="submit"><i class="fas fa-search"></i></button>
+          <input class="form-control ml-3" type="search" placeholder="Search" aria-label="Search" style="width: 200px;">
+          <div>
+            <a href="/export/pdf/data_prakerin"class="btn btn-danger "> Export to PDF</a>
+          </div>
+          &nbsp;&nbsp;&nbsp;
+          <div>
+            <a href="/export/excel/data_prakerin"class="btn btn-success "> Export to Excel</a>
+          </div>
+      </form>
+      {{-- update --}}
     <br><br>
     
     <table class="table table-bordered text-center" id="table">

@@ -1,7 +1,7 @@
 @extends('template.master')
 @push('link')
 <style>
-.card{
+    .card{
         height: 600px;
     }
     .buton{
@@ -11,12 +11,14 @@
     }
     .table{
         margin-top: 20px;
-    }.buten{
+    }
+    /* .buten{
       margin-left: 865px;
       position: absolute;
-    }.butan{
+    } */
+    /* .butan{
       margin-left: 740px;
-    }
+    } */
 </style>
 @endpush
 @section('title', 'Prakerin |   Kelompok Prakerin')
@@ -29,9 +31,19 @@
 <div class="card">
 <div class="buton">  
     <a href="{{ route('kelompok.tambah') }}"><button type="button" class="btn btn-primary">Tambah Data <i class="fas fa-plus"></i></button></a>
-    <a style="margin-left: -170px" href="/export/excel/data_prakerin"><button type="button" class="btn btn-success buten ">Export to Excel</button></a>
-    <a href="/export/pdf/data_prakerin"><button type="button" class="btn btn-danger butan">Export to PDF</button></a>
+    {{-- <a style="margin-left: -170px" href="/export/excel/data_prakerin"><button type="button" class="btn btn-success buten ">Export to Excel</button></a>
+    <a href="/export/pdf/data_prakerin"><button type="button" class="btn btn-danger butan">Export to PDF</button></a> --}}
 </div>
+<form class="d-flex flex-row-reverse mr-5" style="margin-top: -66px;">
+    <button class="btn btn-outline-success" type="submit"><i class="fas fa-search"></i></button>
+    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" style="width: 200px;">
+    <div>
+        <a href="/export/pdf/data_prakerin"><button type="button" class="btn btn-danger mr-4">Export to PDF</button></a>
+    </div>
+    <div>
+        <a href="/export/excel/data_prakerin"><button type="button" class="btn btn-success mr-4">Export to Excel</button></a>
+    </div>
+</form>
     <!-- table -->
     <div class="container">
     <table class="table table-bordered text-center" id="table">
