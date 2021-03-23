@@ -14,41 +14,9 @@ class data_prakerinController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index()
     {
-   
-        $dataPrakerin = data_prakerin::with('perusahaan');
-        if ($request->ajax()) {
-            return datatables()->of($dataPrakerin)->editColumn('tgl_mulai', function ($dataPrakerin) {
-                return [
-                   'display' => e($dataPrakerin->tgl_mulai->format('m-d-Y')),
-                   'timestamp' => $dataPrakerin->tgl_mulai->timestamp
-                ];
-             })->editColumn('tgl_selesai', function ($dataPrakerin) {
-                return [
-                   'display' => e($dataPrakerin->tgl_selesai->format('m-d-Y')),
-                   'timestamp' => $dataPrakerin->tgl_selesai->timestamp
-                ];
-             })
-            ->addColumn('perusahaan', function (data_prakerin $data_prakerin) {
-                return $data_prakerin->perusahaan->nama;
-            })
-            ->addColumn('action', function($data){
-                $button = '<button type="button" name="edit" id="'.$data->id.'" class="edit btn btn-primary btn-sm"><i class="fas fa-search"></i></button>';     
-                $button .= '&nbsp';
-                $button .= '<a href="javascript:void(0)" data-toggle="tooltip"  data-id="'.$data->id.'" data-original-title="Edit" class="edit btn btn-warning btn-sm edit-post"><i class="fas fa-pencil-alt"></i></a>';
-                $button .= '&nbsp';
-                $button .= '<button type="button" name="delete" id="'.$data->id.'" class="delete btn btn-danger btn-sm"><i class="fas fa-trash"></i></button>';     
-                return $button;
-            })
-            ->rawColumns(['action'])
-            ->addIndexColumn()->make(true);
-        }
-
-
-
         return view('admin.data_prakerin.index');
-
     }
 
     /**
@@ -58,7 +26,33 @@ class data_prakerinController extends Controller
      */
     public function ajax(Request $request)
     {
-        return response()->json();
+        if ($request->ajax()) {
+            $dataPrakerin = data_prakerin::with('perusahaan');
+            return datatables()->of($dataPrakerin)->editColumn('tgl_mulai', function ($dataPrakerin) {
+                return [
+                    'display' => e($dataPrakerin->tgl_mulai->format('m-d-Y')),
+                    'timestamp' => $dataPrakerin->tgl_mulai->timestamp
+                ];
+            })->editColumn('tgl_selesai', function ($dataPrakerin) {
+                return [
+                    'display' => e($dataPrakerin->tgl_selesai->format('m-d-Y')),
+                    'timestamp' => $dataPrakerin->tgl_selesai->timestamp
+                ];
+            })
+                ->addColumn('perusahaan', function (data_prakerin $data_prakerin) {
+                    return $data_prakerin->perusahaan->nama;
+                })
+                ->addColumn('action', function ($data) {
+                    $button = '<button type="button" name="edit" id="' . $data->id . '" class="edit btn btn-primary btn-sm"><i class="fas fa-search"></i></button>';
+                    $button .= '&nbsp';
+                    $button .= '<a href="javascript:void(0)" data-toggle="tooltip"  data-id="' . $data->id . '" data-original-title="Edit" class="edit btn btn-warning btn-sm edit-post"><i class="fas fa-pencil-alt"></i></a>';
+                    $button .= '&nbsp';
+                    $button .= '<button type="button" name="delete" id="hapus" data-id="' . $data->id . '" class="delete btn btn-danger btn-sm"><i class="fas fa-trash"></i></button>';
+                    return $button;
+                })
+                ->rawColumns(['action'])
+                ->addIndexColumn()->make(true);
+        }
     }
     public function tambah()
     {
@@ -117,8 +111,9 @@ class data_prakerinController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(request $request, $id)
     {
-        //
+        data_prakerin::where('id',$id)->delete();
+        return response()->json($data = 'berhasil');
     }
 }
