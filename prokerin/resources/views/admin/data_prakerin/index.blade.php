@@ -124,17 +124,17 @@
 
         {{-- update --}}
         <div class="buton">
-            <a href="{{ route('data_prakerin.tambah') }}"class="btn btn-primary"> Tambah Data <i class="fas fa-plus"></i></button></a>
+            <a href="{{ route('data_prakerin.tambah') }}"class="btn btn-primary rounded-pill"> Tambah Data <i class="fas fa-plus"></i></button></a>
         </div>
         <form class="d-flex flex-row-reverse mr-5" style="margin-top: -66px;">
             <button class="btn btn-outline-success" type="submit"><i class="fas fa-search"></i></button>
             <input class="form-control ml-3" type="search" placeholder="Search" aria-label="Search" id="search" style="width: 200px;">
             <div>
-                <a href="/export/pdf/data_prakerin"class="btn btn-danger "> Export to PDF</a>
+                <a href="/export/pdf/data_prakerin"class="btn btn-danger rounded-pill "> <i class="fas fa-cloud-download-alt"></i>  PDF</a>
             </div>
             &nbsp;&nbsp;&nbsp;
             <div>
-                <a href="/export/excel/data_prakerin"class="btn btn-success "> Export to Excel</a>
+                <a href="/export/excel/data_prakerin"class="btn btn-success rounded-pill "> <i class="fas fa-cloud-download-alt"></i>  Excel</a>
             </div>
         </form>
         <br>
