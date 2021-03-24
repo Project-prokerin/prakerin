@@ -2,23 +2,17 @@
         @push('link')
         <style>
         .card{
-                height: 600px;
+                height: 1000px;
         }
         .buton{
-            margin-top: 30px;
+            margin-top: 10px;
             margin-left: 50px;
             margin-bottom: 30px;
         }
         .table{
                 margin-top: 20px;
         }
-        /* .buten{
-        margin-left: 865px;
-        position: absolute;
-        }
-        .butan{
-        margin-left: 740px;
-        } */
+      
 
         table.dataTable th:nth-child(1) {
         width: 130px;
@@ -112,49 +106,9 @@
         @endsection
         @section('main')
         <div class="card">
-        <!-- button tambah -->
-        <!-- <div class="buton">
-        <form class="row g-3">
-        <div class="col-auto">
-            <a href="{{ route('data_prakerin.tambah') }}" type="button" class="btn btn-primary text-white">Tambah Data <i class="fas fa-plus"></i></a>
-        </div>
-        <div class="col-auto" style="margin-left: 300px;">
-            <input style="width: 140px" class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-        </div>
-        <div class="col-auto" style="margin-left: -30px;">
-            <button class="form-control btn btn-outline-success" type="submit"><i class="fas fa-search"></i></button>
-        </div>
-        <div class="col-auto">
-            <a href="/export/excel/data_prakerin" class="btn btn-success mr-4">Export to Excel</a>
-        </div>
-        <div class="col-auto" style="margin-left: -20px;">
-            <a href="/export/pdf/data_prakerin" class="btn btn-danger mr-5">Export to PDF</a>
-        </div>
-        </form>
-        </div>
+        <div class="buton">
 
-
-    <div class="buton">
-    <form class="row g-3">
-    <div class="col-auto">
-        <button type="button" class="btn btn-primary">Tambah Data <i class="fas fa-plus"></i></button>
-    </div>
-    <div class="col-auto" style="margin-left: 300px;">
-        <input style="width: 140px" class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-    </div>
-    <div class="col-auto" style="margin-left: -30px;">
-        <button class="form-control btn btn-outline-success" type="submit"><i class="fas fa-search"></i></button>
-    </div>
-    <div class="col-auto">
-        <a href="http://" class="btn btn-success mr-4">Export to Excel</a>
-    </div>
-    <div class="col-auto" style="margin-left: -20px;">
-        <a href="" class="btn btn-danger mr-5">Export to PDF</a>
-    </div>
-    </form> -->
-    {{-- <div class="buton">
-
-    </div> --}}
+    </div> 
         <!-- table -->
         <div class="container" >
         {{-- <div class="row" style="margin-bottom: -30px;">
