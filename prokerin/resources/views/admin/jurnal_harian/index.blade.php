@@ -1,17 +1,18 @@
 @extends('template.master')
 @push('link')
 <style>
-.card{
-                height: 1000px;
-        }
-        .buton{
-            margin-top: 10px;
-            margin-left: 50px;
-            margin-bottom: 30px;
-        }
-        .table{
-                margin-top: 20px;
-        }
+ .card{
+        height: auto;
+    }
+    .buton{
+        margin-top: 30px;
+        margin-left: 50px;
+        margin-bottom: 30px;
+        width: 40%;
+    }
+    .table{
+        margin-top: 20px;
+    }
 </style>
 @endpush
 @section('title', 'Prakerin | Jurnal Harian')
@@ -22,62 +23,86 @@
 @endsection
 @section('main')
 <div class="card">
-        <div class="buton">
-
-    </div> 
-        <!-- table -->
-        <div class="container" >
-      
-
-        
-        <div class="buton">
-            <a href="{{ route('data_prakerin.tambah') }}"class="btn btn-primary rounded-pill"> Tambah Data <i class="fas fa-plus"></i></button></a>
-        </div>
-        <form class="d-flex flex-row-reverse mr-5" style="margin-top: -66px;">
-            <button class="btn btn-outline-success" type="submit"><i class="fas fa-search"></i></button>
-            <input class="form-control ml-3" type="search" placeholder="Search" aria-label="Search" id="search" style="width: 200px;">
-            <div>
-                <a href="/export/pdf/data_prakerin"class="btn btn-danger rounded-pill"><i class="fas fa-cloud-download-alt"></i>  PDF</a>
-            </div>
-            &nbsp;&nbsp;&nbsp;
-            <div>
-                <a href="/export/excel/data_prakerin"class="btn btn-success rounded-pill "> <i class="fas fa-cloud-download-alt"></i>  Excel</a>
-            </div>
-        </form>
-        <br>
-      
-        <table class="table table-bordered text-center" id="table">
-        <thead>
-            <tr>
-            <th scope="0">No</th>
-            <th scope="col">Nama</th>
-            <th scope="col">Tanggal</th>
-            <th scope="col">Jam datang</th>
-            <th scope="col">Jam pulang</th>
+<div class="buton" style="z-index: 2;">  
+    <a href="{{ route('kelompok.tambah') }}"><button type="button" class="btn btn-primary rounded-pill">Tambah Data <i class="fas fa-plus"></i></button></a>
+    {{-- <a style="margin-left: -170px" href="/export/excel/data_prakerin"><button type="button" class="btn btn-success buten ">Export to Excel</button></a>
+    <a href="/export/pdf/data_prakerin"><button type="button" class="btn btn-danger butan">Export to PDF</button></a> --}}
+</div>
+<form class="d-flex flex-row-reverse mr-5" style="margin-top: -66px;">
+    <button class="btn btn-outline-success" type="submit"><i class="fas fa-search"></i></button>
+    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" style="width: 200px;">
+    <div>
+        <a href="/export/pdf/data_prakerin"><button type="button" class="btn btn-danger mr-3 rounded-pill"><i class="fas fa-cloud-download-alt"></i>  PDF</button></a>
+    </div>
+    <div>
+        <a href="/export/excel/data_prakerin"><button type="button" class="btn btn-success mr-3 rounded-pill"><i class="fas fa-cloud-download-alt"></i>  Excel</button></a>
+    </div>
+</form>
+    <!-- table -->
+    <div class="container">
+    <table class="table table-bordered text-center" id="table">
+    <thead>
+        <tr>
+            <th scope="col">No</th>
+            <th scope="col">No Kelompok</th>
+            <th scope="col">Guru Pembimbing</th>
+            <th scope="col">Jurusan</th>
             <th scope="col">Perusahaan</th>
-            <th scope="col">Action</th>
+            <th scope="col">Actiom</th>
         </tr>
-        </thead>
-        <tbody>
-
-             <tr>
+    </thead>
+    <tbody>
+        <tr>
             <th scope="row">1</th>
             <td>marker</td>
             <td>11</td>
             <td>RPL</td>
             <td>121212</td>
-            <td>sjajd</td>
             <td>
-            <button type="button" class="btn btn-primary"><i class="fas fa-search"></i></button>
-            <button type="button" class="btn btn-warning"><i class="fas fa-pencil-alt"></i></button>
-            <button type="button" class="btn btn-danger"><i class="fas fa-trash"></i></button>
+                <button type="button" class="btn btn-primary"><i class="fas fa-search"></i></button>
+                <button type="button" class="btn btn-warning"><i class="fas fa-pencil-alt"></i></button>
+                <button type="button" class="btn btn-danger"><i class="fas fa-trash"></i></button>
             </td>
-            </tr> 
+        </tr>
+        <tr>
+            <th scope="row">1</th>
+            <td>marker</td>
+            <td>11</td>
+            <td>RPL</td>
+            <td>121212</td>
+            <td>
+                <button type="button" class="btn btn-primary"><i class="fas fa-search"></i></button>
+                <button type="button" class="btn btn-warning"><i class="fas fa-pencil-alt"></i></button>
+                <button type="button" class="btn btn-danger"><i class="fas fa-trash"></i></button>
+            </td>
+        </tr>
+        <tr>
+            <th scope="row">1</th>
+            <td>marker</td>
+            <td>11</td>
+            <td>RPL</td>
+            <td>121212</td>
+            <td>
+                <button type="button" class="btn btn-primary"><i class="fas fa-search"></i></button>
+                <button type="button" class="btn btn-warning"><i class="fas fa-pencil-alt"></i></button>
+                <button type="button" class="btn btn-danger"><i class="fas fa-trash"></i></button>
+            </td>
+        </tr>
+    </tbody>
+    </table>
 
-        </tbody>
-        </table>
-        <!-- tutup table -->
-        </div>
+    {{--  --}}
+        <nav aria-label="Page navigation example">
+            <ul class="pagination mt-5 mb-4 justify-content-right">
+                <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+                <li class="page-item"><a class="page-link" href="#">1</a></li>
+                <li class="page-item"><a class="page-link" href="#">2</a></li>
+                <li class="page-item"><a class="page-link" href="#">Next</a></li>
+            </ul>
+        </nav>
+    {{--  --}}
+</div>
+</div>
 @endsection
 @push('script')
 

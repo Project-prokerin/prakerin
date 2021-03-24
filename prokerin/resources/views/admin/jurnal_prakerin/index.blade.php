@@ -1,162 +1,109 @@
 @extends('template.master')
 @push('link')
 <style>
- .card{
-                height: 1000px;
-        }
-        .buton{
-            margin-top: 10px;
-            margin-left: 50px;
-            margin-bottom: 30px;
-        }
-        .table{
-                margin-top: 20px;
-        }
-      
-
-        table.dataTable th:nth-child(1) {
-        width: 130px;
-        max-width: 130px;
-        word-break: break-all;
-        white-space: pre-line;
+    .card{
+        height: auto;
     }
-
-    table.dataTable td:nth-child(1) {
-        width: 130px;
-        max-width: 130px;
-        word-break: break-all;
-        white-space: pre-line;
+    .buton{
+        margin-top: 30px;
+        margin-left: 50px;
+        margin-bottom: 30px;
+        width: 40%;
     }
-    table.dataTable th:nth-child(2) {
-        width: 35px;
-        max-width: 35px;
-        word-break: break-all;
-        white-space: pre-line;
-    }
-
-    table.dataTable td:nth-child(2) {
-        width: 35px;
-        max-width: 35px;
-        word-break: break-all;
-        white-space: pre-line;
-    }
-    table.dataTable th:nth-child(4) {
-        width: 190px;
-        max-width: 190px;
-        word-break: break-all;
-        white-space: pre-line;
-    }
-
-    table.dataTable td:nth-child(4) {
-        width: 190px;
-        max-width: 190px;
-        word-break: break-all;
-        white-space: pre-line;
-    }
-    table.dataTable th:nth-child(5) {
-        width: 90px;
-        max-width: 90px;
-        word-break: break-all;
-        white-space: pre-line;
-    }
-
-    table.dataTable td:nth-child(5) {
-        width: 90px;
-        max-width: 90px;
-        word-break: break-all;
-        white-space: pre-line;
-    }
-    table.dataTable th:nth-child(6) {
-        width: 90px;
-        max-width: 90px;
-        word-break: break-all;
-        white-space: pre-line;
-    }
-
-    table.dataTable td:nth-child(6) {
-        width: 90px;
-        max-width: 90px;
-        word-break: break-all;
-        white-space: pre-line;
-    }
-    table.dataTable th:nth-child(7) {
-        width: 90px;
-        max-width: 90px;
-        word-break: break-all;
-        white-space: pre-line;
-    }
-
-    table.dataTable td:nth-child(7) {
-        width: 90px;
-        max-width: 90px;
-        word-break: break-all;
-        white-space: pre-line;
+    .table{
+        margin-top: 20px;
     }
 
 </style>
 @endpush
 @section('title', 'Prakerin | Data Perusahaan')
-@section('judul', 'DATA PERUSAHAAN')
+@section('judul', 'JURNAL PRAKERIN')
 @section('breadcrump')
         <div class="breadcrumb-item "><a href="{{ route('admin.dashboard') }}"><i class="fas fa-tachometer-alt"></i> DASBOARD</a></div>
-        <div class="breadcrumb-item"> <i class="far fa-building"></i> DATA PERUSAHAAN</div>
+        <div class="breadcrumb-item"> <i class="far fa-building"></i> JURNAL PRAKERIN</div>
 @endsection
 @section('main')
 <div class="card">
-        <div class="buton">
-
-    </div> 
-        <!-- table -->
-        <div class="container" >
-      
-
-        
-        <div class="buton">
-            <a href="{{ route('data_prakerin.tambah') }}"class="btn btn-primary rounded-pill"> Tambah Data <i class="fas fa-plus"></i></button></a>
-        </div>
-        <form class="d-flex flex-row-reverse mr-5" style="margin-top: -66px;">
-            <button class="btn btn-outline-success" type="submit"><i class="fas fa-search"></i></button>
-            <input class="form-control ml-3" type="search" placeholder="Search" aria-label="Search" id="search" style="width: 200px;">
-            <div>
-                <a href="/export/pdf/data_prakerin"class="btn btn-danger rounded-pill"> <i class="fas fa-cloud-download-alt"></i>  PDF</a>
-            </div>
-            &nbsp;&nbsp;&nbsp;
-            <div>
-                <a href="/export/excel/data_prakerin"class="btn btn-success rounded-pill"> <i class="fas fa-cloud-download-alt"></i> Excel</a>
-            </div>
-        </form>
-        <br>
-      
-        <table class="table table-bordered text-center" id="table">
-        <thead>
-            <tr>
-            <th scope="0">No</th>
-            <th scope="col">Nama</th>
-            <th scope="col">Nama Perusahaan</th>
-            <th scope="col">Tgl Mulai</th>
-            <th scope="col">Jam Selesai</th>
-            <th scope="col">Action</th>
+<div class="buton" style="z-index: 2;">  
+    <a href="{{ route('kelompok.tambah') }}"><button type="button" class="btn btn-primary rounded-pill">Tambah Data <i class="fas fa-plus"></i></button></a>
+    {{-- <a style="margin-left: -170px" href="/export/excel/data_prakerin"><button type="button" class="btn btn-success buten ">Export to Excel</button></a>
+    <a href="/export/pdf/data_prakerin"><button type="button" class="btn btn-danger butan">Export to PDF</button></a> --}}
+</div>
+<form class="d-flex flex-row-reverse mr-5" style="margin-top: -66px;">
+    <button class="btn btn-outline-success" type="submit"><i class="fas fa-search"></i></button>
+    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" style="width: 200px;">
+    <div>
+        <a href="/export/pdf/data_prakerin"><button type="button" class="btn btn-danger mr-3 rounded-pill"><i class="fas fa-cloud-download-alt"></i>  PDF</button></a>
+    </div>
+    <div>
+        <a href="/export/excel/data_prakerin"><button type="button" class="btn btn-success mr-3 rounded-pill"><i class="fas fa-cloud-download-alt"></i>  Excel</button></a>
+    </div>
+</form>
+    <!-- table -->
+    <div class="container">
+    <table class="table table-bordered text-center" id="table">
+    <thead>
+        <tr>
+            <th scope="col">No</th>
+            <th scope="col">Nama Siswa</th>
+            <th scope="col">Nama Perusahaaan</th>
+            <th scope="col">Tanggal mulai</th>
+            <th scope="col">Jam Mulai</th>
+            <th scope="col">Actiom</th>
         </tr>
-        </thead>
-        <tbody>
-
-             <tr>
+    </thead>
+    <tbody>
+        <tr>
             <th scope="row">1</th>
             <td>marker</td>
             <td>11</td>
             <td>RPL</td>
             <td>121212</td>
             <td>
-            <button type="button" class="btn btn-primary"><i class="fas fa-search"></i></button>
-            <button type="button" class="btn btn-warning"><i class="fas fa-pencil-alt"></i></button>
-            <button type="button" class="btn btn-danger"><i class="fas fa-trash"></i></button>
+                <button type="button" class="btn btn-primary"><i class="fas fa-search"></i></button>
+                <button type="button" class="btn btn-warning"><i class="fas fa-pencil-alt"></i></button>
+                <button type="button" class="btn btn-danger"><i class="fas fa-trash"></i></button>
             </td>
-            </tr> 
+        </tr>
+        <tr>
+            <th scope="row">1</th>
+            <td>marker</td>
+            <td>11</td>
+            <td>RPL</td>
+            <td>121212</td>
+            <td>
+                <button type="button" class="btn btn-primary"><i class="fas fa-search"></i></button>
+                <button type="button" class="btn btn-warning"><i class="fas fa-pencil-alt"></i></button>
+                <button type="button" class="btn btn-danger"><i class="fas fa-trash"></i></button>
+            </td>
+        </tr>
+        <tr>
+            <th scope="row">1</th>
+            <td>marker</td>
+            <td>11</td>
+            <td>RPL</td>
+            <td>121212</td>
+            <td>
+                <button type="button" class="btn btn-primary"><i class="fas fa-search"></i></button>
+                <button type="button" class="btn btn-warning"><i class="fas fa-pencil-alt"></i></button>
+                <button type="button" class="btn btn-danger"><i class="fas fa-trash"></i></button>
+            </td>
+        </tr>
+    </tbody>
+    </table>
 
-        </tbody>
-        </table>
-        <!-- tutup table -->
-        </div>
+    {{--  --}}
+        <nav aria-label="Page navigation example">
+            <ul class="pagination mt-5 mb-4 justify-content-right">
+                <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+                <li class="page-item"><a class="page-link" href="#">1</a></li>
+                <li class="page-item"><a class="page-link" href="#">2</a></li>
+                <li class="page-item"><a class="page-link" href="#">Next</a></li>
+            </ul>
+        </nav>
+    {{--  --}}
+</div>
+</div>
 
 @endsection
 @push('script')
