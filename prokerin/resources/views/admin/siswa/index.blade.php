@@ -1,7 +1,17 @@
 @extends('template.master')
 @push('link')
 <style>
-     
+    .mtop{
+        margin-top: -10px;
+    }
+    .pleft{
+        padding-left: 15px;
+    }
+     .card-body form .d-flex i{
+         width: 40px;
+         font-size: medium;
+         padding-top: 5px;
+     }
 </style>
 @endpush
 @section('title', 'Prakerin | Data siswa')
@@ -15,7 +25,7 @@
     <div class="container">
         <div class="card-body">
             <div class="">  
-                <a href="{{ route('data_prakerin.tambah') }}"class="btn btn-primary"> Tambah Data <i class="fas fa-plus"></i></button></a>
+                <a href=""class="btn btn-primary"> Tambah Data <i class="fas fa-plus"></i></button></a>
             </div>
             <form class="d-flex flex-row-reverse" style="margin-top: -36px;">
                 <button class="btn btn-outline-success" type="submit"><i class="fas fa-search"></i></button>
@@ -73,29 +83,6 @@
         </div>
 </div>
 </div>
-
-{{-- edit --}}
-{{-- <div class="card">
-    <div class="container">
-        <div class="card-body">
-            
-        </div>
-    </div>
-</div> --}}
-{{-- edit --}}
-
-
-
-{{-- detail --}}
-{{-- <div class="card">
-    <div class="container">
-        <div class="card-body">
-            test
-        </div>
-    </div>
-</div> --}}
-{{-- detail --}}
-
 @endsection
 @push('script')
 
