@@ -7,6 +7,7 @@ use App\Models\Siswa;
 use Illuminate\Http\Request;
 use App\Models\data_prakerin;
 use App\Models\perusahaan;
+use App\Models\guru;
 class data_prakerinController extends Controller
 {
     /**
@@ -63,7 +64,9 @@ class data_prakerinController extends Controller
     public function tambah()
     {
         $siswa = Siswa::all();
-        return view('admin.data_prakerin.tambah', compact('siswa'));
+        $perusahaan = perusahaan::all();
+        $guru = guru::all();
+        return view('admin.data_prakerin.tambah', compact('siswa','perusahaan','guru'));
     }
 
     /**
@@ -74,7 +77,35 @@ class data_prakerinController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        
+        // $request->validate([
+        //     'nama' => 'required|',
+        //     'kelas' => 'required',
+        //     'jurusan' => 'required',
+        //     'id_siswa' => 'required',
+        //     'id_perusahaan' => 'required',
+        //     'id_guru' => 'required',
+        //     'tanggal_mulai' => 'required',
+        //     'tanggal_selesai' => 'required',
+        // ]);
+        $user = request()->input('siswa');
+        $user_data = explode('-', $user);
+        dd($user_data); 
+
+    //    $nm=$request->upload;
+    //    $namefile = $nm->getClientOriginalName();
+    //    upload('upload')->storeAs('public/postingan',$filename);
+
+            // $postingan = Postingan::create([
+            //     'upload' => $namefile,
+            //     'perusahaan' => $request['deskripsi'],
+            //     'users_id' => Auth::id(),
+                
+            //     ]);
+         
+            //     Alert::alert('Success','Berhasil Memposting','success');
+            // return redirect()->route('people.index')->with('success','Berhasil Memposting');
+
     }
 
     /**
