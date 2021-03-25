@@ -25,17 +25,17 @@
     <div class="container">
         <div class="card-body">
             <div class="">  
-                <a href=""class="btn btn-primary"> Tambah Data <i class="fas fa-plus"></i></button></a>
+                <a href=""class="btn btn-primary rounded-pill"> Tambah Data <i class="fas fa-plus"></i></button></a>
             </div>
             <form class="d-flex flex-row-reverse" style="margin-top: -36px;">
                 <button class="btn btn-outline-success" type="submit"><i class="fas fa-search"></i></button>
                 <input class="form-control ml-3" type="search" placeholder="Search" aria-label="Search" style="width: 200px;">
                 <div>
-                  <a href="/export/pdf/data_prakerin"class="btn btn-danger "> Export to PDF</a>
+                  <a href="/export/pdf/data_prakerin"class="btn btn-danger rounded-pill"> Export to PDF</a>
                 </div>
                 &nbsp;&nbsp;&nbsp;
                 <div>
-                  <a href="/export/excel/data_prakerin"class="btn btn-success "> Export to Excel</a>
+                  <a href="/export/excel/data_prakerin"class="btn btn-success rounded-pill"> Export to Excel</a>
                 </div>
             </form>
         </div>
