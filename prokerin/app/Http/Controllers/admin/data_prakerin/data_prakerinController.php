@@ -87,7 +87,8 @@ class data_prakerinController extends Controller
         ]);
         // dd($data); 
             //  Alert::success('Success','Berhasil Memposting');
-            return redirect()->route('data_prakerin.index')->with(['success','Berhasil Membuat data prakerin']);
+            return redirect()->route('data_prakerin.index')->with(['success' => 'Data berhasil di tambah!']);
+
 
         // $validateData = $request->validate([
         //     'nim' => 'required|',

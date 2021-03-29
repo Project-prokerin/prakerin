@@ -121,7 +121,15 @@
             <a href="/export/pdf/data_prakerin"class="btn btn-danger "> Export to PDF</a>
             </div>
         </div> --}}
-
+        @if ($message = Session::get('success'))
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <strong>Success!</strong> Data Prakerin berhasil di tambah!.
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+      @endif
+   
         {{-- update --}}
         <div class="buton">
             <a href="{{ route('data_prakerin.tambah') }}"class="btn btn-primary rounded-pill"> Tambah Data <i class="fas fa-plus"></i></button></a>
