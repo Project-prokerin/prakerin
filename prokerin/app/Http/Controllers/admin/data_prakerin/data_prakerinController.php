@@ -8,6 +8,8 @@ use Illuminate\Http\Request;
 use App\Models\data_prakerin;
 use App\Models\perusahaan;
 use App\Models\guru;
+use App\Http\Requests\data_prakerinRequest;
+
 class data_prakerinController extends Controller
 {
     /**
@@ -69,23 +71,22 @@ class data_prakerinController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(data_prakerinRequest $request)
     {
-        
-        $user = request()->input('id_siswa');
-        list($nama,$id_siswa)= explode('-', $user);
-
+        // validasi
+        $request->validated();
+        $siswa = Siswa::where('id', $request->id_siswa)->first();
         $data = data_prakerin::create([
-            'nama' => $nama,
+            'nama' => $siswa->nama_siswa,
             'kelas' => $request->kelas,
             'jurusan' => $request->jurusan,
-            'id_siswa' => $id_siswa,
+            'id_siswa' => $request->id_siswa,
             'id_perusahaan' => $request->id_perusahaan,
             'id_guru' => $request->id_guru,
             'tgl_mulai' => $request->tgl_mulai,
             'tgl_selesai' => $request->tgl_selesai
         ]);
-        // dd($data); 
+        // dd($data);
             //  Alert::success('Success','Berhasil Memposting');
             return redirect()->route('data_prakerin.index')->with(['success' => 'Data berhasil di tambah!']);
 
@@ -97,9 +98,9 @@ class data_prakerinController extends Controller
         //     'jurusan' => 'required',
         //      'alamat' => '',
         //      ]);
-          
+
         //    Mahasiswa::create($validateData);
-          
+
         //    return "Data berhasil diinput ke database";
     //    $nm=$request->upload;
     //    $namefile = $nm->getClientOriginalName();
@@ -109,9 +110,9 @@ class data_prakerinController extends Controller
             //     'upload' => $namefile,
             //     'perusahaan' => $request['deskripsi'],
             //     'users_id' => Auth::id(),
-                
+
             //     ]);
-         
+
             // return redirect()->route('people.index')->with('success','Berhasil Memposting');
 
 
@@ -123,13 +124,13 @@ class data_prakerinController extends Controller
             //     'upload' => $namefile,
             //     'perusahaan' => $request['deskripsi'],
             //     'users_id' => Auth::id(),
-                
+
             //     ]);
-         
+
             //     Alert::alert('Success','Berhasil Memposting','success');
             // return redirect()->route('people.index')->with('success','Berhasil Memposting');
-            
-            
+
+
 
     }
 

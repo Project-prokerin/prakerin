@@ -13,7 +13,7 @@ class data_prakerinRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,27 @@ class data_prakerinRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'kelas' => 'required',
+            'jurusan' => 'required',
+            'id_siswa' => 'required',
+            'id_perusahaan' => 'required',
+            'id_guru' => 'required',
+            'tgl_mulai' => 'required|before:tgl_selesai',
+            'tgl_selesai' => 'required|after:tgl_mulai',
+        ];
+    }
+    public function messages()
+    {
+        return [
+            'kelas.required' => 'Kelas tidak boleh kosong',
+            'jurusan.required' => 'Jurusan tidak boleh kosong',
+            'id_siswa.required' => 'Nama siswa tidak boleh kosong',
+            'id_perusahaan.required' => 'Nama perusahaan tidak boleh kosong',
+            'id_guru.required' => 'Nama guru tidak boleh kosong',
+            'tgl_mulai.required' => 'Tanggal mulai tidak boleh kosong',
+            'tgl_mulai.required' => 'Tanggal selesai tidak boleh kosong',
+            "tgl_mulai.before" => "Masukan tanggal yang benar",
+            "tgl_selesai.after" => "Masukan tanggal yang benar",
         ];
     }
 }
