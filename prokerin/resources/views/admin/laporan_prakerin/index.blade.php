@@ -1,7 +1,7 @@
 @extends('template.master')
 @push('link')
 <style>
-      .card{
+    .card{
         height: auto;
     }
     .buton{
