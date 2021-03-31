@@ -88,15 +88,18 @@ Route::middleware(['web', 'auth', 'role:hubin'])->group(function () {
 Route::middleware(['web', 'auth', 'role:kaprog,hubin'])->group(function () {
 
     // data prakerin
+                      
+                    
     Route::get('admin/data_prakerin', [data_prakerinController::class, 'index'])->name('data_prakerin.index');
     Route::get('admin/data_prakerin/tambah', [data_prakerinController::class, 'tambah'])->name('data_prakerin.tambah');
     Route::post('admin/data_prakerin/tambah/post', [data_prakerinController::class, 'store'])->name('data_prakerin.post');
-    Route::get('admin/data_prakerin/edit', [data_prakerinController::class, 'detail'])->name('data_prakerin.edit');
-    Route::put('admin/data_prakerin/update', [data_prakerinController::class, 'update'])->name('data_prakerin.update');
+    Route::get('admin/data_prakerin/edit/{id}', [data_prakerinController::class, 'edit'])->name('data_prakerin.edit');
+    Route::put('admin/data_prakerin/update/{data_prakerin}', [data_prakerinController::class, 'update'])->name('data_prakerin.update');
     Route::delete('admin/data_prakerin/delete/{id}', [data_prakerinController::class, 'destroy'])->name('data_prakerin.delete');
     Route::post('admin/data_prakerin/ajax', [data_prakerinController::class, 'ajax'])->name('data_prakerin.ajax');
     Route::post('/data_prakerin/destroy', [data_prakerinController::class, 'delete_all'])->name('data_prakerin.delete-all');
     Route::get('/export/excel/data_prakerin', [ExcelController::class, 'data_prakerin'])->name('export.data_prakerin');
+
 
     // jurnal harian
     Route::get('admin/jurnalH', [jurnal_harianController::class, 'index'])->name('jurnalH.index');

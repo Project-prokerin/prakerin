@@ -43,8 +43,8 @@ class data_prakerinRequest extends FormRequest
             'id_guru.required' => 'Nama guru tidak boleh kosong',
             'tgl_mulai.required' => 'Tanggal mulai tidak boleh kosong',
             'tgl_mulai.required' => 'Tanggal selesai tidak boleh kosong',
-            "tgl_mulai.before" => "Masukan tanggal yang benar",
-            "tgl_selesai.after" => "Masukan tanggal yang benar",
+            "tgl_mulai.before" => "Masukan tanggal mulai yang benar",
+            "tgl_selesai.after" => "Masukan tanggal selesai yang benar",
         ];
     }
 }

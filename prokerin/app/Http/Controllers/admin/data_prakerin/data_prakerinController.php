@@ -46,9 +46,9 @@ class data_prakerinController extends Controller
                     return $data_prakerin->perusahaan->nama;
                 })
                 ->addColumn('action', function ($data) {
-                    $button = '<button type="button" name="edit" id="' . $data->id . '" class="edit btn btn-primary btn-sm"><i class="fas fa-search"></i></button>';
+                    $button = '<button type="button"   id="' . $data->id . '" class="edit btn btn-primary btn-sm"><i class="fas fa-search"></i></button>';
                     $button .= '&nbsp';
-                    $button .= '<a href="javascript:void(0)" data-toggle="tooltip"  data-id="' . $data->id . '" data-original-title="Edit" class="edit btn btn-warning btn-sm edit-post"><i class="fas fa-pencil-alt"></i></a>';
+                    $button .= '<a  href="../admin/data_prakerin/edit/'.$data->id.'" id="edit" data-toggle="tooltip"  data-id="' . $data->id . '" data-original-title="Edit" class="edit btn btn-warning btn-sm edit-post"><i class="fas fa-pencil-alt"></i></a>';
                     $button .= '&nbsp';
                     $button .= '<button type="button" name="delete" id="hapus" data-id="' . $data->id . '" class="delete btn btn-danger btn-sm"><i class="fas fa-trash"></i></button>';
                     return $button;
@@ -77,10 +77,10 @@ class data_prakerinController extends Controller
         $request->validated();
         $siswa = Siswa::where('id', $request->id_siswa)->first();
         $data = data_prakerin::create([
-            'nama' => $siswa->nama_siswa,
-            'kelas' => $request->kelas,
-            'jurusan' => $request->jurusan,
-            'id_siswa' => $request->id_siswa,
+            'nama'   => $siswa->nama_siswa,
+            'kelas'         => $request->kelas,
+            'jurusan'       => $request->jurusan,
+            'id_siswa'      => $request->id_siswa,
             'id_perusahaan' => $request->id_perusahaan,
             'id_guru' => $request->id_guru,
             'tgl_mulai' => $request->tgl_mulai,
@@ -142,7 +142,8 @@ class data_prakerinController extends Controller
      */
     public function detail($id)
     {
-        return view('admin.data_prakerin.detail');
+        dd($id);
+        return view('admin.data_prakerin.edit');
     }
 
     /**
@@ -153,7 +154,12 @@ class data_prakerinController extends Controller
      */
     public function edit($id)
     {
-        return view('admin.data_prakerin.edit');
+        $siswa = Siswa::all();
+        $perusahaan = perusahaan::all();
+        $guru = guru::all();
+        $dataPrakerin = data_prakerin::findOrFail($id);
+        // dd($dataPrakerin->perusahaan->nama);
+        return view('admin.data_prakerin.edit',compact('dataPrakerin','perusahaan','guru','siswa','id'));
     }
 
     /**
@@ -163,9 +169,34 @@ class data_prakerinController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(data_prakerinRequest $request,data_prakerin $data_prakerin)
     {
-        //
+        // $this->validated($request[
+        //     'nama'   => $siswa->nama_siswa,
+        //     'kelas'         => $request->kelas,
+        //     'jurusan'       => $request->jurusan,
+        //     'id_siswa'      => $request->id_siswa,
+        //     'id_perusahaan' => $request->id_perusahaan,
+        //     'id_guru' => $request->id_guru,
+        //     'tgl_mulai' => $request->tgl_mulai,
+        //     'tgl_selesai' => $request->tgl_selesai
+        // ]);
+        $request->validated();
+
+        $siswa = Siswa::where('id', $request->id_siswa)->first();
+        // dd($siswa->nama_siswa);
+        $update = data_prakerin::where('id',$data_prakerin->id )->update([
+            'nama'   => $siswa->nama_siswa,
+            'kelas'         => $request->kelas,
+            'jurusan'       => $request->jurusan,
+            'id_siswa'      => $request->id_siswa,
+            'id_perusahaan' => $request->id_perusahaan,
+            'id_guru' => $request->id_guru,
+            'tgl_mulai' => $request->tgl_mulai,
+            'tgl_selesai' => $request->tgl_selesai
+        ]);
+            // dd($update);            
+             return redirect()->route('data_prakerin.index')->with(['pesan'=>"Data Berhasil di Update"]);
     }
 
     /**
@@ -180,3 +211,4 @@ class data_prakerinController extends Controller
         return response()->json($data = 'berhasil');
     }
 }
+
