@@ -74,6 +74,9 @@ class userController extends Controller
 
     // tambah pembekalan
     public function pembekalan_post(Request $request){
+        if ($request->file('file')->getMimeType() !== 'application/pdf') {
+            return redirect('/user/pembekalan')->with('erorr', 'File anda harus application/pdf');
+        }
         $file = time() . ' ' . $request->file('file')->getClientOriginalName();
         if (empty(Auth::user()->siswa->pembekalan_magang)) {
             pembekalan_magang::create([

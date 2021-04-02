@@ -1,5 +1,6 @@
     @extends('template.master')
     @push('link')
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
     <style>
         .header{
         text-align:center;
@@ -43,6 +44,12 @@
         width: auto;
         float: none;
         }
+        }
+        a[href$=".pdf"]:before
+        {
+            content: "\f1c1";
+            font-family: fontawesome;
+            padding-right: 10px;
         }
     </style>
     @endpush

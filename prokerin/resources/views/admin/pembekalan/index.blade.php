@@ -1,6 +1,7 @@
 @extends('template.master')
 @push('link')
- <style>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+<style>
         .card{
                 height: auto;
         }
@@ -98,7 +99,13 @@
         word-break: break-all;
         white-space: pre-line;
     }
-        </style>
+    a[href$=".pdf/download"]:before
+        {
+        content: "\f1c1";
+        font-family: fontawesome;
+        padding-right: 10px;
+        }
+    </style>
 @endpush
 @section('title', 'Prakerin | Data Pembekalan Magang')
 @section('judul', 'DATA PEMBEKALAN MAGANG')
