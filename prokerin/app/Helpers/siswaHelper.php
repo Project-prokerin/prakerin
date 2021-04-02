@@ -65,10 +65,10 @@ function warna($value)
 }
 function PembekalanText($value)
 {
-    if (empty(siswa('main') || siswa('main')->pembekalan_magang)) {
+    if (empty(siswa('main'))) {
         return 'Anda tidak di izinkan untuk melihat status anda';
     }
-    if (empty(Auth::user()->siswa->pembekalan_magang->$value)) {
+    if (empty(Auth::user()->siswa->pembekalan_magang)) {
         return 'Belum mengumpulkan';
     }
     $val = Auth::user()->siswa->pembekalan_magang->$value;
@@ -79,6 +79,13 @@ function PembekalanText($value)
     }
 }
 
+// pembekalan link
+function links($param)
+{
+    $array = explode(' ', $param);
+    unset($array[0]);
+    return implode(' ', $array) ;
+}
 // stataus magang helper
 function status(){
     $tanggal = Carbon::now()->format('Y-m-d');

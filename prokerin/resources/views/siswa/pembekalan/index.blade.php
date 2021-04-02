@@ -92,7 +92,7 @@
                     @if (!empty(siswa('pembekalan_magang')->file_portofolio) )
 
                     <form action="/user/pembekalan/delete" id="form" method="POST">
-                        <a href="/user/pembekalan/{{ siswa('pembekalan_magang')->file_portofolio }}" class="text-white">{{ siswa('pembekalan_magang')->file_portofolio }}</a>
+                        <a href="/user/pembekalan/{{ siswa('pembekalan_magang')->file_portofolio }}" class="text-white">{{ links(siswa('pembekalan_magang')->file_portofolio) }}</a>
                         @method('put')
                         @csrf
                         <button type="submit" id="hapus" class="btn btn-icon icon-left  btn-danger ml-5"><i class="fas fa-times"></i>Hapus</button>

@@ -69,22 +69,30 @@
                     <h5>Detail</h5>
                 </button>
                 <div class="dropdown-menu">
+                @if (Auth::user()->role == 'hubin' or Auth::user()->role == 'kaprog' or Auth::user()->role == 'bkk')
+                @if(Auth::user()->role == 'hubin')
                     <a class="dropdown-item" href="{{route('siswa.index')}}">Data Siswa</a>
                     <a class="dropdown-item" href="{{route('guru.index')}}">Data Guru</a>
                     <a class="dropdown-item" href="{{route('perusahaan.index')}}">Data Perusahaan</a>
+                    @endif
+                @if (Auth::user()->role == 'bkk' or Auth::user()->role == 'hubin')
                     <a class="dropdown-item" href="{{route('pembekalan.index')}}">Pembekalan Magang</a>
+                    @endif
+                @if (Auth::user()->role == 'kaprog' or Auth::user()->role == 'hubin')
                     <a class="dropdown-item" href="{{route('data_prakerin.index')}}">Data Prakerin</a>
                     <a class="dropdown-item" href="{{route('jurnal.index')}}">Jurnal Prakerin</a>
                     <a class="dropdown-item" href="{{route('jurnalH.index')}}">Jurnal Harian</a>
                     <a class="dropdown-item" href="{{route('kelompok.index')}}">Kelompok Prakerin</a>
                     <a class="dropdown-item" href="{{route('laporan.index')}}">Laporan Prakerin</a>
-
-
+                    @endif
+                    @else''@endif
                 </div>
             </div>
         </div>
         <div class="card-body  container-fluid mt-2">
         <div class="row">
+            @if (Auth::user()->role == 'hubin' or Auth::user()->role == 'kaprog' or Auth::user()->role == 'bkk')
+            @if(Auth::user()->role == 'hubin')
             <div class="col-sm-4">
                 <a href="" style="text-decoration: none">
                 <div class="card box">
@@ -118,7 +126,9 @@
                 </div>
                 </a>
             </div>
-            <div class="col-sm-4">
+            @endif
+            @if (Auth::user()->role == 'bkk' or Auth::user()->role == 'hubin')
+                <div class="col-sm-4">
                 <a href="" style="text-decoration: none">
                 <div class="card box">
                         <img src="{{ asset('images/dashboard.png') }}" class="card-img-top" alt="" >
@@ -129,6 +139,8 @@
                 </div>
                 </a>
             </div>
+            @endif
+            @if (Auth::user()->role == 'kaprog' or Auth::user()->role == 'hubin')
             <div class="col-sm-4">
                 <a href="" style="text-decoration: none">
                 <div class="card box">
@@ -184,9 +196,14 @@
                 </div>
                 </a>
             </div>
+            @endif
+        @else
+            ''
+        @endif
         </div>
         </div>
         {{-- itesmashboard end --}}
+
 </div>
 @endsection
 @push('script')

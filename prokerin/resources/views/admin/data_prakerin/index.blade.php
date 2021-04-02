@@ -2,7 +2,7 @@
         @push('link')
         <style>
         .card{
-                height: 1000px;
+                height: auto;
         }
         .buton{
             margin-top: 10px;
@@ -12,7 +12,7 @@
         .table{
                 margin-top: 20px;
         }
-      
+
 
         table.dataTable th:nth-child(1) {
         width: 130px;
@@ -92,25 +92,19 @@
         word-break: break-all;
         white-space: pre-line;
     }
-
-
         </style>
+
         @endpush
         @section('title', 'Prakerin | Data Prakerin')
         @section('judul', 'DATA PRAKERIN')
         @section('breadcrump')
                 <div class="breadcrumb-item "><a href="{{ route('admin.dashboard') }}"><i class="fas fa-tachometer-alt"></i> DASBOARD</a></div>
                 <div class="breadcrumb-item"> <i class="fas fa-th mr-2"></i>DATA PRAKERIN</div>
-                <link rel="stylesheet" href="{{ asset('template/node_modules/datatables.net-bs4/css/dataTables.bootstrap4.min.css') }}">
-                <link rel="stylesheet" href="{{ asset('template/node_modules/datatables.net-select-bs4/css/select.bootstrap4.min.css') }}">
         @endsection
         @section('main')
         <div class="card">
-        <div class="buton">
-
-    </div> 
         <!-- table -->
-        <div class="container" >
+        <div class="container mt-4" >
         {{-- <div class="row" style="margin-bottom: -30px;">
             <div class="col-3">
             <a href="{{ route('data_prakerin.tambah') }}"class="btn btn-primary"> Tambah Data <i class="fas fa-plus"></i></button></a>
@@ -121,24 +115,24 @@
             <a href="/export/pdf/data_prakerin"class="btn btn-danger "> Export to PDF</a>
             </div>
         </div> --}}
-        @if ($message = Session::get('success'))
+        @if (session('success'))
         <div class="alert alert-success alert-dismissible fade show" role="alert">
-            <strong>Success!</strong> Data Prakerin berhasil di tambah!.
+            {{ session('success') }}
             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        @endif
+
+        @if (session('fail'))
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            {{ session('fail') }}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
             </button>
-          </div>
-      @endif
-   
-      @if ($message = Session::get('pesan'))
-      <div class="alert alert-success alert-dismissible fade show" role="alert">
-          <strong>Success!</strong> {{$message}}.
-          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-    @endif
- 
+            </div>
+        @endif
+
         {{-- update --}}
         <div class="buton">
             <a href="{{ route('data_prakerin.tambah') }}"class="btn btn-primary rounded-pill"> Tambah Data <i class="fas fa-plus"></i></button></a>
@@ -159,6 +153,7 @@
         <table class="table table-bordered text-center" id="table">
         <thead>
             <tr>
+            {{-- <th scope="col">no</th> --}}
             <th scope="col">Nama</th>
             <th scope="col">Kelas</th>
             <th scope="col">Jurusan</th>
@@ -194,15 +189,13 @@
         </div>
         @endsection
         @push('script')
-        <script src="{{ asset('template/node_modules/datatables/media/js/jquery.dataTables.min.js') }}"></script>
-        <script src="{{ asset('template/node_modules/datatables.net-bs4/js/dataTables.bootstrap4.min.js') }}"></script>
-        <script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+
         <script>
             $(document).ready( function () {
                 var filter = $('#search').val();
                 console.log(filter);
                 var table = $('#table').DataTable({
-                    dom: 't<"bottom"<"row"<"col-6"i><"col-6"p>>>',
+                    dom: 't<"bottom"<"row"<"col-6"i><"col-6 mb-4"p>>>',
                     bLengthChange: false,
                     ordering:false,
                     info: true,
@@ -225,6 +218,7 @@
                     }
                     },
                     columns:[
+                    // {data: 'DT_RowIndex', name: 'DT_RowIndex'},
                     { data: 'nama',name:'nama'},
                     { data: 'kelas',name:'kelas'},
                     { data: 'jurusan',name:'jurusan'},
@@ -248,7 +242,7 @@
                     ],
                     order: [[0,'asc']]
                 });
-            
+
             // search engine
             $("#search").keyup(function () {
                 table.search( this.value ).draw();
@@ -285,7 +279,7 @@
                     });
                 } else if (result.dismiss === Swal.DismissReason.cancel) {}
             })
-            
+
             })
             });
         </script>

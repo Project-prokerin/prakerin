@@ -172,6 +172,8 @@ return [
         Yajra\DataTables\DataTablesServiceProvider::class,
         // Sweet alert
         RealRashid\SweetAlert\SweetAlertServiceProvider::class,
+        //image
+        Intervention\Image\ImageServiceProvider::class,
         /*
          * Application Service Providers...
          */
@@ -236,6 +238,7 @@ return [
         'Excel' => Maatwebsite\Excel\Facades\Excel::class,
         'DataTables' => Yajra\DataTables\Facades\DataTables::class,
         'Alert' => RealRashid\SweetAlert\Facades\Alert::class,
+        'Image' => Intervention\Image\Facades\Image::class
     ],
 
 ];

@@ -24,15 +24,23 @@ class pembekalan_magangRequest extends FormRequest
     public function rules()
     {
         return [
-            'file' => 'required|file|mimes:pdf'
+            'siswa' => 'required',
+            'file' => 'required|file|mimes:pdf',
+            'test_wpt_iq' => 'required',
+            'personality_interview' => 'required',
+            'soft_skill' => 'required',
         ];
     }
     public function messages()
     {
         return [
-            'file.required' => 'File masih kosong',
+            'file.required' => 'File tidak boleh kosong',
+            'siswa.required'=> 'Nama siswa tidak boleh kosong',
             'file.file' => 'Harus berformat file',
-            'file.mimes' => 'Harus berformat pdf'
+            'file.mimes' => 'Harus berformat pdf',
+            'test_wpt_iq.required' =>  'tidak boleh kosong',
+            'personality_interview.required' => 'tidak boleh kosong',
+            'soft_skill.required' => 'tidak boleh kosong',
         ];
     }
 }

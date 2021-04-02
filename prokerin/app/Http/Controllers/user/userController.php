@@ -29,7 +29,9 @@ use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Support\Facades\Validator;
 use Yajra\DataTables\DataTables;
 
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Session;
+use Response;
 class userController extends Controller
 {
     // index / dashboard
@@ -62,36 +64,59 @@ class userController extends Controller
     // pembekalan magang
     public function pembekalan()
     {
+
+        // return Response::make(file_get_contents($path), 200, [
+        //     'Content-Type' => 'application/pdf',
+        //     'Content-Disposition' => 'inline; filename="' . $filename . '"'
+        // ]);
         return view('siswa.pembekalan.index');
     }
 
     // tambah pembekalan
-    public function pembekalan_post(pembekalan_magangRequest $request){
-        $validated = $request->validated();
-        $file = $request->file('file')->getClientOriginalName();
-        $upload = pembekalan_magang::where('id_siswa', siswa('main')->id)->update(['file_portofolio' => $file]);
-        $upload = $request->file('file')->move('portofolio_siswa/', $request->file('file')->getClientOriginalName());
+    public function pembekalan_post(Request $request){
+        $file = time() . ' ' . $request->file('file')->getClientOriginalName();
+        if (empty(Auth::user()->siswa->pembekalan_magang)) {
+            pembekalan_magang::create([
+                'id_siswa' =>  siswa('main')->id,
+                'id_guru' => NULL,
+                'test_wpt_iq' => 'belum',
+                'personality_interview' => 'belum',
+                'soft_skill' => 'belum',
+                'file_portofolio' => $file
+            ]);
+        }else {
+            $upload = pembekalan_magang::where('id_siswa', siswa('main')->id)->update(['file_portofolio' => $file]);
+        }
+        $upload = $request->file('file')->move('portofolio_siswa/', $file);
         // Alert::toast('Portofolio berhasil di tambahkan', 'Toast Type');
         return redirect('/user/pembekalan')->with('success', 'Portofolio anda sudah berhasil di kumpulkan');
     }
 
     // hapus pembekaaln
     public function pembekalan_delete(Request $request){
-        $file = siswa('pembekalan_magang')->file_portofolio;
-        // unlink(public_path() . "/portofolio_siswa/$file"); // for deleting query
+        $pem = siswa('main')->pembekalan_magang->file_portofolio;
+        if (File::exists("portofolio_siswa/$pem") && "portofolio_siswa/$pem" !== "portofolio_siswa/default.pdf") {
+            File::delete("portofolio_siswa/$pem");
+        }
         $upload = pembekalan_magang::where('id_siswa', Auth::user()->siswa->id)->update(['file_portofolio' => '']);
         // Alert::toast('Portofolio berhasil di hapus', 'Toast Type');
         return redirect('/user/pembekalan')->with('erorr', 'Portofolio anda berhasil di hapus');
     }
     // bagian dari pembekalan
+
     public function pembekalan_download($id)
     {
+        // file directory
         $file = public_path() . "/portofolio_siswa/$id";
-
+        // file name
+        $array = explode(' ', $id);
+        unset($array[0]);
+        $id = implode(' ', $array);
+        //file headers
         $headers = array(
             'Content-Type: application/pdf',
         );
-        return Response()->download($file, $id , $headers);
+        return Response()->download($file, $id, $headers);
     }
 
 

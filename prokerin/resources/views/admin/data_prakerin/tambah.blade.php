@@ -126,7 +126,7 @@
                                         </div>
 
                                         <button type="submit"  class="btn btn-success ml-3"><i class="fas fa-check"></i> submit</button>
-                                        <a href="{{route('data_prakerin.index')}}" type="submit" class="btn btn-danger"><i class="fas fa-times"></i> Cancel</a>
+                                        <a href="{{route('data_prakerin.index')}}" type="submit" class="btn btn-danger"><i class="fas fa-times"></i> Batal</a>
 
                                     </div>
 

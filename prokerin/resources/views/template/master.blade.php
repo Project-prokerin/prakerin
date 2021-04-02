@@ -14,6 +14,8 @@
 
 
 <!-- CSS Libraries -->
+<link rel="stylesheet" href="{{ asset('template/node_modules/datatables.net-bs4/css/dataTables.bootstrap4.min.css') }}">
+<link rel="stylesheet" href="{{ asset('template/node_modules/datatables.net-select-bs4/css/select.bootstrap4.min.css') }}">
 @stack('link')
 <!-- Template CSS -->
 <link rel="stylesheet" href="{{asset('template/assets/css/style.css')}}">
@@ -63,6 +65,9 @@
 <script src="{{ asset('template/assets/js/stisla.js') }}"></script>
 <script src="{{ asset('assets/js/sweetalert.all.js') }}"></script>
 <script src="{{ asset('assets/js/costom.js') }}"></script>
+<script src="{{ asset('template/node_modules/datatables/media/js/jquery.dataTables.min.js') }}"></script>
+<script src="{{ asset('template/node_modules/datatables.net-bs4/js/dataTables.bootstrap4.min.js') }}"></script>
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 <!-- JS Libraies -->
 @stack('script')
 

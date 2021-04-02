@@ -88,8 +88,6 @@ Route::middleware(['web', 'auth', 'role:hubin'])->group(function () {
 Route::middleware(['web', 'auth', 'role:kaprog,hubin'])->group(function () {
 
     // data prakerin
-                      
-                    
     Route::get('admin/data_prakerin', [data_prakerinController::class, 'index'])->name('data_prakerin.index');
     Route::get('admin/data_prakerin/tambah', [data_prakerinController::class, 'tambah'])->name('data_prakerin.tambah');
     Route::post('admin/data_prakerin/tambah/post', [data_prakerinController::class, 'store'])->name('data_prakerin.post');
@@ -169,13 +167,13 @@ Route::middleware(['web', 'auth', 'role:bkk,hubin'])->group(function () {
     Route::get('admin/pembekalan', [pembekalanContoller::class, 'index'])->name('pembekalan.index');
     Route::get('admin/pembekalan/tambah', [pembekalanContoller::class, 'tambah'])->name('pembekalan.tambah');
     Route::post('admin/pembekalan/tambah/post', [pembekalanContoller::class, 'store'])->name('pembekalan.post');
-    Route::get('admin/pembekalan/edit', [pembekalanContoller::class, 'detail'])->name('pembekalan.edit');
-    Route::put('admin/pembekalan/update', [pembekalanContoller::class, 'update'])->name('pembekalan.update');
+    Route::get('admin/pembekalan/edit/{id}', [pembekalanContoller::class, 'edit'])->name('pembekalan.edit');
+    Route::put('admin/pembekalan/update/{pembekalan}', [pembekalanContoller::class, 'update'])->name('pembekalan.update');
     Route::delete('admin/pembekalan/delete/{id}', [pembekalanContoller::class, 'destroy'])->name('pembekalan.delete');
     Route::post('admin/pembekalan/ajax', [pembekalanContoller::class, 'ajax'])->name('pembekalan.ajax');
     Route::post('/pembekalan/destroy', [pembekalanContoller::class, 'delete_all'])->name('pembekalan.delete-all');
     Route::get('/export/excel/pembekalan', [pembekalanContoller::class, 'pembekalan'])->name('export.pembekalan');
-    Route::get('/pembekalan/{id}/download', [pembekalanContoller::class, 'download'])->name('pembekalan.download');
+    Route::get('/pembekalan/{id}/download', [pembekalanContoller::class, 'downloads'])->name('pembekalan.download');
 
 });
 
