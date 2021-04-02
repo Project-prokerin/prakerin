@@ -1,7 +1,6 @@
 @extends('template.master')
 @push('link')
 <link rel="stylesheet" href="{{asset('template/')}}/node_modules/select2/dist/css/select2.min.css">
-
 @endpush
 @section('title', 'Prakerin | Data Pembekalan Magang')
 @section('judul', 'DATA PEMBEKALAN MAGANG')
@@ -12,25 +11,24 @@
 @section('main')
 <div class="card" style="width: 50%;">
     <div class="card-header">
-        <h4 class="pt-2"><i class="fas fa-align-justify mr-2"></i>Edit Data Pembekalan Magang Siswa</h4>
+        <h4 class="pt-2"><i class="fas fa-align-justify mr-2"></i>Data Pembekalan Magang Siswa</h4>
     </div>
     <div class="card-body">
-        <form action="/admin/pembekalan/update/{{ $pembekalan->id }}" method="POST" enctype="multipart/form-data">
+        <form action="/admin/pembekalan/update/{{ $pembekalan->id }}" method="POST" id="form" enctype="multipart/form-data">
             @csrf
             @method('PUT')
+            <section id="1">
             {{-- <div class="mb-3"> --}}
             <div class="mb-3">
                 <input type="text" name="id" value="{{ $pembekalan->id }}" hidden>
                             <label>Nama Perusahaan</label>
-                            <select name="siswa" class="form-control select2  @error('siswa')  is-invalid  @enderror ">
+                            <select name="siswa" id="nama" class="form-control select2">
                             <option value="" >-- Pilih siswa --</option>
                                 @foreach ($Siswa as $item)
                                 <option value="{{$item->id}}" @if(old('siswa') == $item->id or $pembekalan->id_siswa == $item->id) selected @endif>{{$item->nama_siswa}}</option>
                             @endforeach
                             </select>
-                            @error('siswa')
-                                    <div class="invalid-feedback">{{ $message }}</div>
-                            @enderror
+                            <div id="invalid_siswa" class="invalid-feedback d-none"></div>
                 </div>
             <div>
             <div class="mb-3">
@@ -44,9 +42,7 @@
                     <input type="checkbox" name="test_wpt_iq" class="form-check-input test_iq"
                     @if(old('test_wpt_iq') == 'belum' or $pembekalan->test_wpt_iq == 'belum') checked @endif value="belum">
                     <label class="form-check-label">Belum</label>
-                    @error('test_wpt_iq')
-                    <li class="d-inline text-danger ml-4">{{ $message }}</li>
-                    @enderror
+                    <li class="d-inline validated text-danger ml-4"></li>
                 </div>
 
             </div>
@@ -62,12 +58,11 @@
                     <input type="checkbox" name="personality_interview" class="form-check-input person"
                     @if(old('personality_interview') == 'belum' or $pembekalan->personality_interview == 'belum') checked @endif value="belum">
                     <label class="form-check-label">Belum</label>
-                    @error('personality_interview')
-                    <li class="d-inline text-danger ml-4">{{ $message }}</li>
-                    @enderror
+                    <li class="d-inline validated text-danger ml-4"></li>
                 </div>
             </div>
             <div>
+
                 <div class="mb-3">
                     <label class="form-label">Test Soft Skill</label>
                 </div>
@@ -79,20 +74,28 @@
                     <input type="checkbox" name="soft_skill" class="form-check-input skill"  value="belum"
                     @if(old('soft_skill') == 'belum' or $pembekalan->soft_skill == 'belum') checked @endif>
                     <label class="form-check-label">Belum</label>
-                    @error('soft_skill')
-                    <li class="d-inline text-danger ml-4">{{ $message }}</li>
-                    @enderror
+                    <li class="d-inline validated text-danger ml-4"></li>
                 </div>
             </div>
+            <div class="row">
+                <a href="{{ route('pembekalan.index') }}" class="btn btn-danger ml-auto mr-2 mt-3 mb-3 text-white">kembali </a>
+                <a class="btn btn-primary text-white mr-4 mt-3 mb-3" id="selanjutnya">Selanjutnya </a>
+            </div>
+
+            </section>
+            <section id="2" >
             <div class="mb-3">
                 <label class="form-label">Portfolio</label>
-                <input class="form-control" type="file" name="file" id="formFile" value="{{ $pembekalan->file_poprtofolio }}">
-                @error('file')
-                        <div class="invalid-feedback">{{ $message }}</div>
-                @enderror
+                <input class="form-control" type="text" name="text" id="formFile" value="{{ links($pembekalan->file_portofolio) }}" disabled>
+                <label class="form-label mt-2">Edit portofolio</label>
+                <input class="form-control file " accept="application/pdf" type="file" name="file" id="formFile" value="{{ $pembekalan->file_poprtofolio }}">
+                <div class="invalid-feedback d-none" id="invalid_file"></div>
             </div>
-            <a href="{{route('pembekalan.index')}}" type="submit" class="btn btn-danger mt-2"><i class="fas fa-times"></i> Batal</a>
-            <button type="submit"  class="btn btn-success mt-2"><i class="fas fa-check"></i> Submit</button>
+            <div class="row">
+                <a class="btn btn-danger ml-auto mr-3 text-white mt-3 mb-3" id="kembali">kembali </a>
+                <button type="submit"   class="submit mr-3 btn btn-success mt-3 mb-3"><i class="fas fa-check"></i> Submit</button>
+            </div>
+        </section>
         </form>
     </div>
 </div>
@@ -102,6 +105,45 @@
     <script src="{{asset('template/')}}/node_modules/select2/dist/js/select2.full.min.js"></script>
 <script>
     $(document).ready(function () {
+    $("section#1").show();
+    $("section#2").hide();
+
+    $('a#selanjutnya').on('click', function (params) {
+        var nama = $('#nama').val();
+        if (nama == '') {
+            $('#nama').addClass('is-invalid');
+            $('#invalid_siswa').html('nama siswa tidak boleh kosong').removeClass('d-none');
+        }
+        else{
+            $('#invalid_siswa').addClass('d-none');
+            $("section#2").show();
+            $("section#1").hide()
+        }
+    })
+
+    $('.file').on('change', function () {
+        file = $('.file');
+        item  = file[0].files[0].name;
+        type = file[0].files[0].type;
+        if (type === 'application/pdf') {
+            console.log(type);
+            $('#formFile').val(item);
+            $('#invalid_file').addClass('d-none');
+            $('.file').removeClass('is-invalid');
+        }else{
+            $('.file').addClass('is-invalid');
+            $('#invalid_file').html('File harus berformat pdf').removeClass('d-none');
+            $('#formFile').val("{{ links($pembekalan->file_portofolio) }}");
+            console.log('gagal');
+        }
+    })
+
+    $('a#kembali').on('click', function (params) {
+        $("section#2").hide();
+        $("section#1").show()
+    })
+
+    // checkbox
     $(".test_iq").change(function()
         {
             $(".test_iq").prop('checked',false);
@@ -122,31 +164,6 @@
             $(".intensif").prop('checked',false);
             $(this).prop('checked',true);
         });
-
-
     })
-    var clone = {};
-        // FileClicked()
-        function fileClicked(event) {
-            var fileElement = event.target;
-            if (fileElement.value != "") {
-                clone[fileElement.id] = $(fileElement).clone(); //'Saving Clone'
-            }
-            //What ever else you want to do when File Chooser Clicked
-        }
-        console.log(clone);
-        // FileChanged()
-        function fileChanged(event) {
-            var fileElement = event.target;
-            console.log(event.target.files);
-            if (fileElement.value == "") {
-                clone[fileElement.id].insertBefore(fileElement); //'Restoring Clone'
-                $(fileElement).remove(); //'Removing Original'
-                if (eventMoreListeners) {
-                    addEventListenersTo(clone[fileElement.id])
-                } //If Needed Re-attach additional Event Listeners
-            }
-            //What ever else you want to do when File Chooser Changed
-        }
 </script>
 @endpush

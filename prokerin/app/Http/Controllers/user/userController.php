@@ -101,7 +101,7 @@ class userController extends Controller
         if (File::exists("portofolio_siswa/$pem") && "portofolio_siswa/$pem" !== "portofolio_siswa/default.pdf") {
             File::delete("portofolio_siswa/$pem");
         }
-        $upload = pembekalan_magang::where('id_siswa', Auth::user()->siswa->id)->update(['file_portofolio' => '']);
+        $upload = pembekalan_magang::where('id_siswa', Auth::user()->siswa->id)->update(['file_portofolio' => 'belum']);
         // Alert::toast('Portofolio berhasil di hapus', 'Toast Type');
         return redirect('/user/pembekalan')->with('erorr', 'Portofolio anda berhasil di hapus');
     }

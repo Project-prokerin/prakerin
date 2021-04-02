@@ -96,7 +96,7 @@
                 @if (empty(siswa('main')))
                     Anda tidak di izinkan untuk mengisi halaman ini
                 @else
-                    @if (!empty(siswa('pembekalan_magang')->file_portofolio) )
+                    @if (siswa('pembekalan_magang')->file_portofolio !== 'belum')
 
                     <form action="/user/pembekalan/delete" id="form" method="POST">
                         <a href="/user/pembekalan/{{ siswa('pembekalan_magang')->file_portofolio }}" class="text-white">{{ links(siswa('pembekalan_magang')->file_portofolio) }}</a>

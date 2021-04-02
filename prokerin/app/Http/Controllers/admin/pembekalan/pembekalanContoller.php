@@ -40,7 +40,7 @@ class pembekalanContoller extends Controller
                     return $pembekalan->siswa->nama_siswa;
                 })
                 ->editColumn('file', function ($data) {
-                    if (empty($data->file_portofolio)) {
+                    if ($data->file_portofolio === 'belum') {
                         $button = 'belum';
                         return $button;
                     }else {
@@ -75,19 +75,29 @@ class pembekalanContoller extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(pembekalan_magangRequest $request)
+    public function store(Request $request)
     {
-        $request->validated();
-        $file = time().' '.$request->file('file')->getClientOriginalName();
-        $pem = pembekalan_magang::create([
-            'id_siswa' => $request->siswa,
-            'id_guru' => Auth()->id(),
-            'test_wpt_iq' => $request->test_wpt_iq,
-            'personality_interview' => $request->personality_interview,
-            'soft_skill' => $request->soft_skill,
-            'file_portofolio' => $file
+        if ($request->file('file') > 0) {
+            $file = time() . ' ' . $request->file('file')->getClientOriginalName();
+            $pembekalan_magang = $request->file('file')->move('portofolio_siswa/',  $file);
+            $pem = pembekalan_magang::create([
+                'id_siswa' => $request->siswa,
+                'id_guru' => Auth()->id(),
+                'test_wpt_iq' => $request->test_wpt_iq,
+                'personality_interview' => $request->personality_interview,
+                'soft_skill' => $request->soft_skill,
+                'file_portofolio' => $file
             ]);
-        $pembekalan_magang = $request->file('file')->move('portofolio_siswa/',  $file);
+        } else {
+            $pem = pembekalan_magang::create([
+                'id_siswa' => $request->siswa,
+                'id_guru' => Auth()->id(),
+                'test_wpt_iq' => $request->test_wpt_iq,
+                'personality_interview' => $request->personality_interview,
+                'soft_skill' => $request->soft_skill,
+                'file_portofolio' => 'belum'
+            ]);
+        }
         return redirect()->route('pembekalan.index')->with('success', 'Data berhasil di tambah!');
     }
 
@@ -124,28 +134,33 @@ class pembekalanContoller extends Controller
      * @param  \App\Models\pembekalan_magang  $pembekalan_magang
      * @return \Illuminate\Http\Response
      */
-    public function update(pembekalan_magangRequest $request, $id)
+    public function update(Request $request, $id)
     {
-        $request->validated();
-
         $pem = pembekalan_magang::where('id', $id)->first();
-        if (File::exists("portofolio_siswa/$pem->file_portofolio") && "portofolio_siswa/$pem->file_portofolio" !== "portofolio_siswa/default.pdf") {
-            File::delete("portofolio_siswa/$pem->file_portofolio");
+        if ($request->file('file') > 0) {
+            $file = time() . ' ' . $request->file('file')->getClientOriginalName();
+            $pembekalan_magang = $request->file('file')->move('portofolio_siswa/',  $file);
+            if (File::exists("portofolio_siswa/$pem->file_portofolio") && "portofolio_siswa/$pem->file_portofolio" !== "portofolio_siswa/default.pdf") {
+                File::delete("portofolio_siswa/$pem->file_portofolio");
+            }
+            $pem = pembekalan_magang::where('id', $id)->update([
+                'id_siswa' => $request->siswa,
+                'id_guru' => Auth()->id(),
+                'test_wpt_iq' => $request->test_wpt_iq,
+                'personality_interview' => $request->personality_interview,
+                'soft_skill' => $request->soft_skill,
+                'file_portofolio' =>  $file
+            ]);
+        } else {
+            $pem = pembekalan_magang::where('id', $id)->update([
+                'id_siswa' => $request->siswa,
+                'id_guru' => Auth()->id(),
+                'test_wpt_iq' => $request->test_wpt_iq,
+                'personality_interview' => $request->personality_interview,
+                'soft_skill' => $request->soft_skill,
+            ]);
         }
-        $nama = $request->file('file')->getClientOriginalName();
-        $extention = $request->file('file')->extension();
 
-        $file =  time().' '. $nama;
-        $request->file('file')->move('portofolio_siswa/', $file);
-
-        $pem = pembekalan_magang::where('id', $id)->update([
-            'id_siswa' => $request->siswa,
-            'id_guru' => Auth()->id(),
-            'test_wpt_iq' => $request->test_wpt_iq,
-            'personality_interview' => $request->personality_interview,
-            'soft_skill' => $request->soft_skill,
-            'file_portofolio' =>  $file
-        ]);
 
         return redirect()->route('pembekalan.index')->with('success', 'Data berhasil di Edit!');
     }

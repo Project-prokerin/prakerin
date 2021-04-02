@@ -42,20 +42,16 @@ function warna($value)
     }
      // file portofolio
     if ($value === 'file_portofolio') {
-        if (empty(Auth::user()->siswa->pembekalan_magang->$value)) {
+        if (Auth::user()->siswa->pembekalan_magang->$value === 'belum') {
             return 'background-color:#f2f2f2;color:black;text-decoration:none;';
-        }
-        $val = Auth::user()->siswa->pembekalan_magang->$value;
-        if (!empty($val)) {
+        }else{
             return 'background-color:#4cd137;color:white;text-decoration:none;';
-        } else {
-            return 'background-color:#f2f2f2;color:black;text-decoration:none;';
         }
     }
     // normal
-    if (empty(Auth::user()->siswa->pembekalan_magang->$value)) {
-        return 'background-color:#e84118;color:white';
-    }
+    // if (empty(Auth::user()->siswa->pembekalan_magang->$value)) {
+    //     return 'background-color:#e84118;color:white';
+    // }
     $val = Auth::user()->siswa->pembekalan_magang->$value;
     if ($val == 'sudah') {
         return 'background-color:#4cd137;color:white';
