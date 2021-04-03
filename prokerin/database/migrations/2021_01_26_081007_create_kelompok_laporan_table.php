@@ -18,6 +18,9 @@ class CreateKelompokLaporanTable extends Migration
             $table->integer('no')->unsigned();
             $table->bigInteger('id_guru')->unsigned();
             $table->bigInteger('id_data_prakerin')->unsigned();
+            $table->string('nama_perusahaan');
+            $table->string('no_telpon', 13);
+            $table->string('jurusan', 100);
             $table->foreign('id_data_prakerin')->references('id')->on('data_prakerin')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
         });

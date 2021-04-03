@@ -127,11 +127,12 @@ Route::middleware(['web', 'auth', 'role:kaprog,hubin'])->group(function () {
     Route::get('admin/kelompok/ajax', [kelompokController::class, 'ajax'])->name('kelompok.ajax');
     Route::get('admin/kelompok/tambah', [kelompokController::class, 'tambah'])->name('kelompok.tambah');
     Route::post('admin/kelompok/tambah/post', [kelompokController::class, 'store'])->name('kelompok.post');
-    Route::get('admin/kelompok/edit', [kelompokController::class, 'detail'])->name('kelompok.edit');
-    Route::put('admin/kelompok/update', [kelompokController::class, 'update'])->name('kelompok.update');
+    Route::get('admin/kelompok/edit/{id}', [kelompokController::class, 'edit'])->name('kelompok.edit');
+    Route::get('admin/kelompok/detail/{id}', [kelompokController::class, 'detail'])->name('kelompok.detail');
+    Route::put('admin/kelompok/update/{kelompok}', [kelompokController::class, 'update'])->name('kelompok.update');
     Route::delete('admin/kelompok/delete/{id}', [kelompokController::class, 'destroy'])->name('kelompok.delete');
     Route::post('admin/kelompok/ajax', [kelompokController::class, 'ajax'])->name('kelompok.ajax');
-    Route::post('/kelompok/destroy', [kelompokController::class, 'delete_all'])->name('kelompok.delete-all');
+    Route::delete('/kelompok/destroy_all/{id}', [kelompokController::class, 'delete_all'])->name('kelompok.delete-all');
     Route::get('/export/excel/kelompok', [ExcelController::class, 'kelompok'])->name('export.kelompok');
     Route::get('/export/pdf/kelompok', [PDFController::class, 'kelompokPrakerin']);
 
