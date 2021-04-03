@@ -63,6 +63,5 @@ class kelompoklaporanSeeder extends Seeder
             'no_telpon' => '08999991',
             'jurusan' => 'RPL'
         ])  ; 
-     
     }
 }
