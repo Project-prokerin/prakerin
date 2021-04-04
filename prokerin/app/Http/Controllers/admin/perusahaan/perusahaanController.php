@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\perusahaan;
 use Yajra\DataTables\DataTables;
+use Carbon\Carbon;
 
 class perusahaanController extends Controller
 {
@@ -26,7 +27,23 @@ class perusahaanController extends Controller
      */
     public function ajax(Request $request)
     {
-        return response()->json();
+        if ($request->ajax()) {
+            $perusahaan = perusahaan::all();
+            return datatables()->of($perusahaan)
+                ->editColumn('tanggal_mou', function ($data) {
+                    return $data->tanggal_mou->isoFormat('DD MMMM YYYY');
+                })
+                ->addColumn('action', function ($data) {
+                    $button = '<a href="/admin/perusahaan/detail/' . $data->id . '"   id="' . $data->id . '" class="edit btn btn-primary btn-sm"><i class="fas fa-search"></i></a>';
+                    $button .= '&nbsp';
+                    $button .= '<a  href="/admin/pembekalan/edit/' . $data->id . '" id="edit" data-toggle="tooltip"  data-id="' . $data->id . '" data-original-title="Edit" class="edit btn btn-warning btn-sm edit-post"><i class="fas fa-pencil-alt"></i></a>';
+                    $button .= '&nbsp';
+                    $button .= '<button type="button" name="delete" id="hapus" data-id="' . $data->id . '" class="delete btn btn-danger btn-sm"><i class="fas fa-trash"></i></button>';
+                    return $button;
+                })
+                ->rawColumns(['action','tanggal_mou'])
+                ->addIndexColumn()->make(true);
+        }
     }
     public function tambah()
     {
@@ -86,7 +103,8 @@ class perusahaanController extends Controller
      */
     public function destroy($id)
     {
-
+        perusahaan::where('id',$id)->delete();
+        return response()->json(['data' => 'berhasil']);
     }
     public function delete_all(Request $request){
 

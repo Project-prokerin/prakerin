@@ -33,7 +33,7 @@ public function __construct(Excel $excel)
 // pembekalan magang export
     public function pembekalan()
     {
-        $pembekalan = Siswa::select('kelas', 'jurusan')->distinct()->get();
+        $pembekalan = Siswa::select('kelas', 'jurusan')->has('pembekalan_magang')->distinct()->get();
         // $heading =
         return $this->excel->download(new PembekalanMultiExport($pembekalan), 'pembekalan.xlsx');
     }

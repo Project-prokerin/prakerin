@@ -23,7 +23,7 @@ class CreatePembekalanMagangTable extends Migration
             // $table->string('soft_skill');
             $table->string('file_portofolio');
             $table->unsignedBigInteger('id_guru')->nullable();
-            $table->foreign('id_guru')->references('id')->on('guru')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('id_guru')->references('id')->on('guru')->onDelete('set null')->onUpdate('cascade');
             $table->unsignedBigInteger('id_siswa');
             $table->foreign('id_siswa')->references('id')->on('siswa')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();

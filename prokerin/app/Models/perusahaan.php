@@ -10,6 +10,7 @@ class perusahaan extends Model
     use HasFactory;
     protected $table = 'perusahaan';
     protected $guarded = [];
+    protected $dates = ['tanggal_mou'];
     public function data_prakerin()
     {
                                                       // foreign, owner key

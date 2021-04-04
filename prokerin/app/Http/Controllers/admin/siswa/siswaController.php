@@ -21,13 +21,13 @@ class siswaController extends Controller
     private $pembekalan_magang;
     private $sekolah_asal;
 
-    public function __construct()
-    {
-        $this->siswa = Siswa::all();
-        $this->orang_tua = orang_tua::all();
-        $this->pembekalan_magang = pembekalan_magang::all();
-        $this->sekolah_asal = sekolah_asal::all();
-    }
+    // public function __construct()
+    // {
+    //     $this->siswa = Siswa::all();
+    //     $this->orang_tua = orang_tua::all();
+    //     $this->pembekalan_magang = pembekalan_magang::all();
+    //     $this->sekolah_asal = sekolah_asal::all();
+    // }
 
     /**
      * Display a listing of the resource.
@@ -43,9 +43,22 @@ class siswaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function ajax()
+    public function ajax(Request $request )
     {
-        return response()->json();
+        if ($request->ajax()) {
+            $siwa = Siswa::all();
+            return datatables()->of($siwa)
+                ->addColumn('action', function ($data) {
+                    $button = '<a href="/admin/siswa/detail/' . $data->id . '"   id="' . $data->id . '" class="edit btn btn-primary btn-sm"><i class="fas fa-search"></i></a>';
+                    $button .= '&nbsp';
+                    $button .= '<a  href="/admin/pembekalan/edit/' . $data->id . '" id="edit" data-toggle="tooltip"  data-id="' . $data->id . '" data-original-title="Edit" class="edit btn btn-warning btn-sm edit-post"><i class="fas fa-pencil-alt"></i></a>';
+                    $button .= '&nbsp';
+                    $button .= '<button type="button" name="delete" id="hapus" data-id="' . $data->id . '" class="delete btn btn-danger btn-sm"><i class="fas fa-trash"></i></button>';
+                    return $button;
+                })
+                ->rawColumns(['action'])
+                ->addIndexColumn()->make(true);
+        }
     }
     public function tambah(Request $request)
     {
@@ -103,9 +116,10 @@ class siswaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Request $request,$id)
+    public function destroy(Request $request, $id)
     {
-
+        $delete = Siswa::where('id', $id)->delete();
+        return response()->json($siswa = 'berhasil');
     }
     public function delete_all(Request $request){
 

@@ -51,15 +51,16 @@ class pembekalanExport implements FromQuery, WithHeadings, WithMapping, WithStyl
     }
     public function map($siswa): array
     {
-        return [
-            'no',
-            !empty($siswa->pembekalan_magang->siswa) ? $siswa->pembekalan_magang->siswa->nama_siswa : '',
-            $siswa->pembekalan_magang->test_wpt_iq,
-            $siswa->pembekalan_magang->personality_interview,
-            $siswa->pembekalan_magang->soft_skill,
-            !empty($siswa->pembekalan_magang->file_portofolio) ? 'sudah' : 'belum' ,
-            // !empty($pembekalan->guru) ? $pembekalan->guru->nama : '',
-        ];
+            return [
+
+                'no',
+                !empty($siswa->pembekalan_magang->siswa) ? $siswa->pembekalan_magang->siswa->nama_siswa : '',
+                $siswa->pembekalan_magang->test_wpt_iq,
+                $siswa->pembekalan_magang->personality_interview,
+                $siswa->pembekalan_magang->soft_skill,
+                !empty($siswa->pembekalan_magang->file_portofolio) ? 'sudah' : 'belum',
+                // !empty($pembekalan->guru) ? $pembekalan->guru->nama : '',
+            ];
     }
     public function startCell(): string
     {

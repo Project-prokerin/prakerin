@@ -11,7 +11,7 @@ class multiExport implements WithMultipleSheets
 {
     use Exportable;
 
-    protected $pembakalan;
+    protected $pembekalan;
     protected $heading;
     protected $jurusan;
     protected $kelas;
@@ -19,7 +19,7 @@ class multiExport implements WithMultipleSheets
     public function __construct($pembakalan)
     {
 
-        $this->pembakalan = $pembakalan;
+        $this->pembekalan = $pembakalan;
     }
 
     /**
@@ -28,10 +28,11 @@ class multiExport implements WithMultipleSheets
     public function sheets(): array
     {
         $sheets = [];
-        foreach ($this->pembakalan as $key => $value) {
+        foreach ($this->pembekalan as $key => $value) {
             $getData = Siswa::where('jurusan', $value->jurusan)->where('kelas', $value->kelas)->get();
-            $sheets[] = new pembekalanExport($this->pembakalan, $value->jurusan, $value->kelas, $getData);
+            $sheets[] = new pembekalanExport($this->pembekalan, $value->jurusan, $value->kelas, $getData);
         }
+
         return $sheets;
     }
 }

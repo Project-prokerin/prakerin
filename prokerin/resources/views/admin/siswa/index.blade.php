@@ -1,17 +1,88 @@
 @extends('template.master')
 @push('link')
 <style>
-    .mtop{
-        margin-top: -10px;
+        .card{
+                height: auto;
+        }
+        .buton{
+            margin-top: 10px;
+            margin-left: 50px;
+            margin-bottom: 30px;
+        }
+        .table{
+                margin-top: 20px;
+        }
+
+
+    table.dataTable th:nth-child(1) {
+        width: 20px;
+        max-width: 130px;
+        word-break: break-all;
+        white-space: pre-line;
     }
-    .pleft{
-        padding-left: 15px;
+
+    table.dataTable td:nth-child(1) {
+        width: 20px;
+        max-width: 130px;
+        word-break: break-all;
+        white-space: pre-line;
     }
-     .card-body form .d-flex i{
-         width: 40px;
-         font-size: medium;
-         padding-top: 5px;
-     }
+    table.dataTable th:nth-child(2) {
+        width: 190px;
+        max-width: 190px;
+        word-break: break-all;
+        white-space: pre-line;
+    }
+
+    table.dataTable td:nth-child(2) {
+        width: 140px;
+        max-width: 140px;
+        word-break: break-all;
+        white-space: pre-line;
+    }
+    table.dataTable td:nth-child(3) {
+        width: 140px;
+        max-width: 140px;
+        word-break: break-all;
+        white-space: pre-line;
+    }
+    table.dataTable th:nth-child(4) {
+        width: 140px;
+        max-width: 140px;
+        word-break: break-all;
+        white-space: pre-line;
+    }
+
+    table.dataTable td:nth-child(4) {
+        width: 140px;
+        max-width: 140px;
+        word-break: break-all;
+        white-space: pre-line;
+    }
+    table.dataTable th:nth-child(5) {
+        width: 80px;
+        max-width: 80px;
+        word-break: break-all;
+        white-space: pre-line;
+    }
+    table.dataTable th:nth-child(6) {
+        width: 80px;
+        max-width: 80px;
+        word-break: break-all;
+        white-space: pre-line;
+    }
+    table.dataTable th:nth-child(7) {
+        width: 140px;
+        max-width: 140px;
+        word-break: break-all;
+        white-space: pre-line;
+    }
+    a[href$=".pdf/download"]:before
+        {
+        content: "\f1c1";
+        font-family: fontawesome;
+        padding-right: 10px;
+        }
 </style>
 @endpush
 @section('title', 'Prakerin | Data siswa')
@@ -21,69 +92,144 @@
         <div class="breadcrumb-item"> <i class="fas fa-user"></i> DATA SISWA</div>
 @endsection
 @section('main')
-<div class="card">
-    <div class="container">
-        <div class="card-body">
-            <div class="">  
-                <a href=""class="btn btn-primary rounded-pill"> Tambah Data <i class="fas fa-plus"></i></button></a>
+  <div class="card">
+        <!-- table -->
+        <div class="container mt-4" >
+        @if (session('success'))
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            {{ session('success') }}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
             </div>
-            <form class="d-flex flex-row-reverse" style="margin-top: -36px;">
-                <button class="btn btn-outline-success" type="submit"><i class="fas fa-search"></i></button>
-                <input class="form-control ml-3" type="search" placeholder="Search" aria-label="Search" style="width: 200px;">
-                <div>
-                  <a href="/export/pdf/data_prakerin"class="btn btn-danger rounded-pill"> Export to PDF</a>
-                </div>
-                &nbsp;&nbsp;&nbsp;
-                <div>
-                  <a href="/export/excel/data_prakerin"class="btn btn-success rounded-pill"> Export to Excel</a>
-                </div>
-            </form>
-        </div>
-        <div class="card-body">
-            <table class="table table-bordered text-center" id="table">
-                <thead>
-                    <tr>
-                        <th scope="col">No</th>
-                        <th scope="col">NIPD</th>
-                        <th scope="col">Nama</th>
-                        <th scope="col">Email</th>
-                        <th scope="col">Kelas</th>
-                        <th scope="col">Jurusan</th>
-                        <th scope="col">Action</th>
+        @endif
 
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <th scope="row">1</th>
-                        <td>000000000</td>
-                        <td>Nur Firdaus</td>
-                        <td>nurfirdaus01@gmail.com</td>
-                        <td>IX</td>
-                        <td>RPL</td>
-                        <td>
-                            <button type="button" class="btn btn-primary"><i class="fas fa-search"></i></button>
-                            <button type="button" class="btn btn-warning"><i class="fas fa-pencil-alt"></i></button>
-                            <button type="button" class="btn btn-danger"><i class="fas fa-trash"></i></button>
-                        </td>
-                    </tr>
-                </tbody>
-                </table>
+        @if (session('fail'))
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            {{ session('fail') }}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            </div>
+        @endif
 
-                {{--  --}}
-                    <nav aria-label="Page navigation example">
-                        <ul class="pagination mb-4 justify-content-right">
-                            <li class="page-item"><a class="page-link" href="#">Previous</a></li>
-                            <li class="page-item"><a class="page-link" href="#">1</a></li>
-                            <li class="page-item"><a class="page-link" href="#">2</a></li>
-                            <li class="page-item"><a class="page-link" href="#">Next</a></li>
-                        </ul>
-                    </nav>
-                {{--  --}}
+        {{-- update --}}
+        <div class="buton">
+            <a href="{{ route('siswa.tambah') }}"class="btn btn-primary rounded-pill"> Tambah Data <i class="fas fa-plus"></i></button></a>
         </div>
-</div>
-</div>
+        <form class="d-flex flex-row-reverse mr-5" style="margin-top: -66px;">
+            <button class="btn btn-outline-success" type="submit"><i class="fas fa-search"></i></button>
+            <input class="form-control ml-3" type="search" placeholder="Search" aria-label="Search" id="search" style="width: 200px;">
+            <div>
+                <a href="#"class="btn btn-danger rounded-pill "> <i class="fas fa-cloud-download-alt"></i>  PDF</a>
+            </div>
+            &nbsp;&nbsp;&nbsp;
+            <div>
+                <a href="/export/excel/siswa"class="btn btn-success rounded-pill "> <i class="fas fa-cloud-download-alt"></i>  Excel</a>
+            </div>
+        </form>
+        <br>
+        {{-- update --}}
+        <table class="table table-bordered" id="table">
+        <thead>
+            <tr>
+            <th scope="col">No</th>
+            <th scope="col">NIPD</th>
+            <th scope="col">Nama</th>
+            <th scope="col">Email</th>
+            <th scope="col">Kelas</th>
+            <th scope="col">Jurusan</th>
+            <th scope="col">Action</th>
+
+        </tr>
+        </thead>
+        <tbody>
+
+        </tbody>
+        </table>
+        <!-- tutup table -->
+        </div>
+
+
+        </div>
 @endsection
 @push('script')
+<script>
+    $(document).ready( function () {
+                var filter = $('#search').val();
+                console.log(filter);
+                var table = $('#table').DataTable({
+                    dom: 't<"bottom"<"row"<"col-6"i><"col-6 mb-4"p>>>',
+                    bLengthChange: false,
+                    ordering:false,
+                    info: true,
+                    filtering:false,
+                    searching: true,
+                    serverside: true,
+                    processing: true,
+                    serverSide: true,
+                    "responsive": true,
+                    "autoWidth": false,
+                    ajax:{
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    url: "{{route('siswa.ajax')}}",
+                    type: "post",
+                    data: function (data) {
+                        data = '';
+                        return data
+                    }
+                    },
+                    columns:[
+                    { data: 'DT_RowIndex', name: 'DT_RowIndex'},
+                    { data: 'nipd', name:'nipd'},
+                    { data: 'nama_siswa', name:'nama_siswa'},
+                    { data: 'email', name:'email'},
+                    { data: 'kelas',name:'kelas'},
+                    { data: 'jurusan',name:'jurusan'},
+                    { data: 'action',name:'action'}
+                    ],
+                });
 
+            // search engine
+            $("#search").keyup(function () {
+                table.search( this.value ).draw();
+            })
+
+                // hapus data
+            $('body').on('click','#hapus', function () {
+            // sweet alert
+                Swal.fire({
+                title: 'Apa anda yakin?',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonText: 'Hapus',
+                cancelButtonText: 'Batal'
+                }).then((result) => {
+                    if (result.value) {
+                        id = $(this).data('id');
+                        $.ajax({
+                                url: "/admin/siswa/delete/"+ id,
+                                type: "DELETE",
+
+                                data: { _token: '{{csrf_token()}}' },
+                                success: function (data) {
+                                    console.log(data);
+                                    table.draw();
+                                    Swal.fire(
+                                        'success',
+                                        'Data anda berhasil di hapus.',
+                                        'success'
+                                    )
+                                },
+                                error: function (data) {
+                                    console.log('Error:', data);
+                                }
+                        });
+                    } else if (result.dismiss === Swal.DismissReason.cancel) {}
+                })
+            });
+            });
+</script>
 @endpush
