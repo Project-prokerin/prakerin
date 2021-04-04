@@ -74,7 +74,7 @@
 @section('main')
 <div class="card">
         <!-- table -->
-        <div class="container mt-4" >
+        <div class="container mt-5" >
         @if (session('success'))
         <div class="alert alert-success alert-dismissible fade show" role="alert">
             {{ session('success') }}
@@ -95,7 +95,7 @@
 
         {{-- update --}}
         <div class="buton">
-            <a href="{{ route('siswa.tambah') }}"class="btn btn-primary rounded-pill"> Tambah Data <i class="fas fa-plus"></i></button></a>
+            <a href="{{ route('guru.tambah') }}"class="btn btn-primary rounded-pill"> Tambah Data <i class="fas fa-plus"></i></button></a>
         </div>
         <form class="d-flex flex-row-reverse mr-5" style="margin-top: -66px;">
             <button class="btn btn-outline-success" type="submit"><i class="fas fa-search"></i></button>
