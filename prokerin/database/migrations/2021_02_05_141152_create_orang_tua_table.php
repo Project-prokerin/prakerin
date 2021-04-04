@@ -23,13 +23,13 @@ class CreateOrangTuaTable extends Migration
             $table->string('pendidikan_ayah');
             $table->string('pekerjaan_ayah');
             $table->string('penghasilan_ayah');
-            $table->integer('nik_ayah')->length(25);
+            $table->string('nik_ayah',150);
             $table->string('nama_ibu', 30);
             $table->date('tl_ibu');
             $table->string('pendidikan_ibu', 20);
             $table->string('pekerjaan_ibu', 25);
             $table->string('penghasilan_ibu', 25);
-            $table->integer('nik_ibu')->length(25);
+            $table->string('nik_ibu',150);
             $table->enum('status', ['Kandung', 'Wali']);
             $table->timestamps();
         });

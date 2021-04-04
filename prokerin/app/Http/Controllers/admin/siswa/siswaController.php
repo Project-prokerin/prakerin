@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\admin\siswa;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\siswaRequest;
 use Illuminate\Http\Request;
 use App\Models\Siswa;
 use App\Models\orang_tua;
@@ -51,7 +52,7 @@ class siswaController extends Controller
                 ->addColumn('action', function ($data) {
                     $button = '<a href="/admin/siswa/detail/' . $data->id . '"   id="' . $data->id . '" class="edit btn btn-primary btn-sm"><i class="fas fa-search"></i></a>';
                     $button .= '&nbsp';
-                    $button .= '<a  href="/admin/pembekalan/edit/' . $data->id . '" id="edit" data-toggle="tooltip"  data-id="' . $data->id . '" data-original-title="Edit" class="edit btn btn-warning btn-sm edit-post"><i class="fas fa-pencil-alt"></i></a>';
+                    $button .= '<a  href="/admin/siswa/edit/' . $data->id . '" id="edit" data-toggle="tooltip"  data-id="' . $data->id . '" data-original-title="Edit" class="edit btn btn-warning btn-sm edit-post"><i class="fas fa-pencil-alt"></i></a>';
                     $button .= '&nbsp';
                     $button .= '<button type="button" name="delete" id="hapus" data-id="' . $data->id . '" class="delete btn btn-danger btn-sm"><i class="fas fa-trash"></i></button>';
                     return $button;
@@ -71,9 +72,19 @@ class siswaController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(siswaRequest $request)
     {
+        $validate = $request->validated();
+        $siswa = Siswa::create(['nama_siswa' => $request->nama_siswa, 'nipd' => $request->nipd, 'jk' => $request->jk, 'tempat_lahir' => $request->tempat_lahir, 'tanggal_lahir' => $request->tanggal_lahir, 'nik' => $request->nik, 'agama' => $request->agama, 'alamat' => $request->alamat, 'jenis_tinggal' => $request->jenis_tinggal, 'transportasi' => $request->transportasi, 'no_hp' => $request->no_hp, 'email' => $request->email, 'bb' => $request->bb, 'tb' => $request->tb, 'anak_ke' => $request->anak_ke, 'jmlh_saudara' => $request->jmlh_saudara, 'kebutuhan_khusus' => $request->kebutuhan_khusus, 'no_akte' => $request->no_akte,'kelas' => $request->kelas,'Jurusan' => $request->jurusan, 'created_at' => Carbon::now()]);
 
+        $request->request->add(['id_siswa' => $siswa->id]);
+        // dd($request->id_siswa);
+        $user = User::create(['username' => $request->nipd, 'id_siswa' => $request->id_siswa, 'role' => 'siswa', 'password' => Hash::make('password')]);
+
+        $orangtua = orang_tua::create(['id_siswa' => $request->id_siswa, 'nomor_kk' => $request->nomor_kk, 'nama_ayah' => $request->nama_ayah, 'tl_ayah' => $request->tl_ayah, 'pendidikan_ayah' => $request->pendidikan_ayah, 'pekerjaan_ayah' => $request->pekerjaan_ayah, 'penghasilan_ayah' => $request->penghasilan_ayah, 'nik_ayah' => $request->nik_ayah, 'nama_ibu' => $request->nama_ibu, 'tl_ibu' => $request->tl_ibu, 'pendidikan_ibu' => $request->pendidikan_ibu, 'pekerjaan_ibu' => $request->pendidkan_ibu, 'pekerjaan_ibu' => $request->pekerjaan_ibu, 'penghasilan_ibu' => $request->penghasilan_ibu, 'nik_ibu' => $request->nik_ibu, 'status' => $request->status, 'created_at' => Carbon::now()]);
+
+        $sekolah_asal = sekolah_asal::create(['id_siswa' => $request->id_siswa, 'asal_sekolah' => $request->asal_sekolah, 'no_ijazah' => $request->no_ijazah, 'shkun' => $request->shkun, 'created_at' => Carbon::now()]);
+        return redirect()->route('siswa.index')->with('success', 'Data berhasil di tambah!');
     }
 
     /**
@@ -95,7 +106,10 @@ class siswaController extends Controller
      */
     public function edit($id)
     {
-        return view('admin.siswa.update');
+        $siswa = Siswa::where('id', $id)->first();
+        $orangtua = orang_tua::where('id_siswa', $id)->first();
+        $sekolah = sekolah_asal::where('id_siswa', $siswa->id)->first();
+        return view('admin.siswa.edit', compact('siswa', 'orangtua', 'sekolah'));
     }
 
     /**
@@ -105,9 +119,18 @@ class siswaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(siswaRequest $request, $id)
     {
+        $validated = $request->validated();
+        $siswa = Siswa::where('id', $id)->update(['nama_siswa' => $request->nama_siswa, 'nipd' => $request->nipd, 'jk' => $request->jk, 'tempat_lahir' => $request->tempat_lahir, 'tanggal_lahir' => $request->tanggal_lahir, 'nik' => $request->nik, 'agama' => $request->agama, 'alamat' => $request->alamat, 'jenis_tinggal' => $request->jenis_tinggal, 'transportasi' => $request->transportasi, 'no_hp' => $request->no_hp, 'email' => $request->email, 'bb' => $request->bb, 'tb' => $request->tb, 'anak_ke' => $request->anak_ke, 'jmlh_saudara' => $request->jmlh_saudara, 'kebutuhan_khusus' => $request->kebutuhan_khusus, 'no_akte' => $request->no_akte, 'kelas' => $request->kelas, 'Jurusan' => $request->jurusan,  'updated_at' => Carbon::now()]);
 
+        $orangtua =  orang_tua::where('id_siswa', $id)->update(['nomor_kk' => $request->nomor_kk, 'nama_ayah' => $request->nama_ayah, 'tl_ayah' => $request->tl_ayah, 'pendidikan_ayah' => $request->pendidikan_ayah, 'pekerjaan_ayah' => $request->pekerjaan_ayah, 'penghasilan_ayah' => $request->penghasilan_ayah, 'nik_ayah' => $request->nik_ayah, 'nama_ibu' => $request->nama_ibu, 'tl_ibu' => $request->tl_ibu, 'pendidikan_ibu' => $request->pendidikan_ibu, 'pekerjaan_ibu' => $request->pendidkan_ibu, 'pekerjaan_ibu' => $request->pekerjaan_ibu, 'penghasilan_ibu' => $request->penghasilan_ibu, 'nik_ibu' => $request->nik_ibu, 'status' => $request->status, 'updated_at' => Carbon::now()]);
+
+        $sekolah =  sekolah_asal::where('id_siswa', $id)->update(['asal_sekolah' => $request->asal_sekolah, 'no_ijazah' => $request->no_ijazah, 'shkun' => $request->shkun, 'created_at' => Carbon::now()]);
+
+        $user = User::where('id_siswa', $id)->update(['username' => $request->nipd]);
+
+        return redirect()->route('siswa.index')->with('success', 'Data Berhasil di Update');
     }
 
     /**

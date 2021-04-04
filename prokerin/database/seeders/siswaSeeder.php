@@ -15,10 +15,10 @@ class siswaSeeder extends Seeder
      */
     public function run()
     {
-        $faker = Faker::create('id_ID');
-        $jurusan = ['RPL','MM','TKJ','BC'];
-        $jk = ['L','P'];
-    //      for ($i = 0; $i < 6; $i++) {
+    //     $faker = Faker::create('id_ID');
+    //     $jurusan = ['RPL','MM','TKJ','BC'];
+    //     $jk = ['L','P'];
+    //     for ($i = 1; $i <= 8; $i++) {
     //     DB::table('siswa')->insert([
     //         'nama_siswa' => $faker->name,
     //         'nipd' => $faker->randomNumber(8),
@@ -43,7 +43,7 @@ class siswaSeeder extends Seeder
 
     DB::table('siswa')->insert([
         'nama_siswa' => 'Nur Firdaus',
-        'nipd' => '94292929',
+        'nipd' => '942929291',
         'jk' => 'L',
         'kelas' => 'XII',
         'Jurusan' => 'RPL',
@@ -65,7 +65,7 @@ class siswaSeeder extends Seeder
     ]);
     DB::table('siswa')->insert([
         'nama_siswa' => 'Rafie Aydin',
-        'nipd' => '94292929',
+        'nipd' => '942929292',
         'jk' => 'L',
         'kelas' => 'XII',
         'jurusan' => 'MM',
@@ -87,7 +87,7 @@ class siswaSeeder extends Seeder
     ]);
     DB::table('siswa')->insert([
         'nama_siswa' => 'Dana',
-        'nipd' => '94292929',
+        'nipd' => '942929293',
         'jk' => 'L',
         'kelas' => 'XII',
         'jurusan' => 'MM',
@@ -109,7 +109,7 @@ class siswaSeeder extends Seeder
     ]);
     DB::table('siswa')->insert([
         'nama_siswa' => 'Walada',
-        'nipd' => '94292929',
+        'nipd' => '942929294',
         'jk' => 'L',
         'kelas' => 'TKJ',
         'jurusan' => 'XII',
@@ -131,7 +131,7 @@ class siswaSeeder extends Seeder
     ]);
     DB::table('siswa')->insert([
         'nama_siswa' => 'Radit',
-        'nipd' => '94292929',
+        'nipd' => '942929295',
         'jk' => 'L',
         'kelas' => 'XII',
         'jurusan' => 'MM',
@@ -153,7 +153,7 @@ class siswaSeeder extends Seeder
     ]);
     DB::table('siswa')->insert([
         'nama_siswa' => 'Falih',
-        'nipd' => '94292929',
+        'nipd' => '942929296',
         'jk' => 'L',
         'kelas' => 'XII',
         'jurusan' => 'BC',
@@ -175,7 +175,7 @@ class siswaSeeder extends Seeder
     ]);
     DB::table('siswa')->insert([
         'nama_siswa' => 'Vik',
-        'nipd' => '94292929',
+        'nipd' => '942929297',
         'jk' => 'P',
         'kelas' => 'XII',
         'jurusan' => 'BC',
@@ -197,7 +197,7 @@ class siswaSeeder extends Seeder
     ]);
     DB::table('siswa')->insert([
         'nama_siswa' => 'JiArisa',
-        'nipd' => '94292929',
+        'nipd' => '942929298',
         'jk' => 'P',
         'kelas' => 'XII',
         'jurusan' => 'BC',

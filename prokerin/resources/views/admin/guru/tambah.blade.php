@@ -1,11 +1,11 @@
 @extends('template.master')
 @push('link')
 <style>
-     .card-body form .d-flex i{
-         width: 50px;
-         font-size: medium;
-         padding-top: 11px;
-     }
+        .card-body form .d-flex i{
+            width: 50px;
+            font-size: medium;
+            padding-top: 11px;
+        }
 </style>
 @endpush
 @section('title', 'Prakerin | Data Guru')
@@ -18,7 +18,7 @@
 <div class="card">
     <div class="container">
         <div class="card-body mt-3">
-            <div class="">  
+            <div class="">
                 <h5>Tambah Data Guru</h5>
             </div>
             <form class="d-flex flex-row-reverse" style="margin-top: -36px;">
@@ -106,7 +106,7 @@
         </div>
     </div>
 </div>
-    
+
 
 
 @endsection

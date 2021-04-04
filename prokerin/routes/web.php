@@ -55,9 +55,9 @@ Route::middleware(['web', 'auth', 'role:hubin'])->group(function () {
     Route::post('admin/siswa/ajax', [siswaController::class, 'ajax'])->name('siswa.ajax');
     Route::get('admin/siswa/detail/{id}', [siswaController::class, 'detail'])->name('siswa.detail');
     Route::get('admin/siswa/tambah', [siswaController::class, 'tambah'])->name('siswa.tambah');
-    Route::post('admin/siswa/tambah/post', [siswaController::class, 'store'])->name('siswa.post');
-    Route::get('admin/siswa/edit', [siswaController::class, 'edit'])->name('siswa.edit');
-    Route::put('admin/siswa/update', [siswaController::class, 'update'])->name('siswa.update');
+    Route::post('admin/siswa/post', [siswaController::class, 'store'])->name('siswa.post');
+    Route::get('admin/siswa/edit/{id}', [siswaController::class, 'edit'])->name('siswa.edit');
+    Route::put('admin/siswa/update/{id}', [siswaController::class, 'update'])->name('siswa.update');
     Route::delete('admin/siswa/delete/{id}', [siswaController::class, 'destroy'])->name('siswa.delete');
     Route::post('/siswa/excel/destroy', [siswaController::class, 'delete_all'])->name('siswa.delete-all');
     Route::get('/export/excel/siswa', [ExcelController::class, 'siswa'])->name('export.siswa');
