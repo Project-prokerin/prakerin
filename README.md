@@ -5,18 +5,24 @@ Prakerin adalah praktek kerja industri yang di gunakan untuk mengelola data maga
 1. unduh prokerin | clone : <https://github.com/Project-prokerin/prakerin.git>
 2. taruh folder prokerin ke htdocs
 3. ubah .env.example ke .env
-4. buka cmd cd ke path prakerin
-5. ketik 
+4. lalau ubah nama database di env
+5. buka cmd cd ke path prakerin
+6. langkah pertama install composer dulu
+ 
+   ```php
+   composer install
+    ```
+7. langkah kedua update composer 
    
    ```php
    composer update
     ```
-7. lalu ketik
+8. langkah ketga ketik seperti ini
  
    ```php
    php artisan key:generate
    ```
-9. terakhir ketik
+9. terakhir ketik untuk migrate table dari database
 
 
    ```php
@@ -54,13 +60,4 @@ Prakerin adalah praktek kerja industri yang di gunakan untuk mengelola data maga
 - [walada Hulama Zaki](https://github.com/waladahlmzaqi) - custom design stisla
 - [Muhammad Raditya Nugraha Ilham](https://github.com/RadityaNugra) - custom design stisla
 
-<!-- MARKDOWN LINKS -->
-[contributors-shield]: https://img.shields.io/github/contributors/Project-prokerin/presensiRFID.svg?style=for-the-badge
-[contributors-url]: https://github.com/Project-prokerin/presensiRFID/graphs/contributors
-[forks-shield]: https://img.shields.io/github/forks/Project-prokerin/presensiRFID?style=for-the-badge
-[forks-url]: https://github.com/Project-prokerin/presensiRFID/network/members
-[stars-shield]: https://img.shields.io/github/stars/Project-prokerin/presensiRFID?style=for-the-badge
-[stars-url]: https://github.com/Project-prokerin/presensiRFID/stargazers
-[issues-shield]: https://img.shields.io/github/issues/Project-prokerin/presensiRFID?style=for-the-badge
-[issues-url]: https://github.com/Project-prokerin/prakerin/issues
 
