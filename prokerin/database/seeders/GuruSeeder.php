@@ -4,7 +4,8 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use Faker\Factory as Faker;
-use DB;
+use Illuminate\Support\Facades\DB;
+
 class GuruSeeder extends Seeder
 {
     /**
@@ -16,14 +17,38 @@ class GuruSeeder extends Seeder
     {
         $faker = Faker::create('id_ID');
         $jurusan = ['RPL','MM','TKJ','BC'];
-         for ($i = 0; $i < 6; $i++) {
+         for ($i = 0; $i <= 6; $i++) {
         DB::table('guru')->insert([
             'nik' => $faker->nik,
             'nama' => $faker->title."".$faker->name,
-            'jabatan' => 'Guru',
+            'jabatan' => 'Kejuruan',
             'jurusan' => $faker->randomElement($jurusan),
             'no_telp' => $faker->randomNumber(9),
         ]);
-         }
+        }
+        // admin
+        DB::table('guru')->insert([
+            'nik' => $faker->nik,
+            'nama' => $faker->title . "" . $faker->name,
+            'jabatan' => 'hubin',
+            'jurusan' => $faker->randomElement($jurusan),
+            'no_telp' => $faker->randomNumber(9),
+        ]);
+        DB::table('guru')->insert([
+            'nik' => $faker->nik,
+            'nama' => $faker->title . "" . $faker->name,
+            'jabatan' => 'kaprok',
+            'jurusan' => $faker->randomElement($jurusan),
+            'no_telp' => $faker->randomNumber(9),
+        ]);
+        DB::table('guru')->insert([
+            'nik' => $faker->nik,
+            'nama' => $faker->title . "" . $faker->name,
+            'jabatan' => 'bkk',
+            'jurusan' => $faker->randomElement($jurusan),
+            'no_telp' => $faker->randomNumber(9),
+        ]);
+
     }
+
 }

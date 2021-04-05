@@ -22,6 +22,7 @@ class UserSeeder extends Seeder
         DB::table('users')->insert([
             'username' => 'admin',
             'password' => Hash::make('admin'),
+            'id_guru' => 8,
             'role' => 'hubin',
             'created_at' => Carbon::now(),
 
@@ -30,6 +31,7 @@ class UserSeeder extends Seeder
         DB::table('users')->insert([
             'username' => 'kaprog',
             'password' => Hash::make('admin'),
+            'id_guru' => 9,
             'role' => 'kaprog',
             'created_at' => Carbon::now(),
 
@@ -38,6 +40,7 @@ class UserSeeder extends Seeder
         DB::table('users')->insert([
             'username' => 'bkk',
             'password' => Hash::make('admin'),
+            'id_guru' => 10,
             'role' => 'bkk',
             'created_at' => Carbon::now(),
 

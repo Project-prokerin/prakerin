@@ -68,8 +68,8 @@ Route::middleware(['web', 'auth', 'role:hubin'])->group(function () {
     Route::get('admin/guru/detail/{id}', [guruController::class, 'detail'])->name('guru.detail');
     Route::get('admin/guru/tambah', [guruController::class, 'tambah'])->name('guru.tambah');
     Route::post('admin/guru/tambah/post', [guruController::class, 'store'])->name('guru.post');
-    Route::get('admin/guru/edit', [guruController::class, 'edit'])->name('guru.edit');
-    Route::put('admin/guru/update', [guruController::class, 'update'])->name('guru.update');
+    Route::get('admin/guru/edit/{id}', [guruController::class, 'edit'])->name('guru.edit');
+    Route::put('admin/guru/update/{id}', [guruController::class, 'update'])->name('guru.update');
     Route::delete('admin/guru/delete/{id}', [guruController::class, 'destroy'])->name('guru.delete');
     Route::post('/guru/destroy', [guruController::class, 'delete_all'])->name('guru.delete-all');
     Route::get('/export/excel/guru', [ExcelController::class, 'guru'])->name('export.guru');
