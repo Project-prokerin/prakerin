@@ -40,10 +40,10 @@ class kelompoklaporanSeeder extends Seeder
             'jurusan' => 'RPL'
         ])  ; 
         DB::table('kelompok_laporan')->insert([
-            'no' => 2,
-            'id_guru' => 2, 
+            'no' => 1,
+            'id_guru' => 1, 
             'id_data_prakerin' => 4,
-            'nama_perusahaan' => 'Feil, Oberbrunner and Gottlieb',
+            'nama_perusahaan' => 'Thiel, Lowe and Blick',
             'no_telpon' => '08999991',
             'jurusan' => 'RPL'
         ])  ; 
@@ -59,6 +59,22 @@ class kelompoklaporanSeeder extends Seeder
             'no' => 2,
             'id_guru' => 2, 
             'id_data_prakerin' => 6,
+            'nama_perusahaan' => 'Feil, Oberbrunner and Gottlieb',
+            'no_telpon' => '08999991',
+            'jurusan' => 'RPL'
+        ])  ; 
+        DB::table('kelompok_laporan')->insert([
+            'no' => 2,
+            'id_guru' => 2, 
+            'id_data_prakerin' => 7,
+            'nama_perusahaan' => 'Feil, Oberbrunner and Gottlieb',
+            'no_telpon' => '08999991',
+            'jurusan' => 'RPL'
+        ])  ; 
+        DB::table('kelompok_laporan')->insert([
+            'no' => 2,
+            'id_guru' => 2, 
+            'id_data_prakerin' => 8,
             'nama_perusahaan' => 'Feil, Oberbrunner and Gottlieb',
             'no_telpon' => '08999991',
             'jurusan' => 'RPL'

@@ -9,6 +9,8 @@ use App\Models\perusahaan;
 use App\Models\data_prakerin;
 use App\Models\guru;
 use App\Models\Siswa;
+use App\Http\Requests\kelompok_laporanRequest;
+
 class kelompokController extends Controller
 {
     /**
@@ -73,22 +75,40 @@ class kelompokController extends Controller
     public function store(Request $request)
     {
 
-        // $request->validated();
-        $perusahaan = perusahaan::where('id', $request->id_perusahaan)->first();
+        $data=   $request->all();
+    //    array($data);
+        // dd($data);
+        $perusahaan = perusahaan::where('id', $data['id_perusahaan'])->first();
     // $input = Input::all();
     // $id_dataP = [];
         // $condition = $input['id_data_prakerin'];
-foreach ($request->id_data_prakerin as $key => $val) {
-    $data = kelompok_laporan::create([
-        'no'   => $request->no,
-        'id_guru'   => $request->id_guru,
-        'id_data_prakerin'   => $request->id_data_prakerin[$key],
-        'nama_perusahaan'   => $perusahaan->nama,
-        'no_telpon'         => $request->no_telpon,
-        'jurusan'       => $request->jurusan,
+
+        // if (count($data['id_data_prakerin']  > 0) ) {
+            foreach ($data['id_data_prakerin'] as $key => $value) {
+                $data2 = array(
+                    'no'   => $data['no'],
+                    'id_guru'   => $data['id_guru'],
+                    'id_data_prakerin'   => $data['id_data_prakerin'][$key],
+                    'nama_perusahaan'   => $perusahaan->nama,
+                    'no_telpon'         => $data['no_telpon'],
+                    'jurusan'       => $data['jurusan'],
+                );
+                kelompok_laporan::create($data2);
+            }
+
+        // }
+        
+// foreach ($request->id_data_prakerin as $key => $val) {
+//     $data = kelompok_laporan::create([
+//         'no'   => $request->no,
+//         'id_guru'   => $request->id_guru,
+//         'id_data_prakerin'   => $request->id_data_prakerin[$key],
+//         'nama_perusahaan'   => $perusahaan->nama,
+//         'no_telpon'         => $request->no_telpon,
+//         'jurusan'       => $request->jurusan,
   
-    ]);
-}
+//     ]);
+// }
 // dd($data);
       
             return redirect()->route('kelompok.index')->with(['success' => 'Kelompok berhasil di buat!']);
@@ -139,21 +159,121 @@ foreach ($request->id_data_prakerin as $key => $val) {
         // $input = Input::all();
         // $id_dataP = $request->id_data_prakerin;
         // dd($request->id_data_prakerin);
+        // $perusahaan = Perusahaan::find('id',$request->id_perusahaan)->first();
+        // $data = $request->all();
+        foreach ($request->id_data_prakerin as $key => $val) {
+                $data = kelompok_laporan::where('id',$request->id[$key])->where('no',$request->no[$key])->update([
+                    'no'   => $request->no[$key],
+                    'id_guru'   => $request->id_guru,
+                    'id_data_prakerin'   => $request->id_data_prakerin[$key],
+                    'nama_perusahaan'   => $request->id_perusahaan,
+                    'no_telpon'         => $request->no_telpon,
+                    'jurusan'       => $request->jurusan,
+              
+                ]);
+                // $data = kelompok_laporan::where('id',$request->id[1])->where('no',$request->no[1])->update([
+                //     'no'   => $request->no[1],
+                //     'id_guru'   => $request->id_guru,
+                //     'id_data_prakerin'   => $request->id_data_prakerin[1],
+                //     'nama_perusahaan'   => $request->id_perusahaan,
+                //     'no_telpon'         => $request->no_telpon,
+                //     'jurusan'       => $request->jurusan,
+              
+                // ]);
+                // $data = kelompok_laporan::where('id',$request->id[2])->where('no',$request->no[2])->update([
+                //     'no'   => $request->no[2],
+                //     'id_guru'   => $request->id_guru,
+                //     'id_data_prakerin'   => $request->id_data_prakerin[2],
+                //     'nama_perusahaan'   => $request->id_perusahaan,
+                //     'no_telpon'         => $request->no_telpon,
+                //     'jurusan'       => $request->jurusan,
+              
+                // ]);
+                // $data = kelompok_laporan::where('id',$request->id[3])->where('no',$request->no[3])->update([
+                //     'no'   => $request->no[3],
+                //     'id_guru'   => $request->id_guru,
+                //     'id_data_prakerin'   => $request->id_data_prakerin[3],
+                //     'nama_perusahaan'   => $request->id_perusahaan,
+                //     'no_telpon'         => $request->no_telpon,
+                //     'jurusan'       => $request->jurusan,
+              
+                // ]);
+
+                    // dd($data);
+
+            }
+
+        // foreach($data['id_data_prakerin'] as $key => $value) {
+        //     $data = kelompok_laporan::find('no',$data['no'][$key])->get();
+        //     $no = $data['no'];
+        //     $id_guru = $data['id_guru'];
+        //     $id_data_prakerin = $data['id_data_prakerin'][$key];
+        //     $no_telpon = $data['no_telpon'];
+        //     $jurusan = $data['jurusan'];
+           
+        //     $data->no = $no;
+        //     $data->id_guru = $id_guru;
+        //     $data->id_data_prakerin = $id_data_prakerin;
+        //     $data->no_telpon = $no_telpon;
+        //     $data->jurusan = $jurusan;
+        //     $data->save();
+        //   }
         // $condition = $input['id_data_prakerin'];
-foreach ($request->id_data_prakerin as $key => $val) {
-    $update = kelompok_laporan::where('no',$request->no)->update([
-        'no'   => $request->no,
-        'id_guru'   => $request->id_guru,
-        'id_data_prakerin'   => $request->id_data_prakerin[$key],
-        'nama_perusahaan'   => $request->id_perusahaan,
-        'no_telpon'         => $request->no_telpon,
-        'jurusan'       => $request->jurusan,
-  
-    ]);
-    
-} 
+        // foreach ($data['id_data_prakerin'] as $key => $value) {
+            // $data1 = array(
+            //     'no'   => $data['no'],
+            //     'id_guru'   => $data['id_guru'],
+            //     'id_data_prakerin'   => $data['id_data_prakerin'],
+            //     'nama_perusahaan'   => $data['id_perusahaan'],
+            //     'no_telpon'         => $data['no_telpon'],
+            //     'jurusan'       => $data['jurusan'],
+            // );
+            // kelompok_laporan::where('no',$data['no'][0])->update($data1);
+            // $data2 = array(
+            //     'no'   => $data['no'],
+            //     'id_guru'   => $data['id_guru'],
+            //     'id_data_prakerin'   => $data['id_data_prakerin'],
+            //     'nama_perusahaan'   => $data['id_perusahaan'],
+            //     'no_telpon'         => $data['no_telpon'],
+            //     'jurusan'       => $data['jurusan'],
+            // );
+            // kelompok_laporan::where('no',$data['no'][1])->update($data2);
+            // $data3 = array(
+            //     'no'   => $data['no'],
+            //     'id_guru'   => $data['id_guru'],
+            //     'id_data_prakerin'   => $data['id_data_prakerin'],
+            //     'nama_perusahaan'   => $data['id_perusahaan'],
+            //     'no_telpon'         => $data['no_telpon'],
+            //     'jurusan'       => $data['jurusan'],
+            // );
+            // kelompok_laporan::where('no',$data['no'][2])->update($data3);
+            // $data4 = array(
+            //     'no'   => $data['no'],
+            //     'id_guru'   => $data['id_guru'],
+            //     'id_data_prakerin'   => $data['id_data_prakerin'],
+            //     'nama_perusahaan'   => $data['id_perusahaan'],
+            //     'no_telpon'         => $data['no_telpon'],
+            //     'jurusan'       => $data['jurusan'],
+            // );
+            // kelompok_laporan::where('no',$data['no'][3])->update($data4);
+            // dd($data2);
+        // }
+        // $no  = $request->no;
+        // $id_guru   = $request->id_guru[$key];
+        // $id_data_prakerin   = $request->id_data_prakerin[$key];
+        // $nama_perusahaan   = $request->id_perusahaan[$key];
+        // $no_telpon         = $request->no_telpon[$key];
+        // $jurusan       = $request->jurusan[$key];
+
+        // $data->id_guru = $id_guru;
+        // $data->id_data_prakerin = $id_data_prakerin;
+        // $data->nama_perusahaan = $nama_perusahaan;
+        // $data->no_telpon = $no_telpon;
+        // $data->jurusan = $jurusan;
+        // $data->save;
+        
 // dd($update);
-return redirect()->route('kelompok.index')->with(['update' => 'Kelompok berhasil di Update  !']);
+return redirect()->route('kelompok.index')->with(['update' => 'Kelompok '.$request->no[0].' berhasil di Update  !']);
     }
     public function updates(data_prakerinRequest $request,data_prakerin $data_prakerin)
     {
@@ -203,3 +323,4 @@ return redirect()->route('kelompok.index')->with(['update' => 'Kelompok berhasil
 
     }
 }
+

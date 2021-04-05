@@ -78,6 +78,26 @@ class dataprakerinSeeder extends Seeder
             'tgl_mulai' => '2020-10-10',
             'tgl_selesai' => '2021-11-11',
         ]);
+        DB::table('data_prakerin')->insert([
+            'nama' => 'VIk',
+            'kelas' => 'XII',
+            'jurusan' => 'BC',
+            'id_siswa' => 6,
+            'id_perusahaan' => 2,
+            'id_guru' => 2,
+            'tgl_mulai' => '2020-10-10',
+            'tgl_selesai' => '2021-11-11',
+        ]);
+        DB::table('data_prakerin')->insert([
+            'nama' => 'Jiarisa',
+            'kelas' => 'XII',
+            'jurusan' => 'BC',
+            'id_siswa' => 6,
+            'id_perusahaan' => 2,
+            'id_guru' => 2,
+            'tgl_mulai' => '2020-10-10',
+            'tgl_selesai' => '2021-11-11',
+        ]);
    
     }
 }

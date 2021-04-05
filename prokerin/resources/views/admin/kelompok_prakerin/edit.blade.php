@@ -1,3 +1,5 @@
+
+edit view kelompok
 @extends('template.master')
 @push('link')
     <link rel="stylesheet" href="{{ asset('template/') }}/node_modules/select2/dist/css/select2.min.css">
@@ -36,20 +38,20 @@
         </div>
 
         <div class="container">
-            <form action="{{ route('kelompok.update',$kelompok_laporan[0]->no) }}" method="POST">
+            <form action="{{ route('kelompok.update', $kelompok_laporan[0]->no) }}" method="POST">
                 @method('PUT')
                 @csrf
 
                 <div class="row mt-3 ml-4 ">
                     <div class="col-6  kanan">
                         <!-- no kelom -->
-                        <div class="form-group col-lg-10" hidden>
+                        {{-- <div class="form-group col-lg-10" hidden>
                             <label>No Kelompok</label>
                             <select class="form-control" name="no" id="">
                                 <option value="1"
                                 {{ (old('no') ?? $kelompok_laporan[0]->no) == '1' ? 'selected' : '' }}>
                                 1 </option>
-                                {{-- <option value="2"
+                                <option value="2"
                                 {{ (old('no') ?? $kelompok_laporan[0]->no) == '2' ? 'selected' : '' }}>
                                 2 </option>
                                 <option value="3"
@@ -60,10 +62,10 @@
                                 4 </option>
                                 <option value="5"
                                 {{ (old('no') ?? $kelompok_laporan[0]->no) == '5' ? 'selected' : '' }}>
-                                5 </option> --}}
+                                5 </option>
                             </select>
-                        </div>
-
+                        </div> --}}
+                        {{-- <input type="hidden" name="no" value="{{$kelompok_laporan[0]->no}}"> --}}
 
                         <!-- gru bimbing -->
                         <div class="form-group col-lg-10 ">
@@ -108,6 +110,22 @@
                             @enderror
 
                         </div>
+                        <input class="form-control" type="hidden" value="{{ $kelompok_laporan[0]->id }}" name="id[]"
+                            placeholder="id tlp" aria-label="default input example">
+                        <input class="form-control" type="hidden" value="{{ $kelompok_laporan[1]->id }}" name="id[]"
+                            placeholder="id tlp" aria-label="default input example">
+                        <input class="form-control" type="hidden" value="{{ $kelompok_laporan[2]->id }}" name="id[]"
+                            placeholder="id tlp" aria-label="default input example">
+                        <input class="form-control" type="hidden" value="{{ $kelompok_laporan[3]->id }}" name="id[]"
+                            placeholder="id tlp" aria-label="default input example">
+                            <input class="form-control" type="hidden" value="{{ $kelompok_laporan[0]->no }}" name="no[]"
+                            placeholder="no tlp" aria-label="default input example">
+                            <input class="form-control" type="hidden" value="{{ $kelompok_laporan[1]->no }}" name="no[]"
+                            placeholder="no tlp" aria-label="default input example">
+                            <input class="form-control" type="hidden" value="{{ $kelompok_laporan[2]->no }}" name="no[]"
+                            placeholder="no tlp" aria-label="default input example">
+                            <input class="form-control" type="hidden" value="{{ $kelompok_laporan[3]->no }}" name="no[]"
+                            placeholder="no tlp" aria-label="default input example">
                         <!-- perusahaan -->
                         <div class="form-group col-lg-10 ">
                             <label>Perusahaan</label>
@@ -137,8 +155,9 @@
                     <div class="col-6">
                         <label>Daftar Nama Siswa</label>
                         <div class="form-group col-lg-12 ">
-                            <select name="id_data_prakerin[]" class="form-control  @error('id_data_prakerin')  is-invalid  @enderror select2">
-                            <option value="{{ $kelompok_laporan[0]->id_data_prakerin }}" selected>
+                            <select name="id_data_prakerin[]"
+                                class="form-control  @error('id_data_prakerin')  is-invalid  @enderror select2">
+                                <option value="{{ $kelompok_laporan[0]->id_data_prakerin }}" selected>
                                     {{ $kelompok_laporan[0]->data_prakerin->nama }}</option>
                                 @foreach ($data_prakerin as $item)
                                     <option value="{{ $item->id }}">{{ $item->nama }}</option>
