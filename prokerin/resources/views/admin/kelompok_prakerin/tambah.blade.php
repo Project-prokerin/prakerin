@@ -44,7 +44,7 @@
                         <!-- no kelom -->
                         <div class="form-group col-lg-10">
                             <label>No Kelompok</label>
-                            <select class="form-control @error('no')  is-invalid  @enderror" name="no" id="">
+                            <select class="form-control select2 @error('no')  is-invalid  @enderror" name="no" id="">
                                 <option value="">Pilih Nomor</option>
                                 <option value="1">1</option>
                                 <option value="2">2</option>
@@ -58,16 +58,15 @@
                         <!-- gru bimbing -->
                         <div class="form-group col-lg-10 ">
                             <label>Guru Pembimbing</label>
-                            <select class="form-control @error('jurusan')  is-invalid  @enderror" name="id_guru" id="">
+                            <select class="form-control select2 @error('jurusan')  is-invalid  @enderror" name="id_guru" id="">
                                 <option value="" >--Cari Guru--</option>
-                                            @foreach ($guru as $guruu)
-                                            <option value="{{$guruu->id}}">{{$guruu->nama}}</option>
-                                            @endforeach
-                                            </select>
-                                                @error('id_guru')
-                                                    <div class="invalid-feedback">{{ $message }}</div>
-                                                @enderror
+                                @foreach ($guru as $guruu)
+                                <option value="{{$guruu->id}}">{{$guruu->nama}}</option>
+                                @endforeach
                             </select>
+                                @error('id_guru')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
                         </div>
                         <!-- jurusan -->
                         <div class="form-group col-lg-10 ">
