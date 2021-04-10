@@ -25,13 +25,15 @@
 @section('main')
 <div class="card">
 <div class="buton" style="z-index: 2;">  
-    <a href="{{ route('kelompok.tambah') }}"><button type="button" class="btn btn-primary rounded-pill">Tambah Data <i class="fas fa-plus"></i></button></a>
+    <br>
+    <br>
+    {{-- <a href="{{ route('jurnal.tambah') }}"><button type="button" class="btn btn-primary rounded-pill">Tambah Data <i class="fas fa-plus"></i></button></a> --}}
     {{-- <a style="margin-left: -170px" href="/export/excel/data_prakerin"><button type="button" class="btn btn-success buten ">Export to Excel</button></a>
     <a href="/export/pdf/data_prakerin"><button type="button" class="btn btn-danger butan">Export to PDF</button></a> --}}
 </div>
 <form class="d-flex flex-row-reverse mr-5" style="margin-top: -66px;">
     <button class="btn btn-outline-success" type="submit"><i class="fas fa-search"></i></button>
-    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" style="width: 200px;">
+    <input class="form-control me-2" type="search" id="search" placeholder="Search" aria-label="Search" style="width: 200px;">
     <div>
         <a href="/export/pdf/data_prakerin"><button type="button" class="btn btn-danger mr-3 rounded-pill"><i class="fas fa-cloud-download-alt"></i>  PDF</button></a>
     </div>
@@ -53,59 +55,108 @@
         </tr>
     </thead>
     <tbody>
-        <tr>
-            <th scope="row">1</th>
-            <td>marker</td>
-            <td>11</td>
-            <td>RPL</td>
-            <td>121212</td>
-            <td>
-                <button type="button" class="btn btn-primary"><i class="fas fa-search"></i></button>
-                <button type="button" class="btn btn-warning"><i class="fas fa-pencil-alt"></i></button>
-                <button type="button" class="btn btn-danger"><i class="fas fa-trash"></i></button>
-            </td>
-        </tr>
-        <tr>
-            <th scope="row">1</th>
-            <td>marker</td>
-            <td>11</td>
-            <td>RPL</td>
-            <td>121212</td>
-            <td>
-                <button type="button" class="btn btn-primary"><i class="fas fa-search"></i></button>
-                <button type="button" class="btn btn-warning"><i class="fas fa-pencil-alt"></i></button>
-                <button type="button" class="btn btn-danger"><i class="fas fa-trash"></i></button>
-            </td>
-        </tr>
-        <tr>
-            <th scope="row">1</th>
-            <td>marker</td>
-            <td>11</td>
-            <td>RPL</td>
-            <td>121212</td>
-            <td>
-                <button type="button" class="btn btn-primary"><i class="fas fa-search"></i></button>
-                <button type="button" class="btn btn-warning"><i class="fas fa-pencil-alt"></i></button>
-                <button type="button" class="btn btn-danger"><i class="fas fa-trash"></i></button>
-            </td>
-        </tr>
+      
     </tbody>
     </table>
 
     {{--  --}}
-        <nav aria-label="Page navigation example">
+        {{-- <nav aria-label="Page navigation example">
             <ul class="pagination mt-5 mb-4 justify-content-right">
                 <li class="page-item"><a class="page-link" href="#">Previous</a></li>
                 <li class="page-item"><a class="page-link" href="#">1</a></li>
                 <li class="page-item"><a class="page-link" href="#">2</a></li>
                 <li class="page-item"><a class="page-link" href="#">Next</a></li>
             </ul>
-        </nav>
+        </nav> --}}
     {{--  --}}
 </div>
 </div>
 
 @endsection
 @push('script')
+ <script>
+            $(document).ready( function () {
+                var filter = $('#search').val();
+                console.log(filter);
+                var table = $('#table').DataTable({
+                    dom: 't<"bottom"<"row"<"col-6"i><"col-6 mb-4"p>>>',
+                    bLengthChange: false,
+                    ordering:false,
+                    info: true,
+                    filtering:false,
+                    searching: true,
+                    serverside: true,
+                    processing: true,
+                    serverSide: true,
+                    "responsive": true,
+                    "autoWidth": false,
+                    ajax:{
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    url: "{{route('jurnal.ajax')}}",
+                    type: "post",
+                    data: function (data) {
+                        data = '';
+                        return data
+                    }
+                    },
+                    columns:[
+                    {data: 'DT_RowIndex', name: 'DT_RowIndex'},
+                    { data: 'id_siswa',name:'id_siswa.nama_siswa'},
+                    { data: 'id_perusahaan',name:'id_perusahaan.nama'},
+                    {
+                           data: 'tanggal_pelaksanaan',
+                           type: 'num',
+                           render: {
+                              _: 'display',
+                              sort: 'timestamp'
+                           }
+                        },
+                    { data: 'jam_masuk',name:'jam_masuk'},
 
+                    { data: 'action',name:'action'}
+                    ],
+                    order: [[0,'asc']]
+                });
+
+            // search engine
+            $("#search").keyup(function () {
+                table.search( this.value ).draw();
+            })
+
+            $('body').on('click','#hapus', function () {
+            // sweet alert
+                Swal.fire({
+                title: 'Apa anda yakin?',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonText: 'Hapus',
+                cancelButtonText: 'Batal'
+                }).then((result) => {
+                    if (result.value) {
+                        id = $(this).data('id');
+                        $.ajax({
+                                url: "/admin/jurnal/delete/"+ id,
+                                type: "DELETE",
+
+                                data: { _token: '{{csrf_token()}}' },
+                                success: function (data) {
+                                    console.log(data);
+                                    table.draw();
+                                    Swal.fire(
+                                        'success',
+                                        'Data anda berhasil di hapus.',
+                                        'success'
+                                    )
+                                },
+                                error: function (data) {
+                                    console.log('Error:', data);
+                                }
+                        });
+                    } else if (result.dismiss === Swal.DismissReason.cancel) {}
+                })
+            });
+            });
+        </script>
 @endpush

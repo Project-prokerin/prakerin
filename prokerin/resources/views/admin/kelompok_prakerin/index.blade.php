@@ -128,8 +128,7 @@
 </div>
 @endsection
 @push('script')
-<script src="{{ asset('template/node_modules/datatables/media/js/jquery.dataTables.min.js') }}"></script>
-<script src="{{ asset('template/node_modules/datatables.net-bs4/js/dataTables.bootstrap4.min.js') }}"></script>
+
 <script>
     $(document).ready( function () {
         var filter = $('#search').val();
