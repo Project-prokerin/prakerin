@@ -40,10 +40,10 @@
                     <div class="col-md-4 col-12">
                         <label for="old_pass" >Password lama</label>
                         <div class="input-group">
-                            <div class="input-group-prepend">
+                        <input id="old_pass" type="password" class="form-control @error('old_pass') is-invalid @enderror" name="old_pass" value="{{ old('old_pass') }}" >
+                        <div class="input-group-prepend">
                             <div class="input-group-text" id="old_input"><i class="far fa-eye" id="icon"></i></div>
                         </div>
-                        <input id="old_pass" type="password" class="form-control @error('old_pass') is-invalid @enderror" name="old_pass" value="{{ old('old_pass') }}" >
                         @error('old_pass')
                             <div class="invalid_feedback">{{ $message }}</div>
                         @enderror
@@ -52,10 +52,10 @@
                     <div class="col-md-4 col-12">
                         <label for="new_pass">Password baru</label>
                         <div class="input-group">
-                            <div class="input-group-prepend">
+                        <input type="password" class="form-control @error('new_pass') is-invalid @enderror"  id="new_pass" name="new_pass"  value="{{ old('new_pass') }}">
+                        <div class="input-group-prepend">
                             <div class="input-group-text" id="new_input"><i class="far fa-eye" id="icon2"></i></div>
                         </div>
-                        <input type="password" class="form-control @error('new_pass') is-invalid @enderror"  id="new_pass" name="new_pass"  value="{{ old('new_pass') }}">
                         @error('new_pass')
                             <div class="invalid_feedback">{{ $message }}</div>
                         @enderror
@@ -64,10 +64,10 @@
                     <div class="col-md-4 col-12">
                         <label for="new_pass2">ulangi password baru</label>
                         <div class="input-group">
-                            <div class="input-group-prepend">
+                        <input type="password" class="form-control @error('new_pass2') is-invalid @enderror" id="new_pass2" name="new_pass2" value="{{ old('new_pass2') }}">
+                        <div class="input-group-prepend">
                             <div class="input-group-text" id="new_input2"><i class="far fa-eye" id="icon3"></i></div>
                         </div>
-                        <input type="password" class="form-control @error('new_pass2') is-invalid @enderror" id="new_pass2" name="new_pass2" value="{{ old('new_pass2') }}">
                         @error('new_pass2')
                             <div class="invalid_feedback">{{ $message }}</div>
                         @enderror
