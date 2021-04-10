@@ -38,34 +38,43 @@
                     @csrf
                 <div class="row mt-4">
                     <div class="col-md-4 col-12">
-                        <div class="form-group">
-                        <label for="email">Password lama</label>
-                        <input id="email" type="" class="form-control @error('old_pass') is-invalid @enderror" name="old_pass" value="{{ old('old_pass') }}">
+                        <label for="old_pass" >Password lama</label>
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                            <div class="input-group-text" id="old_input"><i class="far fa-eye" id="icon"></i></div>
+                        </div>
+                        <input id="old_pass" type="password" class="form-control @error('old_pass') is-invalid @enderror" name="old_pass" value="{{ old('old_pass') }}" >
                         @error('old_pass')
                             <div class="invalid_feedback">{{ $message }}</div>
                         @enderror
                         </div>
                     </div>
                     <div class="col-md-4 col-12">
-                        <div class="form-group">
-                        <label for="password-confirm">Password baru</label>
-                        <input type="password" class="form-control @error('new_pass') is-invalid @enderror" id="password-confirm" name="new_pass" value="{{ old('new_pass') }}">
+                        <label for="new_pass">Password baru</label>
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                            <div class="input-group-text" id="new_input"><i class="far fa-eye" id="icon2"></i></div>
+                        </div>
+                        <input type="password" class="form-control @error('new_pass') is-invalid @enderror"  id="new_pass" name="new_pass"  value="{{ old('new_pass') }}">
                         @error('new_pass')
                             <div class="invalid_feedback">{{ $message }}</div>
                         @enderror
                         </div>
                     </div>
                     <div class="col-md-4 col-12">
-                        <div class="form-group">
-                        <label for="password-confirm">ulangi password baru</label>
-                        <input type="password" class="form-control @error('new_pass2') is-invalid @enderror" id="password-confirm" name="new_pass2" value="{{ old('new_pass2') }}">
+                        <label for="new_pass2">ulangi password baru</label>
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                            <div class="input-group-text" id="new_input2"><i class="far fa-eye" id="icon3"></i></div>
+                        </div>
+                        <input type="password" class="form-control @error('new_pass2') is-invalid @enderror" id="new_pass2" name="new_pass2" value="{{ old('new_pass2') }}">
                         @error('new_pass2')
                             <div class="invalid_feedback">{{ $message }}</div>
                         @enderror
                         </div>
                     </div>
                 </div>
-                <div class="form-group">
+                <div class="form-group mt-4">
                     <div class="row">
                         <a href="/user/profile" class="btn btn-danger ml-auto"><i class="fas fa-times"></i> Batal</a>
                         <button type="submit" class="btn btn-success ml-2 mr-3"><i class="fas fa-check"></i> simpan</button>
@@ -73,70 +82,41 @@
                 </div>
                 </form>
     </div>
-    {{-- block1 --}}
-        {{-- <div class="col-8 pt-4" style="margin-left: 130px;">
-        <form action="{{ route('ganti_password.post') }}" method="POST">
-
-        @csrf
-            <li class="media mt-4">
-            <a href="#">
-                <table border="1">
-                    <tr>
-                        <td style="height:30px; width:30px;"><i class="far fa-user" style="margin-left: 8px;"></i></td>
-                    </tr>
-                </table>
-            </a>
-            <div class="media-body ml-3" style="margin-top: -8px;">
-                <div class="media-title"><p>Password Sebelumnya</p></div>
-                <input type="password" style="width: 230px; margin-top: -8px;" class="form-control @error('old_pass') is-invalid @enderror" name="old_pass" value="{{ old('old_pass') }}">
-                    @error('old_pass')
-                        <div class="invalid_feedback">{{ $message }}</div>
-                    @enderror
-                </div>
-
-            </li>
-            <li class="media mt-3">
-                <a href="#">
-                    <table border="1">
-                        <tr>
-                            <td style="height:30px; width:30px;"><i class="far fa-user" style="margin-left: 8px;"></i></td>
-                        </tr>
-                    </table>
-                </a>
-                <div class="media-body ml-3" style="margin-top: -8px;">
-                    <div class="media-title"><p>Password Baru</p></div>
-                    <input type="text" style="width: 230px; margin-top: -8px;" class="form-control    @error('new_pass') is-invalid @enderror" name="new_pass" value="{{ old('new_pass') }}" >
-                    @error('new_pass')
-                        <div class="invalid_feedback">{{ $message }}</div>
-                    @enderror
-                </div>
-            </li>
-            <li class="media mt-3">
-            <a href="#">
-                <table border="1">
-                    <tr>
-                        <td style="height:30px; width:30px;"><i class="far fa-user" style="margin-left: 8px;"></i></td>
-                    </tr>
-                </table>
-            </a>
-            <div class="media-body ml-3" style="margin-top: -8px;">
-                    <div class="media-title"><p>Password Baru (Ulangi)</p></div>
-                    <input type="text" style="width: 230px; margin-top: -8px;" class="form-control   @error('new_pass2') is-invalid @enderror " name="new_pass2" value="{{ old('new_pass2') }}">
-                    @error('new_pass2')
-                        <div class="invalid_feedback">{{ $message }}</div>
-                    @enderror
-            </div>
-            </li>
-            <div class=" col-6 card-body mt-4" style="float: right;">
-                <div class="" style="margin-top: -80px;">
-                <a href="/user/profile" class="btn btn-icon icon-left btn-danger" style="margin-right: 15px;"><i class="fas fa-times"></i> Cancel</a>
-                <button type="submit" class="btn btn-icon icon-left btn-success"><i class="fas fa-check"></i> Simpan</button>
-                </div>
-            </div>
-        </form>
-        </div> --}}
-    {{-- block1 --}}
     @endsection
     @push('script')
+    <script>
+        $(document).ready(function () {
+            $('#old_input').click(function (params) {
+            if('password' == $('#old_pass').attr('type')){
+                $('#old_pass').prop('type', 'text');
+                $('#icon').removeClass('fa-eye').addClass('fa-eye-slash');
+            }else{
+                $('#old_pass').prop('type', 'password');
+                $('#icon').removeClass('fa-eye-slash').addClass('fa-eye');
+            }
+            });
 
+            $('#new_input').click(function (params) {
+            if('password' == $('#new_pass').attr('type')){
+                console.log('true');
+                $('#new_pass').prop('type', 'text');
+                $('#icon2').removeClass('fa-eye').addClass('fa-eye-slash');
+            }else{
+                $('#new_pass').prop('type', 'password');
+                $('#icon2').removeClass('fa-eye-slash').addClass('fa-eye');
+            }
+            });
+
+            $('#new_input2').click(function (params) {
+            if('password' == $('#new_pass2').attr('type')){
+                console.log('true');
+                $('#new_pass2').prop('type', 'text');
+                $('#icon3').removeClass('fa-eye').addClass('fa-eye-slash');
+            }else{
+                $('#new_pass2').prop('type', 'password');
+                $('#icon3').removeClass('fa-eye-slash').addClass('fa-eye');
+            }
+            });
+        })
+    </script>
     @endpush

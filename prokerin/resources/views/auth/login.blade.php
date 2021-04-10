@@ -41,6 +41,7 @@
                         <span class="symbol-input100">
                             <i class="fa fa-lock" aria-hidden="true"></i>
                         </span>
+
                     </div>
                     <div class="text-right p-t-10 p-b-10">
                         <input type="checkbox" name="remember" id="remember" class="form-check-input mt-2">
