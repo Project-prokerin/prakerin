@@ -58,8 +58,8 @@ export default class Typing {
     // on paragraph: split paragraph
     if (splitRoot) {
       // if it is an empty line with li
-      if (dom.isEmpty(splitRoot) && dom.isLi(splitRoot)) {
-        // toogle UL/OL and escape
+      if (dom.isLi(splitRoot) && (dom.isEmpty(splitRoot) || dom.deepestChildIsEmpty(splitRoot))) {
+        // toggle UL/OL and escape
         this.bullet.toggleList(splitRoot.parentNode.nodeName);
         return;
       } else {

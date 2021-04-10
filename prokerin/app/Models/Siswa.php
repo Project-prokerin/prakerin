@@ -38,12 +38,12 @@ class Siswa extends Model
     }
     public function orang_tua()
     {
-        // foreign, owner key
+          // foreign, owner key
         return $this->hasOne(orang_tua::class, 'id_siswa', 'id');
     }
     public function sekolah_asal()
     {
-        // foreign, owner key
+          // foreign, owner key
         return $this->hasOne(sekolah_asal::class, 'id_siswa', 'id');
     }
 }

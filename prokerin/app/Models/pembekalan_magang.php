@@ -17,7 +17,7 @@ class pembekalan_magang extends Model
         'archived' => '#00BFFF',
     ];
     public function siswa(){
-                                    // foreign field id_siswa di siwa
+                                      // foreign, owner key
         return $this->hasOne(Siswa::class,'id','id_siswa');
     }
     public function guru()

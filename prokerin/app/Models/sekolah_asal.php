@@ -12,6 +12,7 @@ class sekolah_asal extends Model
     protected $guarded = [];
     public function siswa()
     {
+          // foreign, owner key
         return $this->hasOne(Siswa::class, 'id', 'id_siswa');
     }
 }

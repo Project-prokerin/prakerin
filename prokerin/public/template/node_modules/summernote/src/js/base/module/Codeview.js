@@ -1,10 +1,5 @@
-import env from '../core/env';
 import dom from '../core/dom';
-
-let CodeMirror;
-if (env.hasCodeMirror) {
-  CodeMirror = window.CodeMirror;
-}
+import key from '../core/key';
 
 /**
  * @class Codeview
@@ -16,13 +11,38 @@ export default class CodeView {
     this.$editable = context.layoutInfo.editable;
     this.$codable = context.layoutInfo.codable;
     this.options = context.options;
+    this.CodeMirrorConstructor = window.CodeMirror;
+
+    if (this.options.codemirror.CodeMirrorConstructor) {
+      this.CodeMirrorConstructor = this.options.codemirror.CodeMirrorConstructor;
+    }
   }
 
-  sync() {
+  sync(html) {
     const isCodeview = this.isActivated();
-    if (isCodeview && env.hasCodeMirror) {
-      this.$codable.data('cmEditor').save();
+    const CodeMirror = this.CodeMirrorConstructor;
+
+    if (isCodeview) {
+      if (html) {
+        if (CodeMirror) {
+          this.$codable.data('cmEditor').getDoc().setValue(html);
+        } else {
+          this.$codable.val(html);
+        }
+      } else {
+        if (CodeMirror) {
+          this.$codable.data('cmEditor').save();
+        }
+      }
     }
+  }
+
+  initialize() {
+    this.$codable.on('keyup', (event) => {
+      if (event.keyCode === key.code.ESCAPE) {
+        this.deactivate();
+      }
+    });
   }
 
   /**
@@ -78,15 +98,18 @@ export default class CodeView {
    * activate code view
    */
   activate() {
+    const CodeMirror = this.CodeMirrorConstructor;
     this.$codable.val(dom.html(this.$editable, this.options.prettifyHtml));
     this.$codable.height(this.$editable.height());
 
     this.context.invoke('toolbar.updateCodeview', true);
+    this.context.invoke('airPopover.updateCodeview', true);
+
     this.$editor.addClass('codeview');
     this.$codable.focus();
 
     // activate CodeMirror as codable
-    if (env.hasCodeMirror) {
+    if (CodeMirror) {
       const cmEditor = CodeMirror.fromTextArea(this.$codable[0], this.options.codemirror);
 
       // CodeMirror TernServer
@@ -101,7 +124,7 @@ export default class CodeView {
       cmEditor.on('blur', (event) => {
         this.context.triggerEvent('blur.codeview', cmEditor.getValue(), event);
       });
-      cmEditor.on('change', (event) => {
+      cmEditor.on('change', () => {
         this.context.triggerEvent('change.codeview', cmEditor.getValue(), cmEditor);
       });
 
@@ -112,7 +135,7 @@ export default class CodeView {
       this.$codable.on('blur', (event) => {
         this.context.triggerEvent('blur.codeview', this.$codable.val(), event);
       });
-      this.$codable.on('input', (event) => {
+      this.$codable.on('input', () => {
         this.context.triggerEvent('change.codeview', this.$codable.val(), this.$codable);
       });
     }
@@ -122,8 +145,9 @@ export default class CodeView {
    * deactivate code view
    */
   deactivate() {
+    const CodeMirror = this.CodeMirrorConstructor;
     // deactivate CodeMirror as codable
-    if (env.hasCodeMirror) {
+    if (CodeMirror) {
       const cmEditor = this.$codable.data('cmEditor');
       this.$codable.val(cmEditor.getValue());
       cmEditor.toTextArea();
@@ -143,6 +167,7 @@ export default class CodeView {
     this.$editable.focus();
 
     this.context.invoke('toolbar.updateCodeview', false);
+    this.context.invoke('airPopover.updateCodeview', false);
   }
 
   destroy() {

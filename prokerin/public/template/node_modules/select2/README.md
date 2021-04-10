@@ -1,8 +1,9 @@
 Select2
 =======
-[![Build Status][travis-ci-image]][travis-ci-status]
-[![cdnjs](https://img.shields.io/cdnjs/v/select2.svg)][cdnjs]
+![Build Status][github-actions-image]
+[![Financial Contributors on Open Collective](https://opencollective.com/select2/all/badge.svg?label=financial+contributors)](https://opencollective.com/select2)
 [![jsdelivr](https://data.jsdelivr.com/v1/package/npm/select2/badge)][jsdelivr]
+[![cdnjs](https://img.shields.io/cdnjs/v/select2.svg)][cdnjs]
 
 Select2 is a jQuery-based replacement for select boxes. It supports searching,
 remote data sets, and pagination of results.
@@ -35,8 +36,8 @@ Browser compatibility
 
 Usage
 -----
-You can source Select2 directly from a CDN like [JSDliver][jsdelivr] or
-[CDNJS][cdnjs], [download it from this GitHub repo][releases], or use one of
+You can source Select2 directly from a CDN like [jsDelivr][jsdelivr] or
+[cdnjs][cdnjs], [download it from this GitHub repo][releases], or use one of
 the integrations below.
 
 Integrations
@@ -45,6 +46,7 @@ Third party developers have created plugins for platforms which allow Select2 to
 
 Plugins
 
+* [Backdrop CMS][backdrop-cms] - [backdrop-select2]
 * [Django]
   - [django-autocomplete-light]
   - [django-easy-select2]
@@ -61,7 +63,6 @@ Themes
 - [Bootstrap 3][bootstrap3] - [select2-bootstrap-theme]
 - [Bootstrap 4][bootstrap4] - [select2-bootstrap4-theme]
 - [Flat UI][flat-ui] - [select2-flat-theme]
-- [Metro UI][metro-ui] - [select2-metro]
 
 Missing an integration? Modify this `README` and make a pull request back here to Select2 on GitHub.
 
@@ -77,7 +78,8 @@ make a pull request back to Select2 here on GitHub.
 Documentation
 -------------
 The documentation for Select2 is available
-[through GitHub Pages][documentation] and is located within the [separate `select2/docs` repository][documentation-repository].
+[online at the documentation website][documentation] and is located within the
+[`docs` directory of this repository][documentation-directory].
 
 Community
 ---------
@@ -88,18 +90,51 @@ Copyright and license
 ---------------------
 The license is available within the repository in the [LICENSE][license] file.
 
+Contributors
+------------
+
+### Code Contributors
+
+This project exists thanks to all the people who contribute. [[Contribute](.github/CONTRIBUTING.md)].
+<a href="https://github.com/select2/select2/graphs/contributors"><img src="https://opencollective.com/select2/contributors.svg?width=890&button=false" /></a>
+
+### Financial Contributors
+
+Become a financial contributor and help us sustain our community. [[Contribute](https://opencollective.com/select2/contribute)]
+
+#### Individuals
+
+<a href="https://opencollective.com/select2"><img src="https://opencollective.com/select2/individuals.svg?width=890"></a>
+
+#### Organizations
+
+Support this project with your organization. Your logo will show up here with a link to your website. [[Contribute](https://opencollective.com/select2/contribute)]
+
+<a href="https://opencollective.com/select2/organization/0/website"><img src="https://opencollective.com/select2/organization/0/avatar.svg"></a>
+<a href="https://opencollective.com/select2/organization/1/website"><img src="https://opencollective.com/select2/organization/1/avatar.svg"></a>
+<a href="https://opencollective.com/select2/organization/2/website"><img src="https://opencollective.com/select2/organization/2/avatar.svg"></a>
+<a href="https://opencollective.com/select2/organization/3/website"><img src="https://opencollective.com/select2/organization/3/avatar.svg"></a>
+<a href="https://opencollective.com/select2/organization/4/website"><img src="https://opencollective.com/select2/organization/4/avatar.svg"></a>
+<a href="https://opencollective.com/select2/organization/5/website"><img src="https://opencollective.com/select2/organization/5/avatar.svg"></a>
+<a href="https://opencollective.com/select2/organization/6/website"><img src="https://opencollective.com/select2/organization/6/avatar.svg"></a>
+<a href="https://opencollective.com/select2/organization/7/website"><img src="https://opencollective.com/select2/organization/7/avatar.svg"></a>
+<a href="https://opencollective.com/select2/organization/8/website"><img src="https://opencollective.com/select2/organization/8/avatar.svg"></a>
+<a href="https://opencollective.com/select2/organization/9/website"><img src="https://opencollective.com/select2/organization/9/avatar.svg"></a>
+
+
 [cdnjs]: http://www.cdnjs.com/libraries/select2
 [community]: https://select2.org/getting-help
 [documentation]: https://select2.org
-[documentation-repository]: https://github.com/select2/docs
+[documentation-directory]: https://github.com/select2/select2/tree/develop/docs
 [freenode]: https://freenode.net/
+[github-actions-image]: https://github.com/select2/select2/workflows/CI/badge.svg
 [jsdelivr]: https://www.jsdelivr.com/package/npm/select2
 [license]: LICENSE.md
 [releases]: https://github.com/select2/select2/releases
-[travis-ci-image]: https://img.shields.io/travis/select2/select2/master.svg
-[travis-ci-status]: https://travis-ci.org/select2/select2
 
 [angularjs]: https://angularjs.org/
+[backdrop-cms]: https://backdropcms.org/
+[backdrop-select2]: https://backdropcms.org/project/select2
 [bootstrap3]: https://getbootstrap.com/
 [bootstrap4]: https://getbootstrap.com/
 [django]: https://www.djangoproject.com/
@@ -112,8 +147,6 @@ The license is available within the repository in the [LICENSE][license] file.
 [mdr-angular-select2]: https://github.com/modulr/mdr-angular-select2
 [meteor]: https://www.meteor.com/
 [meteor-select2]: https://github.com/nate-strauser/meteor-select2
-[metro-ui]: http://metroui.org.ua/
-[select2-metro]: http://metroui.org.ua/select2.html
 [ruby-on-rails]: http://rubyonrails.org/
 [select2-bootstrap-theme]: https://github.com/select2/select2-bootstrap-theme
 [select2-bootstrap4-theme]: https://github.com/ttskch/select2-bootstrap4-theme
