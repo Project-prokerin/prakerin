@@ -21,13 +21,6 @@
 @section('main')
 {{-- tambah --}}
 <div class="card">
-    <div class="container">
-        <div class="card-body mt-3">
-            <div class="">
-                <h5>Tambah Data Siswa</h5>
-            </div>
-        </div>
-    </div>
     <div class="card-body">
         <div class="row">
             <div class="col-sm-6">

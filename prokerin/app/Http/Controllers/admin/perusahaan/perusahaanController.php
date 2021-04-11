@@ -3,10 +3,12 @@
 namespace App\Http\Controllers\admin\perusahaan;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\perusahaanRequest;
 use Illuminate\Http\Request;
 use App\Models\perusahaan;
 use Yajra\DataTables\DataTables;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\File;
 
 class perusahaanController extends Controller
 {
@@ -28,7 +30,7 @@ class perusahaanController extends Controller
     public function ajax(Request $request)
     {
         if ($request->ajax()) {
-            $perusahaan = perusahaan::all();
+            $perusahaan = perusahaan::orderby('id','DESC')->get();
             return datatables()->of($perusahaan)
                 ->editColumn('tanggal_mou', function ($data) {
                     return $data->tanggal_mou->isoFormat('DD MMMM YYYY');
@@ -36,7 +38,7 @@ class perusahaanController extends Controller
                 ->addColumn('action', function ($data) {
                     $button = '<a href="/admin/perusahaan/detail/' . $data->id . '"   id="' . $data->id . '" class="edit btn btn-primary btn-sm"><i class="fas fa-search"></i></a>';
                     $button .= '&nbsp';
-                    $button .= '<a  href="/admin/pembekalan/edit/' . $data->id . '" id="edit" data-toggle="tooltip"  data-id="' . $data->id . '" data-original-title="Edit" class="edit btn btn-warning btn-sm edit-post"><i class="fas fa-pencil-alt"></i></a>';
+                    $button .= '<a  href="/admin/perusahaan/edit/' . $data->id . '" id="edit" data-toggle="tooltip"  data-id="' . $data->id . '" data-original-title="Edit" class="edit btn btn-warning btn-sm edit-post"><i class="fas fa-pencil-alt"></i></a>';
                     $button .= '&nbsp';
                     $button .= '<button type="button" name="delete" id="hapus" data-id="' . $data->id . '" class="delete btn btn-danger btn-sm"><i class="fas fa-trash"></i></button>';
                     return $button;
@@ -56,9 +58,15 @@ class perusahaanController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(perusahaanRequest $request)
     {
-        //
+        $request->validated();
+        $data = $request->all();
+        $foto = $request->foto;
+        $data['foto'] = ($foto) ? time().' '.$foto->getClientOriginalName() : '';
+        ($foto) ? $request->file('foto')->move('images/perusahaan', $data['foto']) : '';
+        perusahaan::create($data);
+        return redirect()->route('perusahaan.index');
     }
 
     /**
@@ -80,7 +88,7 @@ class perusahaanController extends Controller
      */
     public function edit($id)
     {
-        return view('admin.perusahaan.edit');
+        return view('admin.perusahaan.edit',['perusahaan' => perusahaan::find($id)]);
     }
 
     /**
@@ -90,9 +98,24 @@ class perusahaanController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(perusahaanRequest $request, $id)
     {
-        //
+        $request->validated();
+        $data = $request->all();
+        unset($data['_token'], $data['_method'], $data['val']);
+        if (!empty($data['foto'])) {
+            $per = perusahaan::where('id', $id)->first();
+            if (File::exists("images/perusahaan/$per->foto") && "images/perusahaan/$per->foto" !== "images/perusahaan/default.jpg") {
+                File::delete("images/perusahaan/$per->foto");
+            }
+            $foto = $request->foto;
+            $data['foto'] = ($foto) ? time() . ' ' . $foto->getClientOriginalName() : '';
+            ($foto) ? $request->file('foto')->move('images/perusahaan', $data['foto']) : '';
+        }else{
+            $data['foto'] = $request->val;
+        }
+        perusahaan::where('id', $id)->update($data);
+        return redirect()->route('perusahaan.index');
     }
 
     /**
@@ -103,6 +126,10 @@ class perusahaanController extends Controller
      */
     public function destroy($id)
     {
+        $per = perusahaan::where('id', $id)->first();
+        if (File::exists("images/perusahaan/$per->foto") && "images/perusahaan/$per->foto" !== "images/perusahaan/default.jpg") {
+            File::delete("images/perusahaan/$per->foto");
+        }
         perusahaan::where('id',$id)->delete();
         return response()->json(['data' => 'berhasil']);
     }

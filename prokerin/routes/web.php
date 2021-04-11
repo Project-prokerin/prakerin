@@ -148,8 +148,8 @@ Route::middleware(['web', 'auth', 'role:kaprog,hubin'])->group(function () {
     Route::get('admin/perusahaan/detail/{id}', [perusahaanController::class, 'detail'])->name('perusahaan.detail');
     Route::get('admin/perusahaan/tambah', [perusahaanController::class, 'tambah'])->name('perusahaan.tambah');
     Route::post('admin/perusahaan/tambah/post', [perusahaanController::class, 'store'])->name('perusahaan.post');
-    Route::get('admin/perusahaan/edit', [perusahaanController::class, 'edit'])->name('perusahaan.edit');
-    Route::put('admin/perusahaan/update', [perusahaanController::class, 'update'])->name('perusahaan.update');
+    Route::get('admin/perusahaan/edit/{id}', [perusahaanController::class, 'edit'])->name('perusahaan.edit');
+    Route::put('admin/perusahaan/update/{id}', [perusahaanController::class, 'update'])->name('perusahaan.update');
     Route::delete('admin/perusahaan/delete/{id}', [perusahaanController::class, 'destroy'])->name('perusahaan.delete');
     Route::post('/perusahaan/destroy', [perusahaanController::class, 'delete_all'])->name('perusahaan.delete-all');
     Route::get('/export/excel/perusahaan', [ExcelController::class, 'perusahaan'])->name('export.perusahaan');
