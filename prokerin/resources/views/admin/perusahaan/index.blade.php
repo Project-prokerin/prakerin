@@ -96,7 +96,7 @@
 
         {{-- update --}}
         <div class="buton">
-            <a href="{{ route('siswa.tambah') }}"class="btn btn-primary rounded-pill"> Tambah Data <i class="fas fa-plus"></i></button></a>
+            <a href="{{ route('perusahaan.tambah') }}"class="btn btn-primary rounded-pill"> Tambah Data <i class="fas fa-plus"></i></button></a>
         </div>
         <form class="d-flex flex-row-reverse mr-5" style="margin-top: -66px;">
             <button class="btn btn-outline-success" type="submit"><i class="fas fa-search"></i></button>
@@ -116,10 +116,10 @@
             <tr>
             <th scope="col">No</th>
             <th scope="col">Nama</th>
-            <th scope="col">Bidang usaha</th>
-            <th scope="col">alamat</th>
-            <th scope="col">status mou</th>
-            <th scope="col">tanggal mou</th>
+            <th scope="col">Bidang Usaha</th>
+            <th scope="col">Alamat</th>
+            <th scope="col">Status Mou</th>
+            <th scope="col">Tanggal Mou</th>
             <th scope="col">Action</th>
 
         </tr>

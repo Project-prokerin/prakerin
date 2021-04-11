@@ -130,7 +130,7 @@
         </form>
         <br>
         {{-- update --}}
-        <table class="table table-bordered" id="table">
+        <table class="table table-bordered table-hover text-center" id="table">
         <thead>
             <tr>
             <th scope="col">No</th>

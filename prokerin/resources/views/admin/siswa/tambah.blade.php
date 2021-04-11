@@ -31,7 +31,7 @@
     <div class="card-body">
         <div class="row">
             <div class="col-sm-6">
-                <div class="card">
+                <div class="">
                     <div class="" style="height: auto;">
                         <div class="container mt-2">
                             <h5 class="card-title">Data Siswa</h5>
@@ -67,7 +67,7 @@
                                 <div class="mb-3">
                                 <label class="form-label">Jurusan</label>
                                 <div class="d-flex">
-                                    <i class="fas fa-user border text-center"></i>
+                                    <i class="fas fa-user border text-center pt-2"></i>
                                     <select class="form-control form-control-sm select2 @error('jurusan') is-invalid @enderror" name="jurusan">
                                         <option selected>Pilih Jurusan</option>
                                         <option value="rpl" @if(old('jurusan') === 'rpl') selected @endif>RPL</option>
@@ -86,7 +86,7 @@
                                 <div class="mb-3">
                                 <label class="form-label">Kelas</label>
                                 <div class="d-flex">
-                                    <i class="fas fa-user border text-center"></i>
+                                    <i class="fas fa-user border text-center pt-2"></i>
                                     <select class="form-control  form-control-sm select2 @error('kelas') is-invalid @enderror" name="kelas">
                                         <option selected>Pilih Kelas</option>
                                         <option value="X" @if(old('kelas') === 'X') selected @endif>X</option>
@@ -333,7 +333,7 @@
             {{--  --}}
             {{--  --}}
             <div class="col-sm-6">
-                <div class="card">
+                <div class="">
                     <div class="" style="height: 690px;">
                         <div class="container mt-2">
                             <h5 class="card-title">Data Orang Tua Siswa</h5>
