@@ -6,6 +6,11 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\jurnal_prakerin;
 use App\Models\Siswa;
+use App\Models\perusahaan;
+use Illuminate\Support\Facades\Validator;
+use Carbon\Carbon;
+
+use App\Models\data_prakerin;
 class jurnal_prakerinController extends Controller
 {
     /**
@@ -36,9 +41,7 @@ class jurnal_prakerinController extends Controller
                     'timestamp' => $jurnal_prakerin->tanggal_pelaksanaan->timestamp
                 ];
             })
-            ->filterColumn('tanggal_pelaksanaan', function ($query, $keyword) {
-                $query->whereRaw("DATE_FORMAT(tanggal_pelaksanaan,'%m-%d-%Y') LIKE ?", ["%$keyword%"]);
-             })
+
              ->addColumn('id_siswa', function (jurnal_prakerin $jurnal_prakerin) {
                 return $jurnal_prakerin->siswa->nama_siswa;
             })
@@ -66,7 +69,8 @@ class jurnal_prakerinController extends Controller
     public function tambah(Request $request)
     {
         $sidebar = 'jurnal';
-        return view('admin.jurnal_prakerin.tambah', compact('sidebar'));
+        $data_prakerin = data_prakerin::all();
+        return view('admin.jurnal_prakerin.tambah', compact('sidebar','data_prakerin'));
     }
 
     /**
@@ -77,6 +81,54 @@ class jurnal_prakerinController extends Controller
      */
     public function store(Request $request)
     {
+
+
+        // dd($request->id_siswa);
+        $validator = Validator::make($request->all(), [
+            'kompetisi_dasar' => 'required',
+            'topik_pekerjaan' => 'required',
+            'tanggal_pelaksanaan' => 'required',
+            'jam_masuk' => 'required',
+            // 'jam_istiharat' => 'required|after:jam_masuk|between:10,12',
+            'jam_istiharat' => 'required|after:jam_masuk',
+            'jam_pulang' => 'required|after:jam_istiharat|after:jam_masuk',
+            'mess' => 'required',
+            'makan_siang' => 'required',
+            'bus_antar_jemput' => 'required',
+            'intensif' => 'required',
+            'id_siswa' => 'required'
+        ],
+        [
+         'required' => ':attribute wajib diisi.',
+         'after' => 'attribute jam pulang harus di atas dari  jam masuk'
+         ]
+    );
+
+    $prakerin = data_prakerin::where('id',$request->id_siswa)->first();
+
+         if ($validator->fails()) {
+         return redirect()->route('jurnal.tambah')->withErrors($validator)->withInput();
+         }else{
+             $jurnal = jurnal_prakerin::create([
+             'kompetisi_dasar' => $request->kompetisi_dasar,
+             'topik_pekerjaan' => $request->topik_pekerjaan,
+             'tanggal_pelaksanaan' => $request->tanggal_pelaksanaan,
+             'jam_masuk' => $request->jam_masuk,
+             'jam_istirahat' => $request->jam_istiharat,
+             'jam_pulang' => $request->jam_pulang,
+             'id_siswa' => $prakerin->id_siswa,
+             'id_perusahaan'=>$prakerin->id_perusahaan,
+             'created_at' => Carbon::now()->format('Y-m-d')
+             ]);
+             return redirect()->route('jurnal.index')->with(['success'=>"Jurnal $prakerin->nama Berhasil di tambah"]);
+
+    
+         }
+         dd($jurnal);
+       
+
+
+
     }
 
     /**
@@ -88,7 +140,8 @@ class jurnal_prakerinController extends Controller
     public function detail($id)
     {
         $sidebar = 'jurnal';
-        return view('admin.jurnal_prakerin.detail', compact('sidebar'));
+        return view('admin.jurnal_prakerin.detail',
+         compact('sidebar'));
     }
 
     /**

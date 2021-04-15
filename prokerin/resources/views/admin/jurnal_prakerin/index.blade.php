@@ -27,13 +27,14 @@
 <div class="buton" style="z-index: 2;">  
     <br>
     <br>
-    {{-- <a href="{{ route('jurnal.tambah') }}"><button type="button" class="btn btn-primary rounded-pill">Tambah Data <i class="fas fa-plus"></i></button></a> --}}
+    <a href="{{ route('jurnal.tambah') }}"><button type="button" class="btn btn-primary rounded-pill">Tambah Data <i class="fas fa-plus"></i></button></a>
     {{-- <a style="margin-left: -170px" href="/export/excel/data_prakerin"><button type="button" class="btn btn-success buten ">Export to Excel</button></a>
     <a href="/export/pdf/data_prakerin"><button type="button" class="btn btn-danger butan">Export to PDF</button></a> --}}
 </div>
 <form class="d-flex flex-row-reverse mr-5" style="margin-top: -66px;">
     <button class="btn btn-outline-success" type="submit"><i class="fas fa-search"></i></button>
-    <input class="form-control me-2" type="search" id="search" placeholder="Search" aria-label="Search" style="width: 200px;">
+    <input class="form-control ml-3" type="search" placeholder="Search" aria-label="Search" id="search" style="width: 200px;">
+    {{-- <input class="form-control me-2" type="search"  placeholder="Search" aria-label="Search" id="search" style="width: 200px;"> --}}
     <div>
         <a href="/export/pdf/data_prakerin"><button type="button" class="btn btn-danger mr-3 rounded-pill"><i class="fas fa-cloud-download-alt"></i>  PDF</button></a>
     </div>
@@ -42,6 +43,15 @@
     </div>
 </form>
     <!-- table -->
+    @if (session('success'))
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        {{ session('success') }}
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    @endif
+
     <div class="container">
     <table class="table table-bordered text-center" id="table">
     <thead>
@@ -51,7 +61,7 @@
             <th scope="col">Nama Perusahaaan</th>
             <th scope="col">Tanggal mulai</th>
             <th scope="col">Jam Mulai</th>
-            <th scope="col">Actiom</th>
+            <th scope="col">Action</th>
         </tr>
     </thead>
     <tbody>
@@ -75,8 +85,8 @@
 @endsection
 @push('script')
  <script>
-            $(document).ready( function () {
-                var filter = $('#search').val();
+  $(document).ready( function () {
+                var filter = $("#search").val();
                 console.log(filter);
                 var table = $('#table').DataTable({
                     dom: 't<"bottom"<"row"<"col-6"i><"col-6 mb-4"p>>>',
@@ -87,7 +97,6 @@
                     searching: true,
                     serverside: true,
                     processing: true,
-                    serverSide: true,
                     "responsive": true,
                     "autoWidth": false,
                     ajax:{
@@ -102,9 +111,9 @@
                     }
                     },
                     columns:[
-                    {data: 'DT_RowIndex', name: 'DT_RowIndex'},
-                    { data: 'id_siswa',name:'id_siswa.nama_siswa'},
-                    { data: 'id_perusahaan',name:'id_perusahaan.nama'},
+                    { data: 'DT_RowIndex', name: 'DT_RowIndex'},
+                    { data: 'id_siswa',name:'id_siswa'},
+                    { data: 'id_perusahaan',name:'id_perusahaan'},
                     {
                            data: 'tanggal_pelaksanaan',
                            type: 'num',
@@ -117,14 +126,13 @@
 
                     { data: 'action',name:'action'}
                     ],
-                    order: [[0,'asc']]
                 });
 
             // search engine
             $("#search").keyup(function () {
                 table.search( this.value ).draw();
             })
-
+    // hapus data
             $('body').on('click','#hapus', function () {
             // sweet alert
                 Swal.fire({
@@ -158,5 +166,9 @@
                 })
             });
             });
+
+
+
+          
         </script>
 @endpush
