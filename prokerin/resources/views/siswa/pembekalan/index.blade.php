@@ -98,8 +98,8 @@
                 @else
                     @if (siswa('pembekalan_magang')->file_portofolio !== 'belum')
 
-                    <form action="/user/pembekalan/delete" id="form" method="POST">
-                        <a href="/user/pembekalan/{{ siswa('pembekalan_magang')->file_portofolio }}" class="text-white">{{ links(siswa('pembekalan_magang')->file_portofolio) }}</a>
+                    <form action="{{ route('user.pembekalan.delete') }}" id="form" method="POST">
+                        <a href="{{ route('user.pembekalan.download', siswa('pembekalan_magang')->file_portofolio )  }}" class="text-white">{{ links(siswa('pembekalan_magang')->file_portofolio) }}</a>
                         @method('put')
                         @csrf
                         <button type="submit" id="hapus" class="btn btn-icon icon-left  btn-danger ml-5"><i class="fas fa-times"></i>Hapus</button>

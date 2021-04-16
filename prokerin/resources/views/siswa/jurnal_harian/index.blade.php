@@ -125,7 +125,7 @@
             <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-body">
-                <form action="/user/jurnalH"  method="POST" id="contact_form">
+                <form action="{{ route('user.jurnalH') }}"  method="POST" id="contact_form">
                                         @csrf
 
                     <div class="row mt-3">
