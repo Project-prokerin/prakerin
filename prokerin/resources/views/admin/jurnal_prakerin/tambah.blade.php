@@ -238,7 +238,7 @@
 {{-- tgl-jam --}}
 
      <br>                       
-        <a href="{{ route('user.jurnal') }}" class="btn btn-danger ml-5 mb-3 mr-3">Kembali</a>
+        <a href="{{ route('jurnal.index') }}" class="btn btn-danger ml-5 mb-3 mr-3">Kembali</a>
         <button type="submit" id="submit" class="btn btn-success mb-3">tambah</button>     
      
         </form>                    

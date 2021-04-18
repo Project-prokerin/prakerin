@@ -111,7 +111,7 @@ Route::middleware(['web', 'auth', 'role:kaprog,hubin'])->group(function () {
     Route::get('admin/jurnal/tambah', [jurnal_prakerinController::class, 'tambah'])->name('jurnal.tambah');
     Route::post('admin/jurnal/tambah/post', [jurnal_prakerinController::class, 'store'])->name('jurnal.post');
     Route::get('admin/jurnal/edit/{id}', [jurnal_prakerinController::class, 'edit'])->name('jurnal.edit');
-    Route::put('admin/jurnal/update', [jurnal_prakerinController::class, 'update'])->name('jurnal.update');
+    Route::put('admin/jurnal/update/{jurnal_prakerin}', [jurnal_prakerinController::class, 'update'])->name('jurnal.update');
     Route::delete('admin/jurnal/delete/{id}', [jurnal_prakerinController::class, 'destroy'])->name('jurnal.delete');
     Route::post('/jurnal/destroy', [jurnal_prakerinController::class, 'delete_all'])->name('jurnal.delete-all');
     Route::get('/export/excel/jurnal', [ExcelController::class, 'jurnalh'])->name('export.jurnal');

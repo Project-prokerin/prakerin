@@ -57,7 +57,7 @@ class jurnal_prakerinController extends Controller
                 ->addColumn('action', function ($data) {
                     $button = '<button type="button"   id="' . $data->id . '" class="edit btn btn-primary btn-sm"><i class="fas fa-search"></i></button>';
                     $button .= '&nbsp';
-                    // $button .= '<a  href="../admin/jurnal/edit/'.$data->id.'" id="edit" data-toggle="tooltip"  data-id="' . $data->id . '" data-original-title="Edit" class="edit btn btn-warning btn-sm edit-post"><i class="fas fa-pencil-alt"></i></a>';
+                    $button .= '<a  href="../admin/jurnal/edit/'.$data->id.'" id="edit" data-toggle="tooltip"  data-id="' . $data->id . '" data-original-title="Edit" class="edit btn btn-warning btn-sm edit-post"><i class="fas fa-pencil-alt"></i></a>';
                     $button .= '&nbsp';
                     $button .= '<button type="button" name="delete" id="hapus" data-id="' . $data->id . '" class="delete btn btn-danger btn-sm"><i class="fas fa-trash"></i></button>';
                     return $button;
@@ -152,8 +152,13 @@ class jurnal_prakerinController extends Controller
      */
     public function edit($id)
     {
-        $sidebar = 'jurnal';
-        return view('admin.jurnal_prakerin.edit', compact('sidebar'));
+        // $sidebar = 'jurnal';
+        $data_prakerin = data_prakerin::all();
+        // $dataP = data_prakerin::findOrFail($id);
+        // dd($dataP);
+        $jurnalPrakerin = jurnal_prakerin::find($id);
+        // dd($jurnalPrakerin);
+        return view('admin.jurnal_prakerin.edit', compact('data_prakerin','jurnalPrakerin'));
     }
 
     /**
@@ -165,6 +170,48 @@ class jurnal_prakerinController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $validator = Validator::make($request->all(), [
+            'kompetisi_dasar' => 'required',
+            'topik_pekerjaan' => 'required',
+            'tanggal_pelaksanaan' => 'required',
+            'jam_masuk' => 'required',
+            // 'jam_istiharat' => 'required|after:jam_masuk|between:10,12',
+            'jam_istiharat' => 'required|after:jam_masuk',
+            'jam_pulang' => 'required|after:jam_istiharat|after:jam_masuk',
+            'mess' => 'required',
+            'makan_siang' => 'required',
+            'bus_antar_jemput' => 'required',
+            'intensif' => 'required',
+            'id_siswa' => 'required'
+        ],
+        [
+         'required' => ':attribute wajib diisi.',
+         'after' => 'attribute jam pulang harus di atas dari  jam masuk'
+         ]
+    );
+
+    $prakerin = data_prakerin::where('id',$request->id_siswa)->first();
+
+         if ($validator->fails()) {
+         return redirect()->route('jurnal.tambah')->withErrors($validator)->withInput();
+         }else{
+             $jurnal = jurnal_prakerin::where('id',$id)->update([
+             'kompetisi_dasar' => $request->kompetisi_dasar,
+             'topik_pekerjaan' => $request->topik_pekerjaan,
+             'tanggal_pelaksanaan' => $request->tanggal_pelaksanaan,
+             'jam_masuk' => $request->jam_masuk,
+             'jam_istirahat' => $request->jam_istiharat,
+             'jam_pulang' => $request->jam_pulang,
+             'id_siswa' => $prakerin->id_siswa,
+             'id_perusahaan'=>$prakerin->id_perusahaan,
+             'created_at' => Carbon::now()->format('Y-m-d')
+             ]);
+             return redirect()->route('jurnal.index')->with(['success'=>"Jurnal $prakerin->nama Berhasil di Update"]);
+
+    
+         }
+         dd($jurnal);
+
     }
 
 
