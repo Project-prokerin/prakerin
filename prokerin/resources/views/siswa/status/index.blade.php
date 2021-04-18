@@ -71,8 +71,7 @@
                     <th scope="row" class="text-left" style="background-color:#f2f2f2">Hasil jurnal</th>
                     <td style="background-color:#f2f2f2" ><a href="" class="btn btn-success">Download hasil jurnal</a></td>
                 </tr>
-                 @endif
-
+                @endif
             </tbody>
             </table>
         </div>

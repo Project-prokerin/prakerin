@@ -156,7 +156,7 @@
             </div>
             </li>
             <li class="media" style="margin-top: -15px; margin-left: 32px;">
-            <a href="/user/profile/edit">
+            <a href="{{ route('user.edit.profile')}}">
                 <div class="media-body ml-3" style="margin-top: 4px;">
                 <div class="media-title"><p>Edit Profile</p></div>
                 </div>

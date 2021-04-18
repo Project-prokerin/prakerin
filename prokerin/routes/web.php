@@ -197,7 +197,7 @@ Route::middleware(['web', 'auth', 'role:siswa'])->group(function () {
     //profile
     Route::get('/user/profile', [userController::class, 'profile'])->name('user.profile');
     Route::get('/user/profile/edit', [userController::class, 'profile_edit'])->name('user.edit.profile');
-    Route::put('/user/profile/{id}', [userController::class, 'profile_update'])->name('user.edit.profile');
+    Route::put('/user/profile/{id}', [userController::class, 'profile_update'])->name('user.update.profile');
 
     // ganti password
     Route::get('/user/ganti_password', [userController::class, 'ganti_password'])->name('ganti_password');
