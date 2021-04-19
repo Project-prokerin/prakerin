@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\admin\perusahaan;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\perusahaanRequest;
+use App\Http\Requests\admin\perusahaanRequest;
 use Illuminate\Http\Request;
 use App\Models\perusahaan;
 use Yajra\DataTables\DataTables;

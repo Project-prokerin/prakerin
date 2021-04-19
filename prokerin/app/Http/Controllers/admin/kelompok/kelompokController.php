@@ -9,7 +9,7 @@ use App\Models\perusahaan;
 use App\Models\data_prakerin;
 use App\Models\guru;
 use App\Models\Siswa;
-use App\Http\Requests\kelompok_laporanRequest;
+use App\Http\Requests\admin\kelompok_laporanRequest;
 
 class kelompokController extends Controller
 {
@@ -18,10 +18,10 @@ class kelompokController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index() 
+    public function index()
     {
 
-        
+
         // $kelompokLaporan = kelompok_laporan::distinct('no','id_guru')->get(['no','id_guru']);
         // dd($kelompokLaporan);
         return view('admin.kelompok_prakerin.index');
@@ -97,7 +97,7 @@ class kelompokController extends Controller
             }
 
         // }
-        
+
 // foreach ($request->id_data_prakerin as $key => $val) {
 //     $data = kelompok_laporan::create([
 //         'no'   => $request->no,
@@ -106,14 +106,14 @@ class kelompokController extends Controller
 //         'nama_perusahaan'   => $perusahaan->nama,
 //         'no_telpon'         => $request->no_telpon,
 //         'jurusan'       => $request->jurusan,
-  
+
 //     ]);
 // }
 // dd($data);
-      
+
             return redirect()->route('kelompok.index')->with(['success' => 'Kelompok berhasil di buat!']);
 
-   
+
     }
 
     /**
@@ -169,7 +169,7 @@ class kelompokController extends Controller
                     'nama_perusahaan'   => $request->id_perusahaan,
                     'no_telpon'         => $request->no_telpon,
                     'jurusan'       => $request->jurusan,
-              
+
                 ]);
                 // $data = kelompok_laporan::where('id',$request->id[1])->where('no',$request->no[1])->update([
                 //     'no'   => $request->no[1],
@@ -178,7 +178,7 @@ class kelompokController extends Controller
                 //     'nama_perusahaan'   => $request->id_perusahaan,
                 //     'no_telpon'         => $request->no_telpon,
                 //     'jurusan'       => $request->jurusan,
-              
+
                 // ]);
                 // $data = kelompok_laporan::where('id',$request->id[2])->where('no',$request->no[2])->update([
                 //     'no'   => $request->no[2],
@@ -187,7 +187,7 @@ class kelompokController extends Controller
                 //     'nama_perusahaan'   => $request->id_perusahaan,
                 //     'no_telpon'         => $request->no_telpon,
                 //     'jurusan'       => $request->jurusan,
-              
+
                 // ]);
                 // $data = kelompok_laporan::where('id',$request->id[3])->where('no',$request->no[3])->update([
                 //     'no'   => $request->no[3],
@@ -196,7 +196,7 @@ class kelompokController extends Controller
                 //     'nama_perusahaan'   => $request->id_perusahaan,
                 //     'no_telpon'         => $request->no_telpon,
                 //     'jurusan'       => $request->jurusan,
-              
+
                 // ]);
 
                     // dd($data);
@@ -210,7 +210,7 @@ class kelompokController extends Controller
         //     $id_data_prakerin = $data['id_data_prakerin'][$key];
         //     $no_telpon = $data['no_telpon'];
         //     $jurusan = $data['jurusan'];
-           
+
         //     $data->no = $no;
         //     $data->id_guru = $id_guru;
         //     $data->id_data_prakerin = $id_data_prakerin;
@@ -271,7 +271,7 @@ class kelompokController extends Controller
         // $data->no_telpon = $no_telpon;
         // $data->jurusan = $jurusan;
         // $data->save;
-        
+
 // dd($update);
 return redirect()->route('kelompok.index')->with(['update' => 'Kelompok '.$request->no[0].' berhasil di Update  !']);
     }
@@ -301,7 +301,7 @@ return redirect()->route('kelompok.index')->with(['update' => 'Kelompok '.$reque
             'tgl_mulai' => $request->tgl_mulai,
             'tgl_selesai' => $request->tgl_selesai
         ]);
-            // dd($update);            
+            // dd($update);
              return redirect()->route('data_prakerin.index')->with(['pesan'=>"Data Berhasil di Update"]);
     }
 

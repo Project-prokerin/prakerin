@@ -15,11 +15,11 @@ use App\Models\kelompok_laporan;
 
 // requuest
 use Illuminate\Http\Request;
-use App\Http\Requests\jurnal_harianRequest;
-use App\Http\Requests\jurnal_prakerinRequest;
-use App\Http\Requests\pembekalan_magangRequest;
-use App\Http\Requests\profileRequest;
-use App\Http\Requests\passwordRequest;
+use App\Http\Requests\user\jurnal_harianRequest;
+use App\Http\Requests\user\jurnal_prakerinRequest;
+use App\Http\Requests\user\pembekalan_magangRequest;
+use App\Http\Requests\user\profileRequest;
+use App\Http\Requests\user\passwordRequest;
 
 // pakage or ...
 use Illuminate\Support\Facades\Auth;

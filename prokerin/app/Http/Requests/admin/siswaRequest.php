@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Http\Requests;
+namespace App\Http\Requests\admin;
 
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Validation\Rule;
+use Illuminate\Database\Eloquent\Model;
 use App\Models\User;
 class siswaRequest extends FormRequest
 {
@@ -27,7 +27,7 @@ class siswaRequest extends FormRequest
         $user = User::where('id_siswa', $this->id)->first();
         return [
             'nama_siswa' => 'required',
-            'nipd' => 'required|unique:users,username,'. $user->id,
+            'nipd' => 'required|unique:users,username,' . $user->id,
             'jk' => 'required',
             'kelas' => 'required',
             'jurusan' => 'required',
@@ -73,7 +73,7 @@ class siswaRequest extends FormRequest
             'nipd.unique' => 'Nipd sudah ada',
             'kelas.required' => 'kelas tidak boleh kosong',
             'jurusan.required' => 'Jurusan Tidak boleh kosong',
-            'tempat_lahir.required'=> 'Tempat lahir tidak boleh koosng',
+            'tempat_lahir.required' => 'Tempat lahir tidak boleh koosng',
             'tanggal_lahir.required' => 'Tanggal lahir tidak boleh kosong',
             'nik.required' => 'Nik tidak boleh kosong',
             'agama.required' => 'Agama tidak boleh kosong',
@@ -82,7 +82,7 @@ class siswaRequest extends FormRequest
             'transportasi.requird' => 'transportasi tidak boleh kosong',
             'no_hp.required' => 'Nomor hp tidak boleh kosong',
             'email.required' => 'Email tidak boleh kosong',
-            'email.email'=> 'Hrus berformat email',
+            'email.email' => 'Hrus berformat email',
             'bb.required' => 'Berat badan tidak boleh kosong',
             'bb.numeric' => 'Masukan berat badang yang benar',
             'tb.required' => 'Tinggi badan tidak boleh kosong',

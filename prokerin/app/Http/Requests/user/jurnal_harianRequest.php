@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Requests;
+namespace App\Http\Requests\user;
 
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -26,7 +26,7 @@ class jurnal_harianRequest extends FormRequest
         $mulai = siswa('data_prakerin')->tgl_mulai;
         $selesai = siswa('data_prakerin')->tgl_selesai;
         return [
-            'tanggal' => 'required|date|after_or_equal:'.$mulai.'|before:'.$selesai. '|unique:jurnal_harian,tanggal,NULL,id,id_siswa,'. siswa('main')->id,
+            'tanggal' => 'required|date|after_or_equal:' . $mulai . '|before:' . $selesai . '|unique:jurnal_harian,tanggal,NULL,id,id_siswa,' . siswa('main')->id,
             'datang' => 'required',
             'pulang' => 'required|after:datang',
             'kegiatan_harian' => 'required'
@@ -39,7 +39,7 @@ class jurnal_harianRequest extends FormRequest
             'datang.required' => 'Jam datang tidak boleh kosong',
             'pulang.required' => 'Jam pulang tidak boleh kosong',
             'kegiatan_harian.required' => 'Kegiatan harian tidak boleh kosong',
-            'pulang.after'=> 'Masukan jam pulang yang benar',
+            'pulang.after' => 'Masukan jam pulang yang benar',
             // 'datang.before'=>'Masukan jam datang yang benar '
             "tanggal.unique" => "Tanggal Pelaksanaan sudah ada",
             "tanggal.after_or_equal" => "Tidak boleh melebihi tanggal mulai magang",

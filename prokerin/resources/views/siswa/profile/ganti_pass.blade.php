@@ -44,10 +44,10 @@
                         <div class="input-group-prepend">
                             <div class="input-group-text" id="old_input"><i class="far fa-eye" id="icon"></i></div>
                         </div>
+                        </div>
                         @error('old_pass')
                             <div class="invalid_feedback">{{ $message }}</div>
                         @enderror
-                        </div>
                     </div>
                     <div class="col-md-4 col-12">
                         <label for="new_pass">Password baru</label>
@@ -56,10 +56,10 @@
                         <div class="input-group-prepend">
                             <div class="input-group-text" id="new_input"><i class="far fa-eye" id="icon2"></i></div>
                         </div>
+                        </div>
                         @error('new_pass')
                             <div class="invalid_feedback">{{ $message }}</div>
                         @enderror
-                        </div>
                     </div>
                     <div class="col-md-4 col-12">
                         <label for="new_pass2">ulangi password baru</label>
@@ -68,10 +68,10 @@
                         <div class="input-group-prepend">
                             <div class="input-group-text" id="new_input2"><i class="far fa-eye" id="icon3"></i></div>
                         </div>
+                        </div>
                         @error('new_pass2')
                             <div class="invalid_feedback">{{ $message }}</div>
                         @enderror
-                        </div>
                     </div>
                 </div>
                 <div class="form-group mt-4">

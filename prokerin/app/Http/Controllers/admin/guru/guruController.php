@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\admin\guru;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\guruRequest;
+use App\Http\Requests\admin\guruRequest;
 use Illuminate\Http\Request;
 use App\Models\guru;
 use Yajra\DataTables\DataTables;

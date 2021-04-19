@@ -1,11 +1,10 @@
 <?php
 
-namespace App\Http\Requests;
+namespace App\Http\Requests\admin;
 
 use Illuminate\Foundation\Http\FormRequest;
 use App\Models\User;
 use App\Models\guru;
-
 class guruRequest extends FormRequest
 {
     /**
@@ -27,31 +26,34 @@ class guruRequest extends FormRequest
     {
 
         return [
-            'nik' => 'required|unique:guru,nik,'.$this->id,
+            'nik' => 'required|unique:guru,nik,' . $this->id,
             'nama' => 'required',
-            'jabatan' => ['required',
-            function ($attribute, $value, $fail) {
-                $user = User::where('role', $value)->where('id_guru', '!=', $this->id)->count();
-                if ($value === 'hubin' || $value === 'bkk' || $value == 'kaprog' ) {
-                    if ($value === 'kaprog') {
+            'jabatan' => [
+                'required',
+                function ($attribute, $value, $fail) {
+                    $user = User::where('role', $value)->where('id_guru', '!=', $this->id)->count();
+                    if ($value === 'hubin' || $value === 'bkk' || $value == 'kaprog') {
+                        if ($value === 'kaprog') {
                             if ($user >= 6) {
                                 $fail("Jabatan $value sudah penuh");
                             }
-                    }else if($value === 'hubin' or $value === 'bkk'){
+                        } else if ($value === 'hubin' or $value === 'bkk') {
                             if ($user >= 1) {
                                 $fail("Jabatan $value sudah penuh");
                             }
+                        }
                     }
-
                 }
-            }],
-            'jurusan' => ['required',
+            ],
+            'jurusan' => [
+                'required',
                 function ($attribute, $value, $fail) {
                     $jurusan = guru::where('jurusan', $value)->where('id', '!=', $this->id)->count();
                     if ($jurusan >= 5) {
                         $fail("Jurusan $value sudah penuh");
                     }
-                }],
+                }
+            ],
             'no_telp' => 'required'
         ];
     }

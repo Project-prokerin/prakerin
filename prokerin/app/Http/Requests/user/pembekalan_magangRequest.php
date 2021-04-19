@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Requests;
+namespace App\Http\Requests\user;
 
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -35,7 +35,7 @@ class pembekalan_magangRequest extends FormRequest
     {
         return [
             'file.required' => 'File tidak boleh kosong',
-            'siswa.required'=> 'Nama siswa tidak boleh kosong',
+            'siswa.required' => 'Nama siswa tidak boleh kosong',
             'file.file' => 'Harus berformat file',
             'file.mimes' => 'Harus berformat pdf',
             'test_wpt_iq.required' =>  'tidak boleh kosong',

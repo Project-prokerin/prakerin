@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 use App\Models\data_prakerin;
 use App\Models\perusahaan;
 use App\Models\guru;
-use App\Http\Requests\data_prakerinRequest;
+use App\Http\Requests\admin\data_prakerinRequest;
 
 class data_prakerinController extends Controller
 {
@@ -195,8 +195,8 @@ class data_prakerinController extends Controller
             'tgl_mulai' => $request->tgl_mulai,
             'tgl_selesai' => $request->tgl_selesai
         ]);
-            // dd($update);            
-             return redirect()->route('data_prakerin.index')->with(['pesan'=>"Data Berhasil di Update"]);
+            // dd($update);
+        return redirect()->route('data_prakerin.index')->with(['pesan'=>"Data Berhasil di Update"]);
     }
 
     /**

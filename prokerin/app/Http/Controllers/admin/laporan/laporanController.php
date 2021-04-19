@@ -4,7 +4,7 @@ namespace App\Http\Controllers\admin\laporan;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-
+use App\Http\Requests\admin\laporan_prakerinRequest;
 class laporanController extends Controller
 {
     /**

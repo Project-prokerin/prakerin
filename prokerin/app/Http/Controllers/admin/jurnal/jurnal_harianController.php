@@ -4,7 +4,7 @@ namespace App\Http\Controllers\admin\jurnal;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-
+use App\Http\Requests\admin\jurnal_harianRequest;
 class jurnal_harianController extends Controller
 {
     /**

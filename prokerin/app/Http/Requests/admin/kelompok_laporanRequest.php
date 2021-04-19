@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Requests;
+namespace App\Http\Requests\admin;
 
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -13,7 +13,7 @@ class kelompok_laporanRequest extends FormRequest
      */
     public function authorize()
     {
-        return true;
+        return false;
     }
 
     /**
@@ -33,7 +33,7 @@ class kelompok_laporanRequest extends FormRequest
         ];
     }
     public function messages()
-        {
+    {
         return [
             'no.required' => 'No idak boleh kosong',
             'id_guru.required' => 'Guru tidak boleh kosong',
@@ -41,8 +41,7 @@ class kelompok_laporanRequest extends FormRequest
             'id_perusahaan.required' => 'Nama perusahaan tidak boleh kosong',
             'no_telpon.required' => 'No telpon tidak boleh kosong',
             'jurusan.required' => 'Jurusan tidak boleh kosong',
- 
+
         ];
     }
 }
-

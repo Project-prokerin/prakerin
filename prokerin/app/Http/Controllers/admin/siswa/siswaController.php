@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\admin\siswa;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\siswaRequest;
+use App\Http\Requests\admin\siswaRequest;
 use Illuminate\Http\Request;
 use App\Models\Siswa;
 use App\Models\orang_tua;
