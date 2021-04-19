@@ -3,7 +3,7 @@
 namespace App\Http\Requests\admin;
 
 use Illuminate\Foundation\Http\FormRequest;
-
+use Illuminate\Support\Facades\Auth;
 class kelompok_laporanRequest extends FormRequest
 {
     /**
@@ -13,7 +13,7 @@ class kelompok_laporanRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return Auth::check();
     }
 
     /**
@@ -26,7 +26,7 @@ class kelompok_laporanRequest extends FormRequest
         return [
             'no' => 'required',
             'id_guru' => 'required',
-            'id_data_prakerin[]' => 'required',
+            'id_data_prakerin.*' => 'required',
             'id_perusahaan' => 'required',
             'no_telpon' => 'required',
             'jurusan' => 'required',
@@ -37,7 +37,7 @@ class kelompok_laporanRequest extends FormRequest
         return [
             'no.required' => 'No idak boleh kosong',
             'id_guru.required' => 'Guru tidak boleh kosong',
-            'id_data_prakerin[].required' => 'data prakerin tidak boleh kosong',
+            'id_data_prakerin.*.required' => 'data prakerin tidak boleh kosong',
             'id_perusahaan.required' => 'Nama perusahaan tidak boleh kosong',
             'no_telpon.required' => 'No telpon tidak boleh kosong',
             'jurusan.required' => 'Jurusan tidak boleh kosong',

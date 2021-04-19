@@ -30,7 +30,7 @@
     <div class="breadcrumb-item"> <i class="far fa-building"></i> DATA PERUSAHAAN</div>
 @endsection
 @section('main')
-    <div class="card mt-5">
+    <div class="card mt-5" style="height: 700px;">
         <div class="container text-center mt-5 mb-3 ml-1">
             <h3>Tambah kelompok</h3>
         </div>
@@ -46,22 +46,25 @@
                             <label>No Kelompok</label>
                             <select class="form-control select2 @error('no')  is-invalid  @enderror" name="no" id="">
                                 <option value="">Pilih Nomor</option>
-                                <option value="1">1</option>
-                                <option value="2">2</option>
-                                <option value="3">3</option>
-                                <option value="4">4</option>
-                                <option value="5">5</option>
+                                <option value="1" @if(old('no') === '1') selected @endif>1</option>
+                                <option value="2" @if(old('no') === '2') selected @endif>2</option>
+                                <option value="3" @if(old('no') === '3') selected @endif>3</option>
+                                <option value="4" @if(old('no') === '4') selected @endif>4</option>
+                                <option value="5" @if(old('no') === '5') selected @endif>5</option>
                             </select>
+                            @error('no')
+                                        <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
                         </div>
 
 
                         <!-- gru bimbing -->
                         <div class="form-group col-lg-10 ">
                             <label>Guru Pembimbing</label>
-                            <select class="form-control select2 @error('jurusan')  is-invalid  @enderror" name="id_guru" id="">
+                            <select class="form-control select2 @error('id_guru')  is-invalid  @enderror" name="id_guru" id="">
                                 <option value="" >--Cari Guru--</option>
-                                @foreach ($guru as $guruu)
-                                <option value="{{$guruu->id}}">{{$guruu->nama}}</option>
+                                @foreach ($guru as $key => $guruu )
+                                <option value="{{$guruu->id}}" {{ (old("id_guru") == $guruu ? "selected":"") }}>{{$guruu->nama}}</option>
                                 @endforeach
                             </select>
                                 @error('id_guru')
@@ -101,6 +104,9 @@
                         <div class="form-group col-lg-10 ">
                             <label for="">No telephon</label>
                             <input class="form-control @error('no_telpon')  is-invalid  @enderror" type="number" name="no_telpon" placeholder="no tlp" aria-label="default input example">
+                            @error('no_telpon')
+                                        <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
                         </div>
 
 
@@ -115,9 +121,16 @@
                                     <option  value="{{ $item->id }}">{{ $item->nama }}</option>
                                 @endforeach
                                 </select>
-                                    @error('id_siswa')
-                                        <div class="invalid-feedback">{{ $message }}</div>
-                                    @enderror
+                                @if ($errors->has(`id_data_prakerin.0`))
+                                <span class="text-danger">
+                                    <small>
+                                        {{ $errors->first('id_data_prakerin.0')}}
+                                    </small>
+                            
+                                </span>
+                                
+                            @endif
+                            
                         </div>
 
                          <div class="form-group col-lg-12 ">
@@ -127,9 +140,15 @@
                                     <option  value="{{ $item->id }}">{{ $item->nama }}</option>
                                 @endforeach
                                 </select>
-                                    @error('id_siswa')
-                                        <div class="invalid-feedback">{{ $message }}</div>
-                                    @enderror
+                                @if ($errors->has(`id_data_prakerin.1`))
+                                <span class="text-danger">
+                                    <small>
+                                        {{ $errors->first('id_data_prakerin.1')}}
+                                    </small>
+                            
+                                </span>
+                            @endif
+                                 
                         </div>
 
 
@@ -140,9 +159,15 @@
                                     <option  value="{{ $item->id }}">{{ $item->nama }}</option>
                                 @endforeach
                                 </select>
-                                    @error('id_siswa')
-                                        <div class="invalid-feedback">{{ $message }}</div>
-                                    @enderror
+                                @if ($errors->has(`id_data_prakerin.2`))
+                                <span class="text-danger">
+                                    <small>
+                                        {{ $errors->first('id_data_prakerin.2')}}
+                                    </small>
+                            
+                                </span>
+                            @endif
+                                 
                         </div>
 
 
@@ -153,9 +178,15 @@
                                     <option  value="{{ $item->id }}">{{ $item->nama }}</option>
                                 @endforeach
                                 </select>
-                                    @error('id_siswa')
-                                        <div class="invalid-feedback">{{ $message }}</div>
-                                    @enderror
+                                @if ($errors->has(`id_data_prakerin.3`))
+                                <span class="text-danger">
+                                    <small>
+                                        {{ $errors->first('id_data_prakerin.3')}}
+                                    </small>
+                            
+                                </span>
+                            @endif
+                                 
                         </div>
 
                         <button type="submit"  class="btn btn-success ml-3"><i class="fas fa-check"></i> submit</button>

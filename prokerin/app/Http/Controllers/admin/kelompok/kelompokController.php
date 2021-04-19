@@ -72,10 +72,11 @@ class kelompokController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(kelompok_laporanRequest $request)
     {
 
-        $data=   $request->all();
+
+        $data=   $request->validated()->all();
     //    array($data);
         // dd($data);
         $perusahaan = perusahaan::where('id', $data['id_perusahaan'])->first();
