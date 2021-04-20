@@ -52,6 +52,8 @@ Prakerin adalah praktek kerja industri yang di gunakan untuk mengelola data maga
 - [jquery](https://jquery.com/)
 - [fontawesome icon](https://fontawesome.com/)
 - [bootstrap](https://getbootstrap.com/docs/4.6/getting-started/introduction/)
+- [DataTables](https://datatables.net/)
+- [SweetAlert](https://sweetalert2.github.io/)
 
 
 ## team project
