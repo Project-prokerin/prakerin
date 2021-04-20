@@ -10,6 +10,7 @@ class orang_tua extends Model
 
     protected $table = "orang_tua";
     protected $guarded = [];
+    protected $dates = ['tl_ayah','tl_ibu'];
     use HasFactory;
     public function siswa()
     {

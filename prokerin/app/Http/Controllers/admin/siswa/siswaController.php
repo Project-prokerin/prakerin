@@ -47,7 +47,7 @@ class siswaController extends Controller
     public function ajax(Request $request )
     {
         if ($request->ajax()) {
-            $siwa = Siswa::all();
+            $siwa = Siswa::orderby('nama_siswa', 'ASC')->get();
             return datatables()->of($siwa)
                 ->addColumn('action', function ($data) {
                     $button = '<a href="/admin/siswa/detail/' . $data->id . '"   id="' . $data->id . '" class="edit btn btn-primary btn-sm"><i class="fas fa-search"></i></a>';
@@ -95,7 +95,7 @@ class siswaController extends Controller
      */
     public function detail($id)
     {
-        return view('admin.siswa.detail');
+        return view('admin.siswa.detail', ['siswa' => Siswa::where('id', $id)->with('orang_tua','sekolah_asal')->first()]);
     }
 
     /**

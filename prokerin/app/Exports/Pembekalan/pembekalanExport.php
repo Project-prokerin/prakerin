@@ -34,7 +34,7 @@ class pembekalanExport implements FromQuery, WithHeadings, WithMapping, WithStyl
     }
     public function query()
     {
-        return Siswa::query()->with('pembekalan_magang')->where('jurusan', $this->jurusan);
+        return Siswa::query()->where('jurusan', $this->jurusan)->whereHas('pembekalan_magang');
     }
     public function headings(): array
     {
