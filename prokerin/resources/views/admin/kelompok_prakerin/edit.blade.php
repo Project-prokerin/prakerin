@@ -32,6 +32,7 @@ edit view kelompok
     <div class="breadcrumb-item"> <i class="far fa-building"></i> DATA PERUSAHAAN</div>
 @endsection
 @section('main')
+
     <div class="card mt-5">
         <div class="container text-center mt-5 mb-3 ml-1">
             <h3>Edit kelompok</h3>

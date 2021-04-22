@@ -79,7 +79,7 @@ class guruController extends Controller
      */
     public function detail($id)
     {
-        return view('admin.guru.detail');
+        return view('admin.guru.detail', ['guru' => guru::find($id)]);
     }
 
     /**
@@ -90,8 +90,7 @@ class guruController extends Controller
      */
     public function edit($id)
     {
-        $guru = guru::where('id', $id)->first();
-        return view('admin.guru.edit', compact('guru'));
+        return view('admin.guru.edit',  ['guru' => guru::find($id)]);
     }
 
     /**

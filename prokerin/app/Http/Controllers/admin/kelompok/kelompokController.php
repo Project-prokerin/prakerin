@@ -76,7 +76,8 @@ class kelompokController extends Controller
     {
 
 
-        $data=   $request->validated()->all();
+        $request->validated();
+        $data = $request->all();
     //    array($data);
         // dd($data);
         $perusahaan = perusahaan::where('id', $data['id_perusahaan'])->first();
@@ -85,7 +86,9 @@ class kelompokController extends Controller
         // $condition = $input['id_data_prakerin'];
 
         // if (count($data['id_data_prakerin']  > 0) ) {
+            // $arr = [];
             foreach ($data['id_data_prakerin'] as $key => $value) {
+                // $arr[] = $data['id_data_prakerin'][$key];
                 $data2 = array(
                     'no'   => $data['no'],
                     'id_guru'   => $data['id_guru'],
@@ -94,8 +97,10 @@ class kelompokController extends Controller
                     'no_telpon'         => $data['no_telpon'],
                     'jurusan'       => $data['jurusan'],
                 );
+
                 kelompok_laporan::create($data2);
             }
+
 
         // }
 
@@ -276,7 +281,7 @@ class kelompokController extends Controller
 // dd($update);
 return redirect()->route('kelompok.index')->with(['update' => 'Kelompok '.$request->no[0].' berhasil di Update  !']);
     }
-    public function updates(data_prakerinRequest $request,data_prakerin $data_prakerin)
+    public function updates(kelompok_laporanRequest $request,data_prakerin $data_prakerin)
     {
         // $this->validated($request[
         //     'nama'   => $siswa->nama_siswa,
