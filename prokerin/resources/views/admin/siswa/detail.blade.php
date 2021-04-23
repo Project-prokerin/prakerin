@@ -35,7 +35,7 @@
 <div>
     <div class="garis"></div>
     <div class="card-header">
-        <h5 class="title"><i class="far fa-address-card"></i> Informasi Pribadi</h5>
+        <h5 class="title"><i class="far fa-address-card"></i> Informasi Siswa</h5>
     </div>
     <div class="card">
         <div class="row">

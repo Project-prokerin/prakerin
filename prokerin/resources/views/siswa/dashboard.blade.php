@@ -61,27 +61,32 @@
 
 {{-- itesmashboard --}}
 <div class="card-body">
-    <h6>Ringkasan Khusus</h6>
-        <!-- Example single danger button -->
-    <div class="btn-group dropright">
-        <button type="button" class="btn btn-secondary dropdown-toggle button-course" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <h5>Detail</h5>
-        </button>
-        <div class="dropdown-menu">
-            <a class="dropdown-item" href="{{ route('user.perusahaan') }}">List Perusahaan</a>
-            <a class="dropdown-item" href="{{ route('user.pembekalan') }}">Pembekalan Magang</a>
-            @if (siswa('data_prakerin') == '')
+    <div class="mb-3 row">
+        {{-- <label class="col-sm-2 col-form-label">Email</label> --}}
+        <label class="col-sm-2 col-form-label">Ringkasan Khusus</label>
+        <div class="col-sm-10" style="margin-left: -25px">
+          <div class="btn-group dropright">
+                <button type="button" class="btn btn-secondary btn-sm dropdown-toggle button-course" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <label>Detail</label>
+                </button>
+                <div class="dropdown-menu">
+                    <a class="dropdown-item" href="{{ route('user.perusahaan') }}">List Perusahaan</a>
+                    <a class="dropdown-item" href="{{ route('user.pembekalan') }}">Pembekalan Magang</a>
+                    @if (siswa('data_prakerin') == '')
 
-            @else
-            <a class="dropdown-item" href="{{ route('user.status') }}">Status Magang</a>
-            <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="{{ route('user.jurnal') }}">Jurnal Prakerin</a>
-            <a class="dropdown-item" href="{{ route('user.jurnalH') }}">Jurnal Harian</a>
-            <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="{{ route('user.kelompok_laporan') }}">Kelompok Harian</a>
-            @endif
+                    @else
+                    <a class="dropdown-item" href="{{ route('user.status') }}">Status Magang</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="{{ route('user.jurnal') }}">Jurnal Prakerin</a>
+                    <a class="dropdown-item" href="{{ route('user.jurnalH') }}">Jurnal Harian</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="{{ route('user.kelompok_laporan') }}">Kelompok Harian</a>
+                    @endif
+                </div>
+            </div>
         </div>
     </div>
+    <hr>
 </div>
 <div class="card-body  container-fluid mt-2">
 <div class="row">

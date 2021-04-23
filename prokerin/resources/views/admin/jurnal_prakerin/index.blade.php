@@ -13,6 +13,9 @@
     .table{
         margin-top: 20px;
     }
+    .card-body{
+        margin-top: -60px;
+    }
 
 </style>
 @endpush
@@ -24,24 +27,23 @@
 @endsection
 @section('main')
 <div class="card">
-<div class="buton" style="z-index: 2;">  
-    <br>
-    <br>
-    <a href="{{ route('jurnal.tambah') }}"><button type="button" class="btn btn-primary rounded-pill">Tambah Data <i class="fas fa-plus"></i></button></a>
-    {{-- <a style="margin-left: -170px" href="/export/excel/data_prakerin"><button type="button" class="btn btn-success buten ">Export to Excel</button></a>
-    <a href="/export/pdf/data_prakerin"><button type="button" class="btn btn-danger butan">Export to PDF</button></a> --}}
+<div class="card-body">
+    <div class="buton" style="z-index: 2;">
+        <br>
+        <br>
+        <a href="{{ route('jurnal.tambah') }}"><button type="button" class="btn btn-primary rounded-pill">Tambah Data <i class="fas fa-plus"></i></button></a>
+    </div>
+    <form class="d-flex flex-row-reverse mr-5" style="margin-top: -66px;">
+        <button class="btn btn-outline-success" type="submit"><i class="fas fa-search"></i></button>
+        <input class="form-control ml-3" type="search" placeholder="Search" aria-label="Search" id="search" style="width: 200px;">
+        <div>
+            <a href="/export/pdf/data_prakerin"><button type="button" class="btn btn-danger mr-3 rounded-pill"><i class="fas fa-cloud-download-alt"></i>  PDF</button></a>
+        </div>
+        <div>
+            <a href="/export/excel/data_prakerin"><button type="button" class="btn btn-success mr-3 rounded-pill"><i class="fas fa-cloud-download-alt"></i>  Excel</button></a>
+        </div>
+    </form>
 </div>
-<form class="d-flex flex-row-reverse mr-5" style="margin-top: -66px;">
-    <button class="btn btn-outline-success" type="submit"><i class="fas fa-search"></i></button>
-    <input class="form-control ml-3" type="search" placeholder="Search" aria-label="Search" id="search" style="width: 200px;">
-    {{-- <input class="form-control me-2" type="search"  placeholder="Search" aria-label="Search" id="search" style="width: 200px;"> --}}
-    <div>
-        <a href="/export/pdf/data_prakerin"><button type="button" class="btn btn-danger mr-3 rounded-pill"><i class="fas fa-cloud-download-alt"></i>  PDF</button></a>
-    </div>
-    <div>
-        <a href="/export/excel/data_prakerin"><button type="button" class="btn btn-success mr-3 rounded-pill"><i class="fas fa-cloud-download-alt"></i>  Excel</button></a>
-    </div>
-</form>
     <!-- table -->
     @if (session('success'))
     <div class="alert alert-success alert-dismissible fade show" role="alert">
@@ -65,7 +67,7 @@
         </tr>
     </thead>
     <tbody>
-      
+
     </tbody>
     </table>
 
@@ -169,6 +171,6 @@
 
 
 
-          
+
         </script>
 @endpush
