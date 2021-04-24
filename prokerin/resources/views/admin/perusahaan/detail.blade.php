@@ -49,7 +49,7 @@
 
 
             <div class="col-sm-4 mt-5" style="margin-left:40px;">
-                <img src='{{ asset("images/perusahaan/$perusahaan->foto") }}' style="width: 400px">
+                <img src='{{ asset("images/perusahaan/$perusahaan->foto") }}' style="width: 350px">
                 <div style="margin-top: 40px; margin-bottom:40px;">
                     <a href="{{ route('perusahaan.index') }}" type="button" class="btn btn-danger "><i
                             class="fas fa-backspace"></i> Kembali</a>
