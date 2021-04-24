@@ -314,10 +314,11 @@ class userController extends Controller
             return back();
         }
         $no_kelompok = !empty(siswa('data_prakerin')->kelompok_laporan->no) ? siswa('data_prakerin')->kelompok_laporan->no : '';
-        $guru_nama =   !empty(siswa('data_prakerin')->kelompok_laporan->guru->nama) ? siswa('data_prakerin')->kelompok_laporan->guru->nama : 'Nama pembimbing belum di tentukan';
+        $guru_nama =   !empty(siswa('data_prakerin')->kelompok_laporan->guru->nama) ? siswa('data_prakerin')->kelompok_laporan->guru->nama : '';
+        $id_guru =   !empty(siswa('data_prakerin')->kelompok_laporan->guru->id) ? siswa('data_prakerin')->kelompok_laporan->guru->id : 'Nama pembimbing';
         $laporan =  !empty(siswa('data_prakerin')->kelompok_laporan->laporan_prakerin->nama) ? siswa('data_prakerin')->kelompok_laporan->laporan_prakerin->nama : 'Judul lapora belum di tentukan';
             // dd(Auth::user()->siswa->data_prakerin);
-            $kelompok = kelompok_laporan::where('no', $no_kelompok)->get();
-            return view('siswa.kelompok_laporan.index', compact('kelompok','no_kelompok','guru_nama','laporan'));
+        $kelompok = kelompok_laporan::select('*')->where('id_guru', $id_guru)->where('no', $no_kelompok)->wherehas('data_prakerin')->get();
+        return view('siswa.kelompok_laporan.index', compact('kelompok','no_kelompok','guru_nama','laporan'));
     }
 }

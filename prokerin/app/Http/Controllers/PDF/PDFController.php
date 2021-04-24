@@ -46,7 +46,7 @@ class PDFController extends Controller
     //   return $pdf->download('pdf_file.pdf')
     $waktu = Carbon::now()->isoFormat('D MMMM Y');
         $kelompok = kelompok_laporan::has('data_prakerin')->where('no', $no_kelompok)->get();
-            $KPrakerin = PDF::loadView('export.PDF.kelompok_prakerin', compact('kelompok','waktu'))->setOptions(['defaultFont' => 'sans-serif','isHtml5ParserEnabled' => true, 'isRemoteEnabled' => true]); 
+            $KPrakerin = PDF::loadView('export.PDF.kelompok_prakerin', compact('kelompok','waktu'))->setOptions(['defaultFont' => 'sans-serif','isHtml5ParserEnabled' => true, 'isRemoteEnabled' => true]);
             // return $KPrakerin->download('KelompokPrakerin.PDF');
             return $KPrakerin->stream();
         // return view('export.PDF.kelompok_prakerin',compact('kelompok'));

@@ -16,6 +16,36 @@
     .card-body{
         margin-top: -20px;
     }
+     table.dataTable th:nth-child(1) {
+        width: 20px;
+        max-width: 130px;
+        word-break: break-all;
+        white-space: pre-line;
+    }
+    table.dataTable th:nth-child(2) {
+        width: 60px;
+        max-width: 190px;
+        word-break: break-all;
+        white-space: pre-line;
+    }
+    table.dataTable td:nth-child(3) {
+        width: 40px;
+        max-width: 140px;
+        word-break: break-all;
+        white-space: pre-line;
+    }
+    table.dataTable td:nth-child(4) {
+        width: 140px;
+        max-width: 140px;
+        word-break: break-all;
+        white-space: pre-line;
+    }
+    table.dataTable th:nth-child(5) {
+        width: 80px;
+        max-width: 80px;
+        word-break: break-all;
+        white-space: pre-line;
+    }
 </style>
 @endpush
 @section('title', 'Prakerin |   Kelompok Prakerin')
@@ -63,7 +93,7 @@
     <table class="table table-bordered text-center" id="table">
     <thead>
         <tr>
-            <th scope="col">No Kelompok</th>
+            <th scope="col">No</th>
             <th scope="col">Guru Pembimbing</th>
             <th scope="col">Jurusan</th>
             <th scope="col">Perusahaan</th>

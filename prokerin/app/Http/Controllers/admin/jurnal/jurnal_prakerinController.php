@@ -120,7 +120,7 @@ class jurnal_prakerinController extends Controller
     public function edit($id)
     {
         // $sidebar = 'jurnal';
-        $data_prakerin = data_prakerin::all();
+        $data_prakerin = data_prakerin::all(); //
         // $dataP = data_prakerin::findOrFail($id);
         // dd($dataP);
         $jurnalPrakerin = jurnal_prakerin::find($id);
