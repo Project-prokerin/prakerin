@@ -98,8 +98,8 @@ Route::middleware(['web', 'auth', 'role:kaprog,hubin'])->group(function () {
     Route::get('admin/jurnalH/detail/{id}', [data_prakerinController::class, 'detail'])->name('jurnalH.detail');
     Route::get('admin/jurnalH/tambah', [jurnal_harianController::class, 'tambah'])->name('jurnalH.tambah');
     Route::post('admin/jurnalH/tambah/post', [jurnal_harianController::class, 'store'])->name('jurnalH.post');
-    Route::get('admin/jurnalH/edit', [jurnal_harianController::class, 'edit'])->name('jurnalH.edit');
-    Route::put('admin/jurnalH/update', [jurnal_harianController::class, 'update'])->name('jurnalH.update');
+    Route::get('admin/jurnalH/edit/{id}', [jurnal_harianController::class, 'edit'])->name('jurnalH.edit');
+    Route::put('admin/jurnalH/update/{id}', [jurnal_harianController::class, 'update'])->name('jurnalH.update');
     Route::delete('admin/jurnalH/delete/{id}', [jurnal_harianController::class, 'destroy'])->name('jurnalH.delete');
     Route::post('/jurnalH/destroy', [jurnal_harianController::class, 'delete_all'])->name('jurnalH.delete-all');
     Route::get('/export/excel/jurnalH', [ExcelController::class, 'jurnalh'])->name('export.jurnalH');

@@ -1,5 +1,6 @@
 @extends('template.master')
 @push('link')
+<link rel="stylesheet" href="{{asset('template/')}}/node_modules/select2/dist/css/select2.min.css">
 <style>
     .card{
         height: auto;
