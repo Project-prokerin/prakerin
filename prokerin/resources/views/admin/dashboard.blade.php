@@ -59,36 +59,44 @@
             <h6 class="ml-3 mb-5">Praktek Kerja Industri {{$tahun}} - {{$tahunDepan}}</h6>
         </div>
         {{--  --}}
-
         {{-- itesmashboard --}}
         <div class="card-body">
-            <h6>Ringkasan Khusus</h6>
-                <!-- Example single danger button -->
-            <div class="btn-group dropright">
-                <button type="button" class="btn btn-secondary dropdown-toggle button-course" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <h5>Detail</h5>
-                </button>
-                <div class="dropdown-menu">
-                @if (Auth::user()->role == 'hubin' or Auth::user()->role == 'kaprog' or Auth::user()->role == 'bkk')
-                @if(Auth::user()->role == 'hubin')
-                    <a class="dropdown-item" href="{{route('siswa.index')}}">Data Siswa</a>
-                    <a class="dropdown-item" href="{{route('guru.index')}}">Data Guru</a>
-                    <a class="dropdown-item" href="{{route('perusahaan.index')}}">Data Perusahaan</a>
-                    @endif
-                @if (Auth::user()->role == 'bkk' or Auth::user()->role == 'hubin')
-                    <a class="dropdown-item" href="{{route('pembekalan.index')}}">Pembekalan Magang</a>
-                    @endif
-                @if (Auth::user()->role == 'kaprog' or Auth::user()->role == 'hubin')
-                    <a class="dropdown-item" href="{{route('data_prakerin.index')}}">Data Prakerin</a>
-                    <a class="dropdown-item" href="{{route('jurnal.index')}}">Jurnal Prakerin</a>
-                    <a class="dropdown-item" href="{{route('jurnalH.index')}}">Jurnal Harian</a>
-                    <a class="dropdown-item" href="{{route('kelompok.index')}}">Kelompok Prakerin</a>
-                    <a class="dropdown-item" href="{{route('laporan.index')}}">Laporan Prakerin</a>
-                    @endif
-                    @else''@endif
+            <div class="mb-3 row">
+                {{-- <label class="col-sm-2 col-form-label">Email</label> --}}
+                <label class="col-sm-2 col-form-label">Ringkasan Khusus</label>
+                <div class="col-sm-10" style="margin-left: -25px">
+                  <div class="btn-group dropright">
+                        <button type="button" class="btn btn-secondary btn-sm dropdown-toggle button-course" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <label>Detail</label>
+                        </button>
+                        <div class="dropdown-menu">
+                            @if (Auth::user()->role == 'hubin' or Auth::user()->role == 'kaprog' or Auth::user()->role == 'bkk')
+                            @if(Auth::user()->role == 'hubin')
+                                <a class="dropdown-item" href="{{route('siswa.index')}}">Data Siswa</a>
+                                <a class="dropdown-item" href="{{route('guru.index')}}">Data Guru</a>
+                                <a class="dropdown-item" href="{{route('perusahaan.index')}}">Data Perusahaan</a>
+                                @endif
+                            @if (Auth::user()->role == 'bkk' or Auth::user()->role == 'hubin')
+                                <a class="dropdown-item" href="{{route('pembekalan.index')}}">Pembekalan Magang</a>
+                                @endif
+                            @if (Auth::user()->role == 'kaprog' or Auth::user()->role == 'hubin')
+                                <a class="dropdown-item" href="{{route('data_prakerin.index')}}">Data Prakerin</a>
+                                <a class="dropdown-item" href="{{route('jurnal.index')}}">Jurnal Prakerin</a>
+                                <a class="dropdown-item" href="{{route('jurnalH.index')}}">Jurnal Harian</a>
+                                <a class="dropdown-item" href="{{route('kelompok.index')}}">Kelompok Prakerin</a>
+                                <a class="dropdown-item" href="{{route('laporan.index')}}">Laporan Prakerin</a>
+                                @endif
+                            @else''@endif
+                        </div>
+                    </div>
                 </div>
             </div>
+            <hr>
         </div>
+
+
+
+
         <div class="card-body  container-fluid mt-2">
         <div class="row">
             @if (Auth::user()->role == 'hubin' or Auth::user()->role == 'kaprog' or Auth::user()->role == 'bkk')

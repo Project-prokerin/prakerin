@@ -105,16 +105,6 @@
         <div class="card">
         <!-- table -->
         <div class="container mt-4" >
-        {{-- <div class="row" style="margin-bottom: -30px;">
-            <div class="col-3">
-            <a href="{{ route('data_prakerin.tambah') }}"class="btn btn-primary"> Tambah Data <i class="fas fa-plus"></i></button></a>
-            </div>
-            <div class="col-9 d-flex justify-content-end" >
-            <a href="/export/excel/data_prakerin"class="btn btn-success "> Export to Excel</a>
-            &nbsp;&nbsp;&nbsp;
-            <a href="/export/pdf/data_prakerin"class="btn btn-danger "> Export to PDF</a>
-            </div>
-        </div> --}}
         @if (session('success'))
         <div class="alert alert-success alert-dismissible fade show" role="alert">
             {{ session('success') }}
@@ -164,21 +154,6 @@
         </tr>
         </thead>
         <tbody>
-
-            {{-- <tr>
-            <th scope="row">1</th>
-            <td>marker</td>
-            <td>11</td>
-            <td>RPL</td>
-            <td>121212</td>
-            <td>121212</td>
-            <td>Telkom</td>
-            <td>
-            <button type="button" class="btn btn-primary"><i class="fas fa-search"></i></button>
-            <button type="button" class="btn btn-warning"><i class="fas fa-pencil-alt"></i></button>
-            <button type="button" class="btn btn-danger"><i class="fas fa-trash"></i></button>
-            </td>
-            </tr> --}}
 
         </tbody>
         </table>

@@ -77,7 +77,7 @@ class perusahaanController extends Controller
      */
     public function detail($id)
     {
-        return view('admin.perusahaan.detail');
+        return view('admin.perusahaan.detail', ['perusahaan' => perusahaan::find($id)]);
     }
 
     /**
