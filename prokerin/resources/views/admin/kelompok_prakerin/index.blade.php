@@ -95,9 +95,9 @@
         <tr>
             <th scope="col">No</th>
             <th scope="col">Guru Pembimbing</th>
-            <th scope="col">Jurusan</th>
+            {{-- <th scope="col">Jurusan</th> --}}
             <th scope="col">Perusahaan</th>
-            <th scope="col">Actiom</th>
+            <th scope="col">Action</th>
         </tr>
     </thead>
     <tbody>
@@ -143,7 +143,7 @@
             { data: 'no',name:'no'},
             { data: 'guru',name:'guru.nama'},
             // { data: 'no_telpon',name:'no_telpon'},
-            { data: 'jurusan',name:'jurusan'},
+            // { data: 'jurusan',name:'jurusan'},
             { data: 'nama_perusahaan',name:'nama_perusahaan'},
             // { data: 'data_prakerin',name:'data_prakerin.'},
             { data: 'action',name:'action'}

@@ -158,10 +158,13 @@ edit view kelompok
                         <div class="form-group col-lg-12 ">
                             <select name="id_data_prakerin[]"
                                 class="form-control  @error('id_data_prakerin')  is-invalid  @enderror select2">
+                                <option value="">--Cari Siswa--</option>
                                 <option value="{{ $kelompok_laporan[0]->id_data_prakerin }}" selected>
                                     {{ $kelompok_laporan[0]->data_prakerin->nama }}</option>
-                                @foreach ($data_prakerin as $item)
-                                    <option value="{{ $item->id }}">{{ $item->nama }}</option>
+                                   @foreach ($data_prakerin as $item)
+                                    @if (empty($item->kelompok_laporan))
+                                        <option value="{{ $item->id }}" >{{ $item->nama }}</option>
+                                    @endif
                                 @endforeach
                             </select>
                             @error('id_siswa')
@@ -172,11 +175,14 @@ edit view kelompok
                         <div class="form-group col-lg-12 ">
                             <select name="id_data_prakerin[]"
                                 class="form-control  @error('id_data_prakerin')  is-invalid  @enderror select2">
+                                <option value="">--Cari Siswa--</option>
+                              
                                 <option value="{{ $kelompok_laporan[1]->id_data_prakerin }}" selected>
                                     {{ $kelompok_laporan[1]->data_prakerin->nama }}</option>
-
-                                @foreach ($data_prakerin as $item)
-                                    <option value="{{ $item->id }}">{{ $item->nama }}</option>
+                                   @foreach ($data_prakerin as $item)
+                                    @if (empty($item->kelompok_laporan))
+                                        <option value="{{ $item->id }}" >{{ $item->nama }}</option>
+                                    @endif
                                 @endforeach
                             </select>
                             @error('id_siswa')
@@ -188,11 +194,14 @@ edit view kelompok
                         <div class="form-group col-lg-12 ">
                             <select name="id_data_prakerin[]"
                                 class="form-control  @error('id_data_prakerin')  is-invalid  @enderror select2">
+                                <option value="">--Cari Siswa--</option>
 
                                 <option value="{{ $kelompok_laporan[2]->id_data_prakerin }}" selected>
                                     {{ $kelompok_laporan[2]->data_prakerin->nama }}</option>
-                                @foreach ($data_prakerin as $item)
-                                    <option value="{{ $item->id }}">{{ $item->nama }}</option>
+                                   @foreach ($data_prakerin as $item)
+                                    @if (empty($item->kelompok_laporan))
+                                        <option value="{{ $item->id }}" >{{ $item->nama }}</option>
+                                    @endif
                                 @endforeach
                             </select>
                             @error('id_siswa')
@@ -201,19 +210,46 @@ edit view kelompok
                         </div>
 
 
+                        @if (empty($kelompok_laporan[3]->id_data_prakerin))
                         <div class="form-group col-lg-12 ">
-                            <select name="id_data_prakerin[]"
-                                class="form-control  @error('id_data_prakerin')  is-invalid  @enderror select2">
+                                <select name="id_data_prakerin[]" class="form-control  @error('id_data_prakerin')  is-invalid  @enderror select2">
+                                    <option value="">--Cari Siswa--</option>
+                                    @foreach ($data_prakerin as $item)
+                                        @if (empty($item->kelompok_laporan))
+                                            <option value="{{ $item->id }}" >{{ $item->nama }}</option>
+                                        @endif
+                                    @endforeach
+                                </select>
+                                @if ($errors->has(`id_data_prakerin.3`))
+                                <span class="text-danger">
+                                    <small>
+                                        {{ $errors->first('id_data_prakerin.3')}}
+                                    </small>
+                            
+                                </span>
+                            @endif
+                         </div>
+                        @else
+                        <div class="form-group col-lg-12 ">
+                            <select name="id_data_prakerin[]" class="form-control  @error('id_data_prakerin')  is-invalid  @enderror select2">
+                                <option value="">--Cari Siswa--</option>
                                 <option value="{{ $kelompok_laporan[3]->id_data_prakerin }}" selected>
                                     {{ $kelompok_laporan[3]->data_prakerin->nama }}</option>
                                 @foreach ($data_prakerin as $item)
-                                    <option value="{{ $item->id }}">{{ $item->nama }}</option>
+                                    @if (empty($item->kelompok_laporan))
+                                        <option value="{{ $item->id }}" >{{ $item->nama }}</option>
+                                    @endif
                                 @endforeach
                             </select>
+
+                            
+
                             @error('id_siswa')
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
-                        </div>
+                         </div>
+                        
+                        @endif
 
                         <button type="submit" class="btn btn-success ml-3"><i class="fas fa-check"></i> submit</button>
                         <a href="{{ route('kelompok.index') }}" type="submit" class="btn btn-danger"><i

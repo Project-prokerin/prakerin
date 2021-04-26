@@ -36,7 +36,7 @@ class kelompokController extends Controller
     {
         if ($request->ajax()) {
             // with('data_prakerin')->with('guru')->
-            $kelompokLaporan = kelompok_laporan::with('data_prakerin')->distinct('no','id_guru','jurusan','nama_perusahaan')->get(['no','id_guru','jurusan','nama_perusahaan']);;
+            $kelompokLaporan = kelompok_laporan::with('data_prakerin')->distinct('no','id_guru','nama_perusahaan')->get(['no','id_guru','nama_perusahaan']);;
             // dd($kelompok_laporan);
             return datatables()->of($kelompokLaporan)->addColumn('guru', function (kelompok_laporan $kelompok_laporan) {
                     return $kelompok_laporan->guru->nama;
@@ -60,7 +60,7 @@ class kelompokController extends Controller
     public function tambah(Request $request)
     {
 
-        $data_prakerin = data_prakerin::all();
+        $data_prakerin = data_prakerin::doesntHave('kelompok_laporan')->get();
         $perusahaan = perusahaan::all();
         $guru = guru::all();
         return view('admin.kelompok_prakerin.tambah',compact('data_prakerin','perusahaan','guru'));
@@ -95,7 +95,7 @@ class kelompokController extends Controller
                     'id_data_prakerin'   => $data['id_data_prakerin'][$key],
                     'nama_perusahaan'   => $perusahaan->nama,
                     'no_telpon'         => $data['no_telpon'],
-                    'jurusan'       => $data['jurusan'],
+                    // 'jurusan'       => $data['jurusan'],
                 );
 
                 kelompok_laporan::create($data2);
@@ -141,7 +141,7 @@ class kelompokController extends Controller
      */
     public function edit($id)
     {
-        $data_prakerin = data_prakerin::all();
+        $data_prakerin = data_prakerin::doesntHave('kelompok_laporan')->get();
         $perusahaan = perusahaan::all();
         $guru = guru::all();
         $siswa = Siswa::all();
@@ -174,7 +174,7 @@ class kelompokController extends Controller
                     'id_data_prakerin'   => $request->id_data_prakerin[$key],
                     'nama_perusahaan'   => $request->id_perusahaan,
                     'no_telpon'         => $request->no_telpon,
-                    'jurusan'       => $request->jurusan,
+                    // 'jurusan'       => $request->jurusan,
 
                 ]);
                 // $data = kelompok_laporan::where('id',$request->id[1])->where('no',$request->no[1])->update([
