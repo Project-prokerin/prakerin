@@ -28,7 +28,10 @@
                             <option value="" >-- Pilih siswa --</option>
                                 @foreach ($siswa as $item)
                                 <option value="{{$item->id}}" >{{$item->nama_siswa}}</option>
-                            @endforeach
+                                @endforeach
+                                @if (count($siswa) < 1)
+                                    <option disabled>Semua Siswa telah mendapat pembekalan!</option>
+                                @endif
                             </select>
                             <div id="invalid_siswa" class="invalid-feedback d-none"></div>
                 </div>

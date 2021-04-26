@@ -27,6 +27,9 @@
                                 @foreach ($Siswa as $item)
                                 <option value="{{$item->id}}" @if(old('siswa') == $item->id or $pembekalan->id_siswa == $item->id) selected @endif>{{$item->nama_siswa}}</option>
                             @endforeach
+                            @if (count($siswa) < 1)
+                                    <option disabled>Semua Siswa telah mendapat pembekalan!</option>
+                                @endif
                             </select>
                             <div id="invalid_siswa" class="invalid-feedback d-none"></div>
                 </div>

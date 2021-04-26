@@ -176,7 +176,7 @@ edit view kelompok
                             <select name="id_data_prakerin[]"
                                 class="form-control  @error('id_data_prakerin')  is-invalid  @enderror select2">
                                 <option value="">--Cari Siswa--</option>
-                              
+
                                 <option value="{{ $kelompok_laporan[1]->id_data_prakerin }}" selected>
                                     {{ $kelompok_laporan[1]->data_prakerin->nama }}</option>
                                    @foreach ($data_prakerin as $item)
@@ -225,7 +225,7 @@ edit view kelompok
                                     <small>
                                         {{ $errors->first('id_data_prakerin.3')}}
                                     </small>
-                            
+
                                 </span>
                             @endif
                          </div>
@@ -242,13 +242,13 @@ edit view kelompok
                                 @endforeach
                             </select>
 
-                            
+
 
                             @error('id_siswa')
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
                          </div>
-                        
+
                         @endif
 
                         <button type="submit" class="btn btn-success ml-3"><i class="fas fa-check"></i> submit</button>

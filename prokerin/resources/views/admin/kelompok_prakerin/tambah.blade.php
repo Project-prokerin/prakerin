@@ -137,7 +137,7 @@
                             </select>
                             @if ($errors->has(`id_data_prakerin.0`))
                                 <span class="text-danger">
-                                    <small>
+                                    <small> 
                                         {{ $errors->first('id_data_prakerin.0') }}
                                     </small>
 
