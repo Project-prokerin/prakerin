@@ -85,7 +85,7 @@ edit view kelompok
                             </select>
                         </div>
                         <!-- jurusan -->
-                        <div class="form-group col-lg-10 ">
+                        {{-- <div class="form-group col-lg-10 ">
                             <label>Jurusan</label>
                             <select name="jurusan" class="form-control select2 @error('jurusan')  is-invalid  @enderror"
                                 name=" jurusan" id="">
@@ -110,7 +110,7 @@ edit view kelompok
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
 
-                        </div>
+                        </div> --}}
                         <input class="form-control" type="hidden" value="{{ $kelompok_laporan[0]->id }}" name="id[]"
                             placeholder="id tlp" aria-label="default input example">
                         <input class="form-control" type="hidden" value="{{ $kelompok_laporan[1]->id }}" name="id[]"
@@ -148,6 +148,7 @@ edit view kelompok
                             <label for="">No telephon</label>
                             <input class="form-control" type="number" value="{{ $kelompok_laporan[0]->no_telpon }}"
                                 name="no_telpon" placeholder="no tlp" aria-label="default input example">
+                                
                         </div>
 
 
@@ -167,9 +168,14 @@ edit view kelompok
                                     @endif
                                 @endforeach
                             </select>
-                            @error('id_siswa')
-                                <div class="invalid-feedback">{{ $message }}</div>
-                            @enderror
+                            @if ($errors->has(`id_data_prakerin.0`))
+                                <span class="text-danger">
+                                    <small>
+                                        {{ $errors->first('id_data_prakerin.0') }}
+                                    </small>
+
+                                </span>
+                            @endif
                         </div>
 
                         <div class="form-group col-lg-12 ">
@@ -185,9 +191,14 @@ edit view kelompok
                                     @endif
                                 @endforeach
                             </select>
-                            @error('id_siswa')
-                                <div class="invalid-feedback">{{ $message }}</div>
-                            @enderror
+                            @if ($errors->has(`id_data_prakerin.1`))
+                            <span class="text-danger">
+                                <small>
+                                    {{ $errors->first('id_data_prakerin.1') }}
+                                </small>
+
+                            </span>
+                        @endif
                         </div>
 
 
@@ -204,9 +215,14 @@ edit view kelompok
                                     @endif
                                 @endforeach
                             </select>
-                            @error('id_siswa')
-                                <div class="invalid-feedback">{{ $message }}</div>
-                            @enderror
+                             @if ($errors->has(`id_data_prakerin.2`))
+                                <span class="text-danger">
+                                    <small>
+                                        {{ $errors->first('id_data_prakerin.2') }}
+                                    </small>
+
+                                </span>
+                            @endif
                         </div>
 
 
@@ -223,7 +239,7 @@ edit view kelompok
                                 @if ($errors->has(`id_data_prakerin.3`))
                                 <span class="text-danger">
                                     <small>
-                                        {{ $errors->first('id_data_prakerin.3')}}
+                                        {{ $errors->first('id_data_prakerin.3') }}
                                     </small>
 
                                 </span>
@@ -241,12 +257,14 @@ edit view kelompok
                                     @endif
                                 @endforeach
                             </select>
+                            @if ($errors->has(`id_data_prakerin.3`))
+                                <span class="text-danger">
+                                    <small>
+                                        {{ $errors->first('id_data_prakerin.3') }}
+                                    </small>
 
-
-
-                            @error('id_siswa')
-                                <div class="invalid-feedback">{{ $message }}</div>
-                            @enderror
+                                </span>
+                            @endif
                          </div>
 
                         @endif

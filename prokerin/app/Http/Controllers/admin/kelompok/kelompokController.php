@@ -50,6 +50,8 @@ class kelompokController extends Controller
                     $button .= '<a  href="../admin/kelompok/edit/'.$data->no.'" id="edit" data-toggle="tooltip"  data-id="' . $data->no . '" data-original-title="Edit" class="edit btn btn-warning btn-sm edit-post"><i class="fas fa-pencil-alt"></i></a>';
                     $button .= '&nbsp';
                     $button .= '<button type="button" name="delete" id="hapus" data-no="' . $data->no . '" class="delete btn btn-danger btn-sm"><i class="fas fa-trash"></i></button>';
+                    $button .= '&nbsp&nbsp&nbsp&nbsp&nbsp';
+                    $button .= '<button id="kelompoks" type="button" data-no="' . $data->no . '" class="btn btn-danger mr-3 rounded-pill"><i class="fas fa-cloud-download-alt"></i> PDF</button>';
                     return $button;
                 })
                 ->rawColumns(['action'])
@@ -160,13 +162,14 @@ class kelompokController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request)
+    public function update(kelompok_laporanRequest $request)
     {
         // $input = Input::all();
         // $id_dataP = $request->id_data_prakerin;
         // dd($request->id_data_prakerin);
         // $perusahaan = Perusahaan::find('id',$request->id_perusahaan)->first();
         // $data = $request->all();
+        $request->validated();
         foreach ($request->id_data_prakerin as $key => $val) {
                 $data = kelompok_laporan::where('id',$request->id[$key])->where('no',$request->no[$key])->update([
                     'no'   => $request->no[$key],

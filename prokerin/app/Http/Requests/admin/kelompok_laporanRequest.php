@@ -30,7 +30,6 @@ class kelompok_laporanRequest extends FormRequest
             'id_data_prakerin.1' => 'required|distinct',
             'id_data_prakerin.2' => 'required|distinct',
             'id_perusahaan' => 'required',
-            'no_telpon' => 'required',
             // 'jurusan' => 'required',
         ];
     }

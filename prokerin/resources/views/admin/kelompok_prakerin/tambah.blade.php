@@ -105,7 +105,7 @@
 
 
                         <div class="form-group col-lg-10 ">
-                            <label for="">No telephon</label>
+                            <label for="">No telepon</label>
                             <input class="form-control @error('no_telpon')  is-invalid  @enderror" type="number"
                                 name="no_telpon" placeholder="no tlp" aria-label="default input example">
                             @error('no_telpon')

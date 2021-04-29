@@ -23,12 +23,14 @@ class PDFController extends Controller
         $pdf = PDF::loadView('export.PDF.perusahaan', compact('perusahaan'));
         return $pdf->download('DATA PERUSAHAAN.PDF');
     }
-    public function kelompokPrakerin()
+    public function kelompokPrakerin(Request $request)
     {   
-     
-    
-        $no_kelompok = !empty(Auth::user()->siswa->data_prakerin->kelompok_laporan->no) ? Auth::user()->siswa->data_prakerin->kelompok_laporan->no : '';
-        $guru_nama = !empty(Auth::user()->siswa->data_prakerin->kelompok_laporan->guru->nama) ? Auth::user()->siswa->data_prakerin->kelompok_laporan->guru->nama : '';
+        
+        // dd($id,$no);
+        $id = $request->id;
+        $no = $request->nomor;
+        // $no_kelompok = kelompok_laporan::where('no',$id)->get();
+        $nomor = $no;
         
 
         // $options = new Options();
@@ -45,10 +47,16 @@ class PDFController extends Controller
     //   // download PDF file with download method
     //   return $pdf->download('pdf_file.pdf')
     $waktu = Carbon::now()->isoFormat('D MMMM Y');
-        $kelompok = kelompok_laporan::has('data_prakerin')->where('no', $no_kelompok)->get();
-            $KPrakerin = PDF::loadView('export.PDF.kelompok_prakerin', compact('kelompok','waktu'))->setOptions(['defaultFont' => 'sans-serif','isHtml5ParserEnabled' => true, 'isRemoteEnabled' => true]);
-            // return $KPrakerin->download('KelompokPrakerin.PDF');
-            return $KPrakerin->stream();
+    $kelompok = kelompok_laporan::where('no',$id)->whereNotNull('id_data_prakerin')->get();
+
+    
+    // $kelompok = kelompok_laporan::whereHas('data_prakerin'
+
+            $KPrakerin = PDF::loadView('export.PDF.kelompok_prakerin', compact('kelompok','waktu','nomor'))->setOptions(['defaultFont' => 'sans-serif','isHtml5ParserEnabled' => true, 'isRemoteEnabled' => true]);
+            return $KPrakerin->download('KelompokPrakerin.PDF');
+            // return $KPrakerin->stream();
+        // return response()->json();
+
         // return view('export.PDF.kelompok_prakerin',compact('kelompok'));
     }
     

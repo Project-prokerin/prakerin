@@ -127,8 +127,8 @@ Route::middleware(['web', 'auth', 'role:kaprog,hubin'])->group(function () {
     Route::delete('admin/kelompok/delete/{id}', [kelompokController::class, 'destroy'])->name('kelompok.delete');
     Route::post('admin/kelompok/ajax', [kelompokController::class, 'ajax'])->name('kelompok.ajax');
     Route::delete('/kelompok/destroy_all/{id}', [kelompokController::class, 'delete_all'])->name('kelompok.delete-all');
-    Route::get('/export/excel/kelompok', [ExcelController::class, 'kelompok'])->name('export.kelompok');
-    Route::get('/export/pdf/kelompok', [PDFController::class, 'kelompokPrakerin']);
+    Route::get('/export/excel/kelompok', [ExcelController::class, 'kelompok']);
+    Route::post('/export/pdf/kelompok/{id}/{nomor}', [PDFController::class, 'kelompokPrakerin'])->name('export.kelompok');
 
     // laporan magang
     Route::get('admin/laporan', [laporanController::class, 'index'])->name('laporan.index');
