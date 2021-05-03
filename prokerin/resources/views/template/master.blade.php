@@ -29,8 +29,8 @@
 <body>
 <div id="app">
     <div class="main-wrapper main-wrapper-1">
-    @include('template.partial.navbar')
-    @include('template.partial.sidebar')
+    @include('template.navbar.navbar')
+    @include('template.sidebar.sidebar')
 
 
             <div class="main-content">
