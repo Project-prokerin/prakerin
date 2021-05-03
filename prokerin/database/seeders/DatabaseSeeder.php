@@ -7,6 +7,7 @@ use App\Models\fasilitas_prakerin;
 use App\Models\guru;
 use App\Models\jurnal_harian;
 use App\Models\jurnal_prakerin;
+use App\Models\laporan_prakerin;
 use App\Models\orang_tua;
 use App\Models\pembekalan_magang;
 use \App\Models\perusahaan;
@@ -37,6 +38,7 @@ class DatabaseSeeder extends Seeder
         $this->call([kelompoklaporanSeeder::class]);
         // $this->call([kelompoklaporanSeeder::class]);
         $this->call([pembekalanSeeder::class]);
+        $this->call([LaporanPrakerinSeeder::class]);
         $this->call([jurnal_prakerinSeeder::class]);
         $this->call([jurnal_harianSeeder::class]);
         $this->call([fasilitas_prakerinSeeder::class]);

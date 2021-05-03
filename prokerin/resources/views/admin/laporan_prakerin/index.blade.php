@@ -52,7 +52,7 @@
         </tr>
     </thead>
     <tbody>
-        <tr>
+        {{-- <tr>
             <th scope="row">1</th>
             <td>marker</td>
             <td>11</td>
@@ -62,45 +62,101 @@
                 <button type="button" class="btn btn-warning"><i class="fas fa-pencil-alt"></i></button>
                 <button type="button" class="btn btn-danger"><i class="fas fa-trash"></i></button>
             </td>
-        </tr>
-        <tr>
-            <th scope="row">1</th>
-            <td>marker</td>
-            <td>11</td>
-            <td>RPL</td>
-            <td>
-                <button type="button" class="btn btn-primary"><i class="fas fa-search"></i></button>
-                <button type="button" class="btn btn-warning"><i class="fas fa-pencil-alt"></i></button>
-                <button type="button" class="btn btn-danger"><i class="fas fa-trash"></i></button>
-            </td>
-        </tr>
-        <tr>
-            <th scope="row">1</th>
-            <td>marker</td>
-            <td>11</td>
-            <td>RPL</td>
-            <td>
-                <button type="button" class="btn btn-primary"><i class="fas fa-search"></i></button>
-                <button type="button" class="btn btn-warning"><i class="fas fa-pencil-alt"></i></button>
-                <button type="button" class="btn btn-danger"><i class="fas fa-trash"></i></button>
-            </td>
-        </tr>
+        </tr> --}}
+        
     </tbody>
     </table>
 
     {{--  --}}
         <nav aria-label="Page navigation example">
-            <ul class="pagination mt-5 mb-4 justify-content-right">
+            {{-- <ul class="pagination mt-5 mb-4 justify-content-right">
                 <li class="page-item"><a class="page-link" href="#">Previous</a></li>
                 <li class="page-item"><a class="page-link" href="#">1</a></li>
                 <li class="page-item"><a class="page-link" href="#">2</a></li>
                 <li class="page-item"><a class="page-link" href="#">Next</a></li>
-            </ul>
+            </ul> --}}
         </nav>
     {{--  --}}
 </div>
 </div>
 @endsection
 @push('script')
+    <script>
+         $(document).ready( function () {
+                var filter = $('#search').val();
+                console.log(filter);
+                var table = $('#table').DataTable({
+                    dom: 't<"bottom"<"row"<"col-6"i><"col-6 mb-4"p>>>',
+                    bLengthChange: false,
+                    ordering:false,
+                    info: true,
+                    filtering:false,
+                    searching: true,
+                    serverside: true,
+                    processing: true,
+                    serverSide: true,
+                    "responsive": true,
+                    "autoWidth": false,
+                    ajax:{
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    url: "{{route('laporan.ajax')}}",
+                    type: "post",
+                    data: function (data) {
+                        data = '';
+                        return data
+                    }
+                    },
+                    columns:[
+                    {data: 'DT_RowIndex', name: 'DT_RowIndex'},
+                    { data: 'judul_laporan',name:'judul_laporan'},
+                    { data: 'nama_perusahaan',name:'id_kelompok_laporan.nama_perusahaan'},
+                    { data: 'alamat_perusahaan',name:'alamat_perusahaan'},
+                    { data: 'action',name:'action'}
+                    ],
+                    order: [[0,'asc']]
+                });
+
+            // search engine
+            $("#search").keyup(function () {
+                table.search( this.value ).draw();
+            })
+
+                // hapus data
+            $('body').on('click','#hapus', function () {
+            // sweet alert
+                Swal.fire({
+                title: 'Apa anda yakin?',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonText: 'Hapus',
+                cancelButtonText: 'Batal'
+            }).then((result) => {
+                if (result.value) {
+                    id = $(this).data('id');
+                    $.ajax({
+                            url: "/admin/laporan/delete/"+ id,
+                            type: "DELETE",
+                            data: { _token: '{{csrf_token()}}' },
+                            success: function (data) {
+                                console.log(data);
+                                table.draw();
+                                Swal.fire(
+                                    'success',
+                                    'Data anda berhasil di hapus.',
+                                    'success'
+                                )
+                            },
+                            error: function (data) {
+                                console.log('Error:', data);
+                            }
+                    });
+                } else if (result.dismiss === Swal.DismissReason.cancel) {}
+            })
+
+            })
+            });
+    </script>
 
 @endpush
