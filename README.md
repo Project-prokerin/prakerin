@@ -41,10 +41,12 @@ Prakerin adalah praktek kerja industri yang di gunakan untuk mengelola data maga
    ```
 
 ## account + role
-- Hubin : admin | pass = admin
-- kaprog : kaprog | pass = admin
-- bkk : bkk | pass = admin
-- siswa : siswa 1-5 | pass = 123456
+- Hubin : admin | pass = password
+- kaprog : BidangKaprog | pass = password
+- bkk : bkk | BidangBkk = password
+- tata usaha / tu : BidangTU | pass = password
+- wakil kepala sekolah : WakaSekolah | pass = password
+- siswa : siswa 1-5 | pass = password
 
 ## credit
 - [design web stisla](https://getstisla.com/)
