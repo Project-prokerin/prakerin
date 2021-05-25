@@ -2,6 +2,7 @@
 
 namespace App\Exports\siswa;
 
+use App\Models\kelas;
 use App\Models\Siswa;
 use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\WithMultipleSheets;
@@ -18,9 +19,10 @@ class multiExport implements WithMultipleSheets
     {
         $sheets = [];
         foreach ($this->siswa as $key => $value) {
-            $getData = Siswa::where('jurusan', $value->jurusan)->where('kelas', $value->kelas)->get();
+            $getData = Siswa::where('id_kelas', $value->kelas->id)->get();
             // dd($value->jurusan);
-            $sheets[] = new SiswaExport($this->siswa, $value->kelas,$value->jurusan, $getData);
+
+            $sheets[] = new SiswaExport($this->siswa, $value->kelas->level,$value->kelas->jurusan, $getData,$value->kelas->id);
         }
         return $sheets;
     }

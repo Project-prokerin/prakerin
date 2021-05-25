@@ -1,4 +1,4 @@
-@if (Auth::user()->role == 'hubin' or Auth::user()->role == 'kaprog' or Auth::user()->role == 'bkk')
+@if (Auth::user()->role == 'hubin' or Auth::user()->role == 'kaprog' or Auth::user()->role == 'bkk' or Auth::user()->role == 'tu' or Auth::user()->role == 'waka')
 <div class="main-sidebar position-fixed">
         <aside id="sidebar-wrapper">
         <div class="sidebar-brand">

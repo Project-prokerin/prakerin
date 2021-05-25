@@ -54,39 +54,15 @@
                                 </div>
 
                                 <div class="row mr-3 ml-3">
-                                <div class="form-group col-md-3 col-12">
+                                <div class="form-group col-md-8 col-12">
                                     <label>Kelas</label>
                                     <select class="form-control  @error('kelas') is-invalid @enderror"  name="kelas" id="">
                                     <option value="" {{ ( old('kelas') == '') ? 'selected' : '' }}>Pilih kelas</option>
-                                            <option value="X" {{ ( old('kelas',siswa('main')->kelas)  == 'X') ? 'selected' : '' }}>X</option>
-                                            <option value="XI" {{ ( old('kelas',siswa('main')->kelas)  == 'XI') ? 'selected' : '' }}>XI</option>
-                                            <option value="XII" {{ ( old('kelas',siswa('main')->kelas)  == 'XII') ? 'selected' : '' }}>XII</option>
+                                    @foreach ($kelas as $item)
+                                            <option value="{{ $item->id }}" @if(old('kelas',siswa('main')->kelas->id) == $item->id ) selected @endif>{{ $item->level .' '. $item->jurusan }}</option>
+                                    @endforeach
                                 </select>
                                 @error('kelas')
-                                        <div class="invalid_feedback">{{ $message }}</div>
-                                @enderror
-                                </div>
-                                <div class="form-group col-md-5 col-12">
-                                    <label>Jurusan</label>
-                                <select  class="form-control  @error('jurusan') is-invalid @enderror" name="jurusan" id="">
-                                    <option value="" {{ ( old('jurusan') == '') ? 'selected' : '' }}>Pilih Jurusan</option>
-                                            <option value="RPL 1" {{ ( old('jurusan', siswa('main')->jurusan) == 'RPL 1') ? 'selected' : '' }}>RPL 1</option>
-                                            <option value="RPL 2" {{ ( old('jurusan', siswa('main')->jurusan) == 'RPL 2') ? 'selected' : '' }}>RPL 2</option>
-                                            <option value="RPL 3" {{ (old('jurusan', siswa('main')->jurusan) == 'RPL 3') ? 'selected' : '' }}>RPL 3</option>
-                                            <option value="TKJ 1" {{ (old('jurusan', siswa('main')->jurusan) == 'TKJ 1') ? 'selected' : '' }}>TKJ 1</option>
-                                            <option value="TKJ 2" {{ (old('jurusan', siswa('main')->jurusan) == 'TKJ 2') ? 'selected' : '' }}>TKJ 2</option>
-                                            <option value="TKJ 3" {{ (old('jurusan', siswa('main')->jurusan) == 'TKJ 3') ? 'selected' : '' }}>TKJ 3</option>
-                                            <option value="TKJ 4" {{ (old('jurusan', siswa('main')->jurusan) == 'TKJ 4') ? 'selected' : '' }}>TKJ 4</option>
-                                            <option value="TKJ 5" {{ (old('jurusan', siswa('main')->jurusan) == 'TKJ 5') ? 'selected' : '' }}>TKJ 5</option>
-                                            <option value="MM 1" {{ (old('jurusan',siswa('main')->jurusan) == 'MM 1') ? 'selected' : '' }}>MM 1</option>
-                                            <option value="MM 2" {{ (old('jurusan',siswa('main')->jurusan) == 'MM 2') ? 'selected' : '' }}>MM 2</option>
-                                            <option value="MM 3" {{ (old('jurusan', siswa('main')->jurusan) == 'MM 3') ? 'selected' : '' }}>MM 3</option>
-                                            <option value="BC 1" {{ (old('jurusan', siswa('main')->jurusan) == 'BC 1') ? 'selected' : '' }}>BC 1</option>
-                                            <option value="BC 2" {{ (old('jurusan', siswa('main')->jurusan) == 'BC 2') ? 'selected' : '' }}>BC 2</option>
-                                            <option value="BC 3" {{ (old('jurusan', siswa('main')->jurusan) == 'BC 3') ? 'selected' : '' }}>BC 3</option>
-                                            <option value="TEI" {{ (old('jurusan', siswa('main')->jurusan) == 'TEI') ? 'selected' : '' }}>TEI</option>
-                                </select>
-                                @error('jurusan')
                                         <div class="invalid_feedback">{{ $message }}</div>
                                 @enderror
                                 </div>

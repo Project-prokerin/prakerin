@@ -15,6 +15,7 @@ class CreateGuruTable extends Migration
     {
         Schema::create('guru', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('id_user')->nullable()->constrained('users')->onDelete('cascade')->onUpdate("cascade");
             $table->bigInteger('nik')->unsigned();
             $table->string('nama', 100);
             $table->string('jabatan', 100);
@@ -28,9 +29,9 @@ class CreateGuruTable extends Migration
         Schema::table('kelompok_laporan', function (Blueprint $table) {
             $table->foreign('id_guru')->references('id')->on('guru')->onDelete('set null')->onUpdate("cascade");
         });
-        Schema::table('users', function (Blueprint $table) {
-            $table->foreign('id_guru')->references('id')->on('guru')->onDelete('cascade')->onUpdate("cascade");
-        });
+        // Schema::table('users', function (Blueprint $table) {
+        //     $table->foreign('id_guru')->references('id')->on('guru')->onDelete('cascade')->onUpdate("cascade");
+        // });
     }
 
     /**

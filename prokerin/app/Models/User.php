@@ -51,11 +51,11 @@ class User extends Authenticatable
     public function siswa()
     {
           // foreign, owner key
-        return $this->hasOne(Siswa::class, 'id','id_siswa');
+        return $this->hasOne(Siswa::class,'id_user', 'id');
     }
     public function guru()
     {
         // foreign, owner key
-        return $this->hasOne(guru::class, 'id', 'id_guru');
+        return $this->hasOne(guru::class, 'id_user', 'id');
     }
 }

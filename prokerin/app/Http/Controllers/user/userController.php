@@ -20,7 +20,7 @@ use App\Http\Requests\user\jurnal_prakerinRequest;
 use App\Http\Requests\user\pembekalan_magangRequest;
 use App\Http\Requests\user\profileRequest;
 use App\Http\Requests\user\passwordRequest;
-
+use App\Models\kelas;
 // pakage or ...
 use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
@@ -142,15 +142,14 @@ class userController extends Controller
     // edit profile
     public function profile_edit()
     {
-        return view('siswa.profile.edit');
+        return view('siswa.profile.edit', ['kelas' => kelas::all()]);
     }
 
     public function profile_update(profileRequest $request, $id){
         $validated = $request->validated();
         $update = Siswa::where('id', siswa('main')->id)->update([
             'nama_siswa' => $request->nama_siswa,
-            'jurusan' => $request->jurusan,
-            'kelas' => $request->kelas,
+            'id_kelas' => $request->kelas,
             'email' => $request->email,
             'no_hp' => $request->no_hp
         ]);

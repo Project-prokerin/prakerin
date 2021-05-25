@@ -58,34 +58,15 @@
                                                 </div>
                                     @enderror
                                 </div>
-                                <div class="mb-3">
-                                <label class="form-label">Jurusan</label>
-                                <div class="d-flex">
-                                    <i class="fas fa-user border text-center"></i>
-                                    <select class="form-control form-control-sm select2 @error('jurusan') is-invalid @enderror" name="jurusan">
-                                        <option selected>Pilih Jurusan</option>
-                                        <option value="RPL" @if(old('jurusan') === 'RPL' or $siswa->jurusan === 'RPL') selected @endif>RPL</option>
-                                        <option value="MM" @if(old('jurusan') === 'MM'  or $siswa->jurusan === 'MM') selected @endif>MM</option>
-                                        <option value="TKJ" @if(old('jurusan') === 'TKJ'  or $siswa->jurusan === 'TKJ') selected @endif>TKJ</option>
-                                        <option value="TEI" @if(old('jurusan') === 'TEI'  or $siswa->jurusan === 'TEI') selected @endif>TEI</option>
-                                        <option value="BC" @if(old('jurusan') === 'BC'  or $siswa->jurusan === 'BC') selected @endif>BC</option>
-                                    </select>
-                                </div>
-                                @error('jurusan')
-                                                <div class="invalid-feedback">
-                                                    {{ $message }}
-                                                </div>
-                                @enderror
-                                </div>
-                                <div class="mb-3">
+                               <div class="mb-3">
                                 <label class="form-label">Kelas</label>
                                 <div class="d-flex">
-                                    <i class="fas fa-user border text-center"></i>
+                                    <i class="fas fa-user border text-center pt-2"></i>
                                     <select class="form-control  form-control-sm select2 @error('kelas') is-invalid @enderror" name="kelas">
-                                        <option selected>Pilih Kelas</option>
-                                        <option value="X" @if(old('kelas') === 'X' or $siswa->kelas === 'X') selected @endif>X</option>
-                                        <option value="XII" @if(old('kelas') === 'XI' or $siswa->kelas === 'XI') selected @endif>XI</option>
-                                        <option value="XII" @if(old('kelas') === 'XII' or $siswa->kelas === 'XII') selected @endif>XII</option>
+                                        <option value=" " selected>Pilih Kelas</option>
+                                        @foreach ($kelas as $item)
+                                            <option value="{{ $item->id }}" @if(old('kelas', $siswa->kelas->id) == $item->id ) selected @endif>{{ $item->level .' '. $item->jurusan }}</option>
+                                        @endforeach
                                     </select>
                                 </div>
                                 @error('kelas')

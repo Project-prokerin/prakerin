@@ -42,11 +42,11 @@ class siswaSeeder extends Seeder
     // }
 
     DB::table('siswa')->insert([
+        'id_user' => '4',
         'nama_siswa' => 'Nur Firdaus',
         'nipd' => '942929291',
         'jk' => 'L',
-        'kelas' => 'XII',
-        'Jurusan' => 'RPL',
+        'id_kelas' => '1',
         'tempat_lahir' => 'Daratan',
         'tanggal_lahir' => '1998-01-023',
         'nik' => '083749748',
@@ -64,11 +64,11 @@ class siswaSeeder extends Seeder
         'no_akte' => '849843394',
     ]);
     DB::table('siswa')->insert([
+        'id_user' => '5',
         'nama_siswa' => 'Rafie Aydin',
         'nipd' => '942929292',
         'jk' => 'L',
-        'kelas' => 'XII',
-        'jurusan' => 'MM',
+        'id_kelas' => '1',
         'tempat_lahir' => 'Daratan',
         'tanggal_lahir' => '1998-01-023',
         'nik' => '083749748',
@@ -86,11 +86,11 @@ class siswaSeeder extends Seeder
         'no_akte' => '849843394',
     ]);
     DB::table('siswa')->insert([
+        'id_user' => '6',
         'nama_siswa' => 'Dana',
         'nipd' => '942929293',
         'jk' => 'L',
-        'kelas' => 'XII',
-        'jurusan' => 'MM',
+        'id_kelas' => '1',
         'tempat_lahir' => 'Daratan',
         'tanggal_lahir' => '1998-01-023',
         'nik' => '083749748',
@@ -108,11 +108,11 @@ class siswaSeeder extends Seeder
         'no_akte' => '849843394',
     ]);
     DB::table('siswa')->insert([
+        'id_user' => '7',
         'nama_siswa' => 'Walada',
         'nipd' => '942929294',
         'jk' => 'L',
-        'kelas' => 'TKJ',
-        'jurusan' => 'XII',
+        'id_kelas' => '2',
         'tempat_lahir' => 'Daratan',
         'tanggal_lahir' => '1998-01-023',
         'nik' => '083749748',
@@ -130,11 +130,11 @@ class siswaSeeder extends Seeder
         'no_akte' => '849843394',
     ]);
     DB::table('siswa')->insert([
+            'id_user' => '8',
         'nama_siswa' => 'Radit',
         'nipd' => '942929295',
         'jk' => 'L',
-        'kelas' => 'XII',
-        'jurusan' => 'MM',
+        'id_kelas' => '2',
         'tempat_lahir' => 'Daratan',
         'tanggal_lahir' => '1998-01-023',
         'nik' => '083749748',
@@ -152,11 +152,11 @@ class siswaSeeder extends Seeder
         'no_akte' => '849843394',
     ]);
     DB::table('siswa')->insert([
+            'id_user' => '9',
         'nama_siswa' => 'Falih',
         'nipd' => '942929296',
         'jk' => 'L',
-        'kelas' => 'XII',
-        'jurusan' => 'BC',
+        'id_kelas' => '3',
         'tempat_lahir' => 'Daratan',
         'tanggal_lahir' => '1998-01-023',
         'nik' => '083749748',
@@ -174,11 +174,11 @@ class siswaSeeder extends Seeder
         'no_akte' => '849843394',
     ]);
     DB::table('siswa')->insert([
+         'id_user' => '10',
         'nama_siswa' => 'Vik',
         'nipd' => '942929297',
         'jk' => 'P',
-        'kelas' => 'XII',
-        'jurusan' => 'BC',
+        'id_kelas' => '3',
         'tempat_lahir' => 'Daratan',
         'tanggal_lahir' => '1998-01-023',
         'nik' => '083749748',
@@ -196,11 +196,11 @@ class siswaSeeder extends Seeder
         'no_akte' => '849843394',
     ]);
     DB::table('siswa')->insert([
+        'id_user' => '11',
         'nama_siswa' => 'JiArisa',
         'nipd' => '942929298',
         'jk' => 'P',
-        'kelas' => 'XII',
-        'jurusan' => 'BC',
+        'id_kelas' => '3',
         'tempat_lahir' => 'Daratan',
         'tanggal_lahir' => '1998-01-023',
         'nik' => '083749748',

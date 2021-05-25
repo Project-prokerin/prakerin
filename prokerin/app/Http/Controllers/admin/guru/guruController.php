@@ -60,10 +60,9 @@ class guruController extends Controller
         $jabatan = $request->jabatan;
 
         if ($jabatan == 'hubin' || $jabatan == 'bkk' || $jabatan == 'kaprog') {
+            $user = user::create(['username' => $request->nik, 'password' => Hash::make('password'), 'role' => $request->jabatan]);
+            $request->request->add(['id_user' => $user->id]);
             $guru = guru::create($request->all());
-            $request->request->add(['id_guru' => $guru->id]);
-            $user = user::create(['username' => $request->nik, 'password' => Hash::make('password'), 'role' => $request->jabatan, 'id_guru' => $request->id_guru]);
-
             return redirect()->route('guru.index')->with('success', 'Data berhasil di tambah!');
         } else {
             guru::create($request->all());
@@ -104,7 +103,7 @@ class guruController extends Controller
     {
         $validated = $request->validated();
         $jabatan = $request->jabatan;
-        if ($jabatan == 'hubin' || $jabatan == 'bkk' || $jabatan == 'kaprog') {
+        if ($jabatan == 'hubin' || $jabatan == 'bkk' || $jabatan == 'kaprog' || $jabatan == 'waka' || $jabatan == 'ut') {
             $guru = guru::where('id', $id)->update([
                 'nik' => $request->nik,
                 'nama' => $request->nama,
@@ -112,22 +111,22 @@ class guruController extends Controller
                 'jurusan' => $request->jurusan,
                 'no_telp' => $request->no_telp
             ]);
-            $user = user::where('id_guru',$id)->first();
+            $cekguru = guru::where('id',$id)->first();
 
-            if (empty($user)) {
-                user::create(['username' => $request->nik, 'password' => Hash::make('password'), 'role' => $request->jabatan, 'id_guru' => $id]);
+            if (empty($cekguru)) {
+                user::create(['username' => $request->nik, 'password' => Hash::make('password'), 'role' => $request->jabatan]);
             }else {
-                user::where('id', $id)->update(['username' => $request->nik, 'role' => $request->jabatan]);
+                user::where('id', $cekguru->id)->update(['username' => $request->nik, 'role' => $request->jabatan]);
             }
 
             return
             redirect()->route('guru.index')->with('success', 'Data berhasil di tambah!');
             // if jabatan == kejurusan
         } else if($jabatan == 'kejuruan') {
-            // cari user
-            $user = user::where('id_guru', $id)->first();
+            // cari guru
+            $guru = guru::where('id', $id)->first();
             // jika use kosong
-            if (empty($user)) {
+            if (empty($guru->user)) {
                 // update
                 guru::where('id', $id)->update([
                     'nik' => $request->nik,
@@ -137,7 +136,8 @@ class guruController extends Controller
                     'no_telp' => $request->no_telp
                 ]);
             }else {
-                $user->delete();
+                // delete user and update guru
+                $guru->user->delete();
                 guru::where('id', $id)->update([
                     'nik' => $request->nik,
                     'nama' => $request->nama,
@@ -162,8 +162,9 @@ class guruController extends Controller
      */
     public function destroy($id)
     {
-        guru::where('id', $id)->delete();
-        User::where('id_guru', $id)->delete();
+        $guru = guru::where('id', $id)->first(); // cari guru
+        $guru->user()->delete(); // delete user
+        $guru->delete(); // delete guru
         return response()->json(['data' => 'berhasil']);
     }
     public function delete_all(Request $request){

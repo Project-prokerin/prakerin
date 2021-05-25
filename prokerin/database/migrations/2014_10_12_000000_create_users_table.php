@@ -16,11 +16,8 @@ class CreateUsersTable extends Migration
         Schema::create('users', function (Blueprint $table) {
             $table->id();
             $table->string('username')->unique();
-            $table->unsignedBigInteger('id_siswa')->nullable();
-            $table->unsignedBigInteger('id_guru')->nullable();
-            $table->string('role');
-            $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+            $table->enum('role', ['admin', 'tu', 'hubin', 'siswa', 'kaprog', 'waka','bkk'])->default('siswa');
             $table->rememberToken();
             $table->timestamp('last_logout_at')->nullable();
             $table->timestamps();

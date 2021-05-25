@@ -70,10 +70,12 @@
                                         is-invalid
                                     @enderror" name="jabatan">
                                         <option value="" selected>Pilih Jabatan</option>
-                                        <option value="hubin" @if(old('jabatan', $guru->jabatan) === 'hubin') selected @endif>Hubin</option>
-                                        <option value="kaprog"  @if(old('jabatan',$guru->jabatan) === 'kaprog') selected @endif>Kaprog</option>
-                                        <option value="bkk"  @if(old('jabatan',$guru->jabatan) === 'bkk') selected @endif>BKK</option>
-                                        <option value="kejuruan"  @if(old('jabatan',$guru->jabatan) === 'kejuruan') selected @endif>Kejuruan</option>
+                                        <option value="hubin" @if(old('jabatan', $guru->jabatan) == 'hubin') selected @endif>Hubin</option>
+                                        <option value="kaprog"  @if(old('jabatan',$guru->jabatan) == 'kaprog') selected @endif>Kaprog</option>
+                                        <option value="bkk"  @if(old('jabatan',$guru->jabatan) == 'bkk') selected @endif>BKK</option>
+                                        <option value="kejuruan"  @if(old('jabatan',$guru->jabatan) == 'kejuruan') selected @endif>Kejuruan</option>
+                                        <option value="kejuruan"  @if(old('jabatan',$guru->jabatan) == 'tu') selected @endif>Tu</option>
+                                        <option value="kejuruan"  @if(old('jabatan',$guru->jabatan) == 'waka') selected @endif>Waka</option>
                                     </select>
                                 </div>
                                 @error('jabatan')

@@ -73,6 +73,8 @@
                                         <option value="kaprog"  @if(old('jabatan') === 'kaprog') selected @endif>Kaprog</option>
                                         <option value="bkk"  @if(old('jabatan') === 'bkk') selected @endif>BKK</option>
                                         <option value="kejuruan"  @if(old('jabatan') === 'kejuruan') selected @endif>Kejuruan</option>
+                                        <option value="kejuruan"  @if(old('jabatan') === 'tu') selected @endif>Tu</option>
+                                        <option value="kejuruan"  @if(old('jabatan') === 'waka') selected @endif>Waka</option>
                                     </select>
                                 </div>
                                 @error('jabatan')

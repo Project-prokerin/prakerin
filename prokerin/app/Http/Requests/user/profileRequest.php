@@ -27,7 +27,6 @@ class profileRequest extends FormRequest
             "nama_siswa" => "required",
             "email" => "required|email",
             "no_hp" => "required|min:8",
-            "jurusan" => "required",
             "kelas" => "required"
         ];
     }
@@ -39,7 +38,6 @@ class profileRequest extends FormRequest
             'no_hp.required' => 'no_hp tidak boleh kosong',
             'no_hp.min' => 'minimal 8 character',
             'email.email' => 'Email harus alamat email yang valid',
-            "jurusan.required" => "Jurusan anda tidak boleh kosong",
             "kelas.required" => "Kelas anda tidak boleh kosong"
         ];
     }

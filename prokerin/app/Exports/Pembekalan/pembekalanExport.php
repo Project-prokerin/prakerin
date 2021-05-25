@@ -25,16 +25,17 @@ class pembekalanExport implements FromQuery, WithHeadings, WithMapping, WithStyl
     use Exportable;
     private $filename = 'pembekalan_magang.xlsx';
 
-    public function __construct($pembekalan, $jurusan, $kelas, $getData)
+    public function __construct($pembekalan, $jurusan, $kelas, $getData, $id_kelas)
     {
         $this->pembekalan = $pembekalan;
         $this->kelas = $kelas;
         $this->jurusan = $jurusan;
         $this->getData = $getData;
+        $this->id_kelas = $id_kelas;
     }
     public function query()
     {
-        return Siswa::query()->where('jurusan', $this->jurusan)->whereHas('pembekalan_magang');
+        return Siswa::query()->where('id_kelas', $this->id_kelas)->with('pembekalan_magang');
     }
     public function headings(): array
     {
@@ -54,10 +55,10 @@ class pembekalanExport implements FromQuery, WithHeadings, WithMapping, WithStyl
             return [
 
                 'no',
-                !empty($siswa->pembekalan_magang->siswa) ? $siswa->pembekalan_magang->siswa->nama_siswa : '',
-                $siswa->pembekalan_magang->test_wpt_iq,
-                $siswa->pembekalan_magang->personality_interview,
-                $siswa->pembekalan_magang->soft_skill,
+                !empty($siswa->nama_siswa) ? $siswa->nama_siswa : '',
+                !empty($siswa->pembekalan_magang-> test_wpt_iq) ? 'sudah' : 'belum',
+                !empty($siswa->pembekalan_magang->personality_interview) ? 'sudah' : 'belum',
+                !empty($siswa->pembekalan_magang->soft_skill) ? 'sudah' : 'belum',
                 !empty($siswa->pembekalan_magang->file_portofolio) ? 'sudah' : 'belum',
                 // !empty($pembekalan->guru) ? $pembekalan->guru->nama : '',
             ];
@@ -75,6 +76,7 @@ class pembekalanExport implements FromQuery, WithHeadings, WithMapping, WithStyl
         $count = [
             count($query),
         ];
+
         $columnindex = array(
             'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z',
             'AA', 'AB', 'AC', 'AD', 'AE', 'AF', 'AG', 'AH', 'AI', 'AJ', 'AK', 'AL', 'AM', 'AN', 'AO', 'AP', 'AQ', 'AR', 'AS', 'AT', 'AU', 'AV', 'AW', 'AX', 'AY', 'AZ',
@@ -152,9 +154,12 @@ class pembekalanExport implements FromQuery, WithHeadings, WithMapping, WithStyl
                 // 'color' => ['argb' => 'FFFFFFF'],
             )
         ));
+        $sheet->getRowDimension(6)->setRowHeight(30);
+
         for ($i = 0; $i < $count[0]; $i++) {
             $sheet->getRowDimension($i + 7)->setRowHeight(30);
         }
+
         for ($i = 0; $i < $count[0]; $i++) {
             $sheet->setCellValue('A' . ($i + 7), $i + 1);
         };

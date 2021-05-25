@@ -14,7 +14,7 @@ class Siswa extends Model
     public function user()
     {
           // foreign, owner key
-        return $this->hasOne(User::class,'id_siswa','id');
+       return $this->belongsTo(User::class, 'id_user');
     }
     public function data_prakerin()
     {
@@ -45,5 +45,9 @@ class Siswa extends Model
     {
           // foreign, owner key
         return $this->hasOne(sekolah_asal::class, 'id_siswa', 'id');
+    }
+    public function kelas()
+    {
+        return $this->belongsTo(kelas::class,'id_kelas');
     }
 }

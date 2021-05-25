@@ -13,6 +13,10 @@ use Carbon\Carbon;
 
 class AuthController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('guest', ['except' => 'logout']);
+    }
     public function index()
     {
         return view('auth.login');
@@ -25,7 +29,7 @@ class AuthController extends Controller
             if (Auth()->user()->role == 'siswa') {
                 $request->session()->regenerate();
                 return redirect('/user/dashboard');
-            } else if (Auth()->user()->role == 'kaprog' || 'hubin' || 'bkk') {
+            } else if (Auth()->user()->role == 'kaprog' or 'hubin' or 'bkk' or 'tu' or 'waka' ) {
                 $request->session()->regenerate();
                 return redirect('/admin/dashboard');
             }

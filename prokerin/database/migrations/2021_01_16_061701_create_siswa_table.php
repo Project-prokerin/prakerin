@@ -15,11 +15,12 @@ class CreateSiswaTable extends Migration
     {
         Schema::create('siswa', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('id_user')->constrained('users')->onDelete('cascade')->onUpdate("cascade");
             $table->string('nama_siswa', 50);
             $table->string('nipd', 25);
             $table->enum('jk', ['L', 'P']);
-            $table->string('kelas', 20);
-            $table->string('jurusan', 50);
+            $table->bigInteger('id_kelas')->unsigned();
+            // $table->string('jurusan', 50);
             $table->string('tempat_lahir');
             $table->date('tanggal_lahir');
             $table->string('nik');
@@ -35,11 +36,12 @@ class CreateSiswaTable extends Migration
             $table->integer('jmlh_saudara')->length(2);
             $table->string('kebutuhan_khusus', 20);
             $table->string('no_akte', 20);
+
             $table->timestamps();
         });
-        Schema::table('users', function (Blueprint $table) {
-            $table->foreign('id_siswa')->references('id')->on('siswa')->onDelete('cascade')->onUpdate("cascade");
-        });
+        // Schema::table('users', function (Blueprint $table) {
+        //     $table->foreign('id_siswa')->references('id')->on('siswa')->onDelete('cascade')->onUpdate("cascade");
+        // });
 
     }
 

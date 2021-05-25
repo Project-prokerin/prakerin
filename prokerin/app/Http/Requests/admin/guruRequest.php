@@ -31,7 +31,8 @@ class guruRequest extends FormRequest
             'jabatan' => [
                 'required',
                 function ($attribute, $value, $fail) {
-                    $user = User::where('role', $value)->where('id_guru', '!=', $this->id)->count();
+                    $guru = guru::where('id', $this->id)->first();
+                    $user = User::where('id','!=', $guru->id_user)->where('role','=' ,$value)->count();
                     if ($value === 'hubin' || $value === 'bkk' || $value == 'kaprog') {
                         if ($value === 'kaprog') {
                             if ($user >= 6) {
@@ -48,7 +49,8 @@ class guruRequest extends FormRequest
             'jurusan' => [
                 'required',
                 function ($attribute, $value, $fail) {
-                    $jurusan = guru::where('jurusan', $value)->where('id', '!=', $this->id)->count();
+                    $guru = guru::where('id', $this->id)->first();
+                    $jurusan = guru::where('jurusan', $value)->where('id','!=' , $guru->id_user)->count();
                     if ($jurusan >= 5) {
                         $fail("Jurusan $value sudah penuh");
                     }
@@ -66,6 +68,7 @@ class guruRequest extends FormRequest
             'jabatan.required' => 'jabatan tidak boleh kosong',
             'jurusan.required' => 'jurusan tidak boleh kosong',
             'no_telp.required' => 'Nomor telepone tidak boleh kosong',
+            'nik.unique' => 'Nik sudah tersedia'
         ];
     }
 }

@@ -10,6 +10,11 @@ class guru extends Model
     use HasFactory;
     protected $table = 'guru';
     protected $guarded = [];
+    public function user()
+    {
+        // foreign, owner key
+        return $this->belongsTo(User::class, 'id_user');
+    }
     public function data_prakerin()
     {
           // foreign, owner key
@@ -25,9 +30,5 @@ class guru extends Model
           // foreign, owner key
         return $this->hasMany(pembekalan_magang::class, 'id_guru', 'id');
     }
-    public function user()
-    {
-        // foreign, owner key
-        return $this->hasOne(User::class, 'id_guru', 'id');
-    }
+
 }

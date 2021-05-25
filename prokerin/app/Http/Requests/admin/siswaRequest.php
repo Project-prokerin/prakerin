@@ -5,6 +5,7 @@ namespace App\Http\Requests\admin;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\User;
+use App\Models\Siswa;
 class siswaRequest extends FormRequest
 {
     /**
@@ -24,13 +25,17 @@ class siswaRequest extends FormRequest
      */
     public function rules()
     {
-        $user = User::where('id_siswa', $this->id)->first();
+        $siswa = Siswa::where('id', $this->id)->first();
+        // if ($siswa) {
+        //     $user = User::select('id')->where('id', $siswa->id_user)->first();
+        // }else {
+        //     $user = '';
+        // }
         return [
             'nama_siswa' => 'required',
-            'nipd' => 'required|unique:users,username,' . $user->id,
+            'nipd' => 'required|unique:siswa,nipd,'.$this->id .',id',
             'jk' => 'required',
             'kelas' => 'required',
-            'jurusan' => 'required',
             'tempat_lahir' => 'required',
             'tanggal_lahir' => 'required|date',
             'nik' => 'required',
@@ -72,7 +77,6 @@ class siswaRequest extends FormRequest
             'nipd.required' => 'nipd tidak boleh kosong',
             'nipd.unique' => 'Nipd sudah ada',
             'kelas.required' => 'kelas tidak boleh kosong',
-            'jurusan.required' => 'Jurusan Tidak boleh kosong',
             'tempat_lahir.required' => 'Tempat lahir tidak boleh koosng',
             'tanggal_lahir.required' => 'Tanggal lahir tidak boleh kosong',
             'nik.required' => 'Nik tidak boleh kosong',

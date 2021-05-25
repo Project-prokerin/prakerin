@@ -28,6 +28,7 @@ class GuruSeeder extends Seeder
         }
         // admin
         DB::table('guru')->insert([
+            'id_user' => '1',
             'nik' => $faker->nik,
             'nama' => $faker->title . "" . $faker->name,
             'jabatan' => 'hubin',
@@ -35,6 +36,7 @@ class GuruSeeder extends Seeder
             'no_telp' => $faker->randomNumber(9),
         ]);
         DB::table('guru')->insert([
+            'id_user' => '2',
             'nik' => $faker->nik,
             'nama' => $faker->title . "" . $faker->name,
             'jabatan' => 'kaprok',
@@ -42,9 +44,26 @@ class GuruSeeder extends Seeder
             'no_telp' => $faker->randomNumber(9),
         ]);
         DB::table('guru')->insert([
+            'id_user' => '3',
             'nik' => $faker->nik,
             'nama' => $faker->title . "" . $faker->name,
             'jabatan' => 'bkk',
+            'jurusan' => $faker->randomElement($jurusan),
+            'no_telp' => $faker->randomNumber(9),
+        ]);
+        DB::table('guru')->insert([
+            'id_user' => '12',
+            'nik' => $faker->nik,
+            'nama' => $faker->title . "" . $faker->name,
+            'jabatan' => 'tu',
+            'jurusan' => $faker->randomElement($jurusan),
+            'no_telp' => $faker->randomNumber(9),
+        ]);
+        DB::table('guru')->insert([
+            'id_user' => '13',
+            'nik' => $faker->nik,
+            'nama' => $faker->title . "" . $faker->name,
+            'jabatan' => 'waka',
             'jurusan' => $faker->randomElement($jurusan),
             'no_telp' => $faker->randomNumber(9),
         ]);

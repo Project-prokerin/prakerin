@@ -110,11 +110,11 @@
                           </div>
                           <div class="row g-3 align-items-center">
                             <label class="form-label col-7 pleft">Jurusan</label>
-                            <label class="form-label">: {{ siswa('main')->jurusan }}</label>
+                            <label class="form-label">: {{ siswa('main')->kelas->jurusan }}</label>
                           </div>
                           <div class="row g-3 align-items-center">
                             <label class="form-label col-7 pleft">Kelas</label>
-                            <label class="form-label">: {{ siswa('main')->kelas }}</label>
+                            <label class="form-label">: {{ siswa('main')->kelas->level  }}</label>
                           </div>
                           <div class="row g-3 align-items-center">
                             <label class="form-label col-7 pleft">No.Telephone</label>

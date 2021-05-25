@@ -35,16 +35,17 @@ class SiswaExport implements FromQuery, WithHeadings, WithMapping, WithCustomSta
     // {
     //     return Siswa::all();
     // }
-    public function __construct($siswa, $kelas, $jurusan, $getdata)
+    public function __construct($siswa, $kelas, $jurusan, $getdata,$id_kelas)
     {
             $this->siswa = $siswa;
             $this->kelas = $kelas;
             $this->jurusan = $jurusan;
             $this->getData = $getdata;
+            $this->id_kelas = $id_kelas;
     }
     public function query()
     {
-        return Siswa::query()->where('jurusan', $this->jurusan)->where('kelas', $this->kelas);
+        return Siswa::query()->where('id_kelas', $this->id_kelas);
     }
     public function headings(): array
     {
@@ -165,6 +166,6 @@ class SiswaExport implements FromQuery, WithHeadings, WithMapping, WithCustomSta
 
     public function title() : string
     {
-        return $this->kelas.' '.$this->jurusan;
+        return $this->kelas.' '. $this->jurusan;
     }
 }
