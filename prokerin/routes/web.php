@@ -168,6 +168,19 @@ Route::middleware(['web', 'auth', 'role:kaprog,hubin'])->group(function () {
     Route::get('/export/excel/perusahaan', [ExcelController::class, 'perusahaan'])->name('export.perusahaan');
     Route::get('/export/pdf/perusahaan', [PDFController::class, 'perusahaan']);
 
+
+     // data kelas
+    Route::get('admin/kelas', [kelasController::class, 'index'])->name('kelas.index');
+    Route::post('admin/kelas/ajax', [kelasController::class, 'ajax'])->name('kelas.ajax');
+    Route::get('admin/kelas/detail/{id}', [kelasController::class, 'detail'])->name('kelas.detail');
+    Route::get('admin/kelas/tambah', [kelasController::class, 'tambah'])->name('kelas.tambah');
+    Route::post('admin/kelas/tambah/post', [kelasController::class, 'store'])->name('kelas.post');
+    Route::get('admin/kelas/edit/{id}', [kelasController::class, 'edit'])->name('kelas.edit');
+    Route::put('admin/kelas/update/{id}', [kelasController::class, 'update'])->name('kelas.update');
+    Route::delete('admin/kelas/delete/{id}', [kelasController::class, 'destroy'])->name('kelas.delete');
+    Route::post('/kelas/destroy', [kelasController::class, 'delete_all'])->name('kelas.delete-all');
+    Route::get('/export/excel/kelas', [ExcelController::class, 'guru'])->name('export.kelas');
+
 });
 
 // bkk

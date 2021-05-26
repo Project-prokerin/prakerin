@@ -171,7 +171,7 @@
                     headers: {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                     },
-                    url: "{{route('siswa.ajax')}}",
+                    url: "{{route('kelas.ajax')}}",
                     type: "post",
                     data: function (data) {
                         data = '';

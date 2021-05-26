@@ -50,9 +50,32 @@ class siswaController extends Controller
         if ($request->ajax()) {
             $siwa = Siswa::orderby('nama_siswa', 'ASC')->get();
             return datatables()->of($siwa)
-                ->editColumn('kelas', function($data){
-                    return $data->kelas->level;
-                })
+            ->editColumn('jurusan', function ($data) {
+          
+                switch ($data->kelas->jurusan) {
+                    case 'Rekayasa Perangkat Lunak':
+                        return "RPL";
+                        break;
+                        case 'Broadcasting':
+                            return "BC";
+                            break;
+                            case 'Multimedia':
+                                return "MM";
+                                break;
+                                case 'Teknologi Kominikasi Jaringan':
+                                    return "TKJ";
+                                    break;
+                                    case 'Teknik Elektonika Industri':
+                                        return "TEI";
+                                        break;
+                                        
+                    
+                    default:
+                        return "Jurusan Belum Terdaftar";
+                    break;
+                }
+                // return $data->kelas->jurusan;
+            })
                 ->editColumn('jurusan', function ($data) {
                     return $data->kelas->jurusan;
                 })

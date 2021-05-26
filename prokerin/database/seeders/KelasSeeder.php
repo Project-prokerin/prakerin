@@ -64,22 +64,22 @@ class KelasSeeder extends Seeder
             'jurusan' => 'Teknik Elektonika Industri',
         ]);
         DB::table('kelas')->insert([
-            'level' => 'Xii',
+            'level' => 'XII',
             'jurusan' => 'Rekayasa Perangkat Lunak',
         ]);
 
         DB::table('kelas')->insert([
-            'level' => 'Xii',
+            'level' => 'XII',
             'jurusan' => 'Broadcasting',
         ]);
 
         DB::table('kelas')->insert([
-            'level' => 'Xii',
+            'level' => 'XII',
             'jurusan' => 'Multimedia',
         ]);
 
         DB::table('kelas')->insert([
-            'level' => 'Xii',
+            'level' => 'XII',
             'jurusan' => 'Teknologi Kominikasi Jaringan',
         ]);
 
