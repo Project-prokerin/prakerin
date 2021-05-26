@@ -30,4 +30,8 @@ class data_prakerin extends Model
                                         // owner key
         return $this->belongsTo(guru::class, 'id_guru');
     }
+    public function kelas()
+    {
+        return $this->belongsTo(kelas::class,'id_kelas');
+    }
 }

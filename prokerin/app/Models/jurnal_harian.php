@@ -21,4 +21,8 @@ class jurnal_harian extends Model
                                                 // owner key
         return $this->belongsTo(perusahaan::class, 'id_perusahaan');
     }
+    public function kelas()
+    {
+        return $this->belongsTo(kelas::class,'id_kelas');
+    }
 }

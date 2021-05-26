@@ -22,8 +22,8 @@ class GuruSeeder extends Seeder
             'nik' => $faker->nik,
             'nama' => $faker->title."".$faker->name,
             'jabatan' => 'Kejuruan',
-            'jurusan' => $faker->randomElement($jurusan),
-            'no_telp' => $faker->randomNumber(9),
+            'id_kelas'=> 1
+,            'no_telp' => $faker->randomNumber(9),
         ]);
         }
         // admin
@@ -32,39 +32,39 @@ class GuruSeeder extends Seeder
             'nik' => $faker->nik,
             'nama' => $faker->title . "" . $faker->name,
             'jabatan' => 'hubin',
-            'jurusan' => $faker->randomElement($jurusan),
-            'no_telp' => $faker->randomNumber(9),
+            'id_kelas'=> 2
+,            'no_telp' => $faker->randomNumber(9),
         ]);
         DB::table('guru')->insert([
             'id_user' => '2',
             'nik' => $faker->nik,
             'nama' => $faker->title . "" . $faker->name,
             'jabatan' => 'kaprok',
-            'jurusan' => $faker->randomElement($jurusan),
-            'no_telp' => $faker->randomNumber(9),
+            'id_kelas'=> 3
+,            'no_telp' => $faker->randomNumber(9),
         ]);
         DB::table('guru')->insert([
             'id_user' => '3',
             'nik' => $faker->nik,
             'nama' => $faker->title . "" . $faker->name,
             'jabatan' => 'bkk',
-            'jurusan' => $faker->randomElement($jurusan),
-            'no_telp' => $faker->randomNumber(9),
+            'id_kelas'=> 5
+,            'no_telp' => $faker->randomNumber(9),
         ]);
         DB::table('guru')->insert([
             'id_user' => '12',
             'nik' => $faker->nik,
             'nama' => $faker->title . "" . $faker->name,
             'jabatan' => 'tu',
-            'jurusan' => $faker->randomElement($jurusan),
-            'no_telp' => $faker->randomNumber(9),
+            'id_kelas'=> 6
+,            'no_telp' => $faker->randomNumber(9),
         ]);
         DB::table('guru')->insert([
             'id_user' => '13',
             'nik' => $faker->nik,
             'nama' => $faker->title . "" . $faker->name,
             'jabatan' => 'waka',
-            'jurusan' => $faker->randomElement($jurusan),
+            'id_kelas'=> 10,
             'no_telp' => $faker->randomNumber(9),
         ]);
 

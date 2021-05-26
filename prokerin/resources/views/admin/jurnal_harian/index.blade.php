@@ -344,8 +344,8 @@
                         name: 'pembimbing'
                     },
                     {
-                        data: 'id_siswa',
-                        name: 'id_siswa.jurusan'
+                        data: 'jurusan',
+                        name: 'jurusan'
                     },
                     {
                         data: 'perusahaan',

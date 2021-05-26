@@ -19,8 +19,7 @@ class dataprakerinSeeder extends Seeder
 
         DB::table('data_prakerin')->insert([
             'nama' => 'Nur Firdaus',
-            'kelas' => 'XII',
-            'jurusan' => 'RPL',
+            'id_kelas' => 2,
             'id_siswa' => 1,
             'id_perusahaan' => 1,
             'id_guru' => 1,
@@ -29,8 +28,7 @@ class dataprakerinSeeder extends Seeder
         ]);
         DB::table('data_prakerin')->insert([
             'nama' => 'Rafie aydin',
-            'kelas' => 'XII',
-            'jurusan' => 'RPL',
+            'id_kelas' => 3,
             'id_siswa' => 2,
             'id_perusahaan' => 1,
             'id_guru' => 1,
@@ -39,8 +37,7 @@ class dataprakerinSeeder extends Seeder
         ]);
         DB::table('data_prakerin')->insert([
             'nama' => 'Dana',
-            'kelas' => 'XII',
-            'jurusan' => 'RPL',
+            'id_kelas' => 10,
             'id_siswa' => 3,
             'id_perusahaan' => 1,
             'id_guru' => 1,
@@ -50,8 +47,7 @@ class dataprakerinSeeder extends Seeder
       
         DB::table('data_prakerin')->insert([
             'nama' => 'Walada',
-            'kelas' => 'XII',
-            'jurusan' => 'RPL',
+            'id_kelas' => 11,
             'id_siswa' => 4,
             'id_perusahaan' => 2,
             'id_guru' => 2,
@@ -60,8 +56,7 @@ class dataprakerinSeeder extends Seeder
         ]);
         DB::table('data_prakerin')->insert([
             'nama' => 'Radit',
-            'kelas' => 'XII',
-            'jurusan' => 'RPL',
+            'id_kelas' => 7,
             'id_siswa' => 5,
             'id_perusahaan' => 2,
             'id_guru' => 2,
@@ -70,8 +65,7 @@ class dataprakerinSeeder extends Seeder
         ]);
         DB::table('data_prakerin')->insert([
             'nama' => 'Falih',
-            'kelas' => 'XII',
-            'jurusan' => 'RPL',
+            'id_kelas' => 8,
             'id_siswa' => 6,
             'id_perusahaan' => 2,
             'id_guru' => 2,
@@ -80,8 +74,7 @@ class dataprakerinSeeder extends Seeder
         ]);
         DB::table('data_prakerin')->insert([
             'nama' => 'VIk',
-            'kelas' => 'XII',
-            'jurusan' => 'BC',
+            'id_kelas' => 4,
             'id_siswa' => 7,
             'id_perusahaan' => 2,
             'id_guru' => 2,
@@ -90,8 +83,7 @@ class dataprakerinSeeder extends Seeder
         ]);
         DB::table('data_prakerin')->insert([
             'nama' => 'Jiarisa',
-            'kelas' => 'XII',
-            'jurusan' => 'BC',
+            'id_kelas' => 2,
             'id_siswa' => 8,
             'id_perusahaan' => 2,
             'id_guru' => 2,

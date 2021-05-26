@@ -31,7 +31,37 @@ class data_prakerinController extends Controller
     {
         if ($request->ajax()) {
             $dataPrakerin = data_prakerin::with('perusahaan');
-            return datatables()->of($dataPrakerin)->editColumn('tgl_mulai', function ($dataPrakerin) {
+            return datatables()->of($dataPrakerin)
+            ->editColumn('kelas', function($data){
+                return $data->kelas->level;
+            })
+            ->editColumn('jurusan', function ($data) {
+          
+                switch ($data->kelas->jurusan) {
+                    case 'Rekayasa Perangkat Lunak':
+                        return "RPL";
+                        break;
+                        case 'Broadcasting':
+                            return "BC";
+                            break;
+                            case 'Multimedia':
+                                return "MM";
+                                break;
+                                case 'Teknologi Kominikasi Jaringan':
+                                    return "TKJ";
+                                    break;
+                                    case 'Teknik Elektonika Industri':
+                                        return "TEI";
+                                        break;
+                                        
+                    
+                    default:
+                        return "Jurusan Belum Terdaftar";
+                    break;
+                }
+                // return $data->kelas->jurusan;
+            })
+            ->editColumn('tgl_mulai', function ($dataPrakerin) {
                 return [
                     'display' => e($dataPrakerin->tgl_mulai->format('m-d-Y')),
                     'timestamp' => $dataPrakerin->tgl_mulai->timestamp

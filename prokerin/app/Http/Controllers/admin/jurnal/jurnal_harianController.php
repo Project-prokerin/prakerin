@@ -42,6 +42,9 @@ class jurnal_harianController extends Controller
              ->addColumn('id_siswa', function (jurnal_harian $jurnal_harian) {
                 return $jurnal_harian->siswa->jurusan;
             })
+            ->addColumn('jurusan', function (jurnal_harian $jurnal_harian) {
+                return $jurnal_harian->siswa->kelas->jurusan;
+            })
             ->addColumn('no_kelompok', function (jurnal_harian $jurnal_harian) {
                 return $jurnal_harian->siswa->data_prakerin->kelompok_laporan->no;
             }) 

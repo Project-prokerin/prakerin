@@ -16,8 +16,9 @@ class CreateDataPrakerinTable extends Migration
         Schema::create('data_prakerin', function (Blueprint $table) {
             $table->id();
             $table->string('nama', 100);
-            $table->string('kelas', 100);
-            $table->string('jurusan', 100);
+            // $table->string('kelas', 100);
+            // $table->string('jurusan', 100);
+            $table->bigInteger('id_kelas')->unsigned();
             $table->bigInteger('id_siswa')->unsigned();
             $table->foreign('id_siswa')->references('id')->on('siswa')->onDelete('cascade')->onUpdate('cascade');
             $table->bigInteger('id_perusahaan')->unsigned()->nullable();

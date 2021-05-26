@@ -31,6 +31,32 @@ class guruController extends Controller
         if ($request->ajax()) {
             $guru = guru::all();
             return datatables()->of($guru)
+            ->editColumn('jurusan', function ($data) {
+          
+                switch ($data->kelas->jurusan) {
+                    case 'Rekayasa Perangkat Lunak':
+                        return "RPL";
+                        break;
+                        case 'Broadcasting':
+                            return "BC";
+                            break;
+                            case 'Multimedia':
+                                return "MM";
+                                break;
+                                case 'Teknologi Kominikasi Jaringan':
+                                    return "TKJ";
+                                    break;
+                                    case 'Teknik Elektonika Industri':
+                                        return "TEI";
+                                        break;
+                                        
+                    
+                    default:
+                        return "Jurusan Belum Terdaftar";
+                    break;
+                }
+                // return $data->kelas->jurusan;
+            })
                 ->addColumn('action', function ($data) {
                     $button = '<a href="/admin/guru/detail/' . $data->id . '"   id="' . $data->id . '" class="edit btn btn-primary btn-sm"><i class="fas fa-search"></i></a>';
                     $button .= '&nbsp';
