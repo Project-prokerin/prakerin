@@ -28,6 +28,12 @@
                 <span>Data Guru</span>
             </a>
             </li>
+            <li class="@if (Request::is('admin/kelas','admin/kelas/*')) active @endif">
+                <a href="{{ route('kelas.index') }}" class="nav-link">
+                    <i class="fas fa-user"></i>
+                    <span>Data Kelas</span>
+                </a>
+                </li>
             @endif
             @if (Auth::user()->role == 'kaprog' or Auth::user()->role == 'hubin')
             <li class="menu-header">PERUSAHAAN</li>

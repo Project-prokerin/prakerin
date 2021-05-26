@@ -15,6 +15,7 @@ class kelasController extends Controller
     public function index()
     {
         //
+        return view('admin.kelas.index');
     }
 
     /**
@@ -25,6 +26,10 @@ class kelasController extends Controller
     public function create()
     {
         //
+    }
+    public function tambah()
+    {
+        return view('admin.kelas.tambah');
     }
 
     /**
