@@ -13,7 +13,7 @@ class kelasRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,16 @@ class kelasRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'jurusan' => 'required',
+            'level' => 'required'
+        ];
+    }
+    public function messages()
+    {
+        return [
+            'jurusan.required' => 'Jurusan tidak boleh kosong',
+            'level.unique' => 'Kelas Sudah ada!',
+            'level.required' => 'Kelas tidak boleh kosong!',
         ];
     }
 }

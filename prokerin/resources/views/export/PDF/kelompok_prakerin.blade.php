@@ -231,7 +231,7 @@
                                       <td>{{ $loop->iteration }}</td>
                                       <td>{{ $kel->data_prakerin->siswa->nipd }}</td>
                                       <td>{{ $kel->data_prakerin->nama }}</td>
-                                      <td>{{ $kel->data_prakerin->jurusan }}</td>
+                                      <td>{{ $kel->data_prakerin->kelas->jurusan }}</td>
                                   </tr>
 
 

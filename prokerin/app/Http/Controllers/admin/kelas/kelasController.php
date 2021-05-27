@@ -5,6 +5,7 @@ namespace App\Http\Controllers\admin\kelas;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\kelas;
+use App\Http\Requests\admin\kelasRequest;
 
 class kelasController extends Controller
 {
@@ -40,10 +41,7 @@ class kelasController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
-    {
-        //
-    }
+
     public function tambah()
     {
         return view('admin.kelas.tambah');
@@ -55,9 +53,13 @@ class kelasController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(kelasRequest $request)
     {
-        //
+        // dd($request);
+        $validated = $request->validated();
+        kelas::create($request->all());
+        return redirect()->route('kelas.index')->with(['success' => "Data kelas berhasil di tambahkan"]);
+
     }
 
     /**
@@ -79,7 +81,8 @@ class kelasController extends Controller
      */
     public function edit($id)
     {
-        //
+        $kelas = kelas::find($id);
+        return view('admin.kelas.edit', compact('kelas'));
     }
 
     /**
@@ -89,9 +92,11 @@ class kelasController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(kelasRequest $request, $id)
     {
-        //
+        $validated = $request->validated();
+        kelas::find($id)->update($request->all());
+        return redirect()->route('kelas.index')->with(['success' => "Data kelas berhasil di tambahkan"]);
     }
 
     /**
@@ -102,6 +107,7 @@ class kelasController extends Controller
      */
     public function destroy($id)
     {
-        //
+        kelas::destroy($id);
+        return response()->json($data = 'berhasil');
     }
 }

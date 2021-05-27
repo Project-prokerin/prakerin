@@ -204,7 +204,7 @@
                     if (result.value) {
                         id = $(this).data('id');
                         $.ajax({
-                                url: "/admin/siswa/delete/"+ id,
+                                url: "/admin/kelas/delete/"+ id,
                                 type: "DELETE",
 
                                 data: { _token: '{{csrf_token()}}' },

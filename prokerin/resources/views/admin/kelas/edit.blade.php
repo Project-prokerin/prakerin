@@ -32,14 +32,15 @@
             <div class="">
                 <div class="" style="height: auto;">
                     <div class="card-body">
-                    <form action="{{route('kelas.post')}}" method="POST" class="input">
+                    <form action="{{route('kelas.update', ['id' => $kelas->id])}}" method="POST" class="input">
+                        @method('PUT')
                         @csrf
                         <div class="mb-3">
                             <label class="form-label">Level</label>
                             <div class="d-flex">
                             <i class="fas fa-user border text-center"></i>
                             <input type="text" name="level" class="form-control
-                            @error('level') is-invalid @enderror" placeholder="Level" value="{{ old('level') }}">
+                            @error('level') is-invalid @enderror" placeholder="Level" value="{{ old('level', $kelas->level) }}">
                             </div>
                             @error('level')
                                             <div class="invalid-feedback">
@@ -66,7 +67,7 @@
                                 <i class="fas fa-user border text-center"></i>
                                 <input type="text" class="form-control @error('jurusan')
                                     is-invalid
-                                @enderror" name="jurusan" placeholder="Jurusan" >
+                                @enderror" name="jurusan" placeholder="Jurusan" value="{{old('jurusan', $kelas->jurusan)}}">
                             </div>
                             @error('jurusan')
                                 <div class="invalid-feedback">
