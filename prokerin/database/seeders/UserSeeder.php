@@ -108,9 +108,30 @@ class UserSeeder extends Seeder
             'last_logout_at' => NULL
         ]);
         DB::table('users')->insert([
-            'username' => 'WakaSekolah',
+            'username' => 'KepalaSekolah',
             'password' => Hash::make('password'),
             'role' => 'waka',
+            'created_at' => Carbon::now(),
+            'last_logout_at' => NULL
+        ]);
+        DB::table('users')->insert([
+            'username' => 'kurikulum',
+            'password' => Hash::make('password'),
+            'role' => 'kurikulum',
+            'created_at' => Carbon::now(),
+            'last_logout_at' => NULL
+        ]);
+        DB::table('users')->insert([
+            'username' => 'kesiswaan',
+            'password' => Hash::make('password'),
+            'role' => 'kesiswaan',
+            'created_at' => Carbon::now(),
+            'last_logout_at' => NULL
+        ]);
+        DB::table('users')->insert([
+            'username' => 'litbang',
+            'password' => Hash::make('password'),
+            'role' => 'litbang',
             'created_at' => Carbon::now(),
             'last_logout_at' => NULL
         ]);

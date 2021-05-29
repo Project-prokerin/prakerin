@@ -202,7 +202,7 @@ Route::middleware(['web', 'auth', 'role:bkk,hubin'])->group(function () {
 });
 
 // all admin
-Route::middleware(['web', 'auth', 'role:bkk,hubin,kaprog,waka,tu'])->group(function () {
+Route::middleware(['web', 'auth', 'role:bkk,hubin,kaprog,waka,tu,kurikulum,kesiswaan,litbang'])->group(function () {
 
     Route::get('/admin/dashboard',  [ViewController::class, 'dashboard'])->name('admin.dashboard');  // memakai route view untuk view saja
     Route::get('/export/excel/pembekalan', [ExcelController::class, 'pembekalan'])->name('export.pembekalan');

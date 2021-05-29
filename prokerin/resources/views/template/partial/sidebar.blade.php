@@ -1,4 +1,4 @@
-@if (Auth::user()->role == 'hubin' or Auth::user()->role == 'kaprog' or Auth::user()->role == 'bkk' or Auth::user()->role == 'tu' or Auth::user()->role == 'waka')
+@if(Auth::check())
 <div class="main-sidebar position-fixed">
         <aside id="sidebar-wrapper">
         <div class="sidebar-brand">
@@ -91,10 +91,9 @@
 @endif
 
 
-
 {{-- user sidebar --}}
+@if(Auth::check())
 @if (Auth::user()->role == 'siswa' )
-
 <div class="main-sidebar">
         <aside id="sidebar-wrapper">
         <div class="sidebar-brand ">
@@ -159,9 +158,8 @@
             @endif
         </aside>
     </div>
-
 @endif
-
+@endif
 
 
 

@@ -29,7 +29,7 @@ class AuthController extends Controller
             if (Auth()->user()->role == 'siswa') {
                 $request->session()->regenerate();
                 return redirect('/user/dashboard');
-            } else if (Auth()->user()->role == 'kaprog' or 'hubin' or 'bkk' or 'tu' or 'waka' ) {
+            } else if (Auth()->user()->role == 'kaprog' or 'bkk' or 'tu' or 'waka' or'hubin' or 'kurikulum' or 'kesiswaan' or 'litbang') {
                 $request->session()->regenerate();
                 return redirect('/admin/dashboard');
             }

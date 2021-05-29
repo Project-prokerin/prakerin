@@ -35,4 +35,13 @@ class guru extends Model
         return $this->belongsTo(kelas::class,'id_kelas');
     }
 
+    // surat masuk
+    public function surat_masuk_dari() // dari
+    {
+        return $this->hasMany(Surat_masuk::class, 'id_untuk', 'id');
+    }
+    public function surat_masuk_untuk() // untuk
+    {
+        return $this->hasMany(Surat_masuk::class, 'id_dari', 'id');
+    }
 }

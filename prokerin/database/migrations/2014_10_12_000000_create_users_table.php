@@ -17,7 +17,7 @@ class CreateUsersTable extends Migration
             $table->id();
             $table->string('username')->unique();
             $table->string('password');
-            $table->enum('role', ['admin', 'tu', 'hubin', 'siswa', 'kaprog', 'waka','bkk'])->default('siswa');
+            $table->enum('role', ['admin','litbang', 'tu', 'siswa', 'kaprog', 'waka','bkk', 'hubin','kurikulum','kesiswaan'])->default('siswa');
             $table->rememberToken();
             $table->timestamp('last_logout_at')->nullable();
             $table->timestamps();

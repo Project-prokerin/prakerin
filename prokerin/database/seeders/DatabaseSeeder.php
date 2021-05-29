@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\data_prakerin;
+use App\Models\Disposisi;
 use App\Models\fasilitas_prakerin;
 use App\Models\guru;
 use App\Models\jurnal_harian;
@@ -45,7 +46,10 @@ class DatabaseSeeder extends Seeder
         $this->call([fasilitas_prakerinSeeder::class]);
         $this->call([orang_tuaSeeder::class]);
         $this->call([asal_sekolahSeeder::class]);
-
+        $this->call([surat_masukSeeder::class]);
+        $this->call([surat_mSeeder::class]);
+        $this->call([detail_suratSeeder::class]);
+        $this->call([disposisiSeeder::class]);
     }
 
 }
