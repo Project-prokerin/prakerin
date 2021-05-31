@@ -14,6 +14,7 @@ use App\Http\Controllers\admin\jurnal\jurnal_prakerinController;
 use App\Http\Controllers\admin\kelompok\kelompokController;
 use App\Http\Controllers\admin\laporan\laporanController;
 use App\Http\Controllers\admin\kelas\kelasController;
+use App\Http\Controllers\admin\surat_masuk\Surat_masukController;
 // user routeus
 // ex App\Http\Controllers\user\namaController;
 use App\Http\Controllers\user\userController;
@@ -39,167 +40,8 @@ use App\Http\Controllers\Excel\ExcelController;
 Route::get('/', [AuthController::class, 'index'])->name('login')->middleware('guest');
 Route::post('/postlogin', [AuthController::class, 'postlogin']);
 Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
-
-// route template
-Route::get('/pagesSiswa', [viewController::class, 'pagesSiswa']);
-
-// cek waktu login
 Route::post('/log', [AuthController::class,'waktu_log'])->name('auth.time');
 
-
-    // admin
-// untuk hubin disin
-Route::middleware(['web', 'auth', 'role:hubin'])->group(function () {
-
-    // data siswa
-    Route::get('admin/siswa', [siswaController::class, 'index'])->name('siswa.index');
-    Route::post('admin/siswa/ajax', [siswaController::class, 'ajax'])->name('siswa.ajax');
-    Route::get('admin/siswa/detail/{id}', [siswaController::class, 'detail'])->name('siswa.detail');
-    Route::get('admin/siswa/tambah', [siswaController::class, 'tambah'])->name('siswa.tambah');
-    Route::post('admin/siswa/post', [siswaController::class, 'store'])->name('siswa.post');
-    Route::get('admin/siswa/edit/{id}', [siswaController::class, 'edit'])->name('siswa.edit');
-    Route::put('admin/siswa/update/{id}', [siswaController::class, 'update'])->name('siswa.update');
-    Route::delete('admin/siswa/delete/{id}', [siswaController::class, 'destroy'])->name('siswa.delete');
-    Route::post('/siswa/excel/destroy', [siswaController::class, 'delete_all'])->name('siswa.delete-all');
-    Route::get('/export/excel/siswa', [ExcelController::class, 'siswa'])->name('export.siswa');
-
-    // data guru
-    Route::get('admin/guru', [guruController::class, 'index'])->name('guru.index');
-    Route::post('admin/guru/ajax', [guruController::class, 'ajax'])->name('guru.ajax');
-    Route::get('admin/guru/detail/{id}', [guruController::class, 'detail'])->name('guru.detail');
-    Route::get('admin/guru/tambah', [guruController::class, 'tambah'])->name('guru.tambah');
-    Route::post('admin/guru/tambah/post', [guruController::class, 'store'])->name('guru.post');
-    Route::get('admin/guru/edit/{id}', [guruController::class, 'edit'])->name('guru.edit');
-    Route::put('admin/guru/update/{id}', [guruController::class, 'update'])->name('guru.update');
-    Route::delete('admin/guru/delete/{id}', [guruController::class, 'destroy'])->name('guru.delete');
-    Route::post('/guru/destroy', [guruController::class, 'delete_all'])->name('guru.delete-all');
-    Route::get('/export/excel/guru', [ExcelController::class, 'guru'])->name('export.guru');
-
-     // data kelas
-    Route::get('admin/kelas', [kelasController::class, 'index'])->name('kelas.index');
-    Route::post('admin/kelas/ajax', [kelasController::class, 'ajax'])->name('kelas.ajax');
-    Route::get('admin/kelas/detail/{id}', [kelasController::class, 'detail'])->name('kelas.detail');
-    Route::get('admin/kelas/tambah', [kelasController::class, 'tambah'])->name('kelas.tambah');
-    Route::post('admin/kelas/tambah/post', [kelasController::class, 'store'])->name('kelas.post');
-    Route::get('admin/kelas/edit/{id}', [kelasController::class, 'edit'])->name('kelas.edit');
-    Route::put('admin/kelas/update/{id}', [kelasController::class, 'update'])->name('kelas.update');
-    Route::delete('admin/kelas/delete/{id}', [kelasController::class, 'destroy'])->name('kelas.delete');
-    Route::post('/kelas/destroy', [kelasController::class, 'delete_all'])->name('kelas.delete-all');
-    Route::get('/export/excel/kelas', [ExcelController::class, 'guru'])->name('export.kelas');
-
-});
-
-// kaprog
-Route::middleware(['web', 'auth', 'role:kaprog,hubin'])->group(function () {
-
-    // data prakerin
-    Route::get('admin/data_prakerin', [data_prakerinController::class, 'index'])->name('data_prakerin.index');
-    Route::post('admin/data_prakerin/ajax', [data_prakerinController::class, 'ajax'])->name('data_prakerin.ajax');
-    Route::get('admin/data_prakerin/detail/{id}', [data_prakerinController::class, 'detail'])->name('data_prakerin.detail');
-    Route::get('admin/data_prakerin/tambah', [data_prakerinController::class, 'tambah'])->name('data_prakerin.tambah');
-    Route::post('admin/data_prakerin/tambah/post', [data_prakerinController::class, 'store'])->name('data_prakerin.post');
-    Route::get('admin/data_prakerin/edit/{id}', [data_prakerinController::class, 'edit'])->name('data_prakerin.edit');
-    Route::put('admin/data_prakerin/update/{data_prakerin}', [data_prakerinController::class, 'update'])->name('data_prakerin.update');
-    Route::delete('admin/data_prakerin/delete/{id}', [data_prakerinController::class, 'destroy'])->name('data_prakerin.delete');
-    Route::post('/data_prakerin/destroy', [data_prakerinController::class, 'delete_all'])->name('data_prakerin.delete-all');
-    Route::get('/export/excel/data_prakerin', [ExcelController::class, 'data_prakerin'])->name('export.data_prakerin');
-
-
-    // jurnal harian
-    Route::get('admin/jurnalH', [jurnal_harianController::class, 'index'])->name('jurnalH.index');
-    Route::post('admin/jurnalH/ajax', [jurnal_harianController::class, 'ajax'])->name('jurnalH.ajax');
-    Route::get('admin/jurnalH/detail/{id}', [data_prakerinController::class, 'detail'])->name('jurnalH.detail');
-    Route::get('admin/jurnalH/tambah', [jurnal_harianController::class, 'tambah'])->name('jurnalH.tambah');
-    Route::post('admin/jurnalH/tambah/post', [jurnal_harianController::class, 'store'])->name('jurnalH.post');
-    Route::get('admin/jurnalH/edit/{id}', [jurnal_harianController::class, 'edit'])->name('jurnalH.edit');
-    Route::put('admin/jurnalH/update/{id}', [jurnal_harianController::class, 'update'])->name('jurnalH.update');
-    Route::delete('admin/jurnalH/delete/{id}', [jurnal_harianController::class, 'destroy'])->name('jurnalH.delete');
-    Route::post('/jurnalH/destroy', [jurnal_harianController::class, 'delete_all'])->name('jurnalH.delete-all');
-    Route::get('/export/excel/jurnalH', [ExcelController::class, 'jurnalh'])->name('export.jurnalH');
-
-    // jurnal prakerin
-    Route::get('admin/jurnal', [jurnal_prakerinController::class, 'index'])->name('jurnal.index');
-    Route::post('admin/jurnal/ajax', [jurnal_prakerinController::class, 'ajax'])->name('jurnal.ajax');
-    Route::get('admin/jurnal/detail/{id}', [jurnal_prakerinController::class, 'detail'])->name('perusahaan.detail');
-    Route::get('admin/jurnal/tambah', [jurnal_prakerinController::class, 'tambah'])->name('jurnal.tambah');
-    Route::post('admin/jurnal/tambah/post', [jurnal_prakerinController::class, 'store'])->name('jurnal.post');
-    Route::get('admin/jurnal/edit/{id}', [jurnal_prakerinController::class, 'edit'])->name('jurnal.edit');
-    Route::put('admin/jurnal/update/{jurnal_prakerin}', [jurnal_prakerinController::class, 'update'])->name('jurnal.update');
-    Route::delete('admin/jurnal/delete/{id}', [jurnal_prakerinController::class, 'destroy'])->name('jurnal.delete');
-    Route::post('/jurnal/destroy', [jurnal_prakerinController::class, 'delete_all'])->name('jurnal.delete-all');
-    Route::get('/export/excel/jurnal', [ExcelController::class, 'jurnalh'])->name('export.jurnal');
-
-    // kelompok magang
-    Route::get('admin/kelompok', [kelompokController::class, 'index'])->name('kelompok.index');
-    Route::get('admin/kelompok/ajax', [kelompokController::class, 'ajax'])->name('kelompok.ajax');
-    Route::get('admin/kelompok/detail/{id}', [kelompokController::class, 'detail'])->name('kelompok.detail');
-    Route::get('admin/kelompok/tambah', [kelompokController::class, 'tambah'])->name('kelompok.tambah');
-    Route::post('admin/kelompok/tambah/post', [kelompokController::class, 'store'])->name('kelompok.post');
-    Route::get('admin/kelompok/edit/{id}', [kelompokController::class, 'edit'])->name('kelompok.edit');
-    Route::put('admin/kelompok/update/{kelompok}', [kelompokController::class, 'update'])->name('kelompok.update');
-    Route::delete('admin/kelompok/delete/{id}', [kelompokController::class, 'destroy'])->name('kelompok.delete');
-    Route::post('admin/kelompok/ajax', [kelompokController::class, 'ajax'])->name('kelompok.ajax');
-    Route::delete('/kelompok/destroy_all/{id}', [kelompokController::class, 'delete_all'])->name('kelompok.delete-all');
-    // Route::get('/export/excel/kelompok', [ExcelController::class, 'kelompok']);
-    Route::post('/export/pdf/kelompok/{id}/{nomor}', [PDFController::class, 'kelompokPrakerin'])->name('export.kelompok');
-
-    // laporan magang
-    Route::get('admin/laporan', [laporanController::class, 'index'])->name('laporan.index');
-    Route::post('admin/laporan/ajax', [laporanController::class, 'ajax'])->name('laporan.ajax');
-    Route::get('admin/laporan/detail/{id}', [laporanController::class, 'detail'])->name('laporan.detail');
-    Route::get('admin/laporan/tambah', [laporanController::class, 'tambah'])->name('laporan.tambah');
-    Route::post('admin/laporan/tambah/post', [laporanController::class, 'store'])->name('laporan.post');
-    Route::get('admin/laporan/edit', [laporanController::class, 'edit'])->name('laporan.edit');
-    Route::put('admin/laporan/update', [laporanController::class, 'update'])->name('laporan.update');
-    Route::delete('admin/laporan/delete/{id}', [perusahaanController::class, 'destroy'])->name('laporan.delete');
-    Route::post('/laporan/destroy', [laporanController::class, 'delete_all'])->name('laporan.delete-all');
-    Route::get('/export/excel/laporan', [ExcelController::class, 'perusahaan'])->name('export.laporan');
-
-    // data perusahaan
-    Route::get('admin/perusahaan', [perusahaanController::class, 'index'])->name('perusahaan.index');
-    Route::post('admin/perusahaan/ajax', [perusahaanController::class, 'ajax'])->name('perusahaan.ajax');
-    Route::get('admin/perusahaan/detail/{id}', [perusahaanController::class, 'detail'])->name('perusahaan.detail');
-    Route::get('admin/perusahaan/tambah', [perusahaanController::class, 'tambah'])->name('perusahaan.tambah');
-    Route::post('admin/perusahaan/tambah/post', [perusahaanController::class, 'store'])->name('perusahaan.post');
-    Route::get('admin/perusahaan/edit/{id}', [perusahaanController::class, 'edit'])->name('perusahaan.edit');
-    Route::put('admin/perusahaan/update/{id}', [perusahaanController::class, 'update'])->name('perusahaan.update');
-    Route::delete('admin/perusahaan/delete/{id}', [perusahaanController::class, 'destroy'])->name('perusahaan.delete');
-    Route::post('/perusahaan/destroy', [perusahaanController::class, 'delete_all'])->name('perusahaan.delete-all');
-    Route::get('/export/excel/perusahaan', [ExcelController::class, 'perusahaan'])->name('export.perusahaan');
-    Route::get('/export/pdf/perusahaan', [PDFController::class, 'perusahaan']);
-
-
-     // data kelas
-    Route::get('admin/kelas', [kelasController::class, 'index'])->name('kelas.index');
-    Route::post('admin/kelas/ajax', [kelasController::class, 'ajax'])->name('kelas.ajax');
-    Route::get('admin/kelas/detail/{id}', [kelasController::class, 'detail'])->name('kelas.detail');
-    Route::get('admin/kelas/tambah', [kelasController::class, 'tambah'])->name('kelas.tambah');
-    Route::post('admin/kelas/tambah/post', [kelasController::class, 'store'])->name('kelas.post');
-    Route::get('admin/kelas/edit/{id}', [kelasController::class, 'edit'])->name('kelas.edit');
-    Route::put('admin/kelas/update/{id}', [kelasController::class, 'update'])->name('kelas.update');
-    Route::delete('admin/kelas/delete/{id}', [kelasController::class, 'destroy'])->name('kelas.delete');
-    Route::post('/kelas/destroy', [kelasController::class, 'delete_all'])->name('kelas.delete-all');
-    Route::get('/export/excel/kelas', [ExcelController::class, 'guru'])->name('export.kelas');
-
-});
-
-// bkk
-Route::middleware(['web', 'auth', 'role:bkk,hubin'])->group(function () {
-
-    // pembekalan
-    Route::get('admin/pembekalan', [pembekalanContoller::class, 'index'])->name('pembekalan.index');
-    Route::post('admin/pembekalan/ajax', [pembekalanContoller::class, 'ajax'])->name('pembekalan.ajax');
-    Route::get('admin/pembekalan/detail/{id}', [pembekalanContoller::class, 'detail'])->name('pembekalan.detail');
-    Route::get('admin/pembekalan/tambah', [pembekalanContoller::class, 'tambah'])->name('pembekalan.tambah');
-    Route::post('admin/pembekalan/tambah/post', [pembekalanContoller::class, 'store'])->name('pembekalan.post');
-    Route::get('admin/pembekalan/edit/{id}', [pembekalanContoller::class, 'edit'])->name('pembekalan.edit');
-    Route::put('admin/pembekalan/update/{pembekalan}', [pembekalanContoller::class, 'update'])->name('pembekalan.update');
-    Route::delete('admin/pembekalan/delete/{id}', [pembekalanContoller::class, 'destroy'])->name('pembekalan.delete');
-    Route::post('/pembekalan/destroy', [pembekalanContoller::class, 'delete_all'])->name('pembekalan.delete-all');
-    Route::get('/export/excel/pembekalan', [pembekalanContoller::class, 'pembekalan'])->name('export.pembekalan');
-    Route::get('/pembekalan/{id}/download', [pembekalanContoller::class, 'downloads'])->name('pembekalan.download');
-
-});
 
 // all admin
 Route::middleware(['web', 'auth', 'role:bkk,hubin,kaprog,waka,tu,kurikulum,kesiswaan,litbang'])->group(function () {
@@ -211,6 +53,226 @@ Route::middleware(['web', 'auth', 'role:bkk,hubin,kaprog,waka,tu,kurikulum,kesis
     Route::get('/export/excel/jurnalp', [ExcelController::class, 'jurnalp'])->name('export.jurnalp');
 
 });
+
+// untuk tu
+// example route admin/tu/surat_masuk
+Route::prefix('admin/tu')->name('surat_masuk.tu.')->middleware(['web', 'auth', 'role:tu'])->group(function () {
+    Route::get('surat_masuk', [Surat_masukController::class, 'index_TU'])->name('index');
+    Route::post('surat_masuk/ajax', [Surat_masukController::class, 'ajax_TU'])->name('ajax');
+    Route::get('surat_masuk/detail/{id}', [Surat_masukController::class, 'detail_TU'])->name('detail');
+    Route::get('surat_masuk/tambah', [Surat_masukController::class, 'tambah_TU'])->name('tambah');
+    Route::post('surat_masuk/post', [Surat_masukController::class, 'store_TU'])->name('post');
+    Route::get('surat_masuk/edit/{id}', [Surat_masukController::class, 'edit_TU'])->name('edit');
+    Route::put('surat_masuk/update/{id}', [Surat_masukController::class, 'update_TU'])->name('update');
+    Route::delete('surat_masuk/delete/{id}', [Surat_masukController::class, 'destroy_TU'])->name('delete');
+});
+
+// untuk kepsek
+// example route admin/kepsek/surat_masuk
+Route::prefix('admin/kepsek')->name('surat_masuk.kepsek.')->middleware(['web', 'auth', 'role:waka'])->namespace('admin/')->group(function () {
+    Route::get('surat_masuk', [Surat_masukController::class, 'index_Kepsek'])->name('index');
+    Route::post('surat_masuk/ajax', [Surat_masukController::class, 'ajax_Kepsek'])->name('ajax');
+    Route::get('surat_masuk/detail/{id}', [Surat_masukController::class, 'detail_Kepsek'])->name('detail');
+    Route::get('surat_masuk/tambah', [Surat_masukController::class, 'tambah_Kepsek'])->name('tambah');
+    Route::post('surat_masuk/post', [Surat_masukController::class, 'store_Kepsek'])->name('post');
+    Route::get('surat_masuk/edit/{id}', [Surat_masukController::class, 'edit_Kepsek'])->name('edit');
+    Route::put('surat_masuk/update/{id}', [Surat_masukController::class, 'update_Kepsek'])->name('update');
+    Route::delete('surat_masuk/delete/{id}', [Surat_masukController::class, 'destroy_Kepsek'])->name('delete');
+});
+
+// route pokka
+// untuk kurikulum
+Route::prefix('admin/kurikulum')->name('surat_masuk.kurikulum.')->middleware(['web', 'auth', 'role:kurikulum'])->group(function () {
+    Route::get('surat_masuk', [Surat_masukController::class, 'index_pokja'])->name('index');
+    Route::post('surat_masuk/ajax', [Surat_masukController::class, 'ajax_Pokja'])->name('ajax');
+    Route::get('surat_masuk/detail/{id}', [Surat_masukController::class, 'detail_Pokja'])->name('surat_masuk.detail');
+    Route::get('surat_masuk/tambah', [Surat_masukController::class, 'tambah_Pokja'])->name('surat_masuk.tambah');
+    Route::post('surat_masuk/post', [Surat_masukController::class, 'store_Pokja'])->name('surat_masuk.post');
+    Route::get('surat_masuk/edit/{id}', [Surat_masukController::class, 'edit_Pokja'])->name('surat_masuk.edit');
+    Route::put('surat_masuk/update/{id}', [Surat_masukController::class, 'update_Pokja'])->name('surat_masuk.update');
+    Route::delete('surat_masuk/delete/{id}', [Surat_masukController::class, 'destroy_Pokja'])->name('surat_masuk.delete');
+});
+
+// untuk kesiswaan
+Route::prefix('admin/kesiswaan')->name('surat_masuk.kesiswaan.')->middleware(['web', 'auth', 'role:kesiswaan'])->group(function () {
+    Route::get('surat_masuk', [Surat_masukController::class, 'index_pokja'])->name('siswa.index');
+    Route::post('surat_masuk/ajax', [Surat_masukController::class, 'ajax_Pokja'])->name('siswa.ajax');
+    Route::get('surat_masuk/detail/{id}', [Surat_masukController::class, 'detail_Pokja'])->name('surat_masuk.detail');
+    Route::get('surat_masuk/tambah', [Surat_masukController::class, 'tambah_Pokja'])->name('surat_masuk.tambah');
+    Route::post('surat_masuk/post', [Surat_masukController::class, 'store_Pokja'])->name('surat_masuk.post');
+    Route::get('surat_masuk/edit/{id}', [Surat_masukController::class, 'edit_Pokja'])->name('surat_masuk.edit');
+    Route::put('surat_masuk/update/{id}', [Surat_masukController::class, 'update_Pokja'])->name('surat_masuk.update');
+    Route::delete('surat_masuk/delete/{id}', [Surat_masukController::class, 'destroy_Pokja'])->name('surat_masuk.delete');
+});
+
+// untuk hubin saja
+Route::prefix('admin/hubin')->name('surat_masuk.hubin.')->middleware(['web', 'auth', 'role:hubin'])->group(function () {
+    // surat masuk
+    Route::get('surat_masuk', [siswaController::class, 'index_pokja'])->name('siswa.index');
+    Route::post('surat_masuk/ajax', [siswaController::class, 'ajax_Pokja'])->name('siswa.ajax');
+    Route::get('surat_masuk/detail/{id}', [siswaController::class, 'detail_Pokja'])->name('surat_masuk.detail');
+    Route::get('surat_masuk/tambah', [siswaController::class, 'tambah_Pokja'])->name('surat_masuk.tambah');
+    Route::post('surat_masuk/post', [siswaController::class, 'store_Pokja'])->name('surat_masuk.post');
+    Route::get('surat_masuk/edit/{id}', [siswaController::class, 'edit_Pokja'])->name('surat_masuk.edit');
+    Route::put('surat_masuk/update/{id}', [siswaController::class, 'update_Pokja'])->name('surat_masuk.update');
+    Route::delete('surat_masuk/delete/{id}', [siswaController::class, 'destroy_Pokja'])->name('surat_masuk.delete');
+});
+
+
+// untuk hubin, admin disin
+Route::prefix('admin')->middleware(['web', 'auth', 'role:hubin,admin'])->group(function () {
+
+    // data siswa
+    Route::get('siswa', [siswaController::class, 'index'])->name('siswa.index');
+    Route::post('siswa/ajax', [siswaController::class, 'ajax'])->name('siswa.ajax');
+    Route::get('siswa/detail/{id}', [siswaController::class, 'detail'])->name('siswa.detail');
+    Route::get('siswa/tambah', [siswaController::class, 'tambah'])->name('siswa.tambah');
+    Route::post('siswa/post', [siswaController::class, 'store'])->name('siswa.post');
+    Route::get('siswa/edit/{id}', [siswaController::class, 'edit'])->name('siswa.edit');
+    Route::put('siswa/update/{id}', [siswaController::class, 'update'])->name('siswa.update');
+    Route::delete('siswa/delete/{id}', [siswaController::class, 'destroy'])->name('siswa.delete');
+    Route::post('/siswa/excel/destroy', [siswaController::class, 'delete_all'])->name('siswa.delete-all');
+    Route::get('/export/excel/siswa', [ExcelController::class, 'siswa'])->name('export.siswa');
+
+    // data guru
+    Route::get('guru', [guruController::class, 'index'])->name('guru.index');
+    Route::post('guru/ajax', [guruController::class, 'ajax'])->name('guru.ajax');
+    Route::get('guru/detail/{id}', [guruController::class, 'detail'])->name('guru.detail');
+    Route::get('guru/tambah', [guruController::class, 'tambah'])->name('guru.tambah');
+    Route::post('guru/tambah/post', [guruController::class, 'store'])->name('guru.post');
+    Route::get('guru/edit/{id}', [guruController::class, 'edit'])->name('guru.edit');
+    Route::put('guru/update/{id}', [guruController::class, 'update'])->name('guru.update');
+    Route::delete('guru/delete/{id}', [guruController::class, 'destroy'])->name('guru.delete');
+    Route::post('/guru/destroy', [guruController::class, 'delete_all'])->name('guru.delete-all');
+    Route::get('/export/excel/guru', [ExcelController::class, 'guru'])->name('export.guru');
+
+     // data kelas
+    Route::get('kelas', [kelasController::class, 'index'])->name('kelas.index');
+    Route::post('kelas/ajax', [kelasController::class, 'ajax'])->name('kelas.ajax');
+    Route::get('kelas/detail/{id}', [kelasController::class, 'detail'])->name('kelas.detail');
+    Route::get('kelas/tambah', [kelasController::class, 'tambah'])->name('kelas.tambah');
+    Route::post('kelas/tambah/post', [kelasController::class, 'store'])->name('kelas.post');
+    Route::get('kelas/edit/{id}', [kelasController::class, 'edit'])->name('kelas.edit');
+    Route::put('kelas/update/{id}', [kelasController::class, 'update'])->name('kelas.update');
+    Route::delete('kelas/delete/{id}', [kelasController::class, 'destroy'])->name('kelas.delete');
+    Route::post('/kelas/destroy', [kelasController::class, 'delete_all'])->name('kelas.delete-all');
+    Route::get('/export/excel/kelas', [ExcelController::class, 'guru'])->name('export.kelas');
+
+});
+
+// kaprog
+Route::prefix('admin')->middleware(['web', 'auth', 'role:kaprog,hubin'])->group(function () {
+
+    // data prakerin
+    Route::get('data_prakerin', [data_prakerinController::class, 'index'])->name('data_prakerin.index');
+    Route::post('data_prakerin/ajax', [data_prakerinController::class, 'ajax'])->name('data_prakerin.ajax');
+    Route::get('data_prakerin/detail/{id}', [data_prakerinController::class, 'detail'])->name('data_prakerin.detail');
+    Route::get('data_prakerin/tambah', [data_prakerinController::class, 'tambah'])->name('data_prakerin.tambah');
+    Route::post('data_prakerin/tambah/post', [data_prakerinController::class, 'store'])->name('data_prakerin.post');
+    Route::get('data_prakerin/edit/{id}', [data_prakerinController::class, 'edit'])->name('data_prakerin.edit');
+    Route::put('data_prakerin/update/{data_prakerin}', [data_prakerinController::class, 'update'])->name('data_prakerin.update');
+    Route::delete('data_prakerin/delete/{id}', [data_prakerinController::class, 'destroy'])->name('data_prakerin.delete');
+    Route::post('/data_prakerin/destroy', [data_prakerinController::class, 'delete_all'])->name('data_prakerin.delete-all');
+    Route::get('/export/excel/data_prakerin', [ExcelController::class, 'data_prakerin'])->name('export.data_prakerin');
+
+
+    // jurnal harian
+    Route::get('jurnalH', [jurnal_harianController::class, 'index'])->name('jurnalH.index');
+    Route::post('jurnalH/ajax', [jurnal_harianController::class, 'ajax'])->name('jurnalH.ajax');
+    Route::get('jurnalH/detail/{id}', [data_prakerinController::class, 'detail'])->name('jurnalH.detail');
+    Route::get('jurnalH/tambah', [jurnal_harianController::class, 'tambah'])->name('jurnalH.tambah');
+    Route::post('jurnalH/tambah/post', [jurnal_harianController::class, 'store'])->name('jurnalH.post');
+    Route::get('jurnalH/edit/{id}', [jurnal_harianController::class, 'edit'])->name('jurnalH.edit');
+    Route::put('jurnalH/update/{id}', [jurnal_harianController::class, 'update'])->name('jurnalH.update');
+    Route::delete('jurnalH/delete/{id}', [jurnal_harianController::class, 'destroy'])->name('jurnalH.delete');
+    Route::post('/jurnalH/destroy', [jurnal_harianController::class, 'delete_all'])->name('jurnalH.delete-all');
+    Route::get('/export/excel/jurnalH', [ExcelController::class, 'jurnalh'])->name('export.jurnalH');
+
+    // jurnal prakerin
+    Route::get('jurnal', [jurnal_prakerinController::class, 'index'])->name('jurnal.index');
+    Route::post('jurnal/ajax', [jurnal_prakerinController::class, 'ajax'])->name('jurnal.ajax');
+    Route::get('jurnal/detail/{id}', [jurnal_prakerinController::class, 'detail'])->name('perusahaan.detail');
+    Route::get('jurnal/tambah', [jurnal_prakerinController::class, 'tambah'])->name('jurnal.tambah');
+    Route::post('jurnal/tambah/post', [jurnal_prakerinController::class, 'store'])->name('jurnal.post');
+    Route::get('jurnal/edit/{id}', [jurnal_prakerinController::class, 'edit'])->name('jurnal.edit');
+    Route::put('jurnal/update/{jurnal_prakerin}', [jurnal_prakerinController::class, 'update'])->name('jurnal.update');
+    Route::delete('jurnal/delete/{id}', [jurnal_prakerinController::class, 'destroy'])->name('jurnal.delete');
+    Route::post('/jurnal/destroy', [jurnal_prakerinController::class, 'delete_all'])->name('jurnal.delete-all');
+    Route::get('/export/excel/jurnal', [ExcelController::class, 'jurnalh'])->name('export.jurnal');
+
+    // kelompok magang
+    Route::get('kelompok', [kelompokController::class, 'index'])->name('kelompok.index');
+    Route::get('kelompok/ajax', [kelompokController::class, 'ajax'])->name('kelompok.ajax');
+    Route::get('kelompok/detail/{id}', [kelompokController::class, 'detail'])->name('kelompok.detail');
+    Route::get('kelompok/tambah', [kelompokController::class, 'tambah'])->name('kelompok.tambah');
+    Route::post('kelompok/tambah/post', [kelompokController::class, 'store'])->name('kelompok.post');
+    Route::get('kelompok/edit/{id}', [kelompokController::class, 'edit'])->name('kelompok.edit');
+    Route::put('kelompok/update/{kelompok}', [kelompokController::class, 'update'])->name('kelompok.update');
+    Route::delete('kelompok/delete/{id}', [kelompokController::class, 'destroy'])->name('kelompok.delete');
+    Route::post('kelompok/ajax', [kelompokController::class, 'ajax'])->name('kelompok.ajax');
+    Route::delete('/kelompok/destroy_all/{id}', [kelompokController::class, 'delete_all'])->name('kelompok.delete-all');
+    // Route::get('/export/excel/kelompok', [ExcelController::class, 'kelompok']);
+    Route::post('/export/pdf/kelompok/{id}/{nomor}', [PDFController::class, 'kelompokPrakerin'])->name('export.kelompok');
+
+    // laporan magang
+    Route::get('laporan', [laporanController::class, 'index'])->name('laporan.index');
+    Route::post('laporan/ajax', [laporanController::class, 'ajax'])->name('laporan.ajax');
+    Route::get('laporan/detail/{id}', [laporanController::class, 'detail'])->name('laporan.detail');
+    Route::get('laporan/tambah', [laporanController::class, 'tambah'])->name('laporan.tambah');
+    Route::post('laporan/tambah/post', [laporanController::class, 'store'])->name('laporan.post');
+    Route::get('laporan/edit', [laporanController::class, 'edit'])->name('laporan.edit');
+    Route::put('laporan/update', [laporanController::class, 'update'])->name('laporan.update');
+    Route::delete('laporan/delete/{id}', [perusahaanController::class, 'destroy'])->name('laporan.delete');
+    Route::post('/laporan/destroy', [laporanController::class, 'delete_all'])->name('laporan.delete-all');
+    Route::get('/export/excel/laporan', [ExcelController::class, 'perusahaan'])->name('export.laporan');
+
+    // data perusahaan
+    Route::get('perusahaan', [perusahaanController::class, 'index'])->name('perusahaan.index');
+    Route::post('perusahaan/ajax', [perusahaanController::class, 'ajax'])->name('perusahaan.ajax');
+    Route::get('perusahaan/detail/{id}', [perusahaanController::class, 'detail'])->name('perusahaan.detail');
+    Route::get('perusahaan/tambah', [perusahaanController::class, 'tambah'])->name('perusahaan.tambah');
+    Route::post('perusahaan/tambah/post', [perusahaanController::class, 'store'])->name('perusahaan.post');
+    Route::get('perusahaan/edit/{id}', [perusahaanController::class, 'edit'])->name('perusahaan.edit');
+    Route::put('perusahaan/update/{id}', [perusahaanController::class, 'update'])->name('perusahaan.update');
+    Route::delete('perusahaan/delete/{id}', [perusahaanController::class, 'destroy'])->name('perusahaan.delete');
+    Route::post('/perusahaan/destroy', [perusahaanController::class, 'delete_all'])->name('perusahaan.delete-all');
+    Route::get('/export/excel/perusahaan', [ExcelController::class, 'perusahaan'])->name('export.perusahaan');
+    Route::get('/export/pdf/perusahaan', [PDFController::class, 'perusahaan']);
+
+
+     // data kelas
+    Route::get('kelas', [kelasController::class, 'index'])->name('kelas.index');
+    Route::post('kelas/ajax', [kelasController::class, 'ajax'])->name('kelas.ajax');
+    Route::get('kelas/detail/{id}', [kelasController::class, 'detail'])->name('kelas.detail');
+    Route::get('kelas/tambah', [kelasController::class, 'tambah'])->name('kelas.tambah');
+    Route::post('kelas/tambah/post', [kelasController::class, 'store'])->name('kelas.post');
+    Route::get('kelas/edit/{id}', [kelasController::class, 'edit'])->name('kelas.edit');
+    Route::put('kelas/update/{id}', [kelasController::class, 'update'])->name('kelas.update');
+    Route::delete('kelas/delete/{id}', [kelasController::class, 'destroy'])->name('kelas.delete');
+    Route::post('/kelas/destroy', [kelasController::class, 'delete_all'])->name('kelas.delete-all');
+    Route::get('/export/excel/kelas', [ExcelController::class, 'guru'])->name('export.kelas');
+
+});
+
+// bkk
+Route::prefix('admin')->middleware(['web', 'auth', 'role:bkk,hubin'])->group(function () {
+
+    // pembekalan
+    Route::get('pembekalan', [pembekalanContoller::class, 'index'])->name('pembekalan.index');
+    Route::post('pembekalan/ajax', [pembekalanContoller::class, 'ajax'])->name('pembekalan.ajax');
+    Route::get('pembekalan/detail/{id}', [pembekalanContoller::class, 'detail'])->name('pembekalan.detail');
+    Route::get('pembekalan/tambah', [pembekalanContoller::class, 'tambah'])->name('pembekalan.tambah');
+    Route::post('pembekalan/tambah/post', [pembekalanContoller::class, 'store'])->name('pembekalan.post');
+    Route::get('pembekalan/edit/{id}', [pembekalanContoller::class, 'edit'])->name('pembekalan.edit');
+    Route::put('pembekalan/update/{pembekalan}', [pembekalanContoller::class, 'update'])->name('pembekalan.update');
+    Route::delete('pembekalan/delete/{id}', [pembekalanContoller::class, 'destroy'])->name('pembekalan.delete');
+    Route::post('/pembekalan/destroy', [pembekalanContoller::class, 'delete_all'])->name('pembekalan.delete-all');
+    Route::get('/export/excel/pembekalan', [pembekalanContoller::class, 'pembekalan'])->name('export.pembekalan');
+    Route::get('/pembekalan/{id}/download', [pembekalanContoller::class, 'downloads'])->name('pembekalan.download');
+
+});
+
+
 
 
 // untuk siswa/user di sini

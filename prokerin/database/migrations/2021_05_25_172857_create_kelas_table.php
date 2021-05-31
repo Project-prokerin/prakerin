@@ -20,7 +20,7 @@ class CreateKelasTable extends Migration
             $table->timestamps();
         });
         Schema::table('siswa', function (Blueprint $table) {
-            $table->foreign('id_kelas')->references('id')->on('kelas')->onDelete('cascade')->onUpdate("cascade");
+            $table->foreign('id_kelas')->references('id')->on('kelas')->onDelete('set null')->onUpdate("cascade");
         });
         Schema::table('data_prakerin', function (Blueprint $table) {
             $table->foreign('id_kelas')->references('id')->on('kelas')->onDelete('cascade')->onUpdate("cascade");
