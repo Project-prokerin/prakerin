@@ -11,4 +11,9 @@ class Surat_masukController extends Controller
     {
         return view('admin.surat_masuk.tu.index');
     }
+    public function tambah_TU()
+    {
+        return view('admin.surat_masuk.tu.tambah');
+    }
+
 }

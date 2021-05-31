@@ -75,6 +75,7 @@
 <script src="{{ asset('template/assets/js/scripts.js') }}"></script>
 <script src="{{ asset('template/assets/js/custom.js') }}"></script>
 
+
 </body>
 </html>
 
