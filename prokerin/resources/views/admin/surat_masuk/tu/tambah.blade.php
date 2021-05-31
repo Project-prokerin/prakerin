@@ -82,7 +82,7 @@
                     <div style="margin-top: 40px;">
                         <button type="submit" class="btn btn-success rounded-pill mr-2"><i class="fas fa-check-square mr-2"></i>Submit</button>
                         </form>
-                        <a href="{{ route('guru.index') }}" type="button" class="btn btn-danger rounded-pill"><i class="fas fa-window-close mr-2"></i>Cancel</a>
+                        <a href="{{ route('surat_masuk.tu.index') }}" type="button" class="btn btn-danger rounded-pill"><i class="fas fa-window-close mr-2"></i>Cancel</a>
                     </div>
                     </div>
                 </div>
