@@ -136,8 +136,9 @@
         <th scope="col">No</th>
         <th scope="col">Nama Surat</th>
         <th scope="col">Untuk</th>
+        <th scope="col">Jataban</th>
         <th scope="col">Status</th>
-        <th scope="col">Isi Disposisi</th>
+        {{-- <th scope="col">Isi Disposisi</th> --}}
         <th scope="col">Action</th>
 
     </tr>
@@ -173,7 +174,7 @@
                     headers: {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                     },
-                    url: "{{route('siswa.ajax')}}",
+                    url: "{{route('surat_masuk.tu.ajax')}}",
                     type: "post",
                     data: function (data) {
                         data = '';
@@ -182,12 +183,11 @@
                     },
                     columns:[
                     { data: 'DT_RowIndex', name: 'DT_RowIndex'},
-                    { data: 'nipd', name:'nipd'},
-                    { data: 'nama_siswa', name:'nama_siswa'},
-                    { data: 'email', name:'email'},
-                    { data: 'kelas',name:'kelas'},
-                    { data: 'jurusan',name:'jurusan'},
-                    { data: 'action',name:'action'}
+                    { data: 'nama', name:'nama'},
+                    { data: 'untuk', name:'untuk'},
+                    { data: 'jabatan', name:'jabatan'},
+                    { data: 'status', name:'status'},
+                    { data: 'action', name:'action'},
                     ],
                 });
 
@@ -209,7 +209,7 @@
                     if (result.value) {
                         id = $(this).data('id');
                         $.ajax({
-                                url: "/admin/siswa/delete/"+ id,
+                                url: "/admin/tu/surat_masuk/delete/"+ id,
                                 type: "DELETE",
 
                                 data: { _token: '{{csrf_token()}}' },
