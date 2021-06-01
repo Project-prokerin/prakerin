@@ -9,6 +9,8 @@
             .invalid-feedback{
                     display: block;
                 }
+
+
 </style>
 @endpush
 @section('title', 'Prakerin | Surat Masuk')
@@ -77,8 +79,22 @@
             <div class="col-sm-6">
             <div class="">
                 <div class="" style="height: auto;">
-                    <div class="card-body">
 
+                        <div class="row">
+                            <div class="col-12">
+                              <div class="card">
+                                <div class="card-header">
+                                  <h4></h4>
+                                </div>
+                                  <form action="#" class="dropzone" id="mydropzone">
+                                    <div class="fallback">
+                                      <input name="file" type="file" multiple />
+                                    </div>
+                                  </form>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
                     <div style="margin-top: 40px;">
                         <button type="submit" class="btn btn-success rounded-pill mr-2"><i class="fas fa-check-square mr-2"></i>Submit</button>
                         </form>
@@ -93,3 +109,6 @@
 </div>
 
 @endsection
+@push('script')
+<script src="{{ asset('assets/js/main/table.js') }}" ></script>
+@endpush

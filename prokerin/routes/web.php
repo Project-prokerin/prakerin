@@ -95,7 +95,7 @@ Route::prefix('admin/kurikulum')->name('surat_masuk.kurikulum.')->middleware(['w
 
 // untuk kesiswaan
 Route::prefix('admin/kesiswaan')->name('surat_masuk.kesiswaan.')->middleware(['web', 'auth', 'role:kesiswaan'])->group(function () {
-    Route::get('surat_masuk', [Surat_masukController::class, 'index_pokja'])->name('siswa.index');
+    Route::get('surat_masuk', [Surat_masukController::class, 'index_kesiswaan'])->name('siswa.index');
     Route::post('surat_masuk/ajax', [Surat_masukController::class, 'ajax_Pokja'])->name('siswa.ajax');
     Route::get('surat_masuk/detail/{id}', [Surat_masukController::class, 'detail_Pokja'])->name('surat_masuk.detail');
     Route::get('surat_masuk/tambah', [Surat_masukController::class, 'tambah_Pokja'])->name('surat_masuk.tambah');

@@ -17,11 +17,11 @@
         }
 </style>
 @endpush
-@section('title','Prakerin | TU')
-@section('judul','DATA TU')
+@section('title','Prakerin | Surat Masuk')
+@section('judul','Surat Masuk')
 @section('breadcrump')
 <div class="breadcrumb-item "><a href="{{ route('admin.dashboard') }}"><i class="fas fa-tachometer-alt"></i> DASBOARD</a></div>
-        <div class="breadcrumb-item"> <i class="fas fa-user"></i> DATA TU</div>
+        <div class="breadcrumb-item"> <i class="fas fa-user"></i> SURAT MASUK</div>
 @endsection
 @section('main')
 <div class="row">
@@ -30,13 +30,11 @@
         <div class="card-header">
           <h4>Data Surat Masuk</h4>
         </div>
-<div class="buton">
-                <a href="{{ route('surat_masuk.tu.tambah') }}"class="btn btn-primary rounded-pill"> Tambah Data <i class="fas fa-plus"></i></button></a>
-            </div>
         <div class="card-body">
+
           <div class="table-responsive">
             <table class="table table-striped" id="table-1">
-              <thead>
+              <thead class="text-center">
                 <tr>
                   <th>
                     No
@@ -48,7 +46,7 @@
                   <th>Action</th>
                 </tr>
               </thead>
-              <tbody>
+              <tbody class="text-center">
                 <tr>
                   <td>
                     1
@@ -58,15 +56,12 @@
                   <td></td>
                   <td></td>
                   <td>
-                    <a href="#" class="btn btn-primary"><i class="fas fa-search"></i></a>
-                    <a href="#" class="btn btn-warning"><i class="fas fa-pen"></i></a>
-                    <a href="#" class="btn btn-danger"><i class="fas fa-trash"></i></a>
+                      <a href="" class="btn btn-primary"><i class="fas fa-search"></i></a>
                   </td>
                 </tr>
               </tbody>
             </table>
           </div>
-
         </div>
       </div>
     </div>

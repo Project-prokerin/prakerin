@@ -21,6 +21,7 @@
 <link rel="stylesheet" href="{{asset('template/assets/css/style.css')}}">
 <link rel="stylesheet" href="{{asset('template/assets/css/components.css')}}">
 <link rel="stylesheet" href="{{asset('assets/css/costom.css')}}">
+<link rel="stylesheet" href="{{ asset('assets/css/component.css') }}">
 <style>
 
 </style>
@@ -73,6 +74,7 @@
 <!-- Template JS File -->
 <script src="{{ asset('template/assets/js/scripts.js') }}"></script>
 <script src="{{ asset('template/assets/js/custom.js') }}"></script>
+
 
 
 </body>

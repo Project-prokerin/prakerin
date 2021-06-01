@@ -48,4 +48,17 @@ class Surat_masukController extends Controller
         return view('admin.surat_masuk.tu.tambah');
     }
 
+    public function index_Kepsek()
+    {
+        return view('admin.surat_masuk.kepsek.index');
+    }
+
+
+
+
+
+    public function index_Pokja()
+    {
+        return view('admin.surat_masuk.kurikulum.index');
+    }
 }
