@@ -45,15 +45,16 @@ Prakerin adalah praktek kerja industri yang di gunakan untuk mengelola data maga
 | #  |  **role**           | **username**      | **password** |
 | :- |:--------------- |:------------- | :------- |
 | 1  | admin           | Admin         | password |
-| 2  | waka / kepala sekolah   | KepalaSekolah | password |
+| 2  | kepala sekolah   | KepalaSekolah | password |
 | 3  | litbang         | Litbang       | password |
 | 4  | tata usaha / tu | BidangTU      | password |
 | 5  | kepala program / Kaprog        | BidangKaprog  | password |
 | 6  | bkk             | BidangBkk     | password |
 | 7  | hubin           | Hubin   | password |
 | 8  | kurikulum       | Kurikulum     | password |
-| 9  | kesiswaan       | Kesiswaan     | password |
-| 10  | siswa       | Siswa 1 - 5     | password |
+| 9  | Sarpras       | Sarpras     | password |
+| 10  | kesiswaan       | Kesiswaan     | password |
+| 11  | siswa       | Siswa 1 - 5     | password |
 
 ## credit
 - [design web stisla](https://getstisla.com/)
