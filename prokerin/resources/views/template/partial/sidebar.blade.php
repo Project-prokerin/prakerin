@@ -373,6 +373,74 @@
 @endif
 @endif
 
+{{-- kesiswaan sidebar --}}
+@if(Auth::check())
+@if (Auth::user()->role == 'kesiswaan' )
+<div class="main-sidebar">
+        <aside id="sidebar-wrapper">
+        <div class="sidebar-brand ">
+            <a href="{{'/'}}" style="color:#6777ef;">DATA PRAKERIN</a>
+        </div>
+        <div class="sidebar-brand sidebar-brand-sm">
+            <a style="color:#6777ef;" href="{{'/'}}">DP</a>
+        </div>
+        <ul class="sidebar-menu mt-2">
+            @if (Auth::user()->role == 'kurikulum' or Auth::user()->role == 'kesiswaan')
+            <li class="menu-header">TAKOLA</li>
+            <li class="@if (Request::is('admin/kesiswaan/surat_masuk','admin/kesiswaan/surat_masuk  /*')) active @endif">
+            <a href="{{ route('surat_masuk.kesiswaan.index') }}" class="nav-link">
+                <i class="far fa-building"></i>
+                <span>Surat Masuk</span>
+            </a>
+            </li>
+            <li class="@if (Request::is('admin/guru','admin/guru/*')) active @endif">
+                <a href="{{ route('guru.index') }}" class="nav-link">
+                    <i class="fas fa-user"></i>
+                    <span>Surat Keluar</span>
+                </a>
+                </li>
+            @endif
+
+
+
+            @if(empty(Auth::user()->siswa->data_prakerin))
+
+            @else
+            <li class="@if (Request::is('user/status','user/status/*')) active @endif">
+            <a href="{{ route('user.status') }}" class="nav-link">
+                <i class="fas fa-user"></i>
+                <span>Status Magang</span>
+            </a>
+            </li>
+            <li class="dropdown
+            @if (Request::is('user/jurnalH','user/jurnalH/*'))
+            active
+            @elseif(Request::is('user/jurnal','user/jurnal/*'))
+            active
+            @endif
+            ">
+                <a href="#" class="nav-link has-dropdown"><i class="far fa-newspaper"></i> <span>Jurnal</span></a>
+                <ul class="dropdown-menu" style="display: none;">
+                    <li class="@if (Request::is('user/jurnal','user/jurnal/*')) active @endif">
+                    <a class="nav-link" href="{{ route('user.jurnal') }}">Jurnal Prakerin</a>
+                    </li>
+                    <li class="@if (Request::is('user/jurnalH','user/jurnalH/*')) active @endif">
+                        <a class="nav-link" href="{{ route('user.jurnalH') }}">Jurnal Harian</a>
+                    </li>
+                </ul>
+            </li>
+            <li class="@if (Request::is('user/kelompok_laporan','user/kelompok_laporan/*')) active @endif">
+            <a href="{{ route('user.kelompok_laporan') }}" class="nav-link">
+                <i class="fas fa-users"></i>
+                <span>Kelompok Laporan</span>
+            </a>
+            </li>
+            @endif
+        </aside>
+    </div>
+@endif
+@endif
+
 
 
 

@@ -110,5 +110,6 @@
 
 @endsection
 @push('script')
-<script src="{{ asset('assets/js/main/table.js') }}" ></script>
+{{-- <script src="{{ asset('assets/js/main/table.js') }}" ></script> --}}
+<script src="{{ asset('assets/js/pages-admin/surat-masuk-TU.js') }}" ></script>
 @endpush

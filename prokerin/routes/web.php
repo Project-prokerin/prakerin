@@ -83,8 +83,8 @@ Route::prefix('admin/kepsek')->name('surat_masuk.kepsek.')->middleware(['web', '
 // route pokka
 // untuk kurikulum
 Route::prefix('admin/kurikulum')->name('surat_masuk.kurikulum.')->middleware(['web', 'auth', 'role:kurikulum'])->group(function () {
-    Route::get('surat_masuk', [Surat_masukController::class, 'index_pokja'])->name('index');
-    Route::post('surat_masuk/ajax', [Surat_masukController::class, 'ajax_Pokja'])->name('ajax');
+    Route::get('surat_masuk', [Surat_masukController::class, 'index_Kurikulum'])->name('index');
+    Route::post('surat_masuk/ajax', [Surat_masukController::class, 'ajax_Kurikulum'])->name('ajax');
     Route::get('surat_masuk/detail/{id}', [Surat_masukController::class, 'detail_Pokja'])->name('surat_masuk.detail');
     Route::get('surat_masuk/tambah', [Surat_masukController::class, 'tambah_Pokja'])->name('surat_masuk.tambah');
     Route::post('surat_masuk/post', [Surat_masukController::class, 'store_Pokja'])->name('surat_masuk.post');
@@ -95,8 +95,8 @@ Route::prefix('admin/kurikulum')->name('surat_masuk.kurikulum.')->middleware(['w
 
 // untuk kesiswaan
 Route::prefix('admin/kesiswaan')->name('surat_masuk.kesiswaan.')->middleware(['web', 'auth', 'role:kesiswaan'])->group(function () {
-    Route::get('surat_masuk', [Surat_masukController::class, 'index_kesiswaan'])->name('siswa.index');
-    Route::post('surat_masuk/ajax', [Surat_masukController::class, 'ajax_Pokja'])->name('siswa.ajax');
+    Route::get('surat_masuk', [Surat_masukController::class, 'index_kesiswaan'])->name('index');
+    Route::post('surat_masuk/ajax', [Surat_masukController::class, 'ajax_Kesiswaan'])->name('ajax');
     Route::get('surat_masuk/detail/{id}', [Surat_masukController::class, 'detail_Pokja'])->name('surat_masuk.detail');
     Route::get('surat_masuk/tambah', [Surat_masukController::class, 'tambah_Pokja'])->name('surat_masuk.tambah');
     Route::post('surat_masuk/post', [Surat_masukController::class, 'store_Pokja'])->name('surat_masuk.post');

@@ -74,5 +74,7 @@
                         });
                     } else if (result.dismiss === Swal.DismissReason.cancel) {}
                 })
+
             });
+            $("div#mydropzone").dropzone({ url: "/file/post" });
             });

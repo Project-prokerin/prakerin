@@ -30,9 +30,6 @@
         <div class="card-header">
           <h4>Data Surat Masuk</h4>
         </div>
-<div class="buton">
-                <a href="{{ route('surat_masuk.tu.tambah') }}"class="btn btn-primary rounded-pill"> Tambah Data <i class="fas fa-plus"></i></button></a>
-            </div>
         <div class="card-body">
           <div class="table-responsive">
             <table class="table table-striped" id="table-1">
@@ -50,9 +47,7 @@
               </thead>
               <tbody>
                 <tr>
-                  <td>
-                    1
-                  </td>
+                  <td></td>
                   <td></td>
                   <td></td>
                   <td></td>
@@ -71,8 +66,8 @@
       </div>
     </div>
   </div>
-<span class="d-none" id="nam" data-id="transaksi"></span>
+
 @endsection
 @push('script')
-<script src="{{ asset('assets/js/main/table.js') }}" ></script>
+<script src="{{ asset('assets/js/pages-admin/surat-masuk-TU.js') }}" ></script>
 @endpush

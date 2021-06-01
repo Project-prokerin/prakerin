@@ -33,7 +33,7 @@
         <div class="card-body">
 
           <div class="table-responsive">
-            <table class="table table-striped" id="table-1">
+            <table class="table table-striped" id="table-2">
               <thead class="text-center">
                 <tr>
                   <th>
@@ -70,5 +70,5 @@
 <span class="d-none" id="nam" data-id="transaksi"></span>
 @endsection
 @push('script')
-<script src="{{ asset('assets/js/main/table.js') }}" ></script>
+<script src="{{ asset('assets/js/pages-admin/surat-masuk-Kepsek.js') }}" ></script>
 @endpush
