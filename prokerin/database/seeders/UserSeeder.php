@@ -22,7 +22,7 @@ class UserSeeder extends Seeder
         DB::table('users')->insert([
             'username' => 'admin',
             'password' => Hash::make('password'),
-            'role' => 'hubin',
+            'role' => 'admin',
             'created_at' => Carbon::now(),
 
             'last_logout_at' => NULL
@@ -44,62 +44,15 @@ class UserSeeder extends Seeder
             'last_logout_at' => NULL
         ]);
 
-    DB::table('users')->insert([
-        'username' => 'siswa1',
-        'password' => Hash::make('password'),
-        'role' => 'siswa',
-        'created_at' => Carbon::now(),
-        'last_logout_at' => NULL
-    ]);
-    DB::table('users')->insert([
-        'username' => 'siswa2',
-        'password' => Hash::make('password'),
-        'role' => 'siswa',
-        'created_at' => Carbon::now(),
-        'last_logout_at' => NULL
-    ]);
-    DB::table('users')->insert([
-        'username' => 'siswa3',
-        'password' => Hash::make('password'),
-        'role' => 'siswa',
-        'created_at' => Carbon::now(),
-        'last_logout_at' => NULL
-    ]);
-    DB::table('users')->insert([
-        'username' => 'siswa4',
-        'password' => Hash::make('password'),
-        'role' => 'siswa',
-        'created_at' => Carbon::now(),
-        'last_logout_at' => NULL
-    ]);
-    DB::table('users')->insert([
-        'username' => 'siswa5',
-        'password' => Hash::make('password'),
-        'role' => 'siswa',
-        'created_at' => Carbon::now(),
-        'last_logout_at' => NULL
-    ]);
-    DB::table('users')->insert([
-        'username' => 'siswa6',
-        'password' => Hash::make('password'),
-        'role' => 'siswa',
-        'created_at' => Carbon::now(),
-        'last_logout_at' => NULL
-    ]);
-        DB::table('users')->insert([
-            'username' => 'siswa7',
-            'password' => Hash::make('password'),
-            'role' => 'siswa',
-            'created_at' => Carbon::now(),
-            'last_logout_at' => NULL
-        ]);
-        DB::table('users')->insert([
-            'username' => 'siswa8',
-            'password' => Hash::make('password'),
-            'role' => 'siswa',
-            'created_at' => Carbon::now(),
-            'last_logout_at' => NULL
-        ]);
+        for ($i=1; $i <= 8 ; $i++) {
+            DB::table('users')->insert([
+                'username' => "siswa$i",
+                'password' => Hash::make('password'),
+                'role' => 'siswa',
+                'created_at' => Carbon::now(),
+                'last_logout_at' => NULL
+            ]);
+        }
         DB::table('users')->insert([
             'username' => 'BidangTU',
             'password' => Hash::make('password'),
@@ -108,21 +61,14 @@ class UserSeeder extends Seeder
             'last_logout_at' => NULL
         ]);
         DB::table('users')->insert([
-            'username' => 'KepalaSekolah',
-            'password' => Hash::make('password'),
-            'role' => 'waka',
-            'created_at' => Carbon::now(),
-            'last_logout_at' => NULL
-        ]);
-        DB::table('users')->insert([
-            'username' => 'kurikulum',
+            'username' => 'Kurikulum',
             'password' => Hash::make('password'),
             'role' => 'kurikulum',
             'created_at' => Carbon::now(),
             'last_logout_at' => NULL
         ]);
         DB::table('users')->insert([
-            'username' => 'kesiswaan',
+            'username' => 'Kesiswaan',
             'password' => Hash::make('password'),
             'role' => 'kesiswaan',
             'created_at' => Carbon::now(),
@@ -132,6 +78,27 @@ class UserSeeder extends Seeder
             'username' => 'litbang',
             'password' => Hash::make('password'),
             'role' => 'litbang',
+            'created_at' => Carbon::now(),
+            'last_logout_at' => NULL
+        ]);
+        DB::table('users')->insert([
+            'username' => 'KepalaSekolah',
+            'password' => Hash::make('password'),
+            'role' => 'kepsek',
+            'created_at' => Carbon::now(),
+            'last_logout_at' => NULL
+        ]);
+        DB::table('users')->insert([
+            'username' => 'hubin',
+            'password' => Hash::make('password'),
+            'role' => 'hubin',
+            'created_at' => Carbon::now(),
+            'last_logout_at' => NULL
+        ]);
+        DB::table('users')->insert([
+            'username' => 'Sarpras',
+            'password' => Hash::make('password'),
+            'role' => 'sarpras',
             'created_at' => Carbon::now(),
             'last_logout_at' => NULL
         ]);

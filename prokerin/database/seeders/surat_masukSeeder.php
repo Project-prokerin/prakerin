@@ -15,8 +15,8 @@ class surat_masukSeeder extends Seeder
     public function run()
     {
         DB::table('surat_masuk')->insert([
-            'id_dari' => '12', // waka
-            'id_untuk' => '8', // hubin
+            'id_dari' => '14', // tu
+            'id_untuk' => '15', // kepsek
         ]);
     }
 }

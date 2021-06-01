@@ -63,20 +63,12 @@ class GuruSeeder extends Seeder
             'id_user' => '13',
             'nik' => $faker->nik,
             'nama' => $faker->title . "" . $faker->name,
-            'jabatan' => 'waka',
-            'id_kelas'=> 10,
-            'no_telp' => $faker->randomNumber(9),
-        ]);
-        DB::table('guru')->insert([
-            'id_user' => '14',
-            'nik' => $faker->nik,
-            'nama' => $faker->title . "" . $faker->name,
             'jabatan' => 'kurikulum',
             'id_kelas' => 10,
             'no_telp' => $faker->randomNumber(9),
         ]);
         DB::table('guru')->insert([
-            'id_user' => '15',
+            'id_user' => '14',
             'nik' => $faker->nik,
             'nama' => $faker->title . "" . $faker->name,
             'jabatan' => 'kesiswaan',
@@ -84,10 +76,34 @@ class GuruSeeder extends Seeder
             'no_telp' => $faker->randomNumber(9),
         ]);
         DB::table('guru')->insert([
-            'id_user' => '16',
+            'id_user' => '15',
             'nik' => $faker->nik,
             'nama' => $faker->title . "" . $faker->name,
             'jabatan' => 'litbang',
+            'id_kelas' => 10,
+            'no_telp' => $faker->randomNumber(9),
+        ]);
+        DB::table('guru')->insert([
+            'id_user' => '16',
+            'nik' => $faker->nik,
+            'nama' => $faker->title . "" . $faker->name,
+            'jabatan' => 'kepsek',
+            'id_kelas' => 10,
+            'no_telp' => $faker->randomNumber(9),
+        ]);
+        DB::table('guru')->insert([
+            'id_user' => '17',
+            'nik' => $faker->nik,
+            'nama' => $faker->title . "" . $faker->name,
+            'jabatan' => 'hubin',
+            'id_kelas' => 10,
+            'no_telp' => $faker->randomNumber(9),
+        ]);
+        DB::table('guru')->insert([
+            'id_user' => '18',
+            'nik' => $faker->nik,
+            'nama' => $faker->title . "" . $faker->name,
+            'jabatan' => 'sarpras',
             'id_kelas' => 10,
             'no_telp' => $faker->randomNumber(9),
         ]);
