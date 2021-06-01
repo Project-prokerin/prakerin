@@ -41,9 +41,6 @@
                     </div>
                 </div>
                 @endif
-                <div class="buton">
-                    <a href="{{ route('surat_masuk.tu.tambah') }}"class="btn btn-primary rounded-pill"> Tambah Data <i class="fas fa-plus"></i></button></a>
-                </div>
                 <div class="table-responsive">
                     <div id="table-1_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer">
                         <div class="col-sm-12">
@@ -63,10 +60,10 @@
                                             Untuk
                                         </th>
                                         <th class="sorting_disabled">
-                                            Status
+                                            Jabatan
                                         </th>
                                         <th class="sorting_disabled">
-                                            Isi Disposisi
+                                            Status
                                         </th>
                                         <th class="sorting_disabled">
                                             Action
@@ -74,26 +71,6 @@
                                     </tr>
                                 </thead>
                                 <tbody class="text-center">
-
-                                    <tr>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td>
-                                            <a href="" class="btn btn-primary"><i class="fas fa-eye"></i></a>
-                                            <a href="" class="btn btn-success"><i class="far fa-edit"></i></a>
-                                            <form method="POST"
-                                                action=""
-                                                id="form" class="d-inline">
-                                                @method('delete')
-                                                @csrf
-                                                <button class="btn btn-danger hapus" id="hapus"><i
-                                                        class="fas fa-trash-alt"></i></button>
-                                            </form>
-                                        </td>
-                                    </tr>
 
                                 </tbody>
                             </table>
@@ -110,7 +87,5 @@
 <span class="d-none" id="nam" data-id="transaksi"></span>
 @endsection
 @push('script')
-<script>
-
-</script>
+<script src="{{ asset('assets/js/pages-admin/surat-masuk-TU.js') }}"></script>
 @endpush

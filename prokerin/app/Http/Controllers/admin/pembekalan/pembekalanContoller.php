@@ -44,10 +44,10 @@ class pembekalanContoller extends Controller
                         $button = 'belum';
                         return $button;
                     }else {
-                    $array = explode(' ', $data->file_portofolio);
+                    $array = explode(' ', basename($data->file_portofolio));
                     unset($array[0]);
                     $file = implode(' ', $array);
-                        $button = '<a  href="/pembekalan/' . $data->file_portofolio . '/download" id="edit" data-toggle="tooltip"  data-id="' . $data->id . '" data-original-title="Edit" class="download text-white">' .  $file . '</a>';
+                        $button = '<a  href="/pembekalan/' . basename($data->file_portofolio) . '/download" id="edit" data-toggle="tooltip"  data-id="' . $data->id . '" data-original-title="Edit" class="download text-white">' .  $file . '</a>';
                         return $button;
                     }
                 })
@@ -79,14 +79,14 @@ class pembekalanContoller extends Controller
     {
         if ($request->file('file') > 0) {
             $file = time() . ' ' . $request->file('file')->getClientOriginalName();
-            $pembekalan_magang = $request->file('file')->move('portofolio_siswa/',  $file);
+            $pembekalan_magang = $request->file('file')->move('file/portofolio/',  $file);
             $pem = pembekalan_magang::create([
                 'id_siswa' => $request->siswa,
                 'id_guru' => Auth()->id(),
                 'test_wpt_iq' => $request->test_wpt_iq,
                 'personality_interview' => $request->personality_interview,
                 'soft_skill' => $request->soft_skill,
-                'file_portofolio' => $file
+                'file_portofolio' => "file/portofolio/$file"
             ]);
         } else {
             $pem = pembekalan_magang::create([
@@ -139,9 +139,9 @@ class pembekalanContoller extends Controller
         $pem = pembekalan_magang::where('id', $id)->first();
         if ($request->file('file') > 0) {
             $file = time() . ' ' . $request->file('file')->getClientOriginalName();
-            $pembekalan_magang = $request->file('file')->move('portofolio_siswa/',  $file);
-            if (File::exists("portofolio_siswa/$pem->file_portofolio") && "portofolio_siswa/$pem->file_portofolio" !== "portofolio_siswa/default.pdf") {
-                File::delete("portofolio_siswa/$pem->file_portofolio");
+            $pembekalan_magang = $request->file('file')->move('file/portofolio/',  $file);
+            if (File::exists("$pem->file_portofolio") && "$pem->file_portofolio" !== "file/portofolio/default.pdf") {
+                File::delete("$pem->file_portofolio");
             }
             $pem = pembekalan_magang::where('id', $id)->update([
                 'id_siswa' => $request->siswa,
@@ -149,7 +149,7 @@ class pembekalanContoller extends Controller
                 'test_wpt_iq' => $request->test_wpt_iq,
                 'personality_interview' => $request->personality_interview,
                 'soft_skill' => $request->soft_skill,
-                'file_portofolio' =>  $file
+                'file_portofolio' =>  "file/portofolio/$file"
             ]);
         } else {
             $pem = pembekalan_magang::where('id', $id)->update([
@@ -171,25 +171,26 @@ class pembekalanContoller extends Controller
      * @param  \App\Models\pembekalan_magang  $pembekalan_magang
      * @return \Illuminate\Http\Response
      */
-    public function downloads($id)
+    public function downloads($name_file)
     {
         // file directory
-        $file = public_path() . "/portofolio_siswa/$id";
+        $file = public_path() . "/file/portofolio/$name_file";
         // file name
-        $array = explode(' ', $id);
+        $array = explode(' ', basename($name_file));
         unset($array[0]);
-        $id = implode(' ', $array);
+        $name = implode(' ', $array);
         //file headers
         $headers = array(
             'Content-Type: application/pdf',
         );
-        return Response()->download($file, $id, $headers);
+        return Response()->download($file, $name, $headers);
     }
     public function destroy($id)
     {
         $pem = pembekalan_magang::where('id', $id)->first();
-        if (File::exists("portofolio_siswa/$pem->file_portofolio") && "portofolio_siswa/$pem->file_portofolio" !== "portofolio_siswa/default.pdf") {
-            File::delete("portofolio_siswa/$pem->file_portofolio");
+          dd($pem);
+        if (File::exists("$pem->file_portofolio")) {
+            File::delete("$pem->file_portofolio");
         }
         pembekalan_magang::where('id', $id)->delete();
         return response()->json($data = 'berhasil');

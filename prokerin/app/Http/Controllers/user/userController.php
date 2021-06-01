@@ -85,12 +85,12 @@ class userController extends Controller
                 'test_wpt_iq' => 'belum',
                 'personality_interview' => 'belum',
                 'soft_skill' => 'belum',
-                'file_portofolio' => $file
+                'file_portofolio' => "file/portofolio/$file"
             ]);
         }else {
-            $upload = pembekalan_magang::where('id_siswa', siswa('main')->id)->update(['file_portofolio' => $file]);
+            $upload = pembekalan_magang::where('id_siswa', siswa('main')->id)->update(['file_portofolio' => "file/portofolio/$file"]);
         }
-        $upload = $request->file('file')->move('portofolio_siswa/', $file);
+        $upload = $request->file('file')->move('file/portofolio/', $file);
         // Alert::toast('Portofolio berhasil di tambahkan', 'Toast Type');
         return redirect('/user/pembekalan')->with('success', 'Portofolio anda sudah berhasil di kumpulkan');
     }
@@ -98,8 +98,9 @@ class userController extends Controller
     // hapus pembekaaln
     public function pembekalan_delete(Request $request){
         $pem = siswa('main')->pembekalan_magang->file_portofolio;
-        if (File::exists("portofolio_siswa/$pem") && "portofolio_siswa/$pem" !== "portofolio_siswa/default.pdf") {
-            File::delete("portofolio_siswa/$pem");
+
+        if (File::exists("$pem") && "$pem" !== "file/portofolio/default.pdf") {
+            File::delete("$pem");
         }
         $upload = pembekalan_magang::where('id_siswa', Auth::user()->siswa->id)->update(['file_portofolio' => 'belum']);
         // Alert::toast('Portofolio berhasil di hapus', 'Toast Type');
@@ -107,19 +108,20 @@ class userController extends Controller
     }
     // bagian dari pembekalan
 
-    public function pembekalan_download($id)
+    public function pembekalan_download($name_file)
     {
+
         // file directory
-        $file = public_path() . "/portofolio_siswa/$id";
+        $file = public_path() . "/file/portofolio/$name_file";
         // file name
-        $array = explode(' ', $id);
+        $array = explode(' ', basename($name_file));
         unset($array[0]);
-        $id = implode(' ', $array);
+        $name = implode(' ', $array);
         //file headers
         $headers = array(
             'Content-Type: application/pdf',
         );
-        return Response()->download($file, $id, $headers);
+        return Response()->download($file, $name, $headers);
     }
 
 
