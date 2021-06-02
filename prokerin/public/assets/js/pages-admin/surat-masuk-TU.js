@@ -1,7 +1,7 @@
  $(document).ready( function () {
                 var filter = $('#search').val();
                 console.log(filter);
-                var table = $('#table-1').DataTable({
+                var table = $('#table1').DataTable({
                     dom: '<<"row"<"col-sm-12 col-md-6 btn-table"><"col-sm-12 col-md-6"f>>>t<"bottom"<"row"<"col-6"i><"col-6 mb-4"p>>>',
                     bLengthChange: false,
                     ordering:false,

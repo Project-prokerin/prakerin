@@ -1,6 +1,9 @@
 @extends('template.master')
 @push('link')
 <style>
+     #mytable3{
+        overflow-x: hidden;
+    }
 .card{
                 height: auto;
         }
@@ -32,7 +35,7 @@
         </div>
         <div class="card-body">
 
-          <div class="table-responsive">
+          <div class="table-responsive" id="mytable3">
             <table class="table table-striped" id="table-4">
               <thead class="text-center">
                 <tr>

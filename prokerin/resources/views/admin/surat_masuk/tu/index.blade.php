@@ -1,8 +1,12 @@
 @extends('template.master')
 @push('link')
 <style>
+#mytable1{
+    overflow-x: hidden;
+}
+
 .card{
-                height: auto;
+        height: auto;
         }
         .buton{
 
@@ -15,6 +19,7 @@
         font-family: fontawesome;
         padding-right: 10px;
         }
+
 </style>
 @endpush
 @section('title','Prakerin | TU')
@@ -31,8 +36,8 @@
           <h4>Data Surat Masuk</h4>
         </div>
         <div class="card-body">
-          <div class="table-responsive">
-            <table class="table table-striped" id="table-1">
+          <div class="table-responsive" id="mytable1">
+            <table class="table table-striped" id="table1">
               <thead>
                 <tr>
                   <th>
