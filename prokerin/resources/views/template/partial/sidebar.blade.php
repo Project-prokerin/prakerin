@@ -91,27 +91,29 @@
             @switch(Auth::user()->role)
             @case('tu'or'kepsek'or'hubin'or'sarpras'or'kurikulum'or'kesiswaan')
             @php $role = Auth::user()->role; @endphp
-            <li class="menu-header">Takola</li>
-            <li class='@if (Request::is("admin/$role/surat_masuk' ,'aadmin/$role/surat_masuk/*")) active @endif'>
-                <a href='{{ route("surat_masuk.$role.index") }}' class="nav-link">
-                    <i class="fas fa-th"></i>
-                    <span>Surat Masuk</span>
-                </a>
+
+                <li class="menu-header">Takola</li>
+            <li class='@if (Request::is("admin/$role/surat_masuk','admin/$role/surat_masuk/*")) active @endif'>
+            <a href='{{ route("surat_masuk.$role.index") }}' class="nav-link">
+                <i class="far fa-envelope"></i>
+                <span>Surat Masuk</span>
+            </a>
             </li>
             @if (Auth::user()->role == 'kepsek')
-            <li class='@if (Request::is("admin/$role/surat_masuk' ,'admin/$role/surat_masuk/*")) active @endif'>
-                <a href='{{ route("surat_masuk.$role.index") }}' class="nav-link">
-                    <i class="fas fa-th"></i>
-                    <span>Disposisi</span>
-                </a>
+            <li class='@if (Request::is("admin/$role/disposisi','admin/$role/disposisi/*")) active @endif'>
+            <a href='{{ route("disposisi.$role.index") }}' class="nav-link">
+                <i class="far fa-envelope"></i>
+                <span>Disposisi</span>
+            </a>
             </li>
             @endif
             <li class="@if (Request::is('#','#/*')) active @endif">
-                <a href="#" class="nav-link">
-                    <i class="fas fa-th"></i>
-                    <span>Surat Keluar</span>
-                </a>
+            <a href="#" class="nav-link">
+                <i class="far fa-envelope"></i>
+                <span>Surat Keluar</span>
+            </a>
             </li>
+
             @break
             @case('admin')
                 <li class="menu-header">Takola</li>

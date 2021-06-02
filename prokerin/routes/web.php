@@ -15,6 +15,7 @@ use App\Http\Controllers\admin\kelompok\kelompokController;
 use App\Http\Controllers\admin\laporan\laporanController;
 use App\Http\Controllers\admin\kelas\kelasController;
 use App\Http\Controllers\admin\surat_masuk\Surat_masukController;
+use App\Http\Controllers\admin\surat_masuk\DiposisiController;
 // user routeus
 // ex App\Http\Controllers\user\namaController;
 use App\Http\Controllers\user\userController;
@@ -69,15 +70,26 @@ Route::prefix('admin/tu')->name('surat_masuk.tu.')->middleware(['web', 'auth', '
 
 // untuk kepsek
 // example route admin/kepsek/surat_masuk
-Route::prefix('admin/kepsek')->name('surat_masuk.kepsek.')->middleware(['web', 'auth', 'role:kepsek'])->namespace('admin/')->group(function () {
-    Route::get('surat_masuk', [Surat_masukController::class, 'index_Kepsek'])->name('index');
-    Route::post('surat_masuk/ajax', [Surat_masukController::class, 'ajax_Kepsek'])->name('ajax');
-    Route::get('surat_masuk/detail/{id}', [Surat_masukController::class, 'detail_Kepsek'])->name('detail');
-    Route::get('surat_masuk/tambah', [Surat_masukController::class, 'tambah_Kepsek'])->name('tambah');
-    Route::post('surat_masuk/post', [Surat_masukController::class, 'store_Kepsek'])->name('post');
-    Route::get('surat_masuk/edit/{id}', [Surat_masukController::class, 'edit_Kepsek'])->name('edit');
-    Route::put('surat_masuk/update/{id}', [Surat_masukController::class, 'update_Kepsek'])->name('update');
-    Route::delete('surat_masuk/delete/{id}', [Surat_masukController::class, 'destroy_Kepsek'])->name('delete');
+Route::prefix('admin/kepsek')->middleware(['web', 'auth', 'role:kepsek'])->namespace('admin/')->group(function () {
+    Route::get('surat_masuk', [Surat_masukController::class, 'index_Kepsek'])->name('surat_masuk.kepsek.index');
+    Route::post('surat_masuk/ajax', [Surat_masukController::class, 'ajax_Kepsek'])->name('surat_masuk.kepsek.ajax');
+    Route::get('surat_masuk/detail/{id}', [Surat_masukController::class, 'detail_Kepsek'])->name('surat_masuk.kepsek.detail');
+    Route::get('surat_masuk/tambah', [Surat_masukController::class, 'tambah_Kepsek'])->name('surat_masuk.kepsek.tambah');
+    Route::post('surat_masuk/post', [Surat_masukController::class, 'store_Kepsek'])->name('surat_masuk.kepsek.post');
+    Route::get('surat_masuk/edit/{id}', [Surat_masukController::class, 'edit_Kepsek'])->name('surat_masuk.kepsek.edit');
+    Route::put('surat_masuk/update/{id}', [Surat_masukController::class, 'update_Kepsek'])->name('surat_masuk.kepsek.update');
+    Route::delete('surat_masuk/delete/{id}', [Surat_masukController::class, 'destroy_Kepsek'])->name('surat_masuk.kepsek.delete');
+
+
+
+    Route::get('disposisi', [DiposisiController::class, 'index_Disposisi'])->name('disposisi.kepsek.index');
+    Route::post('disposisi/ajax', [DiposisiController::class, 'ajax_Disposisi'])->name('disposisi.kepsek.ajax');
+    Route::get('disposisi/detail/{id}', [Surat_masukController::class, 'detail_Kepsek'])->name('disposisi.kepsek.detail');
+    Route::get('disposisi/tambah', [Surat_masukController::class, 'tambah_Kepsek'])->name('disposisi.kepsek.tambah');
+    Route::post('disposisi/post', [Surat_masukController::class, 'store_Kepsek'])->name('disposisi.kepsek.post');
+    Route::get('disposisi/edit/{id}', [Surat_masukController::class, 'edit_Kepsek'])->name('disposisi.kepsek.edit');
+    Route::put('disposisi/update/{id}', [Surat_masukController::class, 'update_Kepsek'])->name('disposisi.kepsek.update');
+    Route::delete('disposisi/delete/{id}', [Surat_masukController::class, 'destroy_Kepsek'])->name('disposisi.kepsek.delete');
 });
 
 // route pokka
