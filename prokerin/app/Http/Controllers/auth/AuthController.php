@@ -26,12 +26,15 @@ class AuthController extends Controller
         $validate = $request->validated();
         $remember = $request->remember == 'on' ? true : false; // rememberme
         if (Auth::attempt($request->only('username', 'password'), $remember)) {
-            if (Auth()->user()->role == 'siswa') {
-                $request->session()->regenerate();
-                return redirect('/user/dashboard');
-            } else if (Auth()->user()->role == 'kaprog' or 'bkk' or 'tu' or 'waka' or'hubin' or 'kurikulum' or 'kesiswaan' or 'litbang') {
-                $request->session()->regenerate();
-                return redirect('/admin/dashboard');
+            switch (Auth()->user()->role) {
+                case 'siswa':
+                    $request->session()->regenerate();
+                    return redirect('/user/dashboard');
+                    break;
+                case  'bkk' or 'tu' or 'kepsek' or'hubin' or 'kurikulum' or 'kesiswaan' or 'litbang' or 'sarpras':
+                    $request->session()->regenerate();
+                    return redirect('/admin/dashboard');
+                    break;
             }
         } else {
             return redirect('/')->withInput()->withErrors(['password' => 'password anda salah','username' => 'username anda salah']);

@@ -24,7 +24,7 @@ class RedirectIfAuthenticated
         foreach ($guards as $guard) {
             if (Auth::guard($guard)->check()) {
                 switch (auth()->user()->role) {
-                    case 'hubin' or 'kaprog' or 'bkk' or 'tu' or 'waka':
+                    case 'hubin' or 'kaprog' or 'bkk' or 'tu' or 'kepsek' or 'kurikulum' or 'sarpras' or 'kesiswaan' or 'litbang':
                         return redirect('/admin/dashboard');
                     case 'siswa':
                         return redirect('/user/dashboard');
