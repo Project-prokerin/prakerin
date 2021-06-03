@@ -12,9 +12,8 @@ class DiposisiController extends Controller
 
     public function index()
     {
-        return view('admin.disposisi.kepsek.index');
+        return view('admin.disposisi.index');
     }
-
     public function ajax(Request $request)
     {
          if ($request->ajax()) {
@@ -38,9 +37,9 @@ class DiposisiController extends Controller
                 ->addIndexColumn()->make(true);
         }
     }
-    public function detail($id)
+    public function view($id)
     {
-        return view('admin.disposisi.kepsek.detail');
+        return view('admin.disposisi.detail');
     }
     // table surat
     public function tambah_disposisi($id)
@@ -61,7 +60,7 @@ class DiposisiController extends Controller
     public function edit($id = null)
     {
         $surat = Disposisi::find($id)->first();
-        return view('admin.disposisi.kepsek.edit', compact('surat'));
+        return view('admin.disposisi.edit', compact('surat'));
     }
     public function update(Request $request, $id)
     {

@@ -1,7 +1,7 @@
 @extends('template.master')
 @push('link')
 <style>
-     #mytable5{
+     #mytable4{
         overflow-x: hidden;
     }
 .card{
@@ -35,16 +35,18 @@
         </div>
         <div class="card-body">
 
-          <div class="table-responsive" id="mytable5">
-            <table class="table table-striped" id="table-6">
+          <div class="table-responsive" id="mytable4">
+            <table class="table table-striped" id="table-2">
               <thead class="text-center">
                 <tr>
                   <th>
                     No
                   </th>
-                  <th>Pokja Tujuan</th>
-                  <th>Keterangan Disposisi</th>
-                  <th>Detail Surat</th>
+                  <th>Nama Surat</th>
+                  <th>Untuk</th>
+                  <th>Status</th>
+                  <th>Jabatan</th>
+                  <th>Disposisi</th>
                   <th>Action</th>
                 </tr>
               </thead>
@@ -56,8 +58,10 @@
                   <td></td>
                   <td></td>
                   <td></td>
+                  <td></td>
                   <td>
                       <a href="" class="btn btn-primary"><i class="fas fa-search"></i></a>
+                      <a href="#" class="btn btn-warning"><i class="fas fa-pen"></i></a>
                   </td>
                 </tr>
               </tbody>
@@ -70,5 +74,5 @@
 <span class="d-none" id="nam" data-id="transaksi"></span>
 @endsection
 @push('script')
-<script src="{{ asset('assets/js/pages-admin/disposisi.js') }}" ></script>
+<script src="{{ asset('assets/js/pages-admin/surat-masuk-admin.js') }}" ></script>
 @endpush

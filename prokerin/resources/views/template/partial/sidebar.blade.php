@@ -105,33 +105,33 @@
             </a>
             </li>
             @endif
-            <li class="@if (Request::is('#','#/*')) active @endif">
+            {{-- <li class="@if (Request::is('#','#/*')) active @endif">
             <a href="#" class="nav-link">
                 <i class="far fa-envelope"></i>
                 <span>Surat Keluar</span>
             </a>
-            </li>
+            </li> --}}
 
             @elseif($role == 'admin')
                 <li class="menu-header">Takola</li>
-            <li class='@if (Request::is("","")) active @endif'>
-                <a href='#' class="nav-link">
+            <li class='@if (Request::is("admin/surat_masuk","admin/surat_masuk/*")) active @endif'>
+                <a href='{{ route('admin.surat_masuk.index') }}' class="nav-link">
                     <i class="fas fa-th"></i>
                     <span>Surat Masuk</span>
                 </a>
             </li>
-            <li class='@if (Request::is("","")) active @endif'>
-                <a href='#' class="nav-link">
+            <li class='@if (Request::is("admin/disposisi","admin/disposisi/*")) active @endif'>
+                <a href='{{ route('disposisi.admin.index') }}' class="nav-link">
                     <i class="fas fa-th"></i>
                     <span>Disposisi</span>
                 </a>
             </li>
-            <li class="@if (Request::is('#','#/*')) active @endif">
+            {{-- <li class="@if (Request::is('#','#/*')) active @endif">
                 <a href="#" class="nav-link">
                     <i class="fas fa-th"></i>
                     <span>Surat Keluar</span>
                 </a>
-            </li>
+            </li> --}}
            @endif
     </aside>
 </div>

@@ -17,7 +17,7 @@ $(document).ready( function () {
         headers: {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         },
-        url: "/admin/kepsek/surat_masuk/ajax",
+        url: "/admin/surat_masuk/ajax",
         type: "post",
         data: function (data) {
             data = '';
@@ -34,9 +34,9 @@ $(document).ready( function () {
         { data: 'action', name:'action'},
         ],
     });
-// $('.btn-table').append(
-//         '<a href="/admin/kepsek/surat_masuk/tambah"class="btn btn-primary rounded-pill ml-3"> Tambah Data <i class="fas fa-plus"></i></button></a>'
-// );
+$('.btn-table').append(
+        '<a href="/admin/surat_masuk/tambah"class="btn btn-primary rounded-pill ml-3"> Tambah Data <i class="fas fa-plus"></i></button></a>'
+);
 // search engine
 $("#search").keyup(function () {
     table.search( this.value ).draw();
@@ -57,7 +57,7 @@ $('body').on('click','#hapus', function () {
                     headers: {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                     },
-                    url: "/admin/kepsek/surat_masuk/delete/"+ id,
+                    url: "/admin/surat_masuk/delete/"+ id,
                     type: "DELETE",
                     data: '',
                     success: function (data) {
@@ -92,7 +92,7 @@ $('body').on('click','#hapus-disposisi', function () {
                         headers: {
                             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                         },
-                        url: "/admin/kepsek/disposisi/delete/"+ id,
+                        url: "/admin/disposisi/delete/"+ id,
                         type: "DELETE",
                         data: '',
                         success: function (data) {
