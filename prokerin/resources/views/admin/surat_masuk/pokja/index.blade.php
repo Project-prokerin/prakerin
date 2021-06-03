@@ -43,25 +43,14 @@
                     No
                   </th>
                   <th>Nama Surat</th>
-                  <th>Untuk</th>
-                  <th>Status</th>
-                  <th>Isi Disposisi</th>
+                  <th>dari</th>
+                  <th>jabatan</th>
+                  <th>status</th>
+                  <th>Disposisi</th>
                   <th>Action</th>
                 </tr>
               </thead>
               <tbody class="text-center">
-                <tr>
-                  <td>
-                    1
-                  </td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td>
-                      <a href="" class="btn btn-primary"><i class="fas fa-search"></i></a>
-                  </td>
-                </tr>
               </tbody>
             </table>
           </div>
@@ -69,7 +58,7 @@
       </div>
     </div>
   </div>
-<span class="d-none" id="nam" data-id="transaksi"></span>
+<span class="d-none" id="role" data-id="role">{{Auth::user()->role}}</span>
 @endsection
 @push('script')
 <script src="{{ asset('assets/js/pages-admin/surat-masuk-pokja.js') }}" ></script>

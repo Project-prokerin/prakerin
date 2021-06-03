@@ -45,7 +45,8 @@
                   <th>Nama Surat</th>
                   <th>Untuk</th>
                   <th>Status</th>
-                  <th>Isi Disposisi</th>
+                  <th>Jabatan</th>
+                  <th>Disposisi</th>
                   <th>Action</th>
                 </tr>
               </thead>

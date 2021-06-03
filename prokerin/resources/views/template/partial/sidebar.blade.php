@@ -88,19 +88,17 @@
                 </a>
             </li>
             @endif
-            @switch(Auth::user()->role)
-            @case('tu'or'kepsek'or'hubin'or'sarpras'or'kurikulum'or'kesiswaan')
             @php $role = Auth::user()->role; @endphp
-
+            @if($role == 'tu' || $role == 'kepsek' || $role == 'hubin' || $role == 'sarpras' || $role == 'kurikulum' || $role == 'kesiswaan')
                 <li class="menu-header">Takola</li>
-            <li class='@if (Request::is("admin/$role/surat_masuk','admin/$role/surat_masuk/*")) active @endif'>
+            <li class='@if (Request::is("admin/$role/surat_masuk","admin/$role/surat_masuk/*")) active @endif'>
             <a href='{{ route("surat_masuk.$role.index") }}' class="nav-link">
                 <i class="far fa-envelope"></i>
                 <span>Surat Masuk</span>
             </a>
             </li>
             @if (Auth::user()->role == 'kepsek')
-            <li class='@if (Request::is("admin/$role/disposisi','admin/$role/disposisi/*")) active @endif'>
+            <li class='@if (Request::is("admin/$role/disposisi","admin/$role/disposisi/*")) active @endif'>
             <a href='{{ route("disposisi.$role.index") }}' class="nav-link">
                 <i class="far fa-envelope"></i>
                 <span>Disposisi</span>
@@ -114,8 +112,7 @@
             </a>
             </li>
 
-            @break
-            @case('admin')
+            @elseif($role == 'admin')
                 <li class="menu-header">Takola</li>
             <li class='@if (Request::is("","")) active @endif'>
                 <a href='#' class="nav-link">
@@ -135,8 +132,7 @@
                     <span>Surat Keluar</span>
                 </a>
             </li>
-            @break
-            @endswitch
+           @endif
     </aside>
 </div>
 @endif

@@ -52,8 +52,8 @@ Route::middleware(['web', 'auth', 'role:bkk,hubin,kaprog,kepsek,tu,kurikulum,kes
     Route::get('/export/excel/siswa', [ExcelController::class, 'siswa'])->name('export.siswa');
     Route::get('/export/excel/jurnalh', [ExcelController::class, 'jurnalh'])->name('export.jurnalh');
     Route::get('/export/excel/jurnalp', [ExcelController::class, 'jurnalp'])->name('export.jurnalp');
-
 });
+
 
 // untuk tu
 // example route admin/tu/surat_masuk
@@ -65,82 +65,86 @@ Route::prefix('admin/tu')->name('surat_masuk.tu.')->middleware(['web', 'auth', '
     Route::post('surat_masuk/post', [Surat_masukController::class, 'store_TU'])->name('post');
     Route::get('surat_masuk/edit/{id}', [Surat_masukController::class, 'edit_TU'])->name('edit');
     Route::put('surat_masuk/update/{id}', [Surat_masukController::class, 'update_TU'])->name('update');
-    Route::delete('surat_masuk/delete/{id}', [Surat_masukController::class, 'destroy_TU'])->name('delete');
+    Route::delete('surat_masuk/delete/{id}', [Surat_masukController::class, 'destroy_surat'])->name('delete');
 });
 
 // untuk kepsek
 // example route admin/kepsek/surat_masuk
 Route::prefix('admin/kepsek')->middleware(['web', 'auth', 'role:kepsek'])->namespace('admin/')->group(function () {
-    Route::get('surat_masuk', [Surat_masukController::class, 'index_Kepsek'])->name('surat_masuk.kepsek.index');
-    Route::post('surat_masuk/ajax', [Surat_masukController::class, 'ajax_Kepsek'])->name('surat_masuk.kepsek.ajax');
+    Route::get('surat_masuk', [Surat_masukController::class, 'index_kepsek'])->name('surat_masuk.kepsek.index');
+    Route::post('surat_masuk/ajax', [Surat_masukController::class, 'ajax_kepsek'])->name('surat_masuk.kepsek.ajax');
     Route::get('surat_masuk/detail/{id}', [Surat_masukController::class, 'detail_Kepsek'])->name('surat_masuk.kepsek.detail');
-    Route::get('surat_masuk/tambah', [Surat_masukController::class, 'tambah_Kepsek'])->name('surat_masuk.kepsek.tambah');
-    Route::post('surat_masuk/post', [Surat_masukController::class, 'store_Kepsek'])->name('surat_masuk.kepsek.post');
-    Route::get('surat_masuk/edit/{id}', [Surat_masukController::class, 'edit_Kepsek'])->name('surat_masuk.kepsek.edit');
-    Route::put('surat_masuk/update/{id}', [Surat_masukController::class, 'update_Kepsek'])->name('surat_masuk.kepsek.update');
-    Route::delete('surat_masuk/delete/{id}', [Surat_masukController::class, 'destroy_Kepsek'])->name('surat_masuk.kepsek.delete');
 
+    // disposisi by id
+    Route::get('surat_masuk/{id}/disposisi/view', [DiposisiController::class, 'detail'])->name('surat_masuk.kepsek.desposisi.view');
+    Route::get('surat_masuk/{id}/disposisi/tambah/', [DiposisiController::class, 'tambah_disposisi'])->name('surat_masuk.kepsek.desposisi.tambah');
+    Route::get('surat_masuk/{id}/disposisi/edit', [DiposisiController::class, 'edit'])->name('surat_masuk.kepsek.desposisi.edit');
 
-
-    Route::get('disposisi', [DiposisiController::class, 'index_Disposisi'])->name('disposisi.kepsek.index');
-    Route::post('disposisi/ajax', [DiposisiController::class, 'ajax_Disposisi'])->name('disposisi.kepsek.ajax');
-    Route::get('disposisi/detail/{id}', [Surat_masukController::class, 'detail_Kepsek'])->name('disposisi.kepsek.detail');
-    Route::get('disposisi/tambah', [Surat_masukController::class, 'tambah_Kepsek'])->name('disposisi.kepsek.tambah');
-    Route::post('disposisi/post', [Surat_masukController::class, 'store_Kepsek'])->name('disposisi.kepsek.post');
-    Route::get('disposisi/edit/{id}', [Surat_masukController::class, 'edit_Kepsek'])->name('disposisi.kepsek.edit');
-    Route::put('disposisi/update/{id}', [Surat_masukController::class, 'update_Kepsek'])->name('disposisi.kepsek.update');
-    Route::delete('disposisi/delete/{id}', [Surat_masukController::class, 'destroy_Kepsek'])->name('disposisi.kepsek.delete');
+    // table disposisi
+    Route::get('disposisi', [DiposisiController::class, 'index'])->name('disposisi.kepsek.index');
+    Route::post('disposisi/ajax', [DiposisiController::class, 'ajax'])->name('disposisi.kepsek.ajax');
+    Route::get('disposisi/detail/{id}', [DiposisiController::class, 'detail'])->name('disposisi.kepsek.detail');
+    Route::get('disposisi/tambah/', [DiposisiController::class, 'tambah'])->name('disposisi.kepsek.tambah');
+    Route::patch('disposisi/post/{id}', [DiposisiController::class, 'store'])->name('disposisi.kepsek.post'); // update disposisi
+    Route::get('disposisi/edit/{id}', [DiposisiController::class, 'edit'])->name('disposisi.kepsek.edit'); // edit disposisi biasa
+    Route::put('disposisi/update/{id}', [DiposisiController::class, 'update'])->name('disposisi.kepsek.update'); // update disposisi
+    Route::delete('disposisi/delete/{id}', [DiposisiController::class, 'destroy'])->name('disposisi.kepsek.delete'); // table disposisi
 });
 
 // route pokka
 // untuk kurikulum
 Route::prefix('admin/kurikulum')->name('surat_masuk.kurikulum.')->middleware(['web', 'auth', 'role:kurikulum'])->group(function () {
-    Route::get('surat_masuk', [Surat_masukController::class, 'index_Kurikulum'])->name('index');
-    Route::post('surat_masuk/ajax', [Surat_masukController::class, 'ajax_Kurikulum'])->name('ajax');
-    Route::get('surat_masuk/detail/{id}', [Surat_masukController::class, 'detail_Pokja'])->name('surat_masuk.detail');
-    Route::get('surat_masuk/tambah', [Surat_masukController::class, 'tambah_Pokja'])->name('surat_masuk.tambah');
-    Route::post('surat_masuk/post', [Surat_masukController::class, 'store_Pokja'])->name('surat_masuk.post');
-    Route::get('surat_masuk/edit/{id}', [Surat_masukController::class, 'edit_Pokja'])->name('surat_masuk.edit');
-    Route::put('surat_masuk/update/{id}', [Surat_masukController::class, 'update_Pokja'])->name('surat_masuk.update');
-    Route::delete('surat_masuk/delete/{id}', [Surat_masukController::class, 'destroy_Pokja'])->name('surat_masuk.delete');
+    Route::get('surat_masuk', [Surat_masukController::class, 'index_pokja'])->name('index');
+    Route::post('surat_masuk/ajax', [Surat_masukController::class, 'ajax_pokja'])->name('ajax');
+    Route::get('surat_masuk/detail/{id}', [Surat_masukController::class, 'detail_kurikulum'])->name('detail');
+    Route::get('surat_masuk/download/{id}', [Surat_masukController::class, 'download'])->name('download');
+
+    // disposisi by id
+    Route::get('surat_masuk/{id}/disposisi/view', [DiposisiController::class, 'detail'])->name('desposisi.view');
+    Route::get('surat_masuk/{id}/disposisi/tambah/', [DiposisiController::class, 'tambah_disposisi'])->name('desposisi.tambah');
+    Route::get('surat_masuk/{id}/disposisi/edit', [DiposisiController::class, 'edit'])->name('desposisi.edit');
+
 });
 
 // untuk kesiswaan
 Route::prefix('admin/kesiswaan')->name('surat_masuk.kesiswaan.')->middleware(['web', 'auth', 'role:kesiswaan'])->group(function () {
-    Route::get('surat_masuk', [Surat_masukController::class, 'index_kesiswaan'])->name('index');
-    Route::post('surat_masuk/ajax', [Surat_masukController::class, 'ajax_Kesiswaan'])->name('ajax');
-    Route::get('surat_masuk/detail/{id}', [Surat_masukController::class, 'detail_Pokja'])->name('surat_masuk.detail');
-    Route::get('surat_masuk/tambah', [Surat_masukController::class, 'tambah_Pokja'])->name('surat_masuk.tambah');
-    Route::post('surat_masuk/post', [Surat_masukController::class, 'store_Pokja'])->name('surat_masuk.post');
-    Route::get('surat_masuk/edit/{id}', [Surat_masukController::class, 'edit_Pokja'])->name('surat_masuk.edit');
-    Route::put('surat_masuk/update/{id}', [Surat_masukController::class, 'update_Pokja'])->name('surat_masuk.update');
-    Route::delete('surat_masuk/delete/{id}', [Surat_masukController::class, 'destroy_Pokja'])->name('surat_masuk.delete');
+    Route::get('surat_masuk', [Surat_masukController::class, 'index_pokja'])->name('index');
+    Route::post('surat_masuk/ajax', [Surat_masukController::class, 'ajax_pokja'])->name('ajax');
+    Route::get('surat_masuk/detail/{id}', [Surat_masukController::class, 'detail_kesiswaan'])->name('detail');
+    Route::get('surat_masuk/download/{id}', [Surat_masukController::class, 'download'])->name('download');
+
+        // disposisi by id
+        Route::get('surat_masuk/{id}/disposisi/view', [DiposisiController::class, 'detail'])->name('desposisi.view');
+        Route::get('surat_masuk/{id}/disposisi/tambah/', [DiposisiController::class, 'tambah_disposisi'])->name('desposisi.tambah');
+        Route::get('surat_masuk/{id}/disposisi/edit', [DiposisiController::class, 'edit'])->name('desposisi.edit');
 });
 
 // untuk hubin saja
 Route::prefix('admin/hubin')->name('surat_masuk.hubin.')->middleware(['web', 'auth', 'role:hubin'])->group(function () {
     // surat masuk
-    Route::get('surat_masuk', [siswaController::class, 'index_pokja'])->name('index');
-    Route::post('surat_masuk/ajax', [siswaController::class, 'ajax_Pokja'])->name('ajax');
-    Route::get('surat_masuk/detail/{id}', [siswaController::class, 'detail_Pokja'])->name('surat_masuk.detail');
-    Route::get('surat_masuk/tambah', [siswaController::class, 'tambah_Pokja'])->name('surat_masuk.tambah');
-    Route::post('surat_masuk/post', [siswaController::class, 'store_Pokja'])->name('surat_masuk.post');
-    Route::get('surat_masuk/edit/{id}', [siswaController::class, 'edit_Pokja'])->name('surat_masuk.edit');
-    Route::put('surat_masuk/update/{id}', [siswaController::class, 'update_Pokja'])->name('surat_masuk.update');
-    Route::delete('surat_masuk/delete/{id}', [siswaController::class, 'destroy_Pokja'])->name('surat_masuk.delete');
+    Route::get('surat_masuk', [Surat_masukController::class, 'index_pokja'])->name('index');
+    Route::post('surat_masuk/ajax', [Surat_masukController::class, 'ajax_pokja'])->name('ajax');
+    Route::get('surat_masuk/detail/{id}', [Surat_masukController::class, 'detai_pokja'])->name('detail');
+    Route::get('surat_masuk/download/{id}', [Surat_masukController::class, 'download'])->name('download');
+
+        // disposisi by id
+        Route::get('surat_masuk/{id}/disposisi/view', [DiposisiController::class, 'detail'])->name('desposisi.view');
+        Route::get('surat_masuk/{id}/disposisi/tambah/', [DiposisiController::class, 'tambah_disposisi'])->name('desposisi.tambah');
+        Route::get('surat_masuk/{id}/disposisi/edit', [DiposisiController::class, 'edit'])->name('desposisi.edit');
 });
 
 // untuk sarpras
 Route::prefix('admin/sarpras')->name('surat_masuk.sarpras.')->middleware(['web', 'auth', 'role:sarpras'])->group(function () {
     // surat masuk
-    Route::get('surat_masuk', [siswaController::class, 'index_pokja'])->name('index');
-    Route::post('surat_masuk/ajax', [siswaController::class, 'ajax_Pokja'])->name('ajax');
-    Route::get('surat_masuk/detail/{id}', [siswaController::class, 'detail_Pokja'])->name('surat_masuk.detail');
-    Route::get('surat_masuk/tambah', [siswaController::class, 'tambah_Pokja'])->name('surat_masuk.tambah');
-    Route::post('surat_masuk/post', [siswaController::class, 'store_Pokja'])->name('surat_masuk.post');
-    Route::get('surat_masuk/edit/{id}', [siswaController::class, 'edit_Pokja'])->name('surat_masuk.edit');
-    Route::put('surat_masuk/update/{id}', [siswaController::class, 'update_Pokja'])->name('surat_masuk.update');
-    Route::delete('surat_masuk/delete/{id}', [siswaController::class, 'destroy_Pokja'])->name('surat_masuk.delete');
+    Route::get('surat_masuk', [Surat_masukController::class, 'index_pokja'])->name('index');
+    Route::post('surat_masuk/ajax', [Surat_masukController::class, 'ajax_pokja'])->name('ajax');
+    Route::get('surat_masuk/detail/{id}', [Surat_masukController::class, 'detail_pokja'])->name('detail');
+    Route::get('surat_masuk/download/{id}', [Surat_masukController::class, 'download'])->name('download');
+
+        // disposisi by id
+        Route::get('surat_masuk/{id}/disposisi/view', [DiposisiController::class, 'detail'])->name('desposisi.view');
+        Route::get('surat_masuk/{id}/disposisi/tambah/', [DiposisiController::class, 'tambah_disposisi'])->name('desposisi.tambah');
+        Route::get('surat_masuk/{id}/disposisi/edit', [DiposisiController::class, 'edit'])->name('desposisi.edit');
 });
 
 // untuk hubin, admin disin
