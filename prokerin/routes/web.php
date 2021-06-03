@@ -60,7 +60,7 @@ Route::middleware(['web', 'auth', 'role:bkk,hubin,kaprog,kepsek,tu,kurikulum,kes
 Route::prefix('admin/tu')->name('surat_masuk.tu.')->middleware(['web', 'auth', 'role:tu'])->group(function () {
     Route::get('surat_masuk', [Surat_masukController::class, 'index_TU'])->name('index');
     Route::post('surat_masuk/ajax', [Surat_masukController::class, 'ajax_TU'])->name('ajax');
-    Route::get('surat_masuk/detail/{id}', [Surat_masukController::class, 'detail_TU'])->name('detail');
+    Route::get('surat_masuk/detail/{id}', [Surat_masukController::class, 'detail_surat'])->name('detail');
     Route::get('surat_masuk/tambah', [Surat_masukController::class, 'tambah_surat'])->name('tambah');
     Route::post('surat_masuk/post', [Surat_masukController::class, 'store_surat'])->name('post');
     Route::get('surat_masuk/edit/{id}', [Surat_masukController::class, 'edit_surat'])->name('edit');
@@ -76,7 +76,7 @@ Route::prefix('admin/kepsek')->middleware(['web', 'auth', 'role:kepsek'])->group
     Route::get('surat_masuk/detail/{id}', [Surat_masukController::class, 'detail_Kepsek'])->name('surat_masuk.kepsek.detail');
 
     // disposisi by id
-    Route::get('surat_masuk/{id}/disposisi/view', [DiposisiController::class, 'view'])->name('surat_masuk.kepsek.desposisi.view');
+    Route::get('surat_masuk/{id}/disposisi/view', [DiposisiController::class, 'detail'])->name('surat_masuk.kepsek.desposisi.view');
     Route::get('surat_masuk/{id}/disposisi/tambah/', [DiposisiController::class, 'tambah_disposisi'])->name('surat_masuk.kepsek.desposisi.tambah');
     Route::get('surat_masuk/{id}/disposisi/edit', [DiposisiController::class, 'edit'])->name('surat_masuk.kepsek.desposisi.edit');
 
@@ -197,7 +197,7 @@ Route::prefix('admin')->middleware(['web', 'auth', 'role:admin'])->group(functio
     Route::delete('surat_masuk/delete/{id}', [Surat_masukController::class, 'destroy_surat'])->name('admin.surat_masuk.delete');
 
     // disposisi table surat
-    Route::get('surat_masuk/{id}/disposisi/view', [DiposisiController::class, 'view'])->name('desposisi.view');
+    Route::get('surat_masuk/{id}/disposisi/view', [DiposisiController::class, 'detail'])->name('desposisi.view');
     Route::get('surat_masuk/{id}/disposisi/tambah/', [DiposisiController::class, 'tambah_disposisi'])->name('desposisi.tambah');
     Route::get('surat_masuk/{id}/disposisi/edit', [DiposisiController::class, 'edit'])->name('desposisi.edit');
 

@@ -32,13 +32,18 @@ class Surat_masukController extends Controller
                     return $data->untuk_guru->jabatan;
                 })
                 ->addColumn('disposisi', function ($data) {
+                if (Auth::user()->role == 'kepsek') {
+                    $url = '/admin/kepsek/surat_masuk/';
+                } elseif (Auth::user()->role == 'admin') {
+                    $url = '';
+                };
                     if (!empty($data->surat_m->detail_surat->disposisi)) {
                         $id = $data->surat_m->detail_surat->disposisi->id;
-                        $button = '<a href="/admin/surat_masuk/' . $id . '/disposisi/view"   id="' . $id . '" class="edit btn btn-success btn-sm">view</a>'
-                        . '' . ' <a href="/admin/surat_masuk/' . $id . '/disposisi/edit"   id="' . $id . '" class="edit btn btn-warning btn-sm">edit</a>'
+                        $button = '<a href="/admin/surat_masuk/'. $id . '/disposisi/view"   id="' . $id . '" class="edit btn btn-success btn-sm">view</a>'
+                        . '' . ' <a href="/admin/surat_masuk/'. $id . '/disposisi/edit"   id="' . $id . '" class="edit btn btn-warning btn-sm">edit</a>'
                         . '' . ' <button type="button" name="delete" id="hapus-disposisi" data-id="' . $id . '" class="delete_disposisi btn btn-danger btn-sm">hapus</button>';
                     } else {
-                        $button = '<a href="/admin/surat_masuk/' . $data->id . '/disposisi/tambah"   id="' . $data->id . '" class="edit btn btn-primary btn-sm"><i class="fas fa-plus"></i></a>';
+                        $button = '<a href="'.$url . $data->id . '/disposisi/tambah"   id="' . $data->id . '" class="edit btn btn-primary btn-sm"><i class="fas fa-plus"></i></a>';
                     }
                     return $button;
                 })
@@ -62,6 +67,7 @@ class Surat_masukController extends Controller
     {
         return view('admin.surat_masuk.tu.index');
     }
+
     public function ajax_TU(Request $request)
     {
          if ($request->ajax()) {
@@ -77,9 +83,9 @@ class Surat_masukController extends Controller
                     return $data->untuk_guru->jabatan;
                 })
                 ->addColumn('action', function ($data) {
-                    $button = '<a href="/admin/siswa/detail/' . $data->id . '"   id="' . $data->id . '" class="edit btn btn-primary btn-sm"><i class="fas fa-search"></i></a>';
+                    $button = '<a href="/admin/tu/surat_masuk/detail/' . $data->id . '"   id="' . $data->id . '" class="edit btn btn-primary btn-sm"><i class="fas fa-search"></i></a>';
                     $button .= '&nbsp';
-                    $button .= '<a  href="/admin/siswa/edit/' . $data->id . '" id="edit" data-toggle="tooltip"  data-id="' . $data->id . '" data-original-title="Edit" class="edit btn btn-warning btn-sm edit-post"><i class="fas fa-pencil-alt"></i></a>';
+                    $button .= '<a  href="/admin/tu/surat_masuk/edit/' . $data->id . '" id="edit" data-toggle="tooltip"  data-id="' . $data->id . '" data-original-title="Edit" class="edit btn btn-warning btn-sm edit-post"><i class="fas fa-pencil-alt"></i></a>';
                     $button .= '&nbsp';
                     $button .= '<button type="button" name="delete" id="hapus" data-id="' . $data->id . '" class="delete btn btn-danger btn-sm"><i class="fas fa-trash"></i></button>';
                     return $button;
@@ -87,6 +93,11 @@ class Surat_masukController extends Controller
                 ->rawColumns(['action','untuk','nama','jabatan'])
                 ->addIndexColumn()->make(true);
         }
+    }
+
+    public function detail_surat($id)
+    {
+        return 'ini detail surat';
     }
 
     public function tambah_surat()
@@ -106,6 +117,7 @@ class Surat_masukController extends Controller
     {
 
     }
+
     public function edit_surat($id)
     {
         switch (Auth::user()->role) {
@@ -117,6 +129,7 @@ class Surat_masukController extends Controller
                 break;
         }
     }
+
     public function update_surat(Request $request,$id)
     {
     }
@@ -154,8 +167,8 @@ class Surat_masukController extends Controller
                     if(!empty($data->surat_m->detail_surat->disposisi))
                     {
                         $id = $data->surat_m->detail_surat->disposisi->id;
-                        $button = '<a href="/admin/surat_masuk/' . $id . '/disposisi/view"   id="' . $id . '" class="edit btn btn-success btn-sm">view</a>'
-                        .''.' <a href="/admin/surat_masuk/' . $id . '/disposisi/edit"   id="' . $id . '" class="edit btn btn-warning btn-sm">edit</a>'
+                        $button = '<a href="/admin/kepsek/surat_masuk/' . $id . '/disposisi/view"   id="' . $id . '" class="edit btn btn-success btn-sm">view</a>'
+                        .''. ' <a href="/admin/kepsek/surat_masuk/' . $id . '/disposisi/edit"   id="' . $id . '" class="edit btn btn-warning btn-sm">edit</a>'
                         .''.' <button type="button" name="delete" id="hapus-disposisi" data-id="' . $id . '" class="delete_disposisi btn btn-danger btn-sm">hapus</button>';
                     }else{
                         $button = '<a href="/admin/kepsek/surat_masuk/' . $data->id . '/disposisi/tambah"   id="' . $data->id . '" class="edit btn btn-primary btn-sm"><i class="fas fa-plus"></i></a>';
@@ -163,7 +176,7 @@ class Surat_masukController extends Controller
                     return $button;
                 })
                 ->addColumn('action', function ($data) {
-                    $button = '<a href="/admin/siswa/detail/' . $data->id . '"   id="' . $data->id . '" class="edit btn btn-primary btn-sm"><i class="fas fa-search"></i></a>';
+                    $button = '<a href="/admin/kepsek/surat_masuk/detail/' . $data->id . '"   id="' . $data->id . '" class="edit btn btn-primary btn-sm"><i class="fas fa-search"></i></a>';
                     $button .= '&nbsp';
                     $button .= '<button type="button" name="delete" id="hapus" data-id="' . $data->id . '" class="delete btn btn-danger btn-sm"><i class="fas fa-trash"></i></button>';
                     return $button;

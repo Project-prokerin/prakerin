@@ -67,6 +67,11 @@ $(document).ready(function () {
     })
     // hapus data
     $('body').on('click', '#hapus', function () {
+         if ($('#role').text() == 'admin') {
+        url = "/admin/disposisi/delete/";
+    } else if ($('#role').text() == 'kepsek') {
+        url = "/admin/kepsek/disposisi/delete/";
+    }
         // sweet alert
         Swal.fire({
             title: 'Apa anda yakin?',
@@ -82,7 +87,7 @@ $(document).ready(function () {
                     headers: {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                     },
-                    url: "/admin/disposisi/delete/" + id,
+                    url: url + id,
                     type: "DELETE",
                     data: '',
                     success: function (data) {
