@@ -59,15 +59,15 @@ $(document).ready(function () {
             '<a href="/admin/surat_masuk/tambah"class="btn btn-primary "> Tambah Data <i class="fas fa-plus"></i></button></a>'
         );
     } else if ($('#role').text() == 'kepsek') {
-<<<<<<< Updated upstream
+
         // $('.btn-table').append(
         //     '<a href="/admin/kepsek/surat_masuk/tambah"class="btn btn-primary rounded-pill ml-3"> Tambah Data <i class="fas fa-plus"></i></button></a>'
         // );
-=======
+
         $('.btn-table').append(
             '<a href="/admin/kepsek/surat_masuk/tambah"class="btn btn-primary "> Tambah Data <i class="fas fa-plus"></i></button></a>'
         );
->>>>>>> Stashed changes
+
     }
 
     $('#table-6_filter').prepend(
