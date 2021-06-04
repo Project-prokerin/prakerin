@@ -114,7 +114,7 @@
                 <div class="row">
                     <h3>Preview : <b>{{ ltrim(strstr($surat_masuk->surat_m->path_surat, '.'), '.') }}</b></h3>
                         <div class="embed-responsive embed-responsive-16by9" >
-                            <iframe class="embed-responsive-item"  id="preview-image-before-upload" type="application/pdf" src="/{{ $surat_masuk->surat_m->path_surat }}" allowfullscreen></iframe>
+                            <embed class="embed-responsive-item"  id="preview-image-before-upload" type="application/pdf" src="/{{ $surat_masuk->surat_m->path_surat }}"/>
                           </div>
 
                 </div>

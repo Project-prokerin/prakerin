@@ -31,6 +31,14 @@
 @section('main')
 <div class="row">
     <div class="col-12">
+        @if ($message = Session::get(''))
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <strong>Success!</strong> {{ $message }}.
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    @endif
       <div class="card">
         <div class="card-header">
           <h4>Data Surat Masuk</h4>
