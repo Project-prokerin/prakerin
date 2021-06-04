@@ -1,82 +1,17 @@
 @extends('template.master')
 @push('link')
 <style>
-        .card{
+   #mytable4{
+        overflow-x: hidden;
+    }
+.card{
                 height: auto;
         }
         .buton{
-            margin-top: 10px;
-            margin-left: 50px;
-            margin-bottom: 30px;
+
+            margin-left: 25px;
+            margin-bottom: 10px;
         }
-        .table{
-                margin-top: 20px;
-        }
-
-
-    table.dataTable th:nth-child(1) {
-        width: 20px;
-        max-width: 130px;
-        word-break: break-all;
-        white-space: pre-line;
-    }
-
-    table.dataTable td:nth-child(1) {
-        width: 20px;
-        max-width: 130px;
-        word-break: break-all;
-        white-space: pre-line;
-    }
-    table.dataTable th:nth-child(2) {
-        width: 190px;
-        max-width: 190px;
-        word-break: break-all;
-        white-space: pre-line;
-    }
-
-    table.dataTable td:nth-child(2) {
-        width: 140px;
-        max-width: 140px;
-        word-break: break-all;
-        white-space: pre-line;
-    }
-    table.dataTable td:nth-child(3) {
-        width: 140px;
-        max-width: 140px;
-        word-break: break-all;
-        white-space: pre-line;
-    }
-    table.dataTable th:nth-child(4) {
-        width: 140px;
-        max-width: 140px;
-        word-break: break-all;
-        white-space: pre-line;
-    }
-
-    table.dataTable td:nth-child(4) {
-        width: 140px;
-        max-width: 140px;
-        word-break: break-all;
-        white-space: pre-line;
-    }
-    table.dataTable th:nth-child(5) {
-        width: 80px;
-        max-width: 80px;
-        word-break: break-all;
-        white-space: pre-line;
-    }
-    table.dataTable th:nth-child(6) {
-        width: 80px;
-        max-width: 80px;
-        word-break: break-all;
-        white-space: pre-line;
-    }
-    table.dataTable th:nth-child(7) {
-        width: 140px;
-        max-width: 140px;
-        word-break: break-all;
-        white-space: pre-line;
-    }
     a[href$=".pdf/download"]:before
         {
         content: "\f1c1";
@@ -92,7 +27,7 @@
         <div class="breadcrumb-item"> <i class="fas fa-user"></i> DATA SISWA</div>
 @endsection
 @section('main')
-  <div class="card">
+  {{-- <div class="card">
         <!-- table -->
         <div class="container mt-4" >
         @if (session('success'))
@@ -111,10 +46,10 @@
                 <span aria-hidden="true">&times;</span>
             </button>
             </div>
-        @endif
+        @endif --}}
 
         {{-- update --}}
-        <div class="buton">
+        {{-- <div class="buton">
             <a href="{{ route('siswa.tambah') }}"class="btn btn-primary rounded-pill"> Tambah Data <i class="fas fa-plus"></i></button></a>
         </div>
         <form class="d-flex flex-row-reverse mr-5" style="margin-top: -66px;">
@@ -128,9 +63,9 @@
                 <a href="/export/excel/siswa"class="btn btn-success rounded-pill "> <i class="fas fa-cloud-download-alt"></i>  Excel</a>
             </div>
         </form>
-        <br>
+        <br> --}}
         {{-- update --}}
-        <table class="table table-bordered table-hover text-center" id="table">
+        {{-- <table class="table table-bordered table-hover text-center" id="table">
         <thead>
             <tr>
             <th scope="col">No</th>
@@ -149,87 +84,51 @@
         </table>
         <!-- tutup table -->
         </div>
+        </div> --}}
+        <div class="row">
+            <div class="col-12">
+              <div class="card">
+                <div class="card-header">
+                  <h4>Data Siswa</h4>
+                </div>
+                <div class="card-body">
 
-
-        </div>
+                  <div class="table-responsive" id="mytable4">
+                    <table class="table table-striped" id="table">
+                      <thead class="text-center">
+                        <tr>
+                          <th>
+                            No
+                          </th>
+                          <th>NIPD</th>
+                          <th>Nama</th>
+                          <th>Email</th>
+                          <th>Kelas</th>
+                          <th>Jurusan</th>
+                          <th>Action</th>
+                        </tr>
+                      </thead>
+                      <tbody class="text-center">
+                        <tr>
+                          <td>
+                            1
+                          </td>
+                          <td></td>
+                          <td></td>
+                          <td></td>
+                          <td></td>
+                          <td>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
 @endsection
 @push('script')
-<script>
-    $(document).ready( function () {
-                var filter = $('#search').val();
-                console.log(filter);
-                var table = $('#table').DataTable({
-                    dom: 't<"bottom"<"row"<"col-6"i><"col-6 mb-4"p>>>',
-                    bLengthChange: false,
-                    ordering:false,
-                    info: true,
-                    filtering:false,
-                    searching: true,
-                    serverside: true,
-                    processing: true,
-                    serverSide: true,
-                    "responsive": true,
-                    "autoWidth": false,
-                    ajax:{
-                    headers: {
-                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                    },
-                    url: "{{route('siswa.ajax')}}",
-                    type: "post",
-                    data: function (data) {
-                        data = '';
-                        return data
-                    }
-                    },
-                    columns:[
-                    { data: 'DT_RowIndex', name: 'DT_RowIndex'},
-                    { data: 'nipd', name:'nipd'},
-                    { data: 'nama_siswa', name:'nama_siswa'},
-                    { data: 'email', name:'email'},
-                    { data: 'kelas',name:'kelas'},
-                    { data: 'jurusan',name:'jurusan'},
-                    { data: 'action',name:'action'}
-                    ],
-                });
-
-            // search engine
-            $("#search").keyup(function () {
-                table.search( this.value ).draw();
-            })
-
-                // hapus data
-            $('body').on('click','#hapus', function () {
-            // sweet alert
-                Swal.fire({
-                title: 'Apa anda yakin?',
-                icon: 'warning',
-                showCancelButton: true,
-                confirmButtonText: 'Hapus',
-                cancelButtonText: 'Batal'
-                }).then((result) => {
-                    if (result.value) {
-                        id = $(this).data('id');
-                        $.ajax({
-                                url: "/admin/siswa/delete/"+ id,
-                                type: "DELETE",
-
-                                data: { _token: '{{csrf_token()}}' },
-                                success: function (data) {
-                                    console.log(data);
-                                    table.draw();
-                                    Swal.fire(
-                                        'success',
-                                        'Data anda berhasil di hapus.',
-                                        'success'
-                                    )
-                                },
-                                error: function (data) {
-                                    console.log('Error:', data);
-                                }
-                        });
-                    } else if (result.dismiss === Swal.DismissReason.cancel) {}
-                })
-            });
-            });
-</script>
+<script src="{{ asset('assets/js/pages-admin/siswa.js') }}" ></script>
 @endpush
+
