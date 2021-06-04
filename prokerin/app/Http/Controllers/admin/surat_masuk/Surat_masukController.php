@@ -5,9 +5,13 @@ namespace App\Http\Controllers\admin\surat_masuk;
 use App\Http\Controllers\Controller;
 use App\Models\Disposisi;
 use App\Models\Surat_masuk;
+use App\Models\Surat_M;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
+use Carbon\Carbon;
+
+use File;
 class Surat_masukController extends Controller
 {
 
@@ -114,18 +118,43 @@ class Surat_masukController extends Controller
 
     // route buat semua admin & tu
     public function store_surat(Request $request)
-    {
+    {   
+    //    dd($request->surat);
+       $nm = $request->surat;
+    // $nm =   $request->file('/surat');
+       $namaFile =  $nm->getClientOriginalName();
+    
+    
+     $surat_masuk  =  Surat_masuk::create([
+        'id_dari' => Auth::user()->id,
+        'id_untuk' => $request->id_untuk,
+        'status' => 'pengajuan',
+        'created_at' => Carbon::now()->format('Y-m-d')
+    ]);
 
+    Surat_M::create([
+        'nama_surat' => $request->nama_surat,
+        'path_surat' => "surat/surat_masuk/$namaFile",
+        'tgl_surat_masuk' => Carbon::today()->toDateString(),
+        'id_surat_masuk' => $surat_masuk->id,
+        'created_at' => Carbon::now()->format('Y-m-d')
+    ]);
+        $nm->move(public_path().'/surat/surat_masuk',$namaFile);
+
+        return redirect()->route('admin.surat_masuk.index')->with('pesan','Berhasil mengirim surat!');
+
+        
     }
 
     public function edit_surat($id)
     {
+        // dd(Surat_masuk::findOrFail($id)->surat_m->path_surat);
         switch (Auth::user()->role) {
             case 'admin':
-                return view('admin.surat_masuk.tu.edit', ['surat' => Surat_masuk::find($id)->get()]);
+                return view('admin.surat_masuk.tu.edit', ['surat_masuk' => Surat_masuk::findOrFail($id)]);
                 break;
             case 'kepsek':
-                return view('admin.surat_masuk.admin.edit', ['surat' => Surat_masuk::find($id)->get()]);
+                return view('admin.surat_masuk.admin.edit', ['surat_masuk' => Surat_masuk::findOrFail($id)]);
                 break;
         }
     }
@@ -136,6 +165,11 @@ class Surat_masukController extends Controller
 
     public function destroy_surat($id)
     {
+        $file_path = Surat_M::where('id_surat_masuk',$id)->first();  // Value is not URL but directory file path
+        if(File::exists(public_path($file_path->path_surat))){
+            File::delete(public_path($file_path->path_surat));
+        }
+
         Surat_masuk::find($id)->delete();
         return response()->json($data = 'berhasil');
     }

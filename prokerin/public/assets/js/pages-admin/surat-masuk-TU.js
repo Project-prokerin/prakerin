@@ -83,5 +83,5 @@
                 })
 
             });
-            $("div#mydropzone").dropzone({ url: "/file/post" });
+            // $("div#mydropzone").dropzone({ url: "/file/post" });
             });

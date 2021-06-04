@@ -43,14 +43,14 @@
                   </th>
                   <th>Nama Surat</th>
                   <th>Untuk</th>
-                  <th>Status</th>
                   <th>Jabatan</th>
+                  <th>Status</th>
                   <th>Disposisi</th>
                   <th>Action</th>
                 </tr>
               </thead>
               <tbody class="text-center">
-                <tr>
+                {{-- <tr>
                   <td>
                     1
                   </td>
@@ -62,7 +62,7 @@
                       <a href="" class="btn btn-primary"><i class="fas fa-search"></i></a>
                       <a href="#" class="btn btn-warning"><i class="fas fa-pen"></i></a>
                   </td>
-                </tr>
+                </tr> --}}
               </tbody>
             </table>
           </div>
