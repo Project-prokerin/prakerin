@@ -2,21 +2,7 @@
 @push('link')
 <link rel="stylesheet" href="{{asset('template/')}}/node_modules/select2/dist/css/select2.min.css">
 <style>
-    .card{
-        height: auto;
-    }
-    .buton{
-        margin-top: 30px;
-        margin-left: 50px;
-        margin-bottom: 30px;
-        width: 40%;
-    }
-    .table{
-        margin-top: 20px;
-    }
-    .card-body{
-        margin-top: -60px;
-    }
+
 
 </style>
 @endpush
@@ -27,151 +13,65 @@
         <div class="breadcrumb-item"> <i class="far fa-building"></i> JURNAL PRAKERIN</div>
 @endsection
 @section('main')
-<div class="card">
-<div class="card-body">
-    <div class="buton" style="z-index: 2;">
-        <br>
-        <br>
-        <a href="{{ route('jurnal.tambah') }}"><button type="button" class="btn btn-primary rounded-pill">Tambah Data <i class="fas fa-plus"></i></button></a>
+@if (session('success'))
+<div class="alert alert-success alert-dismissible fade show" role="alert">
+    {{ session('success') }}
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+        </button>
     </div>
-    <form class="d-flex flex-row-reverse mr-5" style="margin-top: -66px;">
-        <button class="btn btn-outline-success" type="submit"><i class="fas fa-search"></i></button>
-        <input class="form-control ml-3" type="search" placeholder="Search" aria-label="Search" id="search" style="width: 200px;">
-        <div>
-            <a href="/export/pdf/data_prakerin"><button type="button" class="btn btn-danger mr-3 rounded-pill"><i class="fas fa-cloud-download-alt"></i>  PDF</button></a>
-        </div>
-        <div>
-            <a href="/export/excel/data_prakerin"><button type="button" class="btn btn-success mr-3 rounded-pill"><i class="fas fa-cloud-download-alt"></i>  Excel</button></a>
-        </div>
-    </form>
-</div>
-    <!-- table -->
-    @if (session('success'))
-    <div class="alert alert-success alert-dismissible fade show" role="alert">
-        {{ session('success') }}
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-            </button>
-        </div>
-    @endif
+@endif
 
-    <div class="container">
-    <table class="table table-bordered text-center" id="table">
-    <thead>
-        <tr>
-            <th scope="col">No</th>
-            <th scope="col">Nama Siswa</th>
-            <th scope="col">Nama Perusahaaan</th>
-            <th scope="col">Tanggal mulai</th>
-            <th scope="col">Jam Mulai</th>
-            <th scope="col">Action</th>
-        </tr>
-    </thead>
-    <tbody>
+@if (session('fail'))
+<div class="alert alert-danger alert-dismissible fade show" role="alert">
+    {{ session('fail') }}
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+    </div>
+@endif
+<div class="row">
+    <div class="col-12">
+      <div class="card">
+        <div class="card-header">
+          <h4>Data Perusahaan</h4>
+        </div>
+        <div class="card-body">
 
-    </tbody>
-    </table>
-
-    {{--  --}}
-        {{-- <nav aria-label="Page navigation example">
-            <ul class="pagination mt-5 mb-4 justify-content-right">
-                <li class="page-item"><a class="page-link" href="#">Previous</a></li>
-                <li class="page-item"><a class="page-link" href="#">1</a></li>
-                <li class="page-item"><a class="page-link" href="#">2</a></li>
-                <li class="page-item"><a class="page-link" href="#">Next</a></li>
-            </ul>
-        </nav> --}}
-    {{--  --}}
-</div>
-</div>
+          <div class="table-responsive" id="mytable4">
+            <table class="table table-striped" id="table8">
+              <thead class="text-center">
+                <tr>
+                  <th>
+                    No
+                  </th>
+                  <th>Nama Siswa</th>
+                  <th>Nama Perusahaan</th>
+                  <th>Tanggal Mulai</th>
+                  <th>Jam Mulai</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody class="text-center">
+                <tr>
+                  <td>
+                    1
+                  </td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 
 @endsection
 @push('script')
- <script>
-  $(document).ready( function () {
-                var filter = $("#search").val();
-                console.log(filter);
-                var table = $('#table').DataTable({
-                    dom: 't<"bottom"<"row"<"col-6"i><"col-6 mb-4"p>>>',
-                    bLengthChange: false,
-                    ordering:false,
-                    info: true,
-                    filtering:false,
-                    searching: true,
-                    serverside: true,
-                    processing: true,
-                    "responsive": true,
-                    "autoWidth": false,
-                    ajax:{
-                    headers: {
-                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                    },
-                    url: "{{route('jurnal.ajax')}}",
-                    type: "post",
-                    data: function (data) {
-                        data = '';
-                        return data
-                    }
-                    },
-                    columns:[
-                    { data: 'DT_RowIndex', name: 'DT_RowIndex'},
-                    { data: 'id_siswa',name:'id_siswa'},
-                    { data: 'id_perusahaan',name:'id_perusahaan'},
-                    {
-                           data: 'tanggal_pelaksanaan',
-                           type: 'num',
-                           render: {
-                              _: 'display',
-                              sort: 'timestamp'
-                           }
-                        },
-                    { data: 'jam_masuk',name:'jam_masuk'},
-
-                    { data: 'action',name:'action'}
-                    ],
-                });
-
-            // search engine
-            $("#search").keyup(function () {
-                table.search( this.value ).draw();
-            })
-    // hapus data
-            $('body').on('click','#hapus', function () {
-            // sweet alert
-                Swal.fire({
-                title: 'Apa anda yakin?',
-                icon: 'warning',
-                showCancelButton: true,
-                confirmButtonText: 'Hapus',
-                cancelButtonText: 'Batal'
-                }).then((result) => {
-                    if (result.value) {
-                        id = $(this).data('id');
-                        $.ajax({
-                                url: "/admin/jurnal/delete/"+ id,
-                                type: "DELETE",
-
-                                data: { _token: '{{csrf_token()}}' },
-                                success: function (data) {
-                                    console.log(data);
-                                    table.draw();
-                                    Swal.fire(
-                                        'success',
-                                        'Data anda berhasil di hapus.',
-                                        'success'
-                                    )
-                                },
-                                error: function (data) {
-                                    console.log('Error:', data);
-                                }
-                        });
-                    } else if (result.dismiss === Swal.DismissReason.cancel) {}
-                })
-            });
-            });
-
-
-
-
-        </script>
+<script src="{{ asset('assets/js/pages-admin/jurnalp.js') }}" ></script>
 @endpush
