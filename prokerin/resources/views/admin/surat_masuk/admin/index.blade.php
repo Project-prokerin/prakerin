@@ -34,7 +34,6 @@
           <h4>Data Surat Masuk</h4>
         </div>
         <div class="card-body">
-
           <div class="table-responsive" id="mytable4">
             <table class="table table-striped" id="table-2">
               <thead class="text-center">
