@@ -29,9 +29,7 @@ class CreateGuruTable extends Migration
         Schema::table('kelompok_laporan', function (Blueprint $table) {
             $table->foreign('id_guru')->references('id')->on('guru')->onDelete('set null')->onUpdate("cascade");
         });
-        // Schema::table('users', function (Blueprint $table) {
-        //     $table->foreign('id_guru')->references('id')->on('guru')->onDelete('cascade')->onUpdate("cascade");
-        // });
+
     }
 
     /**

@@ -2,7 +2,8 @@ $(document).ready( function () {
     var filter = $('#search').val();
     console.log(filter);
     var table = $('#table1').DataTable({
-        dom:"<'row'<'ol-sm-12 col-md-6 btn-table'><'col-sm-12 col-md-6  pdf-button'f>>" +
+        dom:
+        "<'row'<'ol-sm-12 col-md-6 btn-table'><'col-sm-12 col-md-6  pdf-button'f>>" +
         "<'row'<'col-sm-12'tr>>" +
         "<'row'<'col-sm-5'i><'col-sm-7'p>>",
         bLengthChange: false,
@@ -62,10 +63,13 @@ $('body').on('click','#hapus', function () {
         if (result.value) {
             id = $(this).data('id');
             $.ajax({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
                     url: "/admin/guru/delete/"+ id,
                     type: "DELETE",
 
-                    data: { _token: '{{csrf_token()}}' },
+                    data:'',
                     success: function (data) {
                         console.log(data);
                         table.draw();

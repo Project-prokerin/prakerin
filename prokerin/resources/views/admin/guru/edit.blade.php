@@ -33,7 +33,7 @@
                     <div class="" style="height: auto;">
                         <div class="card-body">
                         <form action="/admin/guru/update/{{ $guru->id }}" method="POST" class="input">
-                            @method('PUT');
+                            @method('PUT')
                             @csrf
                             <div class="mb-3">
                                 <label class="form-label">NIK Guru</label>

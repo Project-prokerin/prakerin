@@ -27,6 +27,24 @@
         <div class="breadcrumb-item"> <i class="fas fa-user"></i>   DATA GURU</div>
 @endsection
 @section('main')
+{{-- <div class="container mt-4" > --}}
+    @if (session('success'))
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        {{ session('success') }}
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    @endif
+
+    @if (session('fail'))
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        {{ session('fail') }}
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        </div>
+    @endif
         {{-- baru --}}
         <div class="row">
             <div class="col-12">
