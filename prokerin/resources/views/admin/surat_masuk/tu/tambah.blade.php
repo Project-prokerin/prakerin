@@ -11,6 +11,7 @@
             display: block;
         }
 
+
     </style>
 @endpush
 @section('title', 'Prakerin | Surat Masuk')
@@ -110,10 +111,12 @@
             <div class="container mt-5">
                 <div class="row">
                     {{-- <h3>Preview : <b>{{ ltrim(strstr($surat_masuk->surat_m->path_surat, '.'), '.') }}</b></h3> --}}
-                    <h3>Preview: </h3>
-                    <embed id="preview-image-before-upload" src="https://www.riobeauty.co.uk/images/product_image_not_found.gif" type="application/pdf" width="800px"
-                        height="600" />
 
+                    {{-- <embed id="preview-image-before-upload"  src="https://commercial.bunn.com/img/image-not-available.png" type="application/pdf"
+                    style="width:800px; height:600px; border-radius:10px;  box-shadow:    3px 3px 5px 6px #ccc;"      /> --}}
+                    <div class="embed-responsive embed-responsive-16by9" >
+                        <iframe class="embed-responsive-item"  id="preview-image-before-upload" type="application/pdf" src="https://commercial.bunn.com/img/image-not-available.png" allowfullscreen></iframe>
+                      </div>
                 </div>
             </div>
         </div>
@@ -127,24 +130,24 @@
     <script src="{{ asset('assets/js/pages-admin/surat-masuk-TU.js') }}"></script>
 
     <script type="text/javascript">
-      
+
         $(document).ready(function (e) {
-         
-           
+
+
            $('#surat').change(function(){
-                    
+
             let reader = new FileReader();
-         
-            reader.onload = (e) => { 
-         
-              $('#preview-image-before-upload').attr('src', e.target.result); 
+
+            reader.onload = (e) => {
+
+              $('#preview-image-before-upload').attr('src', e.target.result);
             }
-         
-            reader.readAsDataURL(this.files[0]); 
-           
+
+            reader.readAsDataURL(this.files[0]);
+
            });
-           
+
         });
-         
+
         </script>
 @endpush

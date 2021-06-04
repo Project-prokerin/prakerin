@@ -86,11 +86,11 @@
                                 <div class="card-header">
                                   <h4></h4>
                                 </div>
-                                  <form action="#" class="dropzone" id="mydropzone">
+                                  {{-- <form action="#" class="dropzone" id="mydropzone">
                                     <div class="fallback">
                                       <input name="file" type="file" multiple />
                                     </div>
-                                  </form>
+                                  </form> --}}
                                 </div>
                               </div>
                             </div>
@@ -113,3 +113,4 @@
 {{-- <script src="{{ asset('assets/js/main/table.js') }}" ></script> --}}
 <script src="{{ asset('assets/js/pages-admin/surat-masuk-TU.js') }}" ></script>
 @endpush
+
