@@ -99,18 +99,16 @@
                                 <label class="form-label">Jurusan</label>
                                 <div class="d-flex">
                                     <i class="fas fa-user border text-center"></i>
-                                    <select class="form-control  @error('jurusan')
+                                    <select class="form-control  @error('id_kelas')
                                         is-invalid
-                                    @enderror"  name="jurusan">
-                                        <option value="">Pilih Jurusan</option>
-                                        <option value="RPL"  @if(old('jurusan',$guru->jurusan) === 'RPL') selected @endif>RPL</option>
-                                        <option value="MM"  @if(old('jurusan',$guru->jurusan) === 'MM') selected @endif>MM</option>
-                                        <option value="TKJ"  @if(old('jurusan',$guru->jurusan) === 'TKJ') selected @endif>TKJ</option>
-                                        <option value="TEI"  @if(old('jurusan', $guru->jurusan) === 'TEI') selected @endif>TEI</option>
-                                        <option value="BC"  @if(old('jurusan', $guru->jurusan) === 'BC') selected @endif>BC</option>
+                                    @enderror"  name="id_kelas">
+                                      <option  value="">Pilih Jurusan</option>
+                                        @foreach ($kelas as $item)
+                                             <option value="{{ $item->id }}"  @if(old('id_kelas', $guru->kelas->id) == $item->id) selected @endif>{{ $item->level .' '. $item->jurusan }}</option>
+                                        @endforeach
                                     </select>
                                 </div>
-                                @error('jurusan')
+                                @error('id_kelas')
                                     <div class="invalid-feedback">
                                             {{ $message }}
                                     </div>

@@ -18,8 +18,7 @@ class CreateGuruTable extends Migration
             $table->foreignId('id_user')->nullable()->constrained('users')->onDelete('cascade')->onUpdate("cascade");
             $table->bigInteger('nik')->unsigned();
             $table->string('nama', 100);
-            $table->string('jabatan', 100)->nullable();
-            // $table->string('jurusan',100);
+            // $table->string('jabatan', 100)->nullable();
             $table->bigInteger('id_kelas')->unsigned();
             $table->string('no_telp');
             $table->timestamps();

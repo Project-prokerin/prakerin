@@ -9,6 +9,7 @@ use App\Models\guru;
 use Yajra\DataTables\DataTables;
 use Illuminate\Support\Facades\Hash;
 use App\Models\User;
+use App\Models\kelas;
 class guruController extends Controller
 {
     /**
@@ -32,7 +33,7 @@ class guruController extends Controller
             $guru = guru::all();
             return datatables()->of($guru)
             ->editColumn('jurusan', function ($data) {
-          
+
                 switch ($data->kelas->jurusan) {
                     case 'Rekayasa Perangkat Lunak':
                         return "RPL";
@@ -49,8 +50,8 @@ class guruController extends Controller
                                     case 'Teknik Elektonika Industri':
                                         return "TEI";
                                         break;
-                                        
-                    
+
+
                     default:
                         return "Jurusan Belum Terdaftar";
                     break;
@@ -71,7 +72,7 @@ class guruController extends Controller
     }
     public function tambah()
     {
-        return view('admin.guru.tambah');
+        return view('admin.guru.tambah', ['kelas' => kelas::all()]);
     }
 
     /**
@@ -85,13 +86,13 @@ class guruController extends Controller
         $validated = $request->validated();
         $jabatan = $request->jabatan;
 
-        if ($jabatan == 'hubin' || $jabatan == 'bkk' || $jabatan == 'kaprog') {
+        if ($jabatan == 'kejuruan') {
+            guru::create($request->all());
+            return redirect()->route('guru.index')->with('success', 'Data berhasil di tambah!');
+        } else {
             $user = user::create(['username' => $request->nik, 'password' => Hash::make('password'), 'role' => $request->jabatan]);
             $request->request->add(['id_user' => $user->id]);
             $guru = guru::create($request->all());
-            return redirect()->route('guru.index')->with('success', 'Data berhasil di tambah!');
-        } else {
-            guru::create($request->all());
             return redirect()->route('guru.index')->with('success', 'Data berhasil di tambah!');
         }
     }
@@ -115,7 +116,7 @@ class guruController extends Controller
      */
     public function edit($id)
     {
-        return view('admin.guru.edit',  ['guru' => guru::find($id)]);
+        return view('admin.guru.edit',  ['guru' => guru::find($id), 'kelas' => kelas::all()]);
     }
 
     /**
@@ -129,26 +130,7 @@ class guruController extends Controller
     {
         $validated = $request->validated();
         $jabatan = $request->jabatan;
-        if ($jabatan == 'hubin' || $jabatan == 'bkk' || $jabatan == 'kaprog' || $jabatan == 'waka' || $jabatan == 'ut') {
-            $guru = guru::where('id', $id)->update([
-                'nik' => $request->nik,
-                'nama' => $request->nama,
-                'jabatan' => $request->jabatan,
-                'jurusan' => $request->jurusan,
-                'no_telp' => $request->no_telp
-            ]);
-            $cekguru = guru::where('id',$id)->first();
-
-            if (empty($cekguru)) {
-                user::create(['username' => $request->nik, 'password' => Hash::make('password'), 'role' => $request->jabatan]);
-            }else {
-                user::where('id', $cekguru->id)->update(['username' => $request->nik, 'role' => $request->jabatan]);
-            }
-
-            return
-            redirect()->route('guru.index')->with('success', 'Data berhasil di tambah!');
-            // if jabatan == kejurusan
-        } else if($jabatan == 'kejuruan') {
+        if ($jabatan == 'kejuruan') {
             // cari guru
             $guru = guru::where('id', $id)->first();
             // jika use kosong
@@ -161,7 +143,7 @@ class guruController extends Controller
                     'jurusan' => $request->jurusan,
                     'no_telp' => $request->no_telp
                 ]);
-            }else {
+            } else {
                 // delete user and update guru
                 $guru->user->delete();
                 guru::where('id', $id)->update([
@@ -172,11 +154,28 @@ class guruController extends Controller
                     'no_telp' => $request->no_telp
                 ]);
             }
-
-
-            //
             return
-            redirect()->route('guru.index')->with('success', 'Data berhasil di tambah!');
+                redirect()->route('guru.index')->with('success', 'Data berhasil di tambah!');
+
+        } else  {
+            $guru = guru::where('id', $id)->update([
+                'nik' => $request->nik,
+                'nama' => $request->nama,
+                'jabatan' => $request->jabatan,
+                'jurusan' => $request->jurusan,
+                'no_telp' => $request->no_telp
+            ]);
+            $cekguru = guru::where('id', $id)->first();
+
+            if (empty($cekguru)) {
+                user::create(['username' => $request->nik, 'password' => Hash::make('password'), 'role' => $request->jabatan]);
+            } else {
+                user::where('id', $cekguru->id)->update(['username' => $request->nik, 'role' => $request->jabatan]);
+            }
+
+            return
+                redirect()->route('guru.index')->with('success', 'Data berhasil di tambah!');
+            // if jabatan == kejurusan
         }
     }
 
