@@ -100,7 +100,7 @@
             @if (Auth::user()->role == 'kepsek')
             <li class='@if (Request::is("admin/$role/disposisi","admin/$role/disposisi/*")) active @endif'>
             <a href='{{ route("disposisi.$role.index") }}' class="nav-link">
-                <i class="far fa-envelope"></i>
+                <i class="fas fa-envelope-open-text"></i>
                 <span>Disposisi</span>
             </a>
             </li>

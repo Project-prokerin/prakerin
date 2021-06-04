@@ -20,18 +20,18 @@
         }
 </style>
 @endpush
-@section('title','Prakerin | Surat Masuk')
-@section('judul','Surat Masuk')
+@section('title','Prakerin | Disposisi')
+@section('judul','Disposisi')
 @section('breadcrump')
 <div class="breadcrumb-item "><a href="{{ route('admin.dashboard') }}"><i class="fas fa-tachometer-alt"></i> DASBOARD</a></div>
-        <div class="breadcrumb-item"> <i class="fas fa-user"></i> SURAT MASUK</div>
+        <div class="breadcrumb-item"> <i class="fas fa-user"></i> DISPOSISI</div>
 @endsection
 @section('main')
 <div class="row">
     <div class="col-12">
       <div class="card">
         <div class="card-header">
-          <h4>Data Surat Masuk</h4>
+          <h4>Data Disposisi</h4>
         </div>
         <div class="card-body">
 
@@ -57,7 +57,7 @@
                   <td></td>
                   <td></td>
                   <td>
-                      <a href="" class="btn btn-primary"><i class="fas fa-search"></i></a>
+
                   </td>
                 </tr>
               </tbody>

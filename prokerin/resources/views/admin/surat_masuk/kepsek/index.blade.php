@@ -60,8 +60,6 @@
                   <td></td>
                   <td></td>
                   <td>
-                      <a href="" class="btn btn-primary"><i class="fas fa-search"></i></a>
-                      <a href="#" class="btn btn-warning"><i class="fas fa-pen"></i></a>
                   </td>
                 </tr>
               </tbody>

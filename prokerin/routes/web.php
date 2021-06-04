@@ -204,7 +204,7 @@ Route::prefix('admin')->middleware(['web', 'auth', 'role:admin'])->group(functio
     // table disposisi
     Route::get('disposisi', [DiposisiController::class, 'index'])->name('disposisi.admin.index');
     Route::post('disposisi/ajax', [DiposisiController::class, 'ajax'])->name('disposisi.admin.ajax');
-    Route::get('disposisi/detail/{id}', [DiposisiController::class, 'detail'])->name('disposisi.admin.detail');
+    // Route::get('disposisi/detail/{id}', [DiposisiController::class, 'detail'])->name('disposisi.admin.detail');
     Route::get('disposisi/tambah/', [DiposisiController::class, 'tambah'])->name('disposisi.admin.tambah');
     Route::patch('disposisi/post/{id}', [DiposisiController::class, 'store'])->name('disposisi.admin.post'); // update disposisi
     Route::get('disposisi/edit/{id}', [DiposisiController::class, 'edit'])->name('disposisi.admin.edit'); // edit disposisi biasa
