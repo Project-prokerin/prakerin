@@ -35,7 +35,8 @@
                     <div class="">
                         <div class="" style="height: auto;">
                             <div class="card-body">
-                                <form action="{{ route('guru.post') }}" method="POST" class="input">
+                                <form action="{{ route('admin.surat_masuk.update',$surat_masuk->id) }}" method="POST" class="input" enctype="multipart/form-data">
+                                   @method('PUT')
                                     @csrf
                                     <div class="mb-3">
                                         <label class="form-label">Nama Surat</label>
@@ -92,8 +93,7 @@
                                         <div class="card-header">
                                             <h4></h4>
                                         </div>
-                                        <input name="surat" id="surat" type="file"
-                                            value="{{ $surat_masuk->surat_m->path_surat }}" />
+                                        <input name="surat" id="surat" type="file" />
 
 
                                     </div>

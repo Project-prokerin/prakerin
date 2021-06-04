@@ -126,7 +126,6 @@ Route::prefix('admin/hubin')->middleware(['web', 'auth', 'role:hubin'])->group(f
     Route::post('surat_masuk/ajax', [Surat_masukController::class, 'ajax_pokja'])->name('surat_masuk.hubin.ajax');
     Route::get('surat_masuk/detail/{id}', [Surat_masukController::class, 'detai_pokja'])->name('surat_masuk.hubin.detail');
     Route::get('surat_masuk/download/{id}', [Surat_masukController::class, 'download'])->name('download');
-
         // disposisi by id
         Route::get('surat_masuk/{id}/disposisi/view', [DiposisiController::class, 'detail'])->name('desposisi.view');
         Route::get('surat_masuk/{id}/disposisi/tambah/', [DiposisiController::class, 'tambah_disposisi'])->name('desposisi.tambah');
@@ -149,7 +148,6 @@ Route::prefix('admin/sarpras')->middleware(['web', 'auth', 'role:sarpras'])->gro
 
 // untuk hubin, admin disin
 Route::prefix('admin')->middleware(['web', 'auth', 'role:admin'])->group(function () {
-
     // data siswa
     Route::get('siswa', [siswaController::class, 'index'])->name('siswa.index');
     Route::post('siswa/ajax', [siswaController::class, 'ajax'])->name('siswa.ajax');
