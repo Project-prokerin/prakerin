@@ -44,4 +44,17 @@ class guru extends Model
     {
         return $this->hasMany(Surat_masuk::class, 'id_dari', 'id');
     }
+    // surat keluar
+    public function surat_keluar_dari() // dari
+    {
+        return $this->hasMany(Surat_masuk::class, 'id_untuk', 'id');
+    }
+    public function surat_keluar_untuk() // untuk
+    {
+        return $this->hasMany(Surat_masuk::class, 'id_dari', 'id');
+    }
+    public function isi_surat()
+    {
+        return $this->hasOne(isi_surat::class, 'id_guru','id');
+    }
 }
