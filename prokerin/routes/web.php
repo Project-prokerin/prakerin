@@ -139,7 +139,6 @@ Route::prefix('admin/sarpras')->middleware(['web', 'auth', 'role:sarpras'])->gro
     Route::post('surat_masuk/ajax', [Surat_masukController::class, 'ajax_pokja'])->name('surat_masuk.sarpras.ajax');
     Route::get('surat_masuk/detail/{id}', [Surat_masukController::class, 'detail_pokja'])->name('surat_masuk.sarpras.detail');
     Route::get('surat_masuk/download/{id}', [Surat_masukController::class, 'download'])->name('download');
-
         // disposisi by id
         Route::get('surat_masuk/{id}/disposisi/view', [DiposisiController::class, 'detail'])->name('desposisi.view');
         Route::get('surat_masuk/{id}/disposisi/tambah/', [DiposisiController::class, 'tambah_disposisi'])->name('desposisi.tambah');

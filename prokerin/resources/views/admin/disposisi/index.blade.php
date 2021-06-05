@@ -42,8 +42,8 @@
                   <th>
                     No
                   </th>
-                  <th>Pokja Tujuan</th>
                   <th>Keterangan Disposisi</th>
+                  <th>Pokja Tujuan</th>
                   <th>Detail Surat</th>
                   <th>Action</th>
                 </tr>

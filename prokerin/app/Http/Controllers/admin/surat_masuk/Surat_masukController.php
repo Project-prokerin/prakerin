@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Disposisi;
 use App\Models\Surat_masuk;
 use App\Models\Surat_M;
+use App\Models\Detail_surat;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -47,7 +48,7 @@ class Surat_masukController extends Controller
                         . '' . ' <a href="/admin/surat_masuk/'. $id . '/disposisi/edit"   id="' . $id . '" class="edit btn btn-warning btn-sm">edit</a>'
                         . '' . ' <button type="button" name="delete" id="hapus-disposisi" data-id="' . $id . '" class="delete_disposisi btn btn-danger btn-sm">hapus</button>';
                     } else {
-                        $button = '<a href="'.$url . $data->id . '/disposisi/tambah"   id="' . $data->id . '" class="edit btn btn-primary btn-sm"><i class="fas fa-plus"></i></a>';
+                        $button = '<a href="/admin/surat_masuk/'.$url . $data->id . '/disposisi/tambah"   id="' . $data->id . '" class="edit btn btn-primary btn-sm"><i class="fas fa-plus"></i></a>';
                     }
                     return $button;
                 })
@@ -134,18 +135,25 @@ class Surat_masukController extends Controller
         'id_dari' => Auth::user()->id,
         'id_untuk' => $request->id_untuk,
         'status' => 'pengajuan',
-        'created_at' => Carbon::now()->format('Y-m-d')
+        'created_at' => Carbon::now()
     ]);
 
-    Surat_M::create([
+   $surat_m = Surat_M::create([
         'nama_surat' => $request->nama_surat,
         'path_surat' => "surat/surat_masuk/$namaFile",
         'tgl_surat_masuk' => Carbon::today()->toDateString(),
         'id_surat_masuk' => $surat_masuk->id,
-        'created_at' => Carbon::now()->format('Y-m-d')
+        'created_at' => Carbon::now()
     ]);
         $nm->move(public_path().'/surat/surat_masuk',$namaFile);
 
+        $surat_number = Surat_M::orderBy('created_at','DESC')->first();
+        Detail_surat::create([
+            'tgl_surat' => Carbon::today()->toDateString(), 
+            'no_surat' =>  str_pad($surat_number->id + 1, 3, "0", STR_PAD_LEFT),
+            'id_surat_m' => $surat_m->id,
+            'created_at' => Carbon::now()
+        ]);
         return redirect()->route('admin.surat_masuk.index')->with('pesan','Berhasil mengirim surat!');
 
 

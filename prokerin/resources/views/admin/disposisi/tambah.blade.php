@@ -1,5 +1,7 @@
 @extends('template.master')
 @push('link')
+<link rel="stylesheet" href="{{ asset('template/') }}/node_modules/select2/dist/css/select2.min.css">
+
 <style>
         .card-body .input i{
             width: 50px;
@@ -30,16 +32,25 @@
                 <div class="">
                     <div class="" style="height: auto;">
                         <div class="card-body">
-                        <form action="{{ route('guru.post') }}" method="POST" class="input">
+                        <form action="{{route('disposisi.admin.post',$surat)}}" method="POST" class="input">
+                            @method('PATCH')
                             @csrf
                             <div class="mb-3">
                                 <label class="form-label">Pokja Tujuan</label>
                                 <div class="d-flex">
                                 <i class="fas fa-user border text-center"></i>
-                                <input type="text" name="nik" class="form-control
-                                @error('nik') is-invalid @enderror" placeholder="Pokja" value="{{ old('nik') }}">
+                                {{-- <input type="hidden" name="id" value="{{$surat}}"> --}}
+                                {{-- <input type="text" name="nik" class="form-control --}}
+                                {{-- @error('nik') is-invalid @enderror" placeholder="Pokja" value="{{ old('nik') }}"> --}}
+                                <select class="form-control select2  @error('Pokjatujuan') is-invalid @enderror" placeholder="Pokja" value="{{ old('Pokjatujuan') }}" name="Pokjatujuan" id="">
+                                    <option value="" selected disabled>Pokja tujuan</option>
+                                    <option value="hubin" @if (old('Pokjatujuan') === 'hubin') selected @endif>Hubin</option>
+                                    <option value="kurikulum" @if (old('Pokjatujuan') === 'kurikulum') selected @endif>Kurikulum</option>
+                                    <option value="kesiswaan" @if (old('Pokjatujuan') === 'kesiswaan') selected @endif>Kesiswaan</option>
+                                    <option value="sarpras" @if (old('Pokjatujuan') === 'sarpras') selected @endif>Sarpras  </option>
+                                </select>
                                 </div>
-                                @error('nik')
+                                @error('Pokjatujuan')
                                                 <div class="invalid-feedback">
                                                     {{ $message }}
                                                 </div>
@@ -60,7 +71,7 @@
                                 <label class="form-label">Keterangan Disposisi</label>
                                 <div class="d-flex">
                                     <i class="fas fa-envelope-open-text border text-center"></i>
-                                    <textarea class="form-control" required=""></textarea>
+                                    <textarea class="form-control" name="Keterangan_disposisi" id="Keterangan_disposisi" ></textarea>
                                 </div>
 
                             </div>
@@ -68,7 +79,7 @@
                         <div style="margin-top: 40px;">
                             <button type="submit" class="btn btn-success rounded-pill mr-2"><i class="fas fa-check-square mr-2"></i>Submit</button>
                             </form>
-                            <a href="{{ route('surat_masuk.kepsek.index') }}" type="button" class="btn btn-danger rounded-pill"><i class="fas fa-window-close mr-2"></i>Cancel</a>
+                            <a href="{{ route('disposisi.admin.index') }}" type="button" class="btn btn-danger rounded-pill"><i class="fas fa-window-close mr-2"></i>Cancel</a>
                         </div>
                         </div>
                     </div>
@@ -84,5 +95,6 @@
 
 @endsection
 @push('script')
+<script src="{{ asset('template/') }}/node_modules/select2/dist/js/select2.full.min.js"></script>
 
 @endpush

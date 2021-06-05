@@ -18,8 +18,9 @@ class surat_mSeeder extends Seeder
         DB::table('surat_m')->insert([
             'nama_surat' => 'surat test',
             'path_surat' => '/surat/surat_masuk/default.jpg',
-            'tgl_surat_masuk' => Carbon::now(),
-            'id_surat_masuk' => 1
+            'tgl_surat_masuk' => Carbon::today()->toDateString(),
+            'id_surat_masuk' => 1,
+            'created_at' => Carbon::now()
         ]);
     }
 }

@@ -17,8 +17,8 @@ class disposisiSeeder extends Seeder
     {
         DB::table('disposisi')->insert([
             'id_detail_surat' => '1',
-            'pojkatujuan' => 'hubin',
-            'keterangan_disposisi' => 'keterangan'
+            'Pokjatujuan' => 'hubin',
+            'Keterangan_disposisi' => 'keterangan'
         ]);
     }
 }

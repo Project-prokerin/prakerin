@@ -15,7 +15,7 @@ class CreateDisposisiTable extends Migration
     {
         Schema::create('disposisi', function (Blueprint $table) {
             $table->id();
-            $table->string('Pojkatujuan');
+            $table->enum('Pokjatujuan',['hubin','kurikulum','kesiswaan','sarpras']);
             $table->string('Keterangan_disposisi');
             $table->foreignId('id_detail_surat')->constrained('detail_surat')->onDelete('cascade')->onUpdate("cascade");
             $table->timestamps();

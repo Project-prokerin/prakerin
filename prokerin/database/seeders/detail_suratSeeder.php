@@ -18,7 +18,9 @@ class detail_suratSeeder extends Seeder
         DB::table('detail_surat')->insert([
             'id_surat_m' => '1',
             'tgl_surat' => Carbon::now(),
-            'no_surat' => '001'
+            'no_surat' => '001',
+            'created_at' => Carbon::now()
+
         ]);
     }
 }

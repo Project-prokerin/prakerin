@@ -21,7 +21,7 @@ class GuruSeeder extends Seeder
         DB::table('guru')->insert([
             'nik' => $faker->nik,
             'nama' => $faker->title."".$faker->name,
-            'jabatan' => 'Kejuruan',
+            'jabatan' => 'kejuruan',
             'id_kelas'=> 1
 ,            'no_telp' => $faker->randomNumber(9),
         ]);
@@ -39,7 +39,7 @@ class GuruSeeder extends Seeder
             'id_user' => '2',
             'nik' => $faker->nik,
             'nama' => $faker->title . "" . $faker->name,
-            'jabatan' => 'kaprok',
+            'jabatan' => 'kaprog',
             'id_kelas'=> 3
 ,            'no_telp' => $faker->randomNumber(9),
         ]);

@@ -41,8 +41,8 @@ $(document).ready(function () {
                 name: 'surat'
             },
             {
-                data: 'Pojkatujuan',
-                name: 'Pojkatujuan'
+                data: 'Pokjatujuan',
+                name: 'Pokjatujuan'
             },
             {
                 data: 'Keterangan_disposisi',
@@ -56,7 +56,7 @@ $(document).ready(function () {
     });
     if ($('#role').text() == 'admin') {
         $('.btn-table').append(
-            '<a href="/admin/surat_masuk/tambah"class="btn btn-primary "> Tambah Data <i class="fas fa-plus"></i></button></a>'
+            '<a href="/admin/disposisi/tambah"class="btn btn-primary "> Tambah Data <i class="fas fa-plus"></i></button></a>'
         );
     } else if ($('#role').text() == 'kepsek') {
 
