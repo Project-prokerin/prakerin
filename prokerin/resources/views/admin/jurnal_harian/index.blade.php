@@ -31,94 +31,46 @@
     <div class="breadcrumb-item"> <i class="far fa-building"></i> JURNAL HARIAN</div>
 @endsection
 @section('main')
-    <div class="card">
-        <div class="buton" style="z-index: 2;">
-            <button type="button" class="btn btn-primary rounded-pill" data-toggle="modal" data-target="#exampleModal">
-                Tambah JurnalH <i class="fas fa-plus"></i>
-            </button>
-
-            {{-- <a style="margin-left: -170px" href="/export/excel/data_prakerin"><button type="button" class="btn btn-success buten ">Export to Excel</button></a>
-    <a href="/export/pdf/data_prakerin"><button type="button" class="btn btn-danger butan">Export to PDF</button></a> --}}
+<div class="row">
+    <div class="col-12">
+      <div class="card">
+        <div class="card-header">
+          <h4>Jurnal Harian</h4>
         </div>
-        <form class="d-flex flex-row-reverse mr-5" style="margin-top: -66px;">
-            <button class="btn btn-outline-success" type="submit"><i class="fas fa-search"></i></button>
-            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" style="width: 200px;">
-            <div>
-                <a href="/export/pdf/data_prakerin"><button type="button" class="btn btn-danger mr-3 rounded-pill"><i
-                            class="fas fa-cloud-download-alt"></i> PDF</button></a>
-            </div>
-            <div>
-                <a href="/export/excel/data_prakerin"><button type="button" class="btn btn-success mr-3 rounded-pill"><i
-                            class="fas fa-cloud-download-alt"></i> Excel</button></a>
-            </div>
-        </form>
+        <div class="card-body">
 
-
-        <!-- table -->
-        <div class="container">
-            <table class="table table-bordered text-center" id="table">
-                <thead>
-                    <tr>
-                        <th scope="col">No</th>
-                        <th scope="col">No Kelompok</th>
-                        <th scope="col">Guru Pembimbing</th>
-                        <th scope="col">Jurusan</th>
-                        <th scope="col">Perusahaan</th>
-                        <th scope="col">Actiom</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {{-- <tr>
-            <th scope="row">1</th>
-            <td>marker</td>
-            <td>11</td>
-            <td>RPL</td>
-            <td>121212</td>
-            <td>
-                <button type="button" class="btn btn-primary"><i class="fas fa-search"></i></button>
-                <button type="button" class="btn btn-warning"><i class="fas fa-pencil-alt"></i></button>
-                <button type="button" class="btn btn-danger"><i class="fas fa-trash"></i></button>
-            </td>
-        </tr> --}}
-                    {{-- <tr>
-            <th scope="row">1</th>
-            <td>marker</td>
-            <td>11</td>
-            <td>RPL</td>
-            <td>121212</td>
-            <td>
-                <button type="button" class="btn btn-primary"><i class="fas fa-search"></i></button>
-                <button type="button" class="btn btn-warning"><i class="fas fa-pencil-alt"></i></button>
-                <button type="button" class="btn btn-danger"><i class="fas fa-trash"></i></button>
-            </td>
-        </tr>
-        <tr>
-            <th scope="row">1</th>
-            <td>marker</td>
-            <td>11</td>
-            <td>RPL</td>
-            <td>121212</td>
-            <td>
-                <button type="button" class="btn btn-primary"><i class="fas fa-search"></i></button>
-                <button type="button" class="btn btn-warning"><i class="fas fa-pencil-alt"></i></button>
-                <button type="button" class="btn btn-danger"><i class="fas fa-trash"></i></button>
-            </td>
-        </tr> --}}
-                </tbody>
+          <div class="table-responsive" id="mytable4">
+            <table class="table table-striped" id="table99">
+              <thead class="text-center">
+                <tr>
+                  <th>
+                    No
+                  </th>
+                  <th>No Kelompok</th>
+                  <th>Guru Pembimbing</th>
+                  <th>Jurusan</th>
+                  <th>Perusahaan</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody class="text-center">
+                <tr>
+                  <td>
+                    1
+                  </td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                </tr>
+              </tbody>
             </table>
-
-            {{--  --}}
-            {{-- <nav aria-label="Page navigation example"> --}}
-            {{-- <ul class="pagination mt-5 mb-4 justify-content-right">
-                <li class="page-item"><a class="page-link" href="#">Previous</a></li>
-                <li class="page-item"><a class="page-link" href="#">1</a></li>
-                <li class="page-item"><a class="page-link" href="#">2</a></li>
-                <li class="page-item"><a class="page-link" href="#">Next</a></li>
-            </ul> --}}
-            {{-- </nav> --}}
-            {{--  --}}
+          </div>
         </div>
+      </div>
     </div>
+  </div>
     <div class="modal fade" id="exampleModal" aria-labelledby="exampleModalLabel" aria-hidden="true" data-backdrop="false">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -258,7 +210,7 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-body" id="editBody">
-                
+
                 </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -299,223 +251,9 @@
 
 
 
-
 @endsection
 @push('script')
     <script src="{{ asset('template/') }}/node_modules/select2/dist/js/select2.full.min.js"></script>
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
-
-    <script>
-        $(document).ready(function() {
-            var filter = $("#search").val();
-            console.log(filter);
-            var table = $('#table').DataTable({
-                dom: 't<"bottom"<"row"<"col-6"i><"col-6 mb-4"p>>>',
-                bLengthChange: false,
-                ordering: false,
-                info: true,
-                filtering: false,
-                searching: true,
-                serverside: true,
-                processing: true,
-                "responsive": true,
-                "autoWidth": false,
-                ajax: {
-                    headers: {
-                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                    },
-                    url: "{{ route('jurnalH.ajax') }}",
-                    type: "post",
-                    data: function(data) {
-                        data = '';
-                        return data
-                    }
-                },
-                columns: [{
-                        data: 'DT_RowIndex',
-                        name: 'DT_RowIndex'
-                    },
-                    {
-                        data: 'no_kelompok',
-                        name: 'no_kelompok'
-                    },
-                    {
-                        data: 'pembimbing',
-                        name: 'pembimbing'
-                    },
-                    {
-                        data: 'jurusan',
-                        name: 'jurusan'
-                    },
-                    {
-                        data: 'perusahaan',
-                        name: 'perusahaan'
-                    },
-
-                    {
-                        data: 'action',
-                        name: 'action'
-                    }
-                ],
-            });
-
-            // search engine
-            $("#search").keyup(function() {
-                table.search(this.value).draw();
-            })
-            // hapus data
-            $('body').on('click', '#hapus', function() {
-                // sweet alert
-                Swal.fire({
-                    title: 'Apa anda yakin?',
-                    icon: 'warning',
-                    showCancelButton: true,
-                    confirmButtonText: 'Hapus',
-                    cancelButtonText: 'Batal'
-                }).then((result) => {
-                    if (result.value) {
-                        id = $(this).data('id');
-                        $.ajax({
-                            url: "/admin/jurnalH/delete/" + id,
-                            type: "DELETE",
-                            data: {
-                                _token: '{{ csrf_token() }}'
-                            },
-                            success: function(data) {
-                                console.log(data);
-                                table.draw();
-                                Swal.fire(
-                                    'success',
-                                    'Data anda berhasil di hapus.',
-                                    'success'
-                                )
-                            },
-                            error: function(data) {
-                                console.log('Error:', data);
-                            }
-                        });
-                    } else if (result.dismiss === Swal.DismissReason.cancel) {}
-                })
-            });
-        });
-
-
-
-
-        $('#submit').click(function(event) {
-            event.preventDefault();
-            var form = $('#contact_form'),
-                url = form.attr('action'),
-                method = form.attr('method');
-
-            form.find('.invalid-feedback').remove();
-            form.find('.form-control').removeClass('is-invalid')
-            $.ajax({
-                url: url,
-                method: method,
-                data: form.serialize(),
-                success: function name(params) {
-                    form.trigger('reset');
-                    $('#exampleModal').modal('hide');
-                    alert = Swal.fire({
-                        title: 'Berhasil',
-                        text: 'Anda sudah absen hari ini',
-                        icon: 'success',
-                        confirmButtonText: 'tutup'
-                    })
-
-                    setInterval(() => {
-                        alert
-                    }, 3000);
-
-                    location.reload();
-                },
-                error: function(xhr) {
-                    console.log(xhr.responseJSON)
-                    var err = xhr.responseJSON;
-                    if ($.isEmptyObject(err) == false) {
-                        $.each(err.errors, function(key, value) {
-
-                            $('#' + key).addClass('is-invalid').closest('.input-group').append(
-                                '<div class="invalid-feedback">' + value + '</div>')
-                            console.log(key);
-                        })
-                    }
-                }
-            });
-        })
-
-
-        //edit
-        $(document).on('click', '#editButton', function(event) {
-            event.preventDefault();
-            let href = $(this).attr("data-attr");
-            
-            $.ajax({
-                url: href,
-                beforeSend: function() {
-                    $('#loader').show();
-                },
-                // return the result
-                success: function(result) {
-                    $('#editModal').modal("show");
-                    $('#editBody').html(result).show();
-                },
-                complete: function() {
-                    $('#loader').hide();
-                },
-                error: function(jqXHR, testStatus, error) {
-                    console.log(error);
-                    alert("Page " + href + " cannot open. Error:" + error);
-                    $('#loader').hide();
-                },
-                timeout: 8000
-            })
-        });
-
-        $('#update').click(function(event) {
-            event.preventDefault();
-            var form = $('#edit_form'),
-                url = form.attr('action'),
-                method = form.attr('method');
-            var nama = $( ".id_siswa option:selected" ).text();
-            form.find('.invalid-feedback').remove();
-            form.find('.form-control').removeClass('is-invalid')
-            $.ajax({
-                url: url,
-                method: method,
-                data: form.serialize(),
-                success: function name(params) {
-                    form.trigger('reset');
-                    $('#editModal').modal('hide');
-                    alert = Swal.fire({
-                        title: 'Berhasil',
-                        text: ''+nama+' Berhasil Update Absen ',
-                        icon: 'success',
-                        confirmButtonText: 'tutup'
-                    })
-
-                    setInterval(() => {
-                        alert
-                    }, 7000);
-
-                    location.reload();
-                },
-                error: function(xhr) {
-                    console.log(xhr.responseJSON)
-                    var err = xhr.responseJSON;
-                    if ($.isEmptyObject(err) == false) {
-                        $.each(err.errors, function(key, value) {
-
-                            $('#' + key).addClass('is-invalid').closest('.input-group').append(
-                                '<div class="invalid-feedback">' + value + '</div>')
-                            console.log(key);
-                        })
-                    }
-                }
-            });
-        })
-
-
-    </script>
+    <script src="{{ asset('assets/js/pages-admin/jurnalH.js') }}" ></script>
 @endpush

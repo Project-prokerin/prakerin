@@ -40,19 +40,24 @@ class jurnal_harianController extends Controller
             // })
 
              ->addColumn('id_siswa', function (jurnal_harian $jurnal_harian) {
-                return $jurnal_harian->siswa->jurusan;
+                 $siswa = empty($jurnal_harian->siswa->kelas->jurusan) ? "Belum mendapat jurusan" : $jurnal_harian->siswa->kelas->jurusan;
+                return $siswa;
             })
             ->addColumn('jurusan', function (jurnal_harian $jurnal_harian) {
-                return $jurnal_harian->siswa->kelas->jurusan;
+                $jurusan = empty($jurnal_harian->siswa->kelas->jurusan) ? "Belum mendapat jurusan" : $jurnal_harian->siswa->kelas->jurusan;
+                return $jurusan;
             })
             ->addColumn('no_kelompok', function (jurnal_harian $jurnal_harian) {
-                return $jurnal_harian->siswa->data_prakerin->kelompok_laporan->no;
-            }) 
+                $no = empty( $jurnal_harian->siswa->data_prakerin->kelompok_laporan->no) ? "Belum mendapat kelompok" :  $jurnal_harian->siswa->data_prakerin->kelompok_laporan->no;
+                return $no;
+            })
             ->addColumn('perusahaan', function (jurnal_harian $jurnal_harian) {
-                return $jurnal_harian->siswa->data_prakerin->kelompok_laporan->nama_perusahaan;
-            })  
+                $perusahaan = empty($jurnal_harian->siswa->data_prakerin->kelompok_laporan->nama_perusahaan) ? "Belum mendapat perusahaan" : $jurnal_harian->siswa->data_prakerin->kelompok_laporan->nama_perusahaan;
+                return $perusahaan;
+            })
             ->addColumn('pembimbing', function (jurnal_harian $jurnal_harian) {
-                return $jurnal_harian->siswa->data_prakerin->kelompok_laporan->guru->nama;
+                $pembimbing = empty($jurnal_harian->siswa->data_prakerin->kelompok_laporan->guru->nama) ? "Belum mendapat pembimbing" : $jurnal_harian->siswa->data_prakerin->kelompok_laporan->guru->nama;
+                return $pembimbing;
             })
             // ->addColumn('id_perusahaan', function (jurnal_harian $jurnal_harian) {
             //     return $jurnal_harian->perusahaan->nama;

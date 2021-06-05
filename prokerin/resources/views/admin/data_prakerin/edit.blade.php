@@ -19,9 +19,7 @@
                 @endsection
                 @section('main')
                     <div class="card mt-5">
-                        <div class="container text-center mt-5 mb-3 ml-1">
-                            <h3>Edit Prakerin</h3>
-                        </div>
+
                         <div class="container">
                             <form action="{{route('data_prakerin.update',$dataPrakerin->id)}}" method="POST">
                                 @method('PUT')
@@ -141,6 +139,5 @@
                     <script src="{{asset('template/')}}/node_modules/select2/dist/js/select2.full.min.js"></script>
 
                     @endpush
-                    
-                    
-                    
+
+

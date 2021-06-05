@@ -22,6 +22,7 @@
 <link rel="stylesheet" href="{{asset('template/assets/css/components.css')}}">
 <link rel="stylesheet" href="{{asset('assets/css/costom.css')}}">
 <link rel="stylesheet" href="{{ asset('assets/css/component.css') }}">
+
 <style>
 
 </style>
@@ -68,12 +69,15 @@
 <script src="{{ asset('template/node_modules/datatables/media/js/jquery.dataTables.min.js') }}"></script>
 <script src="{{ asset('template/node_modules/datatables.net-bs4/js/dataTables.bootstrap4.min.js') }}"></script>
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+
+<script src="{{ asset('template/node_modules/chart.js/dist/chart.min.js') }}"></script>
 <!-- JS Libraies -->
 @stack('script')
 
 <!-- Template JS File -->
 <script src="{{ asset('template/assets/js/scripts.js') }}"></script>
 <script src="{{ asset('template/assets/js/custom.js') }}"></script>
+
 
 
 

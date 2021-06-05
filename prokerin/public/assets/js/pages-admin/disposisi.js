@@ -65,7 +65,7 @@ $(document).ready(function () {
         // );
 
         $('.btn-table').append(
-            '<a href="/admin/kepsek/surat_masuk/tambah"class="btn btn-primary "> Tambah Data <i class="fas fa-plus"></i></button></a>'
+            '<a href="/admin/disposisi/kepsek/tambah"class="btn btn-primary "> Tambah Data <i class="fas fa-plus"></i></button></a>'
         );
 
     }

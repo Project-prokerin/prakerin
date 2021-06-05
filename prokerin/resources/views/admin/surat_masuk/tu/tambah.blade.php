@@ -22,17 +22,15 @@
     <div class="breadcrumb-item"> <i class="far fa-building"></i> SURAT MASUK</div>
 @endsection
 @section('main')
-    <div class="card">
-        <div class="container">
-            <div class="card-body mt-3">
-                <div class="">
-                    <h5>Data Guru</h5>
-                </div>
-            </div>
+<div class="row">
+    <div class="col-12">
+      <div class="card">
+        <div class="card-header">
+          <h4>Tambah Surat</h4>
         </div>
         <div class="card-body">
             <div class="row">
-                <div class="col-sm-6">
+                <div class="col-sm-4">
                     <div class="">
                         <div class="" style="height: auto;">
                             <div class="card-body">
@@ -72,39 +70,42 @@
                                                 {{ $message }}
                                             </div>
                                         @enderror
+
+                                        <div class="mb-3 mt-5">
+                                            <input name="surat" id="surat" type="file" />
+                                        </div>
+
                                     </div>
+
+                            </div>
+                            <div style="margin-top: 10px; margin-left:30px;">
+                                <button type="submit" class="btn btn-success rounded mr-2"><i
+                                        class="fas fa-check-square mr-2" margin-left="10px"></i>Submit</button>
+                                </form>
+                                <a href="{{ route('admin.surat_masuk.index') }}" type="button"
+                                    class="btn btn-danger rounded"><i class="fas fa-window-close mr-2"></i>Cancel</a>
                             </div>
                         </div>
                     </div>
                 </div>
                 {{--  --}}
                 {{--  --}}
-                <div class="col-sm-6">
+                <div class="col-sm-8">
                     <div class="">
                         <div class="" style="height: auto;">
-
                             <div class="row">
                                 <div class="col-12">
                                     <div class="card">
-                                        <div class="card-header">
-                                            <h4></h4>
+
                                         </div>
-                                        {{-- <form action="#" class="dropzone" id="mydropzone"> --}}
-                                        {{-- <div class="fallback"> --}}
-                                        <input name="surat" id="surat" type="file" />
-                                        {{-- </div> --}}
-                                        {{-- </form> --}}
+                                        <div class="embed-responsive embed-responsive-16by9" >
+                                            <iframe class="embed-responsive-item"  id="preview-image-before-upload" type="application/pdf" src="https://commercial.bunn.com/img/image-not-available.png" allowfullscreen></iframe>
+                                          </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div style="margin-top: 40px;">
-                            <button type="submit" class="btn btn-success rounded-pill mr-2"><i
-                                    class="fas fa-check-square mr-2"></i>Submit</button>
-                            </form>
-                            <a href="{{ route('admin.surat_masuk.index') }}" type="button"
-                                class="btn btn-danger rounded-pill"><i class="fas fa-window-close mr-2"></i>Cancel</a>
-                        </div>
+
                     </div>
                 </div>
             </div>
@@ -114,9 +115,9 @@
 
                     {{-- <embed id="preview-image-before-upload"  src="https://commercial.bunn.com/img/image-not-available.png" type="application/pdf"
                     style="width:800px; height:600px; border-radius:10px;  box-shadow:    3px 3px 5px 6px #ccc;"      /> --}}
-                    <div class="embed-responsive embed-responsive-16by9" >
+                    {{-- <div class="embed-responsive embed-responsive-16by9" >
                         <iframe class="embed-responsive-item"  id="preview-image-before-upload" type="application/pdf" src="https://commercial.bunn.com/img/image-not-available.png" allowfullscreen></iframe>
-                      </div>
+                      </div> --}}
                 </div>
             </div>
         </div>

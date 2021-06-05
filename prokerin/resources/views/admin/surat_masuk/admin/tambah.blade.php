@@ -115,7 +115,7 @@
                     {{-- <embed id="preview-image-before-upload"  src="https://commercial.bunn.com/img/image-not-available.png" type="application/pdf"
                     style="width:800px; height:600px; border-radius:10px;  box-shadow:    3px 3px 5px 6px #ccc;"      /> --}}
                     <div class="embed-responsive embed-responsive-16by9" >
-                        <iframe class="embed-responsive-item"  id="preview-image-before-upload" type="application/pdf" src="https://commercial.bunn.com/img/image-not-available.png" allowfullscreen></iframe>
+                        <iframe class="embed-responsive-item"  id="preview-image-before-upload" type="application/pdf" src="https://commercial.bunn.com/img/image-not-available.png" width="10%" allowfullscreen></iframe>
                       </div>
                 </div>
             </div>
