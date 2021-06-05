@@ -92,6 +92,7 @@ $(document).ready(function() {
     })
 
 });
+
 $(document).ready(function() {
 
 
@@ -108,7 +109,7 @@ $(document).ready(function() {
                     }
                 });
                 $.ajax({
-                    url: "/export/pdf/kelompok/" + id + "/" + nomor,
+                    url: "/admin/export/pdf/kelompok/" + id + "/" + nomor,
                     type: "POST",
                     data: {
                         "id": id,
@@ -137,12 +138,12 @@ $(document).ready(function() {
                             text: "Gagal Di Download",
                             icon: "error",
                         });
-
-
+    
+    
                     }
                 });
-
+    
             });
     })
-
-});
+    
+    });

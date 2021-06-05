@@ -292,7 +292,6 @@ Route::prefix('admin')->middleware(['web', 'auth', 'role:kaprog,hubin'])->group(
 
 // bkk
 Route::prefix('admin')->middleware(['web', 'auth', 'role:bkk,hubin'])->group(function () {
-
     // pembekalan
     Route::get('pembekalan', [pembekalanContoller::class, 'index'])->name('pembekalan.index');
     Route::post('pembekalan/ajax', [pembekalanContoller::class, 'ajax'])->name('pembekalan.ajax');

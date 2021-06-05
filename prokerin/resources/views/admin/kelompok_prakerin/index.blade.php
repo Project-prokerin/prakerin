@@ -128,4 +128,9 @@
 @push('script')
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script src="{{ asset('assets/js/pages-admin/kelompok.js') }}" ></script>
+
+    <script>
+  
+
+    </script>
 @endpush
