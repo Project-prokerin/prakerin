@@ -26,7 +26,6 @@ class GuruSeeder extends Seeder
 ,            'no_telp' => $faker->randomNumber(9),
         ]);
         }
-        // admin
         DB::table('guru')->insert([
             'id_user' => '1',
             'nik' => $faker->nik,

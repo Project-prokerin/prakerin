@@ -1,6 +1,13 @@
 $(document).ready( function () {
     var filter = $('#search').val();
-    console.log(filter);
+    role = $('#role').text();
+    if (role == 'admin') {
+        url = "admin/surat_keluar/ajax";
+    }else if (role == 'hubin') {
+        url = "admin/hubin/surat_keluar/ajax";
+    }else if (role == 'kepsek') {
+        url = "admin/kepsek/surat_keluar/ajax";
+    }
     var table = $('#table-2').DataTable({
         dom:
 			"<'row'<'ol-sm-12 col-md-6 btn-table'><'col-sm-12 col-md-6  pdf-button'f>>" +
@@ -20,7 +27,7 @@ $(document).ready( function () {
         headers: {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         },
-        url: "/admin/surat_masuk/ajax",
+        url: url,
         type: "post",
         data: function (data) {
             data = '';
@@ -33,7 +40,6 @@ $(document).ready( function () {
         { data: 'untuk', name:'untuk'},
         { data: 'jabatan', name:'jabatan'},
         { data: 'status', name:'jabatan'},
-        { data: 'disposisi', name:'disposisi'},
         { data: 'action', name:'action'},
         ],
 
