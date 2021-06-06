@@ -3,14 +3,15 @@ $(document).ready( function () {
 
     role = $('#role').data('role');
     if (role == 'admin') {
-        url = "/admin/surat_keluar/ajax";
+        url = "/admin/surat_keluar/ajax/";
         url_delete = "/admin/surat_keluar/delete/"
     }else if (role == 'hubin') {
-        url = "/admin/hubin/surat_keluar/ajax";
+        url = "/admin/hubin/surat_keluar/ajax/";
         url_delete = "/admin/hubin/surat_keluar/delete/";
     }else if (role == 'kepsek') {
-        url = "/admin/kepsek/surat_keluar/ajax";
-        url_delete = "/admin/kepsek/surat_keluar/delete/";
+        url = "/admin/kepsek/surat_keluar/ajax/";
+         url_delete = "/admin/kepsek/surat_keluar/delete/";
+
     }
 
     function column(role){
@@ -38,7 +39,7 @@ $(document).ready( function () {
             { data: 'action', name:'action'},]
         }
     }
-    var table = $('#table-1').DataTable({
+    var table = $('#table80').DataTable({
         dom:
 			"<'row'<'ol-sm-12 col-md-6 btn-table'><'col-sm-12 col-md-6  pdf-button'f>>" +
 			"<'row'<'col-sm-12'tr>>" +
@@ -70,16 +71,20 @@ $(document).ready( function () {
 
 if(role == 'admin'){
     $('.btn-table').append(
-            '<a href="/admin/tambah"class="btn btn-primary  "> Tambah Data <i class="fas fa-plus"></i></button></a>'
+            '<a href="/admin/surat_keluar/tambah"class="btn btn-primary  "> Tambah Data <i class="fas fa-plus"></i></button></a>'
     );
 }else if (role == "hubin") {
       $('.btn-table').append(
-            '<a href="/admin/'+role+'/tambah"class="btn btn-primary  "> Tambah Data <i class="fas fa-plus"></i></button></a>'
+            '<a href="/admin/'+role+'/surat_keluar/tambah"class="btn btn-primary  "> Tambah Data <i class="fas fa-plus"></i></button></a>'
     );
+}else if (role == "kepsek") {
+    $('.btn-table').append(
+          '<a href="/admin/'+role+'/tambah"class="btn btn-primary  "> Tambah Data <i class="fas fa-plus"></i></button></a>'
+  );
 }
 
 
-$('#table-1_filter').prepend(
+$('#table80_filter').prepend(
         '<a href="#"class="btn btn-danger  ml-3"> PDF <i class="fas fa-cloud-download-alt"></i></button></a>' +
         '<a href="#"class="btn btn-success mr-3  ml-2"> Excel <i class="fas fa-cloud-download-alt"></i></button></a>'
 );

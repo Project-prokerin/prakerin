@@ -89,7 +89,18 @@ class Surat_keluarController extends Controller
 
     public function tambah()
     {
-
+        $role = Auth::user()->role;
+        switch ($role) {
+            case 'kepsek':
+                return view('admin.surat_keluar.kepsek.tambah');
+                break;
+            case 'hubin':
+                return view('admin.surat_keluar.hubin.tambah');
+                break;
+            case 'admin':
+                return view('admin.surat_keluar.admin.tambah');
+                break;
+        }
     }
 
     /**
@@ -123,6 +134,18 @@ class Surat_keluarController extends Controller
     public function edit($id)
     {
         //
+        $role = Auth::user()->role;
+        switch ($role) {
+            case 'kepsek':
+                return view('admin.surat_keluar.kepsek.edit');
+                break;
+            case 'hubin':
+                return view('admin.surat_keluar.hubin.edit');
+                break;
+            case 'admin':
+                return view('admin.surat_keluar.admin.edit');
+                break;
+        }
     }
 
     /**

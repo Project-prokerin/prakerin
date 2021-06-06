@@ -18,14 +18,12 @@
             <div class="breadcrumb-item"> <i class="far fa-building"></i> DATA GURU</div>
     @endsection
     @section('main')
-    <div class="card">
-        <div class="container">
-            <div class="card-body mt-3">
-                <div class="">
-                    <h5>Data Guru</h5>
-                </div>
+    <div class="row">
+        <div class="col-12">
+          <div class="card">
+            <div class="card-header">
+              <h4>Tambah Guru</h4>
             </div>
-        </div>
         <div class="card-body">
             <div class="row">
                 <div class="col-sm-6">
@@ -129,9 +127,9 @@
                             </div>
                         </div>
                         <div style="margin-top: 40px;">
-                            <button type="submit" class="btn btn-success rounded-pill mr-2"><i class="fas fa-check-square mr-2"></i>Submit</button>
+                            <button type="submit" class="btn btn-success rounded mr-2"><i class="fas fa-check-square mr-2"></i>Submit</button>
                             </form>
-                            <a href="{{ route('guru.index') }}" type="button" class="btn btn-danger rounded-pill"><i class="fas fa-window-close mr-2"></i>Cancel</a>
+                            <a href="{{ route('guru.index') }}" type="button" class="btn btn-danger rounded"><i class="fas fa-window-close mr-2"></i>Cancel</a>
                         </div>
                         </div>
                     </div>

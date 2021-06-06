@@ -568,13 +568,13 @@
     <div class="card-body mb-3">
         <div class="d-flex">
             <div>
-                <button type="submit" class="btn btn-primary rounded-pill"><i
+                <button type="submit" class="btn btn-success rounded"><i
                         class="fas fa-check-square mr-2"></i>Submit</button>
             </div>
             </form>
             &nbsp;&nbsp;&nbsp;
             <div>
-                <a href="{{ route('siswa.index') }}" class="btn btn-danger rounded-pill"><i
+                <a href="{{ route('siswa.index') }}" class="btn btn-danger rounded"><i
                         class="fas fa-window-close mr-2"></i>Cancel</a>
             </div>
         </div>

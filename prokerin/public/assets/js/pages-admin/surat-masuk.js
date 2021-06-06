@@ -80,9 +80,24 @@ role = $('#role').data('role');
         columns:columns(role),
 
     });
-$('.btn-table').append(
-        '<a href="/admin/surat_masuk/tambah"class="btn btn-primary  "> Tambah Data <i class="fas fa-plus"></i></button></a>'
-);
+// $('.btn-table').append(
+//         '<a href="/admin/surat_masuk/kepsek/tambah"class="btn btn-primary  "> Tambah Data <i class="fas fa-plus"></i></button></a>'
+// );
+
+if(role == 'admin'){
+    $('.btn-table').append(
+            '<a href="/admin/surat_masuk/tambah"class="btn btn-primary  "> Tambah Data <i class="fas fa-plus"></i></button></a>'
+    );
+}else if (role == "hubin") {
+      $('.btn-table').append(
+            '<a href="/admin/'+role+'/tambah"class="btn btn-primary  "> Tambah Data <i class="fas fa-plus"></i></button></a>'
+    );
+// }else if (role == "kepsek") {
+//     $('.btn-table').append(
+//           '<a href="/admin/'+role+'/tambah"class="btn btn-primary  "> Tambah Data <i class="fas fa-plus"></i></button></a>'
+//   );
+}
+
 $('#table-1_filter').prepend(
         '<a href="#"class="btn btn-danger  ml-3"> PDF <i class="fas fa-cloud-download-alt"></i></button></a>' +
         '<a href="#"class="btn btn-success mr-3  ml-2"> Excel <i class="fas fa-cloud-download-alt"></i></button></a>'
