@@ -21,6 +21,107 @@
     @endsection
 @section('main')
 
+    <div class="card">
+        <div class="container">
+            <div class="card-body mt-3">
+                <div class="">
+                    <h5>Edit Guru</h5>
+                </div>
+            </div>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="">
+                        <div class="" style="height: auto;">
+                            <div class="card-body">
+                                <form action="{{ route('admin.surat_masuk.update',$surat_masuk->id) }}" method="POST" class="input" enctype="multipart/form-data">
+                                   @method('PUT')
+                                    @csrf
+                                    <div class="mb-3">
+                                        <label class="form-label">Nama Surat</label>
+                                        <div class="d-flex">
+                                            <i class="fas fa-user border text-center"></i>
+                                            <input type="text" name="nama_surat" class="form-control @error('nama_surat')
+                                            is-invalid
+                                    @enderror" placeholder="nama surat" value="{{ $surat_masuk->surat_m->nama_surat }}">
+                                        </div>
+                                        @error('nama_surat')
+                                            <div class="invalid-feedback">
+                                                {{ $message }}
+                                            </div>
+                                        @enderror
+                                    </div>
+                                    <div class="mb-3">
+                                        <label class="form-label">Dikirim Ke</label>
+                                        <div class="d-flex">
+                                            <i class="fas fa-user border text-center"></i>
+                                            <select class="form-control @error('id_untuk')
+                                            is-invalid
+                                    @enderror" name="id_untuk">
+                                                <option value="">Pilih Tujuan</option>
+                                                <option value="17"
+                                                    {{ (old('id_untuk') ?? $surat_masuk->id_untuk) == '17' ? 'selected' : '' }}>
+                                                    Hubin</option>
+                                                <option value="13"
+                                                    {{ (old('id_untuk') ?? $surat_masuk->id_untuk) == '13' ? 'selected' : '' }}>
+                                                    Kurikulum</option>
+                                                <option value="14"
+                                                    {{ (old('id_untuk') ?? $surat_masuk->id_untuk) == '14' ? 'selected' : '' }}>
+                                                    Kesiswaan</option>
+                                            </select>
+                                        </div>
+                                        @error('id_untuk')
+                                            <div class="invalid-feedback">
+                                                {{ $message }}
+                                            </div>
+                                        @enderror
+                                    </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {{--  --}}
+                {{--  --}}
+                <div class="col-sm-6">
+                    <div class="">
+                        <div class="" style="height: auto;">
+
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="card">
+                                        <div class="card-header">
+                                            <h4></h4>
+                                        </div>
+                                        <input name="surat" id="surat" type="file" />
+
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div style="margin-top: 40px;">
+                            <button type="submit" class="btn btn-success rounded-pill mr-2"><i
+                                    class="fas fa-check-square mr-2"></i>Submit</button>
+                            </form>
+                            <a href="{{ route('admin.surat_masuk.index') }}" type="button"
+                                class="btn btn-danger rounded-pill"><i class="fas fa-window-close mr-2"></i>Cancel</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="container mt-5">
+                <div class="row">
+                    <h3>Preview : <b>{{ ltrim(strstr($surat_masuk->surat_m->path_surat, '.'), '.') }}</b></h3>
+                        <div class="embed-responsive embed-responsive-16by9" >
+                            <embed class="embed-responsive-item"  id="preview-image-before-upload" type="application/pdf" src="/{{ $surat_masuk->surat_m->path_surat }}"/>
+                        </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    </div>
 
 @endsection
 @push('script')

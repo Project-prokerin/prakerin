@@ -16,6 +16,7 @@ use App\Http\Controllers\admin\laporan\laporanController;
 use App\Http\Controllers\admin\kelas\kelasController;
 use App\Http\Controllers\admin\surat_masuk\Surat_masukController;
 use App\Http\Controllers\admin\surat_masuk\DiposisiController;
+use App\Http\Controllers\admin\surat_keluar\Surat_keluarController;
 // user routeus
 // ex App\Http\Controllers\user\namaController;
 use App\Http\Controllers\user\userController;

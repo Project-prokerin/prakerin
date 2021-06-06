@@ -16,8 +16,10 @@ class detail_surat_kSeeder extends Seeder
     public function run()
     {
         DB::table('detail_surat_k')->insert([
-            'tgl_surat' => Carbon::now(),
+            'id_template_surat' => 1,
             'no_surat' => '01',
+            'tgl_surat' => Carbon::now(),
+            'path_surat' => '/file/surat_keluar/surat/default.pdf',
             'id_tanda_tangan' => 1,
             'id_surat_keluar' => 1,
         ]);

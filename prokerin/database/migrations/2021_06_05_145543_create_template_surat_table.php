@@ -19,9 +19,6 @@ class CreateTemplateSuratTable extends Migration
             $table->string('path_surat');
             $table->timestamps();
         });
-        Schema::table('surat_keluar', function (Blueprint $table) {
-            $table->foreign('id_template_surat')->references('id')->on('template_surat')->onDelete('set null')->onUpdate("cascade");
-        });
     }
 
     /**

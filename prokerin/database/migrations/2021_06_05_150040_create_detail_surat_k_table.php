@@ -15,8 +15,10 @@ class CreateDetailSuratKTable extends Migration
     {
         Schema::create('detail_surat_k', function (Blueprint $table) {
             $table->id();
-            $table->date('tgl_surat');
+            $table->foreignId('id_template_surat')->constrained('template_surat')->onDelete('cascade')->onUpdate("cascade");
             $table->string('no_surat');
+            $table->date('tgl_surat');
+            $table->string('path_surat');
             $table->bigInteger('id_tanda_tangan')->unsigned()->nullable();
             $table->foreignId('id_surat_keluar')->constrained('surat_keluar')->onDelete('cascade')->onUpdate("cascade");
             $table->timestamps();

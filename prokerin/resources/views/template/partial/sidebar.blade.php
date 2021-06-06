@@ -1,4 +1,5 @@
 @if(Auth::check())
+@php $role = Auth::user()->role; @endphp
 <div class="main-sidebar position-fixed">
     <aside id="sidebar-wrapper">
         <div class="sidebar-brand">
@@ -88,7 +89,23 @@
                 </a>
             </li>
             @endif
-            @php $role = Auth::user()->role; @endphp
+            @if($role == "hubin" or $role == "kepsek")
+            @if ($role == 'kepsek')
+                <li class="menu-header">Prakerin</li>
+            @endif
+            <li class='@if (Request::is("admin/$role/surat_keluar","admin/$role/surat_keluar/*")) active @endif'>
+                <a href='{{ route("$role.surat_keluar.index") }}' class="nav-link"><i class="fas fa-file-alt"></i>
+                    <span>Surat Penugasan </span>
+                </a>
+            </li>
+            @elseif($role == "admin")
+            
+            <li class='@if (Request::is("admin/surat_keluar","admin/surat_keluar/*")) active @endif'>
+                <a href='{{ route("$role.surat_keluar.index") }}' class="nav-link"><i class="fas fa-file-alt"></i>
+                    <span>Surat Penugasan </span>
+                </a>
+            </li>
+            @endif
             @if($role == 'tu' || $role == 'kepsek' || $role == 'hubin' || $role == 'sarpras' || $role == 'kurikulum' || $role == 'kesiswaan')
                 <li class="menu-header">Takola</li>
             <li class='@if (Request::is("admin/$role/surat_masuk","admin/$role/surat_masuk/*")) active @endif'>
@@ -132,7 +149,8 @@
                     <span>Surat Keluar</span>
                 </a>
             </li> --}}
-           @endif
+@endif
+
     </aside>
 </div>
 @endif

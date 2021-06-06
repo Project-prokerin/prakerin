@@ -13,6 +13,6 @@ class Template_surat extends Model
     protected $dates = [];
     public function surat_keluar()
     {
-        return $this->hasMany(Surat_keluar::class, 'id_template_surat', 'id');
+        return $this->hasMany(Detail_surat_k::class, 'id_template_surat', 'id');
     }
 }

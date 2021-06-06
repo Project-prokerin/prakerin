@@ -36,7 +36,7 @@
         <div class="card-body">
 
           <div class="table-responsive" id="mytable4">
-            <table class="table table-striped" id="table-2">
+            <table class="table table-striped" id="table-1">
               <thead class="text-center">
                 <tr>
                   <th>
@@ -69,8 +69,8 @@
       </div>
     </div>
   </div>
-<span class="d-none" id="nam" data-id="transaksi"></span>
+<span class="d-none" id="role" data-role="{{ Auth::user()->role }}"></span>
 @endsection
 @push('script')
-<script src="{{ asset('assets/js/pages-admin/surat-masuk-Kepsek.js') }}" ></script>
+<script src="{{ asset('assets/js/pages-admin/surat-masuk.js') }}" ></script>
 @endpush

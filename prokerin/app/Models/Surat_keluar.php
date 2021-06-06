@@ -20,10 +20,7 @@ class Surat_keluar extends Model
     {
         return $this->belongsTo(guru::class, 'id_untuk');
     }
-    public function template_surat()
-    {
-        return $this->belongsTo(Template_surat::class, 'id_template_surat');
-    }
+
     public function detail_surat()
     {
         return $this->hasOne(Detail_surat_k::class, 'id_surat_keluar','id');

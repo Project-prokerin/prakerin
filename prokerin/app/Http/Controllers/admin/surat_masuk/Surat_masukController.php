@@ -16,7 +16,15 @@ use File;
 class Surat_masukController extends Controller
 {
 
+    public function index()
+    {
 
+    }
+
+    public function ajax()
+    {
+
+    }
     // route admin
     public function index_admin()
     {
@@ -149,7 +157,7 @@ class Surat_masukController extends Controller
 
         $surat_number = Surat_M::orderBy('created_at','DESC')->first();
         Detail_surat::create([
-            'tgl_surat' => Carbon::today()->toDateString(), 
+            'tgl_surat' => Carbon::today()->toDateString(),
             'no_surat' =>  str_pad($surat_number->id + 1, 3, "0", STR_PAD_LEFT),
             'id_surat_m' => $surat_m->id,
             'created_at' => Carbon::now()
@@ -163,10 +171,10 @@ class Surat_masukController extends Controller
     {
         // dd(Surat_masuk::findOrFail($id)->surat_m->path_surat);
         switch (Auth::user()->role) {
-            case 'admin':
+            case 'tu':
                 return view('admin.surat_masuk.tu.edit', ['surat_masuk' => Surat_masuk::findOrFail($id)]);
                 break;
-            case 'kepsek':
+            case 'admin':
                 return view('admin.surat_masuk.admin.edit', ['surat_masuk' => Surat_masuk::findOrFail($id)]);
                 break;
         }
@@ -238,7 +246,7 @@ class Surat_masukController extends Controller
             File::delete(public_path($file_path->path_surat));
         }
 
-        Surat_masuk::find($id)->delete();
+        Surat_masuk::destory($id);
         return response()->json($data = 'berhasil');
     }
 
@@ -293,12 +301,13 @@ class Surat_masukController extends Controller
     // route pokja
     public function index_pokja()
     {
+        dd( Disposisi::where('Pokjatujuan', Auth::user()->role)->get());
         return view('admin.surat_masuk.pokja.index');
     }
     public function ajax_pokja(Request $request)
     {
         if ($request->ajax()) {
-            $surat = Disposisi::where('Pojkatujuan', Auth::user()->role)->get();
+            $surat = Disposisi::where('Pokjatujuan', Auth::user()->role)->get();
             return datatables()->of($surat)
             ->addColumn('nama', function ($data) {
                 return $data->detail_surat->surat_m->nama_surat;
@@ -315,7 +324,7 @@ class Surat_masukController extends Controller
             ->addColumn('disposisi', function ($data) {
                 $id = $data->id;
                 $button = '<a href="/admin/'. Auth::user()->role .'/surat_masuk/' . $id . '/disposisi/view"   id="' . $id . '" class="edit btn btn-success btn-sm">view</a>';
-                return $button;
+                return ' ';
         })
             ->addColumn('action', function ($data) {
                     $button = '<a href="/admin/'.Auth::user()->role.'/surat_masuk/download/' . $data->id . '"   id="' . $data->id . '" class="edit btn btn-success btn-sm"><i class="fa fa-download"></i></a>';

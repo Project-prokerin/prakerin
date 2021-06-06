@@ -20,8 +20,8 @@
         }
 </style>
 @endpush
-@section('title','Prakerin | Surat Masuk')
-@section('judul','Surat Masuk')
+@section('title','Prakerin | Surat Penugasan')
+@section('judul','Surat Penugasan')
 @section('breadcrump')
 <div class="breadcrumb-item "><a href="{{ route('admin.dashboard') }}"><i class="fas fa-tachometer-alt"></i> DASBOARD</a></div>
         <div class="breadcrumb-item"> <i class="fas fa-user"></i> SURAT MASUK</div>
@@ -31,7 +31,7 @@
     <div class="col-12">
       <div class="card">
         <div class="card-header">
-          <h4>Data Surat Masuk</h4>
+          <h4>Data Surat Penugasan</h4>
         </div>
         <div class="card-body">
 
@@ -43,10 +43,8 @@
                     No
                   </th>
                   <th>Nama Surat</th>
-                  <th>dari</th>
-                  <th>jabatan</th>
                   <th>status</th>
-                  <th>Disposisi</th>
+                  <th>tanggal surat</th>
                   <th>Action</th>
                 </tr>
               </thead>
@@ -58,9 +56,8 @@
       </div>
     </div>
   </div>
-<span class="d-none" id="role" data-role="pokja"></span>
-<span class="d-none" id="jabatan" data-jabatan="{{Auth::user()->role}}"></span>
+<span class="d-none" id="role" data-id="role">{{Auth::user()->role}}</span>
 @endsection
 @push('script')
-<script src="{{ asset('assets/js/pages-admin/surat-masuk.js') }}" ></script>
+<script src="{{ asset('assets/js/pages-admin/surat-keluar.js') }}" ></script>
 @endpush
