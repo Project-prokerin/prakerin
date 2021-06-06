@@ -58,7 +58,7 @@
       </div>
     </div>
   </div>
-<span class="d-none" id="jabatan" data-id="role">{{Auth::user()->role}}</span>
+<span class="d-none" id="role" data-role="{{Auth::user()->role}}"></span>
 @endsection
 @push('script')
 <script src="{{ asset('assets/js/pages-admin/surat-keluar.js') }}" ></script>

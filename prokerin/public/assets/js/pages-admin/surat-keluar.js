@@ -1,7 +1,7 @@
 $(document).ready( function () {
     var filter = $('#search').val();
 
-    role = $('#role').text();
+    role = $('#role').data('role');
     if (role == 'admin') {
         url = "/admin/surat_keluar/ajax";
         url_delete = "/admin/surat_keluar/delete/"
@@ -10,7 +10,7 @@ $(document).ready( function () {
         url_delete = "/admin/hubin/surat_keluar/delete/";
     }else if (role == 'kepsek') {
         url = "/admin/kepsek/surat_keluar/ajax";
-         url_delete = "/admin/kepsek/surat_keluar/delete/";
+        url_delete = "/admin/kepsek/surat_keluar/delete/";
     }
 
     function column(role){
