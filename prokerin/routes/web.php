@@ -301,6 +301,7 @@ Route::prefix('admin')->middleware(['web', 'auth', 'role:kaprog,hubin'])->group(
     Route::delete('/kelompok/destroy_all/{id}', [kelompokController::class, 'delete_all'])->name('kelompok.delete-all');
     // Route::get('/export/excel/kelompok', [ExcelController::class, 'kelompok']);
     Route::post('/export/pdf/kelompok/{id}/{nomor}', [PDFController::class, 'kelompokPrakerin'])->name('export.kelompok');
+    Route::get('/export/pdf/contoh', [PDFController::class, 'contoh'])->name('export.contoh');
 
     // laporan magang
     Route::get('laporan', [laporanController::class, 'index'])->name('laporan.index');

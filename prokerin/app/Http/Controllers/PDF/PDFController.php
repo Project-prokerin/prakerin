@@ -24,14 +24,14 @@ class PDFController extends Controller
         return $pdf->download('DATA PERUSAHAAN.PDF');
     }
     public function kelompokPrakerin(Request $request)
-    {   
-        
+    {
+
         // dd($id,$no);
         $id = $request->id;
         $no = $request->nomor;
         // $no_kelompok = kelompok_laporan::where('no',$id)->get();
         $nomor = $no;
-        
+
 
         // $options = new Options();
         // $options->setIsRemoteEnabled(true);
@@ -49,7 +49,7 @@ class PDFController extends Controller
     $waktu = Carbon::now()->isoFormat('D MMMM Y');
     $kelompok = kelompok_laporan::where('no',$id)->whereNotNull('id_data_prakerin')->get();
 
-    
+
     // $kelompok = kelompok_laporan::whereHas('data_prakerin'
 
             $KPrakerin = PDF::loadView('export.PDF.kelompok_prakerin', compact('kelompok','waktu','nomor'))->setOptions(['defaultFont' => 'sans-serif','isHtml5ParserEnabled' => true, 'isRemoteEnabled' => true]);
@@ -59,6 +59,13 @@ class PDFController extends Controller
 
         // return view('export.PDF.kelompok_prakerin',compact('kelompok'));
     }
-    
-    
+
+    public function contoh()
+    {
+
+        $pdf = PDF::loadView('export.PDF.contoh');
+        return $pdf->stream('DATA contoh.PDF');
+    }
+
+
 }
