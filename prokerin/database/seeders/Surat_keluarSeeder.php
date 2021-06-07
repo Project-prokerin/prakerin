@@ -17,6 +17,7 @@ class Surat_keluarSeeder extends Seeder
         DB::table('surat_keluar')->insert([
             'id_dari' => '14', // hubin
             'id_untuk' => '15', // kepsek
+            'id_template_surat' => '1', 
         ]);
     }
 }

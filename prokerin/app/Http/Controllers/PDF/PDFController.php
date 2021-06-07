@@ -62,10 +62,26 @@ class PDFController extends Controller
 
     public function contoh()
     {
+        
+        $nama_Surat = 'Surat Tgas';
+        $nama = 'Siti';
+        $nik = '232423';
+        $alamat = 'jl.gaslamar depok';
+        $tempat = 'Nurnet';
+        $hari = 'Senin s.d. Selasa';
+        $tanggal = '23  januari s.d.. 24 januari 2020';
+        $pukul = '08.00 WIB s.d. Selesai';
 
-        $pdf = PDF::loadView('export.PDF.contoh');
-        return $pdf->stream('DATA contoh.PDF');
-    }
+        $pdf = PDF::loadView('export.PDF.contoh',compact('nama_Surat','nama','nik','alamat','tempat','hari','tanggal','pukul'));
+
+        return $pdf->download('DATA contoh.PDF');
+        
+        //  $w->getClientOriginalName();
+        
+        // dd($pdf);
+        
+        
+        }
 
 
 }

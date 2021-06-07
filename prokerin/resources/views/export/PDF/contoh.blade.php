@@ -136,7 +136,7 @@
                     <hr class="hr-1">
                     <hr class="hr-2">
                     <hr class="hr-3">
-                    <h4 style="text-align: center; font-size:20px;">Surat Tugas</h3>
+                    <h4 style="text-align: center; font-size:20px;">{{$nama_Surat}}</h3>
                     <h6 class="font6" style="margin-top: 1px; font-size: 14px; text-align: center;">Nomor
                         &nbsp;&nbsp; :&nbsp;
                         /421.5-SMK.TB/HUBIN/PRAKERIN/II/2021</h6>
@@ -145,29 +145,29 @@
                     Kejuruan (SMK) Taruna Bhakti Depok memberikan tugas Kepada :</h6>
                     <h6 class="font6" style="font-weight: 300px;font-size: 14px; margin-top: -15px; margin-left: -450px;">
                         Nama&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        &nbsp;&nbsp;&nbsp;: </h6>
+                        &nbsp;&nbsp;&nbsp;: {{$nama}}</h6>
                     <h6 class="font6" style="font-weight: 300px;font-size: 14px; margin-top: -15px; margin-left: -450px;">
                         NIK  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        &nbsp;: </h6>
+                        &nbsp;: {{$nik}}</h6>
                     <h6 class="font6" style="font-weight: 300px;font-size: 14px; margin-top: -15px; margin-left: -449px;">
-                        Jabatan &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: </h6>
+                        Jabatan &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: Tenaga Pendidik</h6>
                     <h6 class="font6" style="font-weight: 300px;font-size: 14px; margin-top: -15px; margin-left: -449px;">
-                        Unit Kerja &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: </h6>
+                        Unit Kerja &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: SMK Taruna Bhakti, Kota Depok </h6>
 
 
                     <h6 class="font6" style="font-weight: 300px;font-size: 14px; margin-top: -15px; margin-left: 0px; text-align:left;">
                         Untuk melaksanakan tugas untuk mengikuti kegiatan <b>Magang</b> yang akan dilaksanakan pada&nbsp;&nbsp;&nbsp;:</h6>
                     <h6 class="font6" style="font-weight: 300px;font-size: 14px; margin-top: -15px; margin-left: -449px;">
-                        Hari &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: </h6>
+                        Hari &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: {{$hari}}</h6>
                     <h6 class="font6" style="font-weight: 300px;font-size: 14px; margin-top: -15px; margin-left: -447px;">
-                        Tanggal &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: </h6>
+                        Tanggal &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: {{$tanggal}}</h6>
                     <h6 class="font6" style="font-weight: 300px;font-size: 14px; margin-top: -15px; margin-left: -445px;">
                         Pukul &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        : </h6>
+                        : {{$pukul}} </h6>
                     <h6 class="font6" style="font-weight: 300px;font-size: 14px; margin-top: -15px; margin-left: -447px;">
-                        Tempat &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: </h6>
+                        Tempat &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: {{$tempat}} </h6>
                     <h6 class="font6" style="font-weight: 300px;font-size: 14px; margin-top: -15px; margin-left: -445px;">
-                        Agenda &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: </h6>
+                        Alamat &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: {{$alamat  }} </h6>
 
                 </div>
                 <div class="container">
@@ -262,8 +262,8 @@
                               <tr>
                                 <td style="margin-left:10px; text-align:center;" >2</td>
                                 <td>Nama/NIK Pegawai yang di perintah</td>
-                                <td>Shinta Dewi, S.Pd
-                                    <br>NIK .19770201201807162
+                                <td>{{$nama}}
+                                    <br>NIK .{{$nik}}
                                 </td>
                               </tr>
                               <tr>
@@ -302,9 +302,8 @@
                                 <td>
                                     <ol type="a">
                                         <li>SMK Taruna Bhakti</li>
-                                        <li>APKOMINDO
-                                            <br>Ruko Harco Mangga Dua Blok I/28,
-                                            Jl. Mangga Dua Raya, Mangga Dua Sel., Sawah Besar, Kota Jakarta Pusat.
+                                        <li>{{$tempat}}
+                                            <br>{{$alamat}}.
                                         </li>
                                     </ol>
                                 </td>

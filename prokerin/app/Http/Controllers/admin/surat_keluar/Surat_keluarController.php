@@ -6,6 +6,11 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Surat_keluar;
+use App\Models\Template_surat;
+use App\Modes\Detail_surat_k;
+use Carbon\Carbon;
+use PDF;
+
 class Surat_keluarController extends Controller
 {
     /**
@@ -111,7 +116,50 @@ class Surat_keluarController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //    dd($request);
+
+        $nama_Surat = $request->nama_surat;
+        $nama = $request->nama;
+        $nik = $request->nik;
+        $alamat = $request->alamat;
+        $tempat = $request->tempat;
+        $hari = $request->hari;
+        $tanggal = $request->tanggal;
+        $pukul = $request->pukul;
+    
+        $SuratKeluar = PDF::loadView('export.PDF.contoh', compact('nama_Surat','nama','nik','alamat','tempat','hari','tanggal','pukul'))->setOptions(['defaultFont' => 'sans-serif','isHtml5ParserEnabled' => true, 'isRemoteEnabled' => true]);
+    
+      return   $SuratKeluar->download('SuratTugas.PDF');
+
+        dd($SuratKeluar);   
+           $template_surat  =  Template_surat::create([
+            'nama_surat' => $request->nama_surat,
+            'path_surat' => 'null',
+            'created_at' => Carbon::now()
+        ]);
+        
+         $surat_keluar =   Surat_keluar::create([
+            'id_dari' => Auth::user()->id,
+            'id_untuk' => $request->id_untuk,
+            'status' => 'Pengajuan',
+            'id_template_surat' => $template_surat->id,
+            
+            ]);
+            Detail_surat_k::create([
+                'id_template_surat' => $template_surat->id,
+                'no_surat' => '',
+                'tgl_surat' => Carbon::today()->toDateString(),
+                'path_surat' => 'null',
+                'id_tanda_tangan' => 1,
+                'id_surat_keluar' =>  $surat_keluar->id
+                ]);
+        return redirect()->route('admin.surat_keluar.index')->with('pesan','Berhasil mengirim Surat!');
+
+
+
+
+
+
     }
 
     /**
