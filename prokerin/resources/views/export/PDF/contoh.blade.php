@@ -143,30 +143,30 @@
                     <h6 class="font6" style="font-weight: 300px;font-size: 14px; margin-top: -15px; margin-left: 0px; text-align:left;">
                     Dasar Surat undangan dari Kementrian Pendidikan dan Kebudayaan, Kepala sekolah Menengah
                     Kejuruan (SMK) Taruna Bhakti Depok memberikan tugas Kepada :</h6>
-                    <h6 class="font6" style="font-weight: 300px;font-size: 14px; margin-top: -15px; margin-left: -450px;">
+                    <h6 class="font6" style="font-weight: 300px;font-size: 14px; margin-top: -15px; text-align:left; margin-left:80px; ">
                         Nama&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        &nbsp;&nbsp;&nbsp;: {{$nama}}</h6>
-                    <h6 class="font6" style="font-weight: 300px;font-size: 14px; margin-top: -15px; margin-left: -450px;">
+                        &nbsp;&nbsp;&nbsp;&nbsp;: {{$nama}}</h6>
+                    <h6 class="font6" style="font-weight: 300px;font-size: 14px; margin-top: -15px;  text-align:left; margin-left:80px;">
                         NIK  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        &nbsp;: {{$nik}}</h6>
-                    <h6 class="font6" style="font-weight: 300px;font-size: 14px; margin-top: -15px; margin-left: -449px;">
-                        Jabatan &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: Tenaga Pendidik</h6>
-                    <h6 class="font6" style="font-weight: 300px;font-size: 14px; margin-top: -15px; margin-left: -449px;">
+                        &nbsp; : {{$nik}}</h6>
+                    <h6 class="font6" style="font-weight: 300px;font-size: 14px; margin-top: -15px; text-align:left; margin-left:80px; ">
+                        Jabatan &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: Tenaga Pendidik</h6>
+                    <h6 class="font6" style="font-weight: 300px;font-size: 14px; margin-top: -15px;  text-align:left; margin-left:80px;">
                         Unit Kerja &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: SMK Taruna Bhakti, Kota Depok </h6>
 
 
                     <h6 class="font6" style="font-weight: 300px;font-size: 14px; margin-top: -15px; margin-left: 0px; text-align:left;">
                         Untuk melaksanakan tugas untuk mengikuti kegiatan <b>Magang</b> yang akan dilaksanakan pada&nbsp;&nbsp;&nbsp;:</h6>
-                    <h6 class="font6" style="font-weight: 300px;font-size: 14px; margin-top: -15px; margin-left: -449px;">
+                    <h6 class="font6" style="font-weight: 300px;font-size: 14px; margin-top: -15px;  text-align:left; margin-left:80px;">
                         Hari &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: {{$hari}}</h6>
-                    <h6 class="font6" style="font-weight: 300px;font-size: 14px; margin-top: -15px; margin-left: -447px;">
+                    <h6 class="font6" style="font-weight: 300px;font-size: 14px; margin-top: -15px;  text-align:left; margin-left:80px;">
                         Tanggal &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: {{$tanggal}}</h6>
-                    <h6 class="font6" style="font-weight: 300px;font-size: 14px; margin-top: -15px; margin-left: -445px;">
+                    <h6 class="font6" style="font-weight: 300px;font-size: 14px; margin-top: -15px;  text-align:left; margin-left:80px;">
                         Pukul &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                         : {{$pukul}} </h6>
-                    <h6 class="font6" style="font-weight: 300px;font-size: 14px; margin-top: -15px; margin-left: -447px;">
+                    <h6 class="font6" style="font-weight: 300px;font-size: 14px; margin-top: -15px;  text-align:left; margin-left:80px;">
                         Tempat &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: {{$tempat}} </h6>
-                    <h6 class="font6" style="font-weight: 300px;font-size: 14px; margin-top: -15px; margin-left: -445px;">
+                    <h6 class="font6" style="font-weight: 300px;font-size: 14px; margin-top: -15px;  text-align:left; margin-left:80px;">
                         Alamat &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: {{$alamat  }} </h6>
 
                 </div>
@@ -267,7 +267,7 @@
                                 </td>
                               </tr>
                               <tr>
-                                <td style="margin-left:10px; text-align:center;">1</td>
+                                <td style="margin-left:10px; text-align:center;">3</td>
                                 <td>
                                     <ol type="a">
                                         <li>Jabatan</li>
@@ -282,17 +282,17 @@
                                 </td>
                               </tr>
                               <tr>
-                                <td style="margin-left:10px; text-align:center;">1</td>
+                                <td style="margin-left:10px; text-align:center;">4</td>
                                 <td>Maksud Perjalanan Dinas</td>
                                 <td>Magang</td>
                               </tr>
                               <tr>
-                                <td style="margin-left:10px; text-align:center;">1</td>
+                                <td style="margin-left:10px; text-align:center;">5</td>
                                 <td>Alat Angkutan Yang Dipergunakan</td>
                                 <td>Darat (Transportasi Umum)</td>
                               </tr>
                               <tr>
-                                <td style="margin-left:10px; text-align:center;">1</td>
+                                <td style="margin-left:10px; text-align:center;">6</td>
                                 <td>
                                     <ol type="a">
                                         <li>Tempat Berangkat</li>
@@ -309,7 +309,7 @@
                                 </td>
                               </tr>
                               <tr>
-                                <td style="margin-left:10px; text-align:center;">1</td>
+                                <td style="margin-left:10px; text-align:center;">7</td>
                                 <td>
                                     <ol type="a">
                                         <li>Lama Perjalanan</li>
@@ -326,12 +326,12 @@
                                 </td>
                               </tr>
                               <tr>
-                                <td style="margin-left:10px; text-align:center;">1</td>
+                                <td style="margin-left:10px; text-align:center;">8</td>
                                 <td>Pengikut</td>
                                 <td>-</td>
                               </tr>
                               <tr>
-                                <td style="margin-left:10px; text-align:center;">1</td>
+                                <td style="margin-left:10px; text-align:center;">9</td>
                                 <td>
 
                                     <ol type="a">
@@ -348,7 +348,7 @@
                                 </td>
                               </tr>
                               <tr>
-                                <td style="margin-left:10px; text-align:center;">1</td>
+                                <td style="margin-left:10px; text-align:center;">10</td>
                                 <td>Keterangan</td>
                                 <td>Surat perintah ini supaya dilaksanakan dengan rasa penuh tanggung jawab.</td>
                               </tr>

@@ -62,7 +62,7 @@ class PDFController extends Controller
 
     public function contoh()
     {
-        
+
         $nama_Surat = 'Surat Tgas';
         $nama = 'Siti';
         $nik = '232423';
@@ -74,13 +74,13 @@ class PDFController extends Controller
 
         $pdf = PDF::loadView('export.PDF.contoh',compact('nama_Surat','nama','nik','alamat','tempat','hari','tanggal','pukul'));
 
-        return $pdf->download('DATA contoh.PDF');
-        
+        return $pdf->stream('DATA contoh.PDF');
+
         //  $w->getClientOriginalName();
-        
+
         // dd($pdf);
-        
-        
+
+
         }
 
 

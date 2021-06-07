@@ -25,7 +25,7 @@
         <div class="container">
             <div class="card-body mt-3">
                 <div class="">
-                    <h5>Edit Guru</h5>
+                    <h5>Edit Surat </h5>
                 </div>
             </div>
         </div>
