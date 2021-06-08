@@ -38,7 +38,7 @@
                             <div class="d-flex">
                                 <i class="far fa-envelope border text-center"></i>
                             <input type="text" name="nama_surat" class="form-control
-                            @error('nama_surat') is-invalid @enderror" placeholder=" Surat xxx" value="{{ old('nama_surat') }}">
+                            @error('nama_surat') is-invalid @enderror" placeholder=" Surat xxx" value="{{  $surat->nama_surat ?? ""  }}">
                             </div>
                             @error('nama_surat')
                                             <div class="invalid-feedback">
@@ -50,9 +50,7 @@
                             <label class="form-label">Nama </label>
                             <div class="d-flex">
                                 <i class="fas fa-user border text-center"></i>
-                                <input type="text" name="nama" class="form-control @error('nama')
-                                    is-invalid
-                                @enderror" placeholder="JOhndoe" value="{{ old('nama') }}">
+                                <input type="text" name="nama" class="form-control @error('nama') is-invalid @enderror" placeholder="JOhndoe" value="{{ $surat->nama ?? "" }}">
                             </div>
                             @error('nama')
                                 <div class="invalid-feedback">
@@ -66,7 +64,7 @@
                                 <i class="fas fa-user border text-center"></i>
                                 <input type="text" name="nik" class="form-control @error('nik')
                                     is-invalid
-                                @enderror" placeholder="23423423" value="{{ old('nik') }}">
+                                @enderror" placeholder="23423423" value="{{ $surat->nik ?? "" }}">
                             </div>
                             @error('nik')
                                 <div class="invalid-feedback">
@@ -78,14 +76,12 @@
                             <label class="form-label">Untuk</label>
                             <div class="d-flex">
                                 <i class="fas fa-users border text-center"></i>
-                                <select class="form-control @error('id_untuk')
-                                    is-invalid
-                                @enderror" name="id_untuk">
+                                <select class="form-control @error('id_untuk') is-invalid @enderror" name="id_untuk">
                                     <option value="" selected>Pilih Jabatan</option>
-                                    <option value="17" @if(old('jabatan') === 'hubin') selected @endif>Hubin</option>
-                                    <option value="2"  @if(old('jabatan') === 'kaprog') selected @endif>Kaprog</option>
-                                    <option value="3"  @if(old('jabatan') === 'bkk') selected @endif>BKK</option>
-                                    <option value="12"  @if(old('jabatan') === 'tu') selected @endif>Tu</option>
+                                    <option value="17"  {{'17' == old('id_untuk', $surat->id_untuk ?? '') ? 'selected' : '' }} >Hubin</option>
+                                    <option value="2"   {{'2'  == old('id_untuk', $surat->id_untuk ?? '') ? 'selected' : '' }} >Kaprog</option>
+                                    <option value="3"   {{'3'  == old('id_untuk', $surat->id_untuk ?? '') ? 'selected' : '' }} >BKK</option>
+                                    <option value="12"  {{'12 '== old('id_untuk', $surat->id_untuk ?? '') ? 'selected' : '' }} >Tu</option>
                                 </select>
                             </div>
                             @error('id_untuk')
@@ -98,11 +94,11 @@
                             <label class="form-label">Alamat </label>
                             <div class="d-flex">
                                 <i class="fas fa-user border text-center"></i>
-                                <textarea name="alamat" id="" class="form-control  @error('tempat')
+                                <textarea name="alamat" id="" class="form-control  @error('alamat')
                                 is-invalid
-                            @enderror" style="height: 100px;" placeholder="Jl.xxxxx"></textarea>
+                            @enderror" style="height: 100px;" placeholder="Jl.xxxxx">{{ $surat->alamat ?? ''}}</textarea>
                             </div>
-                            @error('tempat')
+                            @error('alamat')
                                 <div class="invalid-feedback">
                                         {{ $message }}
                                 </div>
@@ -126,7 +122,7 @@
                                 <i class="fas fa-info-circle border text-center"></i>
                                 <input type="text" class="form-control @error('tempat')
                                     is-invalid
-                                @enderror" name="tempat" placeholder="tempat" >
+                                @enderror" name="tempat" placeholder="tempat" value="{{ $surat->tempat ?? ''}}" >
                             </div>
                             @error('tempat')
                                 <div class="invalid-feedback">
@@ -140,7 +136,7 @@
                                 <i class="far fa-calendar-times border text-center"></i>
                                 <input type="text" class="form-control @error('hari')
                                     is-invalid
-                                @enderror" name="hari" placeholder=" Senin s.d. Sabtu" >
+                                @enderror" name="hari" placeholder=" Senin s.d. Sabtu" value="{{ $surat->hari ?? ''}}" >
                             </div>
                             @error('hari')
                                 <div class="invalid-feedback">
@@ -154,7 +150,7 @@
                                 <i class="far fa-calendar-times border text-center"></i>
                                 <input type="text" class="form-control @error('tanggal')
                                     is-invalid
-                                @enderror" name="tanggal" placeholder=" xx Januari s.d. xx Februari 2021" >
+                                @enderror" name="tanggal" placeholder=" xx Januari s.d. xx Februari 2021" value="{{ $surat->tanggal ?? ''}}" >
                             </div>
                             @error('tanggal')
                                 <div class="invalid-feedback">
@@ -168,7 +164,7 @@
                                 <i class="far fa-calendar-times border text-center"></i>
                                 <input type="text" class="form-control @error('pukul')
                                     is-invalid
-                                @enderror" name="pukul" placeholder=" 00.00 WIB s.d Selesai" >
+                                @enderror" name="pukul" placeholder=" 00.00 WIB s.d Selesai" value="{{ $surat->pukul ?? ''}}" >
                             </div>
                             @error('pukul')
                                 <div class="invalid-feedback">
@@ -178,7 +174,7 @@
                         </div>
                     </div>
                     <div style="margin-top: 40px;">
-                        <button type="submit" class="btn btn-success rounded mr-2"><i class="fas fa-check-square mr-2"></i>Submit</button>
+                        <button type="submit" class="btn btn-success rounded mr-2"><i class="fas fa-check-square mr-2"></i>Next</button>
                         </form>
                         <a href="{{ route('admin.surat_keluar.index') }}" type="button" class="btn btn-danger rounded"><i class="fas fa-window-close mr-2"></i>Cancel</a>
                     </div>

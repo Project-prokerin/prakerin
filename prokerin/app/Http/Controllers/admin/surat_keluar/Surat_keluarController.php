@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Surat_keluar;
 use App\Models\Template_surat;
-use App\Modes\Detail_surat_k;
+use App\Models\Detail_surat_k;
 use Carbon\Carbon;
 use PDF;
 
@@ -91,19 +91,21 @@ class Surat_keluarController extends Controller
                 }
     }
 
+  
 
-    public function tambah()
+    public function tambah(Request $request)
     {
         $role = Auth::user()->role;
+    $surat =    $request->session()->get('surat');
         switch ($role) {
             case 'kepsek':
-                return view('admin.surat_keluar.kepsek.tambah');
+                return view('admin.surat_keluar.kepsek.tambah',compact('surat'));
                 break;
             case 'hubin':
-                return view('admin.surat_keluar.hubin.tambah');
+                return view('admin.surat_keluar.hubin.tambah',compact('surat'));
                 break;
             case 'admin':
-                return view('admin.surat_keluar.admin.tambah');
+                return view('admin.surat_keluar.admin.tambah',compact('surat'));
                 break;
         }
     }
@@ -117,6 +119,14 @@ class Surat_keluarController extends Controller
     public function store(Request $request)
     {
         //    dd($request);
+        $validatedData = $request->validate([
+            'nama' => 'required',
+            'nik' => 'required|numeric',
+            'alamat' => 'required',
+            'hari' => 'required',
+            'tanggal' => 'required',
+            'pukul' => 'required',
+        ]);
 
         $nama_Surat = $request->nama_surat;
         $nama = $request->nama;
@@ -126,41 +136,66 @@ class Surat_keluarController extends Controller
         $hari = $request->hari;
         $tanggal = $request->tanggal;
         $pukul = $request->pukul;
-    
-        $SuratKeluar = PDF::loadView('export.PDF.contoh', compact('nama_Surat','nama','nik','alamat','tempat','hari','tanggal','pukul'))->setOptions(['defaultFont' => 'sans-serif','isHtml5ParserEnabled' => true, 'isRemoteEnabled' => true]);
-    
-      return   $SuratKeluar->download('SuratTugas.PDF');
-
-        dd($SuratKeluar);   
-           $template_surat  =  Template_surat::create([
-            'nama_surat' => $request->nama_surat,
-            'path_surat' => 'null',
-            'created_at' => Carbon::now()
-        ]);
         
-         $surat_keluar =   Surat_keluar::create([
-            'id_dari' => Auth::user()->id,
-            'id_untuk' => $request->id_untuk,
-            'status' => 'Pengajuan',
-            'id_template_surat' => $template_surat->id,
-            
-            ]);
-            Detail_surat_k::create([
-                'id_template_surat' => $template_surat->id,
-                'no_surat' => '',
-                'tgl_surat' => Carbon::today()->toDateString(),
-                'path_surat' => 'null',
-                'id_tanda_tangan' => 1,
-                'id_surat_keluar' =>  $surat_keluar->id
+        $pdf_name = time() . "SuratTugas.pdf";
+        $path = public_path('surat/surat_keluar/' . $pdf_name);
+        $SuratKeluar = PDF::loadView('export.PDF.contoh', compact('nama_Surat','nama','nik','alamat','tempat','hari','tanggal','pukul'))->setOptions(['defaultFont' => 'sans-serif','isHtml5ParserEnabled' => true, 'isRemoteEnabled' => true])->save($path);
+
+
+              $template_surat  =  Template_surat::create([
+                    'nama_surat' => $request->nama_surat,
+                    'path_surat' => "surat/surat_keluar/$pdf_name",
+                    'created_at' => Carbon::now()
                 ]);
-        return redirect()->route('admin.surat_keluar.index')->with('pesan','Berhasil mengirim Surat!');
+                 $surat_keluar =   Surat_keluar::create([
+                    'id_dari' => Auth::user()->id,
+                    'id_untuk' => $request->id_untuk,
+                    'status' => 'Pengajuan',
+                    'id_template_surat' => $template_surat->id,
+                    'created_at' => Carbon::now()
+                    
+                    ]);
+        $surat_number = Surat_keluar::orderBy('created_at','DESC')->first();
+                 Detail_surat_k::create([
+                        'id_template_surat' => $template_surat->id,
+                        'no_surat' =>  str_pad($surat_number->id + 1, 3, "0", STR_PAD_LEFT),
+                        'tgl_surat' => Carbon::today()->toDateString(),
+                        'path_surat' => "surat/surat_keluar/$pdf_name",
+                        'id_tanda_tangan' => 1,
+                        'id_surat_keluar' =>  $surat_keluar->id
+                        ]);
+
+        // $pdf = PDF::loadView('mail');
+            // dd($SuratKeluar);
+        // Storage::put('public/csv/name.pdf',$content) ;
+     
+        // return   $SuratKeluar->download('SuratTugas.PDF');
+       
 
 
-
-
-
+        
+        return redirect()->route('admin.surat_keluar.index')->with('pesan','Berhasil Membuat Surat!');
 
     }
+
+    public function tambahh(Request $request)
+    {
+        $role = Auth::user()->role;
+    $suratt =    $request->session()->get('suratt');
+        switch ($role) {
+            case 'kepsek':
+                return view('admin.surat_keluar.kepsek.tambahh',compact('suratt'));
+                break;
+            case 'hubin':
+                return view('admin.surat_keluar.hubin.tambahh',compact('suratt'));
+                break;
+            case 'admin':
+                return view('admin.surat_keluar.admin.tambahh',compact('suratt'));
+                break;
+        }
+    }
+
+    
 
     /**
      * Display the specified resource.

@@ -61,10 +61,11 @@ class Surat_masukController extends Controller
                     return $button;
                 })
                 ->addColumn('action', function ($data) {
+                   
                     $button = '<a href="/admin/surat_masuk/detail/' . $data->id . '"   id="' . $data->id . '" class="edit btn btn-primary btn-sm"><i class="fas fa-search"></i></a>';
                     $button .= '&nbsp';
-                $button .= '<a  href="/admin/surat_masuk/edit/' . $data->id . '" id="edit" data-toggle="tooltip"  data-id="' . $data->id . '" data-original-title="Edit" class="edit btn btn-warning btn-sm edit-post"><i class="fas fa-pencil-alt"></i></a>';
-                $button .= '&nbsp';
+                    $button .= '<a  href="/admin/surat_masuk/edit/' . $data->id . '" id="edit" data-toggle="tooltip"  data-id="' . $data->id . '" data-original-title="Edit" class="edit btn btn-warning btn-sm edit-post"><i class="fas fa-pencil-alt"></i></a>';
+                    $button .= '&nbsp';
                     $button .= '<button type="button" name="delete" id="hapus" data-id="' . $data->id . '" class="delete btn btn-danger btn-sm"><i class="fas fa-trash"></i></button>';
                     return $button;
                 })
@@ -129,6 +130,31 @@ class Surat_masukController extends Controller
 
         }
     }
+        
+    public function store(Request $request)
+    {
+        // dd($request);
+        $request->validate([
+            'nama' => 'required',
+            'kelas' => 'required',
+            'nosurat' => 'required',
+            'perihal_surat' => 'required',
+            'keterangan' => 'required',
+        ],[
+            'required' =>  'Tidak boleh kosong!',
+        ]);
+        $nm = $request->file;
+        $fileName = $nm->getClientOriginalName();
+             Transaksi::create([
+                'nama' => $request->nama,
+                'kelas' => $request->kelas,
+                'nosurat' => $request->nosurat,
+                'perihal_surat' => $fileName,
+                'keterangan' => $request->keterangan,
+             ]);
+             $nm->move(public_path().'/img',$fileName);
+        return redirect()->to('/home/data-transaksi')->with('pesan','Berhasil menambah kelas!');
+    }
 
     // route buat semua admin & tu
     public function store_surat(Request $request)
@@ -146,6 +172,7 @@ class Surat_masukController extends Controller
         'created_at' => Carbon::now()
     ]);
 
+
    $surat_m = Surat_M::create([
         'nama_surat' => $request->nama_surat,
         'path_surat' => "surat/surat_masuk/$namaFile",
@@ -154,6 +181,7 @@ class Surat_masukController extends Controller
         'created_at' => Carbon::now()
     ]);
         $nm->move(public_path().'/surat/surat_masuk',$namaFile);
+        $surat_number = Surat_M::orderBy('created_at','DESC')->first();
 
         $surat_number = Surat_M::orderBy('created_at','DESC')->first();
         Detail_surat::create([
