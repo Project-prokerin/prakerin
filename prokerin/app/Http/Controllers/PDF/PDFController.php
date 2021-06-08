@@ -74,7 +74,7 @@ class PDFController extends Controller
 
         $pdf = PDF::loadView('export.PDF.contoh',compact('nama_Surat','nama','nik','alamat','tempat','hari','tanggal','pukul'));
 
-        return $pdf->stream('DATA contoh.PDF');
+        return $pdf->download('DATA contoh.PDF');
 
         //  $w->getClientOriginalName();
 

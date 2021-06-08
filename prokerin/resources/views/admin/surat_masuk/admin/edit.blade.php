@@ -35,6 +35,7 @@
                     <div class="">
                         <div class="" style="height: auto;">
                             <div class="card-body">
+
                                 <form action="{{ route('admin.surat_masuk.update',$surat_masuk->id) }}" method="POST" class="input" enctype="multipart/form-data">
                                    @method('PUT')
                                     @csrf

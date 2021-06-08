@@ -17,115 +17,89 @@
                 <div class="col-lg-4 col-md-4 col-sm-12">
                     <div class="card card-statistic-2">
                         <div class="card-stats">
-                            <div class="card-stats-title">
-                                Takola
-                            </div>
-                            <div class="card-stats-items">
-                                <div class="card-stats-item">
-                                    <div class="card-stats-item-count">24</div>
-                                    <div class="card-stats-item-label">Surat Masuk</div>
+                            <div class="card card-statistic-1">
+                                <div class="card-icon bg-primary">
+                                    <i class="far fa-building"></i>
                                 </div>
-                                <div class="card-stats-item">
-                                    <div class="card-stats-item-count">12</div>
-                                    <div class="card-stats-item-label">Surat Keluar</div>
-                                </div>
-                                <div class="card-stats-item">
-                                    <div class="card-stats-item-count">23</div>
-                                    <div class="card-stats-item-label">Disposisi</div>
+                                <div class="card-wrap">
+                                    <div class="card-header">
+                                        <h4>Data Perusahaan</h4>
+                                    </div>
+                                    <div class="card-body">
+                                        12
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="card-icon shadow-primary bg-primary">
-                            <i class="fas fa-archive"></i>
-                        </div>
-                        <div class="card-wrap">
-                            <div class="card-header">
-                                <h4></h4>
-                            </div>
-                            <div class="card-body">
-                                Takola
+                            <div class="card card-statistic-1">
+                                <div class="card-icon bg-primary">
+                                    <i class="fas fa-newspaper"></i>
+                                </div>
+                                <div class="card-wrap">
+                                    <div class="card-header">
+                                        <h4>Pembekalan Magang</h4>
+                                    </div>
+                                    <div class="card-body">
+                                        13
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <div class="col-lg-4 col-md-4 col-sm-12">
-                    <div class="card card-statistic-2">
-                        <div class="card-stats">
-                            <div class="card-stats-title">
-                                Data
-                            </div>
-                            <div class="card-stats-items">
-                                <div class="card-stats-item">
-                                    <div class="card-stats-item-count">24</div>
-                                    <div class="card-stats-item-label">Surat Masuk</div>
-                                </div>
-                                <div class="card-stats-item">
-                                    <div class="card-stats-item-count">12</div>
-                                    <div class="card-stats-item-label">Surat Keluar</div>
-                                </div>
-                                <div class="card-stats-item">
-                                    <div class="card-stats-item-count">23</div>
-                                    <div class="card-stats-item-label">Disposisi</div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card-icon shadow-primary bg-primary">
-                            <i class="fas fa-archive"></i>
-                        </div>
-                        <div class="card-wrap">
-                            <div class="card-header">
-                                <h4></h4>
-                            </div>
-                            <div class="card-body">
-                                Data Perusahaan
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-4 col-sm-12">
-                    <div class="card card-statistic-2">
-                        <div class="card-stats">
-                            <div class="card-stats-title">
-                                Pembekalan
-                            </div>
-                            <div class="card-stats-items">
-                                <div class="card-stats-item">
-                                    <div class="card-stats-item-count">24</div>
-                                    <div class="card-stats-item-label">Surat Masuk</div>
-                                </div>
-                                <div class="card-stats-item">
-                                    <div class="card-stats-item-count">12</div>
-                                    <div class="card-stats-item-label">Surat Keluar</div>
-                                </div>
-                                <div class="card-stats-item">
-                                    <div class="card-stats-item-count">23</div>
-                                    <div class="card-stats-item-label">Disposisi</div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card-icon shadow-primary bg-primary">
-                            <i class="fas fa-archive"></i>
-                        </div>
-                        <div class="card-wrap">
-                            <div class="card-header">
-                                <h4></h4>
-                            </div>
-                            <div class="card-body">
-                                <h4>Pembekalan</h4>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="row">
                 <div class="col-lg-4 col-md-4 col-sm-12">
                     <div class="card card-statistic-2">
                         <div class="card-stats">
                             <div class="card card-statistic-1">
                                 <div class="card-icon bg-primary">
                                     <i class="far fa-building"></i>
+                                </div>
+                                <div class="card-wrap">
+                                    <div class="card-header">
+                                        <h4>Jurnal Harian</h4>
+                                    </div>
+                                    <div class="card-body">
+                                        12
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card card-statistic-1">
+                                <div class="card-icon bg-primary">
+                                    <i class="far fa-building"></i>
+                                </div>
+                                <div class="card-wrap">
+                                    <div class="card-header">
+                                        <h4>Surat Keluar</h4>
+                                    </div>
+                                    <div class="card-body">
+                                        13
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-4">
+                    <div class="card">
+                        <div class="card-header">
+                            <h4>Surat</h4>
+                        </div>
+                        <div class="card-body">
+                            <canvas id="myChart4" height="200px"></canvas>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="row" style="margin-top: -200px">
+                <div class="col-lg-4 col-md-4 col-sm-12">
+                    <div class="card card-statistic-2">
+                        <div class="card-stats">
+                            <div class="card card-statistic-1">
+                                <div class="card-icon bg-primary">
+                                    <i class="fas fa-th"></i>
                                 </div>
                                 <div class="card-wrap">
                                     <div class="card-header">
@@ -158,7 +132,7 @@
                         <div class="card-stats">
                             <div class="card card-statistic-1">
                                 <div class="card-icon bg-primary">
-                                    <i class="far fa-building"></i>
+                                    <i class="fas fa-users"></i>
                                 </div>
                                 <div class="card-wrap">
                                     <div class="card-header">
@@ -171,7 +145,7 @@
                             </div>
                             <div class="card card-statistic-1">
                                 <div class="card-icon bg-primary">
-                                    <i class="far fa-building"></i>
+                                    <i class="fas fa-file-alt"></i>
                                 </div>
                                 <div class="card-wrap">
                                     <div class="card-header">
@@ -191,7 +165,7 @@
     @if (Auth::user()->role == 'kepsek' or Auth::user()->role == 'tu')
         @if (Auth::user()->role == 'kepsek' or Auth::user()->role == 'tu')
             <div class="row">
-                <div class="col-lg-6 col-md-4 col-sm-12">
+                <div class="col-lg-7 col-md-4 col-sm-12">
                     <div class="card card-statistic-2">
                         <div class="card-stats">
                             <div class="card-stats-title">
@@ -227,13 +201,13 @@
                 </div>
 
 
-                <div class="col-12 col-md-6 col-lg-6">
+                <div class="mb-5" style="margin-left: 50px">
                     <div class="card">
                         <div class="card-header">
-                            <h4>Pie Chart</h4>
+                            <h4>Surat</h4>
                         </div>
                         <div class="card-body">
-                            <canvas id="myChart4"></canvas>
+                            <canvas id="myChart4" height="220px" width="400px"></canvas>
                         </div>
                     </div>
                 </div>
@@ -244,7 +218,7 @@
     @if (Auth::user()->role == 'kesiswaan' or Auth::user()->role == 'kurikulum')
         @if (Auth::user()->role == 'kesiswaan' or Auth::user()->role == 'kurikulum')
             <div class="row">
-                <div class="col-lg-4 col-md-4 col-sm-12">
+                <div class="col-lg-7 col-md-4 col-sm-12">
                     <div class="card card-statistic-2">
                         <div class="card-stats">
                             <div class="card-stats-title">
@@ -278,7 +252,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="mb-5">
+                <div class="mb-5" style="margin-left: 50px">
                     <div class="card">
                         <div class="card-header">
                             <h4>Surat</h4>

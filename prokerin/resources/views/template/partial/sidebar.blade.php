@@ -114,7 +114,7 @@
                 <span>Surat Masuk</span>
             </a>
             </li>
-            @if (Auth::user()->role == 'kepsek')
+            @if (Auth::user()->role == 'kepsek' )
             <li class='@if (Request::is("admin/$role/disposisi","admin/$role/disposisi/*")) active @endif'>
             <a href='{{ route("disposisi.$role.index") }}' class="nav-link">
                 <i class="fas fa-envelope-open-text"></i>
