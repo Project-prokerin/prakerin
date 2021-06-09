@@ -41,15 +41,21 @@
                     <table class="table table-striped" id="table19">
                       <thead class="text-center">
                         <tr>
+                            <th>
+                                #
+                            </th>
                           <th>
                             Nama
                           </th>
                           <th>Kelas</th>
                           <th>Jurusan</th>
                           <th>Perusahaan</th>
+                          <th>status</th>
                           <th>Tgl Mulai</th>
                           <th>Tgl Selesai</th>
+                          <th>Tgl Pelaksanaan</th>
                           <th>Action</th>
+
                         </tr>
                       </thead>
                       <tbody class="text-center">
@@ -57,6 +63,8 @@
                           <td>
                             1
                           </td>
+                          <td></td>
+                          <td></td>
                           <td></td>
                           <td></td>
                           <td></td>

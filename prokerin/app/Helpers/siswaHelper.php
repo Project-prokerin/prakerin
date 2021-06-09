@@ -86,37 +86,44 @@ function links($param)
 function status(){
     $tanggal = Carbon::now()->format('Y-m-d');
     // validasi
-    if (empty(siswa('data_prakerin')->tgl_mulai) ) {
-        return 'Tanggal mulai belum di tentukan';
-    }else if (empty(siswa('data_prakerin')->tgl_selesai)) {
-        return 'Tanggal selesai belum di tentukan';
+    if (empty(siswa('data_prakerin')->status) ) {
+        return "Status kosong";
     }
     // validasi
-    if ( $tanggal < siswa('data_prakerin')->tgl_mulai->format('Y-m-d')) {
-        return 'Belum Mulai Magang';
-    }else if($tanggal >= siswa('data_prakerin')->tgl_mulai->format('Y-m-d') and $tanggal <= siswa('data_prakerin')->tgl_selesai->format('Y-m-d')){
-        return 'Sedengan Magang';
-    }else if($tanggal >= siswa('data_prakerin')->tgl_selesai->format('Y-m-d')){
-        return 'Sudah selesai Magang';
+    switch (siswa('data_prakerin')->status) {
+        case 'Pengajuan':
+            return 'Pengajuan Magang';
+            break;
+        case 'Magang':
+            return 'Magang';
+            break;
+        case 'Selesai':
+            return 'Selesai Magang';
+            break;
+        case 'Batal':
+            return 'Batal Magang';
+            break;
     }
 }
 function statusWarna()
 {
-    // validasi
-    if (empty(siswa('data_prakerin')->tgl_mulai)) {
-        return 'background-color:#e84118;color:white';
-    } else if (empty(siswa('data_prakerin')->tgl_selesai)) {
+    if (empty(siswa('data_prakerin')->status)) {
         return 'background-color:#e84118;color:white';
     }
-
-    // warna
-    $tanggal = Carbon::now()->format('Y-m-d');
-    if ($tanggal < siswa('data_prakerin')->tgl_mulai->format('Y-m-d')) {
-        return 'background-color:#e84118;color:white';
-    } else if ($tanggal >= siswa('data_prakerin')->tgl_mulai->format('Y-m-d') and $tanggal <= siswa('data_prakerin')->tgl_selesai->format('Y-m-d')) {
-        return 'background-color:#fbc531;color:white';
-    } else if ($tanggal >= siswa('data_prakerin')->tgl_selesai->format('Y-m-d')) {
-        return 'background-color:#e84118;color:white';
+    // validasi
+    switch (siswa('data_prakerin')->status) {
+        case 'Pengajuan':
+            return 'background-color:#425df5;color:white';
+            break;
+        case 'Magang':
+            return 'background-color:#fbc531;color:white';
+            break;
+        case 'Selesai':
+            return 'background-color:#57b846;color:white';
+            break;
+        case 'Batal':
+            return 'background-color:#e84118;color:white';
+            break;
     }
 }
 // jurnal harian

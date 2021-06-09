@@ -72,39 +72,32 @@
 
 
                                         <!-- kelas -->
-                                        <div class="form-group col-lg-10 ">
+                                        <div class="form-group col-lg-10  mb-5">
                                             <label>kelas</label>
                                             <select name="kelas" class="form-control  @error('kelas')  is-invalid  @enderror select2" name=" jurusan" id="">
-                                                <option value="X" {{(old('kelas') ?? $dataPrakerin->kelas) == 'X' ? 'selected' : ''}}>X </option>
-                                                <option value="XI" {{(old('kelas') ?? $dataPrakerin->kelas) == 'XI' ? 'selected' : ''}}>XI </option>
-                                                <option value="XII" {{(old('kelas') ?? $dataPrakerin->kelas) == 'XII' ? 'selected' : ''}}>XII </option>
+                                                @foreach ($kelas as $item)
+                                                     <option value="{{ $item->id }}" {{(old('kelas') ?? $dataPrakerin->kelas->id) == $item->id ? 'selected' : ''}}>{{ $item->level }}</option>
+                                                @endforeach
                                             </select>
                                                 @error('kelas')
                                                     <div class="invalid-feedback">{{ $message }}</div>
                                                 @enderror
                                         </div>
-                                        <!-- jurusan -->
-                                        <div class="form-group col-lg-10  mb-5">
-                                            <label>Jurusan</label>
-                                            <select name="jurusan" class="form-control select2 @error('jurusan')  is-invalid  @enderror"  name=" jurusan" id="">
-                                                <option value="RPL" {{(old('jurusan') ?? $dataPrakerin->jurusan) == 'RPL' ? 'selected' : ''}}>Rekayasa Perangkat Lunak </option>
-                                                <option value="TKJ" {{(old('jurusan') ?? $dataPrakerin->jurusan) == 'TKJ' ? 'selected' : ''}}>Teknik Komunikasi Jaringan </option>
-                                                <option value="BC" {{(old('jurusan') ?? $dataPrakerin->jurusan) == 'BC' ? 'selected' : ''}}>Broadcasting </option>
-                                                <option value="MM" {{(old('jurusan') ?? $dataPrakerin->jurusan) == 'MM' ? 'selected' : ''}}>Multimedia </option>
-                                                <option value="TEI" {{(old('jurusan') ?? $dataPrakerin->jurusan) == 'TEI' ? 'selected' : ''}}>TeknikElektronikaIndustri </option>
-
-                                            </select>
-                                                @error('jurusan')
-                                                    <div class="invalid-feedback">{{ $message }}</div>
-                                                @enderror
-                                        </div>
-
-
-
-
                                     </div>
                                     <div class="col-6">
-
+                                           <div class="mb-3">
+                        <label>Status</label>
+                        <select name="status" class="form-control select2 @error('status')  is-invalid  @enderror"  name="status" id="">
+                            <option value="" selected>--Pilih Status--</option>
+                            <option value="Pengajuan" {{((old('status') ?? $dataPrakerin->status) == "Pengajuan") ? 'selected' : ''}}>Pengajuan</option>
+                            <option value="Magang" {{((old('status') ?? $dataPrakerin->status) == "Magang") ? 'selected' : ''}}>Magang</option>
+                            <option value="Selesai" {{((old('status') ?? $dataPrakerin->status) == "Selesai") ? 'selected' : ''}}>Selesai</option>
+                            <option value="Batal" {{((old('status') ?? $dataPrakerin->status) == "Batal") ? 'selected' : ''}}>Batal</option>
+                        </select>
+                            @error('status')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                    </div>
 
                                         <div class="form-group">
                                             <label>Tanggal Mulai</label>

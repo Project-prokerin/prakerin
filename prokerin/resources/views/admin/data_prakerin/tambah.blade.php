@@ -31,7 +31,7 @@
                         <select name="id_perusahaan" class="form-control   @error('id_perusahaan')  is-invalid  @enderror select2">
                             <option value="" >--Cari Perusahaan--</option>
                             @foreach ($perusahaan as $perusahaann)
-                            <option value="{{$perusahaann->id}}">{{$perusahaann->nama}}</option>
+                            <option value="{{$perusahaann->id}}"{{(old('id_perusahaan') == $perusahaann->id) ? 'selected' : ''}}>{{$perusahaann->nama}}</option>
                             @endforeach
                         </select>
                             @error('id_perusahaan')
@@ -45,7 +45,7 @@
                         <select name="id_guru" class="form-control @error('id_guru')  is-invalid  @enderror  select2">
                         <option value="" >--Cari Guru--</option>
                             @foreach ($guru as $guruu)
-                            <option value="{{$guruu->id}}">{{$guruu->nama}}</option>
+                            <option value="{{$guruu->id}}" {{(old('id_guru') == $guruu->id) ? 'selected' : ''}}>{{$guruu->nama}}</option>
                             @endforeach
                         </select>
                             @error('id_guru')
@@ -60,7 +60,7 @@
                         <select name="id_siswa" class="form-control  @error('id_siswa')  is-invalid  @enderror select2">
                         <option value="">--Cari Siswa--</option>
                             @foreach ($siswa as $item)
-                                <option  value="{{ $item->id }}">{{ $item->nama_siswa }}</option>
+                                <option  value="{{ $item->id }}" {{(old('id_siswa') == $item->id) ? 'selected' : ''}}>{{ $item->nama_siswa }}</option>
                             @endforeach
                         </select>
                             @error('id_siswa')
@@ -70,38 +70,36 @@
 
 
                     <!-- kelas -->
-                    <div class="mb-3 col-lg-10 ">
+                    <div class="mb-3 col-lg-10 mb-5">
                         <label>kelas</label>
                         <select name="kelas" class="form-control  @error('kelas')  is-invalid  @enderror select2" name=" jurusan" id="">
                             <option value="" selected>--Pilih kelas--</option>
-                            <option value="X">X </option>
-                            <option value="XI">XI </option>
-                            <option value="XII">XIi </option>
+                            @foreach ($kelas as $item)
+                            <option value="{{ $item->id }}" {{(old('kelas') == $item->id) ? 'selected' : ''}}>{{ $item->level }}</option>
+                            @endforeach
                         </select>
                             @error('kelas')
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
                     </div>
-                    <!-- jurusan -->
-                    <div class="mb-3 col-lg-10  mb-5">
-                        <label>Jurusan</label>
-                        <select name="jurusan" class="form-control select2 @error('jurusan')  is-invalid  @enderror"  name=" jurusan" id="">
-                            <option value="" selected>--Pilih Jurusan--</option>
-                            <option value="RPL">Rekayasa Perangkat Lunak</option>
-                            <option value="TKJ">Teknik Komunikasi Jaringan</option>
-                            <option value="BC">Broadcasting</option>
-                            <option value="MM">Multimedia</option>
-                            <option value="TEI">TeknikElektronikaIndustri</option>
+                </div>
+                <div class="col-6">
+                <div class="mb-3">
+                        <label>Status</label>
+                        <select name="status" class="form-control select2 @error('status')  is-invalid  @enderror"  name="status" id="">
+                            <option value="" selected>--Pilih Status--</option>
+                            <option value="Pengajuan" {{(old('status') == "Pengajuan") ? 'selected' : ''}}>Pengajuan</option>
+                            <option value="Magang" {{(old('status') == "Magang") ? 'selected' : ''}}>Magang</option>
+                            <option value="Selesai" {{(old('status') == "Selesai") ? 'selected' : ''}}>Selesai</option>
+                            <option value="Batal" {{(old('status') == "Batal") ? 'selected' : ''}}>Batal</option>
                         </select>
-                            @error('jurusan')
+                            @error('status')
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
                     </div>
-                </div>
-                <div class="col-6">
                     <div class="mb-3 ">
                         <label>Tanggal Mulai</label>
-                        <input type="date" name="tgl_mulai" class="  @error('tgl_mulai')  is-invalid  @enderror form-control datepicker">
+                        <input type="date" name="tgl_mulai" class="  @error('tgl_mulai')  is-invalid  @enderror form-control datepicker" value="{{ old('tgl_mulai') }}">
                             @error('tgl_mulai')
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
@@ -109,7 +107,7 @@
 
                     <div class="mb-5 ">
                         <label>Tanggal Selesai</label>
-                        <input type="date" name="tgl_selesai" class=" @error('tgl_selesai')  is-invalid  @enderror form-control datepicker">
+                        <input type="date" name="tgl_selesai" class=" @error('tgl_selesai')  is-invalid  @enderror form-control datepicker"  value="{{ old('tgl_selesai') }}">
                             @error('tgl_selesai')
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror

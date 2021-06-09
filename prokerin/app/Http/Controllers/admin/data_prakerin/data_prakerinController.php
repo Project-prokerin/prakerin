@@ -9,6 +9,7 @@ use App\Models\data_prakerin;
 use App\Models\perusahaan;
 use App\Models\guru;
 use App\Http\Requests\admin\data_prakerinRequest;
+use App\Models\kelas;
 
 class data_prakerinController extends Controller
 {
@@ -30,36 +31,16 @@ class data_prakerinController extends Controller
     public function ajax(Request $request)
     {
         if ($request->ajax()) {
-            $dataPrakerin = data_prakerin::with('perusahaan');
+            $dataPrakerin = data_prakerin::with('perusahaan')->orderby('created_at','DESC');
             return datatables()->of($dataPrakerin)
             ->editColumn('kelas', function($data){
                 return $data->kelas->level;
             })
             ->editColumn('jurusan', function ($data) {
-          
-                switch ($data->kelas->jurusan) {
-                    case 'Rekayasa Perangkat Lunak':
-                        return "RPL";
-                        break;
-                        case 'Broadcasting':
-                            return "BC";
-                            break;
-                            case 'Multimedia':
-                                return "MM";
-                                break;
-                                case 'Teknologi Kominikasi Jaringan':
-                                    return "TKJ";
-                                    break;
-                                    case 'Teknik Elektonika Industri':
-                                        return "TEI";
-                                        break;
-                                        
-                    
-                    default:
-                        return "Jurusan Belum Terdaftar";
-                    break;
+                if (empty($data->kelas->jurusan)) {
+                    return "Jurusan Belum Terdaftar";
                 }
-                // return $data->kelas->jurusan;
+                return $data->kelas->jurusan;
             })
             ->editColumn('tgl_mulai', function ($dataPrakerin) {
                 return [
@@ -73,7 +54,13 @@ class data_prakerinController extends Controller
                 ];
             })
                 ->addColumn('perusahaan', function (data_prakerin $data_prakerin) {
+                if (empty($data_prakerin->perusahaan->nama)) {
+                    return "Perusahaan Belum terdaftar";
+                }
                     return $data_prakerin->perusahaan->nama;
+                })
+                ->addColumn('tgl_pelaksanaan', function($data){
+                    return $data->created_at->format('m-d-Y');
                 })
                 ->addColumn('action', function ($data) {
                     $button = '<button type="button"   id="' . $data->id . '" class="edit btn btn-primary btn-sm"><i class="fas fa-search"></i></button>';
@@ -89,10 +76,11 @@ class data_prakerinController extends Controller
     }
     public function tambah()
     {
-        $siswa = Siswa::all();
+        $siswa = Siswa::doesntHave('data_prakerin')->get();
         $perusahaan = perusahaan::all();
-        $guru = guru::all();
-        return view('admin.data_prakerin.tambah', compact('siswa','perusahaan','guru'));
+        $guru = guru::doesntHave('kelompok_laporan');
+        $kelas = kelas::all();
+        return view('admin.data_prakerin.tambah', compact('siswa','perusahaan','guru','kelas'));
     }
 
     /**
@@ -108,60 +96,15 @@ class data_prakerinController extends Controller
         $siswa = Siswa::where('id', $request->id_siswa)->first();
         $data = data_prakerin::create([
             'nama'   => $siswa->nama_siswa,
-            'kelas'         => $request->kelas,
-            'jurusan'       => $request->jurusan,
+            'id_kelas'         => $request->kelas,
             'id_siswa'      => $request->id_siswa,
             'id_perusahaan' => $request->id_perusahaan,
             'id_guru' => $request->id_guru,
+            'status' => $request->status,
             'tgl_mulai' => $request->tgl_mulai,
             'tgl_selesai' => $request->tgl_selesai
         ]);
-        // dd($data);
-            //  Alert::success('Success','Berhasil Memposting');
-            return redirect()->route('data_prakerin.index')->with(['success' => 'Data berhasil di tambah!']);
-
-
-        // $validateData = $request->validate([
-        //     'nim' => 'required|',
-        //     'nama' => 'required|min:3|max:50',
-        //     'jenis_kelamin' => 'required|in:P,L',
-        //     'jurusan' => 'required',
-        //      'alamat' => '',
-        //      ]);
-
-        //    Mahasiswa::create($validateData);
-
-        //    return "Data berhasil diinput ke database";
-    //    $nm=$request->upload;
-    //    $namefile = $nm->getClientOriginalName();
-    //    upload('upload')->storeAs('public/postingan',$filename);
-
-            // $postingan = Postingan::create([
-            //     'upload' => $namefile,
-            //     'perusahaan' => $request['deskripsi'],
-            //     'users_id' => Auth::id(),
-
-            //     ]);
-
-            // return redirect()->route('people.index')->with('success','Berhasil Memposting');
-
-
-    //    $nm=$request->upload;
-    //    $namefile = $nm->getClientOriginalName();
-    //    upload('upload')->storeAs('public/postingan',$filename);
-
-            // $postingan = Postingan::create([
-            //     'upload' => $namefile,
-            //     'perusahaan' => $request['deskripsi'],
-            //     'users_id' => Auth::id(),
-
-            //     ]);
-
-            //     Alert::alert('Success','Berhasil Memposting','success');
-            // return redirect()->route('people.index')->with('success','Berhasil Memposting');
-
-
-
+        return redirect()->route('data_prakerin.index')->with(['success' => 'Data berhasil di tambah!']);
     }
 
     /**
@@ -184,12 +127,13 @@ class data_prakerinController extends Controller
      */
     public function edit($id)
     {
-        $siswa = Siswa::all();
+        $siswa = Siswa::doesntHave('data_prakerin')->get();
         $perusahaan = perusahaan::all();
         $guru = guru::all();
         $dataPrakerin = data_prakerin::findOrFail($id);
+        $kelas = kelas::all();
         // dd($dataPrakerin->perusahaan->nama);
-        return view('admin.data_prakerin.edit',compact('dataPrakerin','perusahaan','guru','siswa','id'));
+        return view('admin.data_prakerin.edit',compact('dataPrakerin','perusahaan','guru','siswa','id','kelas'));
     }
 
     /**
@@ -201,27 +145,16 @@ class data_prakerinController extends Controller
      */
     public function update(data_prakerinRequest $request,data_prakerin $data_prakerin)
     {
-        // $this->validated($request[
-        //     'nama'   => $siswa->nama_siswa,
-        //     'kelas'         => $request->kelas,
-        //     'jurusan'       => $request->jurusan,
-        //     'id_siswa'      => $request->id_siswa,
-        //     'id_perusahaan' => $request->id_perusahaan,
-        //     'id_guru' => $request->id_guru,
-        //     'tgl_mulai' => $request->tgl_mulai,
-        //     'tgl_selesai' => $request->tgl_selesai
-        // ]);
         $request->validated();
-
         $siswa = Siswa::where('id', $request->id_siswa)->first();
         // dd($siswa->nama_siswa);
         $update = data_prakerin::where('id',$data_prakerin->id )->update([
             'nama'   => $siswa->nama_siswa,
-            'kelas'         => $request->kelas,
-            'jurusan'       => $request->jurusan,
+            'id_kelas'         => $request->kelas,
             'id_siswa'      => $request->id_siswa,
             'id_perusahaan' => $request->id_perusahaan,
             'id_guru' => $request->id_guru,
+            'status' => $request->status,
             'tgl_mulai' => $request->tgl_mulai,
             'tgl_selesai' => $request->tgl_selesai
         ]);

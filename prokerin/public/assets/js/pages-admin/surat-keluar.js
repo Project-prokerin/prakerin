@@ -14,7 +14,7 @@ $(document).ready( function () {
 
     }
 
-    function column(role){
+    function column(role){  
         if(role == "hubin"){
             return [{ data: 'DT_RowIndex', name: 'DT_RowIndex'},
             { data: 'nama_surat', name:'nama_surat'},

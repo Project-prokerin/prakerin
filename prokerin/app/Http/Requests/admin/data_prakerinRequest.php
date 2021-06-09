@@ -25,10 +25,10 @@ class data_prakerinRequest extends FormRequest
     {
         return [
             'kelas' => 'required',
-            'jurusan' => 'required',
             'id_siswa' => 'required',
             'id_perusahaan' => 'required',
             'id_guru' => 'required',
+            'status' => 'required',
             'tgl_mulai' => 'required|before:tgl_selesai',
             'tgl_selesai' => 'required|after:tgl_mulai',
         ];
@@ -37,12 +37,12 @@ class data_prakerinRequest extends FormRequest
     {
         return [
             'kelas.required' => 'Kelas tidak boleh kosong',
-            'jurusan.required' => 'Jurusan tidak boleh kosong',
             'id_siswa.required' => 'Nama siswa tidak boleh kosong',
             'id_perusahaan.required' => 'Nama perusahaan tidak boleh kosong',
             'id_guru.required' => 'Nama guru tidak boleh kosong',
             'tgl_mulai.required' => 'Tanggal mulai tidak boleh kosong',
             'tgl_mulai.required' => 'Tanggal selesai tidak boleh kosong',
+            'status.required' => "Status tidak boleh kosong",
             "tgl_mulai.before" => "Masukan tanggal mulai yang benar",
             "tgl_selesai.after" => "Masukan tanggal selesai yang benar",
         ];

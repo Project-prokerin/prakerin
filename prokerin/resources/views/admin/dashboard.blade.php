@@ -26,7 +26,7 @@
                                         <h4>Data Perusahaan</h4>
                                     </div>
                                     <div class="card-body">
-                                        12
+                                        {{ $perusahaan }}
                                     </div>
                                 </div>
                             </div>
@@ -39,7 +39,7 @@
                                         <h4>Pembekalan Magang</h4>
                                     </div>
                                     <div class="card-body">
-                                        13
+                                        {{ $pem }}
                                     </div>
                                 </div>
                             </div>
@@ -59,7 +59,7 @@
                                         <h4>Jurnal Harian</h4>
                                     </div>
                                     <div class="card-body">
-                                        12
+                                        {{ $jurnal }}
                                     </div>
                                 </div>
                             </div>
@@ -72,28 +72,16 @@
                                         <h4>Surat Keluar</h4>
                                     </div>
                                     <div class="card-body">
-                                        13
+                                        {{ $surat_k }}
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-
-                <div class="col-4">
-                    <div class="card">
-                        <div class="card-header">
-                            <h4>Surat</h4>
-                        </div>
-                        <div class="card-body">
-                            <canvas id="myChart4" height="200px"></canvas>
-                        </div>
-                    </div>
-                </div>
-
             </div>
 
-            <div class="row" style="margin-top: -200px">
+            <div class="row"">
                 <div class="col-lg-4 col-md-4 col-sm-12">
                     <div class="card card-statistic-2">
                         <div class="card-stats">
@@ -176,14 +164,6 @@
                                     <div class="card-stats-item-count">24</div>
                                     <div class="card-stats-item-label">Surat Masuk</div>
                                 </div>
-                                <div class="card-stats-item">
-                                    <div class="card-stats-item-count">12</div>
-                                    <div class="card-stats-item-label">Surat Keluar</div>
-                                </div>
-                                <div class="card-stats-item">
-                                    <div class="card-stats-item-count">23</div>
-                                    <div class="card-stats-item-label">Disposisi</div>
-                                </div>
                             </div>
                         </div>
                         <div class="card-icon shadow-primary bg-primary">
@@ -196,18 +176,6 @@
                             <div class="card-body">
                                 Takola
                             </div>
-                        </div>
-                    </div>
-                </div>
-
-
-                <div class="mb-5" style="margin-left: 50px">
-                    <div class="card">
-                        <div class="card-header">
-                            <h4>Surat</h4>
-                        </div>
-                        <div class="card-body">
-                            <canvas id="myChart4" height="220px" width="400px"></canvas>
                         </div>
                     </div>
                 </div>
@@ -276,15 +244,15 @@
                             </div>
                             <div class="card-stats-items">
                                 <div class="card-stats-item">
-                                    <div class="card-stats-item-count">1</div>
+                                    <div class="card-stats-item-count">{{ $surat_m }}</div>
                                     <div class="card-stats-item-label">Masuk</div>
                                 </div>
                                 <div class="card-stats-item">
-                                    <div class="card-stats-item-count">2</div>
+                                    <div class="card-stats-item-count">{{ $surat_k }}</div>
                                     <div class="card-stats-item-label">Keluar</div>
                                 </div>
                                 <div class="card-stats-item">
-                                    <div class="card-stats-item-count">2</div>
+                                    <div class="card-stats-item-count">{{ $disposisi }}</div>
                                     <div class="card-stats-item-label">Disposisi</div>
                                 </div>
                             </div>
@@ -297,7 +265,7 @@
                                 <h4>Total Surat</h4>
                             </div>
                             <div class="card-body">
-                                3
+                                {{ $total_surat }}
                             </div>
                         </div>
                     </div>
@@ -315,7 +283,7 @@
                                         <h4>Siswa</h4>
                                     </div>
                                     <div class="card-body">
-                                        12
+                                        {{ $siswa }}
                                     </div>
                                 </div>
                             </div>
@@ -328,7 +296,7 @@
                                         <h4>Guru</h4>
                                     </div>
                                     <div class="card-body">
-                                        123
+                                        {{ $guru }}
                                     </div>
                                 </div>
                             </div>
@@ -355,9 +323,54 @@
 
 @endsection
 @push('script')
-    <script src="{{ asset('assets/js/pages-admin/chart.js') }}"></script>
+<script>
+    $(document).ready(function () {
+        var ctx = document.getElementById("myChart4").getContext('2d');
 
+    $.ajax({
+        url: "{{ route('dashboard.ajax') }}",
+        type: "POST",
+        data: {
+            _token: '{{ csrf_token() }}'
+        },
+        success: function (data) {
+            var myChart = new Chart(ctx, {
+                type: 'pie',
+                data: {
+                    datasets: [{
+                        data: data.data,
+                        backgroundColor: [
 
+                            '#63ed7a',
+                            '#ffa426',
+                            '#fc544b',
 
+                        ],
+                        label: 'Dataset 1'
+                    }],
+                    labels: [
+
+                        'Surat Masuk',
+                        'Disposisi',
+                        'Surat Keluar',
+
+                    ],
+                },
+                options: {
+                    responsive: true,
+                    legend: {
+                        position: 'bottom',
+                    },
+                }
+            });
+
+        },
+        error: function (data) {
+            console.log('Error:', data);
+        }
+    });
+})
+
+</script>
 
 @endpush

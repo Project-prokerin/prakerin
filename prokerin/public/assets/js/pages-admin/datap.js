@@ -28,11 +28,12 @@ $(document).ready( function () {
         }
         },
         columns:[
-        // {data: 'DT_RowIndex', name: 'DT_RowIndex'},
+        {data: 'DT_RowIndex', name: 'DT_RowIndex'},
         { data: 'nama',name:'nama'},
         { data: 'kelas',name:'kelas'},
         { data: 'jurusan',name:'jurusan'},
         { data: 'perusahaan',name:'perusahaan.nama'},
+        { data: 'status',name:'status'},
         {
         data: 'tgl_mulai',
         type: 'num',
@@ -48,9 +49,23 @@ $(document).ready( function () {
             sort: 'timestamp'
         }
         },
+        { data: 'tgl_pelaksanaan',name:'tgl_pelaksanaan'},
         { data: 'action',name:'action'}
         ],
-        order: [[0,'asc']]
+        order: [[0,'asc']],
+          columnDefs: [
+        { targets: [5], 'createdCell':  function (td, cellData, rowData, row, col) {
+                if (cellData == 'Pengajuan') { // untuk MEWARNAI COLUMN TABLE
+                    $(td).addClass('bg-primary  text-white');
+                }else if(cellData == 'Magang'){
+                    $(td).addClass('bg-warning  text-white');
+                }else if(cellData == "Selesai"){
+                    $(td).addClass('bg-success  text-white');
+                }else if(cellData == "Batal"){
+                    $(td).addClass('bg-danger  text-white');
+                }
+        }},
+        ],
     });
 
     $('.btn-table').append(

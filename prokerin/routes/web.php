@@ -48,7 +48,8 @@ Route::post('/log', [AuthController::class,'waktu_log'])->name('auth.time');
 // all admin
 Route::middleware(['web', 'auth', 'role:bkk,hubin,kaprog,kepsek,tu,kurikulum,kesiswaan,litbang,admin,sarpras'])->group(function () {
 
-    Route::get('/admin/dashboard',  [ViewController::class, 'dashboard'])->name('admin.dashboard');  // memakai route view untuk view saja
+    Route::get('/admin/dashboard',  [ViewController::class, 'dashboard'])->name('admin.dashboard');  // memakai route
+    Route::post('/admin/dashboard/ajax',  [ViewController::class, 'ajax'])->name('dashboard.ajax');  // memakai route view untuk view saja
     Route::get('/export/excel/pembekalan', [ExcelController::class, 'pembekalan'])->name('export.pembekalan');
     Route::get('/export/excel/siswa', [ExcelController::class, 'siswa'])->name('export.siswa');
     Route::get('/export/excel/jurnalh', [ExcelController::class, 'jurnalh'])->name('export.jurnalh');
