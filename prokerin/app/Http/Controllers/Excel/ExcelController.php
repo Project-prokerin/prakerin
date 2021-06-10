@@ -5,7 +5,8 @@ namespace App\Http\Controllers\Excel;
 use App\Exports\guru\multiExport;
 use App\Exports\pembekalan\pembekalanExport as PembekalanPembekalanExport;
 use App\Exports\perusahaan\multiExport as PerusahaanMultiExport;
-use App\Exports\prakerin\multiExport as PrakerinMultiExport;
+use App\Exports\prakerin\export_1\multiExport as PrakerinMultiExport;
+use App\Exports\prakerin\export_2\multiExport as PrakerinAdminMultiExport;
 use App\Exports\siswa\SiswaExport as SiswaExportt;
 use App\Exports\jurnalh\JurnalHExport as JurnalHExportt;
 use App\Exports\jurnalp\JurnalPExport as JurnalPExportt;
@@ -41,7 +42,7 @@ public function __construct(Excel $excel)
     //export excel data_prakerin
      public function data_prakerin(){
         // ngambil data prakerin
-        $prakerin = data_prakerin::select('jurusan','kelas')->distinct()->get();
+        $prakerin = data_prakerin::select('id_kelas')->distinct()->with('kelas')->get();
         // validasi jika kosong
         if (count($prakerin)<1) {
             return redirect('/data_prakerin')->with('gagal', 'data anda masih kosong');
@@ -59,6 +60,29 @@ public function __construct(Excel $excel)
                 ];
                  // dd($prakerin);
             return $this->excel->download(new PrakerinMultiExport($prakerin, $headings), 'DATA PRAKERIN.xlsx');
+    }
+    public function admin_data_prakerin()
+    {
+        // ngambil data prakerin
+        $prakerin = data_prakerin::select('id_kelas')->distinct()->with('kelas')->get();
+        // validasi jika kosong
+        if (count($prakerin) < 1) {
+            return redirect('/data_prakerin')->with('gagal', 'data anda masih kosong');
+        }
+        // jalankan
+        $headings =
+            [
+                'NO',
+                'NIPD',
+                'NAMA',
+                'NAMA PERUSAHAAN',
+                'ALAMAT',
+                'STATUS',
+                'TGL MULAI',
+                'TGL SELESAI',
+            ];
+        // dd($prakerin);
+        return $this->excel->download(new PrakerinAdminMultiExport($prakerin, $headings), 'Data Prakerin.xlsx');
     }
 
     public function guru()

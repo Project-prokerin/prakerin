@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Exports\prakerin;
+namespace App\Exports\prakerin\export_2;
 
-use App\Exports\prakerin\data_prakerinExport;
+use App\Exports\prakerin\export_2\data_prakerinExport;
 use Maatwebsite\Excel\Concerns\Exportable;
 use Maatwebsite\Excel\Concerns\WithMultipleSheets;
 use App\Models\data_prakerin;
@@ -30,9 +30,8 @@ class multiExport implements WithMultipleSheets
     {
         $sheets = [];
         foreach ($this->prakerin as $key => $value) {
-            $getData = data_prakerin::where('jurusan', $value->jurusan)->where('kelas', $value->kelas)->get();
-
-            $sheets[] = new data_prakerinExport($this->prakerin, $this->heading, $value->jurusan, $value->kelas, $getData);
+            $getData = data_prakerin::where('id_kelas', $value->kelas->id)->get();
+            $sheets[] = new data_prakerinExport($this->prakerin, $this->heading ,$value->kelas->level, $value->kelas->jurusan, $getData, $value->kelas->id);
         }
         return $sheets;
     }

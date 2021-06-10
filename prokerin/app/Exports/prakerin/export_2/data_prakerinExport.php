@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Exports\prakerin;
+namespace App\Exports\prakerin\export_2;
 
 use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\ShouldAutoSize;
@@ -31,14 +31,16 @@ class data_prakerinExport implements FromQuery, WithHeadings, WithMapping, WithS
     private $heading;
     private $jurusan;
     private $getData;
+    private $id_kelas;
 
-    public function __construct($prakerin, $heading, $jurusan, $kelas, $getData)
+    public function __construct($prakerin, $heading, $kelas, $jurusan, $getData, $id_kelas)
     {
         $this->prakerin = $prakerin;
         $this->heading = $heading;
         $this->jurusan = $jurusan;
         $this->kelas = $kelas;
         $this->getData = $getData;
+        $this->id_kelas = $id_kelas;
     }
     // public function collection()
     // {
@@ -47,7 +49,7 @@ class data_prakerinExport implements FromQuery, WithHeadings, WithMapping, WithS
     // memakai query
     public function query()
     {
-        return data_prakerin::query()->with('perusahaan')->where('jurusan', $this->jurusan)->where('kelas', $this->kelas);
+        return data_prakerin::query()->with('perusahaan')->where('id_kelas', $this->id_kelas);
     }
     public function headings(): array
     {
@@ -61,6 +63,7 @@ class data_prakerinExport implements FromQuery, WithHeadings, WithMapping, WithS
             !empty($prakerin->siswa->nama_siswa) ? $prakerin->siswa->nama_siswa : '',
             !empty($prakerin->perusahaan->nama) ? $prakerin->perusahaan->nama : '',
             !empty($prakerin->perusahaan->alamat) ? $prakerin->perusahaan->alamat : '',
+            !empty($prakerin->status) ? $prakerin->status : '',
             !empty($prakerin->tgl_mulai) ? $prakerin->tgl_mulai->isoFormat('DD MMMM YYYY') : '',
             !empty($prakerin->tgl_selesai) ? $prakerin->tgl_selesai->isoFormat('DD MMMM YYYY') : '',
         ];
@@ -151,6 +154,9 @@ class data_prakerinExport implements FromQuery, WithHeadings, WithMapping, WithS
                 // 'color' => ['argb' => 'FFFFFFF'],
             )
         ));
+        // heading size
+        $sheet->getRowDimension(6)->setRowHeight(30);
+
         // height table
         for ($i = 0; $i < $count[0]; $i++) {
             $sheet->getRowDimension($i + 7)->setRowHeight(30);
@@ -168,6 +174,24 @@ class data_prakerinExport implements FromQuery, WithHeadings, WithMapping, WithS
         $sheet->setCellValue($row_1 . ($count + 1), 'Kepala SMK Taruna Bhakti');
         $sheet->setCellValue($row_1 . ($count + 5), 'Ramadin Tarigan, S.T');
         $sheet->setCellValue($row_1 . ($count + 6), 'NIK. 19760329200411101');
+
+        // dd($panjang_col);
+        for ($i = 0; $i <= $highestRow; $i++) {
+                $cell =  $sheet->getCellByColumnAndRow(6, $i + 7);
+                if ($cell->getValue() === 'Pengajuan') {
+                    $sheet->getCellByColumnAndRow(6, $i + 7)->getStyle($columnindex[$i] . ($i + 6))->getFont()->getColor('#00000')->setARGB(\PhpOffice\PhpSpreadsheet\Style\Color::COLOR_BLACK);
+                    $sheet->getCellByColumnAndRow(6, $i + 7)->getStyle($columnindex[$i] . ($i + 6))->getFill()->setFillType(\PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID)->getStartColor()->setARGB('425df5');
+                    } else if ($cell->getValue() === 'Magang') {
+                    $sheet->getCellByColumnAndRow(6, $i + 7)->getStyle($columnindex[$i] . ($i + 6))->getFont()->getColor('#00000')->setARGB(\PhpOffice\PhpSpreadsheet\Style\Color::COLOR_BLACK);
+                    $sheet->getCellByColumnAndRow(6, $i + 7)->getStyle($columnindex[$i] . ($i + 6))->getFill()->setFillType(\PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID)->getStartColor()->setARGB('fbc531');
+                    } else if ($cell->getValue() === 'Selesai') {
+                    $sheet->getCellByColumnAndRow(6, $i + 7)->getStyle($columnindex[$i] . ($i + 6))->getFont()->getColor('#00000')->setARGB(\PhpOffice\PhpSpreadsheet\Style\Color::COLOR_BLACK);
+                    $sheet->getCellByColumnAndRow(6, $i + 7)->getStyle($columnindex[$i] . ($i + 6))->getFill()->setFillType(\PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID)->getStartColor()->setARGB('57b846');
+                    } else if ($cell->getValue() === 'Batal') {
+                    $sheet->getCellByColumnAndRow(6, $i     + 7)->getStyle($columnindex[$i] . ($i + 6))->getFont()->getColor('#00000')->setARGB(\PhpOffice\PhpSpreadsheet\Style\Color::COLOR_BLACK);
+                    $sheet->getCellByColumnAndRow(6, $i + 7)->getStyle($columnindex[$i] . ($i + 6))->getFill()->setFillType(\PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID)->getStartColor()->setARGB('e84118');
+                    }
+        }
 
         // footer
         $sheet->getStyle($row_1 . $count . ':' . $row_2 . ($count + 6))->applyFromArray(array(
@@ -203,6 +227,7 @@ class data_prakerinExport implements FromQuery, WithHeadings, WithMapping, WithS
             'E' => 70,
             'F' => 35,
             'G' => 35,
+            'H' => 35,
         ];
     }
 

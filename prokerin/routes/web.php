@@ -267,7 +267,7 @@ Route::prefix('admin')->middleware(['web', 'auth', 'role:kaprog,hubin'])->group(
     Route::delete('data_prakerin/delete/{id}', [data_prakerinController::class, 'destroy'])->name('data_prakerin.delete');
     Route::post('/data_prakerin/destroy', [data_prakerinController::class, 'delete_all'])->name('data_prakerin.delete-all');
     Route::get('/export/excel/data_prakerin', [ExcelController::class, 'data_prakerin'])->name('export.data_prakerin');
-
+    Route::get('/export/excel/admin/data_prakerin', [ExcelController::class, 'admin_data_prakerin'])->name('export.admin.data_prakerin');
 
     // jurnal harian
     Route::get('jurnalH', [jurnal_harianController::class, 'index'])->name('jurnalH.index');
