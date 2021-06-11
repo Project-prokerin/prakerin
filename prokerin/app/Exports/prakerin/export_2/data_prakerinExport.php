@@ -70,7 +70,7 @@ class data_prakerinExport implements FromQuery, WithHeadings, WithMapping, WithS
     }
     public function startCell(): string
     {
-        return 'A6';
+        return 'A7';
     }
     public function styles(Worksheet $sheet)
     {
@@ -93,7 +93,7 @@ class data_prakerinExport implements FromQuery, WithHeadings, WithMapping, WithS
         // $sheet->getDefaultRowDimension()->setRowHeight(100);
         $sheet->mergeCells('A1:G1')->setCellValue('A1', 'DATA SISWA PRAKERIN');
         $sheet->mergeCells('A2:G2')->setCellValue('A2', 'SMK TARUNA BHAKTI TP 2021/2022');
-        $sheet->mergeCells('A5:b5')->setCellValue('A5', 'KELAS :' . $this->kelas . ' ' . $this->jurusan);
+        $sheet->mergeCells('A6:b6')->setCellValue('A6', 'KELAS :' . $this->kelas . ' ' . $this->jurusan);
 
         $sheet->getStyle('A7:' . $highestCol . $highestRow)->applyFromArray(array(
             'borders' => array(
@@ -105,7 +105,7 @@ class data_prakerinExport implements FromQuery, WithHeadings, WithMapping, WithS
         ));
 
         // Nama kelas
-        $sheet->getStyle('A5:B5')->applyFromArray(array(
+        $sheet->getStyle('A6:B6')->applyFromArray(array(
             'alignment' => array(
                 'horizontal' => \PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_LEFT,
             ),
@@ -117,7 +117,7 @@ class data_prakerinExport implements FromQuery, WithHeadings, WithMapping, WithS
         ));
 
         // header table
-        $sheet->getStyle('A6:' . $highestCol . '6')->applyFromArray(array(
+        $sheet->getStyle('A7:' . $highestCol . '7')->applyFromArray(array(
             'borders' => array(
                 'allBorders' => array(
                     'borderStyle' => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN,
@@ -155,16 +155,16 @@ class data_prakerinExport implements FromQuery, WithHeadings, WithMapping, WithS
             )
         ));
         // heading size
-        $sheet->getRowDimension(6)->setRowHeight(30);
+        $sheet->getRowDimension(7)->setRowHeight(30);
 
         // height table
         for ($i = 0; $i < $count[0]; $i++) {
-            $sheet->getRowDimension($i + 7)->setRowHeight(30);
+            $sheet->getRowDimension($i + 8)->setRowHeight(30);
         }
 
         // row table A
         for ($i = 0; $i < $count[0]; $i++) {
-            $sheet->setCellValue('A' . ($i + 7), $i + 1);
+            $sheet->setCellValue('A' . ($i + 8), $i + 1);
         };
         // footer layout
         $count = $highestRow + 3;
@@ -177,19 +177,19 @@ class data_prakerinExport implements FromQuery, WithHeadings, WithMapping, WithS
 
         // dd($panjang_col);
         for ($i = 0; $i <= $highestRow; $i++) {
-                $cell =  $sheet->getCellByColumnAndRow(6, $i + 7);
+                $cell =  $sheet->getCellByColumnAndRow(6, $i + 8);
                 if ($cell->getValue() === 'Pengajuan') {
-                    $sheet->getCellByColumnAndRow(6, $i + 7)->getStyle($columnindex[$i] . ($i + 6))->getFont()->getColor('#00000')->setARGB(\PhpOffice\PhpSpreadsheet\Style\Color::COLOR_BLACK);
-                    $sheet->getCellByColumnAndRow(6, $i + 7)->getStyle($columnindex[$i] . ($i + 6))->getFill()->setFillType(\PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID)->getStartColor()->setARGB('425df5');
+                    $sheet->getCellByColumnAndRow(6, $i + 8)->getStyle($columnindex[$i] . ($i + 6))->getFont()->getColor('#00000')->setARGB(\PhpOffice\PhpSpreadsheet\Style\Color::COLOR_BLACK);
+                    $sheet->getCellByColumnAndRow(6, $i + 8)->getStyle($columnindex[$i] . ($i + 6))->getFill()->setFillType(\PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID)->getStartColor()->setARGB('425df5');
                     } else if ($cell->getValue() === 'Magang') {
-                    $sheet->getCellByColumnAndRow(6, $i + 7)->getStyle($columnindex[$i] . ($i + 6))->getFont()->getColor('#00000')->setARGB(\PhpOffice\PhpSpreadsheet\Style\Color::COLOR_BLACK);
-                    $sheet->getCellByColumnAndRow(6, $i + 7)->getStyle($columnindex[$i] . ($i + 6))->getFill()->setFillType(\PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID)->getStartColor()->setARGB('fbc531');
+                    $sheet->getCellByColumnAndRow(6, $i + 8)->getStyle($columnindex[$i] . ($i + 6))->getFont()->getColor('#00000')->setARGB(\PhpOffice\PhpSpreadsheet\Style\Color::COLOR_BLACK);
+                    $sheet->getCellByColumnAndRow(6, $i + 8)->getStyle($columnindex[$i] . ($i + 6))->getFill()->setFillType(\PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID)->getStartColor()->setARGB('fbc531');
                     } else if ($cell->getValue() === 'Selesai') {
-                    $sheet->getCellByColumnAndRow(6, $i + 7)->getStyle($columnindex[$i] . ($i + 6))->getFont()->getColor('#00000')->setARGB(\PhpOffice\PhpSpreadsheet\Style\Color::COLOR_BLACK);
-                    $sheet->getCellByColumnAndRow(6, $i + 7)->getStyle($columnindex[$i] . ($i + 6))->getFill()->setFillType(\PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID)->getStartColor()->setARGB('57b846');
+                    $sheet->getCellByColumnAndRow(6, $i + 8)->getStyle($columnindex[$i] . ($i + 6))->getFont()->getColor('#00000')->setARGB(\PhpOffice\PhpSpreadsheet\Style\Color::COLOR_BLACK);
+                    $sheet->getCellByColumnAndRow(6, $i + 8)->getStyle($columnindex[$i] . ($i + 6))->getFill()->setFillType(\PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID)->getStartColor()->setARGB('57b846');
                     } else if ($cell->getValue() === 'Batal') {
-                    $sheet->getCellByColumnAndRow(6, $i     + 7)->getStyle($columnindex[$i] . ($i + 6))->getFont()->getColor('#00000')->setARGB(\PhpOffice\PhpSpreadsheet\Style\Color::COLOR_BLACK);
-                    $sheet->getCellByColumnAndRow(6, $i + 7)->getStyle($columnindex[$i] . ($i + 6))->getFill()->setFillType(\PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID)->getStartColor()->setARGB('e84118');
+                    $sheet->getCellByColumnAndRow(6, $i  + 8)->getStyle($columnindex[$i] . ($i + 6))->getFont()->getColor('#00000')->setARGB(\PhpOffice\PhpSpreadsheet\Style\Color::COLOR_BLACK);
+                    $sheet->getCellByColumnAndRow(6, $i + 8)->getStyle($columnindex[$i] . ($i + 6))->getFill()->setFillType(\PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID)->getStartColor()->setARGB('e84118');
                     }
         }
 

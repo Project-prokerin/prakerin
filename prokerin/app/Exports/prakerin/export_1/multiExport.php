@@ -2,7 +2,7 @@
 
 namespace App\Exports\prakerin\export_1;
 
-use App\Exports\prakerin\export_2\data_prakerinExport;
+use App\Exports\prakerin\export_1\data_prakerinExport;
 use Maatwebsite\Excel\Concerns\Exportable;
 use Maatwebsite\Excel\Concerns\WithMultipleSheets;
 use App\Models\data_prakerin;
