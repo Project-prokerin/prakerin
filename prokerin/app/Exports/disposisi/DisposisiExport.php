@@ -27,15 +27,14 @@ class DisposisiExport implements FromCollection, WithHeadings, WithMapping, With
      */
 
     use Exportable;
-    private $filename = 'Surat-masuk.xlsx';
-    private $surat_M;
-    public function __construct($surat_M)
+    private $disposisi;
+    public function __construct($disposisi)
     {
-        return $this->surat_M = $surat_M;
+        return $this->disposisi = $disposisi;
     }
     public function collection()
     {
-        return collect($this->surat_M);
+        return collect($this->disposisi);
     }
     public function headings(): array
     {
@@ -69,9 +68,9 @@ class DisposisiExport implements FromCollection, WithHeadings, WithMapping, With
     public function styles(Worksheet $sheet)
     {
         $count = [
-            count($this->surat_M),
+            count($this->disposisi),
         ];
-        $jurnal = Surat_masuk::get();
+
         $columnindex = array(
             'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z',
             'AA', 'AB', 'AC', 'AD', 'AE', 'AF', 'AG', 'AH', 'AI', 'AJ', 'AK', 'AL', 'AM', 'AN', 'AO', 'AP', 'AQ', 'AR', 'AS', 'AT', 'AU', 'AV', 'AW', 'AX', 'AY', 'AZ',

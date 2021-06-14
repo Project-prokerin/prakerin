@@ -34,7 +34,7 @@ class multiExport implements WithMultipleSheets
         foreach ($this->guru as $key => $value) {
             $getData = guru::where('jurusan', $value->jurusan)->get();
             // dd(count($getData));
-            $sheets[] = new data_guruExport($this->guru, $this->heading, $value->jurusan, $getData);
+            $sheets[] = new data_guruExport($this->guru, $this->heading, $value->jurusan->jurusan, $getData);
         }
         return $sheets;
     }

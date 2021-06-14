@@ -62,7 +62,7 @@ if(role == 'admin'){
 
 
 $('#table80_filter').prepend(
-        '<a href="#"class="btn btn-success mr-3  ml-2"> Excel <i class="fas fa-cloud-download-alt"></i></button></a>'
+        '<a href="/admin/export/excel/surat_keluar"class="btn btn-success mr-3  ml-2"> Excel <i class="fas fa-cloud-download-alt"></i></button></a>'
 );
 // search engine
 $("#search").keyup(function () {

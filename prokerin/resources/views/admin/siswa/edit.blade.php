@@ -65,7 +65,7 @@
                                     <select class="form-control  form-control-sm select2 @error('kelas') is-invalid @enderror" name="kelas">
                                         <option value=" " selected>Pilih Kelas</option>
                                         @foreach ($kelas as $item)
-                                            <option value="{{ $item->id }}" @if(old('kelas', $siswa->kelas->id) == $item->id ) selected @endif>{{ $item->level .' '. $item->jurusan }}</option>
+                                            <option value="{{ $item->id }}" @if(old('kelas', $siswa->kelas->id) == $item->id ) selected @endif>{{ $item->level .' '. $item->jurusan->singkatan_jurusan }}</option>
                                         @endforeach
                                     </select>
                                 </div>

@@ -33,30 +33,10 @@ class perusahaanController extends Controller
             $perusahaan = perusahaan::orderby('id','DESC')->get();
             return datatables()->of($perusahaan)
             ->editColumn('bidang_usaha', function ($data) {
-          
-                switch ($data->kelas->jurusan) {
-                    case 'Rekayasa Perangkat Lunak':
-                        return "RPL";
-                        break;
-                        case 'Broadcasting':
-                            return "BC";
-                            break;
-                            case 'Multimedia':
-                                return "MM";
-                                break;
-                                case 'Teknologi Kominikasi Jaringan':
-                                    return "TKJ";
-                                    break;
-                                    case 'Teknik Elektonika Industri':
-                                        return "TEI";
-                                        break;
-                                        
-                    
-                    default:
-                        return "Jurusan Belum Terdaftar";
-                    break;
+                if (empty($data->jurusan)) {
+                    return "Bidang usaha kosong";
                 }
-                // return $data->kelas->jurusan;
+                return $data->jurusan->singkatan_jurusan;
             })
                 ->editColumn('tanggal_mou', function ($data) {
                     return $data->tanggal_mou->isoFormat('DD MMMM YYYY');

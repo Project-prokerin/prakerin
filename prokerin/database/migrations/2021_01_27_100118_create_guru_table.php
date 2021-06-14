@@ -15,11 +15,11 @@ class CreateGuruTable extends Migration
     {
         Schema::create('guru', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('id_user')->nullable()->constrained('users')->onDelete('cascade')->onUpdate("cascade");
+            $table->foreignId('id_user')->nullable()->constrained('users')->onDelete('set null')->onUpdate("cascade");
             $table->bigInteger('nik')->unsigned();
             $table->string('nama', 100);
             $table->enum('jabatan',['admin','litbang', 'tu','kaprog','kepsek','waka','bkk', 'hubin','kurikulum','kesiswaan','sarpras','kejuruan'])->nullable();
-            $table->bigInteger('id_kelas')->unsigned();
+            $table->bigInteger('id_jurusan')->unsigned()->nullable();
             $table->string('no_telp');
             $table->timestamps();
         });

@@ -40,7 +40,7 @@ class data_prakerinController extends Controller
                 if (empty($data->kelas->jurusan)) {
                     return "Jurusan Belum Terdaftar";
                 }
-                return $data->kelas->jurusan;
+                return $data->kelas->jurusan->singkatan_jurusan;
             })
             ->editColumn('tgl_mulai', function ($dataPrakerin) {
                 return [
@@ -78,7 +78,7 @@ class data_prakerinController extends Controller
     {
         $siswa = Siswa::doesntHave('data_prakerin')->get();
         $perusahaan = perusahaan::all();
-        $guru = guru::doesntHave('kelompok_laporan');
+        $guru = guru::doesntHave('kelompok_laporan')->get();
         $kelas = kelas::all();
         return view('admin.data_prakerin.tambah', compact('siswa','perusahaan','guru','kelas'));
     }
@@ -159,7 +159,7 @@ class data_prakerinController extends Controller
             'tgl_selesai' => $request->tgl_selesai
         ]);
             // dd($update);
-        return redirect()->route('data_prakerin.index')->with(['pesan'=>"Data Berhasil di Update"]);
+        return redirect()->route('data_prakerin.index')->with(['success'=>"Data Berhasil di Update"]);
     }
 
     /**

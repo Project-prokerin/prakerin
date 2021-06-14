@@ -63,7 +63,6 @@ class data_prakerinExport implements FromQuery, WithHeadings, WithMapping, WithS
             !empty($prakerin->siswa->nama_siswa) ? $prakerin->siswa->nama_siswa : '',
             !empty($prakerin->perusahaan->nama) ? $prakerin->perusahaan->nama : '',
             !empty($prakerin->perusahaan->alamat) ? $prakerin->perusahaan->alamat : '',
-            !empty($prakerin->perusahaan->alamat) ? $prakerin->perusahaan->alamat : '',
             !empty($prakerin->tgl_mulai) ? $prakerin->tgl_mulai->isoFormat('DD MMMM YYYY') : '',
             !empty($prakerin->tgl_selesai) ? $prakerin->tgl_selesai->isoFormat('DD MMMM YYYY') : '',
         ];

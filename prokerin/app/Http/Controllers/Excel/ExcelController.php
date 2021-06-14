@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers\Excel;
 
+use App\Exports\kelas\kelasExport;
 use App\Exports\disposisi\DisposisiExport;
+use App\Exports\guru\data_guruExport;
 use App\Exports\guru\multiExport;
 use App\Exports\pembekalan\pembekalanExport as PembekalanPembekalanExport;
 use App\Exports\perusahaan\multiExport as PerusahaanMultiExport;
@@ -11,8 +13,10 @@ use App\Exports\prakerin\export_2\multiExport as PrakerinAdminMultiExport;
 use App\Exports\siswa\SiswaExport as SiswaExportt;
 use App\Exports\jurnalh\JurnalHExport as JurnalHExportt;
 use App\Exports\jurnalp\JurnalPExport as JurnalPExportt;
+use App\Exports\jurusan\jurusanExport;
 use App\Exports\pembekalan\multiExport as PembekalanMultiExport;
 use App\Exports\siswa\multiExport as SiswaMultiExport;
+use App\Exports\surat_keluar\surat_keluarExport;
 use App\Exports\surat_masuk\surat_masukExport;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -25,6 +29,9 @@ use App\Models\Disposisi;
 use App\Models\guru;
 use App\Models\jurnal_harian;
 use App\Models\jurnal_prakerin;
+use App\Models\jurusan;
+use App\Models\kelas;
+use App\Models\Surat_keluar;
 use App\Models\Surat_M;
 use App\Models\Surat_masuk;
 
@@ -92,7 +99,7 @@ public function __construct(Excel $excel)
 
     public function guru()
     {
-        $guru = guru::select('jurusan')->distinct()->get();
+        $guru = guru::all();
         if (count($guru)<1) {
             return redirect('/guru')->with('gagal', 'data anda masih kosong');
         }
@@ -105,11 +112,11 @@ public function __construct(Excel $excel)
                 'JURUSAN',
                 'NO_TELP',
             ];
-        return $this->excel->download(new multiExport($guru, $headings), 'DATA GURU.xlsx');
+        return $this->excel->download(new data_guruExport($guru, $headings, $guru), 'DATA GURU.xlsx');
     }
      public function perusahaan()
     {
-        $perusahaan = perusahaan::select('bidang_usaha')->distinct()->get();
+        $perusahaan = perusahaan::select('id_jurusan')->distinct()->get();
         if (count($perusahaan) < 1) {
             return redirect('/perusahaan')->with('gagal', 'data anda masih kosong');
         }
@@ -154,5 +161,19 @@ public function __construct(Excel $excel)
         $disposi = Disposisi::all();
         return $this->excel->download(new DisposisiExport($disposi), 'disposisi.xlsx');
     }
-
+    public function kelas()
+    {
+        $kelas = kelas::all();
+        return $this->excel->download(new kelasExport($kelas), 'Data Kelas.xlsx');
+    }
+    public function jurusan()
+    {
+        $jurusan = jurusan::all();
+        return $this->excel->download(new jurusanExport($jurusan), 'Data Jurusan.xlsx');
+    }
+    public function surat_keluar()
+    {
+        $surat_k = Surat_keluar::all();
+        return $this->excel->download(new surat_keluarExport($surat_k), 'Surat penugasan.xlsx');
+    }
 }

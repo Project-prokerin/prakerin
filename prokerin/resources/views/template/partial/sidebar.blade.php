@@ -19,20 +19,26 @@
             <li class="menu-header">MASTER</li>
             <li class="@if (Request::is('admin/siswa','admin/siswa/*')) active @endif">
                 <a href="{{ route('siswa.index') }}" class="nav-link">
-                    <i class="fas fa-user"></i>
+                    <i class="fas fa-users"></i>
                     <span>Data Siswa</span>
                 </a>
             </li>
             <li class="@if (Request::is('admin/guru','admin/guru/*')) active @endif">
                 <a href="{{ route('guru.index') }}" class="nav-link">
-                    <i class="fas fa-user"></i>
+                    <i class="fas fa-users"></i>
                     <span>Data Guru</span>
                 </a>
             </li>
             <li class="@if (Request::is('admin/kelas','admin/kelas/*')) active @endif">
                 <a href="{{ route('kelas.index') }}" class="nav-link">
-                    <i class="fas fa-user"></i>
+                    <i class="fas fa-users"></i>
                     <span>Data Kelas</span>
+                </a>
+            </li>
+             <li class="@if (Request::is('admin/jurusan','admin/jurusan/*')) active @endif">
+                <a href="{{ route('jurusan.index') }}" class="nav-link">
+                    <i class="fas fa-users"></i>
+                    <span>Data Jurusan</span>
                 </a>
             </li>
             @endif

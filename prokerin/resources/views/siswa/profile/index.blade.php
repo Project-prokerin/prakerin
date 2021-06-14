@@ -110,7 +110,7 @@
                           </div>
                           <div class="row g-3 align-items-center">
                             <label class="form-label col-7 pleft">Jurusan</label>
-                            <label class="form-label">: {{ siswa('main')->kelas->jurusan }}</label>
+                            <label class="form-label">: {{ siswa('main')->kelas->jurusan->singkatan_jurusan ." (".siswa('main')->kelas->jurusan->jurusan.")" }}</label>
                           </div>
                           <div class="row g-3 align-items-center">
                             <label class="form-label col-7 pleft">Kelas</label>

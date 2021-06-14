@@ -55,7 +55,7 @@ class SiswaExport implements FromQuery, WithHeadings, WithMapping, WithCustomSta
                 'NIPD',
                 'Nama',
                 'Email',
-                'JenisKelamin',
+                'Jenis Kelamin',
             ];
     }
     public function map($siswa): array
@@ -141,6 +141,7 @@ class SiswaExport implements FromQuery, WithHeadings, WithMapping, WithCustomSta
                 // 'color' => ['argb' => 'FFFFFFF'],
             )
         ));
+        $sheet->getRowDimension(6)->setRowHeight(30);
         for ($i = 0; $i < $count[0]; $i++) {
             $sheet->getRowDimension($i + 7)->setRowHeight(30);
         }

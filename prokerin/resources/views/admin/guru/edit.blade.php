@@ -70,12 +70,16 @@
                                         is-invalid
                                     @enderror" name="jabatan">
                                         <option value="" selected>Pilih Jabatan</option>
-                                        <option value="hubin" @if(old('jabatan', $guru->jabatan) == 'hubin') selected @endif>Hubin</option>
-                                        <option value="kaprog"  @if(old('jabatan',$guru->jabatan) == 'kaprog') selected @endif>Kaprog</option>
-                                        <option value="bkk"  @if(old('jabatan',$guru->jabatan) == 'bkk') selected @endif>BKK</option>
-                                        <option value="kejuruan"  @if(old('jabatan',$guru->jabatan) == 'kejuruan') selected @endif>Kejuruan</option>
-                                        <option value="kejuruan"  @if(old('jabatan',$guru->jabatan) == 'tu') selected @endif>Tu</option>
-                                        <option value="kejuruan"  @if(old('jabatan',$guru->jabatan) == 'waka') selected @endif>Waka</option>
+                                        <option value="kepsek" @if(old('jabatan', $guru->jabatan) === 'kepsek') selected @endif>Kepala Sekolah</option>
+                                        <option value="kaprog"  @if(old('jabatan', $guru->jabatan) === 'kaprog') selected @endif>Kepala Program</option>
+                                        <option value="bkk"  @if(old('jabatan', $guru->jabatan) === 'bkk') selected @endif>BKK</option>
+                                        <option value="tu"  @if(old('jabatan', $guru->jabatan) === 'tu') selected @endif>Tu</option>
+                                               <option value="litbang"  @if(old('jabatan', $guru->jabatan) === 'litbang') selected @endif>Litbang</option>
+                                        <option value="hubin"  @if(old('jabatan', $guru->jabatan) === 'hubin') selected @endif>Hubin</option>
+                                        <option value="kurikulum"  @if(old('jabatan', $guru->jabatan) === 'kurikulum') selected @endif>Kurikulum</option>
+                                        <option value="kesiswaan"  @if(old('jabatan', $guru->jabatan) === 'kesiswaan') selected @endif>Kesiswaan</option>
+                                        <option value="sarpras"  @if(old('jabatan', $guru->jabatan) === 'sarpras') selected @endif>Sarpras</option>
+                                        <option value="kejuruan"  @if(old('jabatan', $guru->jabatan) === 'kejuruan') selected @endif>Kejuruan</option>
                                     </select>
                                 </div>
                                 @error('jabatan')
@@ -99,16 +103,16 @@
                                 <label class="form-label">Jurusan</label>
                                 <div class="d-flex">
                                     <i class="fas fa-user border text-center"></i>
-                                    <select class="form-control  @error('id_kelas')
+                                    <select class="form-control  @error('id_jurusan')
                                         is-invalid
-                                    @enderror"  name="id_kelas">
+                                    @enderror"  name="id_jurusan">
                                       <option  value="">Pilih Jurusan</option>
-                                        @foreach ($kelas as $item)
-                                             <option value="{{ $item->id }}"  @if(old('id_kelas', $guru->kelas->id) == $item->id) selected @endif>{{ $item->level .' '. $item->jurusan }}</option>
+                                        @foreach ($jurusan as $item)
+                                             <option value="{{ $item->id }}"  @if(old('id_jurusan', empty($guru->jurusan->id) ? " " : $guru->jurusan->id ) == $item->id) selected @endif>{{ $item->jurusan }}</option>
                                         @endforeach
                                     </select>
                                 </div>
-                                @error('id_kelas')
+                                @error('id_jurusan')
                                     <div class="invalid-feedback">
                                             {{ $message }}
                                     </div>

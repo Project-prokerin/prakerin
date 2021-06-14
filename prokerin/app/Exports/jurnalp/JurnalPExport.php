@@ -18,11 +18,11 @@ use Maatwebsite\Excel\Concerns\WithColumnFormatting;
 use Maatwebsite\Excel\Concerns\WithColumnWidths;
 use Maatwebsite\Excel\Sheet;
 use PhpOffice\PhpSpreadsheet\Worksheet\Worksheet;
-
+use Carbon\Carbon;
 
 class JurnalPExport implements FromCollection, WithHeadings, WithMapping, WithCustomStartCell, WithStyles,WithColumnWidths, ShouldAutoSize
 {
-  
+
     use Exportable;
     private $filename = 'Jurnal-Prakerin.xlsx';
     public function __construct($jurnalp)
@@ -36,7 +36,7 @@ class JurnalPExport implements FromCollection, WithHeadings, WithMapping, WithCu
     public function headings(): array
     {
         return
-            [   
+            [
                 'No',
                 'Nama_Siswa',
                 'Nama_Perusahaan',
@@ -48,10 +48,10 @@ class JurnalPExport implements FromCollection, WithHeadings, WithMapping, WithCu
     {
         return [
             '',
-            ($jurnalp->id_siswa == Auth::id()) ? $jurnalp->siswa->nama_siswa : 'Error',
+            ($jurnalp->siswa->nama_siswa) ? $jurnalp->siswa->nama_siswa : 'Error',
             $jurnalp->perusahaan->nama,
-            $jurnalp->tanggal_pelaksanaan,
-            $jurnalp->jam_masuk,
+            $jurnalp->tanggal_pelaksanaan->format('Y-m-d'),
+            $jurnalp->jam_masuk->format('Y-m-d'),
             // !empty($pembekalan->guru) ? $pembekalan->guru->nama : '',
         ];
     }
@@ -66,14 +66,14 @@ class JurnalPExport implements FromCollection, WithHeadings, WithMapping, WithCu
             count($this->jurnalp),
         ];
         $jurnal = jurnal_prakerin::with('siswa')->get();
-        
+
             // foreach ($jurnal as $jur ) {
             //     echo "{$jur->siswa->nama_siswa}";
             // }
 
 
         // dd($jurnal);
-        
+
 
 
         $columnindex = array(
@@ -110,7 +110,7 @@ class JurnalPExport implements FromCollection, WithHeadings, WithMapping, WithCu
                 )
             )
         ));
-        
+
         $sheet->getStyle('B7:' . $highestCol . '7')->applyFromArray(array(
             'borders' => array(
                 'allBorders' => array(
@@ -151,17 +151,17 @@ class JurnalPExport implements FromCollection, WithHeadings, WithMapping, WithCu
         for ($i = 0; $i < $count[0]; $i++) {
             $sheet->setCellValue('B' . ($i + 8), $i + 1);
         };
- 
+
 
     }
     public function columnWidths(): array
     {
         return [
-            'A' => 17,
             'B' => 17,
-            'C' => 20,
-            'D' => 20,
-            'E' => 17,
+            // 'B' => 17,
+            // 'C' => 20,
+            // 'D' => 20,
+            // 'E' => 17,
         ];
     }
 

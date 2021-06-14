@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\kelas;
 use App\Http\Requests\admin\kelasRequest;
+use App\Models\jurusan;
 
 class kelasController extends Controller
 {
@@ -22,12 +23,10 @@ class kelasController extends Controller
     public function ajax(request $request)
     {
         if ($request->ajax()) {
-            $kelas = kelas::all();
+            $kelas = kelas::with('jurusan')->get();
             return datatables()->of($kelas)
                 ->addColumn('action', function ($data) {
-                    $button = '<a href="/admin/kelas/detail/' . $data->id . '"   id="' . $data->id . '" class="edit btn btn-primary btn-sm"><i class="fas fa-search"></i></a>';
-                    $button .= '&nbsp';
-                    $button .='<a  href="/admin/kelas/edit/' . $data->id . '" id="edit" data-toggle="tooltip"  data-id="' . $data->id . '" data-original-title="Edit" class="edit btn btn-warning btn-sm edit-post"><i class="fas fa-pencil-alt"></i></a>';
+                    $button ='<a  href="/admin/kelas/edit/' . $data->id . '" id="edit" data-toggle="tooltip"  data-id="' . $data->id . '" data-original-title="Edit" class="edit btn btn-warning btn-sm edit-post"><i class="fas fa-pencil-alt"></i></a>';
                     $button .= '&nbsp';
                     $button .= '<button type="button" name="delete" id="hapus" data-id="' . $data->id . '" class="delete btn btn-danger btn-sm"><i class="fas fa-trash"></i></button>';
                     return $button;
@@ -44,7 +43,7 @@ class kelasController extends Controller
 
     public function tambah()
     {
-        return view('admin.kelas.tambah');
+        return view('admin.kelas.tambah', ['jurusan' => jurusan::all()]);
     }
 
     /**
@@ -58,7 +57,7 @@ class kelasController extends Controller
         // dd($request);
         $validated = $request->validated();
         kelas::create($request->all());
-        return redirect()->route('kelas.index')->with(['success' => "Data kelas berhasil di tambahkan"]);
+        return redirect()->route('kelas.index')->with('success', 'Data berhasil di tambah!');
 
     }
 
@@ -82,7 +81,8 @@ class kelasController extends Controller
     public function edit($id)
     {
         $kelas = kelas::find($id);
-        return view('admin.kelas.edit', compact('kelas'));
+        $jurusan = jurusan::all();
+        return view('admin.kelas.edit', compact('kelas','jurusan'));
     }
 
     /**
@@ -96,7 +96,7 @@ class kelasController extends Controller
     {
         $validated = $request->validated();
         kelas::find($id)->update($request->all());
-        return redirect()->route('kelas.index')->with(['success' => "Data kelas berhasil di tambahkan"]);
+        return redirect()->route('kelas.index')->with('success', 'Data berhasil di update!');
     }
 
     /**

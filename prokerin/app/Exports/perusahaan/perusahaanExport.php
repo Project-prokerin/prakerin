@@ -28,15 +28,17 @@ class perusahaanExport implements FromQuery, WithHeadings, WithMapping, WithStyl
     private $no = 0;
     private $perusahaan;
     private $heading;
-    private $bidang_usaha;
+    private $id_jurusan;
     private $getData;
+    private $bidang_usaha;
 
-    public function __construct($perusahaan, $heading ,$bidang_usaha, $getData)
+    public function __construct($perusahaan, $heading , $id_jurusan,$bidang_usaha, $getData)
     {
         $this->perusahaan = $perusahaan;
         $this->heading = $heading;
-        $this->bidang_usaha = $bidang_usaha;
+        $this->id_jurusan = $id_jurusan;
         $this->getData = $getData;
+        $this->bidang_usaha = $bidang_usaha;
     }
     // public function collection()
     // {
@@ -45,7 +47,7 @@ class perusahaanExport implements FromQuery, WithHeadings, WithMapping, WithStyl
     // memakai query
     public function query()
     {
-        return perusahaan::query()->where('bidang_usaha', $this->bidang_usaha);
+        return perusahaan::query()->where('id_jurusan', $this->id_jurusan);
         // dd($this->getdate);
     }
     public function headings(): array
@@ -57,7 +59,7 @@ class perusahaanExport implements FromQuery, WithHeadings, WithMapping, WithStyl
         return [
             '',
             !empty($perusahaan->nama) ? $perusahaan->nama : '',
-            !empty($perusahaan->bidang_usaha) ? $perusahaan->bidang_usaha : '',
+            !empty($perusahaan->jurusan->singkatan_jurusan) ? $perusahaan->jurusan->singkatan_jurusan : '',
             !empty($perusahaan->email) ? $perusahaan->email : '',
             !empty($perusahaan->nama_pemimpin) ? $perusahaan->nama_pemimpin : '',
             !empty($perusahaan->alamat) ? $perusahaan->alamat : '',
@@ -85,9 +87,8 @@ class perusahaanExport implements FromQuery, WithHeadings, WithMapping, WithStyl
         $sheet->getStyle('A6:' . $highestCol . $highestRow)->getAlignment()->setVertical(\PhpOffice\PhpSpreadsheet\Style\Alignment::VERTICAL_CENTER);
         $sheet->getStyle('A6:' . $highestCol . $highestRow)->getAlignment()->setHorizontal(\PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER);
 
-        // $sheet->getDefaultRowDimension()->setRowHeight(100);
-        $sheet->mergeCells('A1:F1')->setCellValue('A1', 'NAMA PERUSAHAAN PRAKERIN '.$this->bidang_usaha);
-
+        $sheet->mergeCells('A2:F2')->setCellValue('A2', 'SMK TARUNA BHAKTI DEPOK');
+        $sheet->mergeCells('A3:F3')->setCellValue('A3', 'DATA PERUSAHAAN PRAKERIN');
 
         $sheet->getStyle('A7:' . $highestCol . $highestRow)->applyFromArray(array(
             'borders' => array(
@@ -99,7 +100,7 @@ class perusahaanExport implements FromQuery, WithHeadings, WithMapping, WithStyl
         ));
 
         // header sheet
-        $sheet->getStyle('A1:F2')->applyFromArray(array(
+        $sheet->getStyle('A2:F3')->applyFromArray(array(
             'alignment' => array(
                 'horizontal' => \PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER,
                 'vertical' => \PhpOffice\PhpSpreadsheet\Style\Alignment::VERTICAL_CENTER
@@ -139,7 +140,7 @@ class perusahaanExport implements FromQuery, WithHeadings, WithMapping, WithStyl
         // table style
         $sheet->getStyle('D7:' .$highestCol.$highestRow)->applyFromArray(array(
             'alignment' => array(
-                'horizontal' => \PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_LEFT,
+                'horizontal' => \PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER,
                 // 'indent' => 2,
                 'vertical' => \PhpOffice\PhpSpreadsheet\Style\Alignment::VERTICAL_CENTER,
                 'wrapText' => true
@@ -154,7 +155,7 @@ class perusahaanExport implements FromQuery, WithHeadings, WithMapping, WithStyl
         $sheet->getStyle('B7:' . 'B'. $highestRow)->applyFromArray(array(
             'alignment' => array(
                 // 'horizontal' => \PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_LEFT,
-                'horizontal' => \PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_LEFT,
+                'horizontal' => \PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER,
                 // 'indent' => 2,
                 'wrapText' => true,
                 'vertical' => \PhpOffice\PhpSpreadsheet\Style\Alignment::VERTICAL_CENTER,
@@ -165,6 +166,7 @@ class perusahaanExport implements FromQuery, WithHeadings, WithMapping, WithStyl
                 // 'color' => ['argb' => 'FFFFFFF'],
             )
         ));
+        $sheet->getRowDimension(6)->setRowHeight(30);
         // height table
         for ($i = 0; $i < $count[0]; $i++) {
             $sheet->getRowDimension($i + 7)->setRowHeight(30);

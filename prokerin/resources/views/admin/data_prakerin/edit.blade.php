@@ -76,7 +76,7 @@
                                             <label>kelas</label>
                                             <select name="kelas" class="form-control  @error('kelas')  is-invalid  @enderror select2" name=" jurusan" id="">
                                                 @foreach ($kelas as $item)
-                                                     <option value="{{ $item->id }}" {{(old('kelas') ?? $dataPrakerin->kelas->id) == $item->id ? 'selected' : ''}}>{{ $item->level }}</option>
+                                                     <option value="{{ $item->id }}" {{(old('kelas') ?? $dataPrakerin->kelas->id) == $item->id ? 'selected' : ''}}>{{ $item->level.' '. $item->jurusan->singkatan_jurusan }}</option>
                                                 @endforeach
                                             </select>
                                                 @error('kelas')

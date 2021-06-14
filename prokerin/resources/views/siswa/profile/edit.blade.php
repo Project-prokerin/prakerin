@@ -59,7 +59,7 @@
                                     <select class="form-control  @error('kelas') is-invalid @enderror"  name="kelas" id="">
                                     <option value="" {{ ( old('kelas') == '') ? 'selected' : '' }}>Pilih kelas</option>
                                     @foreach ($kelas as $item)
-                                            <option value="{{ $item->id }}" @if(old('kelas',siswa('main')->kelas->id) == $item->id ) selected @endif>{{ $item->level .' '. $item->jurusan }}</option>
+                                            <option value="{{ $item->id }}" @if(old('kelas',siswa('main')->kelas->jurusan->id) == $item->id ) selected @endif>{{ $item->level .' '. $item->jurusan->singkatan_jurusan ." (".$item->jurusan->jurusan.")"  }}</option>
                                     @endforeach
                                 </select>
                                 @error('kelas')

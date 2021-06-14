@@ -27,7 +27,7 @@ class perusahaanSeeder extends Seeder
         DB::table('perusahaan')->insert([
                 'nama' => $faker->company,
                 'foto' => 'default.jpg',
-                'id_kelas' => $faker->randomElement($array = array(1,2,3,4,5)),
+                'id_jurusan' => $faker->randomElement($array = array(1,2,3,4,5)),
                 'alamat' => $faker->address,
                 'link' => $faker->url,
                 'email' => $faker->email,

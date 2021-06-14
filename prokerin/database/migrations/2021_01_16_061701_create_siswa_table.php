@@ -15,7 +15,7 @@ class CreateSiswaTable extends Migration
     {
         Schema::create('siswa', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('id_user')->constrained('users')->onDelete('cascade')->onUpdate("cascade");
+            $table->foreignId('id_user')->nullable()->constrained('users')->onDelete('set null')->onUpdate("cascade");
             $table->string('nama_siswa', 50);
             $table->string('nipd', 25);
             $table->enum('jk', ['L', 'P']);

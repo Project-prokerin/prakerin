@@ -58,7 +58,7 @@ $(document).ready( function () {
         '<a href="/admin/pembekalan/tambah"class="btn btn-primary "> Tambah Data <i class="fas fa-plus"></i></button></a>'
     );
     $('#table13_filter').prepend(
-        '<a href="/export/excel/pembekalan"class="btn btn-success mr-3  ml-2"> Excel <i class="fas fa-cloud-download-alt"></i></button></a>'
+        '<a href="/admin/export/excel/pembekalan"class="btn btn-success mr-3  ml-2"> Excel <i class="fas fa-cloud-download-alt"></i></button></a>'
     );
 
 // search engine

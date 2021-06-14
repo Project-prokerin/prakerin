@@ -19,7 +19,7 @@ use Maatwebsite\Excel\Concerns\WithColumnFormatting;
 use Maatwebsite\Excel\Concerns\WithColumnWidths;
 use Maatwebsite\Excel\Sheet;
 use PhpOffice\PhpSpreadsheet\Worksheet\Worksheet;
-
+use Carbon\Carbon;
 class JurnalHExport implements FromCollection, WithHeadings, WithMapping, WithCustomStartCell, WithStyles,WithColumnWidths, ShouldAutoSize
 {
     /**
@@ -39,7 +39,7 @@ class JurnalHExport implements FromCollection, WithHeadings, WithMapping, WithCu
     public function headings(): array
     {
         return
-            [   
+            [
                 'No',
                 'Nama',
                 'Tanggal',
@@ -53,9 +53,9 @@ class JurnalHExport implements FromCollection, WithHeadings, WithMapping, WithCu
         return [
             '',
             ($jurnalh->id_siswa == Auth::id()) ? $jurnalh->siswa->nama_siswa : 'Error',
-            $jurnalh->tanggal,
-            $jurnalh->datang,
-            $jurnalh->pulang,
+            Carbon::parse($jurnalh->tanggal)->format('d-m-Y'),
+            Carbon::parse($jurnalh->datang)->format('H:i'),
+            Carbon::parse($jurnalh->pulang)->format('H:i'),
             $jurnalh->perusahaan->nama,
             // !empty($pembekalan->guru) ? $pembekalan->guru->nama : '',
         ];
@@ -73,14 +73,14 @@ class JurnalHExport implements FromCollection, WithHeadings, WithMapping, WithCu
             count($this->jurnalh),
         ];
         $jurnal = jurnal_harian::with('siswa')->get();
-        
+
             // foreach ($jurnal as $jur ) {
             //     echo "{$jur->siswa->nama_siswa}";
             // }
 
 
         // dd($jurnal);
-        
+
 
 
         $columnindex = array(
@@ -117,7 +117,7 @@ class JurnalHExport implements FromCollection, WithHeadings, WithMapping, WithCu
                 )
             )
         ));
-        
+
         $sheet->getStyle('B7:' . $highestCol . '7')->applyFromArray(array(
             'borders' => array(
                 'allBorders' => array(
@@ -152,13 +152,14 @@ class JurnalHExport implements FromCollection, WithHeadings, WithMapping, WithCu
                 // 'color' => ['argb' => 'FFFFFFF'],
             )
         ));
+        $sheet->getRowDimension(7)->setRowHeight(30);
         for ($i = 0; $i < $count[0]; $i++) {
-            $sheet->getRowDimension($i + 7)->setRowHeight(30);
+            $sheet->getRowDimension($i + 8)->setRowHeight(30);
         }
         for ($i = 0; $i < $count[0]; $i++) {
             $sheet->setCellValue('B' . ($i + 8), $i + 1);
         };
- 
+
 
     }
     public function columnWidths(): array

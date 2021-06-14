@@ -40,7 +40,7 @@ $(document).ready( function () {
     $('.btn-table').append(
         '<a href="/admin/guru/tambah"class="btn btn-primary "> Tambah Data <i class="fas fa-plus"></i></button></a>'
     );
-    $('#table1_filter').prepend('<a href="/export/excel/guru"class="btn btn-success mr-3  ml-2"> Excel <i class="fas fa-cloud-download-alt"></i></button></a>'
+    $('#table1_filter').prepend('<a href="/admin/export/excel/guru"class="btn btn-success mr-3  ml-2"> Excel <i class="fas fa-cloud-download-alt"></i></button></a>'
     );
 
 // search engine

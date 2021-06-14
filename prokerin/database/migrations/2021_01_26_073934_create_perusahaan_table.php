@@ -17,7 +17,7 @@ class CreatePerusahaanTable extends Migration
             $table->id();
             $table->string('nama', 100);
             // $table->string('bidang_usaha', 100);
-            $table->bigInteger('id_kelas')->unsigned();
+            $table->bigInteger('id_jurusan')->unsigned()->nullable();
             $table->longText('alamat');
             $table->longText('link');
             $table->string('foto')->default('default.jpg');

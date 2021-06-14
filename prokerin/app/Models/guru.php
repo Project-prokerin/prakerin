@@ -30,9 +30,9 @@ class guru extends Model
           // foreign, owner key
         return $this->hasMany(pembekalan_magang::class, 'id_guru', 'id');
     }
-    public function kelas()
+    public function jurusan()
     {
-        return $this->belongsTo(kelas::class,'id_kelas');
+        return $this->belongsTo(jurusan::class, 'id_jurusan');
     }
 
     // surat masuk

@@ -48,8 +48,8 @@ class guruRequest extends FormRequest
                 //     }
                 // }
             ],
-            'id_kelas' => [
-                'required',
+            'id_jurusan' => [
+                // 'required',
                 // function ($attribute, $value, $fail) {
                 //     $guru = guru::where('id', $this->id)->first();
                 //     if (!empty($guru)) {

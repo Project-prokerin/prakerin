@@ -24,14 +24,14 @@ class kelasRequest extends FormRequest
     public function rules()
     {
         return [
-            'jurusan' => 'required',
+            'id_jurusan' => 'required',
             'level' => 'required'
         ];
     }
     public function messages()
     {
         return [
-            'jurusan.required' => 'Jurusan tidak boleh kosong',
+            'id_jurusan.required' => 'Jurusan tidak boleh kosong',
             'level.unique' => 'Kelas Sudah ada!',
             'level.required' => 'Kelas tidak boleh kosong!',
         ];

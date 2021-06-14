@@ -3,7 +3,8 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
-use DB;
+use Illuminate\Support\Facades\DB;
+use Carbon\Carbon;
 
 class KelasSeeder extends Seeder
 {
@@ -16,78 +17,93 @@ class KelasSeeder extends Seeder
     {
         DB::table('kelas')->insert([
             'level' => 'X',
-            'jurusan' => 'Rekayasa Perangkat Lunak',
+            'id_jurusan' => '1',
+            'created_at' => Carbon::now()
         ]);
 
         DB::table('kelas')->insert([
             'level' => 'X',
-            'jurusan' => 'Broadcasting',
+            'id_jurusan' => '2',
+            'created_at' => Carbon::now()
         ]);
 
         DB::table('kelas')->insert([
             'level' => 'X',
-            'jurusan' => 'Multimedia',
+            'id_jurusan' => '3',
+            'created_at' => Carbon::now()
         ]);
 
         DB::table('kelas')->insert([
             'level' => 'X',
-            'jurusan' => 'Teknologi Kominikasi Jaringan',
+            'id_jurusan' => '4',
+            'created_at' => Carbon::now()
         ]);
 
         DB::table('kelas')->insert([
             'level' => 'X',
-            'jurusan' => 'Teknik Elektonika Industri',
+            'id_jurusan' => '5',
+            'created_at' => Carbon::now()
         ]);
 
         DB::table('kelas')->insert([
             'level' => 'XI',
-            'jurusan' => 'Rekayasa Perangkat Lunak',
+            'id_jurusan' => '1',
+            'created_at' => Carbon::now()
         ]);
 
         DB::table('kelas')->insert([
             'level' => 'XI',
-            'jurusan' => 'Broadcasting',
+            'id_jurusan' => '2',
+            'created_at' => Carbon::now()
         ]);
 
         DB::table('kelas')->insert([
             'level' => 'XI',
-            'jurusan' => 'Multimedia',
+            'id_jurusan' => '3',
+            'created_at' => Carbon::now()
         ]);
 
         DB::table('kelas')->insert([
             'level' => 'XI',
-            'jurusan' => 'Teknologi Kominikasi Jaringan',
+            'id_jurusan' => '4',
+            'created_at' => Carbon::now()
         ]);
 
         DB::table('kelas')->insert([
             'level' => 'XI',
-            'jurusan' => 'Teknik Elektonika Industri',
+            'id_jurusan' => '5',
+            'created_at' => Carbon::now()
         ]);
         DB::table('kelas')->insert([
             'level' => 'XII',
-            'jurusan' => 'Rekayasa Perangkat Lunak',
-        ]);
-
-        DB::table('kelas')->insert([
-            'level' => 'XII',
-            'jurusan' => 'Broadcasting',
-        ]);
-
-        DB::table('kelas')->insert([
-            'level' => 'XII',
-            'jurusan' => 'Multimedia',
+            'id_jurusan' => '1',
+            'created_at' => Carbon::now()
         ]);
 
         DB::table('kelas')->insert([
             'level' => 'XII',
-            'jurusan' => 'Teknologi Kominikasi Jaringan',
+            'id_jurusan' => '2',
+            'created_at' => Carbon::now()
+        ]);
+
+        DB::table('kelas')->insert([
+            'level' => 'XII',
+            'id_jurusan' => '3',
+            'created_at' => Carbon::now()
+        ]);
+
+        DB::table('kelas')->insert([
+            'level' => 'XII',
+            'id_jurusan' => '4',
+            'created_at' => Carbon::now()
         ]);
 
         DB::table('kelas')->insert([
             'level' => 'Xii',
-            'jurusan' => 'Teknik Elektonika Industri',
+            'id_jurusan' => '5',
+            'created_at' => Carbon::now()
         ]);
 
-       
+
     }
 }

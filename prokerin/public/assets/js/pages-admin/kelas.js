@@ -30,7 +30,7 @@ $(document).ready( function () {
         columns:[
         { data: 'DT_RowIndex', name: 'DT_RowIndex'},
         { data: 'level', name:'level'},
-        { data: 'jurusan',name:'jurusan'},
+        { data: 'jurusan.jurusan',name:'jurusan.jurusan'},
         { data: 'action',name:'action'}
         ],
     });
@@ -38,7 +38,7 @@ $(document).ready( function () {
         '<a href="/admin/kelas/tambah"class="btn btn-primary "> Tambah Data <i class="fas fa-plus"></i></button></a>'
     );
     $('#table11_filter').prepend(
-        '<a href="/export/excel/kelas"class="btn btn-success mr-3  ml-2"> Excel <i class="fas fa-cloud-download-alt"></i></button></a>'
+        '<a href="/admin/export/excel/kelas"class="btn btn-success mr-3  ml-2"> Excel <i class="fas fa-cloud-download-alt"></i></button></a>'
     );
 
 // search engine

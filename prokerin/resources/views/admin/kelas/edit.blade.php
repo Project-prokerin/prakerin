@@ -62,19 +62,24 @@
 
 
                         <div class="mb-3">
-                            <label class="form-label">Jurusan</label>
-                            <div class="d-flex">
-                                <i class="fas fa-user border text-center"></i>
-                                <input type="text" class="form-control @error('jurusan')
-                                    is-invalid
-                                @enderror" name="jurusan" placeholder="Jurusan" value="{{old('jurusan', $kelas->jurusan)}}">
-                            </div>
-                            @error('jurusan')
-                                <div class="invalid-feedback">
-                                        {{ $message }}
+                                <label class="form-label">Jurusan</label>
+                                <div class="d-flex">
+                                    <i class="fas fa-user border text-center"></i>
+                                    <select class="form-control  @error('id_jurusan')
+                                        is-invalid
+                                    @enderror"  name="id_jurusan">
+                                      <option  value="">Pilih Jurusan</option>
+                                        @foreach ($jurusan as $item)
+                                             <option value="{{ $item->id }}"  @if(old('id_jurusan', empty($kelas->jurusan->id) ? " " : $kelas->jurusan->id ) == $item->id) selected @endif>{{ $item->jurusan }}</option>
+                                        @endforeach
+                                    </select>
                                 </div>
-                            @enderror
-                        </div>
+                                @error('id_jurusan')
+                                    <div class="invalid-feedback">
+                                            {{ $message }}
+                                    </div>
+                                @enderror
+                            </div>
                     </div>
                     <div style="margin-top: 40px;">
                         <button type="submit" class="btn btn-success rounded-pill mr-2"><i class="fas fa-check-square mr-2"></i>Submit</button>

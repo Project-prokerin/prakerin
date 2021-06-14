@@ -67,12 +67,16 @@
                                         is-invalid
                                     @enderror" name="jabatan">
                                         <option value="" selected>Pilih Jabatan</option>
-                                        <option value="hubin" @if(old('jabatan') === 'hubin') selected @endif>Hubin</option>
-                                        <option value="kaprog"  @if(old('jabatan') === 'kaprog') selected @endif>Kaprog</option>
+                                        <option value="kepsek" @if(old('jabatan') === 'kepsek') selected @endif>Kepala Sekola</option>
+                                        <option value="kaprog"  @if(old('jabatan') === 'kaprog') selected @endif>Kepala Program</option>
                                         <option value="bkk"  @if(old('jabatan') === 'bkk') selected @endif>BKK</option>
+                                        <option value="tu"  @if(old('jabatan') === 'tu') selected @endif>Tu</option>
+                                         <option value="litbang"  @if(old('jabatan') === 'litbang') selected @endif>Litbang</option>
+                                        <option value="hubin"  @if(old('jabatan') === 'hubin') selected @endif>Hubin</option>
+                                        <option value="kurikulum"  @if(old('jabatan') === 'kurikulum') selected @endif>Kurikulum</option>
+                                        <option value="kesiswaan"  @if(old('jabatan') === 'kesiswaan') selected @endif>Kesiswaan</option>
+                                        <option value="sarpras"  @if(old('jabatan') === 'sarpras') selected @endif>Sarpras</option>
                                         <option value="kejuruan"  @if(old('jabatan') === 'kejuruan') selected @endif>Kejuruan</option>
-                                        <option value="kejuruan"  @if(old('jabatan') === 'tu') selected @endif>Tu</option>
-                                        <option value="kejuruan"  @if(old('jabatan') === 'waka') selected @endif>Waka</option>
                                     </select>
                                 </div>
                                 @error('jabatan')
@@ -96,16 +100,16 @@
                                 <label class="form-label">Jurusan</label>
                                 <div class="d-flex">
                                     <i class="fas fa-user border text-center"></i>
-                                    <select class="form-control  @error('id_kelas')
+                                    <select class="form-control  @error('id_jurusan')
                                         is-invalid
-                                    @enderror"  name="id_kelas">
+                                    @enderror"  name="id_jurusan">
                                         <option  value="">Pilih Jurusan</option>
-                                        @foreach ($kelas as $item)
-                                             <option value="{{ $item->id }}"  @if(old('id_kelas') == $item->id) selected @endif>{{ $item->level .' '. $item->jurusan }}</option>
+                                        @foreach ($jurusan as $item)
+                                             <option value="{{ $item->id }}"  @if(old('id_jurusan') == $item->id) selected @endif>{{ $item->jurusan }}</option>
                                         @endforeach
                                     </select>
                                 </div>
-                                @error('id_kelas')
+                                @error('id_jurusan')
                                     <div class="invalid-feedback">
                                             {{ $message }}
                                     </div>

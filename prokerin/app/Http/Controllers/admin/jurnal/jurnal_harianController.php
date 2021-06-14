@@ -40,11 +40,11 @@ class jurnal_harianController extends Controller
             // })
 
              ->addColumn('id_siswa', function (jurnal_harian $jurnal_harian) {
-                 $siswa = empty($jurnal_harian->siswa->kelas->jurusan) ? "Belum mendapat jurusan" : $jurnal_harian->siswa->kelas->jurusan;
+                 $siswa = empty($jurnal_harian->siswa->kelas->jurusan) ? "Belum mendapat jurusan" : $jurnal_harian->siswa->kelas->jurusan->singkatan_jurusan;
                 return $siswa;
             })
             ->addColumn('jurusan', function (jurnal_harian $jurnal_harian) {
-                $jurusan = empty($jurnal_harian->siswa->kelas->jurusan) ? "Belum mendapat jurusan" : $jurnal_harian->siswa->kelas->jurusan;
+                $jurusan = empty($jurnal_harian->siswa->kelas->jurusan) ? "Belum mendapat jurusan" : $jurnal_harian->siswa->kelas->jurusan->singkatan_jurusnx;
                 return $jurusan;
             })
             ->addColumn('no_kelompok', function (jurnal_harian $jurnal_harian) {

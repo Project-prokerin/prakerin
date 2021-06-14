@@ -16,8 +16,8 @@ class kelas extends Model
     public function guru(){
         return $this->hasMany(Guru::class, 'id_kelas' ,'id');
     }
-    public function perusahaan(){
-        return $this->hasMany(Perusahaan::class, 'id_kelas' ,'id');
+    public function jurusan(){
+        return $this->belongsTo(jurusan::class, 'id_jurusan');
     }
     public function data_prakerin(){
         return $this->hasMany(data_prakerin::class, 'id_kelas' ,'id');

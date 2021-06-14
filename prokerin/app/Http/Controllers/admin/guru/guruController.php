@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\admin\guruRequest;
 use Illuminate\Http\Request;
 use App\Models\guru;
+use App\Models\jurusan;
 use Yajra\DataTables\DataTables;
 use Illuminate\Support\Facades\Hash;
 use App\Models\User;
@@ -33,28 +34,10 @@ class guruController extends Controller
             $guru = guru::all();
             return datatables()->of($guru)
             ->editColumn('jurusan', function ($data) {
-
-                switch ($data->kelas->jurusan) {
-                    case 'Rekayasa Perangkat Lunak':
-                        return "RPL";
-                        break;
-                        case 'Broadcasting':
-                            return "BC";
-                            break;
-                            case 'Multimedia':
-                                return "MM";
-                                break;
-                                case 'Teknologi Kominikasi Jaringan':
-                                    return "TKJ";
-                                    break;
-                                    case 'Teknik Elektonika Industri':
-                                        return "TEI";
-                                        break;
-
-
-                    default:
-                        return "Jurusan Belum Terdaftar";
-                    break;
+                if (!empty($data->jurusan->singkatan_jurusan)) {
+                   return $data->jurusan->singkatan_jurusan;
+                }else {
+                    return "Jurusan Kosong";
                 }
                 // return $data->kelas->jurusan;
             })
@@ -72,7 +55,7 @@ class guruController extends Controller
     }
     public function tambah()
     {
-        return view('admin.guru.tambah', ['kelas' => kelas::all()]);
+        return view('admin.guru.tambah', ['jurusan' => jurusan::all()]);
     }
 
     /**
@@ -116,7 +99,7 @@ class guruController extends Controller
      */
     public function edit($id)
     {
-        return view('admin.guru.edit',  ['guru' => guru::find($id), 'kelas' => kelas::all()]);
+        return view('admin.guru.edit',  ['guru' => guru::find($id), 'jurusan' => jurusan::all()]);
     }
 
     /**
@@ -140,7 +123,7 @@ class guruController extends Controller
                     'nik' => $request->nik,
                     'nama' => $request->nama,
                     'jabatan' => $request->jabatan,
-                    'jurusan' => $request->jurusan,
+                    'id_jurusan' => $request->id_jurusan,
                     'no_telp' => $request->no_telp
                 ]);
             } else {
@@ -150,19 +133,19 @@ class guruController extends Controller
                     'nik' => $request->nik,
                     'nama' => $request->nama,
                     'jabatan' => $request->jabatan,
-                    'jurusan' => $request->jurusan,
+                    'id_jurusan' => $request->id_jurusan,
                     'no_telp' => $request->no_telp
                 ]);
             }
             return
-                redirect()->route('guru.index')->with('success', 'Data berhasil di tambah!');
+                redirect()->route('guru.index')->with('success', 'Data berhasil di edit!');
 
         } else  {
             $guru = guru::where('id', $id)->update([
                 'nik' => $request->nik,
                 'nama' => $request->nama,
                 'jabatan' => $request->jabatan,
-                'jurusan' => $request->jurusan,
+                'id_jurusan' => $request->id_jurusan,
                 'no_telp' => $request->no_telp
             ]);
             $cekguru = guru::where('id', $id)->first();
@@ -174,7 +157,7 @@ class guruController extends Controller
             }
 
             return
-                redirect()->route('guru.index')->with('success', 'Data berhasil di tambah!');
+                redirect()->route('guru.index')->with('success', 'Data berhasil di edit!');
             // if jabatan == kejurusan
         }
     }

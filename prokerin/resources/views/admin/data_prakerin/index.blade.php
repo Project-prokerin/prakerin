@@ -79,6 +79,7 @@
               </div>
             </div>
           </div>
+          <span id="role" data-role="{{ Auth::user()->role }}"></span>
         @endsection
         @push('script')
         <script src="{{ asset('assets/js/pages-admin/datap.js') }}" ></script>

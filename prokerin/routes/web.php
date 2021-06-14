@@ -11,6 +11,7 @@ use App\Http\Controllers\admin\data_prakerin\data_prakerinController;
 use App\Http\Controllers\admin\pembekalan\pembekalanContoller;
 use App\Http\Controllers\admin\jurnal\jurnal_harianController;
 use App\Http\Controllers\admin\jurnal\jurnal_prakerinController;
+use App\Http\Controllers\admin\jurusan\jurusanController;
 use App\Http\Controllers\admin\kelompok\kelompokController;
 use App\Http\Controllers\admin\laporan\laporanController;
 use App\Http\Controllers\admin\kelas\kelasController;
@@ -50,10 +51,7 @@ Route::middleware(['web', 'auth', 'role:bkk,hubin,kaprog,kepsek,tu,kurikulum,kes
 
     Route::get('/admin/dashboard',  [ViewController::class, 'dashboard'])->name('admin.dashboard');  // memakai route
     Route::post('/admin/dashboard/ajax',  [ViewController::class, 'ajax'])->name('dashboard.ajax');  // memakai route view untuk view saja
-    Route::get('/export/excel/pembekalan', [ExcelController::class, 'pembekalan'])->name('export.pembekalan');
     Route::get('/export/excel/siswa', [ExcelController::class, 'siswa'])->name('export.siswa');
-    Route::get('/export/excel/jurnalh', [ExcelController::class, 'jurnalh'])->name('export.jurnalh');
-    Route::get('/export/excel/jurnalp', [ExcelController::class, 'jurnalp'])->name('export.jurnalp');
 });
 
 // export surat keluar
@@ -140,7 +138,19 @@ Route::prefix('admin')->middleware(['web', 'auth', 'role:admin'])->group(functio
     Route::put('kelas/update/{id}', [kelasController::class, 'update'])->name('kelas.update');
     Route::delete('kelas/delete/{id}', [kelasController::class, 'destroy'])->name('kelas.delete');
     Route::post('/kelas/destroy', [kelasController::class, 'delete_all'])->name('kelas.delete-all');
-    Route::get('/export/excel/kelas', [ExcelController::class, 'guru'])->name('export.kelas');
+    Route::get('/export/excel/kelas', [ExcelController::class, 'kelas'])->name('export.kelas');
+
+    // data jurusan
+    Route::get('jurusan', [jurusanController::class, 'index'])->name('jurusan.index');
+    Route::post('jurusan/ajax', [jurusanController::class, 'ajax'])->name('jurusan.ajax');
+    Route::get('jurusan/detail/{id}', [jurusanController::class, 'detail'])->name('jurusan.detail');
+    Route::get('jurusan/tambah', [jurusanController::class, 'tambah'])->name('jurusan.tambah');
+    Route::post('jurusan/tambah/post', [jurusanController::class, 'store'])->name('jurusan.post');
+    Route::get('jurusan/edit/{id}', [jurusanController::class, 'edit'])->name('jurusan.edit');
+    Route::put('jurusan/update/{id}', [jurusanController::class, 'update'])->name('jurusan.update');
+    Route::delete('jurusan/delete/{id}', [jurusanController::class, 'destroy'])->name('jurusan.delete');
+    Route::post('/jurusan/destroy', [jurusanController::class, 'delete_all'])->name('jurusan.delete-all');
+    Route::get('/export/excel/jurusan', [ExcelController::class, 'jurusan'])->name('export.jurusan');
 
 });
 
@@ -187,7 +197,7 @@ Route::prefix('admin')->middleware(['web', 'auth', 'role:kaprog,hubin'])->group(
     Route::put('jurnal/update/{jurnal_prakerin}', [jurnal_prakerinController::class, 'update'])->name('jurnal.update');
     Route::delete('jurnal/delete/{id}', [jurnal_prakerinController::class, 'destroy'])->name('jurnal.delete');
     Route::post('/jurnal/destroy', [jurnal_prakerinController::class, 'delete_all'])->name('jurnal.delete-all');
-    Route::get('/export/excel/jurnal', [ExcelController::class, 'jurnalh'])->name('export.jurnal');
+    Route::get('/export/excel/jurnal', [ExcelController::class, 'jurnalp'])->name('export.jurnal');
 
     // kelompok magang
     Route::get('kelompok', [kelompokController::class, 'index'])->name('kelompok.index');
@@ -242,7 +252,7 @@ Route::prefix('admin')->middleware(['web', 'auth', 'role:bkk,hubin'])->group(fun
     Route::put('pembekalan/update/{pembekalan}', [pembekalanContoller::class, 'update'])->name('pembekalan.update');
     Route::delete('pembekalan/delete/{id}', [pembekalanContoller::class, 'destroy'])->name('pembekalan.delete');
     Route::post('/pembekalan/destroy', [pembekalanContoller::class, 'delete_all'])->name('pembekalan.delete-all');
-    Route::get('/export/excel/pembekalan', [pembekalanContoller::class, 'pembekalan'])->name('export.pembekalan');
+    Route::get('/export/excel/pembekalan', [ExcelController::class, 'pembekalan'])->name('export.pembekalan');
     Route::get('/pembekalan/{id}/download', [pembekalanContoller::class, 'downloads'])->name('pembekalan.download');
 });
 

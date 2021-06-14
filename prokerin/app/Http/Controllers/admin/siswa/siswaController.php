@@ -60,7 +60,7 @@ class siswaController extends Controller
                 if (empty($data->kelas->jurusan)) {
                     return "kelas Belum Terdaftar";
                 }
-                    return $data->kelas->jurusan;
+                    return $data->kelas->jurusan->singkatan_jurusan;
                 })
                 ->addColumn('action', function ($data) {
                     $button = '<a href="/admin/siswa/detail/' . $data->id . '"   id="' . $data->id . '" class="edit btn btn-primary btn-sm"><i class="fas fa-search"></i></a>';

@@ -27,9 +27,9 @@ class perusahaan extends Model
         return $this->hasMany(jurnal_harian::class, 'id_perusahaan', 'id');
     }
 
-    public function kelas()
+    public function jurusan()
     {
-        return $this->belongsTo(kelas::class,'id_kelas');
+        return $this->belongsTo(jurusan::class, 'id_jurusan');
     }
 
 }

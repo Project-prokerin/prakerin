@@ -14,7 +14,7 @@ use Maatwebsite\Excel\Concerns\WithStyles;
 use Maatwebsite\Excel\Concerns\WithTitle;
 use Maatwebsite\Excel\Concerns\Exportable;
 use PhpOffice\PhpSpreadsheet\Worksheet\Worksheet;
-class data_guruExport implements FromQuery, WithHeadings, WithMapping, WithStyles, WithColumnWidths, WithCustomStartCell, ShouldAutoSize, WithTitle
+class data_guruExport implements FromCollection, WithHeadings, WithMapping, WithStyles, WithColumnWidths, WithCustomStartCell, ShouldAutoSize, WithTitle
 {
     // /**
     // * @return \Illuminate\Support\Collection
@@ -27,22 +27,22 @@ class data_guruExport implements FromQuery, WithHeadings, WithMapping, WithStyle
     private $jurusan;
     private $getData;
 
-    public function __construct($guru, $heading, $jurusan, $getData)
+    public function __construct($guru, $heading, $getData)
     {
         $this->guru = $guru;
         $this->heading = $heading;
-        $this->jurusan = $jurusan;
+        // $this->jurusan = $jurusan;
         $this->getData = $getData;
     }
-    // public function collection()
-    // {
-    //     return collect($this->guru);
-    // }
-    // memakai query
-    public function query()
+    public function collection()
     {
-        return guru::query()->where('jurusan', $this->jurusan);
+        return collect($this->guru);
     }
+    // memakai query
+    // public function query()
+    // {
+    //     return guru::query();
+    // }
     public function headings(): array
     {
         return $this->heading;
@@ -51,10 +51,10 @@ class data_guruExport implements FromQuery, WithHeadings, WithMapping, WithStyle
     {
         return [
             '',
-            !empty($guru->siswa->nipd) ? $guru->siswa->nipd : '',
+            !empty($guru->nik) ? $guru->nik : '',
             !empty($guru->nama) ? $guru->nama : '',
             !empty($guru->jabatan) ? $guru->jabatan : '',
-            !empty($guru->jurusan) ? $guru->jurusan : '',
+            !empty($guru->jurusan) ? $guru->jurusan->singkatan_jurusan : 'Kosong',
             !empty($guru->no_telp) ? $guru->no_telp : '',
         ];
     }
@@ -86,7 +86,7 @@ class data_guruExport implements FromQuery, WithHeadings, WithMapping, WithStyle
         // $sheet->getDefaultRowDimension()->setRowHeight(100);
         $sheet->mergeCells('A2:F2')->setCellValue('A2', 'DATA GURU');
         $sheet->mergeCells('A3:F3')->setCellValue('A3', 'SMK TARUNA BHAKTI TP 2021/2022');
-        $sheet->mergeCells('A5:b5')->setCellValue('A5', 'JURUSAN :' . $this->jurusan);
+        // $sheet->mergeCells('A5:b5')->setCellValue('A5', 'JURUSAN :' . $this->jurusan);
 
         $sheet->getStyle('A7:' . $highestCol . $highestRow)->applyFromArray(array(
             'borders' => array(
@@ -149,7 +149,7 @@ class data_guruExport implements FromQuery, WithHeadings, WithMapping, WithStyle
             )
         ));
 
-
+        $sheet->getRowDimension(6)->setRowHeight(30);
         // height table
         for ($i = 0; $i < $count[0]; $i++) {
             $sheet->getRowDimension($i + 7)->setRowHeight(30);
@@ -166,16 +166,16 @@ class data_guruExport implements FromQuery, WithHeadings, WithMapping, WithStyle
     {
         return [
             'A' => 8,
-            'B' => 20,
-            'C' => 20,
-            'D' => 20,
-            'E' => 20,
-            'F' => 20,
+            // 'B' => 20,
+            // 'C' => 20,
+            'D' => 15,
+            'E' => 15,
+            'F' => 15,
         ];
     }
 
     public function title(): string
     {
-        return $this->jurusan;
+        return "Data guru";
     }
 }
