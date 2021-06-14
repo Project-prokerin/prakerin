@@ -56,7 +56,7 @@
                     <label class="form-label">: </label>
                   </div>
                   <div style="margin-top: 40px; margin-bottom:40px;">
-                    <a href="{{ route('surat_masuk.kepsek.index') }}" type="button" class="btn btn-danger "><i class="fas fa-backspace"></i>   Kembali</a>
+                    <a href="{{ route('admin.surat_masuk.index') }}" type="button" class="btn btn-danger "><i class="fas fa-backspace"></i>   Kembali</a>
                 </div>
             </div>
 

@@ -2,22 +2,6 @@ $(document).ready( function () {
     var filter = $('#search').val();
 
 role = $('#role').data('role');
-    if (role == 'admin') {
-        url = "/admin/surat_masuk/ajax";
-        url_delete = "/admin/surat_masuk/delete/";
-        url_disposisi = "/admin/disposisi/delete/";
-    }else if (role == 'kepsek') {
-        url = "/admin/kepsek/surat_masuk/ajax";
-        url_delete = "/admin/kepsek/surat_masuk/delete/";
-        url_diposisi = "/admin/kepsek/disposisi/delete/";
-    }else if (role == 'tu') {
-        url = "/admin/tu/surat_masuk/ajax";
-        url_delete = "/admin/tu/surat_masuk/delete/";
-    }else if (role == 'pokja') {
-        jabatan  = $('#jabatan').data('jabatan');
-        url = "/admin/" + jabatan +  "/surat_masuk/ajax";
-        url_delete = "/admin/" + jabatan + "/surat_masuk/delete/";
-    }
 
     function columns(role){
         if(role == "kepsek" || role == "admin"){
@@ -52,6 +36,7 @@ role = $('#role').data('role');
             ]
         }
     }
+    console.log(role);
     var table = $('#table-1').DataTable({
         dom:
 			"<'row'<'ol-sm-12 col-md-6 btn-table'><'col-sm-12 col-md-6  pdf-button'f>>" +
@@ -71,7 +56,7 @@ role = $('#role').data('role');
         headers: {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         },
-        url: url,
+        url: '/admin/surat_masuk/ajax',
         type: "post",
         data: function (data) {
             data = '';
@@ -85,27 +70,17 @@ role = $('#role').data('role');
 //         '<a href="/admin/surat_masuk/kepsek/tambah"class="btn btn-primary  "> Tambah Data <i class="fas fa-plus"></i></button></a>'
 // );
 
-if(role == 'admin'){
+if(role == 'admin' || role == 'tu'){
     $('.btn-table').append(
             '<a href="/admin/surat_masuk/tambah"class="btn btn-primary  "> Tambah Data <i class="fas fa-plus"></i></button></a>'
     );
-    }if(role == 'tu'){
-    $('.btn-table').append(
-            '<a href="/admin/tu/surat_masuk/tambah"class="btn btn-primary  "> Tambah Data <i class="fas fa-plus"></i></button></a>'
-    );
-}else if (role == "hubin") {
-      $('.btn-table').append(
-            '<a href="/admin/'+role+'/tambah"class="btn btn-primary  "> Tambah Data <i class="fas fa-plus"></i></button></a>'
-    );
-// }else if (role == "kepsek") {
-//     $('.btn-table').append(
-//           '<a href="/admin/'+role+'/tambah"class="btn btn-primary  "> Tambah Data <i class="fas fa-plus"></i></button></a>'
-//   );
 }
 
-$('#table-1_filter').prepend(
+   $('#table-1_filter').prepend(
         '<a href="/admin/surat_masuk/export/excel/"class="btn btn-success mr-3  ml-2"> Excel <i class="fas fa-cloud-download-alt"></i></button></a>'
 );
+
+
 // search engine
 $("#search").keyup(function () {
     table.search( this.value ).draw();
@@ -126,7 +101,7 @@ $('body').on('click','#hapus', function () {
                     headers: {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                     },
-                    url: url_delete + id,
+                    url: '/admin/disposisi/delete/' + id,
                     type: "DELETE",
                     data: '',
                     success: function (data) {
@@ -161,7 +136,7 @@ $('body').on('click','#hapus-disposisi', function () {
                         headers: {
                             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                         },
-                        url: url_disposisi + id,
+                        url: '/admin/disposisi/delete/' + id,
                         type: "DELETE",
                         data: '',
                         success: function (data) {

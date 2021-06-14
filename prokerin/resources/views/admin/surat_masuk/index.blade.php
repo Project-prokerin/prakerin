@@ -46,7 +46,8 @@
             <table class="table table-striped" id="table-1">
               <thead class="text-center">
                 <tr>
-                  <th>
+                @if(Auth::user()->role == "admin" or Auth::user()->role == "kepsek" or Auth::user()->role == "tu" or Auth::user()->role == "kaprok")
+                    <th>
                     No
                   </th>
                   <th>Nama Surat</th>
@@ -55,6 +56,19 @@
                   <th>Status</th>
                   <th>Disposisi</th>
                   <th>Action</th>
+                @else
+        <th>
+                    No
+                  </th>
+                  <th>Nama Surat</th>
+                  <th>dari</th>
+                  <th>jabatan</th>
+                  <th>status</th>
+                  <th>Disposisi</th>
+                  <th>Action</th>
+
+                @endif
+
                 </tr>
               </thead>
               <tbody class="text-center">
@@ -78,7 +92,8 @@
       </div>
     </div>
   </div>
-<span class="d-none"id="role" data-role="{{  Auth::user()->role }}"></span>
+  @if (Auth::user()->role == "admin" or Auth::user()->role == "kepsek" or Auth::user()->role == "tu" or Auth::user()->role == "kaprok" )@php $role = Auth::user()->role @endphp @else   @php $role = "pokja" @endphp @endif
+<span class="d-none"id="role" data-role="{{ $role }}"></span>
 @endsection
 @push('script')
 <script src="{{ asset('assets/js/pages-admin/surat-masuk.js') }}" ></script>

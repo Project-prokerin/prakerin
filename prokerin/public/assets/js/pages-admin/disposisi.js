@@ -1,10 +1,5 @@
 $(document).ready(function () {
     var filter = $('#search').val();
-    if ($('#role').text() == 'admin') {
-        url = "/admin/disposisi/ajax";
-    } else if ($('#role').text() == 'kepsek') {
-        url = "/admin/kepsek/disposisi/ajax";
-    }
     console.log($('#role').text());
     var table = $('#table-6').DataTable({
         dom:
@@ -25,7 +20,7 @@ $(document).ready(function () {
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             },
-            url: url,
+            url: '/admin/disposisi/ajax',
             type: "post",
             data: function (data) {
                 data = '';
@@ -55,19 +50,15 @@ $(document).ready(function () {
         ],
     });
     role = $('#role').text();
-    if (role == 'admin') {
+    if (role == 'admin' ||  role == 'kaprog' || role == 'kepsek') {
         $('.btn-table').append(
             '<a href="/admin/disposisi/tambah"class="btn btn-primary "> Tambah Data <i class="fas fa-plus"></i></button></a>'
         );
-    } else if (role == 'kepsek') {
-        $('.btn-table').append(
-            '<a href="/admin/disposisi/kepsek/tambah"class="btn btn-primary "> Tambah Data <i class="fas fa-plus"></i></button></a>'
-        );
-
+          $('#table-6_filter').prepend('<a href="/admin/disposisi/export/excel"class="btn btn-success mr-3  ml-2"> Excel <i class="fas fa-cloud-download-alt"></i></button></a>'
+);
     }
 
-    $('#table-6_filter').prepend('<a href="/admin/disposisi/export/excel"class="btn btn-success mr-3  ml-2"> Excel <i class="fas fa-cloud-download-alt"></i></button></a>'
-);
+
 
     // search engine
     $("#search").keyup(function () {
@@ -75,11 +66,6 @@ $(document).ready(function () {
     })
     // hapus data
     $('body').on('click', '#hapus', function () {
-         if ($('#role').text() == 'admin') {
-        url = "/admin/disposisi/delete/";
-    } else if ($('#role').text() == 'kepsek') {
-        url = "/admin/kepsek/disposisi/delete/";
-    }
         // sweet alert
         Swal.fire({
             title: 'Apa anda yakin?',
@@ -95,7 +81,7 @@ $(document).ready(function () {
                     headers: {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                     },
-                    url: url + id,
+                    url: '/admin/disposisi/delete/' + id,
                     type: "DELETE",
                     data: '',
                     success: function (data) {

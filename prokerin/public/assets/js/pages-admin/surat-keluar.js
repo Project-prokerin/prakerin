@@ -2,17 +2,6 @@ $(document).ready( function () {
     var filter = $('#search').val();
 
     role = $('#role').data('role');
-    if (role == 'admin') {
-        url = "/admin/surat_keluar/ajax/";
-        url_delete = "/admin/surat_keluar/delete/"
-    }else if (role == 'hubin') {
-        url = "/admin/hubin/surat_keluar/ajax/";
-        url_delete = "/admin/hubin/surat_keluar/delete/";
-    }else if (role == 'kepsek') {
-        url = "/admin/kepsek/surat_keluar/ajax/";
-         url_delete = "/admin/kepsek/surat_keluar/delete/";
-
-    }
 
     function column(role){
         if(role == "hubin"){
@@ -21,15 +10,7 @@ $(document).ready( function () {
             { data: 'status', name:'status'},
             { data: 'tgl_surat', name:'tgl_surat'},
             { data: 'action', name:'action'},]
-        }else if(role == 'kepsek'){
-            return [{ data: 'DT_RowIndex', name: 'DT_RowIndex'},
-            { data: 'nama_surat', name:'nama_surat'},
-            { data: 'dari', name:'dari'},
-            { data: 'jabatan', name:'jabatan'},
-            { data: 'status', name:'status'},
-            { data: 'tgl_surat', name:'tgl_surat'},
-            { data: 'action', name:'action'},]
-        }else if(role == 'admin'){
+        }else if(role == 'kepsek' || role == 'kaprog' || role == 'admin'){
             return [{ data: 'DT_RowIndex', name: 'DT_RowIndex'},
             { data: 'nama_surat', name:'nama_surat'},
             { data: 'dari', name:'dari'},
@@ -58,7 +39,7 @@ $(document).ready( function () {
         headers: {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         },
-        url: url,
+        url: '/admin/surat_keluar/ajax/',
         type: "post",
         data: function (data) {
             data = '';
@@ -77,10 +58,6 @@ if(role == 'admin'){
       $('.btn-table').append(
             '<a href="/admin/'+role+'/surat_keluar/tambah"class="btn btn-primary  "> Tambah Data <i class="fas fa-plus"></i></button></a>'
     );
-}else if (role == "kepsek") {
-    $('.btn-table').append(
-          '<a href="/admin/'+role+'/tambah"class="btn btn-primary  "> Tambah Data <i class="fas fa-plus"></i></button></a>'
-  );
 }
 
 
@@ -107,7 +84,7 @@ $('body').on('click','#hapus', function () {
                     headers: {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                     },
-                    url: url_delete + id,
+                    url: '/admin/surat_keluar/delete/' + id,
                     type: "DELETE",
                     data: '',
                     success: function (data) {

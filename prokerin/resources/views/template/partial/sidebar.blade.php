@@ -89,67 +89,33 @@
                 </a>
             </li>
             @endif
-            @if($role == "hubin" or $role == "kepsek")
-            @if ($role == 'kepsek')
-                <li class="menu-header">Prakerin</li>
-            @endif
-            <li class='@if (Request::is("admin/$role/surat_keluar","admin/$role/surat_keluar/*")) active @endif'>
-                <a href='{{ route("$role.surat_keluar.index") }}' class="nav-link"><i class="fas fa-file-alt"></i>
-                    <span>Surat Penugasan </span>
-                </a>
-            </li>
-            @elseif($role == "admin")
+            @if($role == "hubin" or $role == "kepsek" or $role == "admin" or $role == "kaprog")
+            @if($role == "kepsek" or $role == "admin" or $role == "kaprog")
             <li class="menu-header">Prakerin</li>
+            @endif
             <li class='@if (Request::is("admin/surat_keluar","admin/surat_keluar/*")) active @endif'>
-                <a href='{{ route("$role.surat_keluar.index") }}' class="nav-link"><i class="fas fa-file-alt"></i>
+                <a href='{{ route("admin.surat_keluar.index") }}' class="nav-link"><i class="fas fa-file-alt"></i>
                     <span>Surat Penugasan </span>
                 </a>
             </li>
             @endif
-            @if($role == 'tu' || $role == 'kepsek' || $role == 'hubin' || $role == 'sarpras' || $role == 'kurikulum' || $role == 'kesiswaan')
-                <li class="menu-header">Takola</li>
-            <li class='@if (Request::is("admin/$role/surat_masuk","admin/$role/surat_masuk/*")) active @endif'>
-            <a href='{{ route("surat_masuk.$role.index") }}' class="nav-link">
-                <i class="far fa-envelope"></i>
-                <span>Surat Masuk</span>
-            </a>
-            </li>
-            @if (Auth::user()->role == 'kepsek' )
-            <li class='@if (Request::is("admin/$role/disposisi","admin/$role/disposisi/*")) active @endif'>
-            <a href='{{ route("disposisi.$role.index") }}' class="nav-link">
-                <i class="fas fa-envelope-open-text"></i>
-                <span>Disposisi</span>
-            </a>
-            </li>
-            @endif
-            {{-- <li class="@if (Request::is('#','#/*')) active @endif">
-            <a href="#" class="nav-link">
-                <i class="far fa-envelope"></i>
-                <span>Surat Keluar</span>
-            </a>
-            </li> --}}
-
-            @elseif($role == 'admin')
-                <li class="menu-header">Takola</li>
+            @if (Auth::user()->role == 'admin' or Auth::user()->role == 'tu' or Auth::user()->role == 'kepsek' or Auth::user()->role == 'kaprog' or Auth::user()->role == 'kesiswaan' or Auth::user()->role == 'kurikulum' or Auth::user()->role == 'hubin' or Auth::user()->role == 'sarpras')
+            <li class="menu-header">Takola</li>
             <li class='@if (Request::is("admin/surat_masuk","admin/surat_masuk/*")) active @endif'>
                 <a href='{{ route('admin.surat_masuk.index') }}' class="nav-link">
                     <i class="fas fa-th"></i>
                     <span>Surat Masuk</span>
                 </a>
             </li>
-            <li class='@if (Request::is("admin/disposisi","admin/disposisi/*")) active @endif'>
+            @endif
+            @if (Auth::user()->role == 'admin' or Auth::user()->role == 'tu' or Auth::user()->role == 'kepsek' or Auth::user()->role == 'kaprog')
+<li class='@if (Request::is("admin/disposisi","admin/disposisi/*")) active @endif'>
                 <a href='{{ route('disposisi.admin.index') }}' class="nav-link">
                     <i class="fas fa-th"></i>
                     <span>Disposisi</span>
                 </a>
             </li>
-            {{-- <li class="@if (Request::is('#','#/*')) active @endif">
-                <a href="#" class="nav-link">
-                    <i class="fas fa-th"></i>
-                    <span>Surat Keluar</span>
-                </a>
-            </li> --}}
-@endif
+            @endif
 
     </aside>
 </div>
