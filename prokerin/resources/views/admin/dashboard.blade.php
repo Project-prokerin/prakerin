@@ -15,7 +15,7 @@
         @if (Auth::user()->role == 'hubin')
         <div class="row">
         <div class="col-lg-6 col-md-4 col-sm-12">
-                <div class="card" style="height:257px;">
+                <div class="card"style="border-radius:15px;height:257px;background-image: linear-gradient(to right, #A1FFCE, #FAFFD1);"">
                    <h2 class="text-center" style="margin-top:80px;">Prakerin & Takola</h2>
                    <h4 class="text-center">2020-2021</h4>
                 </div>
@@ -23,22 +23,22 @@
         
                
                  <div class="col-lg-3  col-md-4 col-sm-12">
-                    <div class="card card-statistic-2">
+                    <div class="card card-statistic-2" style="border-radius:15px;background-color:transparent;">
                         <div class="card-stats">
-                            <div class="card card-statistic-1">
+                            <div class="card card-statistic-1"style="border-radius:15px;background-image: linear-gradient(to right, #1f4037, #99f2c8);">
                                 <div class="card-icon bg-primary">
                                     <i class="far fa-building"></i>
                                 </div>
                                 <div class="card-wrap">
                                     <div class="card-header">
-                                        <h4>Data Perusahaan</h4>
+                                        <h4 class="text-dark">Data Perusahaan</h4>
                                     </div>
                                     <div class="card-body">
                                         {{ $perusahaan }}
                                     </div>
                                 </div>
                             </div>
-                            <div class="card card-statistic-1">
+                            <div class="card card-statistic-1"style="border-radius:15px;background-color:#00b894;">
                                 <div class="card-icon bg-primary">
                                     <i class="fas fa-newspaper"></i>
                                 </div>
@@ -56,9 +56,9 @@
                 </div>
 
                 <div class="col-lg-3 col-md-4 col-sm-12">
-                    <div class="card card-statistic-2">
+                    <div class="card card-statistic-2" style="border-radius:15px;background-color:#dfe6e9;">
                         <div class="card-stats">
-                            <div class="card card-statistic-1">
+                            <div class="card card-statistic-1"style="border-radius:15px;background-color:#fed330;">
                                 <div class="card-icon bg-primary">
                                     <i class="far fa-building"></i>
                                 </div>
@@ -71,8 +71,8 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="card card-statistic-1">
-                                <div class="card-icon bg-primary">
+                            <div class="card card-statistic-1"style="border-radius:15px;">
+                                <div class="card-icon bg-danger">
                                     <i class="far fa-building"></i>
                                 </div>
                                 <div class="card-wrap">
@@ -90,9 +90,9 @@
     </div>
     <div class="row">
     <div class="col-lg-4 col-md-4 col-sm-12">
-                    <div class="card card-statistic-2">
+                    <div class="card card-statistic-2"style="border-radius:15px;background-color:#dfe6e9;">
                         <div class="card-stats">
-                            <div class="card card-statistic-1">
+                            <div class="card card-statistic-1"style="border-radius:15px;background-color:#eb2f06;">
                                 <div class="card-icon bg-primary">
                                     <i class="fas fa-th"></i>
                                 </div>
@@ -122,10 +122,10 @@
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-4 col-sm-12">
-                    <div class="card card-statistic-2">
+                    <div class="card card-statistic-2"style="border-radius:15px;background-color:#dfe6e9;">
                         <div class="card-stats">
-                            <div class="card card-statistic-1">
-                                <div class="card-icon bg-primary">
+                            <div class="card card-statistic-1"style="border-radius:15px;background-image: linear-gradient(to right, #F3904F, #3B4371);">
+                                <div class="card-icon bg-warning">
                                     <i class="fas fa-th"></i>
                                 </div>
                                 <div class="card-wrap">
@@ -138,7 +138,7 @@
                                 </div>
                             </div>
                             <div class="card card-statistic-1">
-                                <div class="card-icon bg-primary">
+                                <div class="card-icon bg-success">
                                     <i class="far fa-building"></i>
                                 </div>
                                 <div class="card-wrap">
@@ -154,10 +154,10 @@
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-4 col-sm-12">
-                    <div class="card card-statistic-2">
+                    <div class="card card-statistic-2" style="border-radius:15px;">
                         <div class="card-stats">
-                            <div class="card card-statistic-1">
-                                <div class="card-icon bg-primary">
+                            <div class="card card-statistic-1"style="border-radius:15px;">
+                                <div class="card-icon bg-success">
                                     <i class="fas fa-th"></i>
                                 </div>
                                 <div class="card-wrap">
