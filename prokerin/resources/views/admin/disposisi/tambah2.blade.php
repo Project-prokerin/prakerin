@@ -35,9 +35,30 @@
                         <div class="">
                             <div class="" style="height: auto;">
                                 <div class="card-body">
-                                    <form action="{{route('admin.disposisi.post',$surat)}}" method="POST" class="input">
-                                        @method('PATCH')
+                                    <form action="{{route('admin.disposisi.post')}}" method="POST" class="input">
                                         @csrf
+                                        <div class="mb-3">
+                                            <label class="form-label">pilih Surat</label>
+                                            <div class="d-flex">
+                                                <i class="fas fa-user border text-center"></i>
+                                                <select
+                                                    class="form-control select2  @error('surat') is-invalid @enderror"
+                                                    placeholder="Pokja" value="{{ old('surat') }}"
+                                                    name="surat" id="">
+                                                    <option value="" selected disabled>Pilih surat</option>
+                                                    @foreach ($surat as $item)
+                                                        <option value="{{ $item->id }}" @if(old('surat')=== $item->id ) selected
+                                                        @endif>{{ $item->surat_m->nama_surat }}</option>
+                                                    @endforeach
+
+                                                </select>
+                                            </div>
+                                            @error('surat')
+                                            <div class="invalid-feedback">
+                                                {{ $message }}
+                                            </div>
+                                            @enderror
+                                        </div>
                                         <div class="mb-3">
                                             <label class="form-label">Pokja Tujuan</label>
                                             <div class="d-flex">
@@ -67,7 +88,6 @@
                                             </div>
                                             @enderror
                                         </div>
-
                                 </div>
                             </div>
                         </div>

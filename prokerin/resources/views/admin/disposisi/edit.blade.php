@@ -3,7 +3,7 @@
 <link rel="stylesheet" href="{{ asset('template/') }}/node_modules/select2/dist/css/select2.min.css">
 
 <style>
-    
+
         .card-body .input i{
             width: 50px;
             font-size: medium;
@@ -33,7 +33,7 @@
                 <div class="">
                     <div class="" style="height: auto;">
                         <div class="card-body">
-                        <form action="{{ route('disposisi.admin.update',$surat->id) }}" method="POST" class="input">
+                        <form action="{{ route('admin.disposisi.update',$surat->id) }}" method="POST" class="input">
                             @method('PUT')
                             @csrf
                             <div class="mb-3">
@@ -69,15 +69,23 @@
                                 <label class="form-label">Keterangan Disposisi</label>
                                 <div class="d-flex">
                                     <i class="fas fa-envelope-open-text border text-center"></i>
-                                    <textarea class="form-control" name="Keterangan_disposisi"  required="">{{$surat->Keterangan_disposisi}}</textarea>
+                                    <textarea class="form-control  @error('Keterangan_disposisi')
+                                        is-invalid
+                                    @enderror" name="Keterangan_disposisi ">{{$surat->Keterangan_disposisi}}</textarea>
+
                                 </div>
+                                  @error('Keterangan_disposisi')
+                                            <div class="invalid-feedback">
+                                                {{ $message }}
+                                            </div>
+                                            @enderror
 
                             </div>
                         </div>
                         <div style="margin-top: 40px;">
                             <button type="submit" class="btn btn-success rounded-pill mr-2"><i class="fas fa-check-square mr-2"></i>Submit</button>
                             </form>
-                            <a href="{{ route('disposisi.admin.index') }}" type="button" class="btn btn-danger rounded-pill"><i class="fas fa-window-close mr-2"></i>Cancel</a>
+                            <a href="{{ route('admin.disposisi.index') }}" type="button" class="btn btn-danger rounded-pill"><i class="fas fa-window-close mr-2"></i>Cancel</a>
                         </div>
                         </div>
                     </div>

@@ -34,8 +34,9 @@
                     <div class="">
                         <div class="" style="height: auto;">
                             <div class="card-body">
-                                <form action="{{ route('admin.surat_masuk.post') }}" method="POST" class="input"
+                                <form action="{{ route('admin.surat_masuk.update', ['id' => $surat_masuk->id]) }}" method="POST" class="input"
                                     enctype="multipart/form-data">
+                                    @method('PUT')
                                     @csrf
                                     <div class="mb-3">
                                         <label class="form-label">Nama Surat</label>
@@ -43,7 +44,7 @@
                                             <i class="fas fa-user border text-center"></i>
                                             <input type="text" name="nama_surat" class="form-control @error('nama_surat')
                                             is-invalid
-                                    @enderror" placeholder="nama surat" value="{{ old('nama_surat') }}">
+                                    @enderror" placeholder="nama surat" value="{{ $surat_masuk->surat_m->nama_surat }}">
                                         </div>
                                         @error('nama_surat')
                                             <div class="invalid-feedback">
@@ -60,12 +61,8 @@
                                     @enderror" name="id_untuk">
                                                 <option value="" selected>Pilih Tujuan</option>
                                                 @foreach ($guru as $gurus )
-                                            <option value="" @if (old('id_untuk') == $gurus->id) selected @endif > {{ $gurus->nama ." | Jabatan :". $gurus->jabatan  }} </option>
+                                            <option value="{{ $gurus->id }}" @if (old('id_untuk', $surat_masuk->id_untuk) == $gurus->id) selected @endif > {{ $gurus->nama ." | Jabatan :". $gurus->jabatan  }} </option>
                                                 @endforeach
-                                                {{-- <option value="17" @if (old('id_untuk') === 'hubin') selected @endif>Hubin</option>
-                                                <option value="13" @if (old('id_untuk') === 'kaprog') selected @endif>Kurikulum</option>
-                                                <option value="14" @if (old('id_untuk') === 'bkk') selected @endif>Kesiswaan</option> --}}
-
                                             </select>
                                         </div>
                                         @error('id_untuk')
@@ -74,8 +71,18 @@
                                             </div>
                                         @enderror
 
-                                        <div class="mb-3 mt-5">
-                                            <input name="surat" id="surat" type="file" />
+                                        <div class="mb-3 mt-3">
+                                             <label class="form-label">Masukan Surat</label><br>
+                                            <input name="surat" class="form-control @error('surat')
+                                            is-invalid
+                                    @enderror" id="surat" type="file" value="">
+                                        <input type="text" value="default" name="surat" hidden>
+                                            <small>note : kosongkan jika tidak ingin di ubah</small>
+                                            @error('surat')
+                                                <small class="invalid-feedback">
+                                                    {{ $message }}
+                                                </small>
+                                            @enderror
                                         </div>
 
                                     </div>
@@ -102,7 +109,7 @@
 
                                         </div>
                                         <div class="embed-responsive embed-responsive-16by9" >
-                                            <iframe class="embed-responsive-item"  id="preview-image-before-upload" type="application/pdf" src="https://commercial.bunn.com/img/image-not-available.png" allowfullscreen></iframe>
+                                            <iframe class="embed-responsive-item"  id="preview-image-before-upload" type="application/pdf" src="{{ asset($surat_masuk->surat_m->path_surat) }}" allowfullscreen></iframe>
                                           </div>
                                     </div>
                                 </div>
@@ -127,7 +134,7 @@
     </div>
     </div>
     </div>
-
+    <span></span>
 @endsection
 @push('script')
     {{-- <script src="{{ asset('assets/js/main/table.js') }}" ></script> --}}
@@ -144,7 +151,8 @@
 
             reader.onload = (e) => {
 
-              $('#preview-image-before-upload').attr('src', e.target.result);
+                 $('#preview-image-before-upload').attr('src', e.target.result);
+
             }
 
             reader.readAsDataURL(this.files[0]);

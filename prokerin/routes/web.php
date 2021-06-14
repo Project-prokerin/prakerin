@@ -85,8 +85,9 @@ Route::prefix('admin')->middleware(['web', 'auth', 'role:admin,kepsek,tu,kaprog,
     Route::get('disposisi', [DiposisiController::class, 'index'])->name('admin.disposisi.index');
     Route::post('disposisi/ajax', [DiposisiController::class, 'ajax'])->name('admin.disposisi.ajax');
     // Route::get('disposisi/detail/{id}', [DiposisiController::class, 'detail'])->name('disposisi.admin.detail');
-    Route::get('disposisi/tambah/', [DiposisiController::class, 'tambah'])->name('admin.disposisi.tambah');
-    Route::patch('disposisi/post/{id}', [DiposisiController::class, 'store'])->name('admin.disposisi.post'); // update disposisi
+    Route::get('disposisi/tambah/', [DiposisiController::class, 'tambah2'])->name('admin.disposisi.tambah');
+    Route::patch('disposisi/post/{id}', [DiposisiController::class, 'store'])->name('admin.disposisi.post'); // update
+    Route::post('disposisi/post/', [DiposisiController::class, 'store2'])->name('admin.disposisi.post'); // update disposisi
     Route::get('disposisi/edit/{id}', [DiposisiController::class, 'edit'])->name('admin.disposisi.edit'); // edit disposisi biasa
     Route::put('disposisi/update/{id}', [DiposisiController::class, 'update'])->name('admin.disposisi.update'); // update disposisi
     Route::delete('disposisi/delete/{id}', [DiposisiController::class, 'destroy'])->name('admin.disposisi.delete'); // table disposisi

@@ -60,11 +60,8 @@
                                     @enderror" name="id_untuk">
                                                 <option value="" selected>Pilih Tujuan</option>
                                                 @foreach ($guru as $gurus )
-                                            <option value="" @if (old('id_untuk') == $gurus->id) selected @endif > {{ $gurus->nama ." | Jabatan :". $gurus->jabatan  }} </option>
+                                            <option value="{{ $gurus->id }}" @if (old('id_untuk') == $gurus->id) selected @endif > {{ $gurus->nama ." | Jabatan :". $gurus->jabatan  }} </option>
                                                 @endforeach
-                                                {{-- <option value="17" @if (old('id_untuk') === 'hubin') selected @endif>Hubin</option>
-                                                <option value="13" @if (old('id_untuk') === 'kaprog') selected @endif>Kurikulum</option>
-                                                <option value="14" @if (old('id_untuk') === 'bkk') selected @endif>Kesiswaan</option> --}}
 
                                             </select>
                                         </div>
@@ -74,8 +71,16 @@
                                             </div>
                                         @enderror
 
-                                        <div class="mb-3 mt-5">
-                                            <input name="surat" id="surat" type="file" />
+                                        <div class="mb-3 mt-3">
+                                            <label for="">Masukan surat</label>
+                                            <input name="surat" name="surat" id="surat" class="form-control @error('surat')
+                                            is-invalid
+                                    @enderror" type="file" />
+                                             @error('surat')
+                                                <small class="invalid-feedback">
+                                                    {{ $message }}
+                                                </small>
+                                            @enderror
                                         </div>
 
                                     </div>

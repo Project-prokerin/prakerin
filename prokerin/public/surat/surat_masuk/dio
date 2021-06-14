@@ -1,0 +1,14 @@
+array.pop() = menghapus array dari bekalang
+array.push() = menambah array dari belakang
+array.shirt() = menambah array dari depan
+array.unshift() = mengampus array dari depan
+array.slice(start,end) = untuk mendapatkan arraay dan memuat array baru
+arra.slice(index,end, "add index") = menghapus / menambah elemnt pada array
+array.tostring() = untuk mengubah array manjadi string
+array.join('-') = mengubah array menjad string dengan pembatas sesuai sama parameternya
+array.valueOf() = untuk endapatkan calue dari array
+arr.sort(function) = untuk memperpendek array dari 1,2,3,4,5
+arr.contact = untuk mengabungkan array
+arr.copyWithin(copt, start,end) = mencopy array untuk menambahkan di possi yang di tuju
+array.fil(value) = menambah array dengan spesifik value
+Array.isArray(array) = untuk mengatahui bawha itu array apa bukan

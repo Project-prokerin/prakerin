@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\admin\surat_masuk;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\admin\disposisi2Request;
+use App\Http\Requests\admin\disposisiRequest;
 use App\Models\Disposisi;
 use App\Models\Surat_masuk;
 use App\Models\Detail_surat;
@@ -65,11 +67,13 @@ class DiposisiController extends Controller
         $surat = Surat_masuk::find($id)->first();
         return view('admin.disposisi.tambah', compact('surat'));
     }
-    public function store(Request $request,$id)
+    public function tambah2()
     {
-        // dd($id);
-        // $surat_detail_surat = Detail_surat::where('id',$id)->first();
-            // dd($surat_detail_surat);
+        return view('admin.disposisi.tambah2', ['surat' => Detail_surat::doesntHave('disposisi')->get()]);
+    }
+    public function store(disposisiRequest $request,$id)
+    {
+        $request->validated();
         Disposisi::create([
             'Pokjatujuan' => $request->Pokjatujuan,
             'Keterangan_disposisi' =>  $request->Keterangan_disposisi,
@@ -77,8 +81,20 @@ class DiposisiController extends Controller
             'created_at' => Carbon::now()
         ]);
 
-        return redirect()->route('disposisi.admin.index')->with('pesan','Berhasil tambah disposisi!');
+        return redirect()->route('admin.disposisi.index')->with('pesan','Berhasil tambah disposisi!');
+    }
 
+    public function store2(disposisi2Request $request)
+    {
+        // $request->validated();
+        Disposisi::create([
+            'Pokjatujuan' => $request->Pokjatujuan,
+            'Keterangan_disposisi' =>  $request->Keterangan_disposisi,
+            'id_detail_surat' => $request->surat,
+            'created_at' => Carbon::now()
+        ]);
+
+        return redirect()->route('admin.disposisi.index')->with('pesan', 'Berhasil tambah disposisi!');
     }
     public function edit($id = null)
     {
@@ -86,15 +102,16 @@ class DiposisiController extends Controller
         // dd($surat->id);
         return view('admin.disposisi.edit', compact('surat'));
     }
-    public function update(Request $request, $id)
+    public function update(disposisiRequest $request, $id)
     {
         // dd($request);
+        $request->validated();
         Disposisi::find($id)->update([
             'Pokjatujuan' => $request->Pokjatujuan,
             'Keterangan_disposisi' =>  $request->Keterangan_disposisi,
             'created_at' => Carbon::now()
         ]);
-        return redirect()->route('disposisi.admin.index')->with('pesan','Berhasil Update disposisi!');
+        return redirect()->route('admin.disposisi.index')->with('pesan','Berhasil Update disposisi!');
 
 
 

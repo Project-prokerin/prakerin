@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\admin\surat_masuk;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\admin\surat_masukRequest;
 use App\Models\Disposisi;
 use App\Models\Surat_masuk;
 use App\Models\Surat_M;
@@ -122,56 +123,32 @@ class Surat_masukController extends Controller
         return view('admin.surat_masuk.tambah', compact('guru'));
     }
 
-    public function store(Request $request)
-    {
-        // dd($request);
-        $request->validate([
-            'nama' => 'required',
-            'kelas' => 'required',
-            'nosurat' => 'required',
-            'perihal_surat' => 'required',
-            'keterangan' => 'required',
-        ],[
-            'required' =>  'Tidak boleh kosong!',
-        ]);
-        $nm = $request->file;
-        $fileName = $nm->getClientOriginalName();
-             Transaksi::create([
-                'nama' => $request->nama,
-                'kelas' => $request->kelas,
-                'nosurat' => $request->nosurat,
-                'perihal_surat' => $fileName,
-                'keterangan' => $request->keterangan,
-             ]);
-             $nm->move(public_path().'/img',$fileName);
-        return redirect()->to('/home/data-transaksi')->with('pesan','Berhasil menambah kelas!');
-    }
 
     // route buat semua admin & tu
-    public function store_surat(Request $request)
+    public function store_surat(surat_masukRequest $request)
     {
-    //    dd($request->surat);
-       $nm = $request->surat;
-    // $nm =   $request->file('/surat');
-       $namaFile =  $nm->getClientOriginalName();
+        $request->validated();
+        $nm = $request->surat;
+        $nama_surat = $request->nama_surat;
+        $extensi = $nm->getClientOriginalExtension();
+        $name = time() . $nama_surat . '.' . $extensi;
 
-
-     $surat_masuk  =  Surat_masuk::create([
+        $surat_masuk  =  Surat_masuk::create([
         'id_dari' => Auth::user()->id,
         'id_untuk' => $request->id_untuk,
         'status' => 'pengajuan',
         'created_at' => Carbon::now()
-    ]);
+        ]);
 
+        $surat_m = Surat_M::create([
+            'nama_surat' => $nama_surat,
+            'path_surat' => "surat/surat_masuk/$name",
+            'tgl_surat_masuk' => Carbon::today()->toDateString(),
+            'id_surat_masuk' => $surat_masuk->id,
+            'created_at' => Carbon::now()
+        ]);
 
-   $surat_m = Surat_M::create([
-        'nama_surat' => $request->nama_surat,
-        'path_surat' => "surat/surat_masuk/$namaFile",
-        'tgl_surat_masuk' => Carbon::today()->toDateString(),
-        'id_surat_masuk' => $surat_masuk->id,
-        'created_at' => Carbon::now()
-    ]);
-        $nm->move(public_path().'/surat/surat_masuk',$namaFile);
+        $nm->move(public_path().'/surat/surat_masuk', $name);
         $surat_number = Surat_M::orderBy('created_at','DESC')->first();
 
         $surat_number = Surat_M::orderBy('created_at','DESC')->first();
@@ -191,63 +168,51 @@ class Surat_masukController extends Controller
         return view('admin.surat_masuk.edit', ['surat_masuk' => Surat_masuk::findOrFail($id), 'guru' => guru::whereIn('jabatan', ['kepsek','keprog'])->get()]);
     }
 
-    public function update_surat(Request $request,$id)
+    public function update_surat(surat_masukRequest $request,$id)
     {
-
-           if ($request->surat === null) {
-            // $nm = $request->surat;
-            // $nm =   $request->file('/surat');
-            //    $namaFile =  $nm->getClientOriginalName();
-
-
-               Surat_masuk::find($id)->update([
+            $request->validated();
+           if ($request->surat == 'default') {
+                Surat_masuk::find($id)->update([
                 'id_dari' => Auth::user()->id,
                 'id_untuk' => $request->id_untuk,
                 'status' => 'pengajuan',
                 'created_at' => Carbon::now()->format('Y-m-d')
-            ]);
+                ]);
 
-            Surat_M::find($id)->update([
-                'nama_surat' => $request->nama_surat,
-                // 'path_surat' => "surat/surat_masuk/$namaFile",
-                'tgl_surat_masuk' => Carbon::today()->toDateString(),
-                // 'id_surat_masuk' => $surat_masuk->id,
-                'created_at' => Carbon::now()->format('Y-m-d')
-            ]);
-                // $nm->move(public_path().'/surat/surat_masuk',$namaFile);
-
+                Surat_M::find($id)->update([
+                    'nama_surat' => $request->nama_surat,
+                    // 'path_surat' => "surat/surat_masuk/$namaFile",
+                    'tgl_surat_masuk' => Carbon::today()->toDateString(),
+                    // 'id_surat_masuk' => $surat_masuk->id,
+                    'created_at' => Carbon::now()->format('Y-m-d')
+                ]);
                 return redirect()->route('admin.surat_masuk.index')->with('pesan','Berhasil mengirim surat!');
-           }else {
+            }else {
+                    $file_path = Surat_M::where('id_surat_masuk',$id)->first();  // Value is not URL but directory file path
+                    if(File::exists(public_path($file_path->path_surat))){
+                        File::delete(public_path($file_path->path_surat));
+                }
+                $nm = $request->surat;
+                $nama_surat = $request->nama_surat;
+                $extensi = $nm->getClientOriginalExtension();
+                $name = time() . $nama_surat . '.' . $extensi;
+                Surat_masuk::find($id)->update([
+                    'id_dari' => Auth::user()->id,
+                    'id_untuk' => $request->id_untuk,
+                    'status' => 'pengajuan',
+                    'created_at' => Carbon::now()->format('Y-m-d')
+                ]);
 
-            $file_path = Surat_M::where('id_surat_masuk',$id)->first();  // Value is not URL but directory file path
-            if(File::exists(public_path($file_path->path_surat))){
-                File::delete(public_path($file_path->path_surat));
-            }
-
-            $nm = $request->surat;
-            // $nm =   $request->file('/surat');
-               $namaFile =  $nm->getClientOriginalName();
-
-
-               Surat_masuk::find($id)->update([
-                'id_dari' => Auth::user()->id,
-                'id_untuk' => $request->id_untuk,
-                'status' => 'pengajuan',
-                'created_at' => Carbon::now()->format('Y-m-d')
-            ]);
-
-            Surat_M::find($id)->update([
-                'nama_surat' => $request->nama_surat,
-                'path_surat' => "surat/surat_masuk/$namaFile",
-                'tgl_surat_masuk' => Carbon::today()->toDateString(),
-                // 'id_surat_masuk' => $surat_masuk->id,
-                'created_at' => Carbon::now()->format('Y-m-d')
-            ]);
-                $nm->move(public_path().'/surat/surat_masuk',$namaFile);
-
-                return redirect()->route('admin.surat_masuk.index')->with('pesan','Berhasil mengirim surat!');
+                Surat_M::find($id)->update([
+                    'nama_surat' => $request->nama_surat,
+                    'path_surat' => "surat/surat_masuk/$name",
+                    'tgl_surat_masuk' => Carbon::today()->toDateString(),
+                    // 'id_surat_masuk' => $surat_masuk->id,
+                    'created_at' => Carbon::now()->format('Y-m-d')
+                ]);
+                $nm->move(public_path() . '/surat/surat_masuk', $name);
+                return redirect()->route('admin.surat_masuk.index')->with('pesan','Berhasil mengubah surat!');
            }
-
     }
 
     public function destroy_surat($id)
