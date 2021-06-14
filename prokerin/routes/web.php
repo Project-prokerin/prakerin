@@ -82,14 +82,14 @@ Route::prefix('admin')->middleware(['web', 'auth', 'role:admin,kepsek,tu,kaprog,
 
 
     // table disposisi
-    Route::get('disposisi', [DiposisiController::class, 'index'])->name('admin.disposisi.admin.index');
-    Route::post('disposisi/ajax', [DiposisiController::class, 'ajax'])->name('admin.disposisi.admin.ajax');
+    Route::get('disposisi', [DiposisiController::class, 'index'])->name('admin.disposisi.index');
+    Route::post('disposisi/ajax', [DiposisiController::class, 'ajax'])->name('admin.disposisi.ajax');
     // Route::get('disposisi/detail/{id}', [DiposisiController::class, 'detail'])->name('disposisi.admin.detail');
-    Route::get('disposisi/tambah/', [DiposisiController::class, 'tambah'])->name('admin.disposisi.admin.tambah');
-    Route::patch('disposisi/post/{id}', [DiposisiController::class, 'store'])->name('admin.disposisi.admin.post'); // update disposisi
-    Route::get('disposisi/edit/{id}', [DiposisiController::class, 'edit'])->name('admin.disposisi.admin.edit'); // edit disposisi biasa
-    Route::put('disposisi/update/{id}', [DiposisiController::class, 'update'])->name('admin.disposisi.admin.update'); // update disposisi
-    Route::delete('disposisi/delete/{id}', [DiposisiController::class, 'destroy'])->name('admin.disposisi.admin.delete'); // table disposisi
+    Route::get('disposisi/tambah/', [DiposisiController::class, 'tambah'])->name('admin.disposisi.tambah');
+    Route::patch('disposisi/post/{id}', [DiposisiController::class, 'store'])->name('admin.disposisi.post'); // update disposisi
+    Route::get('disposisi/edit/{id}', [DiposisiController::class, 'edit'])->name('admin.disposisi.edit'); // edit disposisi biasa
+    Route::put('disposisi/update/{id}', [DiposisiController::class, 'update'])->name('admin.disposisi.update'); // update disposisi
+    Route::delete('disposisi/delete/{id}', [DiposisiController::class, 'destroy'])->name('admin.disposisi.delete'); // table disposisi
 
     Route::get('surat_keluar', [Surat_keluarController::class, 'index'])->name('admin.surat_keluar.index');
     Route::post('surat_keluar/ajax', [Surat_keluarController::class, 'ajax'])->name('admin.surat_keluar.ajax');

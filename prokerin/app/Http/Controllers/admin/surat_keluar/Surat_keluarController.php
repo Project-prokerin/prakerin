@@ -81,19 +81,8 @@ class Surat_keluarController extends Controller
 
     public function tambah(Request $request)
     {
-        $role = Auth::user()->role;
-    $surat =    $request->session()->get('surat');
-        switch ($role) {
-            case 'kepsek':
-                return view('admin.surat_keluar.kepsek.tambah',compact('surat'));
-                break;
-            case 'hubin':
-                return view('admin.surat_keluar.hubin.tambah',compact('surat'));
-                break;
-            case 'admin':
-                return view('admin.surat_keluar.admin.tambah',compact('surat'));
-                break;
-        }
+        $suratt = $request->session()->get('suratt');
+        return view('admin.surat_keluar.tambah', compact('suratt'));
     }
 
     /**
@@ -164,24 +153,6 @@ class Surat_keluarController extends Controller
 
     }
 
-    public function tambahh(Request $request)
-    {
-        $role = Auth::user()->role;
-    $suratt =    $request->session()->get('suratt');
-        switch ($role) {
-            case 'kepsek':
-                return view('admin.surat_keluar.kepsek.tambahh',compact('suratt'));
-                break;
-            case 'hubin':
-                return view('admin.surat_keluar.hubin.tambahh',compact('suratt'));
-                break;
-            case 'admin':
-                return view('admin.surat_keluar.admin.tambahh',compact('suratt'));
-                break;
-        }
-    }
-
-
 
     /**
      * Display the specified resource.
@@ -204,17 +175,7 @@ class Surat_keluarController extends Controller
     {
         //
         $role = Auth::user()->role;
-        switch ($role) {
-            case 'kepsek':
-                return view('admin.surat_keluar.kepsek.edit');
-                break;
-            case 'hubin':
-                return view('admin.surat_keluar.hubin.edit');
-                break;
-            case 'admin':
-                return view('admin.surat_keluar.admin.edit');
-                break;
-        }
+        return view('admin.surat_keluar.edit');
     }
 
     /**

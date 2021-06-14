@@ -188,15 +188,7 @@ class Surat_masukController extends Controller
 
     public function edit_surat($id)
     {
-        // dd(Surat_masuk::findOrFail($id)->surat_m->path_surat);
-        switch (Auth::user()->role) {
-            case 'tu':
-                return view('admin.surat_masuk.tu.edit', ['surat_masuk' => Surat_masuk::findOrFail($id)]);
-                break;
-            case 'admin':
-                return view('admin.surat_masuk.admin.edit', ['surat_masuk' => Surat_masuk::findOrFail($id)]);
-                break;
-        }
+        return view('admin.surat_masuk.edit', ['surat_masuk' => Surat_masuk::findOrFail($id), 'guru' => guru::whereIn('jabatan', ['kepsek','keprog'])->get()]);
     }
 
     public function update_surat(Request $request,$id)
