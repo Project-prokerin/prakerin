@@ -37,6 +37,7 @@ role = $('#role').data('role');
             { data: 'untuk', name:'untuk'},
             { data: 'jabatan', name:'jabatan'},
             { data: 'status', name:'status'},
+            { data: 'disposisi', name:'disposisi'},
             { data: 'action', name:'action'},
             ]
         }else if(role == "pokja") {
@@ -87,6 +88,10 @@ role = $('#role').data('role');
 if(role == 'admin'){
     $('.btn-table').append(
             '<a href="/admin/surat_masuk/tambah"class="btn btn-primary  "> Tambah Data <i class="fas fa-plus"></i></button></a>'
+    );
+    }if(role == 'tu'){
+    $('.btn-table').append(
+            '<a href="/admin/tu/surat_masuk/tambah"class="btn btn-primary  "> Tambah Data <i class="fas fa-plus"></i></button></a>'
     );
 }else if (role == "hubin") {
       $('.btn-table').append(

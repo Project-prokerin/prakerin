@@ -57,6 +57,7 @@
                                 <th>Untuk</th>
                                 <th>Status</th>
                                 <th>status</th>
+                                <th>disposisi</th>
                                 <th>Action</th>
                             </tr>
                         </thead>

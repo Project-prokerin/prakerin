@@ -32,12 +32,19 @@ class viewController extends Controller
             $surat_k = Surat_keluar::all()->count();
             $surat_m = Surat_masuk::all()->count();
             $disposisi = Disposisi::all()->count();
+            $total_surat = $surat_k + $surat_m;
         }else if(Auth::user()->role == "hubin" or Auth::user()->role == "kesiswaan" or Auth::user()->role == "kurikulum" or Auth::user()->role == "sarpras" ){
             $surat_k = Disposisi::where('Pokjatujuan', Auth::user()->role)->count();
             $surat_m = Surat_keluar::where('id_dari', Auth::user()->guru->id)->count();
             $disposisi = '';
+            $total_surat = $surat_k + $surat_m;
         }
-        $total_surat = $surat_k + $surat_m;
+        // $surat_k = '';
+        // $surat_m = '';
+        // $total_surat = '';
+        // $data = '';
+        // $disposisi = '';
+
         if (Auth::user()->role == 'admin') {
             $data = [];
             $data[] = Surat_masuk::all()->count();

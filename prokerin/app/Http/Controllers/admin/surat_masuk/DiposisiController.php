@@ -39,8 +39,8 @@ class DiposisiController extends Controller
                         $detail_url = '/admin/kepsek/disposisi/detail/';
                         $edit_url = '/admin/kepsek/disposisi/edit/';
                     }elseif (Auth::user()->role == 'admin') {
-                        $detail_url = '/admin/kepsek/disposisi/detail/';
-                        $edit_url = '/admin/kepsek/disposisi/edit/';
+                        $detail_url = '/admin/disposisi/detail/';
+                        $edit_url = '/admin/disposisi/edit/';
                     };
                     $button = '<a href="'. $detail_url.''.$data->id . '"   id="' . $data->id . '" class="edit btn btn-primary btn-sm"><i class="fas fa-search"></i></a>';
                     $button .= '&nbsp';
@@ -79,7 +79,7 @@ class DiposisiController extends Controller
         // $surat_detail_surat = Detail_surat::where('id',$id)->first();
             // dd($surat_detail_surat);
         Disposisi::create([
-            'Pokjatujuan' => $request->Pokjatujuan, 
+            'Pokjatujuan' => $request->Pokjatujuan,
             'Keterangan_disposisi' =>  $request->Keterangan_disposisi,
             'id_detail_surat' => $id,
             'created_at' => Carbon::now()
@@ -98,7 +98,7 @@ class DiposisiController extends Controller
     {
         // dd($request);
         Disposisi::find($id)->update([
-            'Pokjatujuan' => $request->Pokjatujuan, 
+            'Pokjatujuan' => $request->Pokjatujuan,
             'Keterangan_disposisi' =>  $request->Keterangan_disposisi,
             'created_at' => Carbon::now()
         ]);
