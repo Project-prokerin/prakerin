@@ -58,7 +58,6 @@ $(document).ready(function() {
         '<a href="/admin/jurnalH/tambah"class="btn btn-primary" data-toggle="modal" data-target="#exampleModal"> Tambah Data <i class="fas fa-plus"></i></button></a>'
     );
     $('#table99_filter').prepend(
-        '<a href="#"class="btn btn-danger  ml-3"> PDF <i class="fas fa-cloud-download-alt"></i></button></a>' +
         '<a href="/export/excel/jurnalH"class="btn btn-success mr-3  ml-2"> Excel <i class="fas fa-cloud-download-alt"></i></button></a>'
     );
 

@@ -43,7 +43,6 @@ $(document).ready( function () {
         '<a href="/admin/perusahaan/tambah"class="btn btn-primary "> Tambah Data <i class="fas fa-plus"></i></button></a>'
     );
     $('#table12_filter').prepend(
-        '<a href="/export/pdf/perusahaan"class="btn btn-danger  ml-3"> PDF <i class="fas fa-cloud-download-alt"></i></button></a>' +
         '<a href="/export/excel/perusahaan"class="btn btn-success mr-3  ml-2"> Excel <i class="fas fa-cloud-download-alt"></i></button></a>'
     );
 

@@ -99,7 +99,7 @@
                 </a>
             </li>
             @elseif($role == "admin")
-
+            <li class="menu-header">Prakerin</li>
             <li class='@if (Request::is("admin/surat_keluar","admin/surat_keluar/*")) active @endif'>
                 <a href='{{ route("$role.surat_keluar.index") }}' class="nav-link"><i class="fas fa-file-alt"></i>
                     <span>Surat Penugasan </span>

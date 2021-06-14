@@ -18,7 +18,9 @@ class disposisiSeeder extends Seeder
         DB::table('disposisi')->insert([
             'id_detail_surat' => '1',
             'Pokjatujuan' => 'hubin',
-            'Keterangan_disposisi' => 'keterangan'
+            'Keterangan_disposisi' => 'keterangan',
+            'created_at' => Carbon::now()
         ]);
     }
+
 }
