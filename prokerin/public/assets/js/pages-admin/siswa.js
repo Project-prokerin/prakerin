@@ -42,7 +42,6 @@ $('.btn-table').append(
     '<a href="/admin/siswa/tambah"class="btn btn-primary "> Tambah Data <i class="fas fa-plus"></i></button></a>'
 );
 $('#table9_filter').prepend(
-    '<a href="#"class="btn btn-danger  ml-3"> PDF <i class="fas fa-cloud-download-alt"></i></button></a>' +
     '<a href="/export/excel/siswa"class="btn btn-success mr-3  ml-2"> Excel <i class="fas fa-cloud-download-alt"></i></button></a>'
 );
 

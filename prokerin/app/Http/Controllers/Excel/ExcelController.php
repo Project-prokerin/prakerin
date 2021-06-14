@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Excel;
 
+use App\Exports\disposisi\DisposisiExport;
 use App\Exports\guru\multiExport;
 use App\Exports\pembekalan\pembekalanExport as PembekalanPembekalanExport;
 use App\Exports\perusahaan\multiExport as PerusahaanMultiExport;
@@ -12,6 +13,7 @@ use App\Exports\jurnalh\JurnalHExport as JurnalHExportt;
 use App\Exports\jurnalp\JurnalPExport as JurnalPExportt;
 use App\Exports\pembekalan\multiExport as PembekalanMultiExport;
 use App\Exports\siswa\multiExport as SiswaMultiExport;
+use App\Exports\surat_masuk\surat_masukExport;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Excel;
@@ -19,9 +21,12 @@ use App\Models\Siswa;
 use App\Models\perusahaan;
 use App\Models\pembekalan_magang;
 use App\Models\data_prakerin;
+use App\Models\Disposisi;
 use App\Models\guru;
 use App\Models\jurnal_harian;
 use App\Models\jurnal_prakerin;
+use App\Models\Surat_M;
+use App\Models\Surat_masuk;
 
 // use Maatwebsite\Excel\Facades\Excel;
 class ExcelController extends Controller
@@ -137,6 +142,17 @@ public function __construct(Excel $excel)
         $jurnalp = jurnal_prakerin::all();
         return $this->excel->download(new JurnalPExportt($jurnalp), 'jurnal_prakerin.xlsx');
 
+    }
+
+    public function surat_m()
+    {
+        $surat_m = Surat_masuk::all();
+        return $this->excel->download(new surat_masukExport($surat_m), 'surat_masuk.xlsx');
+    }
+    public function disposisi()
+    {
+        $disposi = Disposisi::all();
+        return $this->excel->download(new DisposisiExport($disposi), 'disposisi.xlsx');
     }
 
 }

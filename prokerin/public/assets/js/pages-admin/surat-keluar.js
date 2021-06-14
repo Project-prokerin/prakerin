@@ -14,7 +14,7 @@ $(document).ready( function () {
 
     }
 
-    function column(role){  
+    function column(role){
         if(role == "hubin"){
             return [{ data: 'DT_RowIndex', name: 'DT_RowIndex'},
             { data: 'nama_surat', name:'nama_surat'},
@@ -85,7 +85,6 @@ if(role == 'admin'){
 
 
 $('#table80_filter').prepend(
-        '<a href="#"class="btn btn-danger  ml-3"> PDF <i class="fas fa-cloud-download-alt"></i></button></a>' +
         '<a href="#"class="btn btn-success mr-3  ml-2"> Excel <i class="fas fa-cloud-download-alt"></i></button></a>'
 );
 // search engine

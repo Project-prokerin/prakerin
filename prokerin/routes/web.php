@@ -56,6 +56,12 @@ Route::middleware(['web', 'auth', 'role:bkk,hubin,kaprog,kepsek,tu,kurikulum,kes
     Route::get('/export/excel/jurnalp', [ExcelController::class, 'jurnalp'])->name('export.jurnalp');
 });
 
+// export surat keluar
+Route::prefix('admin')->middleware(['web', 'auth', 'role:admin,kepsek,tu'])->group(function () {
+    Route::get('surat_masuk/export/excel', [ExcelController::class, 'surat_m'])->name('admin.surat_masuk.excel');
+    Route::get('disposisi/export/excel', [ExcelController::class, 'disposisi'])->name('admin.disposisi.excel');
+});
+
 
 // route admin (data master ..ect)
 Route::prefix('admin')->middleware(['web', 'auth', 'role:admin'])->group(function () {
@@ -105,6 +111,7 @@ Route::prefix('admin')->middleware(['web', 'auth', 'role:admin'])->group(functio
     Route::put('surat_masuk/update/{id}', [Surat_masukController::class, 'update_surat'])->name('admin.surat_masuk.update');
     Route::delete('surat_masuk/delete/{id}', [Surat_masukController::class, 'destroy_surat'])->name('admin.surat_masuk.delete');
     Route::delete('surat_masuk/donwload/{id}', [Surat_masukController::class, 'download'])->name('admin.surat_masuk.download');
+
 
     // disposisi table surat
     Route::get('surat_masuk/{id}/disposisi/view', [DiposisiController::class, 'detail'])->name('desposisi.view');

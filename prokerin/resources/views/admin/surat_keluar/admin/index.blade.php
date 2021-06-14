@@ -43,7 +43,7 @@
                     No
                   </th>
                   <th>Nama Surat</th>
-                  <th>dari</th>
+                  <th>Nama guru</th>
                   <th>jabatan</th>
                   <th>status</th>
                   <th>tanggal surat</th>
