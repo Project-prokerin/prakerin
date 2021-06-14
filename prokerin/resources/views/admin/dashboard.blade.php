@@ -13,8 +13,16 @@
 @section('main')
     @if (Auth::user()->role == 'hubin' or Auth::user()->role == 'kaprog' or Auth::user()->role == 'bkk' or Auth::user()->role == 'kepsek' or Auth::user()->role == 'tu')
         @if (Auth::user()->role == 'hubin')
-            <div class="row">
-                <div class="col-lg-4 col-md-4 col-sm-12">
+        <div class="row">
+        <div class="col-lg-6 col-md-4 col-sm-12">
+                <div class="card" style="height:257px;">
+                   <h2 class="text-center" style="margin-top:80px;">Prakerin & Takola</h2>
+                   <h4 class="text-center">2020-2021</h4>
+                </div>
+            </div>
+        
+               
+                 <div class="col-lg-3  col-md-4 col-sm-12">
                     <div class="card card-statistic-2">
                         <div class="card-stats">
                             <div class="card card-statistic-1">
@@ -47,7 +55,7 @@
                     </div>
                 </div>
 
-                <div class="col-lg-4 col-md-4 col-sm-12">
+                <div class="col-lg-3 col-md-4 col-sm-12">
                     <div class="card card-statistic-2">
                         <div class="card-stats">
                             <div class="card card-statistic-1">
@@ -79,10 +87,9 @@
                         </div>
                     </div>
                 </div>
-            </div>
-
-            <div class="row"">
-                <div class="col-lg-4 col-md-4 col-sm-12">
+    </div>
+    <div class="row">
+    <div class="col-lg-4 col-md-4 col-sm-12">
                     <div class="card card-statistic-2">
                         <div class="card-stats">
                             <div class="card card-statistic-1">
@@ -114,13 +121,12 @@
                         </div>
                     </div>
                 </div>
-
                 <div class="col-lg-4 col-md-4 col-sm-12">
                     <div class="card card-statistic-2">
                         <div class="card-stats">
                             <div class="card card-statistic-1">
                                 <div class="card-icon bg-primary">
-                                    <i class="fas fa-users"></i>
+                                    <i class="fas fa-th"></i>
                                 </div>
                                 <div class="card-wrap">
                                     <div class="card-header">
@@ -133,7 +139,7 @@
                             </div>
                             <div class="card card-statistic-1">
                                 <div class="card-icon bg-primary">
-                                    <i class="fas fa-file-alt"></i>
+                                    <i class="far fa-building"></i>
                                 </div>
                                 <div class="card-wrap">
                                     <div class="card-header">
@@ -147,7 +153,41 @@
                         </div>
                     </div>
                 </div>
-            </div>
+                <div class="col-lg-4 col-md-4 col-sm-12">
+                    <div class="card card-statistic-2">
+                        <div class="card-stats">
+                            <div class="card card-statistic-1">
+                                <div class="card-icon bg-primary">
+                                    <i class="fas fa-th"></i>
+                                </div>
+                                <div class="card-wrap">
+                                    <div class="card-header">
+                                        <h4>Surat Masuk</h4>
+                                    </div>
+                                    <div class="card-body">
+                                        12
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- <div class="card card-statistic-1">
+                                <div class="card-icon bg-primary">
+                                    <i class="far fa-building"></i>
+                                </div>
+                                <div class="card-wrap">
+                                    <div class="card-header">
+                                        <h4>Jurnal Prakerin</h4>
+                                    </div>
+                                    <div class="card-body">
+                                        13
+                                    </div>
+                                </div>
+                            </div> -->
+                        </div>
+                    </div>
+                </div>
+
+    </div>
+
         @endif
     @endif
     @if (Auth::user()->role == 'kepsek' or Auth::user()->role == 'tu')
