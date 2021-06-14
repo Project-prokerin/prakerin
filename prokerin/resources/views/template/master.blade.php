@@ -53,11 +53,12 @@
                     </div>
                 </section>
             </div>
-        </div>
     </div>
+
+    {{-- </div> --}}
     <!-- Main Content -->
     <!-- General JS Scripts -->
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-loading-overlay/2.1.7/loadingoverlay.min.js" integrity="sha512-hktawXAt9BdIaDoaO9DlLp6LYhbHMi5A36LcXQeHgVKUH6kJMOQsAtIw2kmQ9RERDpnSTlafajo6USh9JUXckw==" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"
         integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
@@ -75,13 +76,13 @@
     <script src="{{ asset('template/node_modules/datatables.net-bs4/js/dataTables.bootstrap4.min.js') }}"></script>
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 
-    <script src="{{ asset('template/node_modules/chart.js/dist/chart.min.js') }}"></script>
-    <!-- JS Libraies -->
-    @stack('script')
-
     <!-- Template JS File -->
     <script src="{{ asset('template/assets/js/scripts.js') }}"></script>
     <script src="{{ asset('template/assets/js/custom.js') }}"></script>
+
+    <!-- JS Libraies -->
+    @stack('script')
+    <script src="{{ asset('template/node_modules/chart.js/dist/chart.min.js') }}"></script>
 
 
 

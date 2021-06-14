@@ -68,9 +68,8 @@
             @elseif(Request::is('admin/jurnal','admin/jurnal/*'))
             active
             @endif
-
             ">
-                <a href="{{ route('jurnal.index') }}" class="nav-link has-dropdown"><i class="far fa-newspaper"></i><span>Jurnal</span></a>
+                <a href="" class="nav-link has-dropdown"><i class="far fa-newspaper"></i><span>Jurnal</span></a>
                 <ul class="dropdown-menu" style="display: none;">
                     <li class="@if (Request::is('admin/jurnal','admin/jurnal/*')) active @endif"><a class="nav-link "
                             href="{{ route('jurnal.index') }}">Jurnal Prakerin</a></li>
