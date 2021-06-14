@@ -54,16 +54,12 @@ $(document).ready(function () {
             },
         ],
     });
-    if ($('#role').text() == 'admin') {
+    role = $('#role').text();
+    if (role == 'admin') {
         $('.btn-table').append(
             '<a href="/admin/disposisi/tambah"class="btn btn-primary "> Tambah Data <i class="fas fa-plus"></i></button></a>'
         );
-    } else if ($('#role').text() == 'kepsek') {
-
-        // $('.btn-table').append(
-        //     '<a href="/admin/kepsek/surat_masuk/tambah"class="btn btn-primary rounded-pill ml-3"> Tambah Data <i class="fas fa-plus"></i></button></a>'
-        // );
-
+    } else if (role == 'kepsek') {
         $('.btn-table').append(
             '<a href="/admin/disposisi/kepsek/tambah"class="btn btn-primary "> Tambah Data <i class="fas fa-plus"></i></button></a>'
         );

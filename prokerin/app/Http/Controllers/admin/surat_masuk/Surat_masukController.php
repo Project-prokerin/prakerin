@@ -61,7 +61,7 @@ class Surat_masukController extends Controller
                     return $button;
                 })
                 ->addColumn('action', function ($data) {
-                   
+
                     $button = '<a href="/admin/surat_masuk/detail/' . $data->id . '"   id="' . $data->id . '" class="edit btn btn-primary btn-sm"><i class="fas fa-search"></i></a>';
                     $button .= '&nbsp';
                     $button .= '<a  href="/admin/surat_masuk/edit/' . $data->id . '" id="edit" data-toggle="tooltip"  data-id="' . $data->id . '" data-original-title="Edit" class="edit btn btn-warning btn-sm edit-post"><i class="fas fa-pencil-alt"></i></a>';
@@ -96,15 +96,26 @@ class Surat_masukController extends Controller
                 ->addColumn('jabatan', function ($data) {
                     return $data->untuk_guru->jabatan;
                 })
+                ->addColumn('disposisi', function ($data) {
+                    $id = $data->id;
+                    $button = '';
+                    if (empty($data->surat_m->detail_surat->disposisi)) {
+                        $button .= '<a href="#" class="edit btn btn-danger btn-sm">Kosong</a>';
+                    }else{
+                    $button .= '<a href="/admin/' . Auth::user()->role . '/surat_masuk/' . $id . '/disposisi/view"   id="' . $id . '" class="edit btn btn-success btn-sm">view</a>';
+                    }
+
+                    return $button;
+                })
                 ->addColumn('action', function ($data) {
-                    $button = '<a href="/admin/tu/surat_masuk/detail/' . $data->id . '"   id="' . $data->id . '" class="edit btn btn-primary btn-sm"><i class="fas fa-search"></i></a>';
+                    $button = '';
                     $button .= '&nbsp';
                     $button .= '<a  href="/admin/tu/surat_masuk/edit/' . $data->id . '" id="edit" data-toggle="tooltip"  data-id="' . $data->id . '" data-original-title="Edit" class="edit btn btn-warning btn-sm edit-post"><i class="fas fa-pencil-alt"></i></a>';
                     $button .= '&nbsp';
                     $button .= '<button type="button" name="delete" id="hapus" data-id="' . $data->id . '" class="delete btn btn-danger btn-sm"><i class="fas fa-trash"></i></button>';
                     return $button;
                 })
-                ->rawColumns(['action','untuk','nama','jabatan'])
+                ->rawColumns(['action','untuk','nama','jabatan','disposisi'])
                 ->addIndexColumn()->make(true);
         }
     }
@@ -130,7 +141,7 @@ class Surat_masukController extends Controller
 
         }
     }
-        
+
     public function store(Request $request)
     {
         // dd($request);
@@ -329,7 +340,6 @@ class Surat_masukController extends Controller
     // route pokja
     public function index_pokja()
     {
-        dd( Disposisi::where('Pokjatujuan', Auth::user()->role)->get());
         return view('admin.surat_masuk.pokja.index');
     }
     public function ajax_pokja(Request $request)
@@ -350,9 +360,12 @@ class Surat_masukController extends Controller
                 return $data->detail_surat->surat_m->surat_masuk->status;
             })
             ->addColumn('disposisi', function ($data) {
-                $id = $data->id;
-                $button = '<a href="/admin/'. Auth::user()->role .'/surat_masuk/' . $id . '/disposisi/view"   id="' . $id . '" class="edit btn btn-success btn-sm">view</a>';
-                return ' ';
+                $button = '';
+                if (empty($data->surat_m->detail_surat->disposisi)) {
+                $button .= '<a href="#" class="edit btn btn-danger btn-sm">Kosong</a>';
+                }
+                $button .= '<a href="/admin/'. Auth::user()->role .'/surat_masuk/' . $id . '/disposisi/view"   id="' . $id . '" class="edit btn btn-success btn-sm">view</a>';
+                return $button;
         })
             ->addColumn('action', function ($data) {
                     $button = '<a href="/admin/'.Auth::user()->role.'/surat_masuk/download/' . $data->id . '"   id="' . $data->id . '" class="edit btn btn-success btn-sm"><i class="fa fa-download"></i></a>';
