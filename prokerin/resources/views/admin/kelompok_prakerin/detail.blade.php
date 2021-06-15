@@ -1,6 +1,28 @@
 @extends('template.master')
 @push('link')
 <style>
+     .mtop{
+        margin-top: -10px;
+    }
+    .pleft{
+        padding-left: 15px;
+    }
+    .garis{
+        height: 10px;
+        width: auto;
+        background-color: rgb(82, 82, 255);
+    }
+    .title{
+        padding-top: 10px;
+    }
+    h5{
+        color: rgb(82, 82, 255);
+    }
+    .title i{
+        font-size: 20px;
+        margin-left: 5px;
+        margin-right: 5px;
+    }
 </style>
 @endpush
 @section('title', 'Prakerin |   Kelompok Prakerin')
@@ -11,10 +33,11 @@
 @endsection
 @section('main')
 <div class="card">
-    <div class="container">
-        <div class="card-body">
-            <h5 style="padding-top: 10px;">Detail Data Kelompok Prakerin</h5>
+    <div class="garis"></div>
+        <div class="card-header">
+            <h5 class="title"><i class="far fa-address-card"></i> Informasi Kelompok</h5>
         </div>
+    <div class="container">
         <hr style="margin-top: -10px;">
         <div>
               <nav aria-label="breadcrumb">
@@ -89,7 +112,7 @@
         </tbody>
         </table>
         <div class="card-body">
-            <button style="margin-top: 20px;" type="button" class="btn btn-danger">Kembali</button>
+            <a href="{{ route('kelompok.index') }}" type="button" class="btn btn-danger "><i class="fas fa-backspace"></i>   Kembali</a>
         </div>
     </div>
 </div>

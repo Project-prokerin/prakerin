@@ -54,9 +54,7 @@
               </thead>
               <tbody class="text-center">
                 <tr>
-                  <td>
-                    1
-                  </td>
+                  <td></td>
                   <td></td>
                   <td></td>
                   <td></td>

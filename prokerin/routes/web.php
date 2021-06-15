@@ -206,7 +206,7 @@ Route::prefix('admin')->middleware(['web', 'auth', 'role:kaprog,hubin'])->group(
     // jurnal prakerin
     Route::get('jurnal', [jurnal_prakerinController::class, 'index'])->name('jurnal.index');
     Route::post('jurnal/ajax', [jurnal_prakerinController::class, 'ajax'])->name('jurnal.ajax');
-    Route::get('jurnal/detail/{id}', [jurnal_prakerinController::class, 'detail'])->name('perusahaan.detail');
+    Route::get('jurnal/detail/{id}', [jurnal_prakerinController::class, 'detail'])->name('jurnal.detail');
     Route::get('jurnal/tambah', [jurnal_prakerinController::class, 'tambah'])->name('jurnal.tambah');
     Route::post('jurnal/tambah/post', [jurnal_prakerinController::class, 'store'])->name('jurnal.post');
     Route::get('jurnal/edit/{id}', [jurnal_prakerinController::class, 'edit'])->name('jurnal.edit');
