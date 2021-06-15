@@ -8,8 +8,14 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\Surat_keluar;
 use App\Models\Template_surat;
 use App\Models\Detail_surat_k;
+use App\Models\Isi_surat;
+use App\Models\guru;
 use App\Models\Disposisi;
 use Carbon\Carbon;
+use DateTime;
+
+
+use Response;
 use PDF;
 
 class Surat_keluarController extends Controller
@@ -60,7 +66,7 @@ class Surat_keluarController extends Controller
                                     if ($role == "admin" or  $role == "hubin") {
                                         $button .= '<a href="/admin/surat_keluar/download/' . $surat->id . '"   id="' . $surat->id . '" class="edit btn btn-success btn-sm"><i class="fa fa-download"></i></a>';
                                         $button .= '&nbsp';
-                                        $button .= '<a href="/admin/surat_keluar/detail/' . $surat->id . '"   id="' . $surat->id . '" class="edit btn btn-primary btn-sm"><i class="fas fa-search"></i></a>';
+                                        $button .= '<a href="/admin/surat_keluar/stream/' . $surat->id . '"   id="' . $surat->id . '" class="edit btn btn-primary btn-sm"><i class="fas fa-search"></i></a>';
                                         $button .= '&nbsp';
                                         $button .= '<a  href="/admin/surat_keluar/edit/' . $surat->id . '" id="edit" data-toggle="tooltip"  data-id="' . $surat->id . '" data-original-title="Edit" class="edit btn btn-warning btn-sm edit-post"><i class="fas fa-pencil-alt"></i></a>';
                                         $button .= '&nbsp';
@@ -81,9 +87,39 @@ class Surat_keluarController extends Controller
 
     public function tambah(Request $request)
     {
-        $suratt = $request->session()->get('suratt');
-        return view('admin.surat_keluar.tambah', compact('suratt'));
+        // $suratt = $request->session()->get('suratt');
+        $guru = guru::all();
+        return view('admin.surat_keluar.tambah', compact('guru'));
     }
+
+
+
+
+ public function suratKdownload($id)
+ {
+     // dd($id);
+     $path = Detail_surat_k::where('id_surat_keluar',$id)->first();
+     // dd($path);
+     $file = public_path()."/$path->path_surat";
+     $headers = array('Content-Type: application/pdf',);
+     return Response::download($file, 'SuratTugas.pdf',$headers);
+
+ }
+
+ public function suratKstream($id)
+ {
+     // dd($id);
+     $path = Detail_surat_k::where('id_surat_keluar',$id)->first();
+     // dd($path);
+     // $file = public_path()."/";
+     // $headers = array('Content-Type: application/pdf',);
+     // return $file->stream('SuratTugas.pdf');
+
+
+ return response()->file(
+     public_path("$path->path_surat")
+ );
+}
 
     /**
      * Store a newly created resource in storage.
@@ -91,30 +127,58 @@ class Surat_keluarController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+
+  
+
     public function store(Request $request)
     {
-        //    dd($request);
+        
+        $id_guru = guru::where('id',$request->id_guru)->first();
+        // dd($request->tanggal);
+        
+        $tanggal_range = explode('s.d.',$request->tanggal);
+       $from =  new DateTime($tanggal_range[0]);
+       $end =  new DateTime($tanggal_range[1]);
+
+
+       
+       
+        $jumlah_hari = $from->diff($end)->days;
+        // dd($jumlah_hari);
+        $hari_from = Carbon::parse($from)->isoFormat('dddd');
+        $hari_end = Carbon::parse($end)->isoFormat('dddd'); 
+
+        $date_from = Carbon::parse($from)->isoFormat('D MMMM Y');
+        $date_end = Carbon::parse($end)->isoFormat('D MMMM Y'); 
+
+        
+
+        
+
+        // $interval = $tanggal_range[0]->toDateString()->diff($tanggal_range[1]->toDateString());
+        // $days = $interval->format('%a');
+// dd($diff_in_days,$hari_from,$hari_end);
+        // Reservation::whereBetween('reservation_from', [$tanggal_range[0],$tanggal_range[1]])->get();
+
         $validatedData = $request->validate([
-            'nama' => 'required',
-            'nik' => 'required|numeric',
+            'id_guru' => 'required',
             'alamat' => 'required',
-            'hari' => 'required',
             'tanggal' => 'required',
             'pukul' => 'required',
         ]);
 
         $nama_Surat = $request->nama_surat;
-        $nama = $request->nama;
-        $nik = $request->nik;
+        $nama = $id_guru->nama;
+        $nik = $id_guru->nik;
         $alamat = $request->alamat;
         $tempat = $request->tempat;
-        $hari = $request->hari;
         $tanggal = $request->tanggal;
         $pukul = $request->pukul;
 
         $pdf_name = time() . "SuratTugas.pdf";
         $path = public_path('surat/surat_keluar/' . $pdf_name);
-        $SuratKeluar = PDF::loadView('export.PDF.contoh', compact('nama_Surat','nama','nik','alamat','tempat','hari','tanggal','pukul'))->setOptions(['defaultFont' => 'sans-serif','isHtml5ParserEnabled' => true, 'isRemoteEnabled' => true])->save($path);
+        $SuratKeluar = PDF::loadView('export.PDF.contoh', compact('nama_Surat','nama','nik','alamat','tempat','jumlah_hari','date_from','date_end','hari_from','hari_end','tanggal','pukul'))->setOptions(['defaultFont' => 'sans-serif','isHtml5ParserEnabled' => true, 'isRemoteEnabled' => true])->save($path);
+
 
 
               $template_surat  =  Template_surat::create([
@@ -124,14 +188,15 @@ class Surat_keluarController extends Controller
                 ]);
                  $surat_keluar =   Surat_keluar::create([
                     'id_dari' => Auth::user()->id,
-                    'id_untuk' => $request->id_untuk,
+                    'id_untuk' => $id_guru->id,
                     'status' => 'Pengajuan',
                     'id_template_surat' => $template_surat->id,
                     'created_at' => Carbon::now()
 
                     ]);
         $surat_number = Surat_keluar::orderBy('created_at','DESC')->first();
-                 Detail_surat_k::create([
+
+            $detail =     Detail_surat_k::create([
                         'id_template_surat' => $template_surat->id,
                         'no_surat' =>  str_pad($surat_number->id + 1, 3, "0", STR_PAD_LEFT),
                         'tgl_surat' => Carbon::today()->toDateString(),
@@ -139,6 +204,19 @@ class Surat_keluarController extends Controller
                         'id_tanda_tangan' => 1,
                         'id_surat_keluar' =>  $surat_keluar->id
                         ]);
+
+
+
+        Isi_surat::create([
+            'nama_surat' => $nama_Surat,
+            'hari' => $hari_from. " s.d. " .$hari_end,
+            'tanggal' =>  $date_from. " s.d. " .$date_end,
+            'pukul' => $pukul,
+            'tempat' => $tempat,
+            'alamat' => $alamat,
+            'id_guru'  => $id_guru->id,
+            'id_detail_surat_k' => $detail->id
+        ]);
 
         // $pdf = PDF::loadView('mail');
             // dd($SuratKeluar);
@@ -174,8 +252,12 @@ class Surat_keluarController extends Controller
     public function edit($id)
     {
         //
-        $role = Auth::user()->role;
-        return view('admin.surat_keluar.edit');
+        $guru = guru::all();
+
+        $surat_k = Surat_keluar::where('id',$id)->first();
+        $isi_surat = Isi_surat::where('id',$id)->first();
+
+        return view('admin.surat_keluar.edit',compact('guru','surat_k','isi_surat'));
     }
 
     /**
@@ -187,7 +269,101 @@ class Surat_keluarController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+
+        // dd($id);
+
+
+       
+
+
+
+        $id_guru = guru::where('id',$request->id_guru)->first();
+        // dd($request->tanggal);
+        
+        $tanggal_range = explode('s.d.',$request->tanggal);
+       $from =  new DateTime($tanggal_range[0]);
+       $end =  new DateTime($tanggal_range[1]);
+
+
+       
+       
+        $jumlah_hari = $from->diff($end)->days;
+        // dd($jumlah_hari);
+        $hari_from = Carbon::parse($from)->isoFormat('dddd');
+        $hari_end = Carbon::parse($end)->isoFormat('dddd'); 
+
+        $date_from = Carbon::parse($from)->isoFormat('D MMMM Y');
+        $date_end = Carbon::parse($end)->isoFormat('D MMMM Y'); 
+
+        
+
+        
+
+        // $interval = $tanggal_range[0]->toDateString()->diff($tanggal_range[1]->toDateString());
+        // $days = $interval->format('%a');
+// dd($diff_in_days,$hari_from,$hari_end);
+        // Reservation::whereBetween('reservation_from', [$tanggal_range[0],$tanggal_range[1]])->get();
+
+        $validatedData = $request->validate([
+            'id_guru' => 'required',
+            'alamat' => 'required',
+            'tanggal' => 'required',
+            'pukul' => 'required',
+        ]);
+
+        $nama_Surat = $request->nama_surat;
+        $nama = $id_guru->nama;
+        $nik = $id_guru->nik;
+        $alamat = $request->alamat;
+        $tempat = $request->tempat;
+        $tanggal = $request->tanggal;
+        $pukul = $request->pukul;
+
+        $pdf_name = time() . "SuratTugas.pdf";
+        $path = public_path('surat/surat_keluar/' . $pdf_name);
+        $SuratKeluar = PDF::loadView('export.PDF.contoh', compact('nama_Surat','nama','nik','alamat','tempat','jumlah_hari','date_from','date_end','hari_from','hari_end','tanggal','pukul'))->setOptions(['defaultFont' => 'sans-serif','isHtml5ParserEnabled' => true, 'isRemoteEnabled' => true])->save($path);
+
+
+
+              $template_surat  =  Template_surat::find($id)->update([
+                    'nama_surat' => $request->nama_surat,
+                    'path_surat' => "surat/surat_keluar/$pdf_name",
+                    'created_at' => Carbon::now()
+                ]);
+                 $surat_keluar =   Surat_keluar::find($id)->update([
+                    'id_dari' => Auth::user()->id,
+                    'id_untuk' => $id_guru->id,
+                    'status' => 'Pengajuan',
+                    // 'id_template_surat' => $template_surat->id,
+                    'created_at' => Carbon::now()
+
+                    ]);
+        $surat_number = Surat_keluar::orderBy('created_at','DESC')->first();
+
+            $detail =     Detail_surat_k::find($id)->update([
+                        // 'id_template_surat' => $template_surat->id,
+                        'no_surat' =>  str_pad($surat_number->id + 1, 3, "0", STR_PAD_LEFT),
+                        'tgl_surat' => Carbon::today()->toDateString(),
+                        'path_surat' => "surat/surat_keluar/$pdf_name",
+                        'id_tanda_tangan' => 1,
+                        // 'id_surat_keluar' =>  $surat_keluar->id
+                        ]);
+
+
+
+        Isi_surat::find($id)->update([
+            'nama_surat' => $nama_Surat,
+            'hari' => $hari_from. " s.d. " .$hari_end,
+            'tanggal' =>  $date_from. " s.d. " .$date_end,
+            'pukul' => $pukul,
+            'tempat' => $tempat,
+            'alamat' => $alamat,
+            // 'id_guru'  => $id_guru->id,
+            // 'id_detail_surat_k' => $detail->id
+        ]);
+
+        return redirect()->route('admin.surat_keluar.index')->with('pesan','Berhasil Update Surat!');
+
     }
 
     /**
@@ -198,7 +374,15 @@ class Surat_keluarController extends Controller
      */
     public function destroy($id)
     {
+
+        $file_path = Template_surat::where('id',$id)->first();  // Value is not URL but directory file path
+        // $file_pathh = Detail_surat_k::where('id',$id)->first();  // Value is not URL but directory file path
+        if(File::exists(public_path($file_path->path_surat))){
+            File::delete(public_path($file_path->path_surat));
+        }
         Surat_keluar::destroy($id);
          return response()->json($data = 'berhasil');
+        
+       
     }
 }

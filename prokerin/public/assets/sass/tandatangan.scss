@@ -1,0 +1,68 @@
+@import url("https://fonts.googleapis.com/css?family=Marvel:400,700");
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+
+#infoo {
+  background-color: yellow;
+  padding: 2rem 0;
+}
+
+.roww {
+  width: 100%;
+  max-width: 45rem;
+  padding: 1.5rem;
+}
+
+.cardd {
+  width: 40%;
+  height: 20rem;
+  padding-bottom: 20rem;
+  margin-left: 2rem;
+  margin-right: 2rem;
+  padding: 4rem 2rem 7rem 1rem;
+  background-color: #bdbcbc;
+  position: relative;
+}
+.cardd:after {
+  content: "";
+  width: 0px;
+  background-color: skyblue;
+  top: 0px;
+  right: 0px;
+  border-bottom: 20px solid #959999;
+  border-left: 20px solid #959999;
+  border-right: 20px solid rgb(255, 255, 255);
+  border-top: 20px solid rgb(255, 255, 255);
+  position: absolute;
+  filter: drop-shadow(-5px 5px 3px rgba(0, 0, 0, 0.5));
+}
+.cardd:before {
+  content: "";
+  width: 0px;
+  border-top: 40px solid #959999;
+  border-right: 40px solid #959999;
+  border-left: 40px solid rgb(255, 255, 255);
+  border-bottom: 40px solid rgb(255, 255, 255);
+  bottom: 0px;
+  left: 0px;
+  position: absolute;
+  filter: drop-shadow(7px -7px 5px rgba(0, 0, 0, 0.5));
+  margin-right: 10%;
+}
+
+.cardd h2 {
+  color: snow;
+  margin-bottom: 1rem;
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+.cardd p {
+  color: snow;
+  font-size: 1.1rem;
+  line-height: 140%;
+}

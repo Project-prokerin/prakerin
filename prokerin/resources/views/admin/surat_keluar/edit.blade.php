@@ -1,5 +1,9 @@
 @extends('template.master')
 @push('link')
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+    <link rel="stylesheet"
+        href="{{ asset('template/') }}/node_modules/bootstrap-timepicker/css/bootstrap-timepicker.min.css">
+
 <style>
         .card-body .input i{
             width: 50px;
@@ -20,123 +24,222 @@
 @section('main')
 <div class="row">
     <div class="col-12">
-      <div class="card">
-        <div class="card-header">
-          <h4>Tambah Surat Penugasan</h4>
-        </div>
-    <div class="card-body">
-        <div class="row">
-            <div class="col-sm-6">
-            <div class="">
-                <div class="" style="height: auto;">
-                    <div class="card-body">
-                    <form action="{{ route('guru.post') }}" method="POST" class="input">
-                        @csrf
-                        <div class="mb-3">
-                            <label class="form-label">Nama Surat</label>
-                            <div class="d-flex">
-                                <i class="far fa-envelope border text-center"></i>
-                            <input type="text" name="nik" class="form-control
-                            @error('nik') is-invalid @enderror" placeholder="nama surat" value="{{ old('nik') }}">
-                            </div>
-                            @error('nik')
-                                            <div class="invalid-feedback">
-                                                {{ $message }}
+        <div class="card">
+            <div class="card-header">
+                <h4>Tambah Surat Penugasan</h4>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="">
+                            <div class="" style="height: auto;">
+                                <div class="card-body">
+                                    <form action="{{ route('admin.surat_keluar.update',$isi_surat->id) }}" method="POST" class="input">
+                                        @method('PUT')
+                                        @csrf
+                                        <div class="mb-3">
+                                            <label dariclass="form-label">Nama Surat</label>
+                                            <div class="d-flex">
+                                                <i class="far fa-envelope border text-center"></i>
+                                                <input type="text" name="nama_surat" class="form-control
+                                        @error('nama_surat') is-invalid @enderror" placeholder=" Surat xxx" value="{{$isi_surat->nama_surat}}">
                                             </div>
-                                @enderror
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label">Dari</label>
-                            <div class="d-flex">
-                                <i class="fas fa-user border text-center"></i>
-                                <input type="text" name="nama" class="form-control @error('nama')
-                                    is-invalid
-                                @enderror" placeholder="dari" value="{{ old('nama') }}">
-                            </div>
-                            @error('nama')
-                                <div class="invalid-feedback">
-                                        {{ $message }}
+                                            @error('nama_surat')
+                                                <div class="invalid-feedback">
+                                                    {{ $message }}
+                                                </div>
+                                            @enderror
+                                        </div>
+                                        <div class="mb-3">
+                                            <label class="form-label">Nama </label>
+                                            <div class="d-flex">
+                                                <i class="far fa-envelope border text-center"></i>
+
+                                                <select
+                                                    class="form-control select2 @error('id_guru')  is-invalid  @enderror"
+                                                    name="id_guru" id="">
+                                                    <option value="{{ $isi_surat->id_guru }}" selected>
+                                                        {{ $isi_surat->guru->nama }}</option>
+                    
+                                                    @foreach ($guru as $guruu)
+                                                        <option value="{{ $guruu->id }}">{{ $guruu->nama }}</option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                            @error('id_guru')
+                                                <div class="invalid-feedback">{{ $message }}</div>
+                                            @enderror
+                                        </div>
+                                        {{-- <div class="mb-3">
+                                            <label class="form-label">NIK </label>
+                                            <div class="d-flex">
+                                                <i class="fas fa-user border text-center"></i>
+                                                <input type="text" name="nik" class="form-control @error('nik')
+                                                        is-invalid
+                                        @enderror" placeholder="23423423" value="">
+                                            </div>
+                                            @error('nik')
+                                                <div class="invalid-feedback">
+                                                    {{ $message }}
+                                                </div>
+                                            @enderror
+                                        </div>
+                                        <div class="mb-3">
+                                            <label class="form-label">Untuk</label>
+                                            <div class="d-flex">
+                                                <i class="fas fa-users border text-center"></i>
+                                                <select class="form-control @error('id_untuk') is-invalid @enderror"
+                                                    name="id_untuk">
+                                                    <option value="" selected>Pilih Jabatan</option>
+                                                    <option value="17"
+                                                        {{ '17' == old('id_untuk', $surat->id_untuk ?? '') ? 'selected' : '' }}>
+                                                        Hubin</option>
+                                                    <option value="2"
+                                                        {{ '2' == old('id_untuk', $surat->id_untuk ?? '') ? 'selected' : '' }}>
+                                                        Kaprog</option>
+                                                    <option value="3"
+                                                        {{ '3' == old('id_untuk', $surat->id_untuk ?? '') ? 'selected' : '' }}>
+                                                        BKK</option>
+                                                    <option value="12"
+                                                        {{ '12 ' == old('id_untuk', $surat->id_untuk ?? '') ? 'selected' : '' }}>
+                                                        Tu</option>
+                                                </select>
+                                            </div>
+                                            @error('id_untuk')
+                                                <div class="invalid-feedback">
+                                                    {{ $message }}
+                                                </div>
+                                            @enderror
+                                        </div> --}}
+                                        <div class="mb-3">
+                                            <label class="form-label">Alamat </label>
+                                            <div class="d-flex">
+                                                <i class="fas fa-user border text-center"></i>
+                                                <textarea name="alamat" id="" class="form-control  @error('alamat')
+                                                            is-invalid
+                                        @enderror" style="height: 100px;" placeholder="Jl.xxxxx">{{$isi_surat->alamat}}</textarea>
+                                            </div>
+                                            @error('alamat')
+                                                <div class="invalid-feedback">
+                                                    {{ $message }}
+                                                </div>
+                                            @enderror
+                                        </div>
+
                                 </div>
-                            @enderror
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label">Jabatan</label>
-                            <div class="d-flex">
-                                <i class="fas fa-users border text-center"></i>
-                                <select class="form-control @error('jabatan')
-                                    is-invalid
-                                @enderror" name="jabatan">
-                                    <option value="" selected>Pilih Jabatan</option>
-                                    <option value="hubin" @if(old('jabatan') === 'hubin') selected @endif>Hubin</option>
-                                    <option value="kaprog"  @if(old('jabatan') === 'kaprog') selected @endif>Kaprog</option>
-                                    <option value="bkk"  @if(old('jabatan') === 'bkk') selected @endif>BKK</option>
-                                    <option value="kejuruan"  @if(old('jabatan') === 'kejuruan') selected @endif>Kejuruan</option>
-                                    <option value="kejuruan"  @if(old('jabatan') === 'tu') selected @endif>Tu</option>
-                                    <option value="kejuruan"  @if(old('jabatan') === 'waka') selected @endif>Waka</option>
-                                </select>
                             </div>
-                            @error('jabatan')
-                                <div class="invalid-feedback">
-                                        {{ $message }}
+                        </div>
+                    </div>
+                    {{--  --}}
+                    {{--  --}}
+                    <div class="col-sm-6">
+                        <div class="">
+                            <div class="" style="height: auto;">
+                                <div class="card-body">
+                                    <div class="input">
+                                        <div class="mb-3">
+                                            <label class="form-label">Tempat</label>
+                                            <div class="d-flex">
+                                                <i class="fas fa-info-circle border text-center"></i>
+                                                <input type="text" class="form-control @error('tempat')
+                                                                is-invalid
+                                            @enderror" name="tempat" placeholder="tempat" value="{{$isi_surat->tempat}}">
+                                            </div>
+                                            @error('tempat')
+                                                <div class="invalid-feedback">
+                                                    {{ $message }}
+                                                </div>
+                                            @enderror
+                                        </div>
+                                        {{-- <div class="mb-3">
+                                            <label class="form-label">Hari </label>
+                                            <div class="d-flex">
+                                                <i class="far fa-calendar-times border text-center"></i>
+                                                <input type="text" class="form-control @error('hari')
+                                                        is-invalid
+                                        @enderror" name="hari" placeholder=" Senin s.d. Sabtu" value="">
+                                            </div>
+                                            @error('hari')
+                                                <div class="invalid-feedback">
+                                                    {{ $message }}
+                                                </div>
+                                            @enderror
+                                        </div> --}}
+                                        <div class="mb-3">
+                                            <label class="form-label">Tanggal </label>
+                                            <div class="d-flex">
+                                                <i class="far fa-calendar-times border text-center"></i>
+                                                <input type="text" class="form-control @error('tanggal')
+                                                                is-invalid
+                                            @enderror" name="tanggal" placeholder="xxxx-xx-xx s.d. xxxx-xx-xx "
+                                                    value="{{$isi_surat->tanggal}}">
+                                            </div>
+                                            @error('tanggal')
+                                                <div class="invalid-feedback">
+                                                    {{ $message }}
+                                                </div>
+                                            @enderror
+                                        </div>
+                                        <div class="mb-3">
+                                            <label class="form-label">Pukul </label>
+                                            <div class="d-flex">
+                                                <i class="far fa-calendar-times border text-center"></i>
+                                                <input type="text" class="form-control timepicker @error('pukul')
+                                                                is-invalid
+                                            @enderror" name="pukul" placeholder=" 00.00 WIB s.d Selesai" value="{{$isi_surat->pukul}}">
+                                            </div>
+                                            @error('pukul')
+                                                <div class="invalid-feedback">
+                                                    {{ $message }}
+                                                </div>
+                                            @enderror
+                                        </div>
+                                    </div>
+
                                 </div>
-                            @enderror
+                                <div style="margin-top: 40px;">
+                                    <button type="submit" class="btn btn-success rounded mr-2"><i
+                                            class="fas fa-check-square mr-2"></i>Next</button>
+                                    </form>
+                                    <a href="{{ route('admin.surat_keluar.index') }}" type="button"
+                                        class="btn btn-danger rounded"><i
+                                            class="fas fa-window-close mr-2"></i>Cancel</a>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            </div>
-            {{--  --}}
-            {{--  --}}
-            <div class="col-sm-6">
-            <div class="">
-                <div class="" style="height: auto;">
-                    <div class="card-body">
-                    <div class="input">
-                        <div class="mb-3">
-                            <label class="form-label">Status</label>
-                            <div class="d-flex">
-                                <i class="fas fa-info-circle border text-center"></i>
-                                <input type="text" class="form-control @error('no_telp')
-                                    is-invalid
-                                @enderror" name="status" placeholder="status" >
-                            </div>
-                            @error('no_telp')
-                                <div class="invalid-feedback">
-                                        {{ $message }}
-                                </div>
-                            @enderror
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label">Tanggal Surat</label>
-                            <div class="d-flex">
-                                <i class="far fa-calendar-times border text-center"></i>
-                                <input type="text" class="form-control @error('no_telp')
-                                    is-invalid
-                                @enderror" name="tgl_mulai" placeholder="tgl mulai" >
-                            </div>
-                            @error('no_telp')
-                                <div class="invalid-feedback">
-                                        {{ $message }}
-                                </div>
-                            @enderror
-                        </div>
-                    </div>
-                    <div style="margin-top: 40px;">
-                        <button type="submit" class="btn btn-success rounded mr-2"><i class="fas fa-check-square mr-2"></i>Submit</button>
-                        </form>
-                        <a href="{{ route('hubin.surat_keluar.index') }}" type="button" class="btn btn-danger rounded"><i class="fas fa-window-close mr-2"></i>Cancel</a>
-                    </div>
-                    </div>
-                </div>
-            </div>
             </div>
         </div>
     </div>
 </div>
 
-
 @endsection
 @push('script')
+<script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+<script src="{{ asset('template/') }}/node_modules/bootstrap-timepicker/js/bootstrap-timepicker.min.js"></script>
 
+<script type="text/javascript">
+    $(function() {
+
+        $('input[name="tanggal"]').daterangepicker({
+            autoUpdateInput: false,
+            locale: {
+                cancelLabel: 'Clear'
+            }
+        });
+
+        $('input[name="tanggal"]').on('apply.daterangepicker', function(ev, picker) {
+            $(this).val(picker.startDate.format('YYYY-MM-DD') + ' s.d. ' + picker.endDate.format(
+                'YYYY-MM-DD'));
+        });
+
+        $('input[name="tanggal"]').on('cancel.daterangepicker', function(ev, picker) {
+            $(this).val('');
+        });
+
+    });
+
+</script>
 @endpush
-

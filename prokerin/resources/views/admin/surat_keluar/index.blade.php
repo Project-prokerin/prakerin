@@ -38,7 +38,14 @@
                 <h4>Data Surat Penugasan</h4>
             </div>
             <div class="card-body">
-
+                @if (session('pesan'))
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    {{ session('pesan') }}
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                @endif
                 <div class="table-responsive" id="mytable2">
                     <table class="table table-striped" id="table80">
                         <thead class="text-center">

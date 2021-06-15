@@ -18,6 +18,8 @@ use App\Http\Controllers\admin\kelas\kelasController;
 use App\Http\Controllers\admin\surat_masuk\Surat_masukController;
 use App\Http\Controllers\admin\surat_masuk\DiposisiController;
 use App\Http\Controllers\admin\surat_keluar\Surat_keluarController;
+use App\Http\Controllers\admin\tandatangan\TandatanganController;
+
 // user routeus
 // ex App\Http\Controllers\user\namaController;
 use App\Http\Controllers\user\userController;
@@ -94,6 +96,8 @@ Route::prefix('admin')->middleware(['web', 'auth', 'role:admin,kepsek,tu,kaprog,
     Route::post('surat_keluar/ajax', [Surat_keluarController::class, 'ajax'])->name('admin.surat_keluar.ajax');
     Route::get('surat_keluar/detail/{id}', [Surat_keluarController::class, 'detail'])->name('admin.surat_keluar.detail');
     Route::get('surat_keluar/tambah', [Surat_keluarController::class, 'tambah'])->name('admin.surat_keluar.tambah');
+    Route::get('surat_keluar/download/{id}', [Surat_keluarController::class, 'suratKdownload'])->name('admin.surat_keluar.download');
+    Route::get('surat_keluar/stream/{id}', [Surat_keluarController::class, 'suratKstream'])->name('admin.surat_keluar.stream');
     Route::post('surat_keluar/post', [Surat_keluarController::class, 'store'])->name('admin.surat_keluar.post');
     Route::get('surat_keluar/edit/{id}', [Surat_keluarController::class, 'edit'])->name('admin.surat_keluar.edit');
     Route::put('surat_keluar/update/{id}', [Surat_keluarController::class, 'update'])->name('admin.surat_keluar.update');
@@ -151,6 +155,18 @@ Route::prefix('admin')->middleware(['web', 'auth', 'role:admin'])->group(functio
     Route::delete('jurusan/delete/{id}', [jurusanController::class, 'destroy'])->name('jurusan.delete');
     Route::post('/jurusan/destroy', [jurusanController::class, 'delete_all'])->name('jurusan.delete-all');
     Route::get('/export/excel/jurusan', [ExcelController::class, 'jurusan'])->name('export.jurusan');
+
+
+    Route::get('tanda-tangan', [TandatanganController::class, 'index'])->name('tanda-tangan.index');
+    Route::get('tanda-tangan/detail/{id}', [TandatanganController::class, 'detail'])->name('tanda-tangan.detail');
+    Route::get('tanda-tangan/tambah', [TandatanganController::class, 'tambah'])->name('tanda-tangan.tambah');
+    Route::post('tanda-tangan/tambah/post', [TandatanganController::class, 'store'])->name('tanda-tangan.post');
+    Route::get('tanda-tangan/edit/{id}', [TandatanganController::class, 'edit'])->name('tanda-tangan.edit');
+    Route::put('tanda-tangan/update/{id}', [TandatanganController::class, 'update'])->name('tanda-tangan.update');
+    Route::delete('tanda-tangan/delete/{id}', [TandatanganController::class, 'destroy'])->name('tanda-tangan.delete');
+    Route::post('/tanda-tangan/destroy', [TandatanganController::class, 'delete_all'])->name('tanda-tangan.delete-all');
+    Route::get('/export/excel/tanda-tangan', [ExcelController::class, 'guru'])->name('export.tanda-tangan');
+
 
 });
 

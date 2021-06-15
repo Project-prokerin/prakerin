@@ -158,7 +158,7 @@
                     <h6 class="font6" style="font-weight: 300px;font-size: 14px; margin-top: -15px; margin-left: 0px; text-align:left;">
                         Untuk melaksanakan tugas untuk mengikuti kegiatan <b>Magang</b> yang akan dilaksanakan pada&nbsp;&nbsp;&nbsp;:</h6>
                     <h6 class="font6" style="font-weight: 300px;font-size: 14px; margin-top: -15px;  text-align:left; margin-left:80px;">
-                        Hari &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: {{$hari}}</h6>
+                        Hari &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: {{$hari_from}} s.d. {{$hari_end}}</h6>
                     <h6 class="font6" style="font-weight: 300px;font-size: 14px; margin-top: -15px;  text-align:left; margin-left:80px;">
                         Tanggal &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: {{$tanggal}}</h6>
                     <h6 class="font6" style="font-weight: 300px;font-size: 14px; margin-top: -15px;  text-align:left; margin-left:80px;">
@@ -319,9 +319,9 @@
                                 </td>
                                 <td>
                                     <ol type="a">
-                                        <li>30 Hari</li>
-                                        <li>25 Januari 2021</li>
-                                        <li>26 Februari 2021</li>
+                                        <li>{{$jumlah_hari}} hari</li>
+                                        <li>{{$date_from}}</li>
+                                        <li>{{$date_end}}</li>
                                     </ol>
                                 </td>
                               </tr>

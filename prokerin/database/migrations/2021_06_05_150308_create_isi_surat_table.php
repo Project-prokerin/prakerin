@@ -15,6 +15,7 @@ class CreateIsiSuratTable extends Migration
     {
         Schema::create('isi_surat', function (Blueprint $table) {
             $table->id();
+            $table->string('nama_surat');
             $table->string('hari');
             $table->string('tanggal');
             $table->string('pukul');

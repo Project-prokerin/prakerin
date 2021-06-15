@@ -15,6 +15,7 @@ class Isi_suratSeeder extends Seeder
     public function run()
     {
         DB::table('isi_surat')->insert([
+            'nama_surat' => "Surat tugas",
             'hari' => "Senin s.d. Sabtu",
             'tanggal' => "25 Januari s.d. 26 Februari 2021",
             'pukul' => "08.00 WIB s.d Selesai ",

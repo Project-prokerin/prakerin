@@ -41,6 +41,12 @@
                     <span>Data Jurusan</span>
                 </a>
             </li>
+             <li class="@if (Request::is('admin/tanda-tangan','admin/tanda-tangan/*')) active @endif">
+                <a href="{{ route('tanda-tangan.index') }}" class="nav-link">
+                    <i class="fas fa-user"></i>
+                    <span>Data TTD</span>
+                </a>
+            </li>
             @endif
             @if (Auth::user()->role == 'kaprog' or Auth::user()->role == 'hubin' or Auth::user()->role == 'bkk')
             <li class="menu-header">PRAKERIN</li>
