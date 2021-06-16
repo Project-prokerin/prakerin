@@ -16,14 +16,22 @@
     <div class="breadcrumb-item"> <i class="fas fa-th"></i>>DATA PRAKERIN</div>
 @endsection
 @section('main')
-<div class="card mt-5">
-    <div class="container text-center mt-5 mb-3 ml-1">
-        <h3>Tambah data Prakerin</h3>
+<div class="card">
+    <div class="card-body">
+        <div class="">
+            <div class="col-lg-12" style="height: 500px;">
+                <div class="">
+                    <div class="">
+                        <div class="container mt-2">
+                            <h5 class="card-title">Tambah Data Prakerin</h5>
+                        </div>
+                        <hr>
     </div>
+   
     <div class="container">
         <form action="{{route('data_prakerin.post')}}" method="POST">
                 @csrf
-            <div class="row mt-3 ml-4 ">
+            <div class="row">
                 <div class="col-6  kanan">
                     <!-- perusa -->
                     <div class="mb-3 col-lg-10">

@@ -19,11 +19,12 @@
 @endsection
 @section('main')
 <div class="card">
-    <div class="container">
+    <div class="">
         <div class="card-body mt-3">
             <div class="">
                 <h5>Data Jurusan</h5>
             </div>
+            <hr>
         </div>
     </div>
     <div class="card-body">
@@ -38,10 +39,10 @@
                                 @csrf
                             <label class="form-label">Singakatan Jurusan</label>
                             <div class="d-flex">
-                                <i class="fas fa-user border text-center"></i>
+                                <i class="fas fa-map-signs border text-center"></i>
                                 <input type="text" class="form-control @error('singkatan_jurusan')
                                     is-invalid
-                                @enderror" name="singkatan_jurusan" placeholder="Singkatan juruasan" >
+                                @enderror" name="singkatan_jurusan" placeholder="Singkatan jurusan" >
                             </div>
                             @error('singkatan_jurusan')
                                 <div class="invalid-feedback">
@@ -64,7 +65,7 @@
                                 @csrf
                             <label class="form-label">Jurusan</label>
                             <div class="d-flex">
-                                <i class="fas fa-user border text-center"></i>
+                                <i class="fas fa-map-signs border text-center"></i>
                                 <input type="text" class="form-control @error('jurusan')
                                     is-invalid
                                 @enderror" name="jurusan" placeholder="Jurusan" >

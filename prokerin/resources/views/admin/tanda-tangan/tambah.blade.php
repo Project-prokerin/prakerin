@@ -15,18 +15,23 @@
     <div class="breadcrumb-item"> <i class="fas fa-th"></i>>DATA PRAKERIN</div>
 @endsection
 @section('main')
-<div class="card mt-5">
-    <div class="container text-center mt-5 mb-3 ml-1">
-        <h3>Tambah data Prakerin</h3>
+<div class="card">
+    <div class="">
+        <div class="card-body mt-3">
+            <div class="">
+                <h5>Tambah Tanda Tangan</h5>
+            </div>
+            <hr>
+        </div>
     </div>
-    <div class="container">
+    <div class="">
         <form action="{{route('tanda-tangan.post')}}" method="POST" enctype="multipart/form-data">
                 @csrf
-            <div class="row mt-3 ml-4 ">
+            <div class="row mt-3 ml-4" style="height: 300px">
                 <div class="col-6  kanan">
                     <!-- perusa -->
                     <div class="mb-5 ">
-                        <label>Tanggal Selesai</label>
+                        <label>Tanda Tangan</label>
                         <input type="file" name="ttd" class=" @error('ttd')  is-invalid  @enderror form-control "  value="">
                             @error('ttd')
                                 <div class="invalid-feedback">{{ $message }}</div>
