@@ -192,6 +192,7 @@
                     <p style="text-align:center; margin-top:60px; ">(....................................................)</p>
                 </div>
 
+                
 
 
                 <div class="kiri-bawah">
@@ -202,10 +203,22 @@
                         <li>Pertinggal</li>
                     </ol>
                 </div>
+
+
+                @if (!empty($tandatangan_kepsek))
+                
+                <div style="text-align: right; margin-top:-60px;">
+                    <img src="{{'data:image/png;base64,'.base64_encode(file_get_contents(public_path('ttd/default-ttd.png')))}}" style="margin-top: -20px; z-index: 2; width: 200px; height: 170px;"/> 
+        
+                    <h6 style="font-size: 14px; margin-top: -40px;">Ramadin Tarigan, ST  <br><span style="font-size: 14px; font-weight: light; ">NIK. 19760329200411101 </span></h6>
+                    
+                </div>
+                @else
                 <div style="text-align: right; margin-top:-60px;">
                     <h6 style="font-size: 14px; margin-top: 80px;">Ramadin Tarigan, ST</h6>
                     <h6 style="font-size: 14px; font-weight: light; margin-top: -30px;">NIK. 19760329200411101</h6>
                 </div>
+                @endif
 
 
 

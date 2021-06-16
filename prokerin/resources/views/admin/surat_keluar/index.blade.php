@@ -104,6 +104,8 @@
     <span class="d-none" id="role" data-role="{{ Auth::user()->role }}"></span>
 @endsection
 @push('script')
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+
     <script src="{{ asset('assets/js/pages-admin/surat-keluar.js') }}"></script>
 
     <script>
