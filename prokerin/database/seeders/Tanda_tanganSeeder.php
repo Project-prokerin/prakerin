@@ -18,5 +18,13 @@ class Tanda_tanganSeeder extends Seeder
             "nama" => "Ramadin Tarigan",
             "path_gambar" => "ttd/default-ttd.png"
         ]);
+        DB::table('tanda_tangan')->insert([
+            "nama" => "Nur Firdaus",
+            "path_gambar" => "ttd/default2-ttd.png"
+        ]);
+        DB::table('tanda_tangan')->insert([
+            "nama" => "Elon Musk",
+            "path_gambar" => "ttd/default4-ttd.png"
+        ]);
     }
 }
