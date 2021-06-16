@@ -71,7 +71,7 @@
                                 <div class="mb-3">
                                     <label class="form-label">Alamat</label>
                                     <div class="d-flex">
-                                        <i class="far fa-building border text-center"></i>
+                                        <i class="fas fa-map-marked border text-center"></i>
                                         <input type="text" name="alamat"  class="form-control form-control-sm
                                         @error('alamat')
                                             is-invalid
@@ -86,7 +86,7 @@
                                 <div class="mb-3">
                                     <label class="form-label">Link Perusahaan</label>
                                     <div class="d-flex">
-                                        <i class="far fa-building border text-center"></i>
+                                        <i class="fas fa-link border text-center"></i>
                                         <input type="text" name="link"  class="form-control form-control-sm
                                         @error('link')
                                             is-invalid
@@ -101,7 +101,7 @@
                                 <div class="">
                                     <label class="form-label">Email Perusahaan</label>
                                     <div class="d-flex">
-                                        <i class="far fa-building border text-center"></i>
+                                        <i class="far fa-envelope border text-center"></i>
                                         <input type="text" name="email"  class="form-control form-control-sm
                                         @error('email')
                                             is-invalid
@@ -130,7 +130,7 @@
                             <div class="mb-3">
                                 <label class="form-label">Nama Pemimpin</label>
                                 <div class="d-flex">
-                                    <i class="far fa-building border text-center"></i>
+                                    <i class="fas fa-user-tie border text-center"></i>
                                     <input type="text" name="nama_pemimpin"  class="form-control form-control-sm
                                     @error('nama_pemimpin')
                                             is-invalid
@@ -147,7 +147,7 @@
                             <div class="mb-3">
                                 <label class="form-label">Deskripsi Perusahaan</label>
                                 <div class="d-flex">
-                                    <i class="far fa-building border text-center pt-3"></i>
+                                    <i class="fas fa-align-left border text-center pt-3"></i>
                                     <textarea type="text"  name="deskripsi_perusahaan" class="form-control form-control-sm
                                     @error('deskripsi_perusahaan')
                                             is-invalid
@@ -162,7 +162,7 @@
                             <div class="mb-3">
                                 <label class="form-label">Tanggal Mou</label>
                                 <div class="d-flex">
-                                    <i class="far fa-building border text-center"></i>
+                                    <i class="far fa-calendar-alt border text-center"></i>
                                     <input type="date" name="tanggal_mou"  class="form-control form-control-sm ui-datepicker
                                     @error('tanggal_mou')
                                             is-invalid
@@ -177,7 +177,7 @@
                             <div class="mb-3">
                                 <label class="form-label">Status Mou</label>
                                 <div class="d-flex">
-                                    <i class="far fa-building border text-center"></i>
+                                    <i class="far fa-chart-bar border text-center"></i>
                                     <input type="text" name="status_mou"  class="form-control form-control-sm
                                     @error('status_mou')
                                             is-invalid
@@ -192,7 +192,7 @@
                             <div class="mb-3">
                                 <label class="form-label">Gambar Perusahaan</label>
                                 <div class="d-flex">
-                                    <i class="far fa-building border text-center" style="height: 41px; padding-top: 10px;"></i>
+                                    <i class="fas fa-image border text-center" style="height: 41px; padding-top: 10px;"></i>
                                     <div class="input-group">
                                         <input type="file" name="foto" class="form-control
                                         @error('foto')

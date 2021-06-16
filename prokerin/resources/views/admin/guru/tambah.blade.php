@@ -35,7 +35,7 @@
                             <div class="mb-3">
                                 <label class="form-label">NIK Guru</label>
                                 <div class="d-flex">
-                                <i class="fas fa-user border text-center"></i>
+                                    <i class="far fa-id-card border text-center"></i>
                                 <input type="text" name="nik" class="form-control
                                 @error('nik') is-invalid @enderror" placeholder="NIK" value="{{ old('nik') }}">
                                 </div>
@@ -62,7 +62,7 @@
                             <div class="mb-3">
                                 <label class="form-label">Jabatan</label>
                                 <div class="d-flex">
-                                    <i class="fas fa-user border text-center"></i>
+                                    <i class="fas fa-users-cog border text-center"></i>
                                     <select class="form-control @error('jabatan')
                                         is-invalid
                                     @enderror" name="jabatan">
@@ -99,7 +99,7 @@
                             <div class="mb-3">
                                 <label class="form-label">Jurusan</label>
                                 <div class="d-flex">
-                                    <i class="fas fa-user border text-center"></i>
+                                    <i class="fas fa-map-signs border text-center"></i>
                                     <select class="form-control  @error('id_jurusan')
                                         is-invalid
                                     @enderror"  name="id_jurusan">
@@ -118,7 +118,7 @@
                             <div class="mb-3">
                                 <label class="form-label">No HP</label>
                                 <div class="d-flex">
-                                    <i class="fas fa-user border text-center"></i>
+                                    <i class="fas fa-phone border text-center"></i>
                                     <input type="text" class="form-control @error('no_telp')
                                         is-invalid
                                     @enderror" name="no_telp" placeholder="Masukan nomor telepone" >

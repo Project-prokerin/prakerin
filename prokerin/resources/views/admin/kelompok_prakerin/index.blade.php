@@ -72,7 +72,7 @@
     <script src="{{ asset('assets/js/pages-admin/kelompok.js') }}" ></script>
 
     <script>
-  
+
 
     </script>
 @endpush

@@ -1,7 +1,11 @@
 <!doctype html>
 <html lang="en">
-
 <head>
+    <style>
+        .show{
+            margin-top: 2px;
+        }
+    </style>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -13,7 +17,7 @@
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <!------ Include the above in your HEAD tag ---------->
     <link rel="shortcut icon" href="{{ asset('images/tb.png') }}" />
-    <title>Prakern | Login</title>
+    <title>Prakerin | Login</title>
 </head>
 
 <body>
@@ -36,16 +40,16 @@
                     </div>
 
                     <div class="wrap-input100 validate-input   @error('password') alert-validate @enderror" data-validate="@error("password")  {{ $message }} @enderror">
-                        <input class="input100" type="password" name="password" placeholder="Password" value="{{ old('password') }}">
+                        <input class="input100" id="form-pw" type="password" name="password" placeholder="Password" value="{{ old('password') }}">
                         <span class="focus-input100"></span>
                         <span class="symbol-input100">
                             <i class="fa fa-lock" aria-hidden="true"></i>
                         </span>
 
                     </div>
-                    <div class="text-right p-t-10 p-b-10">
-                        <input type="checkbox" name="remember" id="remember" class="form-check-input mt-2">
-                        <label for="remember" class="mx-2 form-check-label">Ingat saya</label>
+                    <div class="text-right p-b-10">
+                        <input type="checkbox" id="show-pw" class="form-check-input mt-2">
+                        <label class="mx-2 show form-check-label">Show Password</label>
                     </div>
 
                     <div class="container-login100-form-btn">
@@ -71,8 +75,16 @@
             </div>
         </div>
 </div>
-
-
 </body>
-
+<script type="text/javascript">
+	$(document).ready(function(){
+		$('#show-pw').click(function(){
+			if($(this).is(':checked')){
+				$('#form-pw').attr('type','text');
+			}else{
+				$('#form-pw').attr('type','password');
+			}
+		});
+	});
+</script>
 </html>
