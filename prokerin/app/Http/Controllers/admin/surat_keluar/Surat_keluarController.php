@@ -11,10 +11,11 @@ use App\Models\Detail_surat_k;
 use App\Models\Isi_surat;
 use App\Models\guru;
 use App\Models\Disposisi;
+use App\Models\Tanda_tangan;
 use Carbon\Carbon;
 use DateTime;
 
-
+use Illuminate\Support\Facades\File; 
 use Response;
 use PDF;
 
@@ -60,11 +61,21 @@ class Surat_keluarController extends Controller
                                 ->addColumn('dari', function ($surat) {
                                     return $surat->dari_guru->jabatan;
                                 })
+                                ->addColumn('persetujuan', function ($surat) {
+                                    $role = Auth::user()->role;
+                                    $button = '';
+                                    if ($role == "kepsek" or $role == "admin") {
+                                        $button .= '<a href="/admin/surat_keluar/tolak/' . $surat->id . '"   id="' . $surat->id . '" class="edit btn btn-danger btn-sm"><i class="fas fa-times"></i></a>';
+                                        $button .= '&nbsp';
+                                        $button .= '<button id="tandatanganButton" data-target="#tandatanganModal" data-attr="/admin/surat_keluar/tandatangan/'.$surat->id.'" data-toggle="modal"  class="edit btn btn-success btn-sm"><i class="fas fa-check"></i></a>';
+                                    }
+                                    return $button;
+                                })
                                 ->addColumn('action', function ($surat) {
                                     $role = Auth::user()->role;
                                     $button = '';
                                     if ($role == "admin" or  $role == "hubin") {
-                                        $button .= '<a href="/admin/surat_keluar/download/' . $surat->id . '"   id="' . $surat->id . '" class="edit btn btn-success btn-sm"><i class="fa fa-download"></i></a>';
+                                        $button .= '<a href="/admin/surat_keluar/download/' . $surat->id . '"   id="' . $surat->id . '" class="edit btn btn-danger btn-sm"><i class="fa fa-download"></i></a>';
                                         $button .= '&nbsp';
                                         $button .= '<a href="/admin/surat_keluar/stream/' . $surat->id . '"   id="' . $surat->id . '" class="edit btn btn-primary btn-sm"><i class="fas fa-search"></i></a>';
                                         $button .= '&nbsp';
@@ -79,7 +90,7 @@ class Surat_keluarController extends Controller
                                     }
                                     return $button;
                                 })
-                                ->rawColumns(['action','nama_surat','tgl_surat','dari','untuk','nama','jabatan'])
+                                ->rawColumns(['persetujuan','action','nama_surat','tgl_surat','dari','untuk','nama','jabatan'])
                                 ->addIndexColumn()->make(true);
                 }
     }
@@ -105,6 +116,7 @@ class Surat_keluarController extends Controller
      return Response::download($file, 'SuratTugas.pdf',$headers);
 
  }
+
 
  public function suratKstream($id)
  {
@@ -273,6 +285,12 @@ class Surat_keluarController extends Controller
         // dd($id);
 
 
+        $file_path = Template_surat::where('id',$id)->first();  // Value is not URL but directory file path
+        // $file_pathh = Detail_surat_k::where('id',$id)->first();  // Value is not URL but directory file path
+        if(File::exists(public_path($file_path->path_surat))){
+            File::delete(public_path($file_path->path_surat));
+        }
+       
        
 
 
@@ -362,6 +380,8 @@ class Surat_keluarController extends Controller
             // 'id_detail_surat_k' => $detail->id
         ]);
 
+        
+
         return redirect()->route('admin.surat_keluar.index')->with('pesan','Berhasil Update Surat!');
 
     }
@@ -381,8 +401,52 @@ class Surat_keluarController extends Controller
             File::delete(public_path($file_path->path_surat));
         }
         Surat_keluar::destroy($id);
+        Template_surat::destroy($id);
+        Detail_surat_k::destroy($id);
+
          return response()->json($data = 'berhasil');
         
        
+    }
+
+
+    public function tandatangan($id)
+    {
+        // dd($id);
+        
+
+        $tandatangan = Tanda_tangan::all();
+        $surat_keluar = Surat_keluar::find($id);
+
+        return view('admin.surat_keluar.tandatangan',compact('tandatangan','surat_keluar'));
+        
+    }
+
+    public function setujui(Request $request, $id)
+    {
+        // dd($id);
+        $request->validate([
+            'ttd' => 'required'
+        ],[
+            'required' => 'Pilih Tanda-tangan!'
+        ]);
+
+        $ttd = Tanda_tangan::find($id);
+
+        $ttd->path_gambar;
+
+        
+        
+        
+        // $tandatangan = Tanda_tangan::all();
+
+        // return view('admin.surat_keluar.tandatangan',compact('tandatangan'));
+        
+    }
+
+    public function tolak($id)
+    {
+        dd($id);
+
     }
 }

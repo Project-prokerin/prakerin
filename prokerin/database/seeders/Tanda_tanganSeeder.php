@@ -15,6 +15,7 @@ class Tanda_tanganSeeder extends Seeder
     public function run()
     {
         DB::table('tanda_tangan')->insert([
+            "nama" => "Ramadin Tarigan",
             "path_gambar" => "ttd/default-ttd.png"
         ]);
     }

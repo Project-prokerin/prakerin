@@ -15,6 +15,7 @@ class CreateTandaTanganTable extends Migration
     {
         Schema::create('tanda_tangan', function (Blueprint $table) {
             $table->id();
+            $table->string('nama');
             $table->string('path_gambar');
             $table->timestamps();
         });

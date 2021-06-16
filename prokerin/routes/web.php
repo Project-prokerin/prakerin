@@ -104,6 +104,9 @@ Route::prefix('admin')->middleware(['web', 'auth', 'role:admin,kepsek,tu,kaprog,
     Route::delete('surat_keluar/delete/{id}', [Surat_keluarController::class, 'destroy'])->name('admin.surat_keluar.delete');
     Route::post('/surat_keluar/excel/destroy', [Surat_keluarController::class, 'delete_all'])->name('admin.surat_keluar.delete-all');
     Route::get('/export/excel/surat_keluar', [ExcelController::class, 'surat_keluar'])->name('admin.export.surat_keluar');
+    Route::get('surat_keluar/tolak/{id}', [Surat_keluarController::class, 'tolak'])->name('admin.surat_keluar.tolak');
+    Route::get('surat_keluar/tandatangan/{id}', [Surat_keluarController::class, 'tandatangan'])->name('admin.surat_keluar.tandatangan');
+    Route::put('surat_keluar/setujui/{id}', [Surat_keluarController::class, 'setujui'])->name('admin.surat_keluar.setujui');
 });
 
 // route admin (data master ..ect)

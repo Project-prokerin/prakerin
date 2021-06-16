@@ -16,6 +16,7 @@ $(document).ready( function () {
             { data: 'dari', name:'dari'},
             { data: 'jabatan', name:'jabatan'},
             { data: 'status', name:'status'},
+            { data: 'persetujuan', name:'persetujuan'},
             { data: 'tgl_surat', name:'tgl_surat'},
             { data: 'action', name:'action'},]
         }
@@ -106,3 +107,74 @@ $('body').on('click','#hapus', function () {
 });
 
 
+
+
+
+$(document).on('click', '#tandatanganButton', function(event) {
+    event.preventDefault();
+    let href = $(this).attr("data-attr");
+
+    $.ajax({
+        url: href,
+        beforeSend: function() {
+            $('#loader').show();
+        },
+        // return the result
+        success: function(result) {
+            $('#tandatanganModal').modal("show");
+            $('#tandatanganBody').html(result).show();
+        },
+        complete: function() {
+            $('#loader').hide();
+        },
+        error: function(jqXHR, testStatus, error) {
+            // console.log(error);
+            alert("Page " + href + " cannot open. Error:" + error);
+            $('#loader').hide();
+        },
+        timeout: 8000
+    })
+});
+
+
+$('#setujui').click(function(event) {
+    event.preventDefault();
+    var form = $('#tandatangan_form'),
+        url = form.attr('action'),
+        method = form.attr('method');
+    form.find('.invalid-feedback').remove();
+    form.find('.form-control').removeClass('is-invalid')
+    $.ajax({
+        url: url,
+        method: method,
+        data: form.serialize(),
+        success: function name(params) {
+            form.trigger('reset');
+            $('#tandatanganModal').modal('hide');
+            alert = Swal.fire({
+                title: 'Berhasil',
+                text: ' Berhasil Tanda tangan ',
+                icon: 'success',
+                confirmButtonText: 'tutup'
+            })
+
+            setInterval(() => {
+                alert
+            }, 7000);
+
+            location.reload();
+        },
+        error: function(xhr) {
+            console.log(xhr.responseJSON)
+            var err = xhr.responseJSON;
+            if ($.isEmptyObject(err) == false) {
+                $.each(err.errors, function(key, value) {
+
+                    $('#' + key).addClass('is-invalid').closest('.input-group').append(
+                        '<div class="invalid-feedback">' + value + '</div>')
+                    console.log(key);
+                })
+            }
+        }
+    });
+})
