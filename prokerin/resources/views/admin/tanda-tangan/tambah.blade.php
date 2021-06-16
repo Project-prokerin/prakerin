@@ -37,6 +37,13 @@
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
                     </div>
+                    <div class="mb-5 ">
+                        <label>Pemilik Tanda tangan</label>
+                        <input type="text" name="nama" class=" @error('nama')  is-invalid  @enderror form-control "  value="">
+                            @error('nama')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                    </div>
 
                     <button type="submit"  class="btn btn-success mr-3"><i class="fas fa-check"></i> submit</button>
                     <a href="{{route('tanda-tangan.index')}}" type="submit" class="btn btn-danger"><i class="fas fa-times"></i> Batal</a>

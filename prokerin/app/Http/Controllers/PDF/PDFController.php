@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Models\perusahaan;
 use Illuminate\Support\Facades\Auth;
 use App\Models\kelompok_laporan;
+use App\Models\Tanda_tangan;
 // export pdf
 use PDF;
 use Carbon\Carbon;
@@ -72,7 +73,11 @@ class PDFController extends Controller
         $tanggal = '23  januari s.d.. 24 januari 2020';
         $pukul = '08.00 WIB s.d. Selesai';
 
-        $pdf = PDF::loadView('export.PDF.contoh',compact('nama_Surat','nama','nik','alamat','tempat','hari','tanggal','pukul'));
+        $ttd = Tanda_tangan::where('id',1)->first();
+        $tandatangan_kepsek = $ttd->path_gambar;
+        // dd($tandatangan_kepsek);
+
+        $pdf = PDF::loadView('export.PDF.contoh',compact('tandatangan_kepsek','nama_Surat','nama','nik','alamat','tempat','hari','tanggal','pukul'));
 
         return $pdf->download('DATA contoh.PDF');
 
@@ -83,5 +88,22 @@ class PDFController extends Controller
 
         }
 
+        public function contohh()
+        {
+    
+       
+            // dd($tandatangan_kepsek);
+    
+            $pdf = PDF::loadView('export.PDF.ss');
+    
+            return $pdf->stream('DATA contoh.PDF');
+    
+            //  $w->getClientOriginalName();
+    
+            // dd($pdf);
+    
+    
+            }
+    
 
 }

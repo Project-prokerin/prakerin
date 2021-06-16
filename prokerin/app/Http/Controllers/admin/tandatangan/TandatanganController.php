@@ -86,6 +86,7 @@ class TandatanganController extends Controller
         // validasi
         $request->validate([
             'ttd' => 'required|image|mimes:png',
+            'nama' => 'required',
         ],[
             'required' =>'Tidak boleh kosong',
             'mimes' => 'Harus PNG'
@@ -106,7 +107,8 @@ class TandatanganController extends Controller
         
 
         Tanda_tangan::create([
-            'path_gambar' => "ttd/$namaFile",
+            'nama' => $request->nama,
+            'path_gambar' => "ttd/$namaFile"
             
         ]);
 

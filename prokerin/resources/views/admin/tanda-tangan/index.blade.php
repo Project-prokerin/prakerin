@@ -42,7 +42,7 @@
             <div class="card-body">
                 <div class="row">
                    @foreach ($ttd as $tandatangan)
-                   <div class="card col-3" style="margin-bottom: 50px;">
+                   <div class="cardd col-3" style="margin-bottom: 50px;">
                     <div style="margin-top: -29px;">
                       <form action="{{route('tanda-tangan.delete',$tandatangan->id)}}" method="post">
                         @csrf
