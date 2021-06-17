@@ -54,10 +54,11 @@
                           <th>Action</th>
                         </tr>
                       </thead>
-                      @foreach ($ttd as $tandatangan)
+                      
                           
                      
                       <tbody class="text-center">
+                        @foreach ($ttd as $tandatangan)
                         <tr>
                           <td>{{$loop->iteration}}</td>
                           <td>
@@ -70,9 +71,10 @@
                               <button class="btn btn-danger">Hapus</button>
                           </td>
                         </tr>
+                        @endforeach
                       </tbody>
                     </table>
-                    @endforeach
+                    
                   </div>
                 </div>
               </div>
