@@ -1,5 +1,6 @@
 @extends('template.master')
 @push('link')
+<link rel="stylesheet" href="{{asset('template/')}}/node_modules/summernote/dist/summernote-bs4.css">
 <style>
         .card-body .input i {
         width: 40px;
@@ -118,6 +119,10 @@
                                 </div>
                         </div>
                     </div>
+                    <div style="margin-left: 25px; margin-top:10px;">
+                    <button type="submit"  class="btn btn-success mr-3"><i class="fas fa-check"></i> submit</button>
+                    <a href="{{route('perusahaan.index')}}" type="submit" class="btn btn-danger"><i class="fas fa-times"></i> Batal</a>
+                    </div>
                 </div>
             </div>
             {{--  --}}
@@ -151,7 +156,7 @@
                                 <label class="form-label">Deskripsi Perusahaan</label>
                                 <div class="d-flex">
                                     <i class="fas fa-align-left border text-center pt-3"></i>
-                                    <textarea type="text"  name="deskripsi_perusahaan" class="form-control form-control-sm
+                                    <textarea type="text"  name="deskripsi_perusahaan" class="summernote form-control form-control-sm
                                     @error('deskripsi_perusahaan')
                                             is-invalid
                                     @enderror" rows="3"> {{ old('deskripsi_perusahaan') }}</textarea>
@@ -209,7 +214,7 @@
                                             </div>
                                 @enderror
                             </div>
-                            <img src="{{ asset('images/perusahaan/default.jpg') }}" id="image" alt="" style="width: 200px; height:100px;object-fit:cover;" >
+                            <img src="{{ asset('images/perusahaan/default.jpg') }}" id="image" alt="" style="width: 400px; height:200px;object-fit:cover;" >
                             <p id="imageName">default.jpg</p>
                         </div>
                         </div>
@@ -217,19 +222,20 @@
                     </div>
                 </div>
             </div>
-            <div class="col-sm-6" style="margin-top: -40px;">
+            {{-- <div class="col-sm-6" style="margin-top: -100px;">
                 <div class="card-body mb-3">
                     <div class="d-flex">
                         <div>
                             <button type="submit" class="btn btn-primary rounded-pill"><i
                                     class="fas fa-check-square mr-2"></i>Submit</button>
                         </div>
-                        </form>
-                        &nbsp;&nbsp;&nbsp;
                         <div>
                             <a href="{{ route('perusahaan.index') }}" class="btn btn-danger rounded-pill"><i
                                     class="fas fa-window-close mr-2"></i>Cancel</a>
-                        </div>
+                        </div> --}}
+                        </form>
+                        &nbsp;&nbsp;&nbsp;
+                        
                     </div>
                 </div>
             </div>
@@ -256,4 +262,5 @@
     });
 
 </script>
+<script src="{{asset('template/')}}/node_modules/summernote/dist/js/summernote-bs4.js"></script>
 @endpush

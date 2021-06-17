@@ -1,6 +1,8 @@
     @extends('template.master')
     @push('link')
+    <link rel="stylesheet" href="{{ asset('template/') }}/node_modules/select2/dist/css/select2.min.css">
     <style>
+        
             .card-body .input i{
                 width: 50px;
                 font-size: medium;
@@ -69,7 +71,7 @@
                                 <label class="form-label">Jabatan</label>
                                 <div class="d-flex">
                                     <i class="fas fa-users-cog border text-center"></i>
-                                    <select class="form-control @error('jabatan')
+                                    <select class="form-control select2 @error('jabatan')
                                         is-invalid
                                     @enderror" name="jabatan">
                                         <option value="" selected>Pilih Jabatan</option>
@@ -102,11 +104,13 @@
                     <div class="" style="height: auto;">
                         <div class="card-body">
                         <div class="input">
+
                             <div class="mb-3">
                                 <label class="form-label">Jurusan</label>
                                 <div class="d-flex">
                                     <i class="fas fa-map-signs border text-center"></i>
-                                    <select class="form-control  @error('id_jurusan')
+
+                                    <select class="form-control select2 @error('id_jurusan')
                                         is-invalid
                                     @enderror"  name="id_jurusan">
                                         <option  value="">Pilih Jurusan</option>
@@ -135,6 +139,7 @@
                                     </div>
                                 @enderror
                             </div>
+                            
                         </div>
                         <div style="margin-top: 40px;">
                             <button type="submit" class="btn btn-success rounded mr-2"><i class="fas fa-check-square mr-2"></i>Submit</button>
@@ -148,11 +153,12 @@
             </div>
         </div>
     </div>
+    
 
 
 
 
     @endsection
     @push('script')
-
+    <script src="{{ asset('template/') }}/node_modules/select2/dist/js/select2.full.min.js"></script>
     @endpush
