@@ -1,4 +1,3 @@
-
 @extends('template.master')
 @push('link')
 <link rel="stylesheet" href="{{asset('template/')}}/node_modules/select2/dist/css/select2.min.css">
@@ -30,7 +29,7 @@
                         </div>
                         <hr>
     </div>
-   
+
     <div class="container">
         <form action="{{route('data_prakerin.post')}}" method="POST">
                 @csrf
@@ -123,9 +122,10 @@
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
                     </div>
-
-                    <button type="submit"  class="btn btn-success mr-3"><i class="fas fa-check"></i> submit</button>
-                    <a href="{{route('data_prakerin.index')}}" type="submit" class="btn btn-danger"><i class="fas fa-times"></i> Batal</a>
+                    <div class="modal-footer" style="margin-bottom: 30px;">
+                        <button type="submit" class="btn btn-success mr-3"><i class="fas fa-check"></i> submit</button>
+                        <a href="{{route('data_prakerin.index')}}" type="submit" class="btn btn-danger"><i class="fas fa-times"></i> Batal</a>
+                    </div>
                 </div>
             </div>
         </form>

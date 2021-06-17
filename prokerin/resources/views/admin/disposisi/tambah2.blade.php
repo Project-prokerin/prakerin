@@ -116,14 +116,14 @@
                                             @enderror
                                         </div>
                                     </div>
-                                    <div style="margin-top: 40px;">
-                                        <button type="submit" class="btn btn-success rounded-pill mr-2"><i
-                                                class="fas fa-check-square mr-2"></i>Submit</button>
-                                        </form>
-                                        <a href="{{ route('admin.disposisi.index') }}" type="button"
-                                            class="btn btn-danger rounded-pill"><i
-                                                class="fas fa-window-close mr-2"></i>Cancel</a>
-                                    </div>
+                                </div>
+                                <div class="modal-footer" style="margin-top: 50px;">
+                                    <button type="submit" class="btn btn-success mr-2"><i
+                                            class="fas fa-check-square mr-2"></i>Submit</button>
+                                    </form>
+                                    <a href="{{ route('admin.disposisi.index') }}" type="button"
+                                        class="btn btn-danger"><i
+                                            class="fas fa-window-close mr-2"></i>Cancel</a>
                                 </div>
                             </div>
                         </div>

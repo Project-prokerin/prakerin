@@ -87,7 +87,7 @@
     {{-- for add --}}
     <div class="modal fade" id="exampleModal" aria-labelledby="exampleModalLabel" aria-hidden="true" data-backdrop="false">
         <div class="modal-dialog">
-            <div class="modal-content">
+            <div class="modal-content" style="margin-left: 90px;">
                 <div class="modal-body">
                     <form action="{{ route('laporan.post') }}" method="POST" id="contact_form">
                         @csrf
