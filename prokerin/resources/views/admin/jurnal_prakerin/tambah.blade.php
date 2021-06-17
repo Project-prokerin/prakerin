@@ -6,7 +6,7 @@
     /* div.card{
         width: 55%;
     } */
-    
+
      .box-jurnal{
                 margin-top: -10px;
                 margin-left: 16px;
@@ -41,10 +41,10 @@
      <form action="{{route('jurnal.post')}}" method="POST" id="form">
 @csrf
 <div class="row mt-3">
-    
+
     <div class="col-sm-6">
     <div class="">
-        
+
         <div class="card-body">
         <h5 class="card-title">Fasilitas Prakerin</h5>
         @if ($errors->has('mess') || $errors->has('bus_antar_jemput') || $errors->has('makan_siang') || $errors->has('intensif'))
@@ -129,7 +129,7 @@
         <h6 class="card-title">Kompetensi Dasar</h6>
         <div class="textarea">
             <textarea class="form-control  @error('kompetisi_dasar') is-invalid @enderror" name="kompetisi_dasar" id="kompetisi_dasar">{{ old('kompetisi_dasar') }}</textarea>
-            @error('kompetisi_dasar') 
+            @error('kompetisi_dasar')
             <div class="invalid-feedback">{{ $message }}</div>
             @enderror
         </div>
@@ -137,7 +137,7 @@
         <h6 class="card-title">Topik Pekerjaan</h6>
         <div class="textarea">
             <textarea  class="form-control  @error('topik_pekerjaan') is-invalid @enderror" name="topik_pekerjaan" id="topik_pekerjaan"> {{ old('topik_pekerjaan') }}</textarea>
-            @error('topik_pekerjaan') 
+            @error('topik_pekerjaan')
             <div class="invalid-feedback">{{ $message }}</div>
             @enderror
         </div>
@@ -150,7 +150,7 @@
                         <option  value="{{ $item->id }}">{{ $item->nama }}</option>
                     @endforeach
                 </select>
-            @error('id_siswa') 
+            @error('id_siswa')
             <div class="invalid-feedback">{{ $message }}</div>
             @enderror
         {{-- </div> --}}
@@ -159,15 +159,15 @@
         {{-- <h6 class="card-title">Perusahaan Pekerjaan</h6>
         <div class="textarea">
             <textarea  class="form-control  @error('topik_pekerjaan') is-invalid @enderror" name="topik_pekerjaan" id="topik_pekerjaan"> {{ old('topik_pekerjaan') }}</textarea>
-            @error('topik_pekerjaan') 
+            @error('topik_pekerjaan')
             <div class="invalid-feedback">{{ $message }}</div>
             @enderror
         </div> --}}
-       
+
         {{-- textarea --}}
 
         </div>
-        
+
     </div>
 </div>
 
@@ -185,7 +185,7 @@
                 </div>
             </div>
             <input type="date" class="form-control daterange-cus @error('tanggal_pelaksanaan') is-invalid @enderror" value="{{ old('tanggal_pelaksanaan') }}" name="tanggal_pelaksanaan" id="tanggal_pelaksanaan">
-            @error('tanggal_pelaksanaan') 
+            @error('tanggal_pelaksanaan')
                 <div class="invalid-feedback">{{ $message }}</div>
             @enderror
             </div>
@@ -199,7 +199,7 @@
                 </div>
             </div>
             <input type="time" class="form-control timepicker @error('jam_masuk') is-invalid @enderror" value="{{ old('jam_masuk') }}" name="jam_masuk" id="jam_masuk">
-            @error('jam_masuk') 
+            @error('jam_masuk')
                 <div class="invalid-feedback">{{ $message }}</div>
             @enderror
             </div>
@@ -213,7 +213,7 @@
                 </div>
             </div>
             <input type="time" class="form-control timepicker @error('jam_istiharat') is-invalid @enderror" value="{{ old('jam_istiharat') }}" name="jam_istiharat" id="jam_istiharat">
-            @error('jam_istiharat') 
+            @error('jam_istiharat')
                 <div class="invalid-feedback">{{ $message }}</div>
             @enderror
             </div>
@@ -227,7 +227,7 @@
                 </div>
             </div>
             <input type="time" class="form-control timepicker @error('jam_pulang') is-invalid @enderror" value="{{ old('jam_pulang') }}"  name="jam_pulang" id="jam_pulang" >
-            @error('jam_pulang') 
+            @error('jam_pulang')
                 <div class="invalid-feedback">{{ $message }}</div>
             @enderror
             </div>
@@ -237,11 +237,12 @@
 </div>
 {{-- tgl-jam --}}
 
-     <br>                       
-        <a href="{{ route('jurnal.index') }}" class="btn btn-danger ml-5 mb-3 mr-3">Kembali</a>
-        <button type="submit" id="submit" class="btn btn-success mb-3">tambah</button>     
-     
-        </form>                    
+     <br>
+        <div class="card-footer">
+            <button type="submit" id="submit" class="btn btn-success mb-3 ml-3">tambah</button>
+            <a href="{{ route('jurnal.index') }}" class="btn btn-danger ml-3 mb-3">Kembali</a>
+        </div>
+        </form>
 </div>
 @endsection
 @push('script')
