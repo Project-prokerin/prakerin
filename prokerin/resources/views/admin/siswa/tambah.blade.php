@@ -9,6 +9,9 @@
     .invalid-feedback{
         display: block;
     }
+    h5{
+        color: rgb(82, 82, 255);
+    }
 </style>
 @endpush
 @section('title', 'Prakerin | Tambah Data siswa')
@@ -48,7 +51,7 @@
                                 <div class="mb-3">
                                     <label class="form-label">NIPD</label>
                                     <div class="d-flex">
-                                        <i class="fas fa-user border text-center"></i>
+                                        <i class="far fa-id-card border text-center"></i>
                                         <input type="text" name="nipd" class="form-control form-control-sm @error('nipd') is-invalid @enderror" value="{{ old('nipd') }}">
                                     </div>
                                     @error('nipd')
@@ -98,7 +101,7 @@
                                 <div class="mb-3">
                                     <label class="form-label">Tempat Lahir</label>
                                     <div class="d-flex">
-                                        <i class="fas fa-user border text-center"></i>
+                                        <i class="fas fa-hospital border text-center"></i>
                                         <input type="text"  name="tempat_lahir" class="form-control form-control-sm
                                         @error('tempat_lahir')
                                             is-invalid
@@ -113,7 +116,7 @@
                                 <div class="mb-3">
                                     <label class="form-label">Tanggal Lahir</label>
                                     <div class="d-flex">
-                                        <i class="fas fa-user border text-center"></i>
+                                        <i class="fas fa-calendar-week border text-center"></i>
                                         <input type="date"  name="tanggal_lahir" class="form-control form-control-sm @error('tanggal_lahir')
                                             is-invalid
                                         @enderror" value="{{ old('tanggal_lahir') }}">
@@ -127,7 +130,7 @@
                                 <div class="mb-3">
                                     <label class="form-label">NIK</label>
                                     <div class="d-flex">
-                                        <i class="fas fa-user border text-center"></i>
+                                        <i class="far fa-id-card border  text-center"></i>
                                         <input type="text"  name="nik"class="form-control form-control-sm
                                         @error('nik')
                                             is-invalid
@@ -142,7 +145,7 @@
                                 <div class="mb-3">
                                     <label class="form-label">Agama</label>
                                     <div class="d-flex">
-                                        <i class="fas fa-user border text-center"></i>
+                                        <i class="fas fa-pray border text-center"></i>
                                         <input type="text" class="form-control form-control-sm
                                         @error('agama')
                                             is-invalid
@@ -158,7 +161,7 @@
                                 <div class="mb-3">
                                     <label class="form-label">Alamat</label>
                                     <div class="d-flex">
-                                        <i class="fas fa-user border text-center"></i>
+                                        <i class="fas fa-map-marked-alt border text-center"></i>
                                         <input type="text" name="alamat"class="form-control form-control-sm
                                         @error('alamat')
                                             is-invalid
@@ -186,7 +189,7 @@
                                 <div class="mb-3">
                                     <label class="form-label">Transportasi</label>
                                     <div class="d-flex">
-                                        <i class="fas fa-user border text-center"></i>
+                                        <i class="fas fa-car border text-center"></i>
                                         <input type="text" name="transportasi" class="form-control form-control-sm @error('transportasi') is-invalid @enderror"
                                         value="{{ old('transportasi') }}">
                                     </div>
@@ -199,7 +202,7 @@
                                 <div class="mb-3">
                                     <label class="form-label">Email</label>
                                     <div class="d-flex">
-                                        <i class="fas fa-user border text-center"></i>
+                                        <i class="far fa-envelope border text-center"></i>
                                         <input type="text" name="email" class="form-control form-control-sm @error('email') is-invalid @enderror"
                                         value="{{ old('email') }}">
                                     </div>
@@ -210,9 +213,9 @@
                                     @enderror
                                 </div>
                                 <div class="mb-3">
-                                    <label class="form-label">NO HP</label>
+                                    <label class="form-label">No HP</label>
                                     <div class="d-flex">
-                                        <i class="fas fa-user border text-center"></i>
+                                        <i class="fas fa-phone border text-center"></i>
                                         <input type="text" name="no_hp" class="form-control form-control-sm @error('no_hp') is-invalid @enderror"
                                         value="{{ old('no_hp') }}">
                                     </div>
@@ -225,7 +228,7 @@
                                 <div class="mb-3">
                                     <label class="form-label">Berat Badan</label>
                                     <div class="d-flex">
-                                        <i class="fas fa-user border text-center"></i>
+                                        <i class="fas fa-weight border text-center"></i>
                                         <input type="text" name="bb" class="form-control form-control-sm @error('bb') is-invalid @enderror"
                                         value="{{ old('bb') }}">
                                     </div>
@@ -238,7 +241,7 @@
                                 <div class="mb-3">
                                     <label class="form-label">Tinggi Badan</label>
                                     <div class="d-flex">
-                                        <i class="fas fa-user border text-center"></i>
+                                        <i class="fas fa-ruler-vertical border text-center"></i>
                                         <input type="text" name="tb" class="form-control form-control-sm @error('tb') is-invalid @enderror"
                                         value="{{ old('tb') }}">
                                     </div>
@@ -290,7 +293,7 @@
                                 <div class="mb-3">
                                     <label class="form-label">No Akte</label>
                                     <div class="d-flex">
-                                        <i class="fas fa-user border text-center"></i>
+                                        <i class="far fa-id-card border text-center"></i>
                                         <input type="text" name="no_akte" class="form-control form-control-sm @error('no_akte') is-invalid @enderror"
                                         value="{{ old('no_akte') }}">
                                     </div>
@@ -319,7 +322,7 @@
                                 <div class="mb-3">
                                     <label class="form-label">No KK</label>
                                     <div class="d-flex">
-                                        <i class="fas fa-user border text-center"></i>
+                                        <i class="far fa-id-card border text-center"></i>
                                         <input type="text" name="nomor_kk" class="form-control form-control-sm @error('nomor_kk') is-invalid @enderror"
                                         value="{{ old('nomor_kk') }}">
                                     </div>
@@ -345,7 +348,7 @@
                                 <div class="mb-3">
                                     <label class="form-label">Tanggal Lahir Ayah</label>
                                     <div class="d-flex">
-                                        <i class="fas fa-user border text-center"></i>
+                                        <i class="fas fa-calendar-week border text-center"></i>
                                         <input type="date" name="tl_ayah" class="form-control form-control-sm @error('tl_ayah') is-invalid @enderror"
                                         value="{{ old('tl_ayah') }}">
                                     </div>
@@ -371,7 +374,7 @@
                                 <div class="mb-3">
                                     <label class="form-label">Pekerjaan Ayah</label>
                                     <div class="d-flex">
-                                        <i class="fas fa-user border text-center"></i>
+                                        <i class="fas fa-user-tie border text-center"></i>
                                         <input type="text" name="pekerjaan_ayah" class="form-control form-control-sm @error('pekerjaan_ayah') is-invalid @enderror"
                                         value="{{ old('pekerjaan_ayah') }}">
                                     </div>
@@ -384,7 +387,7 @@
                                 <div class="mb-3">
                                     <label class="form-label">Penghasilan Ayah</label>
                                     <div class="d-flex">
-                                        <i class="fas fa-user border text-center"></i>
+                                        <i class="fas fa-dollar-sign border text-center"></i>
                                         <input type="text" name="penghasilan_ayah" class="form-control duit form-control-sm @error('penghasilan_ayah') is-invalid @enderror"
                                         value="{{ old('penghasilan_ayah') }}">
                                     </div>
@@ -397,7 +400,7 @@
                                 <div class="mb-3">
                                     <label class="form-label">Nik Ayah</label>
                                     <div class="d-flex">
-                                        <i class="fas fa-user border text-center"></i>
+                                        <i class="far fa-id-card border text-center"></i>
                                         <input type="text" name="nik_ayah" class="form-control form-control-sm @error('nik_ayah') is-invalid @enderror"
                                         value="{{ old('nik_ayah') }}">
                                     </div>
@@ -426,7 +429,7 @@
                                 <div class="mb-3">
                                     <label class="form-label">Tanggal Lahir Ibu</label>
                                     <div class="d-flex">
-                                        <i class="fas fa-user border text-center"></i>
+                                        <i class="fas fa-calendar-week border text-center"></i>
                                         <input type="date" name="tl_ibu" class="form-control form-control-sm @error('tl_ibu') is-invalid @enderror"
                                         value="{{ old('tl_ibu') }}">
                                     </div>
@@ -452,7 +455,7 @@
                                 <div class="mb-3">
                                     <label class="form-label">Pekerjaan Ibu</label>
                                     <div class="d-flex">
-                                        <i class="fas fa-user border text-center"></i>
+                                        <i class="fas fa-user-tie border text-center"></i>
                                         <input type="text" name="pekerjaan_ibu" class="form-control form-control-sm @error('pekerjaan_ibu') is-invalid @enderror"
                                         value="{{ old('pekerjaan_ibu') }}">
                                     </div>
@@ -465,7 +468,7 @@
                                 <div class="mb-3">
                                     <label class="form-label">Penghasilan Ibu</label>
                                     <div class="d-flex">
-                                        <i class="fas fa-user border text-center"></i>
+                                        <i class="fas fa-dollar-sign border text-center"></i>
                                         <input type="text" name="penghasilan_ibu" class="form-control duit form-control-sm @error('penghasilan_ibu') is-invalid @enderror"
                                         value="{{ old('penghasilan_ibu') }}">
                                     </div>
@@ -478,7 +481,7 @@
                                 <div class="mb-3">
                                     <label class="form-label">Nik Ibu</label>
                                     <div class="d-flex">
-                                        <i class="fas fa-user border text-center"></i>
+                                        <i class="far fa-id-card border text-center"></i>
                                         <input type="text" name="nik_ibu" class="form-control form-control-sm @error('nik_ibu') is-invalid @enderror"
                                         value="{{ old('nik_ibu') }}">
                                     </div>
@@ -521,7 +524,7 @@
                                 <div class="mb-3">
                                     <label class="form-label">No Ijazah</label>
                                     <div class="d-flex">
-                                        <i class="fas fa-user border text-center"></i>
+                                        <i class="far fa-id-badge border text-center"></i>
                                         <input type="text" name="asal_sekolah" class="form-control form-control-sm @error('asal_sekolah') is-invalid @enderror"
                                         value="{{ old('asal_sekolah') }}">
                                     </div>
@@ -534,7 +537,7 @@
                                 <div class="mb-3">
                                     <label class="form-label">SKHUN</label>
                                     <div class="d-flex">
-                                        <i class="fas fa-user border text-center"></i>
+                                        <i class="far fa-id-badge border text-center"></i>
                                         <input type="text" name="no_ijazah" class="form-control form-control-sm @error('no_ijazah') is-invalid @enderror"
                                         value="{{ old('no_ijazah') }}">
                                     </div>
@@ -547,7 +550,7 @@
                                 <div class="mb-3">
                                     <label class="form-label">Asal Sekolah</label>
                                     <div class="d-flex">
-                                        <i class="fas fa-user border text-center"></i>
+                                        <i class="fas fa-university border text-center"></i>
                                         <input type="text" name="shkun" class="form-control form-control-sm @error('shkun') is-invalid @enderror"
                                         value="{{ old('shkun') }}">
                                     </div>

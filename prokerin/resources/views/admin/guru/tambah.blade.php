@@ -9,6 +9,9 @@
             .invalid-feedback{
                     display: block;
                 }
+                h5{
+        color: rgb(82, 82, 255);
+    }
     </style>
     @endpush
     @section('title', 'Prakerin | Data Guru')
@@ -18,13 +21,16 @@
             <div class="breadcrumb-item"> <i class="far fa-building"></i> DATA GURU</div>
     @endsection
     @section('main')
-    <div class="row">
-        <div class="col-12">
-          <div class="card">
-            <div class="card-header">
-              <h4>Tambah Guru</h4>
+    <div class="card">
+        <div class="">
+            <div class="card-body mt-2">
+                <div class="">
+                    <h5>Data Guru</h5>
+                </div>
+                <hr>
             </div>
-        <div class="card-body">
+        </div>
+        <div class="card-body" style="margin-top: -40px">
             <div class="row">
                 <div class="col-sm-6">
                 <div class="">

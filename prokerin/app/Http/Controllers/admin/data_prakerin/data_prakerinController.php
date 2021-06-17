@@ -63,7 +63,7 @@ class data_prakerinController extends Controller
                     return $data->created_at->format('m-d-Y');
                 })
                 ->addColumn('action', function ($data) {
-                    $button = '<button type="button"   id="' . $data->id . '" class="edit btn btn-primary btn-sm"><i class="fas fa-search"></i></button>';
+                    $button = '<a href="/admin/data_prakerin/detail/' . $data->id . '"   id="' . $data->id . '" class="edit btn btn-primary btn-sm"><i class="fas fa-search"></i></a>';
                     $button .= '&nbsp';
                     $button .= '<a  href="../admin/data_prakerin/edit/'.$data->id.'" id="edit" data-toggle="tooltip"  data-id="' . $data->id . '" data-original-title="Edit" class="edit btn btn-warning btn-sm edit-post"><i class="fas fa-pencil-alt"></i></a>';
                     $button .= '&nbsp';

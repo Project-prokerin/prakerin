@@ -30,7 +30,7 @@
                   </div>
                 </div>
             </div>
-            <div class="container">
+            <div class="">
                 <div class="row">
                     <div class="col-sm-3">
                         <div class="card card-statistic-1" style="border-radius:10px;background-color:#2e86de;">

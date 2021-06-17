@@ -9,6 +9,9 @@
     .invalid-feedback{
         display: block;
     }
+    h5{
+        color: rgb(82, 82, 255);
+    }
 </style>
 @endpush
 @section('title', 'Prakerin | Data Perusahaan')

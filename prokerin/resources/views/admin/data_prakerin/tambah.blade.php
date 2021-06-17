@@ -6,6 +6,9 @@
         .container {
             position: relative;
         }
+        h5{
+        color: rgb(82, 82, 255);
+    }
     </style>
 @endpush
 @section('title', 'Prakerin | Data Prakerin')
