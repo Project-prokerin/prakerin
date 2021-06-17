@@ -208,7 +208,7 @@
                 @if (!empty($tandatangan_kepsek))
                 
                 <div style="text-align: right; margin-top:-60px;">
-                    <img src="{{'data:image/png;base64,'.base64_encode(file_get_contents(public_path('ttd/default-ttd.png')))}}" style="margin-top: -20px; z-index: 2; width: 200px; height: 170px;"/> 
+                    <img src="{{'data:image/png;base64,'.base64_encode(file_get_contents(public_path("$tandatangan_kepsek")))}}" style="margin-top: -20px; z-index: 2; width: 200px; height: 170px;"/> 
         
                     <h6 style="font-size: 14px; margin-top: -40px;">Ramadin Tarigan, ST  <br><span style="font-size: 14px; font-weight: light; ">NIK. 19760329200411101 </span></h6>
                     
