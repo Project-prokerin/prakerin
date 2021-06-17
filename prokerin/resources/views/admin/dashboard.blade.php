@@ -31,6 +31,7 @@
                 </div>
             </div>
             <div class="">
+                <div class="container-fluid">
                 <div class="row">
                     <div class="col-sm-3">
                         <div class="card card-statistic-1" style="border-radius:10px;background-color:#2e86de;">
@@ -54,7 +55,7 @@
                             </div>
                             <div class="card-wrap">
                                 <div class="card-header">
-                                    <h4>Pembekalan Magang</h4>
+                                    <h4 class="text-dark">Pembekalan Magang</h4>
                                 </div>
                                 <div class="card-body">
                                     {{ $pem }}
@@ -69,10 +70,25 @@
                             </div>
                             <div class="card-wrap">
                                 <div class="card-header">
-                                    <h4>Jurnal Harian</h4>
+                                    <h4 class="text-dark">Jurnal Harian</h4>
                                 </div>
                                 <div class="card-body">
                                     {{ $jurnal }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="card card-statistic-1" style="border-radius:10px;background-color:#3ae374;">
+                            <div class="card-icon ">
+                                <i class="fas fa-th"></i>
+                            </div>
+                            <div class="card-wrap">
+                                <div class="card-header">
+                                    <h4 class="text-dark">Jurnal Prakerin</h4>
+                                </div>
+                                <div class="card-body text-dark">
+                                    12
                                 </div>
                             </div>
                         </div>
@@ -93,13 +109,62 @@
                             </div>
                         </div>
                     </div>
+                    <div class="col-sm-3">
+                        <div class="card card-statistic-1" style="border-radius:10px;background-color:#fed330;">
+                                <div class="card-icon">
+                                    <i class="fas fa-th"></i>
+                                </div>
+                                <div class="card-wrap">
+                                    <div class="card-header">
+                                        <h4 class="text-dark">Kelompok Prakerin</h4>
+                                    </div>
+                                    <div class="card-body">
+                                        12
+                                    </div>
+                                </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                            <div class="card card-statistic-1"style="border-radius:10px;background-color:#ff4d4d;">
+                                <div class="card-icon">
+                                    <i class="fas fa-th"></i>
+                                </div>
+                                <div class="card-wrap">
+                                    <div class="card-header">
+                                        <h4 class="text-dark">Laporan Prakerin</h4>
+                                    </div>
+                                    <div class="card-body">
+                                        12
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="card card-statistic-1"style="border-radius:10px;background-color:#ff4d4d;">
+                                <div class="card-icon">
+                                    <i class="fas fa-th"></i>
+                                </div>
+                                <div class="card-wrap">
+                                    <div class="card-header">
+                                        <h4 class="text-dark">Surat Penugasan</h4>
+                                    </div>
+                                    <div class="card-body">
+                                        12
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    </div>
+
                 </div>
             </div>
-        </div>
+            </div>
+
     </div>
 
 
-    <div class="row mt-5">
+    <div class="row mt-3">
         <div class="col-12">
             <div class="col-md-4">
                 <div class="card">
@@ -108,23 +173,9 @@
                   </div>
                 </div>
             </div>
-            <div class="container">
-                <div class="row justify-content-center">
-                    <div class="col-sm-4">
-                        <div class="card card-statistic-1" style="border-radius:10px;background-color:#3ae374;">
-                            <div class="card-icon ">
-                                <i class="fas fa-th"></i>
-                            </div>
-                            <div class="card-wrap">
-                                <div class="card-header">
-                                    <h4 class="text-dark">Jurnal Prakerin</h4>
-                                </div>
-                                <div class="card-body text-dark">
-                                    12
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+            <div class="container-fluid">
+                <div class="row ">
+
                     <div class="col-sm-4">
                         <div class="card card-statistic-1" style="background-color:#fed330;border-radius:10px;">
                             <div class="card-icon ">
@@ -140,77 +191,12 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-sm-4">
-                        <div class="card card-statistic-1" style="border-radius:10px;background-color:#fed330;">
-                                <div class="card-icon">
-                                    <i class="fas fa-th"></i>
-                                </div>
-                                <div class="card-wrap">
-                                    <div class="card-header">
-                                        <h4 class="text-dark">Kelompok Prakerin</h4>
-                                    </div>
-                                    <div class="card-body">
-                                        12
-                                    </div>
-                                </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-4">
-                        <div class="card card-statistic-1" style="border-radius: 10px;background-color:#2e86de;">
-                            <div class="card-icon ">
-                                <i class="far fa-building"></i>
-                            </div>
-                            <div class="card-wrap">
-                                <div class="card-header">
-                                    <h4>Surat Keluar</h4>
-                                </div>
-                                <div class="card-body">
-                                    13
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-4">
-                        <div class="card card-statistic-1"style="border-radius:10px;background-color:#ff4d4d;">
-                            <div class="card-icon">
-                                <i class="fas fa-th"></i>
-                            </div>
-                            <div class="card-wrap">
-                                <div class="card-header">
-                                    <h4>Laporan Prakerin</h4>
-                                </div>
-                                <div class="card-body">
-                                    12
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+
+
+
                 </div>
             </div>
         </div>
-    <div class="col-lg-4 col-md-4 col-sm-12">
-
-                        <div class="card-stats">
-
-
-                        </div>
-
-                </div>
-                <div class="col-lg-4 col-md-4 col-sm-12">
-
-                        <div class="card-stats">
-
-
-                        </div>
-
-                </div>
-                <div class="col-lg-4 col-md-4 col-sm-12">
-                        <div class="card-stats">
-
-                        </div>
-                </div>
-
-    </div>
 
         @endif
     @endif

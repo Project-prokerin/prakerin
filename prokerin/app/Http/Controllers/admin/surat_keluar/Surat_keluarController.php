@@ -15,7 +15,7 @@ use App\Models\Tanda_tangan;
 use Carbon\Carbon;
 use DateTime;
 
-use Illuminate\Support\Facades\File; 
+use Illuminate\Support\Facades\File;
 use Response;
 use PDF;
 
@@ -41,16 +41,16 @@ class Surat_keluarController extends Controller
 
         if ($request->ajax()) {
             $role = Auth::user()->role;
-          
+
                 if ($role == "kepsek" or $role == "kepsek" ) {
-                    $surat = Surat_keluar::where('status','pengajuan')->get();
+                    $surat = Surat_keluar::get();
                     return datatables()->of($surat)
                         ->addColumn('nama_surat', function ($surat) {
                             return $surat->detail_surat->template_surat->nama_surat;
                         })
                         ->addColumn('status', function($surat){
                          return $surat->status;
-                           
+
                         })
                         ->addColumn('jabatan', function ($surat) {
                             return $surat->untuk_guru->jabatan;
@@ -68,11 +68,20 @@ class Surat_keluarController extends Controller
                             $role = Auth::user()->role;
                             $button = '';
                             if ($role == "kepsek" or $role == "admin") {
-                                // $button .= '<a href="/admin/surat_keluar/tolak/' . $surat->id . '"   id="' . $surat->id . '" class="edit btn btn-danger btn-sm"><i class="fas fa-times"></i></a>';
-                                $button .= '<button type="button" name="tolak" id="tolak" data-id="' . $surat->id . '"  class="edit btn btn-danger btn-sm"><i class="fas fa-times"></i></a>';
-                                $button .= '&nbsp';
-                                $button .= '<button id="tandatanganButton" data-target="#tandatanganModal" data-attr="/admin/surat_keluar/tandatangan/'.$surat->id.'" data-toggle="modal"  class="edit btn btn-success btn-sm"><i class="fas fa-check"></i></a>';
-                            }
+                        if ($surat->status === 'tolak') {
+                            $btn =  '<span class="badge bg-danger text-white" style="font-size: 12px; " ><b>di ' . $surat->status . '</b></span>';
+                            return $btn;
+                        } else if ($surat->status === 'acc') {
+                            $btn =  '<span class="badge bg-success text-white" style="font-size: 12px; " ><b>di ' . $surat->status . '</b></span>';
+                            return $btn;
+                        } else {
+                            // $button .= '<a href="/admin/surat_keluar/tolak/' . $surat->id . '"   id="' . $surat->id . '" class="edit btn btn-danger btn-sm"><i class="fas fa-times"></i></a>';
+                            $button .= '<button type="button" name="tolak" id="tolak" data-id="' . $surat->id . '"  class="edit btn btn-danger btn-sm"><i class="fas fa-times"></i></a>';
+                            $button .= ' ';
+                            $button .= '<button id="tandatanganButton" data-target="#tandatanganModal" data-attr="/admin/surat_keluar/tandatangan/' . $surat->id . '" data-toggle="modal"  class="edit btn btn-success btn-sm ml-1"><i class="fas fa-check"></i></a>';
+                        }
+                        }
+
                             return $button;
                         })
                         ->addColumn('action', function ($surat) {
@@ -104,17 +113,17 @@ class Surat_keluarController extends Controller
                         })
                         ->addColumn('status', function($surat){
                             if ($surat->status === 'tolak') {
-                                $btn =  '<span class="badge bg-danger text-light" style="font-size: 12px; " ><b>di '.$surat->status.'</b></span>'; 
+                                $btn =  '<span class="badge bg-danger text-light" style="font-size: 12px; " ><b>di '.$surat->status.'</b></span>';
                                 return $btn;
                             }else if( $surat->status === 'acc'){
-                                $btn =  '<span class="badge bg-success text-light" style="font-size: 12px; " ><b>di '.$surat->status.'</b></span>'; 
+                                $btn =  '<span class="badge bg-success text-light" style="font-size: 12px; " ><b>di '.$surat->status.'</b></span>';
                                 return $btn;
                             }else{
-                                $btn =  '<span class="badge bg-warning text-light" style="font-size: 12px; " ><b> '.$surat->status.'</b></span>'; 
+                                $btn =  '<span class="badge bg-warning text-light" style="font-size: 12px; " ><b> '.$surat->status.'</b></span>';
                                 return $btn;
                                 // return $surat->status;
                             }
-                           
+
                         })
                         ->addColumn('jabatan', function ($surat) {
                             return $surat->untuk_guru->jabatan;
@@ -135,7 +144,8 @@ class Surat_keluarController extends Controller
                                 // $button .= '<a href="/admin/surat_keluar/tolak/' . $surat->id . '"   id="' . $surat->id . '" class="edit btn btn-danger btn-sm"><i class="fas fa-times"></i></a>';
                                 $button .= '<button type="button" name="tolak" id="tolak" data-id="' . $surat->id . '"  class="edit btn btn-danger btn-sm"><i class="fas fa-times"></i></a>';
                                 $button .= '&nbsp';
-                                $button .= '<button id="tandatanganButton" data-target="#tandatanganModal" data-attr="/admin/surat_keluar/tandatangan/'.$surat->id.'" data-toggle="modal"  class="edit btn btn-success btn-sm"><i class="fas fa-check"></i></a>';
+                                $button .= '<button id="tandatanganButton" data-target="#tandatanganModal" data-attr="/admin/surat_keluar/tandatangan/' . $surat->id . '" data-toggle="modal"  class="edit btn btn-success btn-sm"><i class="fas fa-check"></i></a>';
+
                             }
                             return $button;
                         })
@@ -161,7 +171,7 @@ class Surat_keluarController extends Controller
                         ->rawColumns(['status','persetujuan','action','nama_surat','tgl_surat','dari','untuk','nama','jabatan'])
                         ->addIndexColumn()->make(true);
                 }
-                           
+
                 }
     }
 
@@ -210,32 +220,32 @@ class Surat_keluarController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-  
+
 
     public function store(Request $request)
     {
-        
+
         $id_guru = guru::where('id',$request->id_guru)->first();
         // dd($request->tanggal);
-        
+
         $tanggal_range = explode('s.d.',$request->tanggal);
        $from =  new DateTime($tanggal_range[0]);
        $end =  new DateTime($tanggal_range[1]);
 
 
-       
-       
+
+
         $jumlah_hari = $from->diff($end)->days;
         // dd($jumlah_hari);
         $hari_from = Carbon::parse($from)->isoFormat('dddd');
-        $hari_end = Carbon::parse($end)->isoFormat('dddd'); 
+        $hari_end = Carbon::parse($end)->isoFormat('dddd');
 
         $date_from = Carbon::parse($from)->isoFormat('D MMMM Y');
-        $date_end = Carbon::parse($end)->isoFormat('D MMMM Y'); 
+        $date_end = Carbon::parse($end)->isoFormat('D MMMM Y');
 
-        
 
-        
+
+
 
         // $interval = $tanggal_range[0]->toDateString()->diff($tanggal_range[1]->toDateString());
         // $days = $interval->format('%a');
@@ -360,32 +370,32 @@ class Surat_keluarController extends Controller
         if(File::exists(public_path($file_path->path_surat))){
             File::delete(public_path($file_path->path_surat));
         }
-       
-       
+
+
 
 
 
         $id_guru = guru::where('id',$request->id_guru)->first();
         // dd($request->tanggal);
-        
+
         $tanggal_range = explode('s.d.',$request->tanggal);
        $from =  new DateTime($tanggal_range[0]);
        $end =  new DateTime($tanggal_range[1]);
 
 
-       
-       
+
+
         $jumlah_hari = $from->diff($end)->days;
         // dd($jumlah_hari);
         $hari_from = Carbon::parse($from)->isoFormat('dddd');
-        $hari_end = Carbon::parse($end)->isoFormat('dddd'); 
+        $hari_end = Carbon::parse($end)->isoFormat('dddd');
 
         $date_from = Carbon::parse($from)->isoFormat('D MMMM Y');
-        $date_end = Carbon::parse($end)->isoFormat('D MMMM Y'); 
+        $date_end = Carbon::parse($end)->isoFormat('D MMMM Y');
 
-        
 
-        
+
+
 
         // $interval = $tanggal_range[0]->toDateString()->diff($tanggal_range[1]->toDateString());
         // $days = $interval->format('%a');
@@ -450,7 +460,7 @@ class Surat_keluarController extends Controller
             // 'id_detail_surat_k' => $detail->id
         ]);
 
-        
+
 
         return redirect()->route('admin.surat_keluar.index')->with('pesan','Berhasil Update Surat!');
 
@@ -475,22 +485,22 @@ class Surat_keluarController extends Controller
         Detail_surat_k::destroy($id);
 
          return response()->json($data = 'berhasil');
-        
-       
+
+
     }
 
 
     public function tandatangan($id)
     {
         // dd($id);
-        
+
 
         $tandatangan = Tanda_tangan::all();
         $surat_keluar = Surat_keluar::find($id);
         $isi_surat = Isi_surat::find($id);
 
         return view('admin.surat_keluar.tandatangan',compact('tandatangan','surat_keluar','isi_surat'));
-        
+
     }
 
     public function setujui(Request $request, $id)
@@ -512,32 +522,32 @@ class Surat_keluarController extends Controller
        if(File::exists(public_path($file_path->path_surat))){
            File::delete(public_path($file_path->path_surat));
        }
-      
-      
+
+
 
 
 
        $id_guru = guru::where('id',$request->id_guru)->first();
        // dd($request->tanggal);
-       
+
        $tanggal_range = explode('s.d.',$request->tanggal);
       $from =  new DateTime($tanggal_range[0]);
       $end =  new DateTime($tanggal_range[1]);
 
 
-      
-      
+
+
        $jumlah_hari = $from->diff($end)->days;
        // dd($jumlah_hari);
        $hari_from = Carbon::parse($from)->isoFormat('dddd');
-       $hari_end = Carbon::parse($end)->isoFormat('dddd'); 
+       $hari_end = Carbon::parse($end)->isoFormat('dddd');
 
        $date_from = Carbon::parse($from)->isoFormat('D MMMM Y');
-       $date_end = Carbon::parse($end)->isoFormat('D MMMM Y'); 
+       $date_end = Carbon::parse($end)->isoFormat('D MMMM Y');
 
-       
 
-       
+
+
 
        // $interval = $tanggal_range[0]->toDateString()->diff($tanggal_range[1]->toDateString());
        // $days = $interval->format('%a');
@@ -603,38 +613,38 @@ class Surat_keluarController extends Controller
        ]);
 
        return back()->with(['pesan' => "Surat Berhasil di setujui"]);
-       
 
 
 
-       
 
-        
 
-        
-        
-        
+
+
+
+
+
+
         // $tandatangan = Tanda_tangan::all();
 
         // return view('admin.surat_keluar.tandatangan',compact('tandatangan'));
-        
+
     }
 
     public function tolak($id)
     {
-     
 
-         
+
+
                 $surat_keluar =   Surat_keluar::find($id)->update([
                    'status' => 'tolak',
                    'created_at' => Carbon::now()
 
                    ]);
-    
+
                    return response()->json($data = 'Surat Berhasil di Tolak!');
 
     //    return back()->with(['pesan' => ""]);
-       
+
 
 
 

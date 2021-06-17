@@ -54,20 +54,17 @@
                                                 </div>
                                     @enderror
                                 </div>
-                                <div class="mb-3">
-                                    <label class="form-label">Bidang Usaha</label>
-                                    <div class="d-flex">
-                                        <i class="far fa-building border text-center"></i>
-                                        <input type="text" name="bidang_usaha"  class="form-control form-control-sm
-                                        @error('bidang_usaha')
-                                            is-invalid
-                                        @enderror" value="{{ old('bidang_usaha', $perusahaan->bidang_usaha) }}">
-                                    </div>
-                                    @error('bidang_usaha')
-                                                <div class="invalid-feedback">
-                                                    {{ $message }}
-                                                </div>
-                                    @enderror
+                                 <div class="mb-3">
+                                    <label>Bidang usaha</label>
+                                    <select name="id_jurusan" class="form-control  select2 @error('id_jurusan')  is-invalid  @enderror select2" name="id_jurusan" id="">
+                                        <option value="" selected>--Pilih Bidang usaha--</option>
+                                        @foreach ($jurusan as $item)
+                                        <option value="{{ $item->id }}" {{(old('id_jurusan', $perusahaan->jurusan->id) == $item->id) ? 'selected' : ''}}>{{ $item->singkatan_jurusan }}</option>
+                                        @endforeach
+                                    </select>
+                                        @error('id_jurusan')
+                                            <div class="invalid-feedback">{{ $message }}</div>
+                                        @enderror
                                 </div>
                                 <div class="mb-3">
                                     <label class="form-label">Alamat</label>
@@ -258,4 +255,5 @@
     });
 
 </script>
+<script src="{{asset('template/')}}/node_modules/select2/dist/js/select2.full.min.js"></script>
 @endpush

@@ -64,9 +64,7 @@
                     <th scope="row" class="text-left" >Lokasi Perusahaan</th>
                     <td style="background-color:#f2f2f2">  {{ empty(siswa('data_prakerin')->perusahaan->alamat) ? 'alamat perusahaan belum di tentukan' : siswa('data_prakerin')->perusahaan->alamat }}</td>
                 </tr>
-                @if (empty(siswa('data_prakerin')->tgl_selesai) || Carbon\carbon::now() < siswa('data_prakerin')->tgl_selesai)
-
-                @elseif(Carbon\carbon::now()->format('Y-m-d') > siswa('data_prakerin')->tgl_selesai->format('Y-m-d'))
+                @if(siswa('data_prakerin')->status == "Selesai")
                 <tr>
                     <th scope="row" class="text-left" style="background-color:#f2f2f2">Hasil jurnal</th>
                     <td style="background-color:#f2f2f2" ><a href="" class="btn btn-success">Download hasil jurnal</a></td>

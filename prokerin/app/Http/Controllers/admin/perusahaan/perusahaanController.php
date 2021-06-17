@@ -4,6 +4,7 @@ namespace App\Http\Controllers\admin\perusahaan;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\admin\perusahaanRequest;
+use App\Models\jurusan;
 use Illuminate\Http\Request;
 use App\Models\perusahaan;
 use Yajra\DataTables\DataTables;
@@ -55,7 +56,7 @@ class perusahaanController extends Controller
     }
     public function tambah()
     {
-        return view('admin.perusahaan.tambah');
+        return view('admin.perusahaan.tambah', ['jurusan' => jurusan::all()]);
     }
 
     /**
@@ -72,7 +73,7 @@ class perusahaanController extends Controller
         $data['foto'] = ($foto) ? time().' '.$foto->getClientOriginalName() : '';
         ($foto) ? $request->file('foto')->move('images/perusahaan', $data['foto']) : '';
         perusahaan::create($data);
-        return redirect()->route('perusahaan.index');
+        return redirect()->route('perusahaan.index')->with('success', 'Data berhasil di tambah');
     }
 
     /**
@@ -94,7 +95,7 @@ class perusahaanController extends Controller
      */
     public function edit($id)
     {
-        return view('admin.perusahaan.edit',['perusahaan' => perusahaan::find($id)]);
+        return view('admin.perusahaan.edit',['perusahaan' => perusahaan::find($id), 'jurusan' => jurusan::all()]);
     }
 
     /**

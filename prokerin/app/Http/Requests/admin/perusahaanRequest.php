@@ -25,7 +25,7 @@ class perusahaanRequest extends FormRequest
     {
         return [
             "nama" => "required",
-            "bidang_usaha" => "required",
+            "id_jurusan" => "required",
             "alamat" => "required",
             "link" => "required",
             "email" => "required|email",
@@ -40,7 +40,7 @@ class perusahaanRequest extends FormRequest
     {
         return [
             'nama.required' => 'Nama perusahaan tidak boleh kosong',
-            'bidang_usaha.required' => 'Bidang usaha tidak boleh kosong',
+            'id_jurusan.required' => 'Bidang usaha tidak boleh kosong',
             'alamat.required' => 'Alamat tidak boleh kosong',
             'link.required' => 'Link tidak boleh kosong',
             'email.required' => 'Email tidak boleh kosong',

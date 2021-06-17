@@ -57,7 +57,7 @@ $(document).ready(function () {
         );
     } else if (role == "hubin") {
         $('.btn-table').append(
-            '<a href="/admin/' + role + '/surat_keluar/tambah"class="btn btn-primary  "> Tambah Data <i class="fas fa-plus"></i></button></a>'
+            '<a href="/admin/surat_keluar/tambah"class="btn btn-primary  "> Tambah Data <i class="fas fa-plus"></i></button></a>'
         );
     }
 
@@ -172,7 +172,7 @@ $(document).on('click', '#tandatanganButton', function (event) {
     })
 
 
-   
+
 });
 
 
