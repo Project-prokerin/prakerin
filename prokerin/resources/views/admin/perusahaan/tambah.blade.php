@@ -1,6 +1,7 @@
 @extends('template.master')
 @push('link')
 <link rel="stylesheet" href="{{asset('template/')}}/node_modules/summernote/dist/summernote-bs4.css">
+<link rel="stylesheet" href="{{asset('template/')}}/node_modules/select2/dist/css/select2.min.css">
 <style>
         .card-body .input i {
         width: 40px;
@@ -59,7 +60,7 @@
                                                 </div>
                                     @enderror
                                 </div>
-                               <div class="mb-3">
+                                <div class="mb-3">
                                     <label>Bidang usaha</label>
                                     <select name="id_jurusan" class="form-control  select2 @error('id_jurusan')  is-invalid  @enderror select2" name="id_jurusan" id="">
                                         <option value="" selected>--Pilih Bidang usaha--</option>
@@ -130,10 +131,10 @@
                             {{ $message }}
                         </div>
                         @enderror
-
+                          
                     </div>
                     <div style="margin-left: 25px; margin-top:10px;">
-
+                   
                     </div>
                 </div>
             </div>
@@ -168,7 +169,7 @@
                                 <label class="form-label">Deskripsi Perusahaan</label>
                                 <div class="d-flex">
                                     <i class="fas fa-align-left border text-center pt-3"></i>
-
+                                    
                                     <textarea type="text"  name="deskripsi_perusahaan" class="summernote form-control form-control-sm
                                     @error('deskripsi_perusahaan')
                                             is-invalid
@@ -240,26 +241,11 @@
                     </div>
                 </div>
             </div>
-            {{-- <div class="col-sm-6" style="margin-top: -100px;">
-                <div class="card-body mb-3">
-                    <div class="d-flex">
-                        <div>
-                            <button type="submit" class="btn btn-primary rounded-pill"><i
-                                    class="fas fa-check-square mr-2"></i>Submit</button>
-                        </div>
-                        <div>
-                            <a href="{{ route('perusahaan.index') }}" class="btn btn-danger rounded-pill"><i
-                                    class="fas fa-window-close mr-2"></i>Cancel</a>
-                        </div> --}}
-                        </form>
-                        &nbsp;&nbsp;&nbsp;
-
-                    </div>
-                </div>
-            </div>
+                </form>
 </div>
 @endsection
 @push('script')
+<script src="{{asset('template/')}}/node_modules/select2/dist/js/select2.full.min.js"></script>
 <script>
     function readURL(input) {
         if (input.files && input.files[0]) {
@@ -280,12 +266,11 @@
     });
 
 </script>
-
-<script src="{{asset('template/')}}/node_modules/select2/dist/js/select2.full.min.js"></script>
-
+<script src="{{asset('template/')}}/node_modules/summernote/dist/js/summernote-bs4.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/tinymce/5.8.1/tinymce.min.js" integrity="sha512-DzR2RH5M2HEOaMkPDKIYIrSXhKtKncXM0rtO3Dlu7p9qUY1T8+lrTPPw+efglohND+HNb9PJJmxlqy/5l2bz5w==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script type="text/javascript">
     tinymce.init({
+  selector: 'textarea#basic-example',
   height: 500,
   menubar: false,
   plugins: [
@@ -301,5 +286,4 @@
 });
 
 </script>
-
 @endpush
