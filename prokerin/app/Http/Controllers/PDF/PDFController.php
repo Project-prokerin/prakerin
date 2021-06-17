@@ -104,6 +104,23 @@ class PDFController extends Controller
     
     
             }
+
+            public function Jurna()
+            {
+        
+           
+                // dd($tandatangan_kepsek);
+        
+                $pdf = PDF::loadView('export.PDF.jurnal');
+        
+                return $pdf->stream('DATA Jurnal.PDF');
+        
+                //  $w->getClientOriginalName();
+        
+                // dd($pdf);
+        
+        
+                } 
     
 
 }
