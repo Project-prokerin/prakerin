@@ -58,57 +58,21 @@
             <th scope="col">Action</th>
         </thead>
         <tbody>
-            <tr>
-                <th scope="row">1</th>
-                <td>000000000</td>
-                <td>M.Raditya</td>
-                <td>RPL</td>
-                <td>IX</td>
-                <td>
-                    <button type="button" class="btn btn-primary"><i class="fas fa-search"></i></button>
-                    <button type="button" class="btn btn-warning"><i class="fas fa-pencil-alt"></i></button>
-                    <button type="button" class="btn btn-danger"><i class="fas fa-trash"></i></button>
-                </td>
-            </tr>
+           @foreach ($kelompok_laporan as $kel)
+           <tr>
+            <th scope="row">{{$loop->iteration}}</th>
+            <td>{{$kel->data_prakerin->siswa->nipd}}</td>
+            <td>{{$kel->data_prakerin->nama}}</td>
+            <td>{{$kel->data_prakerin->kelas->jurusan->jurusan}}</td>
+            <td>{{$kel->data_prakerin->kelas->level}}</td>
+            <td>
+                <button type="button" class="btn btn-primary"><i class="fas fa-search"></i></button>
+                <button type="button" class="btn btn-warning"><i class="fas fa-pencil-alt"></i></button>
+                <button type="button" class="btn btn-danger"><i class="fas fa-trash"></i></button>
+            </td>
+        </tr>
+           @endforeach
 
-            <tr>
-                <th scope="row">1</th>
-                <td>000000000</td>
-                <td>M.Raditya</td>
-                <td>RPL</td>
-                <td>IX</td>
-                <td>
-                    <button type="button" class="btn btn-primary"><i class="fas fa-search"></i></button>
-                    <button type="button" class="btn btn-warning"><i class="fas fa-pencil-alt"></i></button>
-                    <button type="button" class="btn btn-danger"><i class="fas fa-trash"></i></button>
-                </td>
-            </tr>
-
-            <tr>
-                <th scope="row">1</th>
-                <td>000000000</td>
-                <td>M.Raditya</td>
-                <td>RPL</td>
-                <td>IX</td>
-                <td>
-                    <button type="button" class="btn btn-primary"><i class="fas fa-search"></i></button>
-                    <button type="button" class="btn btn-warning"><i class="fas fa-pencil-alt"></i></button>
-                    <button type="button" class="btn btn-danger"><i class="fas fa-trash"></i></button>
-                </td>
-            </tr>
-
-            <tr>
-                <th scope="row">1</th>
-                <td>000000000</td>
-                <td>M.Raditya</td>
-                <td>RPL</td>
-                <td>IX</td>
-                <td>
-                    <button type="button" class="btn btn-primary"><i class="fas fa-search"></i></button>
-                    <button type="button" class="btn btn-warning"><i class="fas fa-pencil-alt"></i></button>
-                    <button type="button" class="btn btn-danger"><i class="fas fa-trash"></i></button>
-                </td>
-            </tr>
         </tbody>
         </table>
         <div class="card-body">

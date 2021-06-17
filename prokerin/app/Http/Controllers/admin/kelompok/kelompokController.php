@@ -132,7 +132,14 @@ class kelompokController extends Controller
      */
     public function detail($id)
     {
-        return view('admin.kelompok_prakerin.detail');
+       
+        $data_prakerin = data_prakerin::doesntHave('kelompok_laporan')->get();
+        $perusahaan = perusahaan::all();
+        $guru = guru::all();
+        $siswa = Siswa::all();
+        $kelompok_laporan = kelompok_laporan::where('no',$id)->with('data_prakerin')->get();
+
+        return view('admin.kelompok_prakerin.detail',compact('kelompok_laporan'));
     }
 
     /**

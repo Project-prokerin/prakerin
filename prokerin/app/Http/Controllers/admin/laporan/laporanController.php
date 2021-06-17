@@ -1,10 +1,10 @@
 <?php
 
 namespace App\Http\Controllers\admin\laporan;
-
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\laporan_prakerin;
+use App\Models\kelompok_laporan;
 use App\Http\Requests\admin\laporan_prakerinRequest;
 class laporanController extends Controller
 {
@@ -15,7 +15,11 @@ class laporanController extends Controller
      */
     public function index()
     {
-        return view('admin.laporan_prakerin.index');
+        $kelompok = Kelompok_laporan::all()->unique(['no']);
+        // $usersUnique = $kelompok;
+// $userDuplicates = $kelompok->diff($usersUnique);
+// dd($kelompok->toArray());
+        return view('admin.laporan_prakerin.index',compact('kelompok'));
     }
 
     /**
@@ -37,7 +41,7 @@ class laporanController extends Controller
                 ->addColumn('action', function ($data) {
                     $button = '<button type="button"   id="' . $data->id . '" class="edit btn btn-primary btn-sm"><i class="fas fa-search"></i></button>';
                     $button .= '&nbsp';
-                    $button .= '<a  href="../admin/data_prakerin/edit/'.$data->id.'" id="edit" data-toggle="tooltip"  data-id="' . $data->id . '" data-original-title="Edit" class="edit btn btn-warning btn-sm edit-post"><i class="fas fa-pencil-alt"></i></a>';
+                    $button .= '<button type="button" id="editButton" data-target="#editModal" data-attr="/admin/laporan/edit/'.$data->id.'" data-toggle="modal"  class="edit btn btn-warning btn-sm edit-laporan"><i class="fas fa-pencil-alt"></i></button>';
                     $button .= '&nbsp';
                     $button .= '<button type="button" name="delete" id="hapus" data-id="' . $data->id . '" class="delete btn btn-danger btn-sm"><i class="fas fa-trash"></i></button>';
                     return $button;
@@ -47,9 +51,9 @@ class laporanController extends Controller
         }
     }
 
-    public function create()
+    public function tambah()
     {
-        //
+        return view('admin.laporan_prakerin.tambah');
     }
 
     /**
@@ -60,7 +64,23 @@ class laporanController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'judul_laporan' => 'required',
+            'id_kelompok_laporan' => 'required',
+        ],[
+            'required' => 'Tidak boleh kosong'
+        ]);
+
+        $id_kelompok_laporan = kelompok_laporan::where('no',$request->id_kelompok_laporan)->first();
+        // dd($id_kelompok_laporan);
+        laporan_prakerin::create([
+            'judul_laporan' => $request->judul_laporan,
+            'id_kelompok_laporan' => $id_kelompok_laporan->id,
+        ]);
+
+
+        return back()->with(['success' => "Jurnal Prakerin  Berhasil di tambah"]);
+
     }
 
     /**
@@ -82,7 +102,11 @@ class laporanController extends Controller
      */
     public function edit($id)
     {
-        //
+        $laporan = laporan_prakerin::find($id);
+        $kelompok = Kelompok_laporan::all()->unique(['no']);
+
+        return view('admin.laporan_prakerin.edit',compact('laporan','kelompok'));
+        
     }
 
     /**
@@ -94,7 +118,22 @@ class laporanController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'judul_laporan' => 'required',
+            'id_kelompok_laporan' => 'required',
+        ],[
+            'required' => 'Tidak boleh kosong'
+        ]);
+
+        $id_kelompok_laporan = kelompok_laporan::where('no',$request->id_kelompok_laporan)->first();
+        // dd($id_kelompok_laporan);
+        laporan_prakerin::find($id)->update([
+            'judul_laporan' => $request->judul_laporan,
+            'id_kelompok_laporan' => $id_kelompok_laporan->id,
+        ]);
+        return back()->with(['pesan' => "Laporan Berhasil di Update"]);
+
+
     }
 
     /**
