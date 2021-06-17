@@ -35,7 +35,7 @@
                         <div class="">
                             <div class="" style="height: auto;">
                                 <div class="card-body">
-                                    <form action="{{route('admin.disposisi.post',$surat)}}" method="POST" class="input">
+                                    <form action="{{route('admin.disposisi.patch',$surat)}}" method="POST" class="input">
                                         @method('PATCH')
                                         @csrf
                                         <div class="mb-3">

@@ -13,7 +13,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 use Carbon\Carbon;
-
+use Response;
 use File;
 class Surat_masukController extends Controller
 {
@@ -44,27 +44,57 @@ class Surat_masukController extends Controller
                 ->addColumn('disposisi', function ($data) {
 
                     $button = '';
-                    if (!empty($data->surat_m->detail_surat->disposisi)) {
-                        $id = $data->surat_m->detail_surat->disposisi->id;
-                        $button .= '<a href="/admin/surat_masuk/'. $id . '/disposisi/view"   id="' . $id . '" class="edit btn btn-success btn-sm">view</a>';
-                        if (Auth::user()->role == 'admin' or Auth::user()->role =='tu' or Auth::user()->role == 'kepsek' or Auth::user()->role == 'kaprog') {
-                        $button .= ' <a href="/admin/surat_masuk/' . $id . '/disposisi/edit"   id="' . $id . '" class="edit btn btn-warning btn-sm">edit</a>';
-                        $button .= ' <button type="button" name="delete" id="hapus-disposisi" data-id="' . $id . '" class="delete_disposisi btn btn-danger btn-sm">hapus</button>';
-                        }
+                    if (Auth::user()->role == "tu") {
+                        switch ($data->status) {
+                            case 'tolak':
+                                    $button .=  '<span class="badge bg-danger text-white" style="font-size: 12px; " ><b>Pengajuan Di tolak</b></span>';
+                                    return $button;
+                                break;
+                            case 'acc':
+                                    if (empty($data->surat_m->detail_surat->disposisi)) {
+                                            $button .=  '<span class="badge bg-danger text-white" style="font-size: 12px; " ><b>Disposisi Kosong</b></span>';
+                                        return $button;
+                                    }
+                                    $id = $data->surat_m->detail_surat->disposisi->id;
+                                    $button .= '<a href="/admin/surat_masuk/' . $id . '/disposisi/view"   id="' . $id . '" class="edit btn btn-success btn-sm">view</a>';
+                                    if (Auth::user()->role == 'admin' or Auth::user()->role == 'kepsek' or Auth::user()->role == 'kaprog') {
+                                        $button .= ' <a href="/admin/surat_masuk/' . $id . '/disposisi/edit"   id="' . $id . '" class="edit btn btn-warning btn-sm">edit</a>';
+                                        $button .= ' <button type="button" name="delete" id="hapus-disposisi" data-id="' . $id . '" class="delete_disposisi btn btn-danger btn-sm">hapus</button>';
+                                    }
+                                    return $button;
+                                    break;
+                            case 'pengajuan':
+                                    $button .=  '<span class="badge bg-warning text-white" style="font-size: 12px; " ><b>Pengajuan Surat</b></span>';
+                                    return $button;
+                                    break;
+
+                                }
 
                     }
                     else if(Auth::user()->role == 'admin' or Auth::user()->role == 'kaprog' or Auth::user()->role == 'kepsek') {
-                    $id = $data->id;
-                    $button .= '<a href="/admin/surat_masuk/' . $id . '/disposisi/tambah"   id="' . $data->id . '" class="edit btn btn-primary btn-sm"><i class="fas fa-plus"></i></a>';
-                    }else{
-                    $button .= ' <a href="#"   id="' . $data->id . '" class="edit btn btn-danger btn-sm">Disposisi Kosong</a>';
-                    }
+                        if ($data->status == "tolak") {
+                            $button .=  '<span class="badge bg-danger text-white" style="font-size: 12px; " ><b>Pengajuan Di tolak</b></span>';
+                        }else if($data->status == "acc"){
+                                 $id = $data->surat_m->detail_surat->disposisi->id;
+                                $button .= '<a href="/admin/surat_masuk/' . $id . '/disposisi/view"   id="' . $id . '" class="edit btn btn-success btn-sm">view</a>';
+                                    $button .= ' <a href="/admin/surat_masuk/' . $id . '/disposisi/edit"   id="' . $id . '" class="edit btn btn-warning btn-sm">edit</a>';
+                                    $button .= ' <button type="button" name="delete" id="hapus-disposisi" data-id="' . $id . '" class="delete_disposisi btn btn-danger btn-sm">hapus</button>';
+                        }
+                        else{
+                            $id = $data->id;
+                            $button .= '<a href="/admin/surat_masuk/' . $id . '/disposisi/tambah"   id="' . $data->id . '" class="edit btn btn-primary btn-sm"><i class="fas fa-plus"></i></a>';
+                            $button .= '  <button id="surat-batal" data-id="' . $id . '" class=" btn btn-danger btn-sm"><i class="fas fa-times"></i></button>';
+                        }
+
+                        }
 
                     return $button;
-                })
+                    }
+                )
                 ->addColumn('action', function ($data) {
-
-                    $button = '<a href="/admin/surat_masuk/detail/' . $data->id . '"   id="' . $data->id . '" class="edit btn btn-primary btn-sm"><i class="fas fa-search"></i></a>';
+                    $button = '<a href="/admin/surat_masuk/download/' . $data->id . '"   id="' . $data->id . '" class="edit btn btn-success btn-sm"><i class="fa fa-download"></i></a>';
+                    $button .= '&nbsp';
+                    $button .= '<a href="/admin/surat_masuk/detail/' . $data->id . '"   id="' . $data->id . '" class="edit btn btn-primary btn-sm"><i class="fas fa-search"></i></a>';
                     $button .= '&nbsp';
                     if(Auth::user()->role == 'admin' or Auth::user()->role == 'tu'){
                     $button .= '<a  href="/admin/surat_masuk/edit/' . $data->id . '" id="edit" data-toggle="tooltip"  data-id="' . $data->id . '" data-original-title="Edit" class="edit btn btn-warning btn-sm edit-post"><i class="fas fa-pencil-alt"></i></a>';
@@ -93,10 +123,12 @@ class Surat_masukController extends Controller
                         })
                         ->addColumn('disposisi', function ($data) {
                             $button = '';
-                            if (empty($data->surat_m->detail_surat->disposisi)) {
+                            if (empty($data)) {
                                 $button .= '<a href="#" class="edit btn btn-danger btn-sm">Kosong</a>';
+                            }else{
+                                $button .= '&nbsp <a href="/admin/surat_masuk/' . $data->id . '/disposisi/view"   id="' . $data->id . '" class="edit btn btn-success btn-sm">view</a>';
                             }
-                            $button .= '&nbsp <a href="/admin/surat_masuk/' . $data->id . '/disposisi/view"   id="' . $data->id . '" class="edit btn btn-success btn-sm">view</a>';
+
                             return $button;
                         })
                         ->addColumn('action', function ($data) {
@@ -114,8 +146,14 @@ class Surat_masukController extends Controller
 
     public function detail_surat($id)
     {
+        $surat = Surat_masuk::find($id)->first();
+
+        return response()->file(
+            public_path($surat->surat_m->path_surat)
+        );
         return 'ini detail surat';
     }
+
 
     public function tambah_surat()
     {
@@ -131,7 +169,7 @@ class Surat_masukController extends Controller
         $nm = $request->surat;
         $nama_surat = $request->nama_surat;
         $extensi = $nm->getClientOriginalExtension();
-        $name = time() . $nama_surat . '.' . $extensi;
+        $name = time() .' '. $nama_surat . '.' . $extensi;
 
         $surat_masuk  =  Surat_masuk::create([
         'id_dari' => Auth::user()->id,
@@ -195,7 +233,7 @@ class Surat_masukController extends Controller
                 $nm = $request->surat;
                 $nama_surat = $request->nama_surat;
                 $extensi = $nm->getClientOriginalExtension();
-                $name = time() . $nama_surat . '.' . $extensi;
+                $name = time() .' '. $nama_surat . '.' . $extensi;
                 Surat_masuk::find($id)->update([
                     'id_dari' => Auth::user()->id,
                     'id_untuk' => $request->id_untuk,
@@ -214,7 +252,10 @@ class Surat_masukController extends Controller
                 return redirect()->route('admin.surat_masuk.index')->with('pesan','Berhasil mengubah surat!');
            }
     }
-
+    public function batal($id){
+        Surat_masuk::find($id)->update(['status' => 'tolak']);
+        return response()->json($data = 'berhasil');
+    }
     public function destroy_surat($id)
     {
         $file_path = Surat_M::where('id_surat_masuk',$id)->first();  // Value is not URL but directory file path
@@ -222,15 +263,19 @@ class Surat_masukController extends Controller
             File::delete(public_path($file_path->path_surat));
         }
 
-        Surat_masuk::destory($id);
+        Surat_masuk::destroy($id);
         return response()->json($data = 'berhasil');
     }
 
 
-        public  function download()
-        {
-            dd("halo");
-        }
+    public function download($id)
+    {
+        $surat = Surat_masuk::find($id)->first();
+        $file = public_path() . "/" . $surat->surat_m->path_surat;
+        $nama = explode(' ', basename($surat->surat_m->path_surat))[1];
+        $headers = array('Content-Type: application/pdf',);
+        return Response::download($file, $nama, $headers);
+    }
         // ed route pokja
 
 

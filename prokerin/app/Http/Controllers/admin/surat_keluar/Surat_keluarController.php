@@ -441,7 +441,7 @@ class Surat_keluarController extends Controller
             $detail =     Detail_surat_k::find($id)->update([
                         // 'id_template_surat' => $template_surat->id,
                         'no_surat' =>  str_pad($surat_number->id + 1, 3, "0", STR_PAD_LEFT),
-                        'tgl_surat' => Carbon::today()->toDateString(),
+                        'tgl_surat' => Carbon::today(),
                         'path_surat' => "surat/surat_keluar/$pdf_name",
                         'id_tanda_tangan' => 1,
                         // 'id_surat_keluar' =>  $surat_keluar->id
@@ -531,6 +531,7 @@ class Surat_keluarController extends Controller
        // dd($request->tanggal);
 
        $tanggal_range = explode('s.d.',$request->tanggal);
+
       $from =  new DateTime($tanggal_range[0]);
       $end =  new DateTime($tanggal_range[1]);
 
@@ -538,8 +539,10 @@ class Surat_keluarController extends Controller
 
 
        $jumlah_hari = $from->diff($end)->days;
+
        // dd($jumlah_hari);
-       $hari_from = Carbon::parse($from)->isoFormat('dddd');
+       $hari_from = Carbon::parse('25 Januari', 'Asia/Jakarta')->format('dddd');
+        return response()->json($data = $hari_from);
        $hari_end = Carbon::parse($end)->isoFormat('dddd');
 
        $date_from = Carbon::parse($from)->isoFormat('D MMMM Y');
@@ -593,7 +596,7 @@ class Surat_keluarController extends Controller
            $detail =     Detail_surat_k::find($id)->update([
                        // 'id_template_surat' => $template_surat->id,
                        'no_surat' =>  str_pad($surat_number->id + 1, 3, "0", STR_PAD_LEFT),
-                       'tgl_surat' => Carbon::today()->toDateString(),
+                       'tgl_surat' => Carbon::today(),
                        'path_surat' => "surat/surat_keluar/$pdf_name",
                        'id_tanda_tangan' => 1,
                        // 'id_surat_keluar' =>  $surat_keluar->id
@@ -612,7 +615,7 @@ class Surat_keluarController extends Controller
            // 'id_detail_surat_k' => $detail->id
        ]);
 
-       return back()->with(['pesan' => "Surat Berhasil di setujui"]);
+    //    return back()->with(['pesan' => "Surat Berhasil di setujui"]);
 
 
 

@@ -45,15 +45,11 @@
                 <h5 class="card-title">Disposisi</h5>
                   <div class="row g-3 align-items-center">
                     <label class="form-label col-7 pleft">Pokja Tujuan</label>
-                    <label class="form-label">:</label>
-                  </div>
-                  <div class="row g-3 align-items-center">
-                    <label class="form-label col-7 pleft">Detail Surat</label>
-                    <label class="form-label">: </label>
+                    <label class="form-label">: {{ $disposisi->Pokjatujuan }}</label>
                   </div>
                   <div class="row g-3 align-items-center">
                     <label class="form-label col-7 pleft">Keterangan Disposisi</label>
-                    <label class="form-label">: </label>
+                    <label class="form-label">: {{ $disposisi->Keterangan_disposisi }}</label>
                   </div>
                   <div style="margin-top: 40px; margin-bottom:40px;">
                     <a href="{{ route('admin.surat_masuk.index') }}" type="button" class="btn btn-danger "><i class="fas fa-backspace"></i>   Kembali</a>

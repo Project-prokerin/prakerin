@@ -38,10 +38,14 @@ $(document).ready( function () {
         { data: 'action',name:'action'}
         ],
     });
-
-    $('.btn-table').append(
+    role = $('#role').data('role');
+    if(role != "kaprog")
+    {
+         $('.btn-table').append(
         '<a href="/admin/perusahaan/tambah"class="btn btn-primary "> Tambah Data <i class="fas fa-plus"></i></button></a>'
     );
+    }
+
     $('#table12_filter').prepend(
         '<a href="/admin/export/excel/perusahaan"class="btn btn-success mr-3  ml-2"> Excel <i class="fas fa-cloud-download-alt"></i></button></a>'
     );

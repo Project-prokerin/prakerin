@@ -72,7 +72,8 @@ Route::prefix('admin')->middleware(['web', 'auth', 'role:admin,kepsek,tu,kaprog,
     Route::get('surat_masuk/edit/{id}', [Surat_masukController::class, 'edit_surat'])->name('admin.surat_masuk.edit');
     Route::put('surat_masuk/update/{id}', [Surat_masukController::class, 'update_surat'])->name('admin.surat_masuk.update');
     Route::delete('surat_masuk/delete/{id}', [Surat_masukController::class, 'destroy_surat'])->name('admin.surat_masuk.delete');
-    Route::delete('surat_masuk/donwload/{id}', [Surat_masukController::class, 'download'])->name('admin.surat_masuk.download');
+    Route::delete('surat_masuk/batal/{id}', [Surat_masukController::class, 'batal'])->name('admin.surat_masuk.batal');
+    Route::get('surat_masuk/download/{id}', [Surat_masukController::class, 'download'])->name('admin.surat_masuk.download');
 
 
     // disposisi table surat
@@ -86,7 +87,7 @@ Route::prefix('admin')->middleware(['web', 'auth', 'role:admin,kepsek,tu,kaprog,
     Route::post('disposisi/ajax', [DiposisiController::class, 'ajax'])->name('admin.disposisi.ajax');
     // Route::get('disposisi/detail/{id}', [DiposisiController::class, 'detail'])->name('disposisi.admin.detail');
     Route::get('disposisi/tambah/', [DiposisiController::class, 'tambah2'])->name('admin.disposisi.tambah');
-    Route::patch('disposisi/post/{id}', [DiposisiController::class, 'store'])->name('admin.disposisi.post'); // update
+    Route::patch('disposisi/post/{id}', [DiposisiController::class, 'store'])->name('admin.disposisi.patch'); // update
     Route::post('disposisi/post/', [DiposisiController::class, 'store2'])->name('admin.disposisi.post'); // update disposisi
     Route::get('disposisi/edit/{id}', [DiposisiController::class, 'edit'])->name('admin.disposisi.edit'); // edit disposisi biasa
     Route::put('disposisi/update/{id}', [DiposisiController::class, 'update'])->name('admin.disposisi.update'); // update disposisi

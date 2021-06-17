@@ -71,7 +71,7 @@
                                     <i class="fas fa-envelope-open-text border text-center"></i>
                                     <textarea class="form-control  @error('Keterangan_disposisi')
                                         is-invalid
-                                    @enderror" name="Keterangan_disposisi ">{{$surat->Keterangan_disposisi}}</textarea>
+                                    @enderror" name="Keterangan_disposisi">{{$surat->Keterangan_disposisi}}</textarea>
 
                                 </div>
                                   @error('Keterangan_disposisi')

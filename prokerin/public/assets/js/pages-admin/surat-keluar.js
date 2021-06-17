@@ -187,21 +187,22 @@ $('#setujui').click(function (event) {
         url: url,
         method: method,
         data: form.serialize(),
-        success: function name(params) {
-            form.trigger('reset');
-            $('#tandatanganModal').modal('hide');
-            alert = Swal.fire({
-                title: 'Berhasil',
-                text: ' Berhasil Tanda tangan ',
-                icon: 'success',
-                confirmButtonText: 'tutup'
-            })
+        success: function name(data) {
+            console.log(data.data);
+            // form.trigger('reset');
+            // $('#tandatanganModal').modal('hide');
+            // alert = Swal.fire({
+            //     title: 'Berhasil',
+            //     text: ' Berhasil Tanda tangan ',
+            //     icon: 'success',
+            //     confirmButtonText: 'tutup'
+            // })
 
-            setInterval(() => {
-                alert
-            }, 7000);
+            // setInterval(() => {
+            //     alert
+            // }, 7000);
 
-            location.reload();
+            // location.reload();
         },
         error: function (xhr) {
             console.log(xhr.responseJSON)
