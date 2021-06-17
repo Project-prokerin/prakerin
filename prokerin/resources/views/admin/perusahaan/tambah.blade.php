@@ -12,6 +12,8 @@
     }
     h5{
         color: rgb(82, 82, 255);
+    }.card{
+        height: 1100px;
     }
 </style>
 @endpush
@@ -115,10 +117,23 @@
                                     @enderror
                                 </div>
                         </div>
+                        <div class="" style="margin-left: 25px">
+                        <label for="">Deskripsi Perusahaan</label>
+                        <textarea id="basic-example" name="deskripsi_perusahaan" class="summernote form-control form-control-sm
+                        @error('deskripsi_perusahaan')
+                                is-invalid
+                        @enderror" rows="3" >
+                        {{ old('deskripsi_perusahaan') }}</textarea>
+                        </div>
+                        @error('deskripsi_perusahaan')
+                        <div class="invalid-feedback">
+                            {{ $message }}
+                        </div>
+                        @enderror
+
                     </div>
                     <div style="margin-left: 25px; margin-top:10px;">
-                    <button type="submit"  class="btn btn-success mr-3"><i class="fas fa-check"></i> submit</button>
-                    <a href="{{route('perusahaan.index')}}" type="submit" class="btn btn-danger"><i class="fas fa-times"></i> Batal</a>
+
                     </div>
                 </div>
             </div>
@@ -149,10 +164,11 @@
                                             </div>
                                 @enderror
                             </div>
-                            <div class="mb-3">
+                            {{-- <div class="mb-3">
                                 <label class="form-label">Deskripsi Perusahaan</label>
                                 <div class="d-flex">
                                     <i class="fas fa-align-left border text-center pt-3"></i>
+
                                     <textarea type="text"  name="deskripsi_perusahaan" class="summernote form-control form-control-sm
                                     @error('deskripsi_perusahaan')
                                             is-invalid
@@ -163,7 +179,7 @@
                                                 {{ $message }}
                                             </div>
                                 @enderror
-                            </div>
+                            </div> --}}
                             <div class="mb-3">
                                 <label class="form-label">Tanggal Mou</label>
                                 <div class="d-flex">
@@ -211,9 +227,14 @@
                                             </div>
                                 @enderror
                             </div>
-                            <img src="{{ asset('images/perusahaan/default.jpg') }}" id="image" alt="" style="width: 400px; height:200px;object-fit:cover;" >
+                            <img src="{{ asset('images/perusahaan/default.jpg') }}" id="image" alt="" style="width: 512px; height:260px;object-fit:cover;" >
                             <p id="imageName">default.jpg</p>
+                            <div style="text-align: right;float:right;">
+                                <button type="submit"  class="btn btn-success"><i class="fas fa-check"></i> submit</button>
+                                <a href="{{route('perusahaan.index')}}" type="submit" class="btn btn-danger"><i class="fas fa-times"></i> Batal</a>
+                                </div>
                         </div>
+
                         </div>
                         </div>
                     </div>
@@ -259,6 +280,26 @@
     });
 
 </script>
-<script src="{{asset('template/')}}/node_modules/summernote/dist/js/summernote-bs4.js"></script>
+
 <script src="{{asset('template/')}}/node_modules/select2/dist/js/select2.full.min.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tinymce/5.8.1/tinymce.min.js" integrity="sha512-DzR2RH5M2HEOaMkPDKIYIrSXhKtKncXM0rtO3Dlu7p9qUY1T8+lrTPPw+efglohND+HNb9PJJmxlqy/5l2bz5w==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script type="text/javascript">
+    tinymce.init({
+  height: 500,
+  menubar: false,
+  plugins: [
+    'advlist autolink lists link image charmap print preview anchor',
+    'searchreplace visualblocks code fullscreen',
+    'insertdatetime media table paste code help wordcount'
+  ],
+  toolbar: 'undo redo | formatselect | ' +
+  'bold italic backcolor | alignleft aligncenter ' +
+  'alignright alignjustify | bullist numlist outdent indent | ' +
+  'removeformat | help',
+  content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:14px }'
+});
+
+</script>
+
 @endpush
