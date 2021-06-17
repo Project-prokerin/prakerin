@@ -243,7 +243,7 @@
                                  <tr>
                                       <td class="col-7">
                                         <select name="id_data_prakerin[]"
-                                            class="form-control  @error('id_data_prakerin')  is-invalid  @enderror select2">
+                                            class="form-control select2  @error('id_data_prakerin')  is-invalid  @enderror ">
                                             <option value="">--Cari Siswa--</option>
                                             @forelse ($data_prakerin as $item)
                                                 @if (empty($item->kelompok_laporan))
@@ -277,7 +277,7 @@
 </div>
 @endsection
 @push('script')
-    <script src="{{ asset('template/') }}/node_modules/select2/dist/js/select2.full.min.js"></script>
+   
 
     <script>
         $(document).ready(function(){
@@ -285,7 +285,7 @@
              $('#add').click(function(){
                   i++;
                   $('#dynamic_field').append('<tr id="row'+i+'"><td>'+
-                                                '<select name="id_data_prakerin[]" class="form-control  @error('id_data_prakerin')  is-invalid  @enderror select2">'+
+                                                '<select name="id_data_prakerin[]" class="form-control select2  @error('id_data_prakerin')  is-invalid  @enderror ">'+
                                                     '<option value="">--Cari Siswa--</option>'+
                                                     '@forelse ($data_prakerin as $item)'+
                                                         '@if (empty($item->kelompok_laporan))'+
@@ -322,5 +322,7 @@
             //       });
             //  });
         });
+        
     </script>
+    <script src="{{ asset('template/') }}/node_modules/select2/dist/js/select2.full.min.js"></script>
 @endpush

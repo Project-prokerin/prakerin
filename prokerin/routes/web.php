@@ -200,7 +200,7 @@ Route::prefix('admin')->middleware(['web', 'auth', 'role:kaprog,hubin'])->group(
     // jurnal harian
     Route::get('jurnalH', [jurnal_harianController::class, 'index'])->name('jurnalH.index');
     Route::post('jurnalH/ajax', [jurnal_harianController::class, 'ajax'])->name('jurnalH.ajax');
-    Route::get('jurnalH/detail/{id}', [data_prakerinController::class, 'detail'])->name('jurnalH.detail');
+    Route::get('jurnalH/detail/{id}', [jurnal_harianController::class, 'detail'])->name('jurnalH.detail');
     Route::get('jurnalH/tambah', [jurnal_harianController::class, 'tambah'])->name('jurnalH.tambah');
     Route::post('jurnalH/tambah/post', [jurnal_harianController::class, 'store'])->name('jurnalH.post');
     Route::get('jurnalH/edit/{id}', [jurnal_harianController::class, 'edit'])->name('jurnalH.edit');
