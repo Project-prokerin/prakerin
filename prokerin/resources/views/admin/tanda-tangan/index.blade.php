@@ -33,41 +33,51 @@
             </button>
         </div>
     @endif
-    <div class="row">
-        <div class="card col-12">
-            <div class="card-header ">
-                <h4 class="">Data Tanda-tangan</h4>
-            </div>
-            <a href="{{ route('tanda-tangan.tambah') }}" class="btn btn-primary col-2 mt-3 mb-5" >Tambah Data <i class="fas fa-plus"></i></a>
-            <div class="card-body">
-                <div class="row">
-                   @foreach ($ttd as $tandatangan)
-                   <div class="cardd col-3" style="margin-bottom: 50px;">
-                    <div style="margin-top: -29px;">
-                      <form action="{{route('tanda-tangan.delete',$tandatangan->id)}}" method="post">
-                        @csrf
-                        @method('DELETE')
-                        <button class="btn btn-danger" style="margin-top: -11px;">Delete</button>
-
-                      </form>
-                      <img src="{{ asset("$tandatangan->path_gambar") }}"
-                            style="max-width: 278px; width: 250px; height: 200px; margin-top: -8px;" alt=""
-                            srcset="">
-                        <div class="d-flex justify-content-end mt-3">
-                            <button class="btn btn-warning mr-3">edit</button>
-                            <button class="btn btn-primary" style="margin-right: -9px;">Preview</button>
-                        </div>
-                    </div>
+          <div class="row">
+            <div class="col-12">
+              <div class="card">
+                <div class="card-header">
+                  <h4>Data Guru</h4>
                 </div>
-              
-                   @endforeach
-
-
-                </div>
+                <div>
+                <a href="{{ route('tanda-tangan.tambah') }}" class="btn btn-primary ml-4" >Tambah Data <i class="fas fa-plus"></i></a>
             </div>
-        </div>
-        {{$ttd->links()}}
-    </div>
+                <div class="card-body">
+                  <div class="table-responsive" id="mytable4">
+                    <table class="table table-striped" id="table1">
+                      <thead class="text-center">
+                        <tr>
+                          <th>
+                            No
+                          </th>
+                          <th>Tanda Tangan</th>
+                          <th>Action</th>
+                        </tr>
+                      </thead>
+                      @foreach ($ttd as $tandatangan)
+                          
+                     
+                      <tbody class="text-center">
+                        <tr>
+                          <td>{{$loop->iteration}}</td>
+                          <td>
+                              <img src="{{asset("$tandatangan->path_gambar")}}" style="max-width: 278px; width: 150px; height: 75px; margin-top: 5px;" alt=""
+                              srcset="">
+                          </td>
+                          <td>
+                              <button class="btn btn-primary">Preview</button>
+                              <button class="btn btn-warning">Edit</button>
+                              <button class="btn btn-danger">Hapus</button>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                    @endforeach
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
 
 
     {{-- <div class="modal fade" id="exampleModal" aria-labelledby="exampleModalLabel" aria-hidden="true"
