@@ -39,6 +39,8 @@ class DatabaseSeeder extends Seeder
         $this->call([perusahaanSeeder::class]);
         $this->call([dataprakerinSeeder::class]);
         $this->call([kelompoklaporanSeeder::class]);
+        $this->call([Pengajuan_prakerinSeeder::class]);
+        $this->call([detail_pengajuanSeeder::class]);
         // $this->call([kelompoklaporanSeeder::class]);
         $this->call([pembekalanSeeder::class]);
         $this->call([LaporanPrakerinSeeder::class]);

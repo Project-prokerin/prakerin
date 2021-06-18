@@ -50,8 +50,6 @@ class kelompokController extends Controller
                     $button .= '<a  href="../admin/kelompok/edit/'.$data->no.'" id="edit" data-toggle="tooltip"  data-id="' . $data->no . '" data-original-title="Edit" class="edit btn btn-warning btn-sm edit-post"><i class="fas fa-pencil-alt"></i></a>';
                     $button .= '&nbsp';
                     $button .= '<button type="button" name="delete" id="hapus" data-no="' . $data->no . '" class="delete btn btn-danger btn-sm"><i class="fas fa-trash"></i></button>';
-                    $button .= '&nbsp&nbsp&nbsp&nbsp&nbsp';
-                    $button .= '<button id="kelompoks" type="button" data-no="' . $data->no . '" class="btn btn-danger mr-3 rounded-pill"><i class="fas fa-cloud-download-alt"></i> PDF</button>';
                     return $button;
                 })
                 ->rawColumns(['action'])
@@ -132,7 +130,7 @@ class kelompokController extends Controller
      */
     public function detail($id)
     {
-       
+
         $data_prakerin = data_prakerin::doesntHave('kelompok_laporan')->get();
         $perusahaan = perusahaan::all();
         $guru = guru::all();

@@ -8,6 +8,7 @@ use App\Http\Controllers\admin\siswa\siswaController;
 use App\Http\Controllers\admin\guru\guruController;
 use App\Http\Controllers\admin\perusahaan\perusahaanController;
 use App\Http\Controllers\admin\data_prakerin\data_prakerinController;
+use App\Http\Controllers\admin\data_prakerin\pengajuan_prakerinController;
 use App\Http\Controllers\admin\pembekalan\pembekalanContoller;
 use App\Http\Controllers\admin\jurnal\jurnal_harianController;
 use App\Http\Controllers\admin\jurnal\jurnal_prakerinController;
@@ -222,6 +223,20 @@ Route::prefix('admin')->middleware(['web', 'auth', 'role:kaprog,hubin'])->group(
     Route::post('/jurnal/destroy', [jurnal_prakerinController::class, 'delete_all'])->name('jurnal.delete-all');
     Route::get('/export/excel/jurnal', [ExcelController::class, 'jurnalp'])->name('export.jurnal');
 
+    // pengajuan magang
+    Route::get('pengajuan_prakerin', [pengajuan_prakerinController::class, 'index'])->name('pengajuan_prakerin.index');
+    Route::get('pengajuan_prakerin/ajax', [pengajuan_prakerinController::class, 'ajax'])->name('pengajuan_prakerin.ajax');
+    Route::get('pengajuan_prakerin/detail/{id}', [pengajuan_prakerinController::class, 'detail'])->name('pengajuan_prakerin.detail');
+    Route::get('pengajuan_prakerin/tambah', [pengajuan_prakerinController::class, 'tambah'])->name('pengajuan_prakerin.tambah');
+    Route::post('pengajuan_prakerin/tambah/post', [pengajuan_prakerinController::class, 'store'])->name('pengajuan_prakerin.post');
+    Route::get('pengajuan_prakerin/edit/{id}', [pengajuan_prakerinController::class, 'edit'])->name('pengajuan_prakerin.edit');
+    Route::put('pengajuan_prakerin/update/{pengajuan_prakerin}', [pengajuan_prakerinController::class, 'update'])->name('pengajuan_prakerin.update');
+    Route::delete('pengajuan_prakerin/delete/{id}', [pengajuan_prakerinController::class, 'destroy'])->name('pengajuan_prakerin.delete');
+    Route::post('pengajuan_prakerin/ajax', [pengajuan_prakerinController::class, 'ajax'])->name('pengajuan_prakerin.ajax');
+    Route::delete('/pengajuan_prakerin/destroy/{id}', [pengajuan_prakerinController::class, 'destroy'])->name('pengajuan_prakerin.delete-all');
+    Route::post('/export/pdf/kelompok/{id}/{nomor}', [PDFController::class, 'pengajuan_prakerin'])->name('export.kelompok');
+    Route::get('/export/pdf/contoh', [PDFController::class, 'contoh'])->name('export.contoh');
+
     // kelompok magang
     Route::get('kelompok', [kelompokController::class, 'index'])->name('kelompok.index');
     Route::get('kelompok/ajax', [kelompokController::class, 'ajax'])->name('kelompok.ajax');
@@ -236,6 +251,7 @@ Route::prefix('admin')->middleware(['web', 'auth', 'role:kaprog,hubin'])->group(
     Route::get('/export/excel/kelompok', [ExcelController::class, 'kelompok']);
     Route::post('/export/pdf/kelompok/{id}/{nomor}', [PDFController::class, 'kelompokPrakerin'])->name('export.kelompok');
     Route::get('/export/pdf/contoh', [PDFController::class, 'contoh'])->name('export.contoh');
+    Route::get('/export/pdf/jurnal', [PDFController::class, 'Jurna'])->name('export.jurnal');
 
     // laporan magang
     Route::get('laporan', [laporanController::class, 'index'])->name('laporan.index');

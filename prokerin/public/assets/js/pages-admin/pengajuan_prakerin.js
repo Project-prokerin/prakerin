@@ -20,7 +20,7 @@ $(document).ready(function() {
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             },
-            url: "/admin/kelompok/ajax/",
+            url: "/admin/pengajuan_prakerin/ajax/",
             type: "post",
             data: function(data) {
                 data = '';
@@ -52,14 +52,7 @@ $(document).ready(function() {
         ]
     });
     $('.btn-table').append(
-        '<a href="/admin/kelompok/tambah"class="btn btn-primary "> Tambah Data <i class="fas fa-plus"></i></button></a>'
-    );
-    $('.btn-table').append(
-        '<a href="/admin/export/pdf/jurnal"class="btn btn-primary "> Tambah <i class="fas fa-plus"></i></button></a>'
-    );
-    $('#table30_filter').prepend(
-        // '<a href="#"class="btn btn-danger  ml-3"> PDF <i class="fas fa-cloud-download-alt"></i></button></a>' +
-        '<a href="/admin/export/excel/kelompok"class="btn btn-success mr-3  ml-2"> Excel <i class="fas fa-cloud-download-alt"></i></button></a>'
+        '<a href="/admin/pengajuan_prakerin/tambah"class="btn btn-primary "> Tambah Data <i class="fas fa-plus"></i></button></a>'
     );
 
     // search engine
@@ -83,7 +76,7 @@ $(document).ready(function() {
                     headers: {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                     },
-                    url: "/admin/kelompok/destroy_all/" + id,
+                    url: "/admin/pengajuan_prakerin/destroy/" + id,
                     type: "DELETE",
                     data: '',
                     success: function(data) {
@@ -122,7 +115,7 @@ $(document).ready(function() {
                     }
                 });
                 $.ajax({
-                    url: "/admin/export/pdf/kelompok/" + id + "/" + nomor,
+                    url: "/admin/export/pdf/pengajuan_prakerin/" + id + "/" + nomor,
                     type: "POST",
                     data: {
                         "id": id,
