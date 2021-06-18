@@ -245,7 +245,7 @@ Route::prefix('admin')->middleware(['web', 'auth', 'role:kaprog,hubin'])->group(
     Route::post('laporan/tambah/post', [laporanController::class, 'store'])->name('laporan.post');
     Route::get('laporan/edit/{id}', [laporanController::class, 'edit'])->name('laporan.edit');
     Route::put('laporan/update/{id}', [laporanController::class, 'update'])->name('laporan.update');
-    Route::delete('laporan/delete/{id}', [perusahaanController::class, 'destroy'])->name('laporan.delete');
+    Route::delete('laporan/delete/{id}', [laporanController::class, 'destroy'])->name('laporan.delete');
     Route::post('/laporan/destroy', [laporanController::class, 'delete_all'])->name('laporan.delete-all');
     Route::get('/export/excel/laporan', [ExcelController::class, 'perusahaan'])->name('export.laporan');
 

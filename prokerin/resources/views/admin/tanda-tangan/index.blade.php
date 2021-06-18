@@ -50,31 +50,36 @@
                           <th>
                             No
                           </th>
+                          <th>Pemilik</th>
                           <th>Tanda Tangan</th>
                           <th>Action</th>
                         </tr>
                       </thead>
-                      
                           
                      
                       <tbody class="text-center">
-                        @foreach ($ttd as $tandatangan)
+                      @foreach ($ttd as $tandatangan)
                         <tr>
                           <td>{{$loop->iteration}}</td>
+                          <td>{{$tandatangan->nama}}</td>
                           <td>
                               <img src="{{asset("$tandatangan->path_gambar")}}" style="max-width: 278px; width: 150px; height: 75px; margin-top: 5px;" alt=""
                               srcset="">
                           </td>
                           <td>
-                              <button class="btn btn-primary">Preview</button>
-                              <button class="btn btn-warning">Edit</button>
-                              <button class="btn btn-danger">Hapus</button>
+                              <form action="{{route('tanda-tangan.delete',$tandatangan->id)}}" method="POST">
+                              <a href="" class="btn btn-primary">Preview</a>
+                              <a href="" class="btn btn-warning">Edit</a>
+                                @method('DELETE')
+                                @csrf
+                                <button class="btn btn-danger">Hapus</button>
+
+                            </form>
                           </td>
                         </tr>
                         @endforeach
                       </tbody>
                     </table>
-                    
                   </div>
                 </div>
               </div>

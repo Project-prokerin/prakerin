@@ -225,24 +225,27 @@ class Surat_keluarController extends Controller
     public function store(Request $request)
     {
 
+        
+        // dd($request);
         $id_guru = guru::where('id',$request->id_guru)->first();
-        // dd($request->tanggal);
 
         $tanggal_range = explode('s.d.',$request->tanggal);
-       $from =  new DateTime($tanggal_range[0]);
-       $end =  new DateTime($tanggal_range[1]);
+       $from_t =  $tanggal_range[0];
+       $end_t =  $tanggal_range[1];
+       $from =  new Carbon($tanggal_range[0]);
+       $end =  new Carbon($tanggal_range[1]);
 
 
 
+    //    dd($from,$end,$from_t,$end_t);
 
         $jumlah_hari = $from->diff($end)->days;
-        // dd($jumlah_hari);
         $hari_from = Carbon::parse($from)->isoFormat('dddd');
         $hari_end = Carbon::parse($end)->isoFormat('dddd');
 
-        $date_from = Carbon::parse($from)->isoFormat('D MMMM Y');
-        $date_end = Carbon::parse($end)->isoFormat('D MMMM Y');
-
+        $date_from = Carbon::parse($from)->isoFormat('D MMMM ');
+        $date_end = Carbon::parse($end)->isoFormat('D MMMM ');
+        $date_year = $from->year;
 
 
 
@@ -269,7 +272,7 @@ class Surat_keluarController extends Controller
 
         $pdf_name = time() . "SuratTugas.pdf";
         $path = public_path('surat/surat_keluar/' . $pdf_name);
-        $SuratKeluar = PDF::loadView('export.PDF.contoh', compact('nama_Surat','nama','nik','alamat','tempat','jumlah_hari','date_from','date_end','hari_from','hari_end','tanggal','pukul'))->setOptions(['defaultFont' => 'sans-serif','isHtml5ParserEnabled' => true, 'isRemoteEnabled' => true])->save($path);
+        $SuratKeluar = PDF::loadView('export.PDF.contoh', compact('nama_Surat','nama','nik','alamat','tempat','jumlah_hari','date_from','date_end','date_year','hari_from','hari_end','pukul'))->setOptions(['defaultFont' => 'sans-serif','isHtml5ParserEnabled' => true, 'isRemoteEnabled' => true])->save($path);
 
 
 
@@ -302,7 +305,7 @@ class Surat_keluarController extends Controller
         Isi_surat::create([
             'nama_surat' => $nama_Surat,
             'hari' => $hari_from. " s.d. " .$hari_end,
-            'tanggal' =>  $date_from. " s.d. " .$date_end,
+            'tanggal' =>  $from_t. " s.d. " .$end_t,
             'pukul' => $pukul,
             'tempat' => $tempat,
             'alamat' => $alamat,
@@ -349,6 +352,7 @@ class Surat_keluarController extends Controller
         $surat_k = Surat_keluar::where('id',$id)->first();
         $isi_surat = Isi_surat::where('id',$id)->first();
 
+
         return view('admin.surat_keluar.edit',compact('guru','surat_k','isi_surat'));
     }
 
@@ -372,26 +376,27 @@ class Surat_keluarController extends Controller
         }
 
 
-
-
-
         $id_guru = guru::where('id',$request->id_guru)->first();
-        // dd($request->tanggal);
 
         $tanggal_range = explode('s.d.',$request->tanggal);
-       $from =  new DateTime($tanggal_range[0]);
-       $end =  new DateTime($tanggal_range[1]);
+       $from_t =  $tanggal_range[0];
+       $end_t =  $tanggal_range[1];
+       $from =  new Carbon($tanggal_range[0]);
+       $end =  new Carbon($tanggal_range[1]);
 
 
 
+    //    dd($from,$end,$from_t,$end_t);
 
         $jumlah_hari = $from->diff($end)->days;
-        // dd($jumlah_hari);
         $hari_from = Carbon::parse($from)->isoFormat('dddd');
         $hari_end = Carbon::parse($end)->isoFormat('dddd');
 
-        $date_from = Carbon::parse($from)->isoFormat('D MMMM Y');
-        $date_end = Carbon::parse($end)->isoFormat('D MMMM Y');
+        $date_from = Carbon::parse($from)->isoFormat('D MMMM ');
+        $date_end = Carbon::parse($end)->isoFormat('D MMMM ');
+        $date_year = $from->year;
+
+
 
 
 
@@ -419,7 +424,7 @@ class Surat_keluarController extends Controller
 
         $pdf_name = time() . "SuratTugas.pdf";
         $path = public_path('surat/surat_keluar/' . $pdf_name);
-        $SuratKeluar = PDF::loadView('export.PDF.contoh', compact('nama_Surat','nama','nik','alamat','tempat','jumlah_hari','date_from','date_end','hari_from','hari_end','tanggal','pukul'))->setOptions(['defaultFont' => 'sans-serif','isHtml5ParserEnabled' => true, 'isRemoteEnabled' => true])->save($path);
+        $SuratKeluar = PDF::loadView('export.PDF.contoh', compact('nama_Surat','nama','nik','alamat','tempat','jumlah_hari','date_from','date_end','date_year','hari_from','hari_end','pukul'))->setOptions(['defaultFont' => 'sans-serif','isHtml5ParserEnabled' => true, 'isRemoteEnabled' => true])->save($path);
 
 
 
@@ -452,7 +457,7 @@ class Surat_keluarController extends Controller
         Isi_surat::find($id)->update([
             'nama_surat' => $nama_Surat,
             'hari' => $hari_from. " s.d. " .$hari_end,
-            'tanggal' =>  $date_from. " s.d. " .$date_end,
+            'tanggal' =>  $from_t."s.d.".$end_t,
             'pukul' => $pukul,
             'tempat' => $tempat,
             'alamat' => $alamat,
@@ -512,6 +517,9 @@ class Surat_keluarController extends Controller
             'required' => 'Pilih Tanda-tangan!'
         ]);
 
+
+        
+
         $ttd = Tanda_tangan::find($request->ttd);
 
        $tandatangan_kepsek = $ttd->path_gambar;
@@ -525,30 +533,27 @@ class Surat_keluarController extends Controller
 
 
 
-
+       
 
        $id_guru = guru::where('id',$request->id_guru)->first();
-       // dd($request->tanggal);
 
        $tanggal_range = explode('s.d.',$request->tanggal);
+      $from_t =  $tanggal_range[0];
+      $end_t =  $tanggal_range[1];
+      $from =  new Carbon($tanggal_range[0]);
+      $end =  new Carbon($tanggal_range[1]);
 
-      $from =  new DateTime($tanggal_range[0]);
-      $end =  new DateTime($tanggal_range[1]);
 
 
-
+   //    dd($from,$end,$from_t,$end_t);
 
        $jumlah_hari = $from->diff($end)->days;
-
-       // dd($jumlah_hari);
-       $hari_from = Carbon::parse('25 Januari', 'Asia/Jakarta')->format('dddd');
-        return response()->json($data = $hari_from);
+       $hari_from = Carbon::parse($from)->isoFormat('dddd');
        $hari_end = Carbon::parse($end)->isoFormat('dddd');
 
-       $date_from = Carbon::parse($from)->isoFormat('D MMMM Y');
-       $date_end = Carbon::parse($end)->isoFormat('D MMMM Y');
-
-
+       $date_from = Carbon::parse($from)->isoFormat('D MMMM ');
+       $date_end = Carbon::parse($end)->isoFormat('D MMMM ');
+       $date_year = $from->year;
 
 
 
@@ -574,7 +579,7 @@ class Surat_keluarController extends Controller
 
        $pdf_name = time() . "SuratTugas.pdf";
        $path = public_path('surat/surat_keluar/' . $pdf_name);
-       $SuratKeluar = PDF::loadView('export.PDF.contoh', compact('tandatangan_kepsek','nama_Surat','nama','nik','alamat','tempat','jumlah_hari','date_from','date_end','hari_from','hari_end','tanggal','pukul'))->setOptions(['defaultFont' => 'sans-serif','isHtml5ParserEnabled' => true, 'isRemoteEnabled' => true])->save($path);
+       $SuratKeluar = PDF::loadView('export.PDF.contoh', compact('tandatangan_kepsek','nama_Surat','nama','nik','alamat','tempat','jumlah_hari','date_from','date_end','date_year','hari_from','hari_end','pukul'))->setOptions(['defaultFont' => 'sans-serif','isHtml5ParserEnabled' => true, 'isRemoteEnabled' => true])->save($path);
 
 
 
@@ -596,7 +601,7 @@ class Surat_keluarController extends Controller
            $detail =     Detail_surat_k::find($id)->update([
                        // 'id_template_surat' => $template_surat->id,
                        'no_surat' =>  str_pad($surat_number->id + 1, 3, "0", STR_PAD_LEFT),
-                       'tgl_surat' => Carbon::today(),
+                       'tgl_surat' => Carbon::today()->toDateString(),
                        'path_surat' => "surat/surat_keluar/$pdf_name",
                        'id_tanda_tangan' => 1,
                        // 'id_surat_keluar' =>  $surat_keluar->id
@@ -607,7 +612,7 @@ class Surat_keluarController extends Controller
        Isi_surat::find($id)->update([
            'nama_surat' => $nama_Surat,
            'hari' => $hari_from. " s.d. " .$hari_end,
-           'tanggal' =>  $date_from. " s.d. " .$date_end,
+           'tanggal' =>  $from_t. " s.d. " .$end_t,
            'pukul' => $pukul,
            'tempat' => $tempat,
            'alamat' => $alamat,
@@ -620,6 +625,7 @@ class Surat_keluarController extends Controller
 
 
 
+    return response()->json($data = 'Surat Berhasil di Acc!');
 
 
 

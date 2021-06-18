@@ -144,7 +144,7 @@ class laporanController extends Controller
      */
     public function destroy(Request $request, $id)
     {
-        laporan_prakerin::where('id',$id)->delete();
+        laporan_prakerin::destroy($id);
         return response()->json($data = 'berhasil');
     }
 }

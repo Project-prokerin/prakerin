@@ -160,7 +160,7 @@
                     <h6 class="font6" style="font-weight: 300px;font-size: 14px; margin-top: -15px;  text-align:left; margin-left:80px;">
                         Hari &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: {{$hari_from}} s.d. {{$hari_end}}</h6>
                     <h6 class="font6" style="font-weight: 300px;font-size: 14px; margin-top: -15px;  text-align:left; margin-left:80px;">
-                        Tanggal &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: {{$tanggal}}</h6>
+                        Tanggal &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: {{$date_from}} s.d. {{$date_end}} {{$date_year}}</h6>
                     <h6 class="font6" style="font-weight: 300px;font-size: 14px; margin-top: -15px;  text-align:left; margin-left:80px;">
                         Pukul &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                         : {{$pukul}} </h6>
@@ -333,8 +333,8 @@
                                 <td>
                                     <ol type="a">
                                         <li>{{$jumlah_hari}} hari</li>
-                                        <li>{{$date_from}}</li>
-                                        <li>{{$date_end}}</li>
+                                        <li>{{$date_from}} {{$date_year}}</li>
+                                        <li>{{$date_end}} {{$date_year}}</li>
                                     </ol>
                                 </td>
                               </tr>

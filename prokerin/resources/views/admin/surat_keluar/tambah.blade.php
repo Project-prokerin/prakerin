@@ -237,7 +237,7 @@
                 });
 
                 $('input[name="tanggal"]').on('apply.daterangepicker', function(ev, picker) {
-                    $(this).val(picker.startDate.format('YYYY-MM-DD') + ' s.d. ' + picker.endDate.format(
+                    $(this).val(picker.startDate.format('YYYY-MM-DD')  +  '  s.d.  '  +  picker.endDate.format(
                         'YYYY-MM-DD'));
                 });
 
