@@ -20,6 +20,10 @@ class data_prakerin extends Model
     {
         return $this->hasOne(kelompok_laporan::class, 'id_data_prakerin','id');
     }
+    public function pengajuan_prakerin()
+    {
+        return $this->hasOne(pengajuan_prakerin::class, 'id_data_prakerin', 'id');
+    }
     public function perusahaan()
     {
                                              // foreign dari field perusahaan ke perusahaan id

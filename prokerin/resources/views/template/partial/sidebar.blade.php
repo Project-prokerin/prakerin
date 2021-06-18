@@ -74,6 +74,26 @@
                     <span>Data Prakerin</span>
                 </a>
             </li>
+                  @if($role == "hubin" or $role == "kepsek" or $role == "admin" or $role == "kaprog")
+            @if($role == "kepsek" or $role == "admin" or $role == "kaprog")
+            <li class="menu-header">Prakerin</li>
+            @endif
+            <li class="dropdown
+            @if (Request::is('admin/surat_keluar','admin/surat_keluar/*'))
+            active
+            @elseif(Request::is('admin/pengajuan_prakerin','admin/pengajuan_prakerin/*'))
+            active
+            @endif
+            ">
+                <a href="" class="nav-link has-dropdown"><i class="fas fa-file-alt"></i><span>Surat Prakerin</span></a>
+                <ul class="dropdown-menu" style="display: none;">
+                    <li class="@if (Request::is('admin/surat_keluar','admin/surat_keluar/*')) active @endif"><a class="nav-link "
+                            href="{{ route('admin.surat_keluar.index') }}">Surat Penugasan</a></li>
+                    <li class="@if (Request::is('admin/pengajuan_prakerin','admin/pengajuan_prakerin/*')) active @endif"><a class="nav-link "
+                            href="{{ route('pengajuan_prakerin.index') }}">Pengajuan Prakerin</a></li>
+                </ul>
+            </li>
+            @endif
             <li class="dropdown
             @if (Request::is('admin/jurnalH','admin/jurnalH/*'))
             active
@@ -100,16 +120,7 @@
                 </a>
             </li>
             @endif
-            @if($role == "hubin" or $role == "kepsek" or $role == "admin" or $role == "kaprog")
-            @if($role == "kepsek" or $role == "admin" or $role == "kaprog")
-            <li class="menu-header">Prakerin</li>
-            @endif
-            <li class='@if (Request::is("admin/surat_keluar","admin/surat_keluar/*")) active @endif'>
-                <a href='{{ route("admin.surat_keluar.index") }}' class="nav-link"><i class="fas fa-file-alt"></i>
-                    <span>Surat Penugasan </span>
-                </a>
-            </li>
-            @endif
+
             @if (Auth::user()->role == 'admin' or Auth::user()->role == 'tu' or Auth::user()->role == 'kepsek' or Auth::user()->role == 'kaprog' or Auth::user()->role == 'kesiswaan' or Auth::user()->role == 'kurikulum' or Auth::user()->role == 'hubin' or Auth::user()->role == 'sarpras')
             <li class="menu-header">Takola</li>
             <li class='@if (Request::is("admin/surat_masuk","admin/surat_masuk/*")) active @endif'>
