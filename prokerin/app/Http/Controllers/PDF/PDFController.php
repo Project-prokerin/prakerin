@@ -105,7 +105,7 @@ class PDFController extends Controller
     
             }
 
-            public function Jurna()
+            public function Jurnal()
             {
         
            

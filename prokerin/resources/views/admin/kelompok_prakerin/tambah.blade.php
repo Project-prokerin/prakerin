@@ -24,8 +24,8 @@
 
     </style>
 @endpush
-@section('title', 'Prakerin | Data Perusahaan')
-@section('judul', 'DATA PERUSAHAAN')
+@section('title', 'Prakerin | Kelompok Prakerin')
+@section('judul', 'KELOMPOK PRAKERIN')
 @section('breadcrump')
     <div class="breadcrumb-item "><a href="{{ route('admin.dashboard') }}"><i class="fas fa-tachometer-alt"></i>
             DASBOARD</a></div>
@@ -277,7 +277,7 @@
 </div>
 @endsection
 @push('script')
-   
+
 
     <script>
         $(document).ready(function(){
@@ -322,7 +322,7 @@
             //       });
             //  });
         });
-        
+
     </script>
     <script src="{{ asset('template/') }}/node_modules/select2/dist/js/select2.full.min.js"></script>
 @endpush

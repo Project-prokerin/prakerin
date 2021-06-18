@@ -251,7 +251,7 @@ Route::prefix('admin')->middleware(['web', 'auth', 'role:kaprog,hubin'])->group(
     Route::get('/export/excel/kelompok', [ExcelController::class, 'kelompok']);
     Route::post('/export/pdf/kelompok/{id}/{nomor}', [PDFController::class, 'kelompokPrakerin'])->name('export.kelompok');
     Route::get('/export/pdf/contoh', [PDFController::class, 'contoh'])->name('export.contoh');
-    Route::get('/export/pdf/jurnal', [PDFController::class, 'Jurna'])->name('export.jurnal');
+    Route::get('/export/pdf/jurnal', [PDFController::class, 'Jurnal'])->name('export.jurnal');
 
     // laporan magang
     Route::get('laporan', [laporanController::class, 'index'])->name('laporan.index');

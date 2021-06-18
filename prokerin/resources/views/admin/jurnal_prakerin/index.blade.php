@@ -99,8 +99,7 @@
                                                             id="id_siswa">
                                                             <option value="">--Cari Siswa--</option>
                                                             @foreach ($data_prakerin as $item)
-                                                                <option value="{{ $item->id }}">{{ $item->nama }}
-                                                                </option>
+                                                                <option value="{{ $item->id }}">{{ $item->nama }}</option>
                                                             @endforeach
                                                         </select>
                                                     </div>
