@@ -13,7 +13,25 @@
         .kiri-bawah{
             float: right;
 
-        }
+        }table{
+            border-collapse: collapse;
+            width: 550px;
+            margin-left: 50px;
+            
+        }td{
+            padding: 10px;
+        }tr{
+            padding: 5px;
+        }.kri-bwh{
+            float: right;
+        }.kri-bwhs{
+            float: right;
+        }.box1{
+        width: 600px;
+        height: 500px;
+        border: 1px solid black;
+        margin-top: -200px;
+    }
     </style>
 </head>
 <body>
@@ -430,14 +448,504 @@
     </div>
 
     {{-- Page7 --}}
+    <div class="container">
+        <h4 class="" style="text-align:center;margin-left:-330px;">H.	PEMBEKALAN PRAKTIK</h4>
+        <div>
+            <h6 class="font6" style="font-weight: 300px;font-size: 15px; margin-top: -10px;  text-align:left; margin-left:87px;">
+                <span style="margin-left: 17px">Materi pembekalan PKL bagi peserta didik meliputi :</span>
+            </h6>
+            <p style="margin-top: -30px">
+                <ol type="1" style="margin-left: 90px">
+                    <li>Karakteristik budaya kerja di industri</li>
+                    <li>tata aturan kerja di industri</li>
+                    <li>Penyusunan Jurnal</li>
+                    <li>Pembuatan dokumen Portofolio</li>
+                    <li>penilaian PKL</li>
+                </ol>
+            </p>
+        </div>
+        <h4 class="" style="text-align:center;margin-left:-10px;">I.	PROSES PENGAJUAN SURAT PERMOHONAN TEMPAT PRAKERIN</h4>
+        <div>
+            <span style="margin-left: 105px;">a. Peserta didik yang akan melaksanakan PRAKERIN melakukan pembinaan oleh Tim  </span> <br>
+            <span style="margin-left: 120px;">BKK dalam hal pengisian jurnal.</span> <br>
+
+            <span style="margin-left: 105px;">b.	Peserta didik yang akan melaksanakan PRAKERIN menyelesaikan persyaratan    </span> <br>
+            <span style="margin-left: 120px;">PRAKERIN sesuai dengan jurusan masing-masing (Peserta didik menbuat 5 aplikasi </span> <br>
+            <span style="margin-left: 120px;">(berbasis android dan web) dalam bentuk portofolio).</span> <br>
+
+            <span style="margin-left: 105px;">c.	Kepala Program memvalidasi persyaratan PRAKERIN sesuai dengan kemampuan Peserta   </span> <br>
+            <span style="margin-left: 120px;">Didik dan mengelompokkannya. </span> <br>
+
+            <span style="margin-left: 105px;">d.	Kepala Program mengadakan survei/mencari informasi mengenai tempat PRAKERIN    </span> <br>
+            <span style="margin-left: 120px;">langsung ke industri yang bersangkutan. </span> <br>
+
+            <span style="margin-left: 105px;">e.	Kepala Program membentuk kelompok/group sesuai dengan kapasitas yang ada di </span> <br>
+            <span style="margin-left: 120px;">industri. </span> <br>
+
+            <span style="margin-left: 105px;">f.	Kepala Program melalui Penanggung Jawab jurusan mengajukan permohonan kepada  </span> <br>
+            <span style="margin-left: 120px;">pokja Hubin. </span> <br>
+
+            <span style="margin-left: 105px;">g.	Peserta didik atau pokja Hubin mengirimkan surat permohonan ke industri melalui surel  </span> <br>
+            <span style="margin-left: 120px;"> atau dikirim langsung (jika lewat surel dapat langsung melalui sekolah).</span> <br>
+
+            <span style="margin-left: 105px;">h.	Peserta didik sebelum melaksanakan PRAKERIN wajib mengisi surat pernyatan yang   </span> <br>
+            <span style="margin-left: 120px;">ditanda tangan diatas materai.</span> <br>
+
+            <span style="margin-left: 105px;">i.	Peserta didik melaksanakan PRAKERIN sesuai periode yang ditentukan oleh industri.  </span> <br>
+
+            <span style="margin-left: 105px;">j.	Setelah selesai PRAKERIN peserta didik wajib menyelesaikan Laporan Prakerin.  </span> <br>
+        </div>
+    </div>
     {{-- Page8 --}}
+    <div class="container" style="margin-top: 370px">
+    <h4 class="" style="text-align:center;margin-left:70px;">J.	STRUKTUR KOMPETENSI PROGRAM KEAHLIAN REKAYASA PERANGKAT 
+    <h4 class="" style="text-align:center;margin-left:-240px;margin-top:-10px;">LUNAK BERDASARKAN KURIKULUM 2013</h4>
+    <div>
+        <table border="1">
+            <tr>
+                <td style="background-color: purple">C2. Dasar Program Keahlian</td>
+            </tr>
+            <tr>
+                <td>1. Komputer dan Jaringan Dasar</td>
+            </tr>
+            <tr>
+                <td>2. Pemrograman Dasar</td>
+            </tr>
+            <tr>
+                <td>3. Dasar Desain Grafis</td>
+            </tr>
+            <tr>
+                <td  style="background-color: purple">C3. Paket Keahlian Rekayasa Perangkat Lunak</td>
+            </tr>
+            <tr>
+                <td>1. Pemodelan Perangkat Lunak</td>
+            </tr>
+            <tr>
+                <td>2. Basis Data</td>
+            </tr>
+            <tr>
+                <td>3. Pemograman Berorientasi Objek</td>
+            </tr>
+            <tr>
+                <td>4. Pemograman Web dan perangkat Bergerak</td>
+            </tr>
+            <tr>
+                <td>5. Produk Kreatif dan Kewirausahaan</td>
+            </tr>
+
+        </table>
+    </div>
+    </div>
     {{-- Page9 --}}
+    <div class="container">
+    <h4 class="" style="text-align:center;margin-left:-130px;margin-bottom:480px;">K.	PEMETAAN PROFILE KOMPETENSI TAMATAN</h4>
+    <div>
+        <img src="https://i.postimg.cc/tgc6d1Mz/qwqwq.jpg" alt="">
+    </div>
+    </div>
     {{-- Page10 --}}
+    <div class="container">
+    <h4 class="" style="text-align:center;margin-left:-290px;margin-bottom:480px;">L.	PROGRAM PRAKERIN</h4>
+    <div>
+        <h6 class="font6" style="font-weight: 300px;font-size: 14px; margin-top: -450px;  text-align:left; margin-left:110px;">
+         Nama Peserta Didik<span style="margin-left: 70px;">
+                                                : .........................................................................
+                                         </span>
+        </h6>
+        <h6 class="font6" style="font-weight: 300px;font-size: 14px; margin-top: -30px;  text-align:left; margin-left:110px;">
+            Kelas<span style="margin-left: 70px;">
+                                                   : .........................................................................
+                                            </span>
+        </h6>
+        <h6 class="font6" style="font-weight: 300px;font-size: 14px; margin-top: -30px;  text-align:left; margin-left:110px;">
+            Kompetensi Keahlian<span style="margin-left: 70px;">
+                                                   : <u>Rekayasa Perangkat Lunak</u>
+                                            </span>
+           </h6>
+        <h6 class="font6" style="font-weight: 300px;font-size: 14px; margin-top: -30px;  text-align:left; margin-left:110px;">
+        Nama Industri<span style="margin-left: 70px;">
+                                                : .........................................................................
+                                        </span>
+        </h6>
+        <h6 class="font6" style="font-weight: 300px;font-size: 14px; margin-top: -30px;  text-align:left; margin-left:110px;">
+            Nama Pembimbing<span style="margin-left: 70px;">
+                                                    : .........................................................................
+                                            </span>
+            </h6>
+            <h6 class="font6" style="font-weight: 300px;font-size: 14px; margin-top: -30px;  text-align:left; margin-left:110px;">
+                Alamat Industri<span style="margin-left: 70px;">
+                                                        : .........................................................................
+                                                </span>
+                </h6>
+                <h6 class="font6" style="font-weight: 300px;font-size: 14px; margin-top: -30px;  text-align:left; margin-left:110px;">
+                    Waktu PKL<span style="margin-left: 70px;">
+                                                            : .........................................................................
+                                                    </span>
+                    </h6>
+    </div>
+    <div >
+        <table border="1" style="margin-top: -300px;margin-left:100px;">
+            <tr>
+                <th style="background-color: skyblue">No</th>
+                <th style="background-color: skyblue;width:150px;">Kompentensi Dasar</th>
+                <th style="background-color: skyblue;width:150px;">Topic Pembelajaran</th>
+                <th style="background-color: skyblue;width:150px;"> Urutan Waktu Pelaksanaan</th>
+                <th style="background-color: skyblue;width:100px;">Paraf</th>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+             <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+        </table>
+    </div>
+    <div class="kri-bwh">
+        <p>......................,..............20.......</p>
+        <p style="margin-bottom: 50px">Pembimbing industri</p>
+        <p>..............................................</p>
+    </div>
+    </div> <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
     {{-- Page11 --}}
+    <div class="container">
+    <h4 class="" style="text-align:center;margin-left:-130px;">M.	JURNAL KEGIATAN PRAKERIN</h4>  
+    <h4 class="" style="text-align:center;margin-left:-130px;">A. JAM KERJA PRAKERIN</h4> 
+    <div>
+        <table border="1">
+        <tr>
+            <th style="background-color: skyblue;width:150px;">Hari</th>
+            <th style="background-color: skyblue;width:150px;">Jam Masuk</th>
+            <th style="background-color: skyblue;width:150px;">Jam Istirahat</th>
+            <th style="background-color: skyblue;width:150px;">Jam pulang</th>
+        </tr>
+        <tr>
+            <td>senin</td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>selasa</td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>rabu</td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>kamis</td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>jumat</td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>sabtu</td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+    </table>
+    </div>
+    <div class="kri-bwhs">
+        <p>......................,..............20.......</p>
+        <p style="margin-bottom:50px;">Pembimbing industri</p>
+        <p>..............................................</p>
+    </div>
+    </div><br><br><br><br><br><><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
     {{-- Page12 --}}
+    <div class="container">
+    <h4 class="" style="text-align:center;margin-left:-130px;">N.	KEGIATAN MENGIDENTIFIKASI / INVENTARISASI ALAT</h4>
+    <div>
+        <h6 class="font6" style="font-weight: 300px;font-size: 14px; margin-top: -15px;  text-align:left; margin-left:90px;">
+            Kegiatan 2 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            &nbsp; :Mengidentifikasi peralatan di perusahaan </h6>
+            <h6 class="font6" style="font-weight: 300px;font-size: 14px; margin-top: -30px;  text-align:left; margin-left:90px;">
+                Tugas &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; :Mengisi form.01  dibawah ini </h6>
+                <h6 class="font6" style="font-weight: 300px;font-size: 14px; margin-top: -15px;  text-align:left; margin-left:90px;">
+                    petunjuk &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp; :
+                    <ol type="1" style="margin-left: 100px;">
+                        <li>Siapkan form.01 seperti dibawah ini</li>
+                        <li>Lakukan pengamatan dan catatlah peralatan – peralatan /mesin-mesin yang ada diperusahaan</li>
+                        <li>Mintalah petunjuk dan konsultasikan tugas ini kepada 
+                            pembimbing perusahaan/industri
+                        </li>       
+                    </ol>
+                </h6>
+        <p>Form. 01 - Daftar Spesifikasi Peralatan di Perusahaan / Industri</p>
+    </div>  
+    <div>
+        <table border="1" style="margin-left: -10px">
+            <tr>
+                <th style="background-color: skyblue;width:150px;padding:4;">No</th>
+                <th style="background-color: skyblue;width:150px;padding:10;">Nama Alat/Komputer</th>
+                <th style="background-color: skyblue;width:150px;padding:10;">Spesifikasi/ukuran</th>
+                <th style="background-color: skyblue;width:150px;padding:5;">Jumlah</th>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+        </table>
+    </div>
+    </div><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
     {{-- Page13 --}}
+    <div class="container">
+        <h4 class="" style="text-align:center;margin-left:-130px;">O.	KEGIATAN PRAKTIK DI PERUSAHAAN ATAU INDUSTRI </h4>
+        <div>
+            <h6 class="font6" style="font-weight: 300px;font-size: 14px; margin-top: -15px;  text-align:left; margin-left:90px;">
+                Kegiatan 3 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                &nbsp; :Melaksanakan kegiatan rutin pekerjaan di  perusahaan/ industri 
+                sesuai jobsheet atau <span style="margin-left: 130px"> kompetensi keahlian</span>
+      </h6>
+      <h6 class="font6" style="font-weight: 300px;font-size: 15px; margin-top: -29px;  text-align:left; margin-left:87px;">
+        Petunjuk<br>
+        <span style="margin-left: 15px;">1. Mintalah Bimbingan pada pembimbing industri untuk  mengerjakan setiap
+            pekerjaan
+     </span> <br>
+
+        <span style="margin-left: 15px;">  2. Buatlah catatan setiap kali praktik</span> <br>
+
+        <span style="margin-left: 15px;">  3. Bacalah buku – buku yang berkaitan dengan praktik kerja  </span> <br>
+        <span style="margin-left: 30px;">dalam hal pengisian jurnal.</span> <br>
+</span> <br>
+    </h6>
+        </div>
+        <div>
+            <h6 class="font6" style="font-weight: 300px;font-size: 14px; margin-top: 30px;  text-align:left; margin-left:110px;">
+                1. Jenis Pekerjaan<span style="margin-left: 70px;">
+                                                    : .........................................................................
+                                             </span>
+                                             <span style="margin-left: 170px;">
+                                                : .........................................................................
+                                         </span>
+                                         <span style="margin-left: 170px;">
+                                            : .........................................................................
+                                     </span>
+                                             
+            </h6>
+            <h6 class="font6" style="font-weight: 300px;font-size: 14px; margin-top: 30px;  text-align:left; margin-left:110px;">
+                2. Jenis Keterampian<span style="margin-left: 70px;">
+                                                    : .........................................................................
+                                             </span>
+                                             <span style="margin-left: 170px;">
+                                                : .........................................................................
+                                         </span>
+                                         <span style="margin-left: 170px;">
+                                            : .........................................................................
+                                     </span>
+            </h6>
+            <h6 class="font6" style="font-weight: 300px;font-size: 14px; margin-top: 30px;  text-align:left; margin-left:110px;">
+                3. Alat dan bahan<span style="margin-left: 70px;">
+                                                    : .........................................................................
+                                             </span>
+                                             <span style="margin-left: 170px;">
+                                                : .........................................................................
+                                         </span>
+                                         <span style="margin-left: 170px;">
+                                            : .........................................................................
+                                     </span>
+            </h6>
+            <h6 class="font6" style="font-weight: 300px;font-size: 14px; margin-top: 30px;  text-align:left; margin-left:110px;">
+                4. Keselamatan Kerja<span style="margin-left: 70px;">
+                                                    : .........................................................................
+                                             </span>
+                                             <span style="margin-left: 170px;">
+                                                : .........................................................................
+                                         </span>
+                                         <span style="margin-left: 170px;">
+                                            : .........................................................................
+                                     </span>
+            </h6>
+            <h6 class="font6" style="font-weight: 300px;font-size: 14px; margin-top: 30px;  text-align:left; margin-left:110px;">
+                5. Langkah Kerja<span style="margin-left: 70px;">
+                                                    : .........................................................................
+                                             </span>
+                                             <span style="margin-left: 170px;">
+                                                : .........................................................................
+                                         </span>
+                                         <span style="margin-left: 170px;">
+                                            : .........................................................................
+                                     </span>
+            </h6>
+        </div>
+
+    </div>
     {{-- Page14 --}}
+    <div class="container">
+        <h6 class="font6" style="font-weight: 300px;font-size: 14px; margin-bottom: 500px;  text-align:left; margin-left:90px;">
+            6. Gambar Kerja  </h6>
+        <div class="box1">
+        </div>
+        <div class="kri-bwhs">
+            <p>......................,..............,.......</p>
+            <p style="margin-bottom:50px;">Pembimbing industri</p>
+            <p>..............................................</p>
+        </div>
+    </div>
     {{-- Page15 --}}
+    <div class="container">
+        <h4 class="" style="text-align:center;margin-left:-130px;margin-top:125px;">P.	JURNAL HARIAN KEGIATAN PRAKERIN </h4>
+        <div>
+            <h6 class="font6" style="font-weight: 300px;font-size: 14px; margin-top: 0px;  text-align:left; margin-left:110px;">
+                Nama Peserta Didik<span style="margin-left: 70px;">
+                                                       : .........................................................................
+                                                </span>
+               </h6>
+               <h6 class="font6" style="font-weight: 300px;font-size: 14px; margin-top: -30px;  text-align:left; margin-left:110px;">
+                   Kelas<span style="margin-left: 70px;">
+                                                          : .........................................................................
+                                                   </span>
+               </h6>
+               <h6 class="font6" style="font-weight: 300px;font-size: 14px; margin-top: -30px;  text-align:left; margin-left:110px;">
+                   Kompetensi Keahlian<span style="margin-left: 70px;">
+                                                          : <u>Rekayasa Perangkat Lunak</u>
+                                                   </span>
+                  </h6>
+               <h6 class="font6" style="font-weight: 300px;font-size: 14px; margin-top: -30px;  text-align:left; margin-left:110px;">
+               Nama Industri<span style="margin-left: 70px;">
+                                                       : .........................................................................
+                                               </span>
+               </h6>
+               <h6 class="font6" style="font-weight: 300px;font-size: 14px; margin-top: -30px;  text-align:left; margin-left:110px;">
+                   Nama Pembimbing<span style="margin-left: 70px;">
+                                                           : .........................................................................
+                                                   </span>
+                   </h6>
+                   <h6 class="font6" style="font-weight: 300px;font-size: 14px; margin-top: -30px;  text-align:left; margin-left:110px;">
+                       Alamat Industri<span style="margin-left: 70px;">
+                                                               : .........................................................................
+                                                       </span>
+                       </h6>
+                       <h5 class="font6" style="font-weight: 300px;font-size: 14px; margin-top: -30px;  text-align:left; margin-left:110px;">
+                           Waktu PKL<span style="margin-left: 70px;">
+                                                                   : .........................................................................
+                                                           </span>
+                           </h5>
+        </div>
+        <div >
+            <table border="1" style="margin-top: 10px;margin-left:100px;">
+                <tr>
+                    <th style="background-color: skyblue">No</th>
+                    <th style="background-color: skyblue;width:150px;">Kompentensi Dasar</th>
+                    <th style="background-color: skyblue;width:150px;">Topic Pembelajaran</th>
+                    <th style="background-color: skyblue;width:150px;"> Urutan Waktu Pelaksanaan</th>
+                    <th style="background-color: skyblue;width:100px;">Paraf</th>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                 <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+            </table>
+        </div>
+    </div>
     {{-- Page16 --}}
     {{-- Page17 --}}
     {{-- Page18 --}}
