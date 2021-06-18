@@ -35,11 +35,11 @@ edit view kelompok
 
     <div class="card mt-5">
         <div class="container text-center mt-5 mb-3 ml-1">
-            <h3>Edit kelompok</h3>
+            <h3>Edit  Pengajuan</h3>
         </div>
 
         <div class="container">
-            <form action="{{ route('kelompok.update', $kelompok_laporan[0]->no) }}" method="POST">
+            <form action="{{ route('pengajuan_prakerin.update', $pengajuan_prakerin[0]->no) }}" method="POST">
                 @method('PUT')
                 @csrf
 
@@ -50,30 +50,30 @@ edit view kelompok
                             <label>No Kelompok</label>
                             <select class="form-control" name="no" id="">
                                 <option value="1"
-                                {{ (old('no') ?? $kelompok_laporan[0]->no) == '1' ? 'selected' : '' }}>
+                                {{ (old('no') ?? $pengajuan_prakerin[0]->no) == '1' ? 'selected' : '' }}>
                                 1 </option>
                                 <option value="2"
-                                {{ (old('no') ?? $kelompok_laporan[0]->no) == '2' ? 'selected' : '' }}>
+                                {{ (old('no') ?? $pengajuan_prakerin[0]->no) == '2' ? 'selected' : '' }}>
                                 2 </option>
                                 <option value="3"
-                                {{ (old('no') ?? $kelompok_laporan[0]->no) == '3' ? 'selected' : '' }}>
+                                {{ (old('no') ?? $pengajuan_prakerin[0]->no) == '3' ? 'selected' : '' }}>
                                 3 </option>
                                 <option value="4"
-                                {{ (old('no') ?? $kelompok_laporan[0]->no) == '4' ? 'selected' : '' }}>
+                                {{ (old('no') ?? $pengajuan_prakerin[0]->no) == '4' ? 'selected' : '' }}>
                                 4 </option>
                                 <option value="5"
-                                {{ (old('no') ?? $kelompok_laporan[0]->no) == '5' ? 'selected' : '' }}>
+                                {{ (old('no') ?? $pengajuan_prakerin[0]->no) == '5' ? 'selected' : '' }}>
                                 5 </option>
                             </select>
                         </div> --}}
-                        {{-- <input type="hidden" name="no" value="{{$kelompok_laporan[0]->no}}"> --}}
+                        {{-- <input type="hidden" name="no" value="{{$pengajuan_prakerin[0]->no}}"> --}}
 
                         <!-- gru bimbing -->
                         <div class="form-group col-lg-10 ">
                             <label>Guru Pembimbing</label>
                             <select class="form-control " name="id_guru" id="">
-                                <option value="{{ $kelompok_laporan[0]->id_guru }}" selected>
-                                    {{ $kelompok_laporan[0]->guru->nama }}</option>
+                                <option value="{{ $pengajuan_prakerin[0]->id_guru }}" selected>
+                                    {{ $pengajuan_prakerin[0]->guru->nama }}</option>
 
                                 @foreach ($guru as $guruu)
                                     <option value="{{ $guruu->id }}">{{ $guruu->nama }}</option>
@@ -90,19 +90,19 @@ edit view kelompok
                             <select name="jurusan" class="form-control select2 @error('jurusan')  is-invalid  @enderror"
                                 name=" jurusan" id="">
                                 <option value="RPL"
-                                    {{ (old('jurusan') ?? $kelompok_laporan[0]->jurusan) == 'RPL' ? 'selected' : '' }}>
+                                    {{ (old('jurusan') ?? $pengajuan_prakerin[0]->jurusan) == 'RPL' ? 'selected' : '' }}>
                                     Rekayasa Perangkat Lunak </option>
                                 <option value="TKJ"
-                                    {{ (old('jurusan') ?? $kelompok_laporan[0]->jurusan) == 'TKJ' ? 'selected' : '' }}>
+                                    {{ (old('jurusan') ?? $pengajuan_prakerin[0]->jurusan) == 'TKJ' ? 'selected' : '' }}>
                                     Teknik Komunikasi Jaringan </option>
                                 <option value="BC"
-                                    {{ (old('jurusan') ?? $kelompok_laporan[0]->jurusan) == 'BC' ? 'selected' : '' }}>
+                                    {{ (old('jurusan') ?? $pengajuan_prakerin[0]->jurusan) == 'BC' ? 'selected' : '' }}>
                                     Broadcasting </option>
                                 <option value="MM"
-                                    {{ (old('jurusan') ?? $kelompok_laporan[0]->jurusan) == 'MM' ? 'selected' : '' }}>
+                                    {{ (old('jurusan') ?? $pengajuan_prakerin[0]->jurusan) == 'MM' ? 'selected' : '' }}>
                                     Multimedia </option>
                                 <option value="TEI"
-                                    {{ (old('jurusan') ?? $kelompok_laporan[0]->jurusan) == 'TEI' ? 'selected' : '' }}>
+                                    {{ (old('jurusan') ?? $pengajuan_prakerin[0]->jurusan) == 'TEI' ? 'selected' : '' }}>
                                     TeknikElektronikaIndustri </option>
 
                             </select>
@@ -111,29 +111,29 @@ edit view kelompok
                             @enderror
 
                         </div> --}}
-                        <input class="form-control" type="hidden" value="{{ $kelompok_laporan[0]->id }}" name="id[]"
+                        <input class="form-control" type="hidden" value="{{ $pengajuan_prakerin[0]->id }}" name="id[]"
                             placeholder="id tlp" aria-label="default input example">
-                        <input class="form-control" type="hidden" value="{{ $kelompok_laporan[1]->id }}" name="id[]"
+                        <input class="form-control" type="hidden" value="{{ $pengajuan_prakerin[1]->id }}" name="id[]"
                             placeholder="id tlp" aria-label="default input example">
-                        <input class="form-control" type="hidden" value="{{ $kelompok_laporan[2]->id }}" name="id[]"
+                        <input class="form-control" type="hidden" value="{{ $pengajuan_prakerin[2]->id }}" name="id[]"
                             placeholder="id tlp" aria-label="default input example">
-                        <input class="form-control" type="hidden" value="{{ $kelompok_laporan[3]->id }}" name="id[]"
+                        <input class="form-control" type="hidden" value="{{ $pengajuan_prakerin[3]->id }}" name="id[]"
                             placeholder="id tlp" aria-label="default input example">
-                            <input class="form-control" type="hidden" value="{{ $kelompok_laporan[0]->no }}" name="no[]"
+                            <input class="form-control" type="hidden" value="{{ $pengajuan_prakerin[0]->no }}" name="no[]"
                             placeholder="no tlp" aria-label="default input example">
-                            <input class="form-control" type="hidden" value="{{ $kelompok_laporan[1]->no }}" name="no[]"
+                            <input class="form-control" type="hidden" value="{{ $pengajuan_prakerin[1]->no }}" name="no[]"
                             placeholder="no tlp" aria-label="default input example">
-                            <input class="form-control" type="hidden" value="{{ $kelompok_laporan[2]->no }}" name="no[]"
+                            <input class="form-control" type="hidden" value="{{ $pengajuan_prakerin[2]->no }}" name="no[]"
                             placeholder="no tlp" aria-label="default input example">
-                            <input class="form-control" type="hidden" value="{{ $kelompok_laporan[3]->no }}" name="no[]"
+                            <input class="form-control" type="hidden" value="{{ $pengajuan_prakerin[3]->no }}" name="no[]"
                             placeholder="no tlp" aria-label="default input example">
                         <!-- perusahaan -->
                         <div class="form-group col-lg-10 ">
                             <label>Perusahaan</label>
                             <select name="id_perusahaan"
                                 class="form-control   @error('id_perusahaan')  is-invalid  @enderror select2">
-                                <option value="{{ $kelompok_laporan[0]->nama_perusahaan }}" selected>
-                                    {{ $kelompok_laporan[0]->nama_perusahaan }}</option>
+                                <option value="{{ $pengajuan_prakerin[0]->nama_perusahaan }}" selected>
+                                    {{ $pengajuan_prakerin[0]->nama_perusahaan }}</option>
                                 @foreach ($perusahaan as $perusahaann)
                                     <option value="{{ $perusahaann->nama }}">{{ $perusahaann->nama }}</option>
                                 @endforeach
@@ -144,12 +144,12 @@ edit view kelompok
                         </div>
 
 
-                        <div class="form-group col-lg-10 ">
+                        {{-- <div class="form-group col-lg-10 ">
                             <label for="">No telephon</label>
-                            <input class="form-control" type="number" value="{{ $kelompok_laporan[0]->no_telpon }}"
+                            <input class="form-control" type="number" value="{{ $pengajuan_prakerin[0]->no_telpon }}"
                                 name="no_telpon" placeholder="no tlp" aria-label="default input example">
                                 
-                        </div>
+                        </div> --}}
 
 
 
@@ -160,10 +160,10 @@ edit view kelompok
                             <select name="id_data_prakerin[]"
                                 class="form-control  @error('id_data_prakerin')  is-invalid  @enderror select2">
                                 <option value="">--Cari Siswa--</option>
-                                <option value="{{ $kelompok_laporan[0]->id_data_prakerin }}" selected>
-                                    {{ $kelompok_laporan[0]->data_prakerin->nama }}</option>
+                                <option value="{{ $pengajuan_prakerin[0]->id_data_prakerin }}" selected>
+                                    {{ $pengajuan_prakerin[0]->data_prakerin->nama }}</option>
                                    @foreach ($data_prakerin as $item)
-                                    @if (empty($item->kelompok_laporan))
+                                    @if (empty($item->pengajuan_prakerin))
                                         <option value="{{ $item->id }}" >{{ $item->nama }}</option>
                                     @endif
                                 @endforeach
@@ -183,10 +183,10 @@ edit view kelompok
                                 class="form-control  @error('id_data_prakerin')  is-invalid  @enderror select2">
                                 <option value="">--Cari Siswa--</option>
 
-                                <option value="{{ $kelompok_laporan[1]->id_data_prakerin }}" selected>
-                                    {{ $kelompok_laporan[1]->data_prakerin->nama }}</option>
+                                <option value="{{ $pengajuan_prakerin[1]->id_data_prakerin }}" selected>
+                                    {{ $pengajuan_prakerin[1]->data_prakerin->nama }}</option>
                                    @foreach ($data_prakerin as $item)
-                                    @if (empty($item->kelompok_laporan))
+                                    @if (empty($item->pengajuan_prakerin))
                                         <option value="{{ $item->id }}" >{{ $item->nama }}</option>
                                     @endif
                                 @endforeach
@@ -207,10 +207,10 @@ edit view kelompok
                                 class="form-control  @error('id_data_prakerin')  is-invalid  @enderror select2">
                                 <option value="">--Cari Siswa--</option>
 
-                                <option value="{{ $kelompok_laporan[2]->id_data_prakerin }}" selected>
-                                    {{ $kelompok_laporan[2]->data_prakerin->nama }}</option>
+                                <option value="{{ $pengajuan_prakerin[2]->id_data_prakerin }}" selected>
+                                    {{ $pengajuan_prakerin[2]->data_prakerin->nama }}</option>
                                    @foreach ($data_prakerin as $item)
-                                    @if (empty($item->kelompok_laporan))
+                                    @if (empty($item->pengajuan_prakerin))
                                         <option value="{{ $item->id }}" >{{ $item->nama }}</option>
                                     @endif
                                 @endforeach
@@ -226,12 +226,12 @@ edit view kelompok
                         </div>
 
 
-                        @if (empty($kelompok_laporan[3]->id_data_prakerin))
+                        @if (empty($pengajuan_prakerin[3]->id_data_prakerin))
                         <div class="form-group col-lg-12 ">
                                 <select name="id_data_prakerin[]" class="form-control  @error('id_data_prakerin')  is-invalid  @enderror select2">
                                     <option value="">--Cari Siswa--</option>
                                     @foreach ($data_prakerin as $item)
-                                        @if (empty($item->kelompok_laporan))
+                                        @if (empty($item->pengajuan_prakerin))
                                             <option value="{{ $item->id }}" >{{ $item->nama }}</option>
                                         @endif
                                     @endforeach
@@ -249,10 +249,10 @@ edit view kelompok
                         <div class="form-group col-lg-12 ">
                             <select name="id_data_prakerin[]" class="form-control  @error('id_data_prakerin')  is-invalid  @enderror select2">
                                 <option value="">--Cari Siswa--</option>
-                                <option value="{{ $kelompok_laporan[3]->id_data_prakerin }}" selected>
-                                    {{ $kelompok_laporan[3]->data_prakerin->nama }}</option>
+                                <option value="{{ $pengajuan_prakerin[3]->id_data_prakerin }}" selected>
+                                    {{ $pengajuan_prakerin[3]->data_prakerin->nama }}</option>
                                 @foreach ($data_prakerin as $item)
-                                    @if (empty($item->kelompok_laporan))
+                                    @if (empty($item->pengajuan_prakerin))
                                         <option value="{{ $item->id }}" >{{ $item->nama }}</option>
                                     @endif
                                 @endforeach
@@ -270,7 +270,7 @@ edit view kelompok
                         @endif
 
                         <button type="submit" class="btn btn-success ml-3"><i class="fas fa-check"></i> submit</button>
-                        <a href="{{ route('kelompok.index') }}" type="submit" class="btn btn-danger"><i
+                        <a href="{{ route('pengajuan_prakerin.index') }}" type="submit" class="btn btn-danger"><i
                                 class="fas fa-times"></i> Cancel</a>
 
                     </div>

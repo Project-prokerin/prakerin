@@ -35,9 +35,7 @@
 <div class="row">
     <div class="col-12">
       <div class="card">
-        <div class="card-header">
-          <h4>Tambah Kelompok</h4>
-        </div>
+       
         <div class="card-body">
             <form action="{{ route('kelompok.post') }}" method="POST">
                 @csrf
@@ -56,7 +54,7 @@
                         </div>
                 </div>
 
-    <div class="input-group" style="margin-top:20px;">
+    {{-- <div class="input-group" style="margin-top:20px;">
         <div class="col-3">
                             <select name="id_data_prakerin[]"
                                 class="form-control  @error('id_data_prakerin')  is-invalid  @enderror select2">
@@ -149,7 +147,7 @@
         <button type="submit" class="btn btn-success ml-3" style="margin-top:20px;"><i class="fas fa-check"></i> submit</button>
         <a href="{{ route('kelompok.index') }}" type="submit" class="btn btn-danger"style="margin-top:20px;">
             <i class="fas fa-times"></i> Cancel
-        </a>
+        </a> --}}
         </form>
         </div>
         </div>
@@ -158,22 +156,12 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
 <div class="card">
     <div class="card-header">
       <h4>Tambah Kelompok</h4>
     </div>
     <div class="card-body">
-        <form action="{{ route('kelompok.post') }}" method="POST">
+        <form action="{{ route('pengajuan_prakerin.post') }}" method="POST">
             @csrf
             <div class="row">
                 <div class="col-7">
@@ -221,17 +209,17 @@
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
                         </div>
-                        <div class="form-group col-6">
+                        {{-- <div class="form-group col-6">
                             <label class="d-block">No Telephone</label>
                             <input class="form-control @error('no_telpon')  is-invalid  @enderror" type="number"
                                 name="no_telpon" placeholder="no tlp" aria-label="default input example">
                             @error('no_telpon')
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
-                        </div>
+                        </div> --}}
                     </div>
                     <button type="submit" class="btn btn-success ml-3" style="margin-top:20px;"><i class="fas fa-check"></i> submit</button>
-                    <a href="{{ route('kelompok.index') }}" type="submit" class="btn btn-danger"style="margin-top:20px;">
+                    <a href="{{ route('pengajuan_prakerin.index') }}" type="submit" class="btn btn-danger"style="margin-top:20px;">
                         <i class="fas fa-times"></i> Cancel
                     </a>
                 </div>
@@ -250,7 +238,7 @@
                                                     <option value="{{ $item->id }}">{{ $item->nama }}</option>
                                                 @endif
                                             @empty
-                                                <option disabled>Semua Siswa telah mendapat kelompok!</option>
+                                                <option disabled>Semua Siswa telah melakukan Pengajuan!</option>
                                             @endforelse
                                         </select>
                                             @if ($errors->has(`id_data_prakerin.2`))

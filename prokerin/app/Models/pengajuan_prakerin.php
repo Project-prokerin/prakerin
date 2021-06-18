@@ -10,11 +10,12 @@ class pengajuan_prakerin extends Model
     use HasFactory;
     protected $table = 'pengajuan_prakerin';
     protected $guarded = [];
-    public function data_prakerin()
+      public function data_prakerin()
     {
-        // foreign owner key
-        return $this->hasOne(data_prakerin::class, 'id','id_data_pakerin');
+                                              
+        return $this->hasOne(data_prakerin::class,'id','id_data_prakerin');
     }
+
     public function guru()
     {
         // foreign  owner key

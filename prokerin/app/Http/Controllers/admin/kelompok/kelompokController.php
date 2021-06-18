@@ -60,7 +60,7 @@ class kelompokController extends Controller
     public function tambah(Request $request)
     {
 
-        $data_prakerin = data_prakerin::doesntHave('kelompok_laporan')->get();
+        $data_prakerin = data_prakerin::doesntHave('kelompok_laporan')->where('status','Magang')->get();
         $perusahaan = perusahaan::all();
         $guru = guru::all();
         return view('admin.kelompok_prakerin.tambah',compact('data_prakerin','perusahaan','guru'));
@@ -135,7 +135,8 @@ class kelompokController extends Controller
         $perusahaan = perusahaan::all();
         $guru = guru::all();
         $siswa = Siswa::all();
-        $kelompok_laporan = kelompok_laporan::where('no',$id)->with('data_prakerin')->get();
+        $kelompok_laporan = kelompok_laporan::where('no',$id)->with('data_prakerin')->whereNotNull('id_data_prakerin')->get();
+        // $kelompok = kelompok_laporan::where('no',$id)->whereNotNull('id_data_prakerin')->get();
 
         return view('admin.kelompok_prakerin.detail',compact('kelompok_laporan'));
     }
@@ -148,7 +149,7 @@ class kelompokController extends Controller
      */
     public function edit($id)
     {
-        $data_prakerin = data_prakerin::doesntHave('kelompok_laporan')->get();
+        $data_prakerin = data_prakerin::doesntHave('kelompok_laporan')->doesntHave('pengajuan_prakerin')->get();
         $perusahaan = perusahaan::all();
         $guru = guru::all();
         $siswa = Siswa::all();

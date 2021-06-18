@@ -34,7 +34,8 @@
                             </div>
                            
                             <div class="container">
-                                <form action="{{route('data_prakerin.post')}}" method="POST">
+                                <form action="{{route('data_prakerin.update',$dataPrakerin->id)}}" method="POST">
+                                    @method('PUT')
                                         @csrf
                                     <div class="row">
                                         <div class="col-6  kanan">

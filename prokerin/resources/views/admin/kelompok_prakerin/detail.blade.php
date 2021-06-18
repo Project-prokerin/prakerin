@@ -43,7 +43,7 @@
               <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
                   <li class="breadcrumb-item"><a href="#">Kelompok Prakerin</a></li>
-                  <li class="breadcrumb-item active" aria-current="page">Data Kelompok 1</li>
+                  <li class="breadcrumb-item active" aria-current="page">Data Kelompok {{$kelompok_laporan[0]->no}}</li>
                 </ol>
               </nav>
         </div>
@@ -76,7 +76,7 @@
         </tbody>
         </table>
         <div class="card-body">
-            <a href="{{ route('kelompok.index') }}" type="button" class="btn btn-danger "><i class="fas fa-backspace"></i>   Kembali</a>
+            <a href="{{ route('pengajuan_prakerin.index') }}" type="button" class="btn btn-danger "><i class="fas fa-backspace"></i>   Kembali</a>
         </div>
     </div>
 </div>

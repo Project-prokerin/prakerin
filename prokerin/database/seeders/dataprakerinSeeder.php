@@ -27,7 +27,7 @@ class dataprakerinSeeder extends Seeder
             'id_guru' => 1,
             'tgl_mulai' => '2020-10-10',
             'tgl_selesai' => '2021-11-11',
-            'status' => "Magang",
+            'status' => "Pengajuan",
             'created_at' => Carbon::now()
         ]);
         DB::table('data_prakerin')->insert([
@@ -38,7 +38,7 @@ class dataprakerinSeeder extends Seeder
             'id_guru' => 1,
             'tgl_mulai' => '2020-10-10',
             'tgl_selesai' => '2021-11-11',
-            'status' => "Magang",
+            'status' => "Pengajuan",
             'created_at' => Carbon::now()
         ]);
         DB::table('data_prakerin')->insert([
@@ -49,7 +49,7 @@ class dataprakerinSeeder extends Seeder
             'id_guru' => 1,
             'tgl_mulai' => '2020-10-10',
             'tgl_selesai' => '2021-11-11',
-            'status' => "Magang",
+            'status' => "Pengajuan",
             'created_at' => Carbon::now()
         ]);
 
@@ -61,7 +61,7 @@ class dataprakerinSeeder extends Seeder
             'id_guru' => 2,
             'tgl_mulai' => '2020-10-10',
             'tgl_selesai' => '2021-11-11',
-            'status' => "Magang",
+            'status' => "Pengajuan",
             'created_at' => Carbon::now()
         ]);
         DB::table('data_prakerin')->insert([

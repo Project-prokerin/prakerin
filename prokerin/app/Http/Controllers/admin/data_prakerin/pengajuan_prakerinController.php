@@ -9,8 +9,9 @@ use App\Models\perusahaan;
 use App\Models\data_prakerin;
 use App\Models\guru;
 use App\Models\Siswa;
-use App\Http\Requests\admin\kelompok_laporanRequest;
+use App\Http\Requests\admin\pengajuan_prakerinRequest;
 use App\Models\pengajuan_prakerin;
+use App\Models\detail_pengajuan_prakerin;
 
 class pengajuan_prakerinController extends Controller
 {
@@ -59,7 +60,7 @@ class pengajuan_prakerinController extends Controller
     public function tambah(Request $request)
     {
 
-        $data_prakerin = data_prakerin::doesntHave('kelompok_laporan')->get();
+        $data_prakerin = data_prakerin::doesntHave('pengajuan_prakerin')->where('status','Pengajuan')->get();
         $perusahaan = perusahaan::all();
         $guru = guru::all();
         return view('admin.pengajuan_prakerin.tambah', compact('data_prakerin', 'perusahaan', 'guru'));
@@ -71,8 +72,9 @@ class pengajuan_prakerinController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(kelompok_laporanRequest $request)
-    {
+    public function store(pengajuan_prakerinRequest $request)
+    {   
+        // dd($request);
 
 
         $request->validated();
@@ -93,15 +95,23 @@ class pengajuan_prakerinController extends Controller
                 'id_guru'   => $data['id_guru'],
                 'id_data_prakerin'   => $data['id_data_prakerin'][$key],
                 'nama_perusahaan'   => $perusahaan->nama,
-                'no_telpon'         => $data['no_telpon'],
                 // 'jurusan'       => $data['jurusan'],
             );
 
-            kelompok_laporan::create($data2);
+           $pengajuan_prakerin = pengajuan_prakerin::create($data2);
         }
+        $collect = collect([pengajuan_prakerin::all()]);
+        $surat_number = $collect->unique('no');
+        // $grouped = $pengajuan_prakerin::->groupBy('no')->map(function ($row) {return $row->count();});
+        // dd($surat_number->count());
+        
+        detail_pengajuan_prakerin::create([
+            'id_pengajuan_prakerin' => $pengajuan_prakerin->id,
+            'no_surat' =>  str_pad($surat_number->count() + 1, 3, "0", STR_PAD_LEFT),
+        ]);
 
 
-        // }
+       
 
         // foreach ($request->id_data_prakerin as $key => $val) {
         //     $data = kelompok_laporan::create([
@@ -116,7 +126,7 @@ class pengajuan_prakerinController extends Controller
         // }
         // dd($data);
 
-        return redirect()->route('pengajuan_prakerin.index')->with(['success' => 'Kelompok berhasil di buat!']);
+        return redirect()->route('pengajuan_prakerin.index')->with(['success' => 'Pengajuan berhasil di buat!']);
     }
 
     /**
@@ -132,9 +142,10 @@ class pengajuan_prakerinController extends Controller
         $perusahaan = perusahaan::all();
         $guru = guru::all();
         $siswa = Siswa::all();
-        $kelompok_laporan = kelompok_laporan::where('no', $id)->with('data_prakerin')->get();
+        // $pengajuan_prakerin = pengajuan_prakerin::where('no', $id)->with('data_prakerin')->get();
+        $pengajuan_prakerin = pengajuan_prakerin::where('no',$id)->with('data_prakerin')->whereNotNull('id_data_prakerin')->get();
 
-        return view('admin.pengajuan_prakerin.detail', compact('kelompok_laporan'));
+        return view('admin.pengajuan_prakerin.detail', compact('pengajuan_prakerin'));
     }
 
     /**
@@ -145,14 +156,14 @@ class pengajuan_prakerinController extends Controller
      */
     public function edit($id)
     {
-        $data_prakerin = data_prakerin::doesntHave('kelompok_laporan')->get();
+        $data_prakerin = data_prakerin::doesntHave('pengajuan_prakerin')->doesntHave('kelompok_laporan')->where('status','pengajuan')->get();
         $perusahaan = perusahaan::all();
         $guru = guru::all();
         $siswa = Siswa::all();
-        $kelompok_laporan = kelompok_laporan::where('no', $id)->with('data_prakerin')->get();
-        // dd($kelompok_laporan[2]->id_data_prakerin);
+        $pengajuan_prakerin = pengajuan_prakerin::where('no', $id)->with('data_prakerin')->get();
+        // dd($pengajuan_prakerin[2]->data_prakerin->nama);
         // dd($dataPrakerin->perusahaan->nama);
-        return view('admin.pengajuan_prakerin.edit', compact('kelompok_laporan', 'perusahaan', 'guru', 'data_prakerin', 'siswa'));
+        return view('admin.pengajuan_prakerin.edit', compact('pengajuan_prakerin', 'perusahaan', 'guru', 'data_prakerin', 'siswa'));
 
         // return view('admin.pengajuan_prakerin.edit');
     }
@@ -164,7 +175,7 @@ class pengajuan_prakerinController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(kelompok_laporanRequest $request)
+    public function update(pengajuan_prakerinRequest $request)
     {
         // $input = Input::all();
         // $id_dataP = $request->id_data_prakerin;
@@ -173,12 +184,12 @@ class pengajuan_prakerinController extends Controller
         // $data = $request->all();
         $request->validated();
         foreach ($request->id_data_prakerin as $key => $val) {
-            $data = kelompok_laporan::where('id', $request->id[$key])->where('no', $request->no[$key])->update([
+            $data = pengajuan_prakerin::where('id', $request->id[$key])->where('no', $request->no[$key])->update([
                 'no'   => $request->no[$key],
                 'id_guru'   => $request->id_guru,
                 'id_data_prakerin'   => $request->id_data_prakerin[$key],
                 'nama_perusahaan'   => $request->id_perusahaan,
-                'no_telpon'         => $request->no_telpon,
+                // 'no_telpon'         => $request->no_telpon,
                 // 'jurusan'       => $request->jurusan,
 
             ]);
@@ -284,9 +295,9 @@ class pengajuan_prakerinController extends Controller
         // $data->save;
 
         // dd($update);
-        return redirect()->route('pengajuan_prakerin.index')->with(['update' => 'Kelompok ' . $request->no[0] . ' berhasil di Update  !']);
+        return redirect()->route('pengajuan_prakerin.index')->with(['update' => 'Pengajuan ' . $request->no[0] . ' berhasil di Update  !']);
     }
-    public function updates(kelompok_laporanRequest $request, data_prakerin $data_prakerin)
+    public function updates(pengajuan_prakerinRequest $request, data_prakerin $data_prakerin)
     {
         $request->validated();
 

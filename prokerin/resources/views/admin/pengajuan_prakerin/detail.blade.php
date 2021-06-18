@@ -35,15 +35,15 @@
 <div class="card">
     <div class="garis"></div>
         <div class="card-header">
-            <h5 class="title"><i class="far fa-address-card"></i> Informasi Kelompok</h5>
+            <h5 class="title"><i class="far fa-address-card"></i> Informasi Pengajuan</h5>
         </div>
     <div class="container">
         <hr style="margin-top: -10px;">
         <div>
               <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
-                  <li class="breadcrumb-item"><a href="#">Kelompok Prakerin</a></li>
-                  <li class="breadcrumb-item active" aria-current="page">Data Kelompok 1</li>
+                  <li class="breadcrumb-item"><a href="#">Pengajuan Prakerin</a></li>
+                  <li class="breadcrumb-item active" aria-current="page">Data Pengajuan {{$pengajuan_prakerin[0]->no}}</li>
                 </ol>
               </nav>
         </div>
@@ -58,13 +58,13 @@
             <th scope="col">Action</th>
         </thead>
         <tbody>
-           @foreach ($kelompok_laporan as $kel)
+           @foreach ($pengajuan_prakerin as $pengajuan)
            <tr>
             <th scope="row">{{$loop->iteration}}</th>
-            <td>{{$kel->data_prakerin->siswa->nipd}}</td>
-            <td>{{$kel->data_prakerin->nama}}</td>
-            <td>{{$kel->data_prakerin->kelas->jurusan->jurusan}}</td>
-            <td>{{$kel->data_prakerin->kelas->level}}</td>
+            <td>{{$pengajuan->data_prakerin->siswa->nipd}}</td>
+            <td>{{$pengajuan->data_prakerin->nama}}</td>
+            <td>{{$pengajuan->data_prakerin->kelas->jurusan->jurusan}}</td>
+            <td>{{$pengajuan->data_prakerin->kelas->level}}</td>
             <td>
                 <button type="button" class="btn btn-primary"><i class="fas fa-search"></i></button>
                 <button type="button" class="btn btn-warning"><i class="fas fa-pencil-alt"></i></button>
