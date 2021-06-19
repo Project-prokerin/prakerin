@@ -10,6 +10,7 @@ use App\Models\perusahaan;
 use Illuminate\Support\Facades\Validator;
 use Carbon\Carbon;
 use App\Http\Requests\admin\jurnal_prakerinRequest;
+use Illuminate\Support\Facades\Auth;
 
 use App\Models\data_prakerin;
 class jurnal_prakerinController extends Controller
@@ -22,7 +23,8 @@ class jurnal_prakerinController extends Controller
     public function index()
     {
         $sidebar = 'jurnal';
-        return view('admin.jurnal_prakerin.index', compact('sidebar'));
+        $data_prakerin =  data_prakerin::get();
+        return view('admin.jurnal_prakerin.index', compact('sidebar','data_prakerin'));
     }
 
     /**
@@ -57,10 +59,13 @@ class jurnal_prakerinController extends Controller
             // })
                 ->addColumn('action', function ($data) {
                     $button ='<a href="../admin/jurnal/detail/'.$data->id . '"   id="' . $data->id . '" class="edit btn btn-primary btn-sm"><i class="fas fa-search"></i></a>';
+
+                if (Auth::user()->role != 'kaprog') {
                     $button .= '&nbsp';
-                    $button .= '<a  href="../admin/jurnal/edit/'.$data->id.'" id="edit" data-toggle="tooltip"  data-id="' . $data->id . '" data-original-title="Edit" class="edit btn btn-warning btn-sm edit-post"><i class="fas fa-pencil-alt"></i></a>';
+                    $button .= '<a  href="../admin/jurnal/edit/' . $data->id . '" id="edit" data-toggle="tooltip"  data-id="' . $data->id . '" data-original-title="Edit" class="edit btn btn-warning btn-sm edit-post"><i class="fas fa-pencil-alt"></i></a>';
                     $button .= '&nbsp';
                     $button .= '<button type="button" name="delete" id="hapus" data-id="' . $data->id . '" class="delete btn btn-danger btn-sm"><i class="fas fa-trash"></i></button>';
+                }
                     return $button;
                 })
                 ->rawColumns(['action'])
@@ -70,8 +75,7 @@ class jurnal_prakerinController extends Controller
     public function tambah(Request $request)
     {
         $sidebar = 'jurnal';
-        $data_prakerin = data_prakerin::all();
-        return view('admin.jurnal_prakerin.tambah', compact('sidebar','data_prakerin'));
+        return view('admin.jurnal_prakerin.tambah', compact('sidebar'));
     }
 
     /**

@@ -90,37 +90,37 @@ class PDFController extends Controller
 
         public function contohh()
         {
-    
-       
+
+
             // dd($tandatangan_kepsek);
-    
+
             $pdf = PDF::loadView('export.PDF.ss');
-    
+
             return $pdf->stream('DATA contoh.PDF');
-    
+
             //  $w->getClientOriginalName();
-    
+
             // dd($pdf);
-    
-    
+
+
             }
 
-            public function Jurnal()
+            public function Jurnal($id)
             {
-        
-           
+
+
                 // dd($tandatangan_kepsek);
-        
+
                 $pdf = PDF::loadView('export.PDF.jurnal');
-        
+
                 return $pdf->stream('DATA Jurnal.PDF');
-        
+
                 //  $w->getClientOriginalName();
-        
+
                 // dd($pdf);
-        
-        
-                } 
-    
+
+
+                }
+
 
 }

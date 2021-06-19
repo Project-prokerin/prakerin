@@ -1,5 +1,6 @@
 $(document).ready(function() {
     var filter = $("#search").val();
+    role =
     console.log(filter);
     var table = $('#table99').DataTable({
         dom:
@@ -53,10 +54,13 @@ $(document).ready(function() {
             }
         ],
     });
+    role = $('#role').data('role');
+    if(role != 'kaprog'){
+        $('.btn-table').append(
+                '<a href="/admin/jurnalH/tambah"class="btn btn-primary" data-toggle="modal" data-target="#exampleModal"> Tambah Data <i class="fas fa-plus"></i></button></a>'
+        );
+    }
 
-    $('.btn-table').append(
-        '<a href="/admin/jurnalH/tambah"class="btn btn-primary" data-toggle="modal" data-target="#exampleModal"> Tambah Data <i class="fas fa-plus"></i></button></a>'
-    );
     $('#table99_filter').prepend(
         '<a href="/admin/export/excel/jurnalH"class="btn btn-success mr-3  ml-2"> Excel <i class="fas fa-cloud-download-alt"></i></button></a>'
     );

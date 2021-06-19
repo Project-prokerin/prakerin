@@ -248,7 +248,7 @@
 
 
 
-
+      <span id="role" data-role="{{ Auth::user()->role }}"></span>
 
 
 @endsection

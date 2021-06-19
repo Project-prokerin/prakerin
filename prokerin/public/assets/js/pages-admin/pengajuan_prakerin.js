@@ -1,6 +1,7 @@
 $(document).ready(function() {
     var filter = $('#search').val();
     console.log(filter);
+        role = $('#role').data('role');
     var table = $('#table30').DataTable({
         dom:
         "<'row'<'ol-sm-12 col-md-6 btn-table'><'col-sm-12 col-md-6  pdf-button'f>>" +

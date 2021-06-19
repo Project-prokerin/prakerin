@@ -249,7 +249,7 @@
 
 
 
-
+      <span id="role" data-role="{{ Auth::user()->role }}"></span>
 @endsection
 @push('script')
     <script src="{{ asset('template/') }}/node_modules/select2/dist/js/select2.full.min.js"></script>
