@@ -9,8 +9,8 @@ use App\Models\Siswa;
 use App\Models\perusahaan;
 use Illuminate\Support\Facades\Validator;
 use Carbon\Carbon;
-use App\Http\Requests\admin\jurnal_prakerinRequest;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Requests\admin\jurnal_prakerinRequest;
 
 use App\Models\data_prakerin;
 class jurnal_prakerinController extends Controller
@@ -36,7 +36,7 @@ class jurnal_prakerinController extends Controller
     {
 
         if ($request->ajax()) {
-            $jurnalPrakerin = jurnal_prakerin::with('siswa')->with('perusahaan');
+            $jurnalPrakerin = jurnal_prakerin::with('siswa')->with('perusahaan')->orderby('created_at', 'DESC');
             return datatables()->of($jurnalPrakerin)
             ->editColumn('tanggal_pelaksanaan', function ($jurnal_prakerin) {
                 return [
@@ -45,20 +45,16 @@ class jurnal_prakerinController extends Controller
                 ];
             })
 
-             ->addColumn('id_siswa', function (jurnal_prakerin $jurnal_prakerin) {
+            ->addColumn('nama_siswa', function (jurnal_prakerin $jurnal_prakerin) {
                 return $jurnal_prakerin->siswa->nama_siswa;
             })
-            ->addColumn('id_perusahaan', function (jurnal_prakerin $jurnal_prakerin) {
-                return $jurnal_prakerin->perusahaan->nama;
-            })
-            // ->editColumn('tgl_selesai', function ($dataPrakerin) {
-            //     return [
-            //         'display' => e($dataPrakerin->tgl_selesai->format('m-d-Y')),
-            //         'timestamp' => $dataPrakerin->tgl_selesai->timestamp
-            //     ];
-            // })
+                ->editColumn('tanggal_pelaksanaan', function ($row) {
+                    $tanggal_pelaksanaan = !empty(tanggal($row->tanggal_pelaksanaan)) ? tanggal($row->tanggal_pelaksanaan) : ''; // relasi user->siswa
+                    return $tanggal_pelaksanaan;
+                })
                 ->addColumn('action', function ($data) {
                     $button ='<a href="../admin/jurnal/detail/'.$data->id . '"   id="' . $data->id . '" class="edit btn btn-primary btn-sm"><i class="fas fa-search"></i></a>';
+
 
                 if (Auth::user()->role != 'kaprog') {
                     $button .= '&nbsp';
@@ -75,7 +71,8 @@ class jurnal_prakerinController extends Controller
     public function tambah(Request $request)
     {
         $sidebar = 'jurnal';
-        return view('admin.jurnal_prakerin.tambah', compact('sidebar'));
+        $data_prakerin = data_prakerin::all();
+        return view('admin.jurnal_prakerin.tambah', compact('sidebar','data_prakerin'));
     }
 
     /**

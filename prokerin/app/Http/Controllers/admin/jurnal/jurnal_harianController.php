@@ -32,7 +32,7 @@ class jurnal_harianController extends Controller
     public function ajax(Request $request)
     {
         if ($request->ajax()) {
-            $jurnalPrakerin = jurnal_harian::with('siswa')->with('perusahaan');
+            $jurnalPrakerin = jurnal_harian::with('siswa')->with('perusahaan')->orderby('created_at', 'DESC');
             return datatables()->of($jurnalPrakerin)
             // ->editColumn('tanggal_pelaksanaan', function ($jurnal_harian) {
             //     return [
@@ -40,36 +40,30 @@ class jurnal_harianController extends Controller
             //         'timestamp' => $jurnal_harian->tanggal_pelaksanaan->timestamp
             //     ];
             // })
-
-             ->addColumn('id_siswa', function (jurnal_harian $jurnal_harian) {
-                 $siswa = empty($jurnal_harian->siswa->kelas->jurusan) ? "Belum mendapat jurusan" : $jurnal_harian->siswa->kelas->jurusan->singkatan_jurusan;
-                return $siswa;
-            })
-            ->addColumn('jurusan', function (jurnal_harian $jurnal_harian) {
-                $jurusan = empty($jurnal_harian->siswa->kelas->jurusan) ? "Belum mendapat jurusan" : $jurnal_harian->siswa->kelas->jurusan->singkatan_jurusnx;
-                return $jurusan;
-            })
-            ->addColumn('no_kelompok', function (jurnal_harian $jurnal_harian) {
-                $no = empty( $jurnal_harian->siswa->data_prakerin->kelompok_laporan->no) ? "Belum mendapat kelompok" :  $jurnal_harian->siswa->data_prakerin->kelompok_laporan->no;
-                return $no;
-            })
-            ->addColumn('perusahaan', function (jurnal_harian $jurnal_harian) {
-                $perusahaan = empty($jurnal_harian->siswa->data_prakerin->kelompok_laporan->nama_perusahaan) ? "Belum mendapat perusahaan" : $jurnal_harian->siswa->data_prakerin->kelompok_laporan->nama_perusahaan;
-                return $perusahaan;
-            })
-            ->addColumn('pembimbing', function (jurnal_harian $jurnal_harian) {
-                $pembimbing = empty($jurnal_harian->siswa->data_prakerin->kelompok_laporan->guru->nama) ? "Belum mendapat pembimbing" : $jurnal_harian->siswa->data_prakerin->kelompok_laporan->guru->nama;
-                return $pembimbing;
-            })
-            // ->addColumn('id_perusahaan', function (jurnal_harian $jurnal_harian) {
-            //     return $jurnal_harian->perusahaan->nama;
-            // })
-            // ->editColumn('tgl_selesai', function ($dataPrakerin) {
-            //     return [
-            //         'display' => e($dataPrakerin->tgl_selesai->format('m-d-Y')),
-            //         'timestamp' => $dataPrakerin->tgl_selesai->timestamp
-            //     ];
-            // })
+                ->addColumn('nama_siswa', function (jurnal_harian $jurnal_harian) {
+                    return $jurnal_harian->siswa->nama_siswa;
+                })
+                // ->addColumn('id_perusahaan', function (jurnal_harian $jurnal_harian) {
+                //     return $jurnal_harian->perusahaan->nama;
+                // })
+                // ->editColumn('tgl_selesai', function ($dataPrakerin) {
+                //     return [
+                //         'display' => e($dataPrakerin->tgl_selesai->format('m-d-Y')),
+                //         'timestamp' => $dataPrakerin->tgl_selesai->timestamp
+                //     ];
+                // })
+                ->editColumn('tanggal', function ($row) {
+                    $tanggal = !empty(tanggal($row->tanggal)) ? tanggal($row->tanggal) : ''; // relasi user->siswa
+                    return $tanggal;
+                })
+                ->editColumn('datang', function ($row) {
+                    $datang = !empty(jam($row->datang)) ? jam($row->datang) : ''; // relasi user->siswa
+                    return $datang;
+                })
+                ->editColumn('pulang', function ($row) {
+                    $pulang = !empty(jam($row->pulang)) ? jam($row->pulang) : ''; // relasi user->siswa
+                    return $pulang;
+                })
                 ->addColumn('action', function ($data) {
                     $button = '<a href="../admin/jurnalH/detail/'.$data->id . '"   id="' . $data->id . '" class="edit btn btn-primary btn-sm"><i class="fas fa-search"></i></a>';
                     if(Auth::user()->role != 'kaprog')
@@ -83,7 +77,7 @@ class jurnal_harianController extends Controller
 
                     return $button;
                 })
-                ->rawColumns(['action'])
+                ->rawColumns(['action', 'tanggal', 'datang', 'pulang'])
                 ->addIndexColumn()->make(true);
         }
     }

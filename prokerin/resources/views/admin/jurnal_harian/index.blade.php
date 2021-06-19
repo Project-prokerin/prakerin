@@ -46,10 +46,11 @@
                   <th>
                     No
                   </th>
-                  <th>No Kelompok</th>
-                  <th>Guru Pembimbing</th>
-                  <th>Jurusan</th>
-                  <th>Perusahaan</th>
+                  <th >Nama siswa</th>
+                    <th >Tanggal</th>
+                    <th >Jam Datang</th>
+                    <th >Jam Pulang</th>
+                    <th >Kegiatan Harian</th>
                   <th>Action</th>
                 </tr>
               </thead>

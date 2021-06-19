@@ -1,12 +1,11 @@
-$(document).ready(function() {
+$(document).ready(function () {
     var filter = $("#search").val();
     role =
-    console.log(filter);
+        console.log(filter);
     var table = $('#table99').DataTable({
-        dom:
-        "<'row'<'ol-sm-12 col-md-6 btn-table'><'col-sm-12 col-md-6  pdf-button'f>>" +
-        "<'row'<'col-sm-12'tr>>" +
-        "<'row'<'col-sm-5'i><'col-sm-7'p>>",
+        dom: "<'row'<'ol-sm-12 col-md-6 btn-table'><'col-sm-12 col-md-6  pdf-button'f>>" +
+            "<'row'<'col-sm-12'tr>>" +
+            "<'row'<'col-sm-5'i><'col-sm-7'p>>",
         bLengthChange: false,
         ordering: false,
         info: true,
@@ -22,7 +21,7 @@ $(document).ready(function() {
             },
             url: "/admin/jurnalH/ajax/",
             type: "post",
-            data: function(data) {
+            data: function (data) {
                 data = '';
                 return data
             }
@@ -32,32 +31,40 @@ $(document).ready(function() {
                 name: 'DT_RowIndex'
             },
             {
-                data: 'no_kelompok',
-                name: 'no_kelompok'
+                data: 'nama_siswa',
+                name: 'nama_siswa'
             },
             {
-                data: 'pembimbing',
-                name: 'pembimbing'
+                data: 'tanggal',
+                name: 'tanggal'
             },
             {
-                data: 'jurusan',
-                name: 'jurusan'
+                data: 'datang',
+                name: 'datang'
             },
             {
-                data: 'perusahaan',
-                name: 'perusahaan'
+                data: 'pulang',
+                name: 'pulang'
+            }, //add colump di data tab;e
+            {
+                data: 'kegiatan_harian',
+                name: 'kegiatan_harian'
             },
-
             {
                 data: 'action',
                 name: 'action'
             }
         ],
+         columnDefs: [
+        { targets: [2,5], 'createdCell':  function (td, cellData, rowData, row, col) {
+                    $(td).addClass('text-left');
+        }},
+        ],
     });
     role = $('#role').data('role');
-    if(role != 'kaprog'){
+    if (role != 'kaprog') {
         $('.btn-table').append(
-                '<a href="/admin/jurnalH/tambah"class="btn btn-primary" data-toggle="modal" data-target="#exampleModal"> Tambah Data <i class="fas fa-plus"></i></button></a>'
+            '<a href="/admin/jurnalH/tambah"class="btn btn-primary" data-toggle="modal" data-target="#exampleModal"> Tambah Data <i class="fas fa-plus"></i></button></a>'
         );
     }
 
@@ -66,11 +73,11 @@ $(document).ready(function() {
     );
 
     // search engine
-    $("#search").keyup(function() {
+    $("#search").keyup(function () {
         table.search(this.value).draw();
     })
     // hapus data
-    $('body').on('click', '#hapus', function() {
+    $('body').on('click', '#hapus', function () {
         // sweet alert
         Swal.fire({
             title: 'Apa anda yakin?',
@@ -87,7 +94,7 @@ $(document).ready(function() {
                     data: {
                         _token: '{{ csrf_token() }}'
                     },
-                    success: function(data) {
+                    success: function (data) {
                         console.log(data);
                         table.draw();
                         Swal.fire(
@@ -96,7 +103,7 @@ $(document).ready(function() {
                             'success'
                         )
                     },
-                    error: function(data) {
+                    error: function (data) {
                         console.log('Error:', data);
                     }
                 });
@@ -108,7 +115,7 @@ $(document).ready(function() {
 
 
 
-$('#submit').click(function(event) {
+$('#submit').click(function (event) {
     event.preventDefault();
     var form = $('#contact_form'),
         url = form.attr('action'),
@@ -136,11 +143,11 @@ $('#submit').click(function(event) {
 
             location.reload();
         },
-        error: function(xhr) {
+        error: function (xhr) {
             console.log(xhr.responseJSON)
             var err = xhr.responseJSON;
             if ($.isEmptyObject(err) == false) {
-                $.each(err.errors, function(key, value) {
+                $.each(err.errors, function (key, value) {
 
                     $('#' + key).addClass('is-invalid').closest('.input-group').append(
                         '<div class="invalid-feedback">' + value + '</div>')
@@ -153,24 +160,24 @@ $('#submit').click(function(event) {
 
 
 //edit
-$(document).on('click', '#editButton', function(event) {
+$(document).on('click', '#editButton', function (event) {
     event.preventDefault();
     let href = $(this).attr("data-attr");
 
     $.ajax({
         url: href,
-        beforeSend: function() {
+        beforeSend: function () {
             $('#loader').show();
         },
         // return the result
-        success: function(result) {
+        success: function (result) {
             $('#editModal').modal("show");
             $('#editBody').html(result).show();
         },
-        complete: function() {
+        complete: function () {
             $('#loader').hide();
         },
-        error: function(jqXHR, testStatus, error) {
+        error: function (jqXHR, testStatus, error) {
             console.log(error);
             alert("Page " + href + " cannot open. Error:" + error);
             $('#loader').hide();
@@ -179,12 +186,12 @@ $(document).on('click', '#editButton', function(event) {
     })
 });
 
-$('#update').click(function(event) {
+$('#update').click(function (event) {
     event.preventDefault();
     var form = $('#edit_form'),
         url = form.attr('action'),
         method = form.attr('method');
-    var nama = $( ".id_siswa option:selected" ).text();
+    var nama = $(".id_siswa option:selected").text();
     form.find('.invalid-feedback').remove();
     form.find('.form-control').removeClass('is-invalid')
     $.ajax({
@@ -196,7 +203,7 @@ $('#update').click(function(event) {
             $('#editModal').modal('hide');
             alert = Swal.fire({
                 title: 'Berhasil',
-                text: ''+nama+' Berhasil Update Absen ',
+                text: '' + nama + ' Berhasil Update Absen ',
                 icon: 'success',
                 confirmButtonText: 'tutup'
             })
@@ -207,11 +214,11 @@ $('#update').click(function(event) {
 
             location.reload();
         },
-        error: function(xhr) {
+        error: function (xhr) {
             console.log(xhr.responseJSON)
             var err = xhr.responseJSON;
             if ($.isEmptyObject(err) == false) {
-                $.each(err.errors, function(key, value) {
+                $.each(err.errors, function (key, value) {
 
                     $('#' + key).addClass('is-invalid').closest('.input-group').append(
                         '<div class="invalid-feedback">' + value + '</div>')

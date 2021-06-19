@@ -82,12 +82,12 @@
                                     </div>
                                 </div>
                         </div>
-                        <select name="filter" id="filter" class="form-control w-25 mr-3 " >
+                        {{-- <select name="filter" id="filter" class="form-control w-25 mr-3 " >
                             <option value="">FILTER JURNAL</option>
                             <option value="Hari">Hari ini</option>
                             <option value="Minggu">Minggu ini</option>
                             <option value="Bulan">Bulan ini</option>
-                        </select>
+                        </select> --}}
                         <div class="card-header-action" >
                                 <a href="{{ route('user.jurnal.tambah') }}" class="btn btn-primary {{ jurnal_p_stat() }}" {{ jurnal_p_stat() }} >
                                     {{ jurnal_p_val() }}
@@ -103,9 +103,10 @@
                     <thead class="text-white">
                         <tr class="bg-primary table-th pb-2">
                             <th scope="col" style="width: 30px;"><p>No</p></th>
-                            <th scope="col" style=""><p>Kompetisi Dasar</p></th>
-                            <th scope="col" style=""><p>Topik Pembelajaran</p></th>
+                             <th scope="col" style=""><p>Topik Pembelajaran</p></th>
                             <th scope="col" style=""><p>Tanggal Pelaksanaan</p></th>
+                            <th scope="col" style=""><p>Kompetisi Dasar</p></th>
+
                         </tr>
                     </thead>
                     <tbody style="padding-top: 200px">
@@ -158,9 +159,9 @@ $(document).ready(function () {
                 // colump dari controller
                 columns: [
                     {data: 'DT_RowIndex', name: 'DT_RowIndex'},
-                    {data: 'kompetisi_dasar', name: 'kompetisi_dasar'},
                     {data: 'topik_pekerjaan', name: 'topik_pekerjaan'},
                     {data: 'tanggal_pelaksanaan', name: 'tanggal_pelaksanaan'}, //add colump di data tab;e
+                    {data: 'kompetisi_dasar', name: 'kompetisi_dasar'},
                 ],columnDefs: [
                 { className: 'text-center', targets: [0,3] },
             ]
