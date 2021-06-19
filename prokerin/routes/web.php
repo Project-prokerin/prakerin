@@ -242,6 +242,7 @@ Route::prefix('admin')->middleware(['web', 'auth', 'role:kaprog,hubin'])->group(
     Route::get('kelompok/ajax', [kelompokController::class, 'ajax'])->name('kelompok.ajax');
     Route::get('kelompok/detail/{id}', [kelompokController::class, 'detail'])->name('kelompok.detail');
     Route::get('kelompok/tambah', [kelompokController::class, 'tambah'])->name('kelompok.tambah');
+    Route::get('kelompok/fetch/{id}', [kelompokController::class, 'fetch'])->name('kelompok.fetch');
     Route::post('kelompok/tambah/post', [kelompokController::class, 'store'])->name('kelompok.post');
     Route::get('kelompok/edit/{id}', [kelompokController::class, 'edit'])->name('kelompok.edit');
     Route::put('kelompok/update/{kelompok}', [kelompokController::class, 'update'])->name('kelompok.update');

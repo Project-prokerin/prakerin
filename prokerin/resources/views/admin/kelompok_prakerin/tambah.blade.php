@@ -210,7 +210,7 @@
                     <div class="row">
                         <div class="form-group col-6">
                             <label class="d-block">Nama Perusahaan</label>
-                            <select name="id_perusahaan"
+                            <select id="id_perusahaan" name="id_perusahaan"
                                 class="form-control   @error('id_perusahaan')  is-invalid  @enderror select2">
                                 <option value="">--Cari Perusahaan--</option>
                                 @foreach ($perusahaan as $perusahaann)
@@ -242,24 +242,24 @@
                             <table class="table" id="dynamic_field">
                                  <tr>
                                       <td class="col-7">
-                                        <select name="id_data_prakerin[]"
-                                            class="form-control select2  @error('id_data_prakerin')  is-invalid  @enderror ">
-                                            <option value="">--Cari Siswa--</option>
+                                        <select id="id_data_prakerin" name="id_data_prakerin[]"
+                                            class="form-control select2 prakerin  @error('id_data_prakerin')  is-invalid  @enderror ">
+                                            {{-- <option value="">--Cari Siswa--</option>
                                             @forelse ($data_prakerin as $item)
                                                 @if (empty($item->kelompok_laporan))
                                                     <option value="{{ $item->id }}">{{ $item->nama }}</option>
                                                 @endif
                                             @empty
                                                 <option disabled>Semua Siswa telah mendapat kelompok!</option>
-                                            @endforelse
+                                            @endforelse --}}
                                         </select>
-                                            @if ($errors->has(`id_data_prakerin.2`))
+                                            {{-- @if ($errors->has(`id_data_prakerin.2`))
                                                 <span class="text-danger">
                                                     <small>
                                                         {{ $errors->first('id_data_prakerin.2') }}
                                                     </small>
                                                 </span>
-                                            @endif
+                                            @endif --}}
                                       </td>
                                       <td><button type="button" name="add" id="add" class="btn btn-success">Add More</button></td>
                                     </tr>
@@ -278,22 +278,43 @@
 @endsection
 @push('script')
 
+<script>
+          $(document).ready(function () {
+                $('#id_perusahaan').on('change', function () {
+                let id = $(this).val();
+                $('.prakerin').empty();
+                $('.prakerin').append(`<option value="0" disabled selected>Mencari...</option>`).show('slow');
+                $.ajax({
+                type: 'GET',
+                url: 'fetch/' + id,
+                success: function (response) {
+                var response = JSON.parse(response);
+                console.log(response);   
+                $('.prakerin').empty();
+                $('.prakerin').append(`<option value="0" disabled selected>--Cari Siswa--</option>`);
+                response.forEach(element => {
+                    $('.prakerin').append(`<option value="${element.id}">${element.nama}</option>`);
+                    });
+                }
+            });
+        });
+    });
 
-    <script>
+
         $(document).ready(function(){
              var i=1;
              $('#add').click(function(){
                   i++;
                   $('#dynamic_field').append('<tr id="row'+i+'"><td>'+
-                                                '<select name="id_data_prakerin[]" class="form-control select2  @error('id_data_prakerin')  is-invalid  @enderror ">'+
-                                                    '<option value="">--Cari Siswa--</option>'+
-                                                    '@forelse ($data_prakerin as $item)'+
-                                                        '@if (empty($item->kelompok_laporan))'+
-                                                            '<option value="{{ $item->id }}">{{ $item->nama }}</option>'+
-                                                        '@endif'+
-                                                    '@empty'+
-                                                        '<option disabled>Semua Siswa telah mendapat kelompok!</option>'+
-                                                    '@endforelse'+
+                                                '<select id="id_data_prakerin" name="id_data_prakerin[]" class="form-control select2  prakerin @error('id_data_prakerin')  is-invalid  @enderror ">'+
+                                                    // '<option value="">--Cari Siswa--</option>'+
+                                                    // '@forelse ($data_prakerin as $item)'+
+                                                    //     '@if (empty($item->kelompok_laporan))'+
+                                                    //         '<option value="{{ $item->id }}">{{ $item->nama }}</option>'+
+                                                    //     '@endif'+
+                                                    // '@empty'+
+                                                    //     '<option disabled>Semua Siswa telah mendapat kelompok!</option>'+
+                                                    // '@endforelse'+
                                                 '</select>'+
                                                     '@if ($errors->has(`id_data_prakerin.2`))'+
                                                         '<span class="text-danger">'+

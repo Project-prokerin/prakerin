@@ -9,6 +9,7 @@ use App\Models\perusahaan;
 use App\Models\data_prakerin;
 use App\Models\guru;
 use App\Models\Siswa;
+use DB;
 use App\Http\Requests\admin\kelompok_laporanRequest;
 
 class kelompokController extends Controller
@@ -335,6 +336,15 @@ return redirect()->route('kelompok.index')->with(['update' => 'Kelompok '.$reque
     {
         kelompok_laporan::where('no',$no)->delete();
         return response()->json($data = 'berhasil');
+
+    }
+
+
+    public function fetch(Request $request,$id)
+    {
+        return json_encode(data_prakerin::where('id_perusahaan', $id)->get());
+        
+
 
     }
 }
