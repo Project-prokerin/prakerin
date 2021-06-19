@@ -179,7 +179,7 @@
             </li>
 
 
-            @if(empty(Auth::user()->siswa->data_prakerin))
+            @if(siswa('data_prakerin')->status === 'Pengajuan' || empty(siswa('data_prakerin')))
 
             @else
             <li class="@if (Request::is('user/status','user/status/*')) active @endif">

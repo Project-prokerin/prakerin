@@ -252,7 +252,7 @@ Route::prefix('admin')->middleware(['web', 'auth', 'role:kaprog,hubin,admin'])->
     Route::get('/export/excel/kelompok', [ExcelController::class, 'kelompok']);
     Route::post('/export/pdf/kelompok/{id}/{nomor}', [PDFController::class, 'kelompokPrakerin'])->name('export.kelompok');
     Route::get('/export/pdf/contoh', [PDFController::class, 'contoh'])->name('export.contoh');
-    Route::get('/export/pdf/jurnal/{id}', [PDFController::class, 'Jurnal'])->name('export.jurnal');
+
 
     // laporan magang
     Route::get('laporan', [laporanController::class, 'index'])->name('laporan.index');
@@ -337,7 +337,11 @@ Route::middleware(['web', 'auth', 'role:siswa'])->group(function () {
     Route::post('/user/jurnal/HApi', [userController::class, 'jurnalHApi'])->name('user.jurnalH.Api');
     Route::post('/user/jurnalH', [userController::class, 'jurnalH_post'])->name('user.jurnalH.post');
 
+
     // kelompok laporan
     Route::get('/user/kelompok_laporan', [userController::class, 'kelompok_laporan'])->name('user.kelompok_laporan');
 
+});
+Route::middleware(['web', 'auth', 'role:siswa,admin,kaprog'])->group(function () {
+    Route::get('/export/pdf/jurnal/{id}', [PDFController::class, 'Jurnal'])->name('export.jurnal.pdf');
 });

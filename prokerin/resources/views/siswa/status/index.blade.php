@@ -67,7 +67,7 @@
                 @if(siswa('data_prakerin')->status == "Selesai")
                 <tr>
                     <th scope="row" class="text-left" style="background-color:#f2f2f2">Hasil jurnal</th>
-                    <td style="background-color:#f2f2f2" ><a href="" class="btn btn-success">Download hasil jurnal</a></td>
+                    <td style="background-color:#f2f2f2" ><a href="{{ route('export.jurnal.pdf', ['id' => siswa('data_prakerin')->id]) }}" target="_blank" class="btn btn-success">Download hasil jurnal</a></td>
                 </tr>
                 @endif
             </tbody>

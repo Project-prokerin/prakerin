@@ -127,7 +127,7 @@ class userController extends Controller
     // status maganag disini
     public function status()
     {
-        if (siswa('data_prakerin') === '') {
+        if (siswa('data_prakerin')->status === 'Pengajuan' || siswa('data_prakerin') == '') {
             return back();
         }
         return view('siswa.status.index');
@@ -188,7 +188,7 @@ class userController extends Controller
 
     // jurnal prakerin
     public function jurnal(){
-        if (siswa('data_prakerin') === '') {
+        if (siswa('data_prakerin')->status === 'Pengajuan' || siswa('data_prakerin') == '') {
             return back();
         }
         $jurnal_prakerin = jurnal_prakerin::where('id_siswa', siswa("main")->id)->orderBy('created_at', 'DESC')->get();
@@ -225,7 +225,7 @@ class userController extends Controller
 
     public function jurnal_tambah()
     {
-        if (siswa('data_prakerin') === '') {
+        if (siswa('data_prakerin')->status === 'Pengajuan' || siswa('data_prakerin') == '') {
             return back();
         }
         return view('siswa.jurnal_prakerin.tambah');
@@ -233,7 +233,7 @@ class userController extends Controller
 
     // tambah jurnal
     public function jurnal_post(jurnal_prakerinRequest $request){
-        if (siswa('data_prakerin') === '') {
+        if (siswa('data_prakerin')->status === 'Pengajuan' || siswa('data_prakerin') == '') {
             return back();
         }
         $validated = $request->validated(); // untuk validasi
@@ -250,8 +250,8 @@ class userController extends Controller
     // jurnal harian
     public function jurnalH()
     {
-        if (siswa('data_prakerin') === '') {
-        return back();
+        if (siswa('data_prakerin')->status === 'Pengajuan' || siswa('data_prakerin') == '') {
+            return back();
         }
         $jurnal = jurnal_harian::where('id_siswa', siswa("main")->id)->orderBy('created_at','DESC')->get();
         return view('siswa.jurnal_harian.index', compact('jurnal'));
@@ -296,9 +296,9 @@ class userController extends Controller
     }
 
     public function jurnalH_post(jurnal_harianRequest $request){
-            if (siswa('data_prakerin') === '') {
-                return back();
-            }
+        if (siswa('data_prakerin')->status === 'Pengajuan' || siswa('data_prakerin') == '') {
+            return back();
+        }
             $validated = $request->validated();
             $jurnal = jurnal_harian::where('created_at', Carbon::now()->format('Y-m-d'))->first();
             $perusahaan = Auth::user()->siswa->data_prakerin->perusahaan->id;
@@ -310,7 +310,7 @@ class userController extends Controller
     // kelompok + laporan prakerin
     public function kelompok_laporan()
     {
-        if (siswa('data_prakerin') === '') {
+        if (siswa('data_prakerin')->status === 'Pengajuan' || siswa('data_prakerin') == '') {
             return back();
         }
         $no_kelompok = !empty(siswa('data_prakerin')->kelompok_laporan->no) ? siswa('data_prakerin')->kelompok_laporan->no : '';
