@@ -331,76 +331,152 @@
                             <div class="card-stats-items">
                                 <div class="card-stats-item">
                                     <div class="card-stats-item-count">{{ $surat_m }}</div>
-                                    <div class="card-stats-item-label">Masuk</div>
+                                    <a href="surat_masuk" class="text-decoration-none">
+                                        <div class="card-stats-item-label">Masuk</div>
+                                    </a>
                                 </div>
                                 <div class="card-stats-item">
                                     <div class="card-stats-item-count">{{ $surat_k }}</div>
-                                    <div class="card-stats-item-label">Keluar</div>
+                                    <a href="surat_keluar" class="text-decoration-none">
+                                        <div class="card-stats-item-label">Keluar</div>
+                                    </a>
                                 </div>
                                 <div class="card-stats-item">
                                     <div class="card-stats-item-count">{{ $disposisi }}</div>
-                                    <div class="card-stats-item-label">Disposisi</div>
+                                    <a href="disposisi" class="text-decoration-none">
+                                        <div class="card-stats-item-label">Disposisi</div>
+                                    </a>
                                 </div>
                             </div>
                         </div>
-                        <div class="card-icon shadow-primary bg-primary">
-                            <i class="fas fa-bullhorn"></i>
-                        </div>
-                        <div class="card-wrap">
-                            <div class="card-header">
-                                <h4>Total Surat</h4>
+                        <a href="surat_masuk" class="text-decoration-none">
+                            <div class="card-icon shadow-primary bg-primary">
+                                <i class="fas fa-bullhorn"></i>
                             </div>
-                            <div class="card-body">
-                                {{ $total_surat }}
+                            <div class="card-wrap">
+                                <div class="card-header">
+                                    <h4>Total Surat</h4>
+                                </div>
+                                <div class="card-body">
+                                    {{ $total_surat }}
+                                </div>
                             </div>
-                        </div>
+                        </a>
                     </div>
+                    <a href="tanda-tangan" class="text-decoration-none">
+                        <div class="card card-statistic-1" style="margin-top: 19px;">
+                            <div class="card-icon bg-warning">
+                                <i class="far fa-address-card"></i>
+                            </div>
+                            <div class="card-wrap">
+                                <div class="card-header">
+                                    <h4>Tanda Tangan</h4>
+                                </div>
+                                <div class="card-body">
+
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="perusahaan" class="text-decoration-none">
+                        <div class="card card-statistic-1">
+                            <div class="card-icon bg-warning">
+                                <i class="far fa-address-card"></i>
+                            </div>
+                            <div class="card-wrap">
+                                <div class="card-header">
+                                    <h4>Perusahaan</h4>
+                                </div>
+                                <div class="card-body">
+
+                                </div>
+                            </div>
+                        </div>
+                    </a>
                 </div>
 
                 @if (Auth::user()->role == 'admin')
                 <div class="col-lg-4 col-md-4 col-sm-12">
                     <div class="card-statistic-2">
                         <div class="card-stats">
-                            <div class="card card-statistic-1">
-                                <div class="card-icon bg-primary">
-                                    <i class="fas fa-users"></i>
-                                </div>
-                                <div class="card-wrap">
-                                    <div class="card-header">
-                                        <h4>Siswa</h4>
+                            <a href="siswa" class="text-decoration-none">
+                                <div class="card card-statistic-1">
+                                    <div class="card-icon bg-primary">
+                                        <i class="fas fa-users"></i>
                                     </div>
-                                    <div class="card-body">
-                                        {{ $siswa }}
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="card card-statistic-1">
-                                <div class="card-icon bg-danger">
-                                    <i class="fas fa-user"></i>
-                                </div>
-                                <div class="card-wrap">
-                                    <div class="card-header">
-                                        <h4>Guru</h4>
-                                    </div>
-                                    <div class="card-body">
-                                        {{ $guru }}
+                                    <div class="card-wrap">
+                                        <div class="card-header">
+                                            <h4>Siswa</h4>
+                                        </div>
+                                        <div class="card-body">
+                                            {{ $siswa }}
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
+                            </a>
+                            <a href="kelas" class="text-decoration-none">
+                                <div class="card card-statistic-1">
+                                    <div class="card-icon bg-success">
+                                        <i class="fas fa-chalkboard"></i>
+                                    </div>
+                                    <div class="card-wrap">
+                                        <div class="card-header">
+                                            <h4>Kelas</h4>
+                                        </div>
+                                        <div class="card-body">
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                            <a href="jurusan" class="text-decoration-none">
+                                <div class="card card-statistic-1">
+                                    <div class="card-icon bg-info">
+                                        <i class="far fa-address-book"></i>
+                                    </div>
+                                    <div class="card-wrap">
+                                        <div class="card-header">
+                                            <h4>Jurusan</h4>
+                                        </div>
+                                        <div class="card-body">
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                            <a href="guru" class="text-decoration-none">
+                                <div class="card card-statistic-1">
+                                    <div class="card-icon bg-danger">
+                                        <i class="fas fa-chalkboard-teacher"></i>
+                                    </div>
+                                    <div class="card-wrap">
+                                        <div class="card-header">
+                                            <h4>Guru</h4>
+                                        </div>
+                                        <div class="card-body">
+                                            {{ $guru }}
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
                         </div>
                     </div>
                 </div>
                 @endif
 
-                <div class="mb-5" style="margin: 0px auto;">
-                    <div class="card" @if (Auth::user()->role == 'kaprog') style="width:600px; height:300px;" @endif>
-                        <div class="card-header">
-                            <h4>Surat</h4>
+                <div class="col-lg-4 col-md-4 col-sm-12">
+                    <a href="" class="text-decoration-none">
+                        <div class="mb-5" style="margin: 0px auto;">
+                            <div class="card" @if (Auth::user()->role == 'kaprog') style="width:600px; height:300px;" @endif>
+                                <div class="card-header">
+                                    <h4>Surat</h4>
+                                </div>
+                                <div class="card-body">
+                                    <canvas id="myChart4" height="200px"></canvas>
+                                </div>
+                            </div>
                         </div>
-                        <div class="card-body">
-                            <canvas id="myChart4" height="200px"></canvas>
-                        </div>
-                    </div>
+                    </a>
                 </div>
 
                 @if (Auth::user()->role == 'kaprog')
@@ -513,6 +589,156 @@
                 </div>
                 @endif
             </div>
+
+                @if (Auth::user()->role == 'admin')
+                <div class="col-lg-4 col-md-4 col-sm-12" style="margin-left: -15px;margin-top: 50px;">
+                    <div class="card" style="height: 50px;width: 250px;">
+                        <div class="card-header">
+                        <h4 style="margin-top: -18px;"><i class="fas fa-align-justify"></i> Prakerin</h4>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-4 col-md-4 col-sm-12">
+                        <div class="card card-statistic-2">
+                            <div class="card-stats">
+                                <div class="card-stats-title">
+                                    <h6 class="text-primary">Surat Prakerin</h6>
+                                </div>
+                                <div class="card-stats-items">
+                                    <div class="card-stats-item">
+                                        <div class="card-stats-item-count"></div>
+                                        <a href="surat_keluar" class="text-decoration-none">
+                                            <div class=" mr-3" style="width: 120px;">Surat Penugasan</div>
+                                        </a>
+                                    </div>
+                                    <div class="card-stats-item ml-5">
+                                        <div class="card-stats-item-count"></div>
+                                        <a href="pengajuan_prakerin" class="text-decoration-none">
+                                            <div class="" style="width: 130px;">Pengajuan Prakerin</div>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-icon shadow-primary bg-primary">
+                                <i class="fas fa-bullhorn"></i>
+                            </div>
+                            <div class="card-wrap">
+                                <div class="card-header">
+                                    <h4>Total Surat Prakerin</h4>
+                                </div>
+                                <div class="card-body">
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-sm-12">
+                        <div class="card card-statistic-2">
+                            <div class="card-stats">
+                                <div class="card-stats-title">
+                                    <h6 class="text-primary">Jurnal</h6>
+                                </div>
+                                <div class="card-stats-items">
+                                    <div class="card-stats-item" style="margin-right: 60px;">
+                                        <div class="card-stats-item-count"></div>
+                                        <a href="jurnal" class="text-decoration-none">
+                                            <div class="" style="width: 120px;">Jurnal Prakerin</div>
+                                        </a>
+                                    </div>
+                                    <div class="card-stats-item">
+                                        <div class="card-stats-item-count"></div>
+                                        <a href="jurnalH" class="text-decoration-none">
+                                            <div class="" style="width: 120px;">Jurnal Harian</div>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-icon shadow-primary bg-primary">
+                                <i class="fas fa-bullhorn"></i>
+                            </div>
+                            <div class="card-wrap">
+                                <div class="card-header">
+                                    <h4>Total Jurnal</h4>
+                                </div>
+                                <div class="card-body">
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-3 col-md-4 col-sm-12">
+                        <a href="pembekalan" class="text-decoration-none">
+                            <div class="card card-statistic-1">
+                                <div class="card-icon bg-info">
+                                    <i class="far fa-address-card"></i>
+                                </div>
+                                <div class="card-wrap">
+                                    <div class="card-header">
+                                        <h4>Pembekalan Magang</h4>
+                                    </div>
+                                    <div class="card-body">
+
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-lg-3 col-md-4 col-sm-12">
+                        <a href="data_prakerin" class="text-decoration-none">
+                            <div class="card card-statistic-1">
+                                <div class="card-icon bg-info">
+                                    <i class="far fa-address-card"></i>
+                                </div>
+                                <div class="card-wrap">
+                                    <div class="card-header">
+                                        <h4>Data Prakerin</h4>
+                                    </div>
+                                    <div class="card-body">
+
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-lg-3 col-md-4 col-sm-12">
+                        <a href="kelompok" class="text-decoration-none">
+                            <div class="card card-statistic-1">
+                                <div class="card-icon bg-info">
+                                    <i class="far fa-address-card"></i>
+                                </div>
+                                <div class="card-wrap">
+                                    <div class="card-header">
+                                        <h4>Kelompok Prakerin</h4>
+                                    </div>
+                                    <div class="card-body">
+
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-lg-3 col-md-4 col-sm-12">
+                        <a href="laporan" class="text-decoration-none">
+                            <div class="card card-statistic-1">
+                                <div class="card-icon bg-info">
+                                    <i class="far fa-address-card"></i>
+                                </div>
+                                <div class="card-wrap">
+                                    <div class="card-header">
+                                        <h4>Laporan Prakerin</h4>
+                                    </div>
+                                    <div class="card-body">
+
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                @endif
         @endif
     @endif
 
