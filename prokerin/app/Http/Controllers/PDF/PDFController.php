@@ -9,6 +9,8 @@ use App\Models\perusahaan;
 use Illuminate\Support\Facades\Auth;
 use App\Models\kelompok_laporan;
 use App\Models\Tanda_tangan;
+use App\Models\Siswa;
+use App\Models\orang_tua;
 // export pdf
 use PDF;
 use Carbon\Carbon;
@@ -105,13 +107,17 @@ class PDFController extends Controller
 
             }
 
+
+
+
             public function Jurnal($id)
             {
 
+                    $identitas_siswa  =  Siswa::where('id',$id)->first();
+                    $identitas_orangtua  =  orang_tua::where('id',$id)->first();
+                // dd($id);
 
-                // dd($tandatangan_kepsek);
-
-                $pdf = PDF::loadView('export.PDF.jurnal');
+                $pdf = PDF::loadView('export.PDF.jurnal',compact('identitas_siswa','identitas_orangtua'));
 
                 return $pdf->stream('DATA Jurnal.PDF');
 

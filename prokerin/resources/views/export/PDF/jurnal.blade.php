@@ -56,22 +56,22 @@
             Yang Bertanda tangan di bawah ini :</h6>
         <h6 class="font6" style="font-weight: 300px;font-size: 14px; margin-top: -15px;  text-align:left; margin-left:90px;">
             Nama Peserta didik  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            &nbsp; :....................................................................................................... </h6>
+            &nbsp; : &nbsp; {{$identitas_siswa->nama_siswa}}</h6>
             <h6 class="font6" style="font-weight: 300px;font-size: 14px; margin-top: -15px;  text-align:left; margin-left:90px;">
                 NIPD/NISN &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; :............................................
-                .......................................................... </h6>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : &nbsp;&nbsp;{{$identitas_siswa->nipd}}
+                 </h6>
                 <h6 class="font6" style="font-weight: 300px;font-size: 14px; margin-top: -15px;  text-align:left; margin-left:90px;">
                     Tempat Tanggal Lahir &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    &nbsp; :....................................................................................................... </h6>
+                    &nbsp; : &nbsp; {{$identitas_siswa->tempat_lahir}} &nbsp; {{$identitas_siswa->tanggal_lahir->format('d-m-Y')}} </h6>
                     <h6 class="font6" style="font-weight: 300px;font-size: 14px; margin-top: -15px;  text-align:left; margin-left:90px;">
                         Kelas/Tingkat &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : XII RPL .................................................
-                    ...................................... </h6>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : &nbsp; {{$identitas_siswa->kelas->level}} &nbsp; {{$identitas_siswa->kelas->jurusan->singkatan_jurusan}}({{$identitas_siswa->kelas->jurusan->jurusan}})
+                     </h6>
                         <h6 class="font6" style="font-weight: 300px;font-size: 14px; margin-top: -15px;  text-align:left; margin-left:90px;">
                             Alamat &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                             &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                            &nbsp;&nbsp;&nbsp;&nbsp;:Jl ..................................................................................................... </h6>
+                            &nbsp;&nbsp;&nbsp;&nbsp;: &nbsp; {{$identitas_siswa->alamat}} </h6>
                         <p style="margin-left: 260px">RT...........RW..............No..............Telp..............................</p>
                         <p style="margin-left: 260px">Kelurahan............................................................................</p>
                         <p style="margin-left: 260px">Kecamatan...........................................................................</p>
@@ -129,32 +129,32 @@
             </h6>
             <h6 class="font6" style="font-weight: 300px;font-size: 14px; margin-top: -25px;  text-align:left; margin-left:110px;">
                 Nama Peserta didik<span style="margin-left: 90px;">
-                                    :.......................................................................................
+                                    : &nbsp; {{$identitas_siswa->nama_siswa}}
                                 </span>
             </h6>
             <h6 class="font6" style="font-weight: 300px;font-size: 14px; margin-top: -25px;  text-align:left; margin-left:110px;">
                 NIPD / NISN<span style="margin-left: 123px;">
-                            :.......................................................................................
+                            : &nbsp;  {{$identitas_siswa->nipd}}
                         </span>
             </h6>
             <h6 class="font6" style="font-weight: 300px;font-size: 14px; margin-top: -25px;  text-align:left; margin-left:110px;">
                 Tempat Tanggal Lahir<span style="margin-left: 73px;">
-                                        :.......................................................................................
+                                        :&nbsp; &nbsp;{{$identitas_siswa->tempat_lahir}} &nbsp; {{$identitas_siswa->tanggal_lahir}}
                                     </span>
             </h6>
             <h6 class="font6" style="font-weight: 300px;font-size: 14px; margin-top: -25px;  text-align:left; margin-left:110px;">
                 Kelas / Tingkat<span style="margin-left: 112px;">
-                                : XII RPL........................................................................
+                                : &nbsp; {{$identitas_siswa->kelas->level}} &nbsp; {{$identitas_siswa->kelas->jurusan->singkatan_jurusan}}({{$identitas_siswa->kelas->jurusan->jurusan}})
                             </span>
             </h6>
             <h6 class="font6" style="font-weight: 300px;font-size: 14px; margin-top: -25px;  text-align:left; margin-left:110px;">
                 Nama Orang Tua / Wali<span style="margin-left: 63px;">
-                                        :.......................................................................................
+                                        :&nbsp; {{$identitas_orangtua->nama_ayah}}
                                     </span>
             </h6>
             <h6 class="font6" style="font-weight: 300px;font-size: 14px; margin-top: -25px;  text-align:left; margin-left:110px;">
                 Alamat<span style="margin-left: 157px;">
-                        :Jl. ..................................................................................
+                        : &nbsp; {{$identitas_siswa->alamat}} 
                     </span>
             </h6>
             <h6 class="font6" style="font-weight: 300px;font-size: 14px; margin-top: -25px;  text-align:left; margin-left:110px;">
