@@ -74,6 +74,8 @@
               </div>
             </div>
           </div>
+
+                <span id="role" data-role="{{ Auth::user()->role }}"></span>
 @endsection
 @push('script')
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>

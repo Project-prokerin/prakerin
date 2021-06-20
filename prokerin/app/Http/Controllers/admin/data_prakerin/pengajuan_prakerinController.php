@@ -34,7 +34,7 @@ class pengajuan_prakerinController extends Controller
     {
         if ($request->ajax()) {
             // with('data_prakerin')->with('guru')->
-            $pengajuan_prakerin = pengajuan_prakerin::with('data_prakerin')->distinct('no','id_guru', 'nama_perusahaan')->with('guru')->get(['no', 'id_guru', 'nama_perusahaan']);;
+            $pengajuan_prakerin = pengajuan_prakerin::with('data_prakerin')->distinct('no','id_guru', 'nama_perusahaan')->with('guru')->get(['no', 'id_guru', 'nama_perusahaan'])->orderby('created_at', 'DESC');
             // dd($kelompok_laporan);
             return datatables()->of($pengajuan_prakerin)->addColumn('guru', function (pengajuan_prakerin $pengajuan_prakerin) {
                 return $pengajuan_prakerin->guru->nama;
@@ -73,7 +73,7 @@ class pengajuan_prakerinController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(pengajuan_prakerinRequest $request)
-    {   
+    {
         // dd($request);
 
 
@@ -104,14 +104,14 @@ class pengajuan_prakerinController extends Controller
         // $surat_number = $surat_number->unique('no');
         // $grouped = $pengajuan_prakerin::->groupBy('no')->map(function ($row) {return $row->count();});
         // dd($surat_number->count());
-        
+
         detail_pengajuan_prakerin::create([
             'id_pengajuan_prakerin' => $pengajuan_prakerin->id,
             'no_surat' =>  str_pad($surat_number->count() + 1, 3, "0", STR_PAD_LEFT),
         ]);
 
 
-       
+
 
         // foreach ($request->id_data_prakerin as $key => $val) {
         //     $data = kelompok_laporan::create([

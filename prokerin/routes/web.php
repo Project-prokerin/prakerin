@@ -184,7 +184,7 @@ Route::prefix('admin')->middleware(['web', 'auth', 'role:admin'])->group(functio
 // modul hubin (prakerin)
 // untuk hubin, admin disi
 // kaprog
-Route::prefix('admin')->middleware(['web', 'auth', 'role:kaprog,hubin'])->group(function () {
+Route::prefix('admin')->middleware(['web', 'auth', 'role:kaprog,hubin,admin'])->group(function () {
 
     // data prakerin
     Route::get('data_prakerin', [data_prakerinController::class, 'index'])->name('data_prakerin.index');
@@ -255,7 +255,7 @@ Route::prefix('admin')->middleware(['web', 'auth', 'role:kaprog,hubin'])->group(
     Route::get('/export/excel/kelompok', [ExcelController::class, 'kelompok']);
     Route::post('/export/pdf/kelompok/{id}/{nomor}', [PDFController::class, 'kelompokPrakerin'])->name('export.kelompok');
     Route::get('/export/pdf/contoh', [PDFController::class, 'contoh'])->name('export.contoh');
-    Route::get('/export/pdf/jurnal', [PDFController::class, 'Jurnal'])->name('export.jurnal');
+
 
     // laporan magang
     Route::get('laporan', [laporanController::class, 'index'])->name('laporan.index');
@@ -284,7 +284,7 @@ Route::prefix('admin')->middleware(['web', 'auth', 'role:kaprog,hubin'])->group(
 });
 
 // bkk
-Route::prefix('admin')->middleware(['web', 'auth', 'role:bkk,hubin'])->group(function () {
+Route::prefix('admin')->middleware(['web', 'auth', 'role:bkk,hubin,admin'])->group(function () {
     // pembekalan
     Route::get('pembekalan', [pembekalanContoller::class, 'index'])->name('pembekalan.index');
     Route::post('pembekalan/ajax', [pembekalanContoller::class, 'ajax'])->name('pembekalan.ajax');
@@ -340,7 +340,11 @@ Route::middleware(['web', 'auth', 'role:siswa'])->group(function () {
     Route::post('/user/jurnal/HApi', [userController::class, 'jurnalHApi'])->name('user.jurnalH.Api');
     Route::post('/user/jurnalH', [userController::class, 'jurnalH_post'])->name('user.jurnalH.post');
 
+
     // kelompok laporan
     Route::get('/user/kelompok_laporan', [userController::class, 'kelompok_laporan'])->name('user.kelompok_laporan');
 
+});
+Route::middleware(['web', 'auth', 'role:siswa,admin,kaprog'])->group(function () {
+    Route::get('/export/pdf/jurnal/{id}', [PDFController::class, 'Jurnal'])->name('export.jurnal.pdf');
 });

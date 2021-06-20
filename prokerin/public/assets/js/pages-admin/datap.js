@@ -71,7 +71,7 @@ $(document).ready( function () {
     $('.btn-table').append(
         '<a href="/admin/data_prakerin/tambah"class="btn btn-primary "> Tambah Data <i class="fas fa-plus"></i></button></a>'
     );
-    if(role == "hubin")
+    if(role == "hubin" || role == 'kaprog')
     $('#table19_filter').prepend(
     '<a href="/admin/export/excel/data_prakerin"class="btn btn-success mr-3  ml-2"> Excel <i class="fas fa-cloud-download-alt"></i></button></a>'
     );
