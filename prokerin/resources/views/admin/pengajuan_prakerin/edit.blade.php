@@ -111,31 +111,22 @@ edit view kelompok
                             @enderror
 
                         </div> --}}
-                        <input class="form-control" type="hidden" value="{{ $pengajuan_prakerin[0]->id }}" name="id[]"
+                        @foreach ($pengajuan_prakerin as $peng)
+                        <input class="form-control" type="hidden" value="{{ $peng->id }}" name="id[]"
                             placeholder="id tlp" aria-label="default input example">
-                        <input class="form-control" type="hidden" value="{{ $pengajuan_prakerin[1]->id }}" name="id[]"
-                            placeholder="id tlp" aria-label="default input example">
-                        <input class="form-control" type="hidden" value="{{ $pengajuan_prakerin[2]->id }}" name="id[]"
-                            placeholder="id tlp" aria-label="default input example">
-                        <input class="form-control" type="hidden" value="{{ $pengajuan_prakerin[3]->id }}" name="id[]"
-                            placeholder="id tlp" aria-label="default input example">
-                            <input class="form-control" type="hidden" value="{{ $pengajuan_prakerin[0]->no }}" name="no[]"
-                            placeholder="no tlp" aria-label="default input example">
-                            <input class="form-control" type="hidden" value="{{ $pengajuan_prakerin[1]->no }}" name="no[]"
-                            placeholder="no tlp" aria-label="default input example">
-                            <input class="form-control" type="hidden" value="{{ $pengajuan_prakerin[2]->no }}" name="no[]"
-                            placeholder="no tlp" aria-label="default input example">
-                            <input class="form-control" type="hidden" value="{{ $pengajuan_prakerin[3]->no }}" name="no[]"
-                            placeholder="no tlp" aria-label="default input example">
+                            <input class="form-control" type="hidden" value="{{ $peng->no }}" name="no[]"
+                                placeholder="no tlp" aria-label="default input example">
+                        @endforeach
+
                         <!-- perusahaan -->
                         <div class="form-group col-lg-10 ">
                             <label>Perusahaan</label>
-                            <select name="id_perusahaan"
+                            <select  name="id_perusahaan"  id="perusahaan"
                                 class="form-control   @error('id_perusahaan')  is-invalid  @enderror select2">
-                                <option value="{{ $pengajuan_prakerin[0]->nama_perusahaan }}" selected>
+                                <option value="{{ $perusahaan_select->id }}" selected>
                                     {{ $pengajuan_prakerin[0]->nama_perusahaan }}</option>
                                 @foreach ($perusahaan as $perusahaann)
-                                    <option value="{{ $perusahaann->nama }}">{{ $perusahaann->nama }}</option>
+                                    <option value="{{ $perusahaann->id }}">{{ $perusahaann->nama }}</option>
                                 @endforeach
                             </select>
                             @error('id_perusahaan')
@@ -156,118 +147,58 @@ edit view kelompok
                     </div>
                     <div class="col-6">
                         <label>Daftar Nama Siswa</label>
+                        {{-- @foreach ($pengajuan_prakerin as $item)
                         <div class="form-group col-lg-12 ">
                             <select name="id_data_prakerin[]"
                                 class="form-control  @error('id_data_prakerin')  is-invalid  @enderror select2">
                                 <option value="">--Cari Siswa--</option>
-                                <option value="{{ $pengajuan_prakerin[0]->id_data_prakerin }}" selected>
-                                    {{ $pengajuan_prakerin[0]->data_prakerin->nama }}</option>
+                                <option value="{{ $item->id_data_prakerin }}" selected>
+                                    {{ $item->data_prakerin->nama }}</option>
                                    @foreach ($data_prakerin as $item)
                                     @if (empty($item->pengajuan_prakerin))
                                         <option value="{{ $item->id }}" >{{ $item->nama }}</option>
                                     @endif
                                 @endforeach
                             </select>
-                            @if ($errors->has(`id_data_prakerin.0`))
-                                <span class="text-danger">
-                                    <small>
-                                        {{ $errors->first('id_data_prakerin.0') }}
-                                    </small>
 
-                                </span>
-                            @endif
                         </div>
+                        @endforeach --}}
 
-                        <div class="form-group col-lg-12 ">
-                            <select name="id_data_prakerin[]"
-                                class="form-control  @error('id_data_prakerin')  is-invalid  @enderror select2">
-                                <option value="">--Cari Siswa--</option>
+                        <div class="table-responsive">
+                            <table class="table" id="dynamic_field">
+                                <td><button type="button" name="add" id="add" class="btn btn-success">Add More</button></td>
 
-                                <option value="{{ $pengajuan_prakerin[1]->id_data_prakerin }}" selected>
-                                    {{ $pengajuan_prakerin[1]->data_prakerin->nama }}</option>
-                                   @foreach ($data_prakerin as $item)
-                                    @if (empty($item->pengajuan_prakerin))
-                                        <option value="{{ $item->id }}" >{{ $item->nama }}</option>
-                                    @endif
+                                <input type="text" hidden id="jumlah" value="{{count($pengajuan_prakerin)}}" >
+                               @foreach ($pengajuan_prakerin as $item)
+                                             <tr id="row{{$loop->iteration}}">
+                                                 <td class="col-7">
+                                                     <select name="id_data_prakerin[]"
+                                                     class="form-control prakerin  @error('id_data_prakerin')  is-invalid  @enderror select2">
+                                                     <option value="">--Cari Siswa--</option>
+                                                     <option value="{{ $item->id_data_prakerin }}" selected>
+                                                         {{ $item->data_prakerin->nama }}</option>
+                                                        @foreach ($data_prakerin as $item)
+                                                         @if (empty($item->pengajuan_prakerin))
+                                                             <option value="{{ $item->id }}" >{{ $item->nama }}</option>
+                                                         @endif
+                                                     @endforeach
+                                                 </select>
+                                                 </td>
+                                                 </td><td><button type="button" name="remove" id="{{$loop->iteration}}" class="btn btn-danger btn_remove">X</button></td></tr>
+
+                                             </tr>
                                 @endforeach
-                            </select>
-                            @if ($errors->has(`id_data_prakerin.1`))
-                            <span class="text-danger">
-                                <small>
-                                    {{ $errors->first('id_data_prakerin.1') }}
-                                </small>
 
-                            </span>
-                        @endif
-                        </div>
+                                    
+                            </table>
+                       </div>
 
 
-                        <div class="form-group col-lg-12 ">
-                            <select name="id_data_prakerin[]"
-                                class="form-control  @error('id_data_prakerin')  is-invalid  @enderror select2">
-                                <option value="">--Cari Siswa--</option>
 
-                                <option value="{{ $pengajuan_prakerin[2]->id_data_prakerin }}" selected>
-                                    {{ $pengajuan_prakerin[2]->data_prakerin->nama }}</option>
-                                   @foreach ($data_prakerin as $item)
-                                    @if (empty($item->pengajuan_prakerin))
-                                        <option value="{{ $item->id }}" >{{ $item->nama }}</option>
-                                    @endif
-                                @endforeach
-                            </select>
-                             @if ($errors->has(`id_data_prakerin.2`))
-                                <span class="text-danger">
-                                    <small>
-                                        {{ $errors->first('id_data_prakerin.2') }}
-                                    </small>
-
-                                </span>
-                            @endif
-                        </div>
+                       
 
 
-                        @if (empty($pengajuan_prakerin[3]->id_data_prakerin))
-                        <div class="form-group col-lg-12 ">
-                                <select name="id_data_prakerin[]" class="form-control  @error('id_data_prakerin')  is-invalid  @enderror select2">
-                                    <option value="">--Cari Siswa--</option>
-                                    @foreach ($data_prakerin as $item)
-                                        @if (empty($item->pengajuan_prakerin))
-                                            <option value="{{ $item->id }}" >{{ $item->nama }}</option>
-                                        @endif
-                                    @endforeach
-                                </select>
-                                @if ($errors->has(`id_data_prakerin.3`))
-                                <span class="text-danger">
-                                    <small>
-                                        {{ $errors->first('id_data_prakerin.3') }}
-                                    </small>
-
-                                </span>
-                            @endif
-                         </div>
-                        @else
-                        <div class="form-group col-lg-12 ">
-                            <select name="id_data_prakerin[]" class="form-control  @error('id_data_prakerin')  is-invalid  @enderror select2">
-                                <option value="">--Cari Siswa--</option>
-                                <option value="{{ $pengajuan_prakerin[3]->id_data_prakerin }}" selected>
-                                    {{ $pengajuan_prakerin[3]->data_prakerin->nama }}</option>
-                                @foreach ($data_prakerin as $item)
-                                    @if (empty($item->pengajuan_prakerin))
-                                        <option value="{{ $item->id }}" >{{ $item->nama }}</option>
-                                    @endif
-                                @endforeach
-                            </select>
-                            @if ($errors->has(`id_data_prakerin.3`))
-                                <span class="text-danger">
-                                    <small>
-                                        {{ $errors->first('id_data_prakerin.3') }}
-                                    </small>
-
-                                </span>
-                            @endif
-                         </div>
-
-                        @endif
+                    
 
                         <button type="submit" class="btn btn-success ml-3"><i class="fas fa-check"></i> submit</button>
                         <a href="{{ route('pengajuan_prakerin.index') }}" type="submit" class="btn btn-danger"><i
@@ -282,8 +213,88 @@ edit view kelompok
 
 
 
+
+
+
+
+
     @endsection
     @push('script')
+
+    <script>
+
+        $(document).ready(function () {
+                        $('#perusahaan').on('change', function () {
+                        let id = $(this).val();
+                        $('.prakerin').empty();
+                        $('.prakerin').append(`<option value="0" disabled selected>Mencari...</option>`).show('slow');
+                        $.ajax({
+                        type: 'GET',
+                        url: '../fetch_edit/' + id,                        
+                        success: function (response) {
+                        var response = JSON.parse(response);
+                        console.log(response);   
+                        $('.prakerin').empty();
+                        $('.prakerin').append(`<option value="0" disabled selected>--Cari Siswa--</option>`);
+                        response.forEach(element => {
+                            $('.prakerin').append(`<option value="${element.id}">${element.nama}</option>`);
+                            });
+                        }
+                    });
+
+    
+
+                });
+            });
+        
+        
+        
+        
+                $(document).ready(function(){
+                     var i= $('#jumlah').val();
+                     $('#add').click(function(){
+                          i++;
+                          $('#dynamic_field').append('<tr id="row'+i+'"><td>'+
+                                                        '<select name="id_data_prakerin[]" class="form-control select2 prakerin @error('id_data_prakerin')  is-invalid  @enderror ">'+
+                                                            // '<option value="">--Cari Siswa--</option>'+
+                                                            // '@forelse ($data_prakerin as $item)'+
+                                                            //     '@if (empty($item->kelompok_laporan))'+
+                                                            //         '<option value="{{ $item->id }}">{{ $item->nama }}</option>'+
+                                                            //     '@endif'+
+                                                            // '@empty'+
+                                                            //     '<option disabled>Semua Siswa telah mendapat kelompok!</option>'+
+                                                            // '@endforelse'+
+                                                        '</select>'+
+                                                            '@if ($errors->has(`id_data_prakerin.2`))'+
+                                                                '<span class="text-danger">'+
+                                                                    '<small>'+
+                                                                        '{{ $errors->first('id_data_prakerin.2') }}'+
+                                                                    '</small>'+
+                                                                '</span>'+
+                                                            '@endif'+
+                                                    '</td><td><button type="button" name="remove" id="'+i+'" class="btn btn-danger btn_remove">X</button></td></tr>');
+        
+                     });
+                     $(document).on('click', '.btn_remove', function(){
+                          var button_id = $(this).attr("id");
+                          $('#row'+button_id+'').remove();
+                     });
+                    //  $('#submit').click(function(){
+                    //       $.ajax({
+                    //            url:"",
+                    //            method:"POST",
+                    //            data:$('#add_name').serialize(),
+                    //            success:function(data)
+                    //            {
+                    //                 alert(data);
+                    //                 $('#add_name')[0].reset();
+                    //            }
+                    //       });
+                    //  });
+                });
+                
+            </script>
+
         <script src="{{ asset('template/') }}/node_modules/select2/dist/js/select2.full.min.js"></script>
 
 

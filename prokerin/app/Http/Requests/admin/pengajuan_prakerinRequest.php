@@ -27,9 +27,7 @@ class pengajuan_prakerinRequest extends FormRequest
         return [
             'no' => 'required',
             'id_guru' => 'required',
-            'id_data_prakerin.0' => 'required|distinct',
-            'id_data_prakerin.1' => 'required|distinct',
-            'id_data_prakerin.2' => 'required|distinct',
+            'id_data_prakerin.*' => 'required|distinct',
             'id_perusahaan' => 'required',
             // 'jurusan' => 'required',
         ];
@@ -39,10 +37,7 @@ class pengajuan_prakerinRequest extends FormRequest
         return [
             'no.required' => 'No idak boleh kosong',
             'id_guru.required' => 'Guru tidak boleh kosong',
-            // 'id_data_prakerin.*.required' => 'Siswa harus 3 atau lebih!',
-            'id_data_prakerin.0.required' => 'Siswa harus 3 atau lebih!',
-            'id_data_prakerin.1.required' => 'Siswa harus 3 atau lebih!',
-            'id_data_prakerin.2.required' => 'Siswa harus 3 atau lebih!',
+            'id_data_prakerin.*.required' => 'Siswa tidak boleh kosong!',
             'id_perusahaan.required' => 'Nama perusahaan tidak boleh kosong',
             // 'jurusan.required' => 'Jurusan tidak boleh kosong',
 

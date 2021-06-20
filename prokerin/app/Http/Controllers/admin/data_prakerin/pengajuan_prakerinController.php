@@ -100,8 +100,8 @@ class pengajuan_prakerinController extends Controller
 
            $pengajuan_prakerin = pengajuan_prakerin::create($data2);
         }
-        $collect = collect([pengajuan_prakerin::all()]);
-        $surat_number = $collect->unique('no');
+        $surat_number = pengajuan_prakerin::all()->unique('no');
+        // $surat_number = $surat_number->unique('no');
         // $grouped = $pengajuan_prakerin::->groupBy('no')->map(function ($row) {return $row->count();});
         // dd($surat_number->count());
         
@@ -138,10 +138,7 @@ class pengajuan_prakerinController extends Controller
     public function detail($id)
     {
 
-        $data_prakerin = data_prakerin::doesntHave('kelompok_laporan')->get();
-        $perusahaan = perusahaan::all();
-        $guru = guru::all();
-        $siswa = Siswa::all();
+  
         // $pengajuan_prakerin = pengajuan_prakerin::where('no', $id)->with('data_prakerin')->get();
         $pengajuan_prakerin = pengajuan_prakerin::where('no',$id)->with('data_prakerin')->whereNotNull('id_data_prakerin')->get();
 
@@ -161,9 +158,9 @@ class pengajuan_prakerinController extends Controller
         $guru = guru::all();
         $siswa = Siswa::all();
         $pengajuan_prakerin = pengajuan_prakerin::where('no', $id)->with('data_prakerin')->get();
-        // dd($pengajuan_prakerin[2]->data_prakerin->nama);
-        // dd($dataPrakerin->perusahaan->nama);
-        return view('admin.pengajuan_prakerin.edit', compact('pengajuan_prakerin', 'perusahaan', 'guru', 'data_prakerin', 'siswa'));
+        $perusahaan_select = perusahaan::where('nama',$pengajuan_prakerin[0]->nama_perusahaan)->first();
+        
+        return view('admin.pengajuan_prakerin.edit', compact('perusahaan_select','pengajuan_prakerin', 'perusahaan', 'guru', 'data_prakerin', 'siswa'));
 
         // return view('admin.pengajuan_prakerin.edit');
     }
@@ -179,124 +176,67 @@ class pengajuan_prakerinController extends Controller
     {
         // $input = Input::all();
         // $id_dataP = $request->id_data_prakerin;
-        // dd($request->id_data_prakerin);
+        // dd($request->no[0]);
         // $perusahaan = Perusahaan::find('id',$request->id_perusahaan)->first();
         // $data = $request->all();
         $request->validated();
-        foreach ($request->id_data_prakerin as $key => $val) {
-            $data = pengajuan_prakerin::where('id', $request->id[$key])->where('no', $request->no[$key])->update([
-                'no'   => $request->no[$key],
-                'id_guru'   => $request->id_guru,
-                'id_data_prakerin'   => $request->id_data_prakerin[$key],
-                'nama_perusahaan'   => $request->id_perusahaan,
-                // 'no_telpon'         => $request->no_telpon,
-                // 'jurusan'       => $request->jurusan,
+            $no = Pengajuan_prakerin::where('no',$request->no[0])->get();
+            // dd();
+        
+            if (count($no) > count($request->id_data_prakerin) || count($no) < count($request->id_data_prakerin ) ) {
+                detail_pengajuan_prakerin::where('id_pengajuan_prakerin', last($request->id))->delete();
+                pengajuan_prakerin::where('no', $request->no[0])->delete();
 
-            ]);
-            // $data = kelompok_laporan::where('id',$request->id[1])->where('no',$request->no[1])->update([
-            //     'no'   => $request->no[1],
-            //     'id_guru'   => $request->id_guru,
-            //     'id_data_prakerin'   => $request->id_data_prakerin[1],
-            //     'nama_perusahaan'   => $request->id_perusahaan,
-            //     'no_telpon'         => $request->no_telpon,
-            //     'jurusan'       => $request->jurusan,
 
-            // ]);
-            // $data = kelompok_laporan::where('id',$request->id[2])->where('no',$request->no[2])->update([
-            //     'no'   => $request->no[2],
-            //     'id_guru'   => $request->id_guru,
-            //     'id_data_prakerin'   => $request->id_data_prakerin[2],
-            //     'nama_perusahaan'   => $request->id_perusahaan,
-            //     'no_telpon'         => $request->no_telpon,
-            //     'jurusan'       => $request->jurusan,
+                $data = $request->all();
+  
+                // dd($data['no'][0]);
+                $perusahaan = perusahaan::where('id', $data['id_perusahaan'])->first();
+                foreach ($data['id_data_prakerin'] as $key => $value) {
+                    // $arr[] = $data['id_data_prakerin'][$key];
+                    $data2 = array(
+                        'no'   => $data['no'][0],
+                        'id_guru'   => $data['id_guru'],
+                        'id_data_prakerin'   => $data['id_data_prakerin'][$key],
+                        'nama_perusahaan'   => $perusahaan->nama,
+                        // 'jurusan'       => $data['jurusan'],
+                    );
+        
+                   $pengajuan_prakerin = pengajuan_prakerin::create($data2);
+                }
+                $surat_number = pengajuan_prakerin::all()->unique('no');
 
-            // ]);
-            // $data = kelompok_laporan::where('id',$request->id[3])->where('no',$request->no[3])->update([
-            //     'no'   => $request->no[3],
-            //     'id_guru'   => $request->id_guru,
-            //     'id_data_prakerin'   => $request->id_data_prakerin[3],
-            //     'nama_perusahaan'   => $request->id_perusahaan,
-            //     'no_telpon'         => $request->no_telpon,
-            //     'jurusan'       => $request->jurusan,
+                detail_pengajuan_prakerin::create([
+                    'id_pengajuan_prakerin' => $pengajuan_prakerin->id,
+                    'no_surat' =>  str_pad($surat_number->count() + 1, 3, "0", STR_PAD_LEFT),
+                ]);
+        return redirect()->route('pengajuan_prakerin.index')->with(['update' => 'Pengajuan ' . $request->no[0] . ' berhasil di Update  !']);
+        
+                
+                // return response()->json($data = 'berhasil');
+            }else{
+                $perusahaan = perusahaan::where('id', $request->id_perusahaan)->first();
 
-            // ]);
+                foreach ($request->id_data_prakerin as $key => $val) {
+                    $data = pengajuan_prakerin::where('id', $request->id[$key])->where('no', $request->no[$key])->update([
+                        'no'   => $request->no[$key],
+                        'id_guru'   => $request->id_guru,
+                        'id_data_prakerin'   => $request->id_data_prakerin[$key],
+                        'nama_perusahaan'   => $perusahaan->nama,
+                        // 'no_telpon'         => $request->no_telpon,
+                        // 'jurusan'       => $request->jurusan,
+        
+                    ]);        
+                }
+                return redirect()->route('pengajuan_prakerin.index')->with(['update' => 'Pengajuan ' . $request->no[0] . ' berhasil di Update  !']);
 
-            // dd($data);
+            }
+    
 
-        }
-
-        // foreach($data['id_data_prakerin'] as $key => $value) {
-        //     $data = kelompok_laporan::find('no',$data['no'][$key])->get();
-        //     $no = $data['no'];
-        //     $id_guru = $data['id_guru'];
-        //     $id_data_prakerin = $data['id_data_prakerin'][$key];
-        //     $no_telpon = $data['no_telpon'];
-        //     $jurusan = $data['jurusan'];
-
-        //     $data->no = $no;
-        //     $data->id_guru = $id_guru;
-        //     $data->id_data_prakerin = $id_data_prakerin;
-        //     $data->no_telpon = $no_telpon;
-        //     $data->jurusan = $jurusan;
-        //     $data->save();
-        //   }
-        // $condition = $input['id_data_prakerin'];
-        // foreach ($data['id_data_prakerin'] as $key => $value) {
-        // $data1 = array(
-        //     'no'   => $data['no'],
-        //     'id_guru'   => $data['id_guru'],
-        //     'id_data_prakerin'   => $data['id_data_prakerin'],
-        //     'nama_perusahaan'   => $data['id_perusahaan'],
-        //     'no_telpon'         => $data['no_telpon'],
-        //     'jurusan'       => $data['jurusan'],
-        // );
-        // kelompok_laporan::where('no',$data['no'][0])->update($data1);
-        // $data2 = array(
-        //     'no'   => $data['no'],
-        //     'id_guru'   => $data['id_guru'],
-        //     'id_data_prakerin'   => $data['id_data_prakerin'],
-        //     'nama_perusahaan'   => $data['id_perusahaan'],
-        //     'no_telpon'         => $data['no_telpon'],
-        //     'jurusan'       => $data['jurusan'],
-        // );
-        // kelompok_laporan::where('no',$data['no'][1])->update($data2);
-        // $data3 = array(
-        //     'no'   => $data['no'],
-        //     'id_guru'   => $data['id_guru'],
-        //     'id_data_prakerin'   => $data['id_data_prakerin'],
-        //     'nama_perusahaan'   => $data['id_perusahaan'],
-        //     'no_telpon'         => $data['no_telpon'],
-        //     'jurusan'       => $data['jurusan'],
-        // );
-        // kelompok_laporan::where('no',$data['no'][2])->update($data3);
-        // $data4 = array(
-        //     'no'   => $data['no'],
-        //     'id_guru'   => $data['id_guru'],
-        //     'id_data_prakerin'   => $data['id_data_prakerin'],
-        //     'nama_perusahaan'   => $data['id_perusahaan'],
-        //     'no_telpon'         => $data['no_telpon'],
-        //     'jurusan'       => $data['jurusan'],
-        // );
-        // kelompok_laporan::where('no',$data['no'][3])->update($data4);
-        // dd($data2);
-        // }
-        // $no  = $request->no;
-        // $id_guru   = $request->id_guru[$key];
-        // $id_data_prakerin   = $request->id_data_prakerin[$key];
-        // $nama_perusahaan   = $request->id_perusahaan[$key];
-        // $no_telpon         = $request->no_telpon[$key];
-        // $jurusan       = $request->jurusan[$key];
-
-        // $data->id_guru = $id_guru;
-        // $data->id_data_prakerin = $id_data_prakerin;
-        // $data->nama_perusahaan = $nama_perusahaan;
-        // $data->no_telpon = $no_telpon;
-        // $data->jurusan = $jurusan;
-        // $data->save;
-
-        // dd($update);
+        
         return redirect()->route('pengajuan_prakerin.index')->with(['update' => 'Pengajuan ' . $request->no[0] . ' berhasil di Update  !']);
     }
+    
     public function updates(pengajuan_prakerinRequest $request, data_prakerin $data_prakerin)
     {
         $request->validated();
@@ -327,10 +267,24 @@ class pengajuan_prakerinController extends Controller
     public function destroy(Request $request, $no)
     {
         pengajuan_prakerin::where('no', $no)->delete();
+        // detail_pengajuan_prakerin::where('id_data_prakerin',)
         return response()->json($data = 'berhasil');
     }
     public function delete_all(Request $request, $no)
     {
 
+    }
+
+    public function fetch(Request $request,$id)
+    {
+
+        return json_encode(data_prakerin::doesntHave('pengajuan_prakerin')->where('status','Pengajuan')->where('id_perusahaan', $id)->get());
+        
+    }
+    public function fetch_edit(Request $request,$id)
+    {
+
+        return json_encode(data_prakerin::where('status','Pengajuan')->where('id_perusahaan', $id)->get());
+        
     }
 }

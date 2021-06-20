@@ -228,6 +228,8 @@ Route::prefix('admin')->middleware(['web', 'auth', 'role:kaprog,hubin'])->group(
     Route::get('pengajuan_prakerin/ajax', [pengajuan_prakerinController::class, 'ajax'])->name('pengajuan_prakerin.ajax');
     Route::get('pengajuan_prakerin/detail/{id}', [pengajuan_prakerinController::class, 'detail'])->name('pengajuan_prakerin.detail');
     Route::get('pengajuan_prakerin/tambah', [pengajuan_prakerinController::class, 'tambah'])->name('pengajuan_prakerin.tambah');
+    Route::get('pengajuan_prakerin/fetch/{id}', [pengajuan_prakerinController::class, 'fetch'])->name('pengajuan_prakerin.fetch');
+    Route::get('pengajuan_prakerin/fetch_edit/{id}', [pengajuan_prakerinController::class, 'fetch_edit'])->name('pengajuan_prakerin.fetch_edit');
     Route::post('pengajuan_prakerin/tambah/post', [pengajuan_prakerinController::class, 'store'])->name('pengajuan_prakerin.post');
     Route::get('pengajuan_prakerin/edit/{id}', [pengajuan_prakerinController::class, 'edit'])->name('pengajuan_prakerin.edit');
     Route::put('pengajuan_prakerin/update/{pengajuan_prakerin}', [pengajuan_prakerinController::class, 'update'])->name('pengajuan_prakerin.update');
@@ -242,7 +244,8 @@ Route::prefix('admin')->middleware(['web', 'auth', 'role:kaprog,hubin'])->group(
     Route::get('kelompok/ajax', [kelompokController::class, 'ajax'])->name('kelompok.ajax');
     Route::get('kelompok/detail/{id}', [kelompokController::class, 'detail'])->name('kelompok.detail');
     Route::get('kelompok/tambah', [kelompokController::class, 'tambah'])->name('kelompok.tambah');
-    Route::get('kelompok/fetch/{id}', [kelompokController::class, 'fetch'])->name('kelompok.fetch');
+    Route::get('kelompok/fetch/{id}', [kelompokController::class,'fetch'])->name('kelompok.fetch');
+    Route::get('kelompok/fetch_edit/{id}', [kelompokController::class,'fetch_edit'])->name('kelompok.fetch_edit');
     Route::post('kelompok/tambah/post', [kelompokController::class, 'store'])->name('kelompok.post');
     Route::get('kelompok/edit/{id}', [kelompokController::class, 'edit'])->name('kelompok.edit');
     Route::put('kelompok/update/{kelompok}', [kelompokController::class, 'update'])->name('kelompok.update');
