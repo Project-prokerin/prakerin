@@ -1,5 +1,6 @@
 $(document).ready( function () {
-    var filter = $('#search').val();
+    root = window.location.protocol + '//' + window.location.host;
+    filter = $('#search').val();
     console.log(filter);
     var table = $('#table19').DataTable({
         dom:
@@ -20,7 +21,7 @@ $(document).ready( function () {
         headers: {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         },
-        url: "/admin/data_prakerin/ajax/",
+        url: root + "/admin/data_prakerin/ajax/",
         type: "post",
         data: function (data) {
             data = '';
@@ -69,11 +70,11 @@ $(document).ready( function () {
     });
     role = $('#role').data('role');
     $('.btn-table').append(
-        '<a href="/admin/data_prakerin/tambah"class="btn btn-primary "> Tambah Data <i class="fas fa-plus"></i></button></a>'
+        '<a href="'+root+'/admin/data_prakerin/tambah"class="btn btn-primary "> Tambah Data <i class="fas fa-plus"></i></button></a>'
     );
-    if(role == "hubin" || role == 'kaprog')
+    if(role == "hubin" || role == 'kaprog' || role == 'admin')
     $('#table19_filter').prepend(
-    '<a href="/admin/export/excel/data_prakerin"class="btn btn-success mr-3  ml-2"> Excel <i class="fas fa-cloud-download-alt"></i></button></a>'
+    '<a href="'+root+'/admin/export/excel/data_prakerin"class="btn btn-success mr-3  ml-2"> Excel <i class="fas fa-cloud-download-alt"></i></button></a>'
     );
 
 // search engine
@@ -97,7 +98,7 @@ $('body').on('click','#hapus', function () {
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             },
-                url: "/admin/data_prakerin/delete/"+ id,
+                url: root + "/admin/data_prakerin/delete/"+ id,
                 type: "DELETE",
                 data: '',
                 success: function (data) {

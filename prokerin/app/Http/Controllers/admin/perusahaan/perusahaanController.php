@@ -104,7 +104,10 @@ class perusahaanController extends Controller
      */
     public function edit($id)
     {
-        return view('admin.perusahaan.edit',['perusahaan' => perusahaan::find($id), 'jurusan' => jurusan::all()]);
+        if (Auth::user()->role != "kaprog") {
+            return view('admin.perusahaan.edit', ['perusahaan' => perusahaan::find($id), 'jurusan' => jurusan::all()]);
+        }
+        return back();
     }
 
     /**

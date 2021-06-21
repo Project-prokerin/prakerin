@@ -1,6 +1,6 @@
 $(document).ready(function () {
     var filter = $('#search').val();
-
+         root = window.location.protocol + '//' + window.location.host;
     role = $('#role').data('role');
 
     function column(role) {
@@ -40,7 +40,7 @@ $(document).ready(function () {
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             },
-            url: '/admin/surat_keluar/ajax/',
+            url: root+'/admin/surat_keluar/ajax/',
             type: "post",
             data: function (data) {
                 data = '';
@@ -53,17 +53,17 @@ $(document).ready(function () {
 
     if (role == 'admin') {
         $('.btn-table').append(
-            '<a href="/admin/surat_keluar/tambah"class="btn btn-primary  "> Tambah Data <i class="fas fa-plus"></i></button></a>'
+            '<a href="'+root+'/admin/surat_keluar/tambah"class="btn btn-primary  "> Tambah Data <i class="fas fa-plus"></i></button></a>'
         );
     } else if (role == "hubin") {
         $('.btn-table').append(
-            '<a href="/admin/surat_keluar/tambah"class="btn btn-primary  "> Tambah Data <i class="fas fa-plus"></i></button></a>'
+            '<a href="'+root+'/admin/surat_keluar/tambah"class="btn btn-primary  "> Tambah Data <i class="fas fa-plus"></i></button></a>'
         );
     }
 
 
     $('#table80_filter').prepend(
-        '<a href="/admin/export/excel/surat_keluar"class="btn btn-success mr-3  ml-2"> Excel <i class="fas fa-cloud-download-alt"></i></button></a>'
+        '<a href="'+root+'/admin/export/excel/surat_keluar"class="btn btn-success mr-3  ml-2"> Excel <i class="fas fa-cloud-download-alt"></i></button></a>'
     );
     // search engine
     $("#search").keyup(function () {
@@ -86,7 +86,7 @@ $('body').on('click', '#tolak', function () {
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 },
-                url: '/admin/surat_keluar/tolak/' + id,
+                url: root+'/admin/surat_keluar/tolak/' + id,
                 method: "PUT",
                 success: function (data) {
                     console.log(data);
@@ -121,7 +121,7 @@ $('body').on('click', '#tolak', function () {
                     headers: {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                     },
-                    url: '/admin/surat_keluar/delete/' + id,
+                    url: root+'/admin/surat_keluar/delete/' + id,
                     type: "DELETE",
                     data: '',
                     success: function (data) {

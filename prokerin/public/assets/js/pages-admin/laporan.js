@@ -3,7 +3,7 @@
 
 $(document).ready(function() {
     var filter = $('#search').val();
-    console.log(filter);
+    root = window.location.protocol + '//' + window.location.host;
     var table = $('#table16').DataTable({
         dom: "<'row'<'ol-sm-12 col-md-6 btn-table'><'col-sm-12 col-md-6  pdf-button'f>>" +
             "<'row'<'col-sm-12'tr>>" +
@@ -22,7 +22,7 @@ $(document).ready(function() {
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             },
-            url: "/admin/laporan/ajax/",
+            url: root+"/admin/laporan/ajax/",
             type: "post",
             data: function(data) {
                 data = '';
@@ -56,10 +56,10 @@ $(document).ready(function() {
     });
 
     $('.btn-table').append(
-        '<a href="/admin/laporan/tambah"class="btn btn-primary " data-toggle="modal" data-target="#exampleModal"> Tambah Data <i class="fas fa-plus"></i></button></a>'
+        '<a href="'+root+'/admin/laporan/tambah"class="btn btn-primary " data-toggle="modal" data-target="#exampleModal"> Tambah Data <i class="fas fa-plus"></i></button></a>'
     );
     $('#table16_filter').prepend(
-        '<a href="/admin/export/excel/laporan"class="btn btn-success mr-3  ml-2"> Excel <i class="fas fa-cloud-download-alt"></i></button></a>'
+        '<a href="'+root+'/admin/export/excel/laporan"class="btn btn-success mr-3  ml-2"> Excel <i class="fas fa-cloud-download-alt"></i></button></a>'
     );
 
     // search engine
@@ -80,14 +80,14 @@ $('body').on('click','#hapus', function () {
     }).then((result) => {
         if (result.value) {
             id = $(this).data('id');
-            
+
             $.ajax({
 
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 },
-            
-                    url: "/admin/laporan/delete/"+ id,
+
+                    url: root+"/admin/laporan/delete/"+ id,
                     type: "DELETE",
                     data: '',
                     success: function (data) {
@@ -105,7 +105,7 @@ $('body').on('click','#hapus', function () {
             });
         } else if (result.dismiss === Swal.DismissReason.cancel) {}
     })
-    
+
     });
 
 

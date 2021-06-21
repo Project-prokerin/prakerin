@@ -14,12 +14,18 @@
                 </div>
             </a>
             <div class="dropdown-menu dropdown-menu-right">
-                <div class="dropdown-title waktu_log">Logged in  5 min ago</div>
-                <a href="{{ route('user.profile') }}" class="dropdown-item has-icon">
+                <div class="dropdown-title " id="waktu_log">Logged in  5 min ago</div>
+                @if (Auth::user()->role == "siswa")
+                     <a href="{{ route('user.profile') }}" class="dropdown-item has-icon">
                 <i class="far fa-user"></i> Profile</a></a>
-                <a href="{{url('/logout')}}" class="dropdown-item has-icon text-danger">
+                @endif
+                {{-- <form action="{{ route('logout') }}" method="POST">
+                    @csrf --}}
+                    <a type="#" id="logout"  class="dropdown-item has-icon text-danger">
                     <i class="fas fa-sign-out-alt"></i> Logout
                 </a>
+                </form>
+
             </div>
         </li>
     </ul>

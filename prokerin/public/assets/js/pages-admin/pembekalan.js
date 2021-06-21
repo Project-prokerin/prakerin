@@ -1,6 +1,6 @@
 $(document).ready( function () {
     var filter = $('#search').val();
-    console.log(filter);
+         root = window.location.protocol + '//' + window.location.host;
     var table = $('#table13').DataTable({
         dom:
         "<'row'<'ol-sm-12 col-md-6 btn-table'><'col-sm-12 col-md-6  pdf-button'f>>" +
@@ -20,7 +20,7 @@ $(document).ready( function () {
         headers: {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         },
-        url: "/admin/pembekalan/ajax/",
+        url: root+"/admin/pembekalan/ajax/",
         type: "post",
         data: function (data) {
             data = '';
@@ -55,10 +55,10 @@ $(document).ready( function () {
     });
 
     $('.btn-table').append(
-        '<a href="/admin/pembekalan/tambah"class="btn btn-primary "> Tambah Data <i class="fas fa-plus"></i></button></a>'
+        '<a href="'+root+'/admin/pembekalan/tambah"class="btn btn-primary "> Tambah Data <i class="fas fa-plus"></i></button></a>'
     );
     $('#table13_filter').prepend(
-        '<a href="/admin/export/excel/pembekalan"class="btn btn-success mr-3  ml-2"> Excel <i class="fas fa-cloud-download-alt"></i></button></a>'
+        '<a href="'+root+'/admin/export/excel/pembekalan"class="btn btn-success mr-3  ml-2"> Excel <i class="fas fa-cloud-download-alt"></i></button></a>'
     );
 
 // search engine
@@ -82,7 +82,7 @@ $('body').on('click','#hapus', function () {
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 },
-                    url: "/admin/pembekalan/delete/"+ id,
+                    url: root+"/admin/pembekalan/delete/"+ id,
                     type: "DELETE",
                     data: '',
                     success: function (data) {

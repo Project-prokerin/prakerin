@@ -1,6 +1,6 @@
 $(document).ready(function() {
     var filter = $('#search').val();
-    console.log(filter);
+        root = window.location.protocol + '//' + window.location.host;
         role = $('#role').data('role');
     var table = $('#table30').DataTable({
         dom:
@@ -21,7 +21,7 @@ $(document).ready(function() {
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             },
-            url: "/admin/pengajuan_prakerin/ajax/",
+            url: root+"/admin/pengajuan_prakerin/ajax/",
             type: "post",
             data: function(data) {
                 data = '';
@@ -52,9 +52,13 @@ $(document).ready(function() {
             [0, 'asc']
         ]
     });
-    $('.btn-table').append(
-        '<a href="/admin/pengajuan_prakerin/tambah"class="btn btn-primary "> Tambah Data <i class="fas fa-plus"></i></button></a>'
-    );
+    console.log(role);
+    if (role == "hubin" || role == "kaprog") {
+        $('.btn-table').append(
+            '<a href="'+root+'/admin/pengajuan_prakerin/tambah"class="btn btn-primary "> Tambah Data <i class="fas fa-plus"></i></button></a>'
+        );
+    }
+
 
     // search engine
     $("#search").keyup(function() {
@@ -77,7 +81,7 @@ $(document).ready(function() {
                     headers: {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                     },
-                    url: "/admin/pengajuan_prakerin/destroy/" + id,
+                    url: root+"/admin/pengajuan_prakerin/destroy/" + id,
                     type: "DELETE",
                     data: '',
                     success: function(data) {
@@ -116,7 +120,7 @@ $(document).ready(function() {
                     }
                 });
                 $.ajax({
-                    url: "/admin/export/pdf/pengajuan_prakerin/" + id + "/" + nomor,
+                    url: root+"/admin/export/pdf/pengajuan_prakerin/" + id + "/" + nomor,
                     type: "POST",
                     data: {
                         "id": id,

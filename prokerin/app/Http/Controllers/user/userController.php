@@ -110,6 +110,7 @@ class userController extends Controller
 
     public function pembekalan_download($name_file)
     {
+
         // file directory
         $file = public_path() . "/file/portofolio/$name_file";
         // file name
@@ -188,7 +189,7 @@ class userController extends Controller
 
     // jurnal prakerin
     public function jurnal(){
-        if (siswa('data_prakerin')->status === 'Pengajuan' || siswa('data_prakerin') == '') {
+        if (siswa('data_prakerin')->status === 'Pengajuan' or empty(siswa('data_prakerin') )) {
             return back();
         }
         $jurnal_prakerin = jurnal_prakerin::where('id_siswa', siswa("main")->id)->orderBy('created_at', 'DESC')->get();

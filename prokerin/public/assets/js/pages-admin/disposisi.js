@@ -1,4 +1,5 @@
 $(document).ready(function () {
+    root = window.location.protocol + '//' + window.location.host;
     var filter = $('#search').val();
     console.log($('#role').text());
     var table = $('#table-6').DataTable({
@@ -20,7 +21,7 @@ $(document).ready(function () {
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             },
-            url: '/admin/disposisi/ajax',
+            url: root + '/admin/disposisi/ajax',
             type: "post",
             data: function (data) {
                 data = '';
@@ -52,9 +53,9 @@ $(document).ready(function () {
     role = $('#role').text();
     if (role == 'admin' ||  role == 'kaprog' || role == 'kepsek') {
         $('.btn-table').append(
-            '<a href="/admin/disposisi/tambah"class="btn btn-primary "> Tambah Data <i class="fas fa-plus"></i></button></a>'
+            '<a href="'+root+'/admin/disposisi/tambah"class="btn btn-primary "> Tambah Data <i class="fas fa-plus"></i></button></a>'
         );
-          $('#table-6_filter').prepend('<a href="/admin/disposisi/export/excel"class="btn btn-success mr-3  ml-2"> Excel <i class="fas fa-cloud-download-alt"></i></button></a>'
+          $('#table-6_filter').prepend('<a href="'+root+'/admin/disposisi/export/excel"class="btn btn-success mr-3  ml-2"> Excel <i class="fas fa-cloud-download-alt"></i></button></a>'
 );
     }
 
@@ -81,7 +82,7 @@ $(document).ready(function () {
                     headers: {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                     },
-                    url: '/admin/disposisi/delete/' + id,
+                    url: root+'/admin/disposisi/delete/' + id,
                     type: "DELETE",
                     data: '',
                     success: function (data) {

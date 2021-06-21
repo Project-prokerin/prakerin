@@ -67,12 +67,17 @@ class DiposisiController extends Controller
     // table disposisi
     public function tambah($id)
     {
-
+        if (Auth::user()->role != "admin" or Auth::user()->role != "kepsek" or Auth::user()->role != "kaprog" ) {
+            return back();
+        }
         $surat = Surat_masuk::find($id)->first();
         return view('admin.disposisi.tambah', compact('surat'));
     }
     public function tambah2()
     {
+        if (Auth::user()->role != "admin" or Auth::user()->role != "kepsek" or Auth::user()->role != "kaprog" ) {
+            return back();
+        }
         return view('admin.disposisi.tambah2', ['surat' => Detail_surat::doesntHave('disposisi')->get()]);
     }
     public function store(disposisiRequest $request,$id)
@@ -112,6 +117,9 @@ class DiposisiController extends Controller
     }
     public function edit($id = null)
     {
+        if (Auth::user()->role != "admin" or Auth::user()->role != "kepsek" or Auth::user()->role != "kepsek") {
+            return back();
+        }
         $surat = Disposisi::find($id);
         // dd($surat->id);
         return view('admin.disposisi.edit', compact('surat'));

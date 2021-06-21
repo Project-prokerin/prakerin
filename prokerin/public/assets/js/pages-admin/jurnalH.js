@@ -1,6 +1,6 @@
 $(document).ready(function () {
     var filter = $("#search").val();
-    role =
+    root = window.location.protocol + '//' + window.location.host;
         console.log(filter);
     var table = $('#table99').DataTable({
         dom: "<'row'<'ol-sm-12 col-md-6 btn-table'><'col-sm-12 col-md-6  pdf-button'f>>" +
@@ -19,7 +19,7 @@ $(document).ready(function () {
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             },
-            url: "/admin/jurnalH/ajax/",
+            url: root+"/admin/jurnalH/ajax/",
             type: "post",
             data: function (data) {
                 data = '';
@@ -64,12 +64,12 @@ $(document).ready(function () {
     role = $('#role').data('role');
     if (role != 'kaprog') {
         $('.btn-table').append(
-            '<a href="/admin/jurnalH/tambah"class="btn btn-primary" data-toggle="modal" data-target="#exampleModal"> Tambah Data <i class="fas fa-plus"></i></button></a>'
+            '<a href="'+root+'/admin/jurnalH/tambah"class="btn btn-primary" data-toggle="modal" data-target="#exampleModal"> Tambah Data <i class="fas fa-plus"></i></button></a>'
         );
     }
 
     $('#table99_filter').prepend(
-        '<a href="/admin/export/excel/jurnalH"class="btn btn-success mr-3  ml-2"> Excel <i class="fas fa-cloud-download-alt"></i></button></a>'
+        '<a href="'+root+'/admin/export/excel/jurnalH"class="btn btn-success mr-3  ml-2"> Excel <i class="fas fa-cloud-download-alt"></i></button></a>'
     );
 
     // search engine
@@ -89,7 +89,7 @@ $(document).ready(function () {
             if (result.value) {
                 id = $(this).data('id');
                 $.ajax({
-                    url: "/admin/jurnalH/delete/" + id,
+                    url: root+"/admin/jurnalH/delete/" + id,
                     type: "DELETE",
                     data: {
                         _token: '{{ csrf_token() }}'

@@ -83,7 +83,7 @@
     <!-- JS Libraies -->
     @stack('script')
     <script src="{{ asset('template/node_modules/chart.js/dist/chart.min.js') }}"></script>
-
+        <script src="{{ asset('assets/js/auth/logout.js') }}"></script>
 
 
 

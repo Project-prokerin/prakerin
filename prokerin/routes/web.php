@@ -45,8 +45,8 @@ use App\Http\Controllers\Excel\ExcelController;
 // Auth
 Route::get('/', [AuthController::class, 'index'])->name('login')->middleware('guest');
 Route::post('/postlogin', [AuthController::class, 'postlogin']);
-Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
-Route::post('/log', [AuthController::class,'waktu_log'])->name('auth.time');
+Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+Route::post('/time', [AuthController::class,'waktu_log'])->name('auth.time');
 
 
 // all admin
@@ -54,7 +54,7 @@ Route::middleware(['web', 'auth', 'role:bkk,hubin,kaprog,kepsek,tu,kurikulum,kes
 
     Route::get('/admin/dashboard',  [ViewController::class, 'dashboard'])->name('admin.dashboard');  // memakai route
     Route::post('/admin/dashboard/ajax',  [ViewController::class, 'ajax'])->name('dashboard.ajax');  // memakai route view untuk view saja
-    Route::get('/export/excel/siswa', [ExcelController::class, 'siswa'])->name('export.siswa');
+    // Route::get('/export/excel/siswa', [ExcelController::class, 'siswa'])->name('export.siswa');
 });
 
 // export surat keluar
@@ -78,39 +78,42 @@ Route::prefix('admin')->middleware(['web', 'auth', 'role:admin,kepsek,tu,kaprog,
 
 
     // disposisi table surat
-    Route::get('surat_masuk/{id}/disposisi/view', [DiposisiController::class, 'detail'])->name('desposisi.view');
-    Route::get('surat_masuk/{id}/disposisi/tambah/', [DiposisiController::class, 'tambah_disposisi'])->name('desposisi.tambah');
-    Route::get('surat_masuk/{id}/disposisi/edit', [DiposisiController::class, 'edit'])->name('desposisi.edit');
+    Route::middleware(['web', 'auth', 'role:admin,kepsek,tu,kaprog'])->group(function () {
+        Route::get('surat_masuk/{id}/disposisi/view', [DiposisiController::class, 'detail'])->name('desposisi.view');
+        Route::get('surat_masuk/{id}/disposisi/tambah/', [DiposisiController::class, 'tambah_disposisi'])->name('desposisi.tambah');
+        Route::get('surat_masuk/{id}/disposisi/edit', [DiposisiController::class, 'edit'])->name('desposisi.edit');
 
 
-    // table disposisi
-    Route::get('disposisi', [DiposisiController::class, 'index'])->name('admin.disposisi.index');
-    Route::post('disposisi/ajax', [DiposisiController::class, 'ajax'])->name('admin.disposisi.ajax');
-    // Route::get('disposisi/detail/{id}', [DiposisiController::class, 'detail'])->name('disposisi.admin.detail');
-    Route::get('disposisi/tambah/', [DiposisiController::class, 'tambah2'])->name('admin.disposisi.tambah');
-    Route::patch('disposisi/post/{id}', [DiposisiController::class, 'store'])->name('admin.disposisi.patch'); // update
-    Route::post('disposisi/post/', [DiposisiController::class, 'store2'])->name('admin.disposisi.post'); // update disposisi
-    Route::get('disposisi/edit/{id}', [DiposisiController::class, 'edit'])->name('admin.disposisi.edit'); // edit disposisi biasa
-    Route::put('disposisi/update/{id}', [DiposisiController::class, 'update'])->name('admin.disposisi.update'); // update disposisi
-    Route::delete('disposisi/delete/{id}', [DiposisiController::class, 'destroy'])->name('admin.disposisi.delete'); // table disposisi
+        // table disposisi
+        Route::get('disposisi', [DiposisiController::class, 'index'])->name('admin.disposisi.index');
+        Route::post('disposisi/ajax', [DiposisiController::class, 'ajax'])->name('admin.disposisi.ajax');
+        // Route::get('disposisi/detail/{id}', [DiposisiController::class, 'detail'])->name('disposisi.admin.detail');
+        Route::get('disposisi/tambah/', [DiposisiController::class, 'tambah2'])->name('admin.disposisi.tambah');
+        Route::patch('disposisi/post/{id}', [DiposisiController::class, 'store'])->name('admin.disposisi.patch'); // update
+        Route::post('disposisi/post/', [DiposisiController::class, 'store2'])->name('admin.disposisi.post'); // update disposisi
+        Route::get('disposisi/edit/{id}', [DiposisiController::class, 'edit'])->name('admin.disposisi.edit'); // edit disposisi biasa
+        Route::put('disposisi/update/{id}', [DiposisiController::class, 'update'])->name('admin.disposisi.update'); // update disposisi
+        Route::delete('disposisi/delete/{id}', [DiposisiController::class, 'destroy'])->name('admin.disposisi.delete'); // table disposisi
+    });
 
-    Route::get('surat_keluar', [Surat_keluarController::class, 'index'])->name('admin.surat_keluar.index');
-    Route::post('surat_keluar/ajax', [Surat_keluarController::class, 'ajax'])->name('admin.surat_keluar.ajax');
-    Route::get('surat_keluar/detail/{id}', [Surat_keluarController::class, 'detail'])->name('admin.surat_keluar.detail');
-    Route::get('surat_keluar/tambah', [Surat_keluarController::class, 'tambah'])->name('admin.surat_keluar.tambah');
-    Route::get('surat_keluar/download/{id}', [Surat_keluarController::class, 'suratKdownload'])->name('admin.surat_keluar.download');
-    Route::get('surat_keluar/stream/{id}', [Surat_keluarController::class, 'suratKstream'])->name('admin.surat_keluar.stream');
-    Route::post('surat_keluar/post', [Surat_keluarController::class, 'store'])->name('admin.surat_keluar.post');
-    Route::get('surat_keluar/edit/{id}', [Surat_keluarController::class, 'edit'])->name('admin.surat_keluar.edit');
-    Route::put('surat_keluar/update/{id}', [Surat_keluarController::class, 'update'])->name('admin.surat_keluar.update');
-    Route::delete('surat_keluar/delete/{id}', [Surat_keluarController::class, 'destroy'])->name('admin.surat_keluar.delete');
-    Route::post('/surat_keluar/excel/destroy', [Surat_keluarController::class, 'delete_all'])->name('admin.surat_keluar.delete-all');
-    Route::get('/export/excel/surat_keluar', [ExcelController::class, 'surat_keluar'])->name('admin.export.surat_keluar');
-    Route::put('surat_keluar/tolak/{id}', [Surat_keluarController::class, 'tolak'])->name('admin.surat_keluar.tolak');
-    Route::get('surat_keluar/tandatangan/{id}', [Surat_keluarController::class, 'tandatangan'])->name('admin.surat_keluar.tandatangan');
-    Route::put('surat_keluar/setujui/{id}', [Surat_keluarController::class, 'setujui'])->name('admin.surat_keluar.setujui');
-
-    Route::get('/export/pdf/contssssoh', [PDFController::class, 'contohh'])->name('export.contohh');
+    Route::middleware(['web', 'auth', 'role:admin,kepsek,kaprog,hubin'])->group(function () {
+        Route::get('surat_keluar', [Surat_keluarController::class, 'index'])->name('admin.surat_keluar.index');
+        Route::post('surat_keluar/ajax', [Surat_keluarController::class, 'ajax'])->name('admin.surat_keluar.ajax');
+        Route::get('surat_keluar/detail/{id}', [Surat_keluarController::class, 'detail'])->name('admin.surat_keluar.detail');
+        Route::get('surat_keluar/tambah', [Surat_keluarController::class, 'tambah'])->name('admin.surat_keluar.tambah');
+        Route::get('surat_keluar/download/{id}', [Surat_keluarController::class, 'suratKdownload'])->name('admin.surat_keluar.download');
+        Route::get('surat_keluar/stream/{id}', [Surat_keluarController::class, 'suratKstream'])->name('admin.surat_keluar.stream');
+        Route::post('surat_keluar/post', [Surat_keluarController::class, 'store'])->name('admin.surat_keluar.post');
+        Route::get('surat_keluar/edit/{id}', [Surat_keluarController::class, 'edit'])->name('admin.surat_keluar.edit');
+        Route::put('surat_keluar/update/{id}', [Surat_keluarController::class, 'update'])->name('admin.surat_keluar.update');
+        Route::delete('surat_keluar/delete/{id}', [Surat_keluarController::class, 'destroy'])->name('admin.surat_keluar.delete');
+        Route::post('/surat_keluar/excel/destroy', [Surat_keluarController::class, 'delete_all'])->name('admin.surat_keluar.delete-all');
+        Route::get('/export/excel/surat_keluar', [ExcelController::class, 'surat_keluar'])->name('admin.export.surat_keluar');
+        Route::put('surat_keluar/tolak/{id}', [Surat_keluarController::class, 'tolak'])->name('admin.surat_keluar.tolak');
+        Route::get('surat_keluar/tandatangan/{id}', [Surat_keluarController::class, 'tandatangan'])->name('admin.surat_keluar.tandatangan');
+        Route::put('surat_keluar/setujui/{id}', [Surat_keluarController::class, 'setujui'])->name('admin.surat_keluar.setujui');
+        Route::get('/export/pdf/contssssoh', [PDFController::class, 'contohh'])->name('export.contohh');
+    });
 
 });
 
@@ -184,8 +187,8 @@ Route::prefix('admin')->middleware(['web', 'auth', 'role:admin'])->group(functio
 // modul hubin (prakerin)
 // untuk hubin, admin disi
 // kaprog
-Route::prefix('admin')->middleware(['web', 'auth', 'role:kaprog,hubin,admin'])->group(function () {
-
+Route::prefix('admin')->middleware(['web', 'auth', 'role:kaprog,hubin,admin,kepsek'])->group(function () {
+        Route::middleware(['web', 'auth', 'role:kaprog,hubin,admin'])->group(function () {
     // data prakerin
     Route::get('data_prakerin', [data_prakerinController::class, 'index'])->name('data_prakerin.index');
     Route::post('data_prakerin/ajax', [data_prakerinController::class, 'ajax'])->name('data_prakerin.ajax');
@@ -240,12 +243,14 @@ Route::prefix('admin')->middleware(['web', 'auth', 'role:kaprog,hubin,admin'])->
     Route::get('/export/pdf/contoh', [PDFController::class, 'contoh'])->name('export.contoh');
 
     // kelompok magang
-    Route::get('kelompok', [kelompokController::class, 'index'])->name('kelompok.index');
+    Route::get('kelompok',
+        [kelompokController::class, 'index']
+    )->name('kelompok.index');
     Route::get('kelompok/ajax', [kelompokController::class, 'ajax'])->name('kelompok.ajax');
     Route::get('kelompok/detail/{id}', [kelompokController::class, 'detail'])->name('kelompok.detail');
     Route::get('kelompok/tambah', [kelompokController::class, 'tambah'])->name('kelompok.tambah');
-    Route::get('kelompok/fetch/{id}', [kelompokController::class,'fetch'])->name('kelompok.fetch');
-    Route::get('kelompok/fetch_edit/{id}', [kelompokController::class,'fetch_edit'])->name('kelompok.fetch_edit');
+    Route::get('kelompok/fetch/{id}', [kelompokController::class, 'fetch'])->name('kelompok.fetch');
+    Route::get('kelompok/fetch_edit/{id}', [kelompokController::class, 'fetch_edit'])->name('kelompok.fetch_edit');
     Route::post('kelompok/tambah/post', [kelompokController::class, 'store'])->name('kelompok.post');
     Route::get('kelompok/edit/{id}', [kelompokController::class, 'edit'])->name('kelompok.edit');
     Route::put('kelompok/update/{kelompok}', [kelompokController::class, 'update'])->name('kelompok.update');
@@ -281,6 +286,26 @@ Route::prefix('admin')->middleware(['web', 'auth', 'role:kaprog,hubin,admin'])->
     Route::post('/perusahaan/destroy', [perusahaanController::class, 'delete_all'])->name('perusahaan.delete-all');
     Route::get('/export/excel/perusahaan', [ExcelController::class, 'perusahaan'])->name('export.perusahaan');
     Route::get('/export/pdf/perusahaan', [PDFController::class, 'perusahaan']);
+    });
+Route::middleware(['web', 'auth', 'role:kaprog,hubin,admin,kepsek'])->group(function () {
+    // pengajuan magang
+    Route::get('pengajuan_prakerin', [pengajuan_prakerinController::class, 'index'])->name('pengajuan_prakerin.index');
+    Route::get('pengajuan_prakerin/ajax', [pengajuan_prakerinController::class, 'ajax'])->name('pengajuan_prakerin.ajax');
+    Route::get('pengajuan_prakerin/detail/{id}', [pengajuan_prakerinController::class, 'detail'])->name('pengajuan_prakerin.detail');
+    Route::get('pengajuan_prakerin/tambah', [pengajuan_prakerinController::class, 'tambah'])->name('pengajuan_prakerin.tambah');
+    Route::get('pengajuan_prakerin/fetch/{id}', [pengajuan_prakerinController::class, 'fetch'])->name('pengajuan_prakerin.fetch');
+    Route::get('pengajuan_prakerin/fetch_edit/{id}', [pengajuan_prakerinController::class, 'fetch_edit'])->name('pengajuan_prakerin.fetch_edit');
+    Route::post('pengajuan_prakerin/tambah/post', [pengajuan_prakerinController::class, 'store'])->name('pengajuan_prakerin.post');
+    Route::get('pengajuan_prakerin/edit/{id}', [pengajuan_prakerinController::class, 'edit'])->name('pengajuan_prakerin.edit');
+    Route::put('pengajuan_prakerin/update/{pengajuan_prakerin}', [pengajuan_prakerinController::class, 'update'])->name('pengajuan_prakerin.update');
+    Route::delete('pengajuan_prakerin/delete/{id}', [pengajuan_prakerinController::class, 'destroy'])->name('pengajuan_prakerin.delete');
+    Route::post('pengajuan_prakerin/ajax', [pengajuan_prakerinController::class, 'ajax'])->name('pengajuan_prakerin.ajax');
+    Route::delete('/pengajuan_prakerin/destroy/{id}', [pengajuan_prakerinController::class, 'destroy'])->name('pengajuan_prakerin.delete-all');
+    Route::post('/export/pdf/kelompok/{id}/{nomor}', [PDFController::class, 'pengajuan_prakerin'])->name('export.kelompok');
+    Route::get('/export/pdf/contoh', [PDFController::class, 'contoh'])->name('export.contoh');
+});
+
+
 });
 
 // bkk

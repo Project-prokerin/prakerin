@@ -1,4 +1,5 @@
 $(document).ready( function () {
+    root = window.location.protocol + '//' + window.location.host;
     var filter = $('#search').val();
     console.log(filter);
     var table = $('#table1').DataTable({
@@ -20,7 +21,7 @@ $(document).ready( function () {
         headers: {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         },
-        url: "/admin/guru/ajax/",
+        url: root + "/admin/guru/ajax/",
         type: "post",
         data: function (data) {
             data = '';
@@ -38,9 +39,9 @@ $(document).ready( function () {
         ],
     });
     $('.btn-table').append(
-        '<a href="/admin/guru/tambah"class="btn btn-primary "> Tambah Data <i class="fas fa-plus"></i></button></a>'
+        '<a href="'+root+'/admin/guru/tambah"class="btn btn-primary "> Tambah Data <i class="fas fa-plus"></i></button></a>'
     );
-    $('#table1_filter').prepend('<a href="/admin/export/excel/guru"class="btn btn-success mr-3  ml-2"> Excel <i class="fas fa-cloud-download-alt"></i></button></a>'
+    $('#table1_filter').prepend('<a href="'+root+'/admin/export/excel/guru"class="btn btn-success mr-3  ml-2"> Excel <i class="fas fa-cloud-download-alt"></i></button></a>'
     );
 
 // search engine
@@ -64,7 +65,7 @@ $('body').on('click','#hapus', function () {
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 },
-                    url: "/admin/guru/delete/"+ id,
+                    url: root+"/admin/guru/delete/"+ id,
                     type: "DELETE",
 
                     data:'',

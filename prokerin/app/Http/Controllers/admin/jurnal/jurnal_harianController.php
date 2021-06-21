@@ -83,6 +83,9 @@ class jurnal_harianController extends Controller
     }
     public function tambah(Request $request)
     {
+        if (Auth::user()->role == "kaprog") {
+            return back();
+        }
         $sidebar = 'jurnalH';
         return view('admin.jurnal_harian.tambah', compact('sidebar'));
     }
@@ -120,6 +123,7 @@ class jurnal_harianController extends Controller
      */
     public function detail($id)
     {
+
         $sidebar = 'jurnalH';
         return view('admin.jurnal_harian.detail',
          compact('sidebar'));
@@ -134,6 +138,9 @@ class jurnal_harianController extends Controller
     public function edit($id)
     {
         // dd($id);
+        if (Auth::user()->role == "kaprog") {
+            return back();
+        }
             $data_prakerin = data_prakerin::all();
             $jurnalH = jurnal_harian::find($id);
         return view('admin.jurnal_harian.edit', compact('data_prakerin','jurnalH'));

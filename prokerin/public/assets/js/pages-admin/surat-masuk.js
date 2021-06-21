@@ -1,7 +1,7 @@
 $(document).ready( function () {
-    var filter = $('#search').val();
-
-role = $('#role').data('role');
+    filter = $('#search').val();
+    root = window.location.protocol + '//' + window.location.host;
+    role = $('#role').data('role');
 
     function columns(role){
         if(role == "kepsek" || role == "admin"){
@@ -56,7 +56,7 @@ role = $('#role').data('role');
         headers: {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         },
-        url: '/admin/surat_masuk/ajax',
+        url: root+'/admin/surat_masuk/ajax',
         type: "post",
         data: function (data) {
             data = '';
@@ -72,12 +72,12 @@ role = $('#role').data('role');
 
 if(role == 'admin' || role == 'tu'){
     $('.btn-table').append(
-            '<a href="/admin/surat_masuk/tambah"class="btn btn-primary  "> Tambah Data <i class="fas fa-plus"></i></button></a>'
+            '<a href="'+root+'/admin/surat_masuk/tambah"class="btn btn-primary  "> Tambah Data <i class="fas fa-plus"></i></button></a>'
     );
 }
 
    $('#table-1_filter').prepend(
-        '<a href="/admin/surat_masuk/export/excel/"class="btn btn-success mr-3  ml-2"> Excel <i class="fas fa-cloud-download-alt"></i></button></a>'
+        '<a href="'+root+'/admin/surat_masuk/export/excel/"class="btn btn-success mr-3  ml-2"> Excel <i class="fas fa-cloud-download-alt"></i></button></a>'
 );
 
 
@@ -101,7 +101,7 @@ $('body').on('click','#hapus', function () {
                     headers: {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                     },
-                    url: '/admin/surat_masuk/delete/' + id,
+                    url: root+'/admin/surat_masuk/delete/' + id,
                     type: "DELETE",
                     data: '',
                     success: function (data) {
@@ -136,7 +136,7 @@ $('body').on('click','#hapus-disposisi', function () {
                         headers: {
                             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                         },
-                        url: '/admin/disposisi/delete/' + id,
+                        url: root+'/admin/disposisi/delete/' + id,
                         type: "DELETE",
                         data: '',
                         success: function (data) {
@@ -172,7 +172,7 @@ $('body').on('click','#surat-batal', function () {
                         headers: {
                             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                         },
-                        url: '/admin/surat_masuk/batal/' + id,
+                        url: root+'/admin/surat_masuk/batal/' + id,
                         type: "DELETE",
                         data: '',
                         success: function (data) {

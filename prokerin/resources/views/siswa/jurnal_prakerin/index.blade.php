@@ -103,9 +103,10 @@
                     <thead class="text-white">
                         <tr class="bg-primary table-th pb-2">
                             <th scope="col" style="width: 30px;"><p>No</p></th>
-                             <th scope="col" style=""><p>Topik Pembelajaran</p></th>
-                            <th scope="col" style=""><p>Tanggal Pelaksanaan</p></th>
+                             <th scope="col" style=""><p>Tanggal Pelaksanaan</p></th>
                             <th scope="col" style=""><p>Kompetisi Dasar</p></th>
+                             <th scope="col" style=""><p>Topik Pembelajaran</p></th>
+
 
                         </tr>
                     </thead>
@@ -159,11 +160,12 @@ $(document).ready(function () {
                 // colump dari controller
                 columns: [
                     {data: 'DT_RowIndex', name: 'DT_RowIndex'},
-                    {data: 'topik_pekerjaan', name: 'topik_pekerjaan'},
-                    {data: 'tanggal_pelaksanaan', name: 'tanggal_pelaksanaan'}, //add colump di data tab;e
+                      {data: 'tanggal_pelaksanaan', name: 'tanggal_pelaksanaan'}, //add colump di data tab;e
                     {data: 'kompetisi_dasar', name: 'kompetisi_dasar'},
+                    {data: 'topik_pekerjaan', name: 'topik_pekerjaan'},
+
                 ],columnDefs: [
-                { className: 'text-center', targets: [0,3] },
+                { className: 'text-center', targets: [0] },
             ]
         });
 

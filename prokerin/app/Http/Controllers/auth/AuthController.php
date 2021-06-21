@@ -40,15 +40,15 @@ class AuthController extends Controller
             return redirect('/')->withInput()->withErrors(['password' => 'password anda salah','username' => 'username anda salah']);
         }
     }
-    public function logout()
+    public function logout(Request $request)
     {
         Auth::logout();
         session()->flush();
         return redirect('/');
     }
-    public function waktu_log(request $request)
+    public function waktu_log(Request $request)
     {
         $waktu = 'Logged in ' . session()->get('last_login_at')->locale('en_US')->diffForHumans();
-        return response()->json(compact('waktu'));
+        return response()->json($data = $waktu);
     }
 }

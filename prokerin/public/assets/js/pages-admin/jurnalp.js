@@ -1,6 +1,7 @@
 $(document).ready(function () {
     var filter = $("#search").val();
     console.log(filter);
+         root = window.location.protocol + '//' + window.location.host;
     var table = $('#table99').DataTable({
         dom: "<'row'<'ol-sm-12 col-md-6 btn-table'><'col-sm-12 col-md-6  pdf-button'f>>" +
             "<'row'<'col-sm-12'tr>>" +
@@ -18,7 +19,7 @@ $(document).ready(function () {
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             },
-            url: "/admin/jurnal/ajax/",
+            url: root+"/admin/jurnal/ajax/",
             type: "post",
             data: function (data) {
                 data = '';
@@ -34,6 +35,10 @@ $(document).ready(function () {
                 name: 'nama_siswa'
             },
             {
+                data: 'kompetisi_dasar',
+                name: 'kompetisi_dasar'
+            },
+            {
                 data: 'topik_pekerjaan',
                 name: 'topik_pekerjaan'
             },
@@ -41,10 +46,7 @@ $(document).ready(function () {
                 data: 'tanggal_pelaksanaan',
                 name: 'tanggal_pelaksanaan'
             }, //add colump di data tab;e
-            {
-                data: 'kompetisi_dasar',
-                name: 'kompetisi_dasar'
-            },
+
 
 
             {
@@ -54,15 +56,16 @@ $(document).ready(function () {
         ],
     });
     role = $('#role').data('role');
+    console.log(role);
     if (role != 'kaprog') {
         $('.btn-table').append(
-            '<a href="/admin/jurnal/tambah"class="btn btn-primary "> Tambah Data <i class="fas fa-plus"></i></button></a>'
+            '<a href="'+root+'/admin/jurnal/tambah"class="btn btn-primary "> Tambah Data <i class="fas fa-plus"></i></button></a>'
         );
     }
 
 
     $('#table99_filter').prepend(
-        '<a href="/admin/export/excel/jurnal"class="btn btn-success mr-3  ml-2"> Excel <i class="fas fa-cloud-download-alt"></i></button></a>'
+        '<a href="'+root+'/admin/export/excel/jurnal"class="btn btn-success mr-3  ml-2"> Excel <i class="fas fa-cloud-download-alt"></i></button></a>'
     );
 
     // search engine
@@ -82,7 +85,7 @@ $(document).ready(function () {
             if (result.value) {
                 id = $(this).data('id');
                 $.ajax({
-                    url: "/admin/jurnal/delete/" + id,
+                    url: root+"/admin/jurnal/delete/" + id,
                     type: "DELETE",
 
                     data: {

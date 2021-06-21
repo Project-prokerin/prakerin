@@ -70,6 +70,9 @@ class jurnal_prakerinController extends Controller
     }
     public function tambah(Request $request)
     {
+        if (Auth::user()->role == "kaprog") {
+            return back();
+        }
         $sidebar = 'jurnal';
         $data_prakerin = data_prakerin::all();
         return view('admin.jurnal_prakerin.tambah', compact('sidebar','data_prakerin'));
@@ -120,6 +123,9 @@ class jurnal_prakerinController extends Controller
      */
     public function edit($id)
     {
+        if (Auth::user()->role == "kaprog") {
+            return back();
+        }
         // $sidebar = 'jurnal';
         $data_prakerin = data_prakerin::all(); //
         // $dataP = data_prakerin::findOrFail($id);

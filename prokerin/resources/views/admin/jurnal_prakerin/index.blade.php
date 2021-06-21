@@ -47,10 +47,11 @@
                     No
                   </th>
                      <th>Nama siswa</th>
+                         <th>Kompetisi Dasar</th>
                         <th>Topik Pembelajaran</th>
                         <th>Tanggal Pelaksanaan</th>
 
-                              <th>Kompetisi Dasar</th>
+
 
                   <th>Action</th>
                 </tr>
@@ -75,7 +76,7 @@
   </div>
 
 
-
+      <span id="role" data-role="{{ Auth::user()->role }}"></span>
 
 @endsection
 @push('script')
