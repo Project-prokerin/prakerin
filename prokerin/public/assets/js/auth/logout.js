@@ -34,24 +34,6 @@ $(document).ready( function () {
         } else if (result.dismiss === Swal.DismissReason.cancel) {}
     })
 });
-
-
-// waktu login
- root = window.location.protocol + '//' + window.location.host;
-$.ajax({
-    headers: {
-        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-    },
-    url: root+'/time',
-    method: 'POST',
-    data: '',
-    success:function (data) {
-        console.log(data);
-        $('#waktu_log').html(data.waktu)
-    },
-    fail:function (params) {
-
-    }
-})
-
 });
+
+

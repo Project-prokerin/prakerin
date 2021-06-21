@@ -15,7 +15,7 @@ class AuthController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('guest', ['except' => 'logout']);
+        $this->middleware('guest', ['except' => ['logout','time_log']]);
     }
     public function index()
     {
@@ -46,7 +46,8 @@ class AuthController extends Controller
         session()->flush();
         return redirect('/');
     }
-    public function waktu_log(Request $request)
+
+    public function time_log(Request $request)
     {
         $waktu = 'Logged in ' . session()->get('last_login_at')->locale('en_US')->diffForHumans();
         return response()->json($data = $waktu);

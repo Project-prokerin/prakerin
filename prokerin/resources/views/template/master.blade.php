@@ -71,7 +71,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
     <script src="{{ asset('template/assets/js/stisla.js') }}"></script>
     <script src="{{ asset('assets/js/sweetalert.all.js') }}"></script>
-    <script src="{{ asset('assets/js/costom.js') }}"></script>
+    <script src="{{ asset('assets/js/auth/time_log.js') }}"></script>
+    <script src="{{ asset('assets/js/auth/logout.js') }}"></script>
     <script src="{{ asset('template/node_modules/datatables/media/js/jquery.dataTables.min.js') }}"></script>
     <script src="{{ asset('template/node_modules/datatables.net-bs4/js/dataTables.bootstrap4.min.js') }}"></script>
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
@@ -83,7 +84,7 @@
     <!-- JS Libraies -->
     @stack('script')
     <script src="{{ asset('template/node_modules/chart.js/dist/chart.min.js') }}"></script>
-        <script src="{{ asset('assets/js/auth/logout.js') }}"></script>
+
 
 
 

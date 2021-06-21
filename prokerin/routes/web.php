@@ -46,7 +46,7 @@ use App\Http\Controllers\Excel\ExcelController;
 Route::get('/', [AuthController::class, 'index'])->name('login')->middleware('guest');
 Route::post('/postlogin', [AuthController::class, 'postlogin']);
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
-Route::post('/time', [AuthController::class,'waktu_log'])->name('auth.time');
+Route::post('/time', [AuthController::class,'time_log'])->name('time_log');
 
 
 // all admin
