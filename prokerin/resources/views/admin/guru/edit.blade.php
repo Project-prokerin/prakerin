@@ -1,5 +1,6 @@
     @extends('template.master')
     @push('link')
+    <link rel="stylesheet" href="{{ asset('template/') }}/node_modules/select2/dist/css/select2.min.css">
     <style>
             .card-body .input i{
                 width: 50px;
@@ -103,7 +104,7 @@
                                 <label class="form-label">Jurusan</label>
                                 <div class="d-flex">
                                     <i class="fas fa-user border text-center"></i>
-                                    <select class="form-control  @error('id_jurusan')
+                                    <select class="form-control select2  @error('id_jurusan')
                                         is-invalid
                                     @enderror"  name="id_jurusan">
                                       <option  value="">Pilih Jurusan</option>
@@ -149,5 +150,5 @@
 
     @endsection
     @push('script')
-
+    <script src="{{ asset('template/') }}/node_modules/select2/dist/js/select2.full.min.js"></script>
     @endpush

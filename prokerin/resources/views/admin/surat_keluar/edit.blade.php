@@ -1,5 +1,6 @@
 @extends('template.master')
 @push('link')
+<link rel="stylesheet" href="{{asset('template/')}}/node_modules/select2/dist/css/select2.min.css">
 <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
     <link rel="stylesheet"
         href="{{ asset('template/') }}/node_modules/bootstrap-timepicker/css/bootstrap-timepicker.min.css">
@@ -12,7 +13,10 @@
         }
         .invalid-feedback{
                 display: block;
-            }
+        }.kanan{
+            float: right;
+            margin-top: -457px;
+        }
 </style>
 @endpush
 @section('title', 'Prakerin | Surat Penugasan')
@@ -111,7 +115,7 @@
                                                 </div>
                                             @enderror
                                         </div> --}}
-                                        <div class="mb-3">
+                                        {{-- <div class="mb-3">
                                             <label class="form-label">Alamat </label>
                                             <div class="d-flex">
                                                 <i class="fas fa-user border text-center"></i>
@@ -124,6 +128,19 @@
                                                     {{ $message }}
                                                 </div>
                                             @enderror
+                                        </div> --}}
+                                        <div class="mb-3">
+                                            <label for="">Alamat</label>
+                                            <textarea id="basic-example" name="alamat" class=" form-control-sm
+                                            @error('alamat')
+                                                    is-invalid
+                                                    @enderror" style="height: 100px;" placeholder="Jl.xxxxx">{{$isi_surat->alamat}}</textarea>
+                                                </div>
+                                                @error('alamat')
+                                                    <div class="invalid-feedback">
+                                                        {{ $message }}
+                                                    </div>
+                                                @enderror
                                         </div>
 
                                 </div>
@@ -132,7 +149,7 @@
                     </div>
                     {{--  --}}
                     {{--  --}}
-                    <div class="col-sm-6">
+                    <div class="kanan col-sm-6">
                         <div class="">
                             <div class="" style="height: auto;">
                                 <div class="card-body">
@@ -197,9 +214,9 @@
                                     </div>
 
                                 </div>
-                                <div style="margin-top: 40px;">
+                                <div style="margin-top: 10px;margin-left:25px;">
                                     <button type="submit" class="btn btn-success rounded mr-2"><i
-                                            class="fas fa-check-square mr-2"></i>Next</button>
+                                            class="fas fa-check-square mr-2"></i>Submit</button>
                                     </form>
                                     <a href="{{ route('admin.surat_keluar.index') }}" type="button"
                                         class="btn btn-danger rounded"><i
@@ -219,6 +236,26 @@
 <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
 <script src="{{ asset('template/') }}/node_modules/bootstrap-timepicker/js/bootstrap-timepicker.min.js"></script>
+<script src="{{asset('template/')}}/node_modules/select2/dist/js/select2.full.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tinymce/5.8.1/tinymce.min.js" integrity="sha512-DzR2RH5M2HEOaMkPDKIYIrSXhKtKncXM0rtO3Dlu7p9qUY1T8+lrTPPw+efglohND+HNb9PJJmxlqy/5l2bz5w==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+<script type="text/javascript">
+    tinymce.init({
+  selector: 'textarea#basic-example',
+  height: 200,
+  menubar: false,
+  plugins: [
+    'advlist autolink lists link image charmap print preview anchor',
+    'searchreplace visualblocks code fullscreen',
+    'insertdatetime media table paste code help wordcount'
+  ],
+  toolbar: 'undo redo | formatselect | ' +
+  'bold italic backcolor | alignleft aligncenter ' +
+  'alignright alignjustify | bullist numlist outdent indent | ' +
+  'removeformat | help',
+  content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:14px }'
+});
+</script>
 
 <script type="text/javascript">
     $(function() {

@@ -1,5 +1,7 @@
 @extends('template.master')
 @push('link')
+<link rel="stylesheet" href="{{asset('template/')}}/node_modules/summernote/dist/summernote-bs4.css">
+<link rel="stylesheet" href="{{asset('template/')}}/node_modules/select2/dist/css/select2.min.css">
 <style>
         .card-body .input i {
         width: 40px;
@@ -8,6 +10,11 @@
     }
     .invalid-feedback{
         display: block;
+    }
+    h5{
+        color: rgb(82, 82, 255);
+    }.card{
+        height: 1100px;
     }
 </style>
 @endpush
@@ -36,9 +43,8 @@
                         </div>
                         <hr>
                         <div class="card-body">
-                            <form action="{{ route('perusahaan.update', ['id' => $perusahaan->id]) }}" method="POST" class="input" enctype="multipart/form-data">
+                            <form action="{{ route('perusahaan.post') }}" method="POST" class="input" enctype="multipart/form-data">
                                 @csrf
-                                @method('put')
                                 <div class="mb-3">
                                     <label class="form-label">Nama Perusahaan</label>
                                     <div class="d-flex">
@@ -54,7 +60,7 @@
                                                 </div>
                                     @enderror
                                 </div>
-                                 <div class="mb-3">
+                                <div class="mb-3">
                                     <label>Bidang usaha</label>
                                     <select name="id_jurusan" class="form-control  select2 @error('id_jurusan')  is-invalid  @enderror select2" name="id_jurusan" id="">
                                         <option value="" selected>--Pilih Bidang usaha--</option>
@@ -69,7 +75,7 @@
                                 <div class="mb-3">
                                     <label class="form-label">Alamat</label>
                                     <div class="d-flex">
-                                        <i class="far fa-building border text-center"></i>
+                                        <i class="fas fa-map-marked border text-center"></i>
                                         <input type="text" name="alamat"  class="form-control form-control-sm
                                         @error('alamat')
                                             is-invalid
@@ -84,11 +90,11 @@
                                 <div class="mb-3">
                                     <label class="form-label">Link Perusahaan</label>
                                     <div class="d-flex">
-                                        <i class="far fa-building border text-center"></i>
+                                        <i class="fas fa-link border text-center"></i>
                                         <input type="text" name="link"  class="form-control form-control-sm
                                         @error('link')
                                             is-invalid
-                                        @enderror" value="{{ old('link', $perusahaan->link) }}">
+                                        @enderror" value="{{ old('link',$perusahaan->link) }}">
                                     </div>
                                     @error('link')
                                                 <div class="invalid-feedback">
@@ -99,11 +105,11 @@
                                 <div class="">
                                     <label class="form-label">Email Perusahaan</label>
                                     <div class="d-flex">
-                                        <i class="far fa-building border text-center"></i>
+                                        <i class="far fa-envelope border text-center"></i>
                                         <input type="text" name="email"  class="form-control form-control-sm
                                         @error('email')
                                             is-invalid
-                                        @enderror" value="{{ old('email', $perusahaan->email) }}">
+                                        @enderror" value="{{ old('email',$perusahaan->email) }}">
                                     </div>
                                     @error('email')
                                                 <div class="invalid-feedback">
@@ -112,6 +118,23 @@
                                     @enderror
                                 </div>
                         </div>
+                        <div class="" style="margin-left: 25px">
+                        <label for="">Deskripsi Perusahaan</label>
+                        <textarea id="basic-example" name="deskripsi_perusahaan" class="summernote form-control form-control-sm
+                        @error('deskripsi_perusahaan')
+                        is-invalid
+                @enderror" rows="3" >
+                {{ old('deskripsi_perusahaan') }}</textarea>
+                </div>
+                @error('deskripsi_perusahaan')
+                <div class="invalid-feedback">
+                    {{ $message }}
+                </div>
+                @enderror
+                          
+                    </div>
+                    <div style="margin-left: 25px; margin-top:10px;">
+                   
                     </div>
                 </div>
             </div>
@@ -128,7 +151,7 @@
                             <div class="mb-3">
                                 <label class="form-label">Nama Pemimpin</label>
                                 <div class="d-flex">
-                                    <i class="far fa-building border text-center"></i>
+                                    <i class="fas fa-user-tie border text-center"></i>
                                     <input type="text" name="nama_pemimpin"  class="form-control form-control-sm
                                     @error('nama_pemimpin')
                                             is-invalid
@@ -142,25 +165,26 @@
                                             </div>
                                 @enderror
                             </div>
-                            <div class="mb-3">
+                            {{-- <div class="mb-3">
                                 <label class="form-label">Deskripsi Perusahaan</label>
                                 <div class="d-flex">
-                                    <i class="far fa-building border text-center pt-3"></i>
-                                    <textarea type="text"  name="deskripsi_perusahaan" class="form-control form-control-sm
+                                    <i class="fas fa-align-left border text-center pt-3"></i>
+                                    
+                                    <textarea type="text"  name="deskripsi_perusahaan" class="summernote form-control form-control-sm
                                     @error('deskripsi_perusahaan')
                                             is-invalid
-                                    @enderror" rows="3"> {{ old('deskripsi_perusahaan', $perusahaan->deskripsi_perusahaan) }}</textarea>
+                                    @enderror" rows="3"> {{ old('deskripsi_perusahaan') }}</textarea>
                                 </div>
                                 @error('deskripsi_perusahaan')
                                             <div class="invalid-feedback">
                                                 {{ $message }}
                                             </div>
                                 @enderror
-                            </div>
+                            </div> --}}
                             <div class="mb-3">
                                 <label class="form-label">Tanggal Mou</label>
                                 <div class="d-flex">
-                                    <i class="far fa-building border text-center"></i>
+                                    <i class="far fa-calendar-alt border text-center"></i>
                                     <input type="date" name="tanggal_mou"  class="form-control form-control-sm ui-datepicker
                                     @error('tanggal_mou')
                                             is-invalid
@@ -175,12 +199,12 @@
                             <div class="mb-3">
                                 <label class="form-label">Status Mou</label>
                                 <div class="d-flex">
-                                    <i class="far fa-building border text-center"></i>
+                                    <i class="far fa-chart-bar border text-center"></i>
                                     <input type="text" name="status_mou"  class="form-control form-control-sm
                                     @error('status_mou')
                                             is-invalid
                                     @enderror" value="{{ old('status_mou', $perusahaan->status_mou) }}">
-                                </div>
+                                </div>, $perusahaan->status_mou
                                 @error('status_mou')
                                             <div class="invalid-feedback">
                                                 {{ $message }}
@@ -190,7 +214,7 @@
                             <div class="mb-3">
                                 <label class="form-label">Gambar Perusahaan</label>
                                 <div class="d-flex">
-                                    <i class="far fa-building border text-center" style="height: 41px; padding-top: 10px;"></i>
+                                    <i class="fas fa-image border text-center" style="height: 41px; padding-top: 10px;"></i>
                                     <div class="input-group">
                                         <input type="file" name="foto" class="form-control
                                         @error('foto')
@@ -204,37 +228,24 @@
                                             </div>
                                 @enderror
                             </div>
-                            <img src="{{ asset("images/perusahaan/$perusahaan->foto") }}" id="image" alt="" style="width: 200px; height:100px;object-fit:cover;" >
-                            <input type="text" name="val" value="{{ $perusahaan->foto }}" hidden>
-                            @php $a = explode(' ', $perusahaan->foto);
-                            if (count($a) > 1) {unset($a[0]);}
-                            @endphp
-                            <p id="imageName">{{ implode(' ', $a) }}</p>
+                            <img src="{{ asset('images/perusahaan/default.jpg') }}" id="image" alt="" style="width: 512px; height:260px;object-fit:cover;" >
+                            <p id="imageName">default.jpg</p>
+                            <div style="text-align: right;float:right;">
+                                <button type="submit"  class="btn btn-success"><i class="fas fa-check"></i> submit</button>
+                                <a href="{{route('perusahaan.index')}}" type="submit" class="btn btn-danger"><i class="fas fa-times"></i> Batal</a>
+                                </div>
                         </div>
+
                         </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="col-sm-6" style="margin-top: -40px;">
-                <div class="card-body mb-3">
-                    <div class="d-flex">
-                        <div>
-                            <button type="submit" class="btn btn-primary rounded-pill"><i
-                                    class="fas fa-check-square mr-2"></i>Submit</button>
-                        </div>
-                        </form>
-                        &nbsp;&nbsp;&nbsp;
-                        <div>
-                            <a href="{{ route('perusahaan.index') }}" class="btn btn-danger rounded-pill"><i
-                                    class="fas fa-window-close mr-2"></i>Cancel</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
+                </form>
 </div>
 @endsection
 @push('script')
+<script src="{{asset('template/')}}/node_modules/select2/dist/js/select2.full.min.js"></script>
 <script>
     function readURL(input) {
         if (input.files && input.files[0]) {
@@ -255,5 +266,24 @@
     });
 
 </script>
-<script src="{{asset('template/')}}/node_modules/select2/dist/js/select2.full.min.js"></script>
+<script src="{{asset('template/')}}/node_modules/summernote/dist/js/summernote-bs4.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tinymce/5.8.1/tinymce.min.js" integrity="sha512-DzR2RH5M2HEOaMkPDKIYIrSXhKtKncXM0rtO3Dlu7p9qUY1T8+lrTPPw+efglohND+HNb9PJJmxlqy/5l2bz5w==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script type="text/javascript">
+    tinymce.init({
+  selector: 'textarea#basic-example',
+  height: 500,
+  menubar: false,
+  plugins: [
+    'advlist autolink lists link image charmap print preview anchor',
+    'searchreplace visualblocks code fullscreen',
+    'insertdatetime media table paste code help wordcount'
+  ],
+  toolbar: 'undo redo | formatselect | ' +
+  'bold italic backcolor | alignleft aligncenter ' +
+  'alignright alignjustify | bullist numlist outdent indent | ' +
+  'removeformat | help',
+  content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:14px }'
+});
+
+</script>
 @endpush

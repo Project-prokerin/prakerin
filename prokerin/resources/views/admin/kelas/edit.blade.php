@@ -1,5 +1,6 @@
 @extends('template.master')
 @push('link')
+<link rel="stylesheet" href="{{ asset('template/') }}/node_modules/select2/dist/css/select2.min.css">
 <style>
         .card-body .input i{
             width: 50px;
@@ -50,6 +51,8 @@
                         </div>
                     </div>
                 </div>
+                <button type="submit" class="btn btn-success rounded ml-4"><i class="fas fa-check-square mr-2"></i>Submit</button>
+                <a href="{{ route('kelas.index') }}" type="button" class="btn btn-danger rounded"><i class="fas fa-window-close mr-2"></i>Cancel</a>
             </div>
             </div>
             {{--  --}}
@@ -65,7 +68,7 @@
                                 <label class="form-label">Jurusan</label>
                                 <div class="d-flex">
                                     <i class="fas fa-user border text-center"></i>
-                                    <select class="form-control  @error('id_jurusan')
+                                    <select class="form-control select2  @error('id_jurusan')
                                         is-invalid
                                     @enderror"  name="id_jurusan">
                                       <option  value="">Pilih Jurusan</option>
@@ -81,10 +84,8 @@
                                 @enderror
                             </div>
                     </div>
-                    <div style="margin-top: 40px;">
-                        <button type="submit" class="btn btn-success rounded-pill mr-2"><i class="fas fa-check-square mr-2"></i>Submit</button>
+                    <div style="margin-top: 40px;"> 
                         </form>
-                        <a href="{{ route('kelas.index') }}" type="button" class="btn btn-danger rounded-pill"><i class="fas fa-window-close mr-2"></i>Cancel</a>
                     </div>
                     </div>
                 </div>
@@ -99,5 +100,5 @@
 
 @endsection
 @push('script')
-
+<script src="{{ asset('template/') }}/node_modules/select2/dist/js/select2.full.min.js"></script>
 @endpush
