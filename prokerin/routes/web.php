@@ -371,5 +371,5 @@ Route::middleware(['web', 'auth', 'role:siswa'])->group(function () {
 
 });
 Route::middleware(['web', 'auth', 'role:siswa,admin,kaprog'])->group(function () {
-    Route::get('/export/pdf/jurnal/{id}', [PDFController::class, 'Jurnal'])->name('export.jurnal.pdf');
+    Route::get('/export/pdf/jurnal/{id}', [userController::class, 'exportJurnal'])->name('export.jurnal.pdf');
 });

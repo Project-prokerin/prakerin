@@ -154,7 +154,7 @@
             </h6>
             <h6 class="font6" style="font-weight: 300px;font-size: 14px; margin-top: -25px;  text-align:left; margin-left:110px;">
                 Alamat<span style="margin-left: 157px;">
-                        : &nbsp; {{$identitas_siswa->alamat}}
+                        : &nbsp; {{$identitas_siswa->alamat}} 
                     </span>
             </h6>
             <h6 class="font6" style="font-weight: 300px;font-size: 14px; margin-top: -25px;  text-align:left; margin-left:110px;">
@@ -210,27 +210,29 @@
             </h6>
             <h6 class="font6" style="font-weight: 300px;font-size: 14px; margin-top: -25px;  text-align:left; margin-left:125px;">
                 No Contact Person<span style="margin-left: 79px;">
-                                    :.......................................................................................
+                                    : ....................................................................................... 
                                  </span>
             </h6>
             <h6 class="font6" style="font-weight: 300px;font-size: 14px; margin-top: -25px;  text-align:left; margin-left:110px;">
                 7. Pembimbing Prakerin<span style="margin-left: 63px;">
-                                        :.......................................................................................
+                                        : &nbsp; {{$dataP_siswa->guru->nama}} 
                                       </span>
             </h6>
             <h6 class="font6" style="font-weight: 300px;font-size: 14px; margin-top: -25px;  text-align:left; margin-left:125px;">
                 No Contact Person<span style="margin-left: 79px;">
-                                    :.......................................................................................
+                                    : &nbsp; {{$dataP_siswa->guru->no_telp}}
                                  </span>
             </h6>
             <h6 class="font6" style="font-weight: 300px;font-size: 14px; margin-top: -25px;  text-align:left; margin-left:110px;">
                 8. Tanggal Mulai Prakerin<span style="margin-left: 52px;">
-                                            :.......................................................................................
+                                        : {{$dataP_siswa->tgl_mulai->format('d-m-Y')}}
+
                                          </span>
             </h6>
             <h6 class="font6" style="font-weight: 300px;font-size: 14px; margin-top: -25px;  text-align:left; margin-left:110px;">
                 9. Tanggal Selesai Prakerin<span style="margin-left: 46px;">
-                                                :.......................................................................................
+                                        : {{$dataP_siswa->tgl_selesai->format('d-m-Y')}}
+                                        
                                            </span>
             </h6>
             <h6 class="font6" style="font-weight: 300px;font-size: 14px; margin-top: -25px;  text-align:left; margin-left:110px;">
@@ -259,17 +261,17 @@
         <div>
             <h6 class="font6" style="font-weight: 300px;font-size: 14px; margin-top: 30px;  text-align:left; margin-left:110px;">
                 1. Nama Industri / Perusahaan<span style="margin-left: 70px;">
-                                                    : .........................................................................
+                                                    : &nbsp; {{$dataP_siswa->perusahaan->nama}}
                                              </span>
             </h6>
             <h6 class="font6" style="font-weight: 300px;font-size: 14px; margin-top: -25px;  text-align:left; margin-left:110px;">
                 2. Bidang Usaha<span style="margin-left: 146px;">
-                                    : .........................................................................
+                                    : &nbsp; {{$dataP_siswa->perusahaan->jurusan->jurusan}}
                                  </span>
             </h6>
             <h6 class="font6" style="font-weight: 300px;font-size: 14px; margin-top: -25px;  text-align:left; margin-left:110px;">
                 3. Alamat Perusahaan<span style="margin-left: 116px;">
-                                        : .........................................................................
+                                        : &nbsp; {{$dataP_siswa->perusahaan->alamat}}
                                    </span>
             </h6>
             <h6 class="font6" style="font-weight: 300px;font-size: 14px; margin-top: -25px;  text-align:left; margin-left:110px;">
@@ -279,27 +281,27 @@
             </h6>
             <h6 class="font6" style="font-weight: 300px;font-size: 14px; margin-top: -25px;  text-align:left; margin-left:110px;">
                 5. Alamat Web / Blog Perusahaan<span style="margin-left: 48px;">
-                                        : .........................................................................
+                                        : &nbsp; {{$dataP_siswa->perusahaan->link}}
                                     </span>
             </h6>
             <h6 class="font6" style="font-weight: 300px;font-size: 14px; margin-top: -25px;  text-align:left; margin-left:110px;">
                 6. E-mail Perusahaan<span style="margin-left: 119px;">
-                                            : .........................................................................
+                                            : &nbsp; {{$dataP_siswa->perusahaan->email}}
                                           </span>
             </h6>
             <h6 class="font6" style="font-weight: 300px;font-size: 14px; margin-top: -25px;  text-align:left; margin-left:110px;">
                 7. Nama Pimpinan / Direktur<span style="margin-left: 76px;">
-                                        : .........................................................................
+                                        : &nbsp; {{$dataP_siswa->perusahaan->nama_pemimpin}}
                                       </span>
             </h6>
             <h6 class="font6" style="font-weight: 300px;font-size: 14px; margin-top: -25px;  text-align:left; margin-left:110px;">
                 8. Nama Pembimbing Prakerin<span style="margin-left: 65px;">
-                                            : .........................................................................
+                                            : &nbsp; {{$dataP_siswa->guru->nama}}
                                          </span>
             </h6>
             <h6 class="font6" style="font-weight: 300px;font-size: 14px; margin-top: -25px;  text-align:left; margin-left:110px;">
                 9. Contact Person Pembimbing<span style="margin-left: 64px;">
-                                                : .........................................................................
+                                                : &nbsp; {{$dataP_siswa->guru->no_telp}}
                                            </span>
             </h6>
         </div>
@@ -658,42 +660,47 @@
                 <th style="background-color: skyblue;width:150px;">Jam Istirahat</th>
                 <th style="background-color: skyblue;width:150px;">Jam pulang</th>
             </tr>
+            
+           @foreach ($jurnalP_siswa as $junalP)
+               
+            @if ($junalP->tanggal_pelaksanaan->isoFormat('dddd') === 'Senin')
             <tr>
-                <td>senin</td>
-                <td></td>
-                <td></td>
-                <td></td>
+                <td>Senin</th>
+                <td>{{date('h: i A', strtotime($junalP->jam_masuk))}}</th>
+                <td>{{date('h: i A', strtotime($junalP->jam_istirahat))}}</th>
+                <td>{{date('h: i A', strtotime($junalP->jam_pulang))}}</th>
             </tr>
+            @elseif($junalP->tanggal_pelaksanaan->isoFormat('dddd') === 'Selasa')
             <tr>
-                <td>selasa</td>
-                <td></td>
-                <td></td>
-                <td></td>
+                <td>Selasa</th>
+                <td>{{date('h: i A', strtotime($junalP->jam_masuk))}}</th>
+                <td>{{date('h: i A', strtotime($junalP->jam_istirahat))}}</th>
+                <td>{{date('h: i A', strtotime($junalP->jam_pulang))}}</th>
             </tr>
+            @elseif($junalP->tanggal_pelaksanaan->isoFormat('dddd') === 'Rabu')
             <tr>
-                <td>rabu</td>
-                <td></td>
-                <td></td>
-                <td></td>
+                <td>Rabu</th>
+                <td>{{date('h: i A', strtotime($junalP->jam_masuk))}}</th>
+                <td>{{date('h: i A', strtotime($junalP->jam_istirahat))}}</th>
+                <td>{{date('h: i A', strtotime($junalP->jam_pulang))}}</th>
             </tr>
+            @elseif($junalP->tanggal_pelaksanaan->isoFormat('dddd') === 'Kamis')
             <tr>
-                <td>kamis</td>
-                <td></td>
-                <td></td>
-                <td></td>
+                <td>Kamis</th>
+                <td>{{date('h: i A', strtotime($junalP->jam_masuk))}}</th>
+                <td>{{date('h: i A', strtotime($junalP->jam_istirahat))}}</th>
+                <td>{{date('h: i A', strtotime($junalP->jam_pulang))}}</th>
             </tr>
+            @elseif($junalP->tanggal_pelaksanaan->isoFormat('dddd') === 'Jumat')
             <tr>
-                <td>jumat</td>
-                <td></td>
-                <td></td>
-                <td></td>
+                <td>Jumat</th>
+                <td>{{date('h: i A', strtotime($junalP->jam_masuk))}}</th>
+                <td>{{date('h: i A', strtotime($junalP->jam_istirahat))}}</th>
+                <td>{{date('h: i A', strtotime($junalP->jam_pulang))}}</th>
             </tr>
-            <tr>
-                <td>sabtu</td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
+            @endif
+            @endforeach
+
         </table>
         </div>
         <div class="kri-bwhs">
@@ -888,6 +895,7 @@
     </div>
 
     {{-- Page15 --}}
+    {{-- Page15 --}}
     @for ($j = 1; $j <= 3; $j++)
    <div class="container">
        @php
@@ -897,27 +905,27 @@
         <div>
             <h6 class="font6" style="font-weight: 300px;font-size: 14px; margin-top: 5px; margin-left:90px;">
                 Nama Peserta didik  <span style="margin-left: 90px;">
-                                        : .......................................................................................
+                                        : &nbsp;{{$identitas_siswa->nama_siswa}}
                                     </span>
             </h6>
             <h6 class="font6" style="font-weight: 300px;font-size: 14px; margin-top: -25px; margin-left:90px;">
                 Kompetensi Keahlian <span style="margin-left: 78px;">
-                                        : <u>Rekayasa Perangkat Lunak</u>
+                                        : <u>{{$dataP_siswa->kelas->jurusan->jurusan}}</u>
                                     </span>
             </h6>
             <h6 class="font6" style="font-weight: 300px;font-size: 14px; margin-top: -25px; margin-left:90px;">
                 Nama Industri   <span style="margin-left: 119px;">
-                                    : .......................................................................................
+                                    : &nbsp;{{$dataP_siswa->perusahaan->nama}}
                                 </span>
             </h6>
             <h6 class="font6" style="font-weight: 300px;font-size: 14px; margin-top: -25px; margin-left:90px;">
                 Nama Pembimbing <span style="margin-left: 91px;">
-                                    : .......................................................................................
+                                    : {{$dataP_siswa->guru->nama}}
                                 </span>
             </h6>
             <h6 class="font6" style="font-weight: 300px;font-size: 14px; margin-top: -25px; margin-left:90px;">
                 Alamat Industri     <span style="margin-left: 111px;">
-                                        : .......................................................................................
+                                        : {{$dataP_siswa->perusahaan->alamat}}
                                     </span>
             </h6>
             <h6 class="font6" style="font-weight: 300px;font-size: 14px; margin-top: -25px; margin-left:90px;">
@@ -926,7 +934,6 @@
                     </span>
             </h6>
         </div>
-
         <div>
             <table border="1" style="margin-top: 40px;margin-left:-px;">
                 <tr>
@@ -935,8 +942,9 @@
                     <th style="background-color: skyblue;width: 250px;">Topic Pembelajaran / Pekerjaan</th>
                     <th style="background-color: skyblue;width: 130px;">Tanggal Pelaksanaan</th>
                     <th style="background-color: skyblue;width: 120px;">Paraf</th>
+                </tr>
                     @php
-                        $arr = ["row 0", "row 1"];
+                        
                     @endphp
                 @if ($j > 1 )
                     @php $l = ($j - 1) * 30  @endphp
@@ -945,12 +953,12 @@
                 @endif
                 @for ($i = $l; $i <= 30 * $j ; $i++)
                     @if ($i <= (30 * $j) and $i % (30 * $j) !== 0)
-                    @if (count($jurnal_p ) - 1 >= $i)
+                    @if (count($jurnalP_siswa ) - 1 >= $i)
                          <tr>
                         <td>{{ ($j > 1) ? $i - (30 * ($j - 1)) : $i  }}</td>
-                        <td>{{ $jurnal_p[$i]['kompetisi_dasar'] }}</td>
-                        <td>{{ $jurnal_p[$i]['topik_pekerjaan'] }}</td>
-                        <td>{{ $jurnal_p[$i]['tanggal_pelaksanaan'] }}</td>
+                        <td>{{ $jurnalP_siswa[$i]['kompetisi_dasar'] }}</td>
+                        <td>{{ $jurnalP_siswa[$i]['topik_pekerjaan'] }}</td>
+                        <td>{{ $jurnalP_siswa[$i]['tanggal_pelaksanaan']->isoFormat('D MMMM Y') }}</td>
                         <td></td>
                     </tr>
                     @else
@@ -980,14 +988,14 @@
 @endfor
 
     {{-- Page16 --}}
-    {{-- <div class="container">
+    <div class="container">
         <div class="" style="float: right;margin-top: 70px;margin-right: 40px;">
             <p>................., .............................</p><br>
             <p style="margin-top: -20px">Pembimbing,</p><br><br>
             <u>................................................</u>
         </div>
-    </div> --}}
-    {{-- <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br> --}}
+    </div>
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 
     {{-- Page17 --}}
     {{-- <div class="container">
@@ -1346,11 +1354,11 @@
             <p style="margin-top: -20px">Pembimbing,</p><br><br>
             <u>................................................</u>
         </div>
-    </div> --}}
-    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+    </div>
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br> --}}
 
     {{-- Page19 --}}
-    <div class="container">
+    {{-- <div class="container">
         <h4 style="text-align:center;margin-left:-234px;">R.	JURNAL HARIAN KEGIATAN PRAKERIN</h4>
         <div>
             <h6 class="font6" style="font-weight: 300px;font-size: 14px; margin-top: 5px; margin-left:90px;">
@@ -1697,213 +1705,108 @@
                 </tr>
             </table>
         </div>
-    </div>
+    </div> --}}
 
     {{-- Page20 --}}
-    <div class="container">
+    {{-- <div class="container">
         <div class="" style="float: right;margin-top: 70px;margin-right: 40px;">
             <p>................., .............................</p><br>
             <p style="margin-top: -20px">Pembimbing,</p><br><br>
             <u>................................................</u>
         </div>
     </div>
-    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br> --}}
 
     {{-- Page21 --}}
+ 
+ @for ($v = 0; $v < $jumlah_bulan; $v++)
+ <div class="container">
+    <h4 style="text-align:center;margin-left:-53px;">S.	DAFTAR HADIR SISWA JURNAL HARIAN KEGIATAN PRAKERIN</h4>
+    <div>
+        <h6 class="font6" style="font-weight: 300px;font-size: 14px; margin-top: 5px; margin-left:90px;">
+            Nama Perusahaan <span style="margin-left: 99px;">
+                                : {{$dataP_siswa->perusahaan->nama}}
+                            </span>
+        </h6>
+        <h6 class="font6" style="font-weight: 300px;font-size: 14px; margin-top: -25px; margin-left:90px;">
+            Nama Peserta didik  <span style="margin-left: 90px;">
+                                    : {{$identitas_siswa->nama}}
+                                </span>
+        </h6>
+        <h6 class="font6" style="font-weight: 300px;font-size: 14px; margin-top: -25px; margin-left:90px;">
+            Paket Keahlian  <span style="margin-left: 114px;">
+                                : <u>{{$dataP_siswa->kelas->jurusan->jurusan}}</u>
+                            </span>
+        </h6>
+    </div>
+
+    <div>
+        <table border="1" style="margin-top: 10px;margin-left:25px;">
+            <tr>
+                <th style="background-color: skyblue;width: 40px" rowspan="2">No</th>
+                <th style="background-color: skyblue;width: 210px;" rowspan="2">Hari / Tanggal</th>
+                <th style="background-color: skyblue;" colspan="2">Waktu</th>
+                <th style="background-color: skyblue;width: 180px;" rowspan="2">Paraf Pembimbing</th>
+            </tr>
+            <tr>
+                <th style="background-color: skyblue;width: 100px">Datang</th>
+                <th style="background-color: skyblue;width: 100px;">Pulang</th>
+            </tr>
+            @php
+            
+        @endphp
+    @if ($v > 1 )
+        @php $l = ($v - 1) * 30  @endphp
+    @else
+        @php $l = 1  @endphp
+    @endif
+    @for ($i = $l; $i <= 30 * $v ; $i++)
+        @if ($i <= (30 * $v) and $i % (30 * $v) !== 0)
+        @if (count($jurnalH_siswa ) - 1 >= $i)
+             <tr>
+            <td>{{ ($v > 1) ? $i - (30 * ($v - 1)) : $i  }}</td>
+            <td>{{ $jurnalH_siswa[$i]['tanggal']->isoFormat('D MMMM Y') }}</td>
+            <td>{{ $jurnalH_siswa[$i]['datang']->format('h:i') }}</td>
+            <td>{{ $jurnalH_siswa[$i]['pulang']->format('h:i') }}</td>
+            <td></td>
+        </tr>
+        @else
+        <tr>
+            <td>{{ ($v > 1) ? $i - (30 * ($v - 1)) : $i  }}</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        @endif
+        @else
+        <tr>
+            <td>{{($v > 1) ? $i - (30 * ($v - 1)) : $i  }}</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        @endif
+    @endfor
+        </table>
+    </div>
+
     <div class="container">
-        <h4 style="text-align:center;margin-left:-53px;">S.	DAFTAR HADIR SISWA JURNAL HARIAN KEGIATAN PRAKERIN</h4>
-        <div>
-            <h6 class="font6" style="font-weight: 300px;font-size: 14px; margin-top: 5px; margin-left:90px;">
-                Nama Perusahaan <span style="margin-left: 99px;">
-                                    : .......................................................................................
-                                </span>
-            </h6>
-            <h6 class="font6" style="font-weight: 300px;font-size: 14px; margin-top: -25px; margin-left:90px;">
-                Nama Peserta didik  <span style="margin-left: 90px;">
-                                        : .......................................................................................
-                                    </span>
-            </h6>
-            <h6 class="font6" style="font-weight: 300px;font-size: 14px; margin-top: -25px; margin-left:90px;">
-                Paket Keahlian  <span style="margin-left: 114px;">
-                                    : <u>Rekayasa Perangkat Lunak</u>
-                                </span>
-            </h6>
-        </div>
-
-        <div>
-            <table border="1" style="margin-top: 10px;margin-left:25px;">
-                <tr>
-                    <th style="background-color: skyblue;width: 40px" rowspan="2">No</th>
-                    <th style="background-color: skyblue;width: 210px;" rowspan="2">Hari / Tanggal</th>
-                    <th style="background-color: skyblue;" colspan="2">Waktu</th>
-                    <th style="background-color: skyblue;width: 180px;" rowspan="2">Paraf Pembimbing</th>
-                </tr>
-                <tr>
-                    <th style="background-color: skyblue;width: 100px">Datang</th>
-                    <th style="background-color: skyblue;width: 100px;">Pulang</th>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                 <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                 <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                 <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                 <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-            </table>
-        </div>
-
-        <div class="container">
-            <div class="" style="float: right;margin-top: -0px;margin-right: 40px;">
-                <p>................., .....................................</p><br>
-                <p style="margin-top: -20px">Pembimbing Industri/Perusahaan</p><br><br>
-                <u>........................................................</u>
-            </div>
+        <div class="" style="float: right;margin-top: -0px;margin-right: 40px;">
+            <p>................., .....................................</p><br>
+            <p style="margin-top: -20px">Pembimbing Industri/Perusahaan</p><br><br>
+            <u>........................................................</u>
         </div>
     </div>
-    <br><br><br><br><br><br><br><br><br>
+</div>
+<br><br><br><br><br><br><br><br><br>
+
+ @endfor
+ 
 
     {{-- Page22 --}}
-    <div class="container">
+    {{-- <div class="container">
         <h4 style="text-align:center;margin-left:-53px;">T.	DAFTAR HADIR SISWA JURNAL HARIAN KEGIATAN PRAKERIN</h4>
         <div>
             <h6 class="font6" style="font-weight: 300px;font-size: 14px; margin-top: 5px; margin-left:90px;">
@@ -2093,10 +1996,10 @@
             </div>
         </div>
     </div>
-    <br><br><br><br><br><br><br><br><br>
+    <br><br><br><br><br><br><br><br><br> --}}
 
     {{-- Page23 --}}
-    <div class="container">
+    {{-- <div class="container">
         <h4 style="text-align:center;margin-left:-53px;">U.	DAFTAR HADIR SISWA JURNAL HARIAN KEGIATAN PRAKERIN</h4>
         <div>
             <h6 class="font6" style="font-weight: 300px;font-size: 14px; margin-top: 5px; margin-left:90px;">
@@ -2286,7 +2189,7 @@
             </div>
         </div>
     </div>
-    <br><br><br><br><br><br><br><br><br>
+    <br><br><br><br><br><br><br><br><br> --}}
 
     {{-- Page24 --}}
     <div class="container">

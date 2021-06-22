@@ -5,7 +5,9 @@ use App\Http\Controllers\Controller;
 
 // models
 use App\Models\User;
-use App\models\Siswa;
+use App\Models\Siswa;
+use App\Models\orang_tua;
+use App\Models\data_prakerin;
 use App\Models\perusahaan;
 use App\Models\fasilitas_prakerin;
 use App\Models\jurnal_harian;
@@ -28,6 +30,7 @@ use Illuminate\Support\Facades\Hash;
 use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Support\Facades\Validator;
 use Yajra\DataTables\DataTables;
+use PDF;
 
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Session;
@@ -322,4 +325,38 @@ class userController extends Controller
         $kelompok = kelompok_laporan::select('*')->where('id_guru', $id_guru)->where('no', $no_kelompok)->wherehas('data_prakerin')->get();
         return view('siswa.kelompok_laporan.index', compact('kelompok','no_kelompok','guru_nama','laporan'));
     }
+
+    public function exportJurnal($id)
+    {
+        
+
+            $identitas_siswa  =  Siswa::where('id',$id)->first();
+            $identitas_orangtua  =  orang_tua::where('id',$id)->first();
+            $dataP_siswa  =  data_prakerin::where('id',$id)->first();
+            $jurnalP_siswa = jurnal_prakerin::where('id_siswa',$id)->get();
+            $jurnalH_siswa = jurnal_harian::where('id_siswa',$id)->get();
+
+            $from =  new Carbon($dataP_siswa->tgl_mulai);
+            $end =  new Carbon($dataP_siswa->tgl_selesai);
+
+            $jumlah_hari = $from->diffInDays($end);
+            $jumlah_bulan = 4;
+            //Spesifikasi bulan
+            // dd($jurnalH_siswa);
+                //     $jumlah_hari = $from->diff($end)->days;
+                // // mendapat kan hari di setiap bulan yang berbeda
+                // $hari =  Carbon::parse($from->format('Y-m-d'))->daysInMonth;
+                // // hari mulai hingga akhir bulan
+                //  dd($from->startOfDay()->format('Y-m-d H:i'),$from->endOfMonth()->format('Y-m-d H:i'));
+            
+        $pdf = PDF::loadView('export.PDF.jurnal',compact('jumlah_hari','jumlah_bulan','jurnalH_siswa','jurnalP_siswa','dataP_siswa','identitas_siswa','identitas_orangtua'));
+    
+        return $pdf->stream('DATA Jurnal.PDF');
+    
+        //  $w->getClientOriginalName();
+    
+        // dd($pdf);
+    
+    
+        }
 }
