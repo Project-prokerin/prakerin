@@ -27,7 +27,7 @@
         }
         .kri-bwh{
             float: right;
-            margin-right:30px; 
+            margin-right:30px;
         }
         .kri-bwhs{
             float: right;
@@ -160,7 +160,7 @@
             </h6>
             <h6 class="font6" style="font-weight: 300px;font-size: 14px; margin-top: -25px;  text-align:left; margin-left:110px;">
                 Alamat<span style="margin-left: 157px;">
-                        : &nbsp; {{$identitas_siswa->alamat}} 
+                        : &nbsp; {{$identitas_siswa->alamat}}
                     </span>
             </h6>
             <h6 class="font6" style="font-weight: 300px;font-size: 14px; margin-top: -25px;  text-align:left; margin-left:110px;">
@@ -216,12 +216,12 @@
             </h6>
             <h6 class="font6" style="font-weight: 300px;font-size: 14px; margin-top: -25px;  text-align:left; margin-left:125px;">
                 No Contact Person<span style="margin-left: 79px;">
-                                    : ....................................................................................... 
+                                    : .......................................................................................
                                  </span>
             </h6>
             <h6 class="font6" style="font-weight: 300px;font-size: 14px; margin-top: -25px;  text-align:left; margin-left:110px;">
                 7. Pembimbing Prakerin<span style="margin-left: 63px;">
-                                        : &nbsp; {{$dataP_siswa->guru->nama}} 
+                                        : &nbsp; {{$dataP_siswa->guru->nama}}
                                       </span>
             </h6>
             <h6 class="font6" style="font-weight: 300px;font-size: 14px; margin-top: -25px;  text-align:left; margin-left:125px;">
@@ -238,7 +238,7 @@
             <h6 class="font6" style="font-weight: 300px;font-size: 14px; margin-top: -25px;  text-align:left; margin-left:110px;">
                 9. Tanggal Selesai Prakerin<span style="margin-left: 46px;">
                                         : {{$dataP_siswa->tgl_selesai->format('d-m-Y')}}
-                                        
+
                                            </span>
             </h6>
             <h6 class="font6" style="font-weight: 300px;font-size: 14px; margin-top: -25px;  text-align:left; margin-left:110px;">
@@ -666,9 +666,9 @@
                 <th style="background-color: skyblue;width:150px;">Jam Istirahat</th>
                 <th style="background-color: skyblue;width:150px;">Jam pulang</th>
             </tr>
-            
+
            @foreach ($jurnalP_siswa as $junalP)
-               
+
             @if ($junalP->tanggal_pelaksanaan->isoFormat('dddd') === 'Senin')
             <tr>
                 <td>Senin</th>
@@ -950,10 +950,11 @@
                     <th style="background-color: skyblue;width: 120px;">Paraf</th>
                 </tr>
                     @php
-                        
+
                     @endphp
                 @if ($j > 1 )
-                    @php $l = ($j - 1) * 30  @endphp
+                    @php $l = ($j - 1) * 30 + 1   @endphp
+
                 @else
                     @php $l = 1  @endphp
                 @endif
@@ -994,10 +995,10 @@
 @endfor
 
     {{-- Page16 --}}
-    
+
 
     {{-- Page17 --}}
-     <div class="container">
+     {{-- <div class="container">
         <h4 style="text-align:center;margin-left:-234px;">Q.	JURNAL HARIAN KEGIATAN PRAKERIN</h4>
 
 
@@ -1720,8 +1721,8 @@
     <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br> --}}
 
     {{-- Page21 --}}
- 
- @for ($v = 0; $v < $jumlah_bulan; $v++)
+
+ @for ($v = 1; $v < $jumlah_bulan; $v++)
  <div class="container">
     <h4 style="text-align:center;margin-left:-53px;">S.	DAFTAR HADIR SISWA JURNAL HARIAN KEGIATAN PRAKERIN</h4>
     <div>
@@ -1755,10 +1756,10 @@
                 <th style="background-color: skyblue;width: 100px;">Pulang</th>
             </tr>
             @php
-            
+
         @endphp
     @if ($v > 1 )
-        @php $l = ($v - 1) * 30  @endphp
+        @php $l = ($v - 1) * 30 + 1  @endphp
     @else
         @php $l = 1  @endphp
     @endif
@@ -1805,7 +1806,7 @@
 <br><br><br><br><br><br><br><br><br>
 
  @endfor
- 
+
 
     {{-- Page22 --}}
     {{-- <div class="container">
