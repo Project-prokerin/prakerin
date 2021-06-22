@@ -15,20 +15,13 @@ class detail_pengajuanSeeder extends Seeder
     public function run()
     {
         DB::table('detail_pengajuan_prakerin')->insert([
-            'id_pengajuan_prakerin' => 1,
-            'no_surat' => 001
-        ]);
-        DB::table('detail_pengajuan_prakerin')->insert([
-            'id_pengajuan_prakerin' => 2,
-            'no_surat' => 001
-        ]);
-        DB::table('detail_pengajuan_prakerin')->insert([
-            'id_pengajuan_prakerin' => 3,
-            'no_surat' => 001
-        ]);
-        DB::table('detail_pengajuan_prakerin')->insert([
             'id_pengajuan_prakerin' => 4,
-            'no_surat' => 001
+            'no_surat' => '001'
         ]);
+        DB::table('detail_pengajuan_prakerin')->insert([
+            'id_pengajuan_prakerin' => 8,
+            'no_surat' => '002'
+        ]);
+      
     }
 }

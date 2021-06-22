@@ -23,13 +23,13 @@
                     </div>
                     <div class="card-stats-items">
                         <div class="card-stats-item">
-                            <div class="card-stats-item-count">{{ $surat_m }}</div>
+                            <div class="card-stats-item-count">{{ $surat_masuk }}</div>
                             <a href="surat_masuk" class="text-decoration-none">
                                 <div class="card-stats-item-label">Masuk</div>
                             </a>
                         </div>
                         <div class="card-stats-item">
-                            <div class="card-stats-item-count">{{ $surat_k }}</div>
+                            <div class="card-stats-item-count">{{ $surat_keluar }}</div>
                             <a href="surat_keluar" class="text-decoration-none">
                                 <div class="card-stats-item-label">Keluar</div>
                             </a>
@@ -81,7 +81,7 @@
                             <h4>Data Prakerin</h4>
                         </div>
                         <div class="card-body">
-
+                            {{$data_prakerin}}
                         </div>
                     </div>
                 </div>
@@ -97,13 +97,13 @@
                     </div>
                     <div class="card-stats-items">
                         <div class="card-stats-item">
-                            <div class="card-stats-item-count"></div>
+                            <div class="card-stats-item-count">{{$surat_keluar}}</div>
                             <a href="surat_keluar" class="text-decoration-none">
                                 <div class=" mr-3" style="width: 120px;">Surat Penugasan</div>
                             </a>
                         </div>
                         <div class="card-stats-item ml-5">
-                            <div class="card-stats-item-count"></div>
+                            <div class="card-stats-item-count">{{$pengajuan_prakerin}}</div>
                             <a href="pengajuan_prakerin" class="text-decoration-none">
                                 <div class="" style="width: 130px;">Pengajuan Prakerin</div>
                             </a>
@@ -118,8 +118,8 @@
                         <h4>Total Surat Prakerin</h4>
                     </div>
                     <div class="card-body">
-
-                    </div>
+                        {{$total_suratP}}
+                        </div>
                 </div>
             </div>
             @if (Auth::user()->role == 'admin')
@@ -133,7 +133,7 @@
                             <h4>Siswa</h4>
                         </div>
                         <div class="card-body">
-
+                            {{$siswa}}
                         </div>
                     </div>
                 </div>
@@ -148,7 +148,7 @@
                             <h4>Guru</h4>
                         </div>
                         <div class="card-body">
-
+                            {{$guru}}
                         </div>
                     </div>
                 </div>
@@ -163,7 +163,7 @@
                             <h4>Kelas</h4>
                         </div>
                         <div class="card-body">
-
+                            {{$kelas}}
                         </div>
                     </div>
                 </div>
@@ -178,7 +178,7 @@
                             <h4>Kelompok Prakerin</h4>
                         </div>
                         <div class="card-body">
-
+                            {{$kelompok_prakerin}}
                         </div>
                     </div>
                 </div>
@@ -211,7 +211,7 @@
                             <h4>Data Prakerin</h4>
                         </div>
                         <div class="card-body">
-
+                            
                         </div>
                     </div>
                 </div>
@@ -229,7 +229,7 @@
                             <h4>Perusahaan</h4>
                         </div>
                         <div class="card-body">
-
+                            {{$perusahaan}}
                         </div>
                     </div>
                 </div>
@@ -244,7 +244,7 @@
                             <h4>Pembekalan</h4>
                         </div>
                         <div class="card-body">
-
+                            {{$pembekalan_magang}}
                         </div>
                     </div>
                 </div>
@@ -259,7 +259,7 @@
                             <h4>Data Prakerin</h4>
                         </div>
                         <div class="card-body">
-
+                            {{$data_prakerin}}
                         </div>
                     </div>
                 </div>
@@ -275,13 +275,13 @@
                     </div>
                     <div class="card-stats-items">
                         <div class="card-stats-item" style="margin-right: 60px;">
-                            <div class="card-stats-item-count"></div>
+                            <div class="card-stats-item-count">{{$jurnalP}}</div>
                             <a href="jurnal" class="text-decoration-none">
                                 <div class="" style="width: 120px;">Jurnal Prakerin</div>
                             </a>
                         </div>
                         <div class="card-stats-item">
-                            <div class="card-stats-item-count"></div>
+                            <div class="card-stats-item-count">{{$jurnalH}}</div>
                             <a href="jurnalH" class="text-decoration-none">
                                 <div class="" style="width: 120px;">Jurnal Harian</div>
                             </a>
@@ -296,7 +296,7 @@
                         <h4>Total Jurnal</h4>
                     </div>
                     <div class="card-body">
-
+                        {{$total_jurnal}}
                     </div>
                 </div>
             </div>
@@ -311,7 +311,7 @@
                             <h4>Jurusan</h4>
                         </div>
                         <div class="card-body">
-
+                            {{$jurusan}}
                         </div>
                     </div>
                 </div>
@@ -326,7 +326,7 @@
                             <h4>Tanda Tangan</h4>
                         </div>
                         <div class="card-body">
-
+                            {{$tanda_tangan}}
                         </div>
                     </div>
                 </div>
@@ -341,6 +341,7 @@
                             <h4>Pembekalan Magang</h4>
                         </div>
                         <div class="card-body">
+                            {{$pembekalan_magang}}
 
                         </div>
                     </div>
@@ -356,7 +357,7 @@
                             <h4>Laporan Prakerin</h4>
                         </div>
                         <div class="card-body">
-
+                            {{$laporan_prakerin}}
                         </div>
                     </div>
                 </div>
@@ -407,6 +408,7 @@
                             <h4>Kelompok</h4>
                         </div>
                         <div class="card-body">
+                            {{$kelompok_prakerin}}
 
                         </div>
                     </div>
@@ -422,7 +424,7 @@
                             <h4>Laporan</h4>
                         </div>
                         <div class="card-body">
-
+                            {{$laporan_prakerin}}
                         </div>
                     </div>
                 </div>
@@ -460,13 +462,13 @@
                     </div>
                     <div class="card-stats-items">
                         <div class="card-stats-item">
-                            <div class="card-stats-item-count">{{ $surat_m }}</div>
+                            <div class="card-stats-item-count">{{ $surat_masuk }}</div>
                             <a href="surat_masuk" class="text-decoration-none">
                                 <div class="card-stats-item-label">Masuk</div>
                             </a>
                         </div>
                         <div class="card-stats-item">
-                            <div class="card-stats-item-count">{{ $surat_k }}</div>
+                            <div class="card-stats-item-count">{{ $surat_keluar }}</div>
                             <a href="surat_keluar" class="text-decoration-none">
                                 <div class="card-stats-item-label">Keluar</div>
                             </a>
@@ -505,13 +507,13 @@
                     </div>
                     <div class="card-stats-items">
                         <div class="card-stats-item">
-                            <div class="card-stats-item-count"></div>
+                            <div class="card-stats-item-count">{{$surat_keluar}}</div>
                             <a href="surat_keluar" class="text-decoration-none">
                                 <div class=" mr-3" style="width: 120px;">Surat Penugasan</div>
                             </a>
                         </div>
                         <div class="card-stats-item ml-5">
-                            <div class="card-stats-item-count"></div>
+                            <div class="card-stats-item-count">{{$pengajuan_prakerin}}</div>
                             <a href="pengajuan_prakerin" class="text-decoration-none">
                                 <div class="" style="width: 130px;">Pengajuan Prakerin</div>
                             </a>
@@ -526,7 +528,7 @@
                         <h4>Total Surat Prakerin</h4>
                     </div>
                     <div class="card-body">
-
+                        {{$total_suratP}}
                     </div>
                 </div>
             </div>
@@ -545,25 +547,25 @@
                         </div>
                         <div class="card-stats-items">
                             <div class="card-stats-item">
-                                <div class="card-stats-item-count">10</div>
+                                <div class="card-stats-item-count">{{$test_WPT}}</div>
                                 <a href="pembekalan" class="text-decoration-none">
                                     <div class="card-stats-item-label">Test WPT IQ</div>
                                 </a>
                             </div>
                             <div class="card-stats-item">
-                                <div class="card-stats-item-count">10</div>
+                                <div class="card-stats-item-count">{{$test_PT}}</div>
                                 <a href="pembekalan" class="text-decoration-none">
                                     <div class="card-stats-item-label">PI</div>
                                 </a>
                             </div>
                             <div class="card-stats-item">
-                                <div class="card-stats-item-count">10</div>
+                                <div class="card-stats-item-count">{{$test_SS}}</div>
                                 <a href="pembekalan" class="text-decoration-none">
                                     <div class="card-stats-item-label">Test Soft Skill</div>
                                 </a>
                             </div>
                             <div class="card-stats-item">
-                                <div class="card-stats-item-count">10</div>
+                                <div class="card-stats-item-count">{{$test_Portofolio}}</div>
                                 <a href="pembekalan" class="text-decoration-none">
                                     <div class="card-stats-item-label">Portfolio</div>
                                 </a>
@@ -579,7 +581,7 @@
                                 <h4>Total Pembekalan Magang</h4>
                             </div>
                             <div class="card-body">
-                                5
+                                {{$pembekalan_magang}}
                             </div>
                         </div>
                     </a>
