@@ -27,15 +27,21 @@
         }
         .kri-bwh{
             float: right;
+            margin-right:30px; 
         }
         .kri-bwhs{
             float: right;
+            margin-right: 30px;
         }
         .box1{
-        width: 600px;
-        height: 500px;
+        width: 500px;
+        height: 400px;
         border: 1px solid black;
-        margin-top: -200px;
+        margin-left: 70px;
+        }.kri-bwhsk{
+            float: right;
+            margin-right: 30px;
+            margin-bottom: 120px;
         }
         .text-center{
             text-align: center;
@@ -555,8 +561,8 @@
     </div>
 
     {{-- Page9 --}}
-    <div class="container">
-        <h4 class="" style="text-align:center;margin-left:-130px;margin-bottom:480px;">K.	PEMETAAN PROFILE KOMPETENSI TAMATAN</h4>
+    <div class="container" style="text-align: center;margin-top:30px;">
+        <h4 class="" style="text-align:center;margin-left:10px;margin-bottom:480px;">K.	PEMETAAN PROFILE KOMPETENSI TAMATAN</h4>
         <div>
             <img src="https://i.postimg.cc/tgc6d1Mz/qwqwq.jpg" alt="">
         </div>
@@ -564,48 +570,48 @@
 
     {{-- Page10 --}}
     <div class="container">
-        <h4 class="" style="text-align:center;margin-left:-290px;margin-bottom:480px;">L.	PROGRAM PRAKERIN</h4>
+        <h4 class="" style="text-align:center;margin-left:-380px;margin-bottom:480px;">L.	PROGRAM PRAKERIN</h4>
         <div>
-            <h6 class="font6" style="font-weight: 300px;font-size: 14px; margin-top: -450px;  text-align:left; margin-left:110px;">
+            <h6 class="font6" style="font-weight: 300px;font-size: 14px; margin-top: -450px;  text-align:left; margin-left:80px;">
             Nama Peserta Didik<span style="margin-left: 70px;">
                                                     : .........................................................................
                                             </span>
             </h6>
-            <h6 class="font6" style="font-weight: 300px;font-size: 14px; margin-top: -30px;  text-align:left; margin-left:110px;">
-                Kelas<span style="margin-left: 70px;">
+            <h6 class="font6" style="font-weight: 300px;font-size: 14px; margin-top: -30px;  text-align:left; margin-left:80px;">
+                Kelas<span style="margin-left: 150px;">
                                                     : .........................................................................
                                                 </span>
             </h6>
-            <h6 class="font6" style="font-weight: 300px;font-size: 14px; margin-top: -30px;  text-align:left; margin-left:110px;">
-                Kompetensi Keahlian<span style="margin-left: 70px;">
+            <h6 class="font6" style="font-weight: 300px;font-size: 14px; margin-top: -30px;  text-align:left; margin-left:80px;">
+                Kompetensi Keahlian<span style="margin-left: 60px;">
                                                     : <u>Rekayasa Perangkat Lunak</u>
                                                 </span>
             </h6>
-            <h6 class="font6" style="font-weight: 300px;font-size: 14px; margin-top: -30px;  text-align:left; margin-left:110px;">
-            Nama Industri<span style="margin-left: 70px;">
+            <h6 class="font6" style="font-weight: 300px;font-size: 14px; margin-top: -30px;  text-align:left; margin-left:80px;">
+            Nama Industri<span style="margin-left: 100px;">
                                                     : .........................................................................
                                             </span>
             </h6>
-            <h6 class="font6" style="font-weight: 300px;font-size: 14px; margin-top: -30px;  text-align:left; margin-left:110px;">
-                Nama Pembimbing<span style="margin-left: 70px;">
+            <h6 class="font6" style="font-weight: 300px;font-size: 14px; margin-top: -30px;  text-align:left; margin-left:80px;">
+                Nama Pembimbing<span style="margin-left: 73px;">
                                                         : .........................................................................
                                                 </span>
                 </h6>
-                <h6 class="font6" style="font-weight: 300px;font-size: 14px; margin-top: -30px;  text-align:left; margin-left:110px;">
-                    Alamat Industri<span style="margin-left: 70px;">
+                <h6 class="font6" style="font-weight: 300px;font-size: 14px; margin-top: -30px;  text-align:left; margin-left:80px;">
+                    Alamat Industri<span style="margin-left: 93px;">
                                                             : .........................................................................
                                                     </span>
                     </h6>
-                    <h6 class="font6" style="font-weight: 300px;font-size: 14px; margin-top: -30px;  text-align:left; margin-left:110px;">
-                        Waktu PKL<span style="margin-left: 70px;">
+                    <h6 class="font6" style="font-weight: 300px;font-size: 14px; margin-top: -30px;  text-align:left; margin-left:80px;">
+                        Waktu PKL<span style="margin-left: 115px;">
                                                                 : .........................................................................
                                                         </span>
                         </h6>
         </div>
         <div>
-            <table border="1" style="margin-top: -300px;margin-left:100px;">
+            <table border="1" style="margin-top: -300px;margin-left:60px;">
                 <tr>
-                    <th style="background-color: skyblue">No</th>
+                    <th style="background-color: skyblue;width:50px;">No</th>
                     <th style="background-color: skyblue;width:150px;">Kompentensi Dasar</th>
                     <th style="background-color: skyblue;width:150px;">Topic Pembelajaran</th>
                     <th style="background-color: skyblue;width:150px;"> Urutan Waktu Pelaksanaan</th>
@@ -650,8 +656,8 @@
 
     {{-- Page11 --}}
     <div class="container">
-        <h4 class="" style="text-align:center;margin-left:-130px;">M.	JURNAL KEGIATAN PRAKERIN</h4>
-        <h4 class="" style="text-align:center;margin-left:-130px;">A. JAM KERJA PRAKERIN</h4>
+        <h4 class="" style="text-align:center;margin-left:-260px;">M.	JURNAL KEGIATAN PRAKERIN</h4>
+        <h4 class="" style="text-align:center;margin-left:-10px;">A. JAM KERJA PRAKERIN</h4>
         <div>
             <table border="1">
             <tr>
@@ -734,7 +740,7 @@
             <p>Form. 01 - Daftar Spesifikasi Peralatan di Perusahaan / Industri</p>
         </div>
         <div>
-            <table border="1" style="margin-left: -10px">
+            <table border="1" style="margin-left: 10px;width:700px;">
                 <tr>
                     <th style="background-color: skyblue;width:150px;padding:4;">No</th>
                     <th style="background-color: skyblue;width:150px;padding:10;">Nama Alat/Komputer</th>
@@ -835,7 +841,7 @@
 
             </h6>
             <h6 class="font6" style="font-weight: 300px;font-size: 14px; margin-top: 30px;  text-align:left; margin-left:110px;">
-                2. Jenis Keterampian<span style="margin-left: 70px;">
+                2. Jenis Keterampian<span style="margin-left: 50px;">
                                                     : .........................................................................
                                              </span>
                                              <span style="margin-left: 170px;">
@@ -857,7 +863,7 @@
                                      </span>
             </h6>
             <h6 class="font6" style="font-weight: 300px;font-size: 14px; margin-top: 30px;  text-align:left; margin-left:110px;">
-                4. Keselamatan Kerja<span style="margin-left: 70px;">
+                4. Keselamatan Kerja<span style="margin-left: 50px;">
                                                     : .........................................................................
                                              </span>
                                              <span style="margin-left: 170px;">
@@ -883,11 +889,11 @@
 
     {{-- Page14 --}}
     <div class="container">
-        <h6 class="font6" style="font-weight: 300px;font-size: 14px; margin-bottom: 500px;  text-align:left; margin-left:90px;">
+        <h6 class="font6" style="font-weight: 300px;font-size: 14px; margin-bottom: 400px;  text-align:left; margin-left:110px;">
             6. Gambar Kerja  </h6>
         <div class="box1">
         </div>
-        <div class="kri-bwhs">
+        <div class="kri-bwhsk">
             <p>......................,..............,.......</p>
             <p style="margin-bottom:50px;">Pembimbing industri</p>
             <p>..............................................</p>
@@ -901,7 +907,7 @@
        @php
            $no = ['','P','Q','R'];
        @endphp
-        <h4 style="text-align:center;margin-left:-234px;">{{ $no[$j] }}.	JURNAL HARIAN KEGIATAN PRAKERIN</h4>
+        <h4 style="text-align:center;margin-left:-10px;">{{ $no[$j] }}.	JURNAL HARIAN KEGIATAN PRAKERIN</h4>
         <div>
             <h6 class="font6" style="font-weight: 300px;font-size: 14px; margin-top: 5px; margin-left:90px;">
                 Nama Peserta didik  <span style="margin-left: 90px;">
@@ -988,18 +994,14 @@
 @endfor
 
     {{-- Page16 --}}
-    <div class="container">
-        <div class="" style="float: right;margin-top: 70px;margin-right: 40px;">
-            <p>................., .............................</p><br>
-            <p style="margin-top: -20px">Pembimbing,</p><br><br>
-            <u>................................................</u>
-        </div>
-    </div>
-    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+    
 
     {{-- Page17 --}}
-    {{-- <div class="container">
+     <div class="container">
         <h4 style="text-align:center;margin-left:-234px;">Q.	JURNAL HARIAN KEGIATAN PRAKERIN</h4>
+
+
+
         <div>
             <h6 class="font6" style="font-weight: 300px;font-size: 14px; margin-top: 5px; margin-left:90px;">
                 Nama Peserta didik  <span style="margin-left: 90px;">
@@ -1011,7 +1013,7 @@
                                         : <u>Rekayasa Perangkat Lunak</u>
                                     </span>
             </h6>
-            <h6 class="font6" style="font-weight: 300px;font-size: 14px; margin-top: -25px; margin-left:90px;">
+            <h6 class="font6" style="font-weight: 300px;font-size: 14px; margin-top: -10px; margin-left:90px;">
                 Nama Industri   <span style="margin-left: 119px;">
                                     : .......................................................................................
                                 </span>

@@ -31,7 +31,7 @@
 <div class="card mt-5">
     <div class="container text-center H-100 mb-3 teks" >
         <h3>Status Magang</h3>
-    </div>
+    </div> 
         <div class="container-fluid mt-4 mb-4">
         <div class="mw-100 mx-auto ">
             <table class="table table-bordered table-hover">
