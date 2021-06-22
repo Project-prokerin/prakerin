@@ -154,7 +154,7 @@
             </h6>
             <h6 class="font6" style="font-weight: 300px;font-size: 14px; margin-top: -25px;  text-align:left; margin-left:110px;">
                 Alamat<span style="margin-left: 157px;">
-                        : &nbsp; {{$identitas_siswa->alamat}} 
+                        : &nbsp; {{$identitas_siswa->alamat}}
                     </span>
             </h6>
             <h6 class="font6" style="font-weight: 300px;font-size: 14px; margin-top: -25px;  text-align:left; margin-left:110px;">
@@ -888,8 +888,12 @@
     </div>
 
     {{-- Page15 --}}
-    <div class="container">
-        <h4 style="text-align:center;margin-left:-234px;">P.	JURNAL HARIAN KEGIATAN PRAKERIN</h4>
+    @for ($j = 1; $j <= 3; $j++)
+   <div class="container">
+       @php
+           $no = ['','P','Q','R'];
+       @endphp
+        <h4 style="text-align:center;margin-left:-234px;">{{ $no[$j] }}.	JURNAL HARIAN KEGIATAN PRAKERIN</h4>
         <div>
             <h6 class="font6" style="font-weight: 300px;font-size: 14px; margin-top: 5px; margin-left:90px;">
                 Nama Peserta didik  <span style="margin-left: 90px;">
@@ -931,324 +935,62 @@
                     <th style="background-color: skyblue;width: 250px;">Topic Pembelajaran / Pekerjaan</th>
                     <th style="background-color: skyblue;width: 130px;">Tanggal Pelaksanaan</th>
                     <th style="background-color: skyblue;width: 120px;">Paraf</th>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                 <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                 <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                 <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                 <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                 <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                 <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                 <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                 <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
+                    @php
+                        $arr = ["row 0", "row 1"];
+                    @endphp
+                @if ($j > 1 )
+                    @php $l = ($j - 1) * 30  @endphp
+                @else
+                    @php $l = 1  @endphp
+                @endif
+                @for ($i = $l; $i <= 30 * $j ; $i++)
+                    @if ($i <= (30 * $j) and $i % (30 * $j) !== 0)
+                    @if (count($jurnal_p ) - 1 >= $i)
+                         <tr>
+                        <td>{{ ($j > 1) ? $i - (30 * ($j - 1)) : $i  }}</td>
+                        <td>{{ $jurnal_p[$i]['kompetisi_dasar'] }}</td>
+                        <td>{{ $jurnal_p[$i]['topik_pekerjaan'] }}</td>
+                        <td>{{ $jurnal_p[$i]['tanggal_pelaksanaan'] }}</td>
+                        <td></td>
+                    </tr>
+                    @else
+                    <tr>
+                        <td>{{ ($j > 1) ? $i - (30 * ($j - 1)) : $i  }}</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    @endif
+                    @else
+                    <tr>
+                        <td>{{($j > 1) ? $i - (30 * ($j - 1)) : $i  }}</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    @endif
+                @endfor
+
             </table>
         </div>
     </div>
+  <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+@endfor
 
     {{-- Page16 --}}
-    <div class="container">
+    {{-- <div class="container">
         <div class="" style="float: right;margin-top: 70px;margin-right: 40px;">
             <p>................., .............................</p><br>
             <p style="margin-top: -20px">Pembimbing,</p><br><br>
             <u>................................................</u>
         </div>
-    </div>
-    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+    </div> --}}
+    {{-- <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br> --}}
 
     {{-- Page17 --}}
-    <div class="container">
+    {{-- <div class="container">
         <h4 style="text-align:center;margin-left:-234px;">Q.	JURNAL HARIAN KEGIATAN PRAKERIN</h4>
         <div>
             <h6 class="font6" style="font-weight: 300px;font-size: 14px; margin-top: 5px; margin-left:90px;">
@@ -1595,16 +1337,16 @@
                 </tr>
             </table>
         </div>
-    </div>
+    </div> --}}
 
     {{-- Page18 --}}
-    <div class="container">
+    {{-- <div class="container">
         <div class="" style="float: right;margin-top: 70px;margin-right: 40px;">
             <p>................., .............................</p><br>
             <p style="margin-top: -20px">Pembimbing,</p><br><br>
             <u>................................................</u>
         </div>
-    </div>
+    </div> --}}
     <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 
     {{-- Page19 --}}

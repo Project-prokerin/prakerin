@@ -25,7 +25,7 @@ class RedirectIfAuthenticated
             if (Auth::guard($guard)->check()) {
                 switch (auth()->user()->role) {
                     case 'hubin' or 'kaprog' or 'bkk' or 'tu' or 'kepsek' or 'kurikulum' or 'sarpras' or 'kesiswaan' or 'litbang':
-                        return redirect('/admin/dashboard');
+                        return redirect('/user/dashboard');
                     case 'siswa':
                         return redirect('/user/dashboard');
                 }

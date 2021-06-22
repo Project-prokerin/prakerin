@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\PDF;
 
 use App\Http\Controllers\Controller;
+use App\Models\jurnal_prakerin;
 use Dompdf\Dompdf;
 use Illuminate\Http\Request;
 use App\Models\perusahaan;
@@ -115,9 +116,10 @@ class PDFController extends Controller
 
                     $identitas_siswa  =  Siswa::where('id',$id)->first();
                     $identitas_orangtua  =  orang_tua::where('id',$id)->first();
+                    $jurnal_p = jurnal_prakerin::where('id_siswa',$id)->get()->toarray();
                 // dd($id);
 
-                $pdf = PDF::loadView('export.PDF.jurnal',compact('identitas_siswa','identitas_orangtua'));
+                $pdf = PDF::loadView('export.PDF.jurnal',compact('identitas_siswa','identitas_orangtua','jurnal_p'));
 
                 return $pdf->stream('DATA Jurnal.PDF');
 
