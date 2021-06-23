@@ -52,117 +52,259 @@
         <div class="breadcrumb-item "><i class="fas fa-tachometer-alt"></i> DASBOARD</div>
 @endsection
 @section('main')
-<div class="card" >
+{{-- <div class="card" >
+    <div class="container-fluid text-center H-100 mb-3  content" >
+        <h3 class="ml-3" style="margin-top: 35px">PRAKERIN SMK TARUNA BHAKTI</h3>
+        <h6 class="ml-3 mb-5">Praktek Kerja Industri 2021-2022</h6>
+    </div>
+
+    <div class="card-body">
+        <div class="mb-3 row">
+            <label class="col-sm-2 col-form-label">Ringkasan Khusus</label>
+            <div class="col-sm-10" style="margin-left: -25px">
+            <div class="btn-group dropright">
+                    <button type="button" class="btn btn-secondary btn-sm dropdown-toggle button-course" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <label>Detail</label>
+                    </button>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" href="{{ route('user.perusahaan') }}">List Perusahaan</a>
+                        <a class="dropdown-item" href="{{ route('user.pembekalan') }}">Pembekalan Magang</a>
+                        @if (siswa('data_prakerin') == '')
+
+                        @else
+                        <a class="dropdown-item" href="{{ route('user.status') }}">Status Magang</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="{{ route('user.jurnal') }}">Jurnal Prakerin</a>
+                        <a class="dropdown-item" href="{{ route('user.jurnalH') }}">Jurnal Harian</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="{{ route('user.kelompok_laporan') }}">Kelompok Harian</a>
+                        @endif
+                    </div>
+                </div>
+            </div>
+        </div>
+        <hr>
+    </div>
+    <div class="card-body  container-fluid mt-2">
+        <div class="row">
+            <div class="col-sm-4">
+                <a href="{{ route('user.perusahaan') }}" style="text-decoration: none">
+                <div class="card box">
+                        <img src="{{ asset('images/dashboard.png') }}" class="card-img-top" alt="" >
+                    <div class="card-body">
+                        <p class="text-dark">List Perusahaan</p>
+                        <p class="text-dark"> <h6>List Perusahaan</h6></p>
+                    </div>
+                </div>
+                </a>
+            </div>
+            <div class="col-sm-4">
+                <a href="{{ route('user.pembekalan') }}"   style="text-decoration: none">
+                <div class="card  box" >
+                        <img src="{{ asset('images/dashboard.png') }}" class="card-img-top"  alt="" >
+                    <div class="card-body">
+                        <p class="text-dark">Pembekalan Magang</p>
+                        <p class="text-dark"> <h6>Pembekalan Magang</h6></p>
+                    </div>
+                </div>
+                </a>
+            </div>
+            @if (siswa('data_prakerin') == '')
+
+            @else
+            <div class="col-sm-4">
+            <a href="{{ route('user.status') }}"  style="text-decoration: none">
+                <div class="card  box" >
+                        <img src="{{ asset('images/dashboard.png') }}" class="card-img-top" alt="" >
+                    <div class="card-body">
+                        <p class="text-dark">Status Magang</p>
+                        <p class="text-dark"><h6>Status Magang</h6></p>
+                    </div>
+                </div>
+            </a>
+            </div>
+            <div class="col-sm-4">
+            <a href="{{ route('user.jurnal') }}"  style="text-decoration: none">
+                <div class="card  box"  >
+                        <img src="{{ asset('images/dashboard.png') }}"  class="card-img-top" alt="" >
+                    <div class="card-body">
+                        <p class="text-dark">Jurnal Prakerin</p>
+                        <p class="text-dark"><h6>Jurnal Prakerin</h6></p>
+                    </div>
+                </div>
+                </a>
+            </div>
+            <div class="col-sm-4">
+                <a href="{{ route('user.jurnalH') }}"   style="text-decoration: none">
+                <div class="card  box">
+                        <img src="{{ asset('images/dashboard.png') }}"  class="card-img-top" alt="" >
+                    <div class="card-body">
+                        <p class="text-dark">Jurnal Harian</p>
+                        <p class="text-dark"><h6>Jurnal Harian</h6></p>
+                    </div>
+                </div>
+                </a>
+            </div>
+            <div class="col-sm-4">
+                <a href="{{ route('user.kelompok_laporan') }}"  style="text-decoration: none">
+                <div class="card  box" >
+                        <img src="{{ asset('images/dashboard.png') }}"  class="card-img-top" alt="" >
+                    <div class="card-body">
+                        <p class="text-dark">Kelompok Harian</p>
+                        <p class="text-dark"><h6>Kelompok Harian</h6></p>
+                    </div>
+                </div>
+                </a>
+            </div>
+            @endif
+        </div>
+    </div>
+</div> --}}
+
+
+
+
+
+
+
+
+
+
+
 <div class="container-fluid text-center H-100 mb-3  content" >
     <h3 class="ml-3" style="margin-top: 35px">PRAKERIN SMK TARUNA BHAKTI</h3>
     <h6 class="ml-3 mb-5">Praktek Kerja Industri 2021-2022</h6>
 </div>
-{{--  --}}
 
-{{-- itesmashboard --}}
-<div class="card-body">
-    <div class="mb-3 row">
-        {{-- <label class="col-sm-2 col-form-label">Email</label> --}}
-        <label class="col-sm-2 col-form-label">Ringkasan Khusus</label>
-        <div class="col-sm-10" style="margin-left: -25px">
-          <div class="btn-group dropright">
-                <button type="button" class="btn btn-secondary btn-sm dropdown-toggle button-course" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <label>Detail</label>
-                </button>
-                <div class="dropdown-menu">
-                    <a class="dropdown-item" href="{{ route('user.perusahaan') }}">List Perusahaan</a>
-                    <a class="dropdown-item" href="{{ route('user.pembekalan') }}">Pembekalan Magang</a>
-                    @if (siswa('data_prakerin') == '')
+<div class="row">
+    <div class="col-lg-4 col-md-4 col-sm-12" style="margin-right: 320px;">
+        <div class="card card-statistic-2" style="width: 635px;">
+            <div class="card-stats">
+                <div class="card-stats-title">
+                    <h6 class="text-primary">Pembekalan Magang</h6>
+                </div>
+                <div class="card-stats-items">
+                    <div class="card-stats-item" style="margin-right: 0px;">
+                        <div class="card-stats-item-count">
+                            <i class="far fa-check-square" style="font-size: 30px;color: greenyellow;"></i>
+                            {{-- kalo bisa diubah --}}
+                            {{-- 1.jika test udah dikumpulin maka yang ditampilin = ceklis --}}
+                            {{-- 2.jika blum maka yang ditampilin = silang --}}
 
-                    @else
-                    <a class="dropdown-item" href="{{ route('user.status') }}">Status Magang</a>
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="{{ route('user.jurnal') }}">Jurnal Prakerin</a>
-                    <a class="dropdown-item" href="{{ route('user.jurnalH') }}">Jurnal Harian</a>
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="{{ route('user.kelompok_laporan') }}">Kelompok Harian</a>
-                    @endif
+                            {{-- kalo gk bisa diubah --}}
+                            {{-- bilang ke walada aja/mungkin dashboard yang sebelumnya --}}
+
+                            {{-- kalo pesan ini udah dibaca jangan lupa diapus biar gk ganggu pemandangan wkwk --}}
+                            {{-- terimakasih --}}
+                        </div>
+                        <a href="pembekalan" class="text-decoration-none">
+                            <div class="" style="width: 120px;">Test WPT IQ</div>
+                        </a>
+                    </div>
+                    <div class="card-stats-item" style="margin-right: 0px;">
+                        <div class="card-stats-item-count">
+                            <i class="far fa-check-square" style="font-size: 30px;color: greenyellow;"></i>
+                        </div>
+                        <a href="pembekalan" class="text-decoration-none">
+                            <div class="" style="width: 120px;">Test PI</div>
+                        </a>
+                    </div>
+                    <div class="card-stats-item" style="margin-right: 0px;">
+                        <div class="card-stats-item-count">
+                            <i class="far fa-times-circle" style="font-size: 30px;color: red;"></i>
+                        </div>
+                        <a href="pembekalan" class="text-decoration-none">
+                            <div class="" style="width: 120px;">Test Soft Skill</div>
+                        </a>
+                    </div>
+                    <div class="card-stats-item">
+                        <div class="card-stats-item-count">
+                            <i class="far fa-check-square" style="font-size: 30px;color: greenyellow;"></i>
+                        </div>
+                        <a href="pembekalan" class="text-decoration-none">
+                            <div class="" style="width: 120px;">Portfolio</div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="card-icon shadow-primary bg-primary" style="margin-top: 50px;">
+                <i class="fas fa-bullhorn"></i>
+            </div>
+            <div class="card-wrap" style="margin-top: 33px;">
+                <a href="status" class="text-decoration-none">
+                    <div class="card-header">
+                        <h4>Status Magang</h4>
+                    </div>
+                    <div class="card-body">
+                        <h5>Status Selesai Magang?</h5>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-4 col-md-4 col-sm-12">
+        <div class="card card-statistic-2" style="height: 130px;">
+            <div class="card-stats">
+                <div class="card-stats-title">
+                    <h6 class="text-primary">Jurnal</h6>
+                </div>
+                <div class="card-stats-items">
+                    <div class="card-stats-item" style="margin-right: 60px;">
+                        <div class="card-stats-item-count" style="margin-left: 35px;width: 50px;">jml?</div>
+                        <a href="jurnal" class="text-decoration-none">
+                            <div class="" style="width: 120px;">Jurnal Prakerin</div>
+                        </a>
+                    </div>
+                    <div class="card-stats-item">
+                        <div class="card-stats-item-count" style="margin-left: 35px;width: 50px;">jml?</div>
+                        <a href="jurnalH" class="text-decoration-none">
+                            <div class="" style="width: 120px;">Jurnal Harian</div>
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-    <hr>
-</div>
-<div class="card-body  container-fluid mt-2">
-<div class="row">
-    <div class="col-sm-4">
-        <a href="{{ route('user.perusahaan') }}" style="text-decoration: none">
-        <div class="card box">
-                <img src="{{ asset('images/dashboard.png') }}" class="card-img-top" alt="" >
-            <div class="card-body">
-                <p class="text-dark">List Perusahaan</p>
-                <p class="text-dark"> <h6>List Perusahaan</h6></p>
-            </div>
-        </div>
-        </a>
-    </div>
-    <div class="col-sm-4">
-        <a href="{{ route('user.pembekalan') }}"   style="text-decoration: none">
-        <div class="card  box" >
-                <img src="{{ asset('images/dashboard.png') }}" class="card-img-top"  alt="" >
-            <div class="card-body">
-                <p class="text-dark">Pembekalan Magang</p>
-                <p class="text-dark"> <h6>Pembekalan Magang</h6></p>
-            </div>
-        </div>
-        </a>
-    </div>
-    @if (siswa('data_prakerin') == '')
 
-    @else
-    <div class="col-sm-4">
-    <a href="{{ route('user.status') }}"  style="text-decoration: none">
-        <div class="card  box" >
-                <img src="{{ asset('images/dashboard.png') }}" class="card-img-top" alt="" >
-            <div class="card-body">
-                <p class="text-dark">Status Magang</p>
-                <p class="text-dark"><h6>Status Magang</h6></p>
+    <div class="col-lg-4 col-md-4 col-sm-12">
+        <a href="perusahaan" class="text-decoration-none">
+            <div class="card card-statistic-1">
+                <div class="card-icon bg-info">
+                    <i class="far fa-address-card"></i>
+                </div>
+                <div class="card-wrap">
+                    <div class="card-header">
+                        <h4>Perusahaan</h4>
+                    </div>
+                    <div class="card-body">
+                        jml?
+                    </div>
+                </div>
             </div>
-        </div>
-    </a>
-    </div>
-    <div class="col-sm-4">
-    <a href="{{ route('user.jurnal') }}"  style="text-decoration: none">
-        <div class="card  box"  >
-                <img src="{{ asset('images/dashboard.png') }}"  class="card-img-top" alt="" >
-            <div class="card-body">
-                <p class="text-dark">Jurnal Prakerin</p>
-                <p class="text-dark"><h6>Jurnal Prakerin</h6></p>
-            </div>
-        </div>
         </a>
     </div>
-    <div class="col-sm-4">
-        <a href="{{ route('user.jurnalH') }}"   style="text-decoration: none">
-        <div class="card  box">
-                <img src="{{ asset('images/dashboard.png') }}"  class="card-img-top" alt="" >
-            <div class="card-body">
-                <p class="text-dark">Jurnal Harian</p>
-                <p class="text-dark"><h6>Jurnal Harian</h6></p>
+    <div class="col-lg-4 col-md-4 col-sm-12">
+        <a href="kelompok_laporan" class="text-decoration-none">
+            <div class="card card-statistic-1">
+                <div class="card-icon bg-info">
+                    <i class="far fa-address-card"></i>
+                </div>
+                <div class="card-wrap">
+                    <div class="card-header">
+                        <h4>Kelompok Laporan</h4>
+                    </div>
+                    <div class="card-body">
+                        nomor kelompok?
+                        {{-- contoh --}}
+                        {{-- Kelompok 1 --}}
+                    </div>
+                </div>
             </div>
-        </div>
         </a>
     </div>
-    <div class="col-sm-4">
-        <a href="{{ route('user.kelompok_laporan') }}"  style="text-decoration: none">
-        <div class="card  box" >
-                <img src="{{ asset('images/dashboard.png') }}"  class="card-img-top" alt="" >
-            <div class="card-body">
-                <p class="text-dark">Kelompok Harian</p>
-                <p class="text-dark"><h6>Kelompok Harian</h6></p>
-            </div>
-        </div>
-        </a>
-    </div>
-    @endif
-</div>
-</div>
-{{-- itesmashboard end --}}
+
+
 </div>
 @endsection
 @push('script')

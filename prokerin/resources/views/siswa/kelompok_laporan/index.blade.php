@@ -36,7 +36,7 @@
             <table class="table table-bordered table-hover ">
             <thead>
                 <tr>
-                    <th scope="col" colspan="2" class="text-center bg-primary text-white text-center">
+                    <th scope="" colspan="2" class="text-center bg-primary text-white text-center">
                     @if (count($kelompok)<1)
                         Anda belum masuk kelompok
                     @else
@@ -51,7 +51,7 @@
                 {{-- {{ dd($kelompok) }} --}}
                 @if(count($kelompok) < 1)
                 <tr>
-                    <th scope="row" style="width: 400px;;" class="text-left">Pembimbing</th>
+                    <th scope="row" style="width: 400px;" class="text-left">Pembimbing</th>
                     <td class="" style="">Anda belum mendapat kelompok</td>
                 </tr>
                 <tr>
