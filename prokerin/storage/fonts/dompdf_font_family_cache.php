@@ -80,4 +80,11 @@
   'bowlby one sc\', cursive' => array(
     'normal' => $fontDir . '/bowlby_one_sc___cursive_normal_396420e17c42529dbeaac96f818739fc',
   ),
+  'font awesome 5 brands' => array(
+    'normal' => $fontDir . '/font_awesome_5_brands_normal_3b2f0d60d9a43f492362e7b2bd72dfb2',
+  ),
+  'font awesome 5 free' => array(
+    'normal' => $fontDir . '/font_awesome_5_free_normal_844e2aa090d6f4e88820c415e11f2595',
+    '900' => $fontDir . '/font_awesome_5_free_900_43713550c9866a539d0a61c03b11f7d5',
+  ),
 ) ?>

@@ -248,16 +248,17 @@
             </h6>
         </div>
 
-        <div class="" style="float: right;margin-top: 50px;margin-bottom: 180px;">
+        <div class="" style="float: right;margin-top: 50px;">
             <p>Depok,..............................2021</p><br>
             <p style="margin-top: -20px">Peserta Didik Prakerin</p><br><br>
             <u>................................................</u>
         </div>
+        <br><br><br><br><br><br><br><br><br><br><br><br><br><br>
     </div>
 
     {{-- Page4 --}}
     <div class="container">
-        <div style="margin-top: 50px;">
+        <div style="">
             <h4 class="" style="margin-left:90px;">
                 C.    IDENTITAS INDUSTRI / PERUSAHAAN TEMPAT PELAKSANAAN<br>
                 <span style="margin-left: 19px;">PRAKTIK KERJA INDUSTRI (PRAKERIN)</span>
@@ -312,16 +313,17 @@
             </h6>
         </div>
 
-        <div class="" style="float: right;margin-top: 80px;margin-right: 60px;margin-bottom: 430px;">
+        <div class="" style="float: right;margin-top: 80px;margin-right: 60px;">
             <p>...................., ..........................2021</p><br>
             <p style="margin-top: -20px">Direktur/Kepala .............................</p><br><br>
             <u>........................................................</u>
         </div>
+        <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
     </div>
 
     {{-- Page5 --}}
     <div class="container">
-        <h4 class="" style="text-align:center;margin-left:-30px;margin-top: 110px;">D.	    TATA TERTIB PESERTA DIDIK DALAM PELAKSANAAN PRAKERIN</h4>
+        <h4 class="" style="text-align:center;margin-left:-30px;">D.	    TATA TERTIB PESERTA DIDIK DALAM PELAKSANAAN PRAKERIN</h4>
         <div>
             <h6 class="font6" style="font-weight: 300px;font-size: 15px; margin-top: -0px;  text-align:left; margin-left:87px;">
                 1.	Peserta Didik menyediakan sendiri Seluruh perlengkapan dan biaya selama melaksanakan kegiatan
@@ -391,6 +393,7 @@
                 <span style="margin-left: px;">selama praktik kerja industri, maka dibuat perangkat : <b><i>“ Jurnal Kegiatan Prakerin “</i></b></span>
             </h6>
         </div>
+        <br><br>
     </div>
 
     {{-- Page6 --}}
@@ -517,10 +520,11 @@
 
             <span style="margin-left: 105px;">j.	Setelah selesai PRAKERIN peserta didik wajib menyelesaikan Laporan Prakerin.  </span> <br>
         </div>
+        <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
     </div>
 
     {{-- Page8 --}}
-    <div class="container" style="margin-top: 370px">
+    <div class="container">
         <h4 class="" style="text-align:center;margin-left:70px;">J.	STRUKTUR KOMPETENSI PROGRAM KEAHLIAN REKAYASA PERANGKAT
         <h4 class="" style="text-align:center;margin-left:-240px;margin-top:-10px;">LUNAK BERDASARKAN KURIKULUM 2013</h4>
         <div>
@@ -555,15 +559,16 @@
                 <tr>
                     <td>5. Produk Kreatif dan Kewirausahaan</td>
                 </tr>
-
             </table>
         </div>
+        <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
     </div>
 
     {{-- Page9 --}}
-    <div class="container" style="text-align: center;margin-top:30px;">
-        <h4 class="" style="text-align:center;margin-left:10px;margin-bottom:480px;">K.	PEMETAAN PROFILE KOMPETENSI TAMATAN</h4>
-        <div>
+    <div class="container">
+        <h4 class="" style="text-align:center;margin-left:10px;">K.	PEMETAAN PROFILE KOMPETENSI TAMATAN</h4>
+        <br><br><br>
+        <div style="text-align: center;">
             <img src="https://i.postimg.cc/tgc6d1Mz/qwqwq.jpg" alt="">
         </div>
     </div>
@@ -652,14 +657,15 @@
             <p style="margin-bottom: 50px">Pembimbing industri</p>
             <p>..............................................</p>
         </div>
-    </div> <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+        <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+    </div>
 
     {{-- Page11 --}}
     <div class="container">
         <h4 class="" style="text-align:center;margin-left:-260px;">M.	JURNAL KEGIATAN PRAKERIN</h4>
         <h4 class="" style="text-align:center;margin-left:-10px;">A. JAM KERJA PRAKERIN</h4>
         <div>
-            <table border="1">
+            <table border="1" style="text-align: center;">
             <tr>
                 <th style="background-color: skyblue;width:150px;">Hari</th>
                 <th style="background-color: skyblue;width:150px;">Jam Masuk</th>
@@ -709,12 +715,13 @@
 
         </table>
         </div>
-        <div class="kri-bwhs">
+        <div class="kri-bwhs" style="margin-top: 50px;">
             <p>......................,..............20.......</p>
             <p style="margin-bottom:50px;">Pembimbing industri</p>
             <p>..............................................</p>
         </div>
-    </div><br><br><br><br><br><><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+        <br><br><br><br><br><><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+    </div>
 
     {{-- Page12 --}}
     <div class="container">
@@ -740,7 +747,7 @@
             <p>Form. 01 - Daftar Spesifikasi Peralatan di Perusahaan / Industri</p>
         </div>
         <div>
-            <table border="1" style="margin-left: 10px;width:700px;">
+            <table border="1" style="margin-left: 10px;width:700px;margin-top: 30px;">
                 <tr>
                     <th style="background-color: skyblue;width:150px;padding:4;">No</th>
                     <th style="background-color: skyblue;width:150px;padding:10;">Nama Alat/Komputer</th>
@@ -803,7 +810,8 @@
                 </tr>
             </table>
         </div>
-    </div><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+        <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+    </div>
 
     {{-- Page13 --}}
     <div class="container">
@@ -885,25 +893,26 @@
                                      </span>
             </h6>
         </div>
+        <br><br><br><br><br><br><br><br><br><br><br><br><br>
     </div>
 
     {{-- Page14 --}}
     <div class="container">
-        <h6 class="font6" style="font-weight: 300px;font-size: 14px; margin-bottom: 400px;  text-align:left; margin-left:110px;">
+        <h6 class="font6" style="font-weight: 300px;font-size: 14px; margin-bottom: 100px;  text-align:left; margin-left:110px;">
             6. Gambar Kerja  </h6>
-        <div class="box1">
+        <div class="box1" style="margin-left: 100px;">
         </div>
-        <div class="kri-bwhsk">
+        <div class="kri-bwhsk" style="margin-top: 50px;">
             <p>......................,..............,.......</p>
             <p style="margin-bottom:50px;">Pembimbing industri</p>
             <p>..............................................</p>
         </div>
+        <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
     </div>
 
-    {{-- Page15 --}}
-    {{-- Page15 --}}
+    {{-- Page15-21 --}}
     @for ($j = 1; $j <= 3; $j++)
-   <div class="container">
+    <div class="container">
        @php
            $no = ['','P','Q','R'];
        @endphp
@@ -990,841 +999,30 @@
 
             </table>
         </div>
+        <br><br><br><br><br><br><br><br><br>
     </div>
-  <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-@endfor
-
-    {{-- Page16 --}}
-
-
-    {{-- Page17 --}}
-     {{-- <div class="container">
-        <h4 style="text-align:center;margin-left:-234px;">Q.	JURNAL HARIAN KEGIATAN PRAKERIN</h4>
-
-
-
-        <div>
-            <h6 class="font6" style="font-weight: 300px;font-size: 14px; margin-top: 5px; margin-left:90px;">
-                Nama Peserta didik  <span style="margin-left: 90px;">
-                                        : .......................................................................................
-                                    </span>
-            </h6>
-            <h6 class="font6" style="font-weight: 300px;font-size: 14px; margin-top: -25px; margin-left:90px;">
-                Kompetensi Keahlian <span style="margin-left: 78px;">
-                                        : <u>Rekayasa Perangkat Lunak</u>
-                                    </span>
-            </h6>
-            <h6 class="font6" style="font-weight: 300px;font-size: 14px; margin-top: -10px; margin-left:90px;">
-                Nama Industri   <span style="margin-left: 119px;">
-                                    : .......................................................................................
-                                </span>
-            </h6>
-            <h6 class="font6" style="font-weight: 300px;font-size: 14px; margin-top: -25px; margin-left:90px;">
-                Nama Pembimbing <span style="margin-left: 91px;">
-                                    : .......................................................................................
-                                </span>
-            </h6>
-            <h6 class="font6" style="font-weight: 300px;font-size: 14px; margin-top: -25px; margin-left:90px;">
-                Alamat Industri     <span style="margin-left: 111px;">
-                                        : .......................................................................................
-                                    </span>
-            </h6>
-            <h6 class="font6" style="font-weight: 300px;font-size: 14px; margin-top: -25px; margin-left:90px;">
-                Waktu PKL<span style="margin-left: 135px;">
-                        : .......................................................................................
-                    </span>
-            </h6>
-        </div>
-
-        <div>
-            <table border="1" style="margin-top: 40px;margin-left:-px;">
-                <tr>
-                    <th style="background-color: skyblue;width: 40px">No</th>
-                    <th style="background-color: skyblue;width: 150px;">Kompentensi Dasar</th>
-                    <th style="background-color: skyblue;width: 250px;">Topic Pembelajaran / Pekerjaan</th>
-                    <th style="background-color: skyblue;width: 130px;">Tanggal Pelaksanaan</th>
-                    <th style="background-color: skyblue;width: 120px;">Paraf</th>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                 <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                 <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                 <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                 <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                 <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                 <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                 <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                 <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-            </table>
-        </div>
-    </div> --}}
-
-    {{-- Page18 --}}
-    {{-- <div class="container">
-        <div class="" style="float: right;margin-top: 70px;margin-right: 40px;">
-            <p>................., .............................</p><br>
-            <p style="margin-top: -20px">Pembimbing,</p><br><br>
-            <u>................................................</u>
-        </div>
-    </div>
-    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br> --}}
-
-    {{-- Page19 --}}
-    {{-- <div class="container">
-        <h4 style="text-align:center;margin-left:-234px;">R.	JURNAL HARIAN KEGIATAN PRAKERIN</h4>
-        <div>
-            <h6 class="font6" style="font-weight: 300px;font-size: 14px; margin-top: 5px; margin-left:90px;">
-                Nama Peserta didik  <span style="margin-left: 90px;">
-                                        : .......................................................................................
-                                    </span>
-            </h6>
-            <h6 class="font6" style="font-weight: 300px;font-size: 14px; margin-top: -25px; margin-left:90px;">
-                Kompetensi Keahlian <span style="margin-left: 78px;">
-                                        : <u>Rekayasa Perangkat Lunak</u>
-                                    </span>
-            </h6>
-            <h6 class="font6" style="font-weight: 300px;font-size: 14px; margin-top: -25px; margin-left:90px;">
-                Nama Industri   <span style="margin-left: 119px;">
-                                    : .......................................................................................
-                                </span>
-            </h6>
-            <h6 class="font6" style="font-weight: 300px;font-size: 14px; margin-top: -25px; margin-left:90px;">
-                Nama Pembimbing <span style="margin-left: 91px;">
-                                    : .......................................................................................
-                                </span>
-            </h6>
-            <h6 class="font6" style="font-weight: 300px;font-size: 14px; margin-top: -25px; margin-left:90px;">
-                Alamat Industri     <span style="margin-left: 111px;">
-                                        : .......................................................................................
-                                    </span>
-            </h6>
-            <h6 class="font6" style="font-weight: 300px;font-size: 14px; margin-top: -25px; margin-left:90px;">
-                Waktu PKL<span style="margin-left: 135px;">
-                        : .......................................................................................
-                    </span>
-            </h6>
-        </div>
-
-        <div>
-            <table border="1" style="margin-top: 40px;margin-left:-px;">
-                <tr>
-                    <th style="background-color: skyblue;width: 40px">No</th>
-                    <th style="background-color: skyblue;width: 150px;">Kompentensi Dasar</th>
-                    <th style="background-color: skyblue;width: 250px;">Topic Pembelajaran / Pekerjaan</th>
-                    <th style="background-color: skyblue;width: 130px;">Tanggal Pelaksanaan</th>
-                    <th style="background-color: skyblue;width: 120px;">Paraf</th>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                 <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                 <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                 <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                 <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                 <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                 <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                 <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                 <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-            </table>
-        </div>
-    </div> --}}
-
-    {{-- Page20 --}}
-    {{-- <div class="container">
-        <div class="" style="float: right;margin-top: 70px;margin-right: 40px;">
-            <p>................., .............................</p><br>
-            <p style="margin-top: -20px">Pembimbing,</p><br><br>
-            <u>................................................</u>
-        </div>
-    </div>
-    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br> --}}
-
-    {{-- Page21 --}}
-
- @for ($v = 1; $v < $jumlah_bulan; $v++)
- <div class="container">
-    <h4 style="text-align:center;margin-left:-53px;">S.	DAFTAR HADIR SISWA JURNAL HARIAN KEGIATAN PRAKERIN</h4>
-    <div>
-        <h6 class="font6" style="font-weight: 300px;font-size: 14px; margin-top: 5px; margin-left:90px;">
-            Nama Perusahaan <span style="margin-left: 99px;">
-                                : {{$dataP_siswa->perusahaan->nama}}
-                            </span>
-        </h6>
-        <h6 class="font6" style="font-weight: 300px;font-size: 14px; margin-top: -25px; margin-left:90px;">
-            Nama Peserta didik  <span style="margin-left: 90px;">
-                                    : {{$identitas_siswa->nama}}
-                                </span>
-        </h6>
-        <h6 class="font6" style="font-weight: 300px;font-size: 14px; margin-top: -25px; margin-left:90px;">
-            Paket Keahlian  <span style="margin-left: 114px;">
-                                : <u>{{$dataP_siswa->kelas->jurusan->jurusan}}</u>
-                            </span>
-        </h6>
-    </div>
-
-    <div>
-        <table border="1" style="margin-top: 10px;margin-left:25px;">
-            <tr>
-                <th style="background-color: skyblue;width: 40px" rowspan="2">No</th>
-                <th style="background-color: skyblue;width: 210px;" rowspan="2">Hari / Tanggal</th>
-                <th style="background-color: skyblue;" colspan="2">Waktu</th>
-                <th style="background-color: skyblue;width: 180px;" rowspan="2">Paraf Pembimbing</th>
-            </tr>
-            <tr>
-                <th style="background-color: skyblue;width: 100px">Datang</th>
-                <th style="background-color: skyblue;width: 100px;">Pulang</th>
-            </tr>
-            @php
-
-        @endphp
-    @if ($v > 1 )
-        @php $l = ($v - 1) * 30 + 1  @endphp
-    @else
-        @php $l = 1  @endphp
-    @endif
-    @for ($i = $l; $i <= 30 * $v ; $i++)
-        @if ($i <= (30 * $v) and $i % (30 * $v) !== 0)
-        @if (count($jurnalH_siswa ) - 1 >= $i)
-             <tr>
-            <td>{{ ($v > 1) ? $i - (30 * ($v - 1)) : $i  }}</td>
-            <td>{{ $jurnalH_siswa[$i]['tanggal']->isoFormat('D MMMM Y') }}</td>
-            <td>{{ $jurnalH_siswa[$i]['datang']->format('h:i') }}</td>
-            <td>{{ $jurnalH_siswa[$i]['pulang']->format('h:i') }}</td>
-            <td></td>
-        </tr>
-        @else
-        <tr>
-            <td>{{ ($v > 1) ? $i - (30 * ($v - 1)) : $i  }}</td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr>
-        @endif
-        @else
-        <tr>
-            <td>{{($v > 1) ? $i - (30 * ($v - 1)) : $i  }}</td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr>
-        @endif
     @endfor
-        </table>
-    </div>
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 
+    {{-- Page22-27 --}}
+    @for ($v = 1; $v < $jumlah_bulan; $v++)
     <div class="container">
-        <div class="" style="float: right;margin-top: -0px;margin-right: 40px;">
-            <p>................., .....................................</p><br>
-            <p style="margin-top: -20px">Pembimbing Industri/Perusahaan</p><br><br>
-            <u>........................................................</u>
-        </div>
-    </div>
-</div>
-<br><br><br><br><br><br><br><br><br>
 
- @endfor
-
-
-    {{-- Page22 --}}
-    {{-- <div class="container">
-        <h4 style="text-align:center;margin-left:-53px;">T.	DAFTAR HADIR SISWA JURNAL HARIAN KEGIATAN PRAKERIN</h4>
+        <h4 style="text-align:center;margin-left:-53px;">S.	DAFTAR HADIR SISWA JURNAL HARIAN KEGIATAN PRAKERIN</h4>
         <div>
             <h6 class="font6" style="font-weight: 300px;font-size: 14px; margin-top: 5px; margin-left:90px;">
                 Nama Perusahaan <span style="margin-left: 99px;">
-                                    : .......................................................................................
+                                    : {{$dataP_siswa->perusahaan->nama}}
                                 </span>
             </h6>
             <h6 class="font6" style="font-weight: 300px;font-size: 14px; margin-top: -25px; margin-left:90px;">
                 Nama Peserta didik  <span style="margin-left: 90px;">
-                                        : .......................................................................................
+                                        : {{$identitas_siswa->nama}}
                                     </span>
             </h6>
             <h6 class="font6" style="font-weight: 300px;font-size: 14px; margin-top: -25px; margin-left:90px;">
                 Paket Keahlian  <span style="margin-left: 114px;">
-                                    : <u>Rekayasa Perangkat Lunak</u>
+                                    : <u>{{$dataP_siswa->kelas->jurusan->jurusan}}</u>
                                 </span>
             </h6>
         </div>
@@ -1841,153 +1039,43 @@
                     <th style="background-color: skyblue;width: 100px">Datang</th>
                     <th style="background-color: skyblue;width: 100px;">Pulang</th>
                 </tr>
+                @php
+
+            @endphp
+        @if ($v > 1 )
+            @php $l = ($v - 1) * 30 + 1  @endphp
+        @else
+            @php $l = 1  @endphp
+        @endif
+        @for ($i = $l; $i <= 30 * $v ; $i++)
+            @if ($i <= (30 * $v) and $i % (30 * $v) !== 0)
+            @if (count($jurnalH_siswa ) - 1 >= $i)
                 <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                 <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                 <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                 <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                 <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
+                <td>{{ ($v > 1) ? $i - (30 * ($v - 1)) : $i  }}</td>
+                <td>{{ $jurnalH_siswa[$i]['tanggal']->isoFormat('D MMMM Y') }}</td>
+                <td>{{ $jurnalH_siswa[$i]['datang']->format('h:i') }}</td>
+                <td>{{ $jurnalH_siswa[$i]['pulang']->format('h:i') }}</td>
+                <td></td>
+            </tr>
+            @else
+            <tr>
+                <td>{{ ($v > 1) ? $i - (30 * ($v - 1)) : $i  }}</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            @endif
+            @else
+            <tr>
+                <td>{{($v > 1) ? $i - (30 * ($v - 1)) : $i  }}</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            @endif
+        @endfor
             </table>
         </div>
 
@@ -1998,203 +1086,11 @@
                 <u>........................................................</u>
             </div>
         </div>
+        <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
     </div>
-    <br><br><br><br><br><br><br><br><br> --}}
+    @endfor
 
-    {{-- Page23 --}}
-    {{-- <div class="container">
-        <h4 style="text-align:center;margin-left:-53px;">U.	DAFTAR HADIR SISWA JURNAL HARIAN KEGIATAN PRAKERIN</h4>
-        <div>
-            <h6 class="font6" style="font-weight: 300px;font-size: 14px; margin-top: 5px; margin-left:90px;">
-                Nama Perusahaan <span style="margin-left: 99px;">
-                                    : .......................................................................................
-                                </span>
-            </h6>
-            <h6 class="font6" style="font-weight: 300px;font-size: 14px; margin-top: -25px; margin-left:90px;">
-                Nama Peserta didik  <span style="margin-left: 90px;">
-                                        : .......................................................................................
-                                    </span>
-            </h6>
-            <h6 class="font6" style="font-weight: 300px;font-size: 14px; margin-top: -25px; margin-left:90px;">
-                Paket Keahlian  <span style="margin-left: 114px;">
-                                    : <u>Rekayasa Perangkat Lunak</u>
-                                </span>
-            </h6>
-        </div>
-
-        <div>
-            <table border="1" style="margin-top: 10px;margin-left:25px;">
-                <tr>
-                    <th style="background-color: skyblue;width: 40px" rowspan="2">No</th>
-                    <th style="background-color: skyblue;width: 210px;" rowspan="2">Hari / Tanggal</th>
-                    <th style="background-color: skyblue;" colspan="2">Waktu</th>
-                    <th style="background-color: skyblue;width: 180px;" rowspan="2">Paraf Pembimbing</th>
-                </tr>
-                <tr>
-                    <th style="background-color: skyblue;width: 100px">Datang</th>
-                    <th style="background-color: skyblue;width: 100px;">Pulang</th>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                 <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                 <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                 <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                 <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-            </table>
-        </div>
-
-        <div class="container">
-            <div class="" style="float: right;margin-top: 50px;margin-right: 40px;">
-                <p>................., .....................................</p><br>
-                <p style="margin-top: -20px">Pembimbing Industri/Perusahaan</p><br><br>
-                <u>........................................................</u>
-            </div>
-        </div>
-    </div>
-    <br><br><br><br><br><br><br><br><br> --}}
-
-    {{-- Page24 --}}
+    {{-- Page28 --}}
     <div class="container">
         <h4 style="text-align:center;margin-left:-53px;">V.	KRITERIA PENILAIAN ASPEK TEKNIS DAN ASPEK NON TEKNIS</h4>
         <div>
@@ -2314,10 +1210,10 @@
                 <u>........................................................</u>
             </div>
         </div>
+        <br><br><br><br><br><br><br><br><br>
     </div>
-    <br><br><br><br><br><br><br><br><br>
 
-    {{-- Page25 --}}
+    {{-- Page29 --}}
     <div class="container">
         <h4 style="text-align:center;margin-left:-370px;">W.	SURAT PERSETUJUAN</h4>
         <div>
@@ -2427,10 +1323,10 @@
                 <u>........................................................</u>
             </div>
         </div>
+        <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
     </div>
-    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 
-    {{-- Page26 --}}
+    {{-- Page30 --}}
     <div class="container">
         <h4 style="text-align:center;margin-left:-250px;">X.	SARAN-SARAN DARI PIHAK INDUSTRI</h4>
         <div>
@@ -2483,7 +1379,6 @@
             </div>
         </div>
     </div>
-
 
 </body>
 </html>
