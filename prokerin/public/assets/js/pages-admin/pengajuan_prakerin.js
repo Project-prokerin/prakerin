@@ -53,7 +53,7 @@ $(document).ready(function() {
         ]
     });
     console.log(role);
-    if (role == "hubin" || role == "kaprog") {
+    if (role == "hubin" || role == "kaprog" || role == "admin" ) {
         $('.btn-table').append(
             '<a href="'+root+'/admin/pengajuan_prakerin/tambah"class="btn btn-primary "> Tambah Data <i class="fas fa-plus"></i></button></a>'
         );

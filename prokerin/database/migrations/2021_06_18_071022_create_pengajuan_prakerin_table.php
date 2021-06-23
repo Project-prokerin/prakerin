@@ -17,7 +17,7 @@ class CreatePengajuanPrakerinTable extends Migration
             $table->id();
             $table->integer('no')->unsigned();
             $table->foreignId('id_guru')->nullable()->constrained('guru')->onDelete('set null')->onUpdate('cascade');
-            $table->foreignId('id_data_prakerin')->nullable()->constrained('data_prakerin')->onDelete('set null')->onUpdate('cascade');
+            $table->foreignId('id_siswa')->nullable()->constrained('siswa')->onDelete('set null')->onUpdate('cascade');
             $table->string('nama_perusahaan');
             $table->timestamps();
         });

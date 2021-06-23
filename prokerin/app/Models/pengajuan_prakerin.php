@@ -10,10 +10,10 @@ class pengajuan_prakerin extends Model
     use HasFactory;
     protected $table = 'pengajuan_prakerin';
     protected $guarded = [];
-      public function data_prakerin()
+      public function siswa()
     {
                                               
-        return $this->hasOne(data_prakerin::class,'id','id_data_prakerin');
+        return $this->hasOne(siswa::class,'id','id_siswa');
     }
 
     public function guru()

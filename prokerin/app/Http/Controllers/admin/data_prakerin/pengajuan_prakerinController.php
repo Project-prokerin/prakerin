@@ -35,7 +35,7 @@ class pengajuan_prakerinController extends Controller
     {
         if ($request->ajax()) {
             // with('data_prakerin')->with('guru')->
-            $pengajuan_prakerin = pengajuan_prakerin::orderby('created_at', 'DESC')->with('data_prakerin')->distinct('no','id_guru', 'nama_perusahaan')->with('guru')->get(['no', 'id_guru', 'nama_perusahaan']);
+            $pengajuan_prakerin = pengajuan_prakerin::with('data_prakerin')->distinct('no','id_guru', 'nama_perusahaan')->with('guru')->get(['no', 'id_guru', 'nama_perusahaan']);
             // dd($kelompok_laporan);
             return datatables()->of($pengajuan_prakerin)->addColumn('guru', function (pengajuan_prakerin $pengajuan_prakerin) {
                 return $pengajuan_prakerin->guru->nama;
