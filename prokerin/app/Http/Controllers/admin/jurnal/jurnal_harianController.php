@@ -8,6 +8,7 @@ use App\Models\jurnal_harian;
 use App\Models\data_prakerin;
 use Carbon\Carbon;
 use App\Http\Requests\admin\jurnal_harianRequest;
+use App\Models\jurnal_prakerin;
 use Illuminate\Support\Facades\Auth;
 
 class jurnal_harianController extends Controller
@@ -125,8 +126,9 @@ class jurnal_harianController extends Controller
     {
 
         $sidebar = 'jurnalH';
+        $jurnal = jurnal_harian::find($id);
         return view('admin.jurnal_harian.detail',
-         compact('sidebar'));
+         compact('sidebar','jurnal'));
     }
 
     /**
@@ -142,7 +144,7 @@ class jurnal_harianController extends Controller
             return back();
         }
             $data_prakerin = data_prakerin::all();
-            $jurnalH = jurnal_harian::find($id);
+            $jurnalH = jurnal_harian::find($id)->first();
         return view('admin.jurnal_harian.edit', compact('data_prakerin','jurnalH'));
 
     }

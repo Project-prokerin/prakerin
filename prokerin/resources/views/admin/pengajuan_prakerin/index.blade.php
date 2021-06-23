@@ -4,12 +4,12 @@
 
     </style>
 @endpush
-@section('title', 'Prakerin | Kelompok Prakerin')
-@section('judul', ' KELOMPOK PRAKERIN')
+@section('title', 'Prakerin | Pengajuan Prakerin')
+@section('judul', ' PENGAJUAN PRAKERIN')
 @section('breadcrump')
     <div class="breadcrumb-item "><a href="{{ route('admin.dashboard') }}"><i class="fas fa-tachometer-alt"></i>
             DASBOARD</a></div>
-    <div class="breadcrumb-item"> <i class="far fa-building"></i> Kelompok Prakerin</div>
+    <div class="breadcrumb-item"> <i class="far fa-building"></i> Pengajuan Prakerin</div>
 @endsection
 @section('main')
     @if (session('success'))

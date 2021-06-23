@@ -343,7 +343,7 @@
                                     <div class="d-flex">
                                         <i class="fas fa-user border text-center"></i>
                                         <input type="date" name="tl_ayah" class="form-control form-control-sm @error('tl_ayah') is-invalid @enderror"
-                                        value="{{ old('tl_ayah', $orangtua->tl_ayah) }}">
+                                        value="{{ old('tl_ayah', $orangtua->tl_ayah->format('Y-m-d')) }}">
                                     </div>
                                     @error('tl_ayah')
                                         <div class="invalid-feedback">
@@ -424,7 +424,7 @@
                                     <div class="d-flex">
                                         <i class="fas fa-user border text-center"></i>
                                         <input type="date" name="tl_ibu" class="form-control form-control-sm @error('tl_ibu') is-invalid @enderror"
-                                        value="{{ old('tl_ibu',$orangtua->tl_ibu) }}">
+                                        value="{{ old('tl_ibu',$orangtua->tl_ibu->format('Y-m-d')) }}">
                                     </div>
                                     @error('tl_ibu')
                                         <div class="invalid-feedback">

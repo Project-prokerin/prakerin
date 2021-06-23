@@ -111,8 +111,9 @@ class jurnal_prakerinController extends Controller
     public function detail($id)
     {
         $sidebar = 'jurnal';
+        $jurnal = jurnal_prakerin::with('fasilitas_prakerin')->find($id);
         return view('admin.jurnal_prakerin.detail',
-         compact('sidebar'));
+         compact('sidebar','jurnal'));
     }
 
     /**

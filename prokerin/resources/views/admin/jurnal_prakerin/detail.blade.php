@@ -46,47 +46,47 @@
                 <h5 class="card-title">Data Jurnal</h5>
                   <div class="row g-3 align-items-center">
                     <label class="form-label col-7 pleft">Mess</label>
-                    <label class="form-label">: </label>
+                    <label class="form-label">: {{ ($jurnal->mess == "iya") ? "Sudah" : "Belum"  }}</label>
                   </div>
                   <div class="row g-3 align-items-center">
                     <label class="form-label col-7 pleft">Makan Siang</label>
-                    <label class="form-label">: </label>
+                    <label class="form-label">: {{ ($jurnal->makan_siang == "iya") ? "Sudah" : "Belum" }} </label>
                   </div>
                   <div class="row g-3 align-items-center">
                     <label class="form-label col-7 pleft">Bus Antar Jemput</label>
-                    <label class="form-label">: </label>
+                    <label class="form-label">: {{ ($jurnal->buss_antar_jemput == "iya") ? "Sudah" : "Belum" }} </label>
                   </div>
                   <div class="row g-3 align-items-center">
                     <label class="form-label col-7 pleft">Intensif</label>
-                    <label class="form-label">: </label>
+                    <label class="form-label">: {{ ($jurnal->intensif == "iya") ? "Sudah" : "Belum" }} </label>
                   </div>
                   <div class="row g-3 align-items-center">
                     <label class="form-label col-7 pleft">Kompetensi Dasar</label>
-                    <label class="form-label">: </label>
+                    <label class="form-label">: {{ $jurnal->kompetisi_dasar }} </label>
                   </div>
                   <div class="row g-3 align-items-center">
                     <label class="form-label col-7 pleft">Topik Pekerjaaan</label>
-                    <label class="form-label">: </label>
+                    <label class="form-label">: {{ $jurnal->topik_pekerjaan }} </label>
                   </div>
                   <div class="row g-3 align-items-center">
                     <label class="form-label col-7 pleft">Nama Siswa</label>
-                    <label class="form-label">: </label>
+                    <label class="form-label">: {{ $jurnal->siswa->nama_siswa }} </label>
                   </div>
                   <div class="row g-3 align-items-center">
                     <label class="form-label col-7 pleft">Tanggal Pelaksanaan</label>
-                    <label class="form-label">: </label>
+                    <label class="form-label">: {{ tanggal($jurnal->tanggal_pelaksanaan) }} </label>
                   </div>
                   <div class="row g-3 align-items-center">
                     <label class="form-label col-7 pleft">Jam Masuk</label>
-                    <label class="form-label">: </label>
+                    <label class="form-label">: {{ jam($jurnal->jam_masuk) }} </label>
                   </div>
                   <div class="row g-3 align-items-center">
                     <label class="form-label col-7 pleft">Jam Istirahat</label>
-                    <label class="form-label">: </label>
+                    <label class="form-label">: {{ jam($jurnal->jam_istirahat) }} </label>
                   </div>
                   <div class="row g-3 align-items-center">
                     <label class="form-label col-7 pleft">Jam Pulang</label>
-                    <label class="form-label">: </label>
+                    <label class="form-label">: {{ jam($jurnal->jam_pulang) }} </label>
                   </div>
                   <div style="margin-top: 40px; margin-bottom:40px;">
                     <a href="{{ route('jurnal.index') }}" type="button" class="btn btn-danger "><i class="fas fa-backspace"></i>   Kembali</a>
@@ -101,5 +101,5 @@
 </div>
 @endsection
 @push('script')
-    
+
 @endpush

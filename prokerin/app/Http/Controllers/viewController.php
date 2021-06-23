@@ -35,10 +35,10 @@ class viewController extends Controller
         $perusahaan = perusahaan::all()->count();
         $jurnalP = jurnal_prakerin::all()->count();
         $jurnalH = jurnal_harian::all()->count();
-        
+
         // $surat_pengajuan = surat_keluar::where('status','pengajuan');
         // $surat_pengajuan = surat_keluar::where('status','pengajuan');
-        
+
         if (Auth::user()->role == "admin" or Auth::user()->role == "tu" ) {
             $surat_masuk = surat_masuk::all()->count();
             $surat_keluar = surat_keluar::all()->count();
@@ -75,13 +75,13 @@ class viewController extends Controller
             $jurnalH = jurnal_harian::all()->count();
             $total_jurnal = $jurnalP + $jurnalH;
             $kelas = kelas::all()->count();
-        $kelompok_prakerin = kelompok_laporan::all()->unique('no')->count();
-        $data_prakerin =  data_prakerin::all()->count();
-        $pembekalan_magang = pembekalan_magang::all()->count();
-        $laporan_prakerin = laporan_prakerin::all()->count();
-        $pengajuan_prakerin = pengajuan_prakerin::all()->unique('no')->count();
+            $kelompok_prakerin = kelompok_laporan::all()->unique('no')->count();
+            $data_prakerin =  data_prakerin::all()->count();
+            $pembekalan_magang = pembekalan_magang::all()->count();
+            $laporan_prakerin = laporan_prakerin::all()->count();
+            $pengajuan_prakerin = pengajuan_prakerin::all()->unique('no')->count();
             $perusahaan = perusahaan::all()->count();
-        $total_suratP = $surat_keluar + $pengajuan_prakerin ;
+            $total_suratP = $surat_keluar + $pengajuan_prakerin ;
 
 
 
@@ -103,8 +103,8 @@ class viewController extends Controller
             //test wpt yang sudah di test
             $test_WPT =    pembekalan_magang::where('test_wpt_iq','sudah')->count();
             $test_PT = pembekalan_magang::where('personality_interview','sudah')->count();
-            $test_SS = pembekalan_magang::where('soft_Skill','sudah')->count(); 
-            $test_Portofolio = pembekalan_magang::all()->count(); 
+            $test_SS = pembekalan_magang::where('soft_Skill','sudah')->count();
+            $test_Portofolio = pembekalan_magang::all()->count();
             //endte
             $pengajuan_prakerin = pengajuan_prakerin::all()->unique('no')->count();
         $total_suratP = $surat_keluar + $pengajuan_prakerin ;
@@ -121,9 +121,9 @@ class viewController extends Controller
         // $surat_m = '';
         // $total_surat = '';
         // $data = '';
-        return view('admin.dashboard');
+        // return view('admin.dashboard');
 
-        
+
 
         // if (Auth::user()->role == 'admin') {
         //     $data = [];
@@ -158,7 +158,7 @@ class viewController extends Controller
 }
 
 
-// <!-- 
+// <!--
 // namespace App\Http\Controllers;
 
 // use App\Models\Disposisi;
@@ -187,7 +187,7 @@ class viewController extends Controller
     //     $jurnal = jurnal_harian::all()->count();
     //     $siswa = Siswa::all()->count();
     //     $guru = guru::all()->count();
-     
+
         // if (Auth::user()->role == "admin" or Auth::user()->role == "tu" ) {
         //     $surat_k = Surat_keluar::all()->count();
         //     $surat_m = Surat_masuk::all()->count();

@@ -21,7 +21,7 @@ $(document).ready(function() {
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             },
-            url: root+"/admin/pengajuan_prakerin/ajax/",
+            url: root+"/admin/pengajuan_prakerin/ajax",
             type: "post",
             data: function(data) {
                 data = '';
