@@ -39,29 +39,29 @@ class Pengajuan_prakerinSeeder extends Seeder
             'id_siswa' => 4,
             'nama_perusahaan' => 'Thiel, Lowe and Blick',
         ]);
-        DB::table('pengajuan_prakerin')->insert([
-            'no' => 2,
-            'id_guru' => 2,
-            'id_siswa' => 5,
-            'nama_perusahaan' => 'Feil, Oberbrunner and Gottlieb',
-        ]);
-        DB::table('pengajuan_prakerin')->insert([
-            'no' => 2,
-            'id_guru' => 2,
-            'id_siswa' => 6,
-            'nama_perusahaan' => 'Feil, Oberbrunner and Gottlieb',
-        ]);
-        DB::table('pengajuan_prakerin')->insert([
-            'no' => 2,
-            'id_guru' => 2,
-            'id_siswa' => 7,
-            'nama_perusahaan' => 'Feil, Oberbrunner and Gottlieb',
-        ]);
-        DB::table('pengajuan_prakerin')->insert([
-            'no' => 2,
-            'id_guru' => 2,
-            'id_siswa' => 8,
-            'nama_perusahaan' => 'Feil, Oberbrunner and Gottlieb',
-        ]);
+        // DB::table('pengajuan_prakerin')->insert([
+        //     'no' => 2,
+        //     'id_guru' => 2,
+        //     'id_siswa' => 5,
+        //     'nama_perusahaan' => 'Feil, Oberbrunner and Gottlieb',
+        // ]);
+        // DB::table('pengajuan_prakerin')->insert([
+        //     'no' => 2,
+        //     'id_guru' => 2,
+        //     'id_siswa' => 6,
+        //     'nama_perusahaan' => 'Feil, Oberbrunner and Gottlieb',
+        // ]);
+        // DB::table('pengajuan_prakerin')->insert([
+        //     'no' => 2,
+        //     'id_guru' => 2,
+        //     'id_siswa' => 7,
+        //     'nama_perusahaan' => 'Feil, Oberbrunner and Gottlieb',
+        // ]);
+        // DB::table('pengajuan_prakerin')->insert([
+        //     'no' => 2,
+        //     'id_guru' => 2,
+        //     'id_siswa' => 8,
+        //     'nama_perusahaan' => 'Feil, Oberbrunner and Gottlieb',
+        // ]);
     }
 }

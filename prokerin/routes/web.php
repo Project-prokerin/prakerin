@@ -234,6 +234,8 @@ Route::prefix('admin')->middleware(['web', 'auth', 'role:kaprog,hubin,admin,keps
     Route::get('pengajuan_prakerin/fetch/{id}', [pengajuan_prakerinController::class, 'fetch'])->name('pengajuan_prakerin.fetch');
     Route::get('pengajuan_prakerin/fetch_edit/{id}', [pengajuan_prakerinController::class, 'fetch_edit'])->name('pengajuan_prakerin.fetch_edit');
     Route::post('pengajuan_prakerin/tambah/post', [pengajuan_prakerinController::class, 'store'])->name('pengajuan_prakerin.post');
+    Route::post('pengajuan_prakerin/acc/{no}', [pengajuan_prakerinController::class, 'acc'])->name('pengajuan_prakerin.acc');
+  Route::post('pengajuan_prakerin/tolak/{no}', [pengajuan_prakerinController::class, 'tolak'])->name('pengajuan_prakerin.tolak');
     Route::get('pengajuan_prakerin/edit/{id}', [pengajuan_prakerinController::class, 'edit'])->name('pengajuan_prakerin.edit');
     Route::put('pengajuan_prakerin/update/{pengajuan_prakerin}', [pengajuan_prakerinController::class, 'update'])->name('pengajuan_prakerin.update');
     Route::delete('pengajuan_prakerin/delete/{id}', [pengajuan_prakerinController::class, 'destroy'])->name('pengajuan_prakerin.delete');

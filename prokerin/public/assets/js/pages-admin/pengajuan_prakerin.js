@@ -2,6 +2,23 @@ $(document).ready(function() {
     var filter = $('#search').val();
         root = window.location.protocol + '//' + window.location.host;
         role = $('#role').data('role');
+
+        function column(role) {
+            if (role == "kepsek") {
+                return [{ data: 'DT_RowIndex', name: 'DT_RowIndex' },
+                { data: 'guru', name: 'guru' },
+                { data: 'nama_perusahaan', name: 'nama_perusahaan' },
+                // { data: 'persetujuan', name: 'persetujuan' },
+                { data: 'action', name: 'action' },]
+            } else if (role == 'kepsek' || role == 'kaprog' || role == 'admin') {
+                return [{ data: 'DT_RowIndex', name: 'DT_RowIndex' },
+                { data: 'guru', name: 'guru' },
+                { data: 'nama_perusahaan', name: 'nama_perusahaan' },
+                { data: 'status', name: 'status' },
+                { data: 'persetujuan', name: 'persetujuan' },
+                { data: 'action', name: 'action' },]
+            }
+        }    
     var table = $('#table30').DataTable({
         dom:
         "<'row'<'ol-sm-12 col-md-6 btn-table'><'col-sm-12 col-md-6  pdf-button'f>>" +
@@ -21,36 +38,17 @@ $(document).ready(function() {
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             },
-            url: root+"/admin/pengajuan_prakerin/ajax",
+            url: "/admin/pengajuan_prakerin/ajax",
             type: "post",
             data: function(data) {
                 data = '';
                 return data
             }
         },
-        columns: [{
-                data: 'no',
-                name: 'no'
-            },
-            {
-                data: 'guru',
-                name: 'guru.nama'
-            },
-            // { data: 'no_telpon',name:'no_telpon'},
-            // { data: 'jurusan',name:'jurusan'},
-            {
-                data: 'nama_perusahaan',
-                name: 'nama_perusahaan'
-            },
-            // { data: 'data_prakerin',name:'data_prakerin.'},
-            {
-                data: 'action',
-                name: 'action'
-            }
-        ],
-        order: [
-            [0, 'asc']
-        ]
+        columns: column(role),
+
+      
+        
     });
     console.log(role);
     if (role == "hubin" || role == "kaprog" || role == "admin" ) {
@@ -101,6 +99,80 @@ $(document).ready(function() {
         })
 
     })
+
+
+
+    $('body').on('click', '#acc', function() {
+        // sweet alert
+        Swal.fire({
+            title: 'Acc persetujuan?',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'Ya',
+            cancelButtonText: 'Batal'
+        }).then((result) => {
+            if (result.value) {
+                no = $(this).data('no');
+                $.ajax({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    url: root+"/admin/pengajuan_prakerin/acc/" + no,
+                    type: "POST",
+                    data: '',
+                    success: function(data) {
+                        console.log(data);
+                        table.draw();
+                        Swal.fire(
+                            'success',
+                            'Berhasil Acc !.',
+                            'success'
+                        )
+                    },
+                    error: function(data) {
+                        console.log('Error:', data);
+                    }
+                });
+            } else if (result.dismiss === Swal.DismissReason.cancel) {}
+        })
+
+    })
+
+        $('body').on('click', '#tolak', function () {
+            // sweet alert
+            Swal.fire({
+                title: 'tolak persetujuan?',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonText: 'Ya',
+                cancelButtonText: 'Batal'
+            }).then((result) => {
+                if (result.value) {
+                    no = $(this).data('no');
+                    $.ajax({
+                        headers: {
+                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                        },
+                        url: root + "/admin/pengajuan_prakerin/tolak/" + no,
+                        type: "POST",
+                        data: '',
+                        success: function (data) {
+                            console.log(data);
+                            table.draw();
+                            Swal.fire(
+                                'success',
+                                'Berhasil di batalkan !.',
+                                'success'
+                            )
+                        },
+                        error: function (data) {
+                            console.log('Error:', data);
+                        }
+                    });
+                } else if (result.dismiss === Swal.DismissReason.cancel) {}
+            })
+
+        })
 
 });
 

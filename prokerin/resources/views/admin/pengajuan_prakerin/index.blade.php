@@ -49,24 +49,40 @@
                   <div class="table-responsive" id="mytable4">
                     <table class="table table-striped" id="table30">
                       <thead class="text-center">
+                        @if (Auth::user()->role === 'admin')
                         <tr>
                           <th>
                             No
                           </th>
                           <th>Guru Pembimbing</th>
                           <th>Perusahaan</th>
+                          <th>status</th>
+                          <th>Persetujuan</th>
                           <th>Action</th>
                         </tr>
+                        @elseif(Auth::user()->role === 'kepsek')
+                        <tr>
+                          <th>
+                            No
+                          </th>
+                          <th>Guru Pembimbing</th>
+                          <th>Perusahaan</th>
+                          <th>Persetujuan</th>
+                          <th>Action</th>
+                        </tr>
+                        @endif
+                        
                       </thead>
                       <tbody class="text-center">
-                        <tr>
+                        {{-- <tr>
                           <td>
                             1
                           </td>
                           <td></td>
                           <td></td>
                           <td></td>
-                        </tr>
+                          <td></td>
+                        </tr> --}}
                       </tbody>
                     </table>
                   </div>

@@ -22,8 +22,8 @@ class CreateDataPrakerinTable extends Migration
             $table->bigInteger('id_perusahaan')->unsigned()->nullable();
             $table->bigInteger('id_guru')->unsigned()->nullable();
             $table->enum('status',['Pengajuan','Magang','Selesai','Batal']);
-            $table->date('tgl_mulai');
-            $table->date('tgl_selesai');
+            $table->date('tgl_mulai')->nullable()->default(null);
+            $table->date('tgl_selesai')->nullable()->default(null);
             $table->timestamps();
         });
 

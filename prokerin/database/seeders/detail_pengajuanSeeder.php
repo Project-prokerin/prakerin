@@ -18,10 +18,7 @@ class detail_pengajuanSeeder extends Seeder
             'id_pengajuan_prakerin' => 4,
             'no_surat' => '001'
         ]);
-        DB::table('detail_pengajuan_prakerin')->insert([
-            'id_pengajuan_prakerin' => 8,
-            'no_surat' => '002'
-        ]);
+      
       
     }
 }

@@ -113,22 +113,22 @@
                                       <td class="col-7">
                                         <select name="id_data_prakerin[]"
                                             class="form-control select2  prakerin @error('id_data_prakerin')   is-invalid  @enderror ">
-                                            {{-- <option value="">--Cari Siswa--</option>
-                                            @forelse ($data_prakerin as $item)
-                                                @if (empty($item->kelompok_laporan))
-                                                    <option value="{{ $item->id }}">{{ $item->nama }}</option>
+                                            <option value="">--Cari Siswa--</option>
+                                            @forelse ($siswa as $item)
+                                                @if (empty($item->data_prakrin))
+                                                    <option value="{{ $item->id }}">{{ $item->nama_siswa }}</option>
                                                 @endif
                                             @empty
                                                 <option disabled>Semua Siswa telah melakukan Pengajuan!</option>
-                                            @endforelse --}}
+                                            @endforelse
                                         </select>
-                                            {{-- @if ($errors->has(`id_data_prakerin.2`))
+                                            @if ($errors->has(`id_data_prakerin.*`))
                                                 <span class="text-danger">
                                                     <small>
-                                                        {{ $errors->first('id_data_prakerin.2') }}
+                                                        {{ $errors->first('id_data_prakerin.*') }}
                                                     </small>
                                                 </span>
-                                            @endif --}}
+                                            @endif
                                       </td>
                                       <td><button type="button" name="add" id="add" class="btn btn-success">Add More</button></td>
                                     </tr>
@@ -150,27 +150,6 @@
 
     <script>
 
-$(document).ready(function () {
-                $('#id_perusahaan').on('change', function () {
-                let id = $(this).val();
-                $('.prakerin').empty();
-                $('.prakerin').append(`<option value="0" disabled selected>Mencari...</option>`).show('slow');
-                $.ajax({
-                type: 'GET',
-                // url: '{{url("adin/pengajuan_prakerin/fetch_edit/")}}'+ id",
-                url: 'fetch/' + id,
-                success: function (response) {
-                var response = JSON.parse(response);
-                console.log(response);   
-                $('.prakerin').empty();
-                $('.prakerin').append(`<option value="0" disabled selected>--Cari Siswa--</option>`);
-                response.forEach(element => {
-                    $('.prakerin').append(`<option value="${element.id}">${element.nama}</option>`);
-                    });
-                }
-            });
-        });
-    });
 
 
 
@@ -181,14 +160,14 @@ $(document).ready(function () {
                   i++;
                   $('#dynamic_field').append('<tr id="row'+i+'"><td>'+
                                                 '<select name="id_data_prakerin[]" class="form-control select2 prakerin @error('id_data_prakerin')  is-invalid  @enderror ">'+
-                                                    // '<option value="">--Cari Siswa--</option>'+
-                                                    // '@forelse ($data_prakerin as $item)'+
-                                                    //     '@if (empty($item->kelompok_laporan))'+
-                                                    //         '<option value="{{ $item->id }}">{{ $item->nama }}</option>'+
-                                                    //     '@endif'+
-                                                    // '@empty'+
-                                                    //     '<option disabled>Semua Siswa telah mendapat kelompok!</option>'+
-                                                    // '@endforelse'+
+                                                    '<option value="">--Cari Siswa--</option>'+
+                                                    '@forelse ($siswa as $item)'+
+                                                        '@if (empty($item->kelompok_laporan))'+
+                                                            '<option value="{{ $item->id }}">{{ $item->nama_siswa }}</option>'+
+                                                        '@endif'+
+                                                    '@empty'+
+                                                        '<option disabled>Semua Siswa telah mendapat kelompok!</option>'+
+                                                    '@endforelse'+
                                                 '</select>'+
                                                     '@if ($errors->has(`id_data_prakerin.2`))'+
                                                         '<span class="text-danger">'+

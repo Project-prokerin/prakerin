@@ -28,7 +28,7 @@ class guru extends Model
     public function pengajuan_prakerin()
     {
         // foreign, owner key
-        return $this->hasOne(pengajuan_prakerin::class, 'id_guru', 'id');
+        return $this->hasOne(pengajuan_prakerin::class,'id_guru','id');
     }
     public function pembekalan_magang()
     {
