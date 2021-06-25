@@ -43,11 +43,23 @@ class data_prakerinController extends Controller
                 return $data->kelas->jurusan->singkatan_jurusan;
             })
             ->editColumn('tgl_mulai', function ($dataPrakerin) {
+                if (empty($dataPrakerin->tgl_mulai)) {
+                    return [
+                        'display' => '00-00-000',
+                        'timestamp' => '00-00-000'
+                    ];
+                }
                 return [
                     'display' => e($dataPrakerin->tgl_mulai->format('m-d-Y')),
                     'timestamp' => $dataPrakerin->tgl_mulai->timestamp
                 ];
             })->editColumn('tgl_selesai', function ($dataPrakerin) {
+                if (empty($dataPrakerin->tgl_selesai)) {
+                    return [
+                        'display' => '00-00-000',
+                        'timestamp' => '00-00-000'
+                    ];
+                }
                 return [
                     'display' => e($dataPrakerin->tgl_selesai->format('m-d-Y')),
                     'timestamp' => $dataPrakerin->tgl_selesai->timestamp

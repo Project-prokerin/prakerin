@@ -37,7 +37,7 @@ class pengajuan_prakerinController extends Controller
             $role = Auth::user()->role;
 
             if ($role == "kepsek" ) {
-                
+
                 $pengajuan_prakerin = pengajuan_prakerin::distinct('id','no','id_guru' ,'id_siswa', 'nama_perusahaan')->with('guru')->with('siswa')->get(['id','no', 'id_guru', 'id_siswa','nama_perusahaan']);
                 // dd($kelompok_laporan);
                 return datatables()->of($pengajuan_prakerin)->addColumn('guru', function (pengajuan_prakerin $pengajuan_prakerin) {
@@ -60,7 +60,7 @@ class pengajuan_prakerinController extends Controller
                         $button .= '<button id="tolak" data-target="#tandatanganModal" data-attr="/admin/surat_keluar/tandatangan/' . $data->id . '" data-toggle="modal"  class="tolak btn btn-danger btn-sm ml-1"><i class="fas fa-times"></i></button>';
                     }
                     }
-    
+
                         return $button;
                     })
                     ->addColumn('action', function ($data) {
@@ -95,15 +95,15 @@ class pengajuan_prakerinController extends Controller
                     // return $btn;
                     // $stats = data_prakerin::where('id_siswa',$pengajuan_prakerin->id_siswa)->first();
                     // var_dump($stats);
-                    
-                    # ambil pengajuan 
+
+                    # ambil pengajuan
                     $peng = pengajuan_prakerin::where('no',$pengajuan_prakerin->no)->get();
                     # update cek status data prakein
                     $id_siswa = [];
                     foreach($peng as $val) {
-                        $id_siswa[] = $val->id_siswa; 
+                        $id_siswa[] = $val->id_siswa;
                     }
-                    // return $id_siswa;   
+                    // return $id_siswa;
                     $data = data_prakerin::whereIn('id_siswa',$id_siswa)->distinct('status')->first(['status']);
                     // return $data;
                     $stats = empty($data->status) ? " " : $data->status;
@@ -133,24 +133,24 @@ class pengajuan_prakerinController extends Controller
                         $role = Auth::user()->role;
                         $button = '';
                         if ( $role == "admin") {
-                   
+
                         // $button .= '<a href="/admin/data_keluar/tolak/' . $data->id . '"   id="' . $data->id . '" class="edit btn btn-danger btn-sm"><i class="fas fa-times"></i></a>';
                         $button .= '<button type="button" name="acc" id="acc" data-no="' . $data->no . '"  class="acc btn btn-success btn-sm"><i class="fas fa-check"></i></a>';
                         $button .= ' ';
                         $button .= '<button id="tolak" data-target="#tandatanganModal" data-no="' . $data->no . '" data-attr="/admin/surat_keluar/tandatangan/' . $data->id . '" data-toggle="modal"  class="tolak btn btn-danger btn-sm ml-1"><i class="fas fa-times"></i></button>';
 
                     }
-    
+
                         return $button;
                     })
                     ->addColumn('action', function ($data) {
-                    if (Auth::user()->role != "hubin" or Auth::user()->role != "kaprog" or Auth::user()->role != "admin") {
+                    if (Auth::user()->role != "admin") {
                         $button = '<a href="../admin/pengajuan_prakerin/detail/' . $data->no . '"   id="' . $data->no . '" class="edit btn btn-primary btn-sm"><i class="fas fa-search"></i></a>';
-                        $button .= '&nbsp';
+                        $button .= '&nbsp';;
                         $button .= '&nbsp&nbsp&nbsp&nbsp&nbsp';
                         $button .= '<button id="kelompoks" type="button" data-no="' . $data->no . '" class="btn btn-danger mr-3 rounded-pill"><i class="fas fa-cloud-download-alt"></i> PDF</button>';
                         return $button;
-                    }
+                    }else{
                         $button = '<a href="../admin/pengajuan_prakerin/detail/' . $data->no . '"   id="' . $data->no . '" class="edit btn btn-primary btn-sm"><i class="fas fa-search"></i></a>';
                         $button .= '&nbsp';
                         $button .= '<a  href="../admin/pengajuan_prakerin/edit/' . $data->no . '" id="edit" data-toggle="tooltip"  data-id="' . $data->no . '" data-original-title="Edit" class="edit btn btn-warning btn-sm edit-post"><i class="fas fa-pencil-alt"></i></a>';
@@ -159,6 +159,7 @@ class pengajuan_prakerinController extends Controller
                         $button .= '&nbsp&nbsp&nbsp&nbsp&nbsp';
                         $button .= '<button id="kelompoks" type="button" data-no="' . $data->no . '" class="btn btn-danger mr-3 rounded-pill"><i class="fas fa-cloud-download-alt"></i> PDF</button>';
                         return $button;
+                    }
                     })
                     ->rawColumns(['status','persetujuan','action','guru'])
                     ->addIndexColumn()->make(true);
@@ -173,16 +174,16 @@ class pengajuan_prakerinController extends Controller
         // if(Auth::user()->role != "hubin" or Auth::user()->role != "kaprog" ){
         //     return back();
         // }else{
-        // }    
+        // }
         $siswa = siswa::doesntHave('data_prakerin')->whereHas('pembekalan_magang', function ($query) { return $query->where('test_wpt_iq', '=', 'sudah')->where('personality_interview', '=', 'sudah')->where('soft_skill', '=', 'sudah')->whereNotNull('file_portofolio'); })->get();
             // $siswa = siswa::doesntHave('data_prakerin')->whereHas('pembekalan_magang', function ($query) { return $query->where('test_wpt_iq', '=', 'sudah')->where('personality_interview', '=', 'sudah')->where('soft_skill', '=', 'sudah')->whereNotNull('file_portofolio'); })->get();
             // dd($siswa);
             $perusahaan = perusahaan::all();
             $guru = guru::all();
             return view('admin.pengajuan_prakerin.tambah', compact('siswa', 'perusahaan', 'guru'));
-            
 
-        
+
+
     }
 
     /**
@@ -203,13 +204,13 @@ class pengajuan_prakerinController extends Controller
         $perusahaan = perusahaan::where('id', $data['id_perusahaan'])->first();
 
         $nama = [];
-        
+
         foreach ($data['id_data_prakerin'] as $w => $val) {
            $nama[] = Siswa::where('id', $nama);
         }
 
         // dd($nama);
-        
+
         foreach($data['id_data_prakerin'] as $key => $value){
             $siswa = Siswa::where('id',$value)->first();
             $dataa = array(
@@ -224,8 +225,8 @@ class pengajuan_prakerinController extends Controller
         );
         data_prakerin::create($dataa);
         }
-        
-        
+
+
         // $input = Input::all();
         // $id_dataP = [];
         // $condition = $input['id_data_prakerin'];
@@ -252,7 +253,7 @@ class pengajuan_prakerinController extends Controller
         detail_pengajuan_prakerin::create([
             'id_pengajuan_prakerin' => $pengajuan_prakerin->id,
             'no_surat' =>  str_pad($surat_number->count() + 1, 3, "0", STR_PAD_LEFT),
-        ]); 
+        ]);
 
 
 
@@ -415,16 +416,16 @@ class pengajuan_prakerinController extends Controller
 
     public function acc(Request $request, $no)
     {
-      
-        
+
+
             # jangan whare no dah takutnya ada no yg duplicade jadi ada bug
            $pengajuan = pengajuan_prakerin::where('no', $no)->get();
 
-           
+
             foreach ($pengajuan as $key => $value) {
                 # ini gua coba update 2 data
             $data =    data_prakerin::whereIn('id_siswa', [$value->id_siswa])->update(['status' => 'Magang']);
-            }            
+            }
             # cek data yg abis di update tadi
         //    $data = data_prakerin::whereIn('id_siswa',[$pengajuan[0]->id_siswa,$pengajuan[1]->id_siswa])->get();
 
@@ -434,16 +435,16 @@ class pengajuan_prakerinController extends Controller
     }
     public function tolak(Request $request, $no)
     {
-      
-        
+
+
                 # jangan whare no dah takutnya ada no yg duplicade jadi ada bug
            $pengajuan = pengajuan_prakerin::where('no', $no)->get();
 
-           
+
             foreach ($pengajuan as $key => $value) {
                 # ini gua coba update 2 data
                 $data =  data_prakerin::whereIn('id_siswa', [$value->id_siswa])->update(['status' => 'Batal']);
-            }            
+            }
             # cek data yg abis di update tadi
         //    $data = data_prakerin::whereIn('id_siswa',[$pengajuan[0]->id_siswa,$pengajuan[1]->id_siswa])->get();
 
@@ -456,7 +457,15 @@ class pengajuan_prakerinController extends Controller
 
     public function destroy(Request $request, $no)
     {
+
+        $peng = pengajuan_prakerin::where('no', $no)->get();
+        # hapus data prakerin
+        foreach ($peng as $key => $value) {
+            # ini gua coba update 2 data
+            data_prakerin::whereIn('id_siswa', [$value->id_siswa])->delete();
+        }
         pengajuan_prakerin::where('no', $no)->delete();
+
         // detail_pengajuan_prakerin::where('id_data_prakerin',)
         return response()->json($data = 'berhasil');
     }
@@ -470,7 +479,7 @@ class pengajuan_prakerinController extends Controller
         return json_encode(siswa::doesntHave('data_prakrin'))->whereHas('pembekalan_magang', function ($query) { return $query->where('test_wpt_iq', '=', 'sudah')->where('personality_interview', '=', 'sudah')->where('soft_skill', '=', 'sudah')->whereNotNull('file_portofolio'); })->where('id_perusahaan', $id)->get();
 
         // return json_encode(siswa::doesntHave('data_prakrin')->where('status','Pengajuan')->where('id_perusahaan', $id)->get());
-    }   
+    }
     # yang udah status jadi mgang dmna? acc
     public function fetch_edit(Request $request,$id)
     {
