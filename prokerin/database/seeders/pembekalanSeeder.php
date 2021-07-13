@@ -25,7 +25,7 @@ class pembekalanSeeder extends Seeder
                 'personality_interview' => 'sudah',
                 'soft_skill' => 'sudah',
                 'file_portofolio' => "file/portofolio/$i default.pdf",
-                'id_siswa' => $i ,
+                'id_siswa' => $i,
                 'created_at' => Carbon::now()
             ]);
         }

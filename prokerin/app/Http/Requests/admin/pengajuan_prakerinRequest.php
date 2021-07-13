@@ -27,7 +27,7 @@ class pengajuan_prakerinRequest extends FormRequest
         return [
             'no' => 'required',
             'id_guru' => 'required',
-            'id_data_prakerin.*' => 'required|distinct',
+            'id_data_prakerin.*' => 'required',
             'id_perusahaan' => 'required',
             // 'jurusan' => 'required',
         ];

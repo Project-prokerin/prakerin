@@ -17,7 +17,7 @@ class CreateJurnalPrakerinTable extends Migration
             $table->id();
             $table->longtext('kompetisi_dasar');
             $table->longtext('topik_pekerjaan');
-            $table->date('tanggal_pelaksanaan');
+            $table->date('hari_pelaksanaan');
             $table->time('jam_masuk');
             $table->time('jam_istirahat');
             $table->time('jam_pulang');

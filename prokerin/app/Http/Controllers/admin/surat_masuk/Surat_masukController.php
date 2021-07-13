@@ -157,9 +157,9 @@ class Surat_masukController extends Controller
 
     public function tambah_surat()
     {
-        if (Auth::user()->role != "tu") {
-            return back();
-        }
+        // if (Auth::user()->role != "tu") {
+        //     return back();
+        // }
         $guru = guru::whereIn('jabatan', ['kepsek','keprog'])->get();
         return view('admin.surat_masuk.tambah', compact('guru'));
     }

@@ -37,6 +37,9 @@ class perusahaanSeeder extends Seeder
                 'status_mou' => $faker->randomElement($array = array('7 Tahun', '8  Tahun', '9 Tahun', '10 Tahun')),
                 'created_at' => Carbon::now()
         ]);
+
+      
+    
     }
 }
 }

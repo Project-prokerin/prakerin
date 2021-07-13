@@ -78,7 +78,7 @@ Route::prefix('admin')->middleware(['web', 'auth', 'role:admin,kepsek,tu,kaprog,
 
 
     // disposisi table surat
-    Route::middleware(['web', 'auth', 'role:admin,kepsek,tu,kaprog'])->group(function () {
+    Route::middleware(['web', 'auth', 'role:kurikulum,admin,kepsek,tu,kaprog'])->group(function () {
         Route::get('surat_masuk/{id}/disposisi/view', [DiposisiController::class, 'detail'])->name('desposisi.view');
         Route::get('surat_masuk/{id}/disposisi/tambah/', [DiposisiController::class, 'tambah_disposisi'])->name('desposisi.tambah');
         Route::get('surat_masuk/{id}/disposisi/edit', [DiposisiController::class, 'edit'])->name('desposisi.edit');

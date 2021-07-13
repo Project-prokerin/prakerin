@@ -127,8 +127,8 @@ class data_prakerinController extends Controller
      */
     public function detail($id)
     {
-        dd($id);
-        return view('admin.data_prakerin.edit');
+        // dd($id);
+        return view('admin.data_prakerin.detail');
     }
 
     /**

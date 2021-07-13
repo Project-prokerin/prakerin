@@ -67,9 +67,9 @@ class DiposisiController extends Controller
     // table disposisi
     public function tambah($id)
     {
-        if (Auth::user()->role != "admin" or Auth::user()->role != "kepsek" or Auth::user()->role != "kaprog" ) {
-            return back();
-        }
+        // if (Auth::user()->role != "admin" or Auth::user()->role != "kepsek" or Auth::user()->role != "kaprog" ) {
+        //     return back();
+        // }
         $surat = Surat_masuk::find($id)->first();
         return view('admin.disposisi.tambah', compact('surat'));
     }
@@ -117,9 +117,9 @@ class DiposisiController extends Controller
     }
     public function edit($id = null)
     {
-        if (Auth::user()->role != "admin" or Auth::user()->role != "kepsek" or Auth::user()->role != "kepsek") {
-            return back();
-        }
+        // if (Auth::user()->role != "admin" or Auth::user()->role != "kepsek" or Auth::user()->role != "kepsek") {
+        //     return back();
+        // }
         $surat = Disposisi::find($id);
         // dd($surat->id);
         return view('admin.disposisi.edit', compact('surat'));

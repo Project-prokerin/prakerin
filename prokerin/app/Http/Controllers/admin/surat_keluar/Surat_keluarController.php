@@ -346,7 +346,29 @@ class Surat_keluarController extends Controller
      */
     public function edit($id)
     {
-        //
+            //
+      
+    //         $template = Template_surat::all();
+    //         $surat_k = Surat_keluar::all();
+    //         $isi = Isi_surat::all();
+    //         $detail_s_k = Detail_surat_k::all();
+    //         // $ttd = Tanda_tangan::all();
+    
+    //         // Surat_keluar::destroy(23);
+    //         // template_surat::destroy(23);
+    //         // Detail_surat_k::destroy(23);
+    //         // Isi_surat::destroy();
+    
+    //         dd(
+    //         $template,
+    //         $surat_k,
+    //         $detail_s_k,
+    //         $isi,
+    //     // $ttd
+    // );
+
+    
+
         $guru = guru::all();
 
         $surat_k = Surat_keluar::where('id',$id)->first();
@@ -503,6 +525,7 @@ class Surat_keluarController extends Controller
         $tandatangan = Tanda_tangan::all();
         $surat_keluar = Surat_keluar::find($id);
         $isi_surat = Isi_surat::find($id);
+        
 
         return view('admin.surat_keluar.tandatangan',compact('tandatangan','surat_keluar','isi_surat'));
 
@@ -562,12 +585,12 @@ class Surat_keluarController extends Controller
 // dd($diff_in_days,$hari_from,$hari_end);
        // Reservation::whereBetween('reservation_from', [$tanggal_range[0],$tanggal_range[1]])->get();
 
-       $validatedData = $request->validate([
-           'id_guru' => 'required',
-           'alamat' => 'required',
-           'tanggal' => 'required',
-           'pukul' => 'required',
-       ]);
+    //    $validatedData = $request->validate([
+    //        'id_guru' => 'required',
+    //        'alamat' => 'required',
+    //        'tanggal' => 'required',
+    //        'pukul' => 'required',
+    //    ]);
 
        $nama_Surat = $request->nama_surat;
        $nama = $id_guru->nama;

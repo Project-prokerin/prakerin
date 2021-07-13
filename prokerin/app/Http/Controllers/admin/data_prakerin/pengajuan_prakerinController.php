@@ -177,7 +177,19 @@ class pengajuan_prakerinController extends Controller
         // }
         $siswa = siswa::doesntHave('data_prakerin')->whereHas('pembekalan_magang', function ($query) { return $query->where('test_wpt_iq', '=', 'sudah')->where('personality_interview', '=', 'sudah')->where('soft_skill', '=', 'sudah')->whereNotNull('file_portofolio'); })->get();
             // $siswa = siswa::doesntHave('data_prakerin')->whereHas('pembekalan_magang', function ($query) { return $query->where('test_wpt_iq', '=', 'sudah')->where('personality_interview', '=', 'sudah')->where('soft_skill', '=', 'sudah')->whereNotNull('file_portofolio'); })->get();
-            // dd($siswa);
+            
+            // $no =  siswa::all()->count();
+            // $nomor = [];
+            // for ($i=1; $i <= $no; $i++) { 
+            //     $nomor[] = $i; 
+            // }
+            // $users = pengajuan_prakerin::all();
+            // $usersUnique = $users->unique("no");
+            // $nomorPengajuan = $users->diff($usersUnique);
+            // dd($nomorPengajuan->toArray());
+            // $sis = pengajuan_prakerin::whereIn('no',$nomor)->get();
+            // dd($sis);
+
             $perusahaan = perusahaan::all();
             $guru = guru::all();
             return view('admin.pengajuan_prakerin.tambah', compact('siswa', 'perusahaan', 'guru'));
@@ -246,6 +258,7 @@ class pengajuan_prakerinController extends Controller
            $pengajuan_prakerin = pengajuan_prakerin::create($data2);
         }
         $surat_number = pengajuan_prakerin::all()->unique('no');
+        
         // $surat_number = $surat_number->unique('no');
         // $grouped = $pengajuan_prakerin::->groupBy('no')->map(function ($row) {return $row->count();});
         // dd($surat_number->count());
@@ -298,9 +311,9 @@ class pengajuan_prakerinController extends Controller
      */
     public function edit($id)
     {
-        if (Auth::user()->role != "hubin" or Auth::user()->role != "kaprog" or Auth::user()->role != "admin") {
-            return back();
-        }
+        // if (Auth::user()->role != "hubin" or Auth::user()->role != "kaprog" or Auth::user()->role != "admin") {
+        //     return back();
+        // }
         $data_prakerin = data_prakerin::doesntHave('pengajuan_prakerin')->doesntHave('kelompok_laporan')->where('status','pengajuan')->get();
         $perusahaan = perusahaan::all();
         $guru = guru::all();

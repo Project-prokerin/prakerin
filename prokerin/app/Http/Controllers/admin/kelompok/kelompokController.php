@@ -137,12 +137,12 @@ class kelompokController extends Controller
     public function edit($id)
     {
         $data_prakerin = data_prakerin::doesntHave('kelompok_laporan')->doesntHave('pengajuan_prakerin')->where('status','Magang')->get();
+        // dd($data_prakerin);
         $perusahaan = perusahaan::all();
         $guru = guru::all();
         $siswa = Siswa::all();
         $kelompok_laporan = kelompok_laporan::where('no',$id)->with('data_prakerin')->get();
         $perusahaan_select = perusahaan::where('nama',$kelompok_laporan[0]->nama_perusahaan)->first();
-
         return view('admin.kelompok_prakerin.edit',compact('perusahaan_select','kelompok_laporan','perusahaan','guru','data_prakerin','siswa'));
 
         // return view('admin.kelompok_prakerin.edit');
