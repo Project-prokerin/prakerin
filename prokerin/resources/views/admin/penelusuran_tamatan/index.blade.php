@@ -1,12 +1,7 @@
 @extends('template.master')
 @push('link')
 <style>
-    .tambahbutton{
-        margin-bottom: -15px;
-    }
-    .button2{
-        margin-bottom: -35px;
-    }
+
 </style>
 @endpush
 @section('title','Prakerin | Tamatan Penelusuran')
