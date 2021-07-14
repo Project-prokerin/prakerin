@@ -58,6 +58,7 @@ class DatabaseSeeder extends Seeder
         $this->call([Surat_keluarSeeder::class]);
         $this->call([detail_surat_kSeeder::class]);
         $this->call([Isi_suratSeeder::class]);
+        $this->call([alumni_siswaSeeder::class]);
         $this->call([Penelusuran_tamatanSeeder::class]);
         $this->call([kategori_nilai_prakerinSeeder::class]);
         $this->call([nilai_prakerinSeeder::class]);

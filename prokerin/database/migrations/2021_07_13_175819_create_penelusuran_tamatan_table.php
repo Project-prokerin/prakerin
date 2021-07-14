@@ -15,8 +15,7 @@ class CreatePenelusuranTamatanTable extends Migration
     {
         Schema::create('penelusuran_tamatan', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('id_siswa')->constrained('siswa')->onDelete('cascade')->onUpdate('cascade');
-            $table->string('tahun_lulus',100);
+            $table->bigInteger('id_alumni')->unsigned();
             $table->enum('status', ['bekerja', 'kuliah', 'Wirausaha', 'Bekerja dan Kuliah', 'Wirausaha dan Kuliah']);
             $table->string('nama_kampus',100)->nullable();
             $table->longtext('alamat_kampus')->nullable();

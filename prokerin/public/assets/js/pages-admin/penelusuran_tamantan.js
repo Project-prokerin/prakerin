@@ -24,7 +24,7 @@ $(document).ready( function () {
         },
         columns:[
         { data: 'DT_RowIndex', name: 'DT_RowIndex'},
-        { data: 'nama', name:'nama'},
+        { data: 'nama_siswa', name:'nama_siswa'},
         { data: 'tahun_lulus', name:'tahun_lulus'},
         { data: 'status', name:'status'},
         { data: 'action',name:'action'}
@@ -34,9 +34,9 @@ $(document).ready( function () {
 $('.btn-table').append(
     '<a href="'+root+'/admin/penelusuran_tamantan/tambah"class="btn btn-primary "> Tambah Data <i class="fas fa-plus"></i></button></a>'
 );
-$('#table9_filter').prepend(
-    '<a href="'+root+'/admin/export/excel/penelusuran_tamantan"class="btn btn-success mr-3  ml-2"> Excel <i class="fas fa-cloud-download-alt"></i></button></a>'
-);
+// $('#table9_filter').prepend(
+//     '<a href="'+root+'/admin/export/excel/penelusuran_tamantan"class="btn btn-success mr-3  ml-2"> Excel <i class="fas fa-cloud-download-alt"></i></button></a>'
+// );
 
 // search engine
 $("#search").keyup(function () {

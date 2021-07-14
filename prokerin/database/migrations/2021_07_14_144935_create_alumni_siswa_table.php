@@ -1,0 +1,39 @@
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+class CreateAlumniSiswaTable extends Migration
+{
+    /**
+     * Run the migrations.
+     *
+     * @return void
+     */
+    public function up()
+    {
+        Schema::create('alumni_siswa', function (Blueprint $table) {
+            $table->id();
+            $table->string('nama');
+            $table->string('kelas');
+            $table->string('tahun_lulus');
+            $table->string('jurusan');
+            $table->timestamps();
+        });
+
+        Schema::table('penelusuran_tamatan', function (Blueprint $table) {
+            $table->foreign('id_alumni')->references('id')->on('alumni_siswa')->onDelete('cascade')->onUpdate('cascade');
+        });
+    }
+
+    /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
+    public function down()
+    {
+        Schema::dropIfExists('alumni_siswa');
+    }
+}

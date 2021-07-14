@@ -200,9 +200,21 @@
 
             @endif
 
-            @if (Auth::user()->role == 'bkk' or Auth::user()->role == 'hubin' or Auth::user()->role == 'admin' or Auth::user()->role == 'kurikulum' or Auth::user()->role == 'tu')
+            {{-- @if (Auth::user()->role == 'bkk' or Auth::user()->role == 'hubin' or Auth::user()->role == 'admin' or Auth::user()->role == 'kurikulum' or Auth::user()->role == 'tu') --}}
 
-            <li class="menu-header">Tamatan</li>
+            <li class="menu-header">Alumni</li>
+
+               <li class='@if (Request::is("admin/alumni_siswa","admin/alumni_siswa/*")) active @endif'>
+
+                <a href="{{ route('alumni_siswa.index') }}" class="nav-link">
+
+                    <i class="fas fa-th"></i>
+
+                    <span>Alumni siswa</span>
+
+                </a>
+
+            </li>
 
             <li class='@if (Request::is("admin/penelusuran_tamantan","admin/penelusuran_tamantan/*")) active @endif'>
 
@@ -216,7 +228,8 @@
 
             </li>
 
-            @endif
+
+            {{-- @endif --}}
 
 
 

@@ -17,8 +17,7 @@ class Penelusuran_tamatanSeeder extends Seeder
         $faker = Faker::create('id_ID');
         // for ($i=1; $i <=6 ; $i++) {
         DB::table('penelusuran_tamatan')->insert([
-            'id_siswa' => 1,
-            'tahun_lulus' => '2024',
+            'id_alumni' => 1,
             'status' => 'bekerja',
             'nama_kampus' => null,
             'alamat_kampus' => $faker->address,
@@ -28,8 +27,7 @@ class Penelusuran_tamatanSeeder extends Seeder
             'nama_usaha' => null,
         ]);
         DB::table('penelusuran_tamatan')->insert([
-            'id_siswa' => 2,
-            'tahun_lulus' => '2024',
+            'id_alumni' => 2,
             'status' => 'kuliah',
             'nama_kampus' => $faker->name,
             'alamat_kampus' => $faker->address,
@@ -38,8 +36,7 @@ class Penelusuran_tamatanSeeder extends Seeder
             'nama_usaha' => null,
         ]);
         DB::table('penelusuran_tamatan')->insert([
-            'id_siswa' => 3,
-            'tahun_lulus' => '2024',
+            'id_alumni' => 3,
             'status' => 'Wirausaha',
             'nama_kampus' => null,
             'alamat_kampus' => null,
@@ -48,8 +45,7 @@ class Penelusuran_tamatanSeeder extends Seeder
             'nama_usaha' => $faker->company,
         ]);
         DB::table('penelusuran_tamatan')->insert([
-            'id_siswa' => 4,
-            'tahun_lulus' => '2024',
+            'id_alumni' => 4,
             'status' => 'Bekerja dan Kuliah',
             'nama_kampus' => null,
             'alamat_kampus' => $faker->address,
@@ -59,8 +55,7 @@ class Penelusuran_tamatanSeeder extends Seeder
             'nama_usaha' => null,
         ]);
         DB::table('penelusuran_tamatan')->insert([
-            'id_siswa' => 5,
-            'tahun_lulus' => '2024',
+            'id_alumni' => 5,
             'status' => 'Wirausaha dan Kuliah',
             'nama_kampus' => $faker->name,
             'alamat_kampus' => $faker->address,

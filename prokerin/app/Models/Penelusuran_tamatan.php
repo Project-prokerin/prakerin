@@ -10,8 +10,8 @@ class Penelusuran_tamatan extends Model
     use HasFactory;
     protected $table = 'penelusuran_tamatan';
     protected $guarded = [];
-    public function siswa()
+    public function alumni_siswa()
     {
-        return $this->belongsTo(Siswa::class,'id_siswa','id');
+        return $this->belongsTo(alumni_siswa::class,'id_alumni');
     }
 }

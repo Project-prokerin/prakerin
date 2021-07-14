@@ -23,6 +23,7 @@ use App\Http\Controllers\admin\tandatangan\TandatanganController;
 use App\Http\Controllers\admin\penelusuran_tamantan\Penelusuran_tamatanController;
 use App\Http\Controllers\admin\data_prakerin\Nilai_PrakerinController;
 use App\Http\Controllers\admin\penelusuran_tamatan\Penelusuran_tamatanController as Penelusuran_tamatanPenelusuran_tamatanController;
+use App\Http\Controllers\admin\siswa\alumniController;
 // user routeus
 // ex App\Http\Controllers\user\namaController;
 use App\Http\Controllers\user\userController;
@@ -341,6 +342,19 @@ Route::prefix('admin')->middleware(['web', 'auth', 'role:bkk,hubin,admin,kurikul
         Route::post('/penelusuran_tamantan/destroy', [Penelusuran_tamatanPenelusuran_tamatanController::class, 'delete_all'])->name('penelusuran_tamantan.delete-all');
         Route::get('/export/excel/penelusuran_tamantan', [ExcelController::class, 'penelusuran_tamantan'])->name('export.penelusuran_tamantan');
         Route::get('/penelusuran_tamantan/{name}/download', [Penelusuran_tamatanPenelusuran_tamatanController::class, 'downloads'])->name('penelusuran_tamantan.download');
+
+        // alumni
+        Route::get('alumni_siswa', [alumniController::class, 'index'])->name('alumni_siswa.index');
+        Route::get('alumni_siswa/ajax', [alumniController::class, 'ajax'])->name('alumni_siswa.ajax');
+        Route::get('alumni_siswa/detail/{id}', [alumniController::class, 'detail'])->name('alumni_siswa.detail');
+        Route::get('alumni_siswa/tambah', [alumniController::class, 'create'])->name('alumni_siswa.tambah');
+        Route::post('alumni_siswa/tambah/post', [alumniController::class, 'store'])->name('alumni_siswa.post');
+        Route::get('alumni_siswa/edit/{id}', [alumniController::class, 'edit'])->name('alumni_siswa.edit');
+        Route::put('alumni_siswa/update/{alumni_siswa}', [alumniController::class, 'update'])->name('alumni_siswa.update');
+        Route::delete('alumni_siswa/delete/{id}', [alumniController::class, 'destroy'])->name('alumni_siswa.delete');
+        Route::post('/alumni_siswa/destroy', [alumniController::class, 'delete_all'])->name('alumni_siswa.delete-all');
+        Route::get('/export/excel/alumni_siswa', [ExcelController::class, 'alumni_siswa'])->name('export.alumni_siswa');
+        Route::get('/alumni_siswa/{name}/download', [alumniController::class, 'downloads'])->name('alumni_siswa.download');
     });
 
     // nilai prakerin
