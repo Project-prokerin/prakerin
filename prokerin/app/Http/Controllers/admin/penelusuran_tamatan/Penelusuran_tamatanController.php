@@ -14,7 +14,7 @@ class Penelusuran_tamatanController extends Controller
      */
     public function index()
     {
-        //
+        return view('admin.penelusuran_tamatan.index');
     }
 
     /**

@@ -22,6 +22,7 @@ use App\Http\Controllers\admin\surat_keluar\Surat_keluarController;
 use App\Http\Controllers\admin\tandatangan\TandatanganController;
 use App\Http\Controllers\admin\penelusuran_tamantan\Penelusuran_tamatanController;
 use App\Http\Controllers\admin\data_prakerin\Nilai_PrakerinController;
+use App\Http\Controllers\admin\penelusuran_tamatan\Penelusuran_tamatanController as Penelusuran_tamatanPenelusuran_tamatanController;
 // user routeus
 // ex App\Http\Controllers\user\namaController;
 use App\Http\Controllers\user\userController;
@@ -329,17 +330,17 @@ Route::prefix('admin')->middleware(['web', 'auth', 'role:bkk,hubin,admin,kurikul
 
     // penelusuran tamatan
     Route::middleware('role:bkk,hubin,admin,kurikulum,tu')->group(function () {
-        Route::get('penelusuran_tamantan', [Penelusuran_tamatanController::class, 'index'])->name('penelusuran_tamantan.index');
-        Route::get('penelusuran_tamantan/ajax', [Penelusuran_tamatanController::class, 'ajax'])->name('penelusuran_tamantan.ajax');
-        Route::get('penelusuran_tamantan/detail/{id}', [Penelusuran_tamatanController::class, 'detail'])->name('penelusuran_tamantan.detail');
-        Route::get('penelusuran_tamantan/tambah', [Penelusuran_tamatanController::class, 'tambah'])->name('penelusuran_tamantan.tambah');
-        Route::post('penelusuran_tamantan/tambah/post', [Penelusuran_tamatanController::class, 'store'])->name('penelusuran_tamantan.post');
-        Route::get('penelusuran_tamantan/edit/{id}', [Penelusuran_tamatanController::class, 'edit'])->name('penelusuran_tamantan.edit');
-        Route::put('penelusuran_tamantan/update/{penelusuran_tamantan}', [Penelusuran_tamatanController::class, 'update'])->name('penelusuran_tamantan.update');
-        Route::delete('penelusuran_tamantan/delete/{id}', [Penelusuran_tamatanController::class, 'destroy'])->name('penelusuran_tamantan.delete');
-        Route::post('/penelusuran_tamantan/destroy', [Penelusuran_tamatanController::class, 'delete_all'])->name('penelusuran_tamantan.delete-all');
+        Route::get('penelusuran_tamantan', [Penelusuran_tamatanPenelusuran_tamatanController::class, 'index'])->name('penelusuran_tamantan.index');
+        Route::get('penelusuran_tamantan/ajax', [Penelusuran_tamatanPenelusuran_tamatanController::class, 'ajax'])->name('penelusuran_tamantan.ajax');
+        Route::get('penelusuran_tamantan/detail/{id}', [Penelusuran_tamatanPenelusuran_tamatanController::class, 'detail'])->name('penelusuran_tamantan.detail');
+        Route::get('penelusuran_tamantan/tambah', [Penelusuran_tamatanPenelusuran_tamatanController::class, 'tambah'])->name('penelusuran_tamantan.tambah');
+        Route::post('penelusuran_tamantan/tambah/post', [Penelusuran_tamatanPenelusuran_tamatanController::class, 'store'])->name('penelusuran_tamantan.post');
+        Route::get('penelusuran_tamantan/edit/{id}', [Penelusuran_tamatanPenelusuran_tamatanController::class, 'edit'])->name('penelusuran_tamantan.edit');
+        Route::put('penelusuran_tamantan/update/{penelusuran_tamantan}', [Penelusuran_tamatanPenelusuran_tamatanController::class, 'update'])->name('penelusuran_tamantan.update');
+        Route::delete('penelusuran_tamantan/delete/{id}', [Penelusuran_tamatanPenelusuran_tamatanController::class, 'destroy'])->name('penelusuran_tamantan.delete');
+        Route::post('/penelusuran_tamantan/destroy', [Penelusuran_tamatanPenelusuran_tamatanController::class, 'delete_all'])->name('penelusuran_tamantan.delete-all');
         Route::get('/export/excel/penelusuran_tamantan', [ExcelController::class, 'penelusuran_tamantan'])->name('export.penelusuran_tamantan');
-        Route::get('/penelusuran_tamantan/{name}/download', [Penelusuran_tamatanController::class, 'downloads'])->name('penelusuran_tamantan.download');
+        Route::get('/penelusuran_tamantan/{name}/download', [Penelusuran_tamatanPenelusuran_tamatanController::class, 'downloads'])->name('penelusuran_tamantan.download');
     });
 
     // nilai prakerin
