@@ -17,12 +17,13 @@ class CreatePenelusuranTamatanTable extends Migration
             $table->id();
             $table->bigInteger('id_alumni')->unsigned();
             $table->enum('status', ['bekerja', 'kuliah', 'Wirausaha', 'Bekerja dan Kuliah', 'Wirausaha dan Kuliah']);
-            $table->string('nama_kampus',100)->nullable();
+            $table->string('nama_kampus', 100)->nullable();
             $table->longtext('alamat_kampus')->nullable();
-            $table->string('tahun_masuk_kuliah',100)->nullable();
-            $table->string('nama_perusahaan',100)->nullable();
+            $table->string('tahun_masuk_kuliah', 100)->nullable();
+            $table->string('nama_perusahaan', 100)->nullable();
             $table->longText('alamat_perusahaan')->nullable();
-            $table->string('nama_usaha',100)->nullable();
+            $table->string('tahun_kuliah', 100)->nullable();
+            $table->string('nama_usaha', 100)->nullable();
             $table->timestamps();
         });
     }

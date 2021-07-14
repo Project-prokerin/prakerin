@@ -343,6 +343,9 @@ Route::prefix('admin')->middleware(['web', 'auth', 'role:bkk,hubin,admin,kurikul
         Route::get('/export/excel/penelusuran_tamantan', [ExcelController::class, 'penelusuran_tamantan'])->name('export.penelusuran_tamantan');
         Route::get('/penelusuran_tamantan/{name}/download', [Penelusuran_tamatanPenelusuran_tamatanController::class, 'downloads'])->name('penelusuran_tamantan.download');
 
+        // option
+        Route::get('fetch/alumni/{id}', [Penelusuran_tamatanPenelusuran_tamatanController::class, 'option']);
+
         // alumni
         Route::get('alumni_siswa', [alumniController::class, 'index'])->name('alumni_siswa.index');
         Route::get('alumni_siswa/ajax', [alumniController::class, 'ajax'])->name('alumni_siswa.ajax');

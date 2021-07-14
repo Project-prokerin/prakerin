@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\admin\penelusuran_tamatan;
 
 use App\Http\Controllers\Controller;
+use App\Models\alumni_siswa;
 use App\Models\Penelusuran_tamatan;
 use Illuminate\Http\Request;
 use Yajra\DataTables\Contracts\DataTable;
@@ -27,7 +28,7 @@ class Penelusuran_tamatanController extends Controller
     public function ajax(Request $request)
     {
         if ($request->ajax()) {
-            $Penelusuran_tamatan = Penelusuran_tamatan::with('alumni_siswa')->get();
+            $Penelusuran_tamatan = Penelusuran_tamatan::orderby('created_at','desc')->with('alumni_siswa')->get();
             return datatables()->of($Penelusuran_tamatan)
                 ->addColumn('nama_siswa', function($data){
                     return $data->alumni_siswa->nama;
@@ -38,7 +39,7 @@ class Penelusuran_tamatanController extends Controller
                 ->addColumn('action', function ($data) {
                     $button = '<a href="/admin/penelusuran_tamatan/detail/' . $data->id . '"   id="' . $data->id . '" class="edit btn btn-primary btn-sm"><i class="fas fa-search"></i></a>';
                     $button .= '&nbsp';
-                    $button .= '<a  href="/admin/penelusuran_tamatan/edit/' . $data->id . '" id="edit" data-toggle="tooltip"  data-id="' . $data->id . '" data-original-title="Edit" class="edit btn btn-warning btn-sm edit-post"><i class="fas fa-pencil-alt"></i></a>';
+                    $button .= '<a  href="/admin/penelusuran_tamantan/edit/' . $data->id . '" id="edit" data-toggle="tooltip"  data-id="' . $data->id . '" data-original-title="Edit" class="edit btn btn-warning btn-sm edit-post"><i class="fas fa-pencil-alt"></i></a>';
                     $button .= '&nbsp';
                     $button .= '<button type="button" name="delete" id="hapus" data-id="' . $data->id . '" class="delete btn btn-danger btn-sm"><i class="fas fa-trash"></i></button>';
                     return $button;
@@ -48,9 +49,16 @@ class Penelusuran_tamatanController extends Controller
         }
 
     }
-    public function create()
+    public function option($id)
     {
-        //
+        $alumni = alumni_siswa::where('id', $id)->first();
+        return response()->json(compact('alumni'));
+    }
+
+    public function tambah()
+    {
+        $alumni = alumni_siswa::doesntHave('penelusuran_tamatan')->get();
+        return view('admin.penelusuran_tamatan.tambah', compact('alumni'));
     }
 
     /**
@@ -61,7 +69,8 @@ class Penelusuran_tamatanController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Penelusuran_tamatan::create($request->all());
+        return redirect()->route('penelusuran_tamantan.index')->with('success', 'Data penelusuran tamatan berhasil di tambahkan');
     }
 
     /**
@@ -83,7 +92,9 @@ class Penelusuran_tamatanController extends Controller
      */
     public function edit($id)
     {
-        //
+        $alumni = alumni_siswa::get();
+        $pen = Penelusuran_tamatan::where('id',$id)->first();
+        return view('admin.penelusuran_tamatan.edit', compact('alumni','pen'));
     }
 
     /**
@@ -95,7 +106,11 @@ class Penelusuran_tamatanController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $data = $request->all();
+        unset($data['_token']);
+        unset($data['_method']);
+        Penelusuran_tamatan::where('id',$id)->update($data);
+        return redirect()->route('penelusuran_tamantan.index')->with('success', 'Data penelusuran tamatan berhasil di edit');
     }
 
     /**
