@@ -164,7 +164,7 @@ class siswaController extends Controller
         $siswa = Siswa::where('id', $id)->first();
         $siswa->user->delete();
         $siswa->delete();
-        return response()->json($siswa = 'berhasil');
+        return response()->json($data = 'berhasil');
     }
     public function delete_all(Request $request){
 

@@ -1,7 +1,7 @@
 $(document).ready( function () {
     root = window.location.protocol + '//' + window.location.host;
     var filter = $('#search').val();
-    console.log(filter);
+    console.log('filter');
     var table = $('#table1').DataTable({
         dom:
         "<'row'<'ol-sm-12 col-md-6 btn-table'><'col-sm-12 col-md-6  pdf-button'f>>" +
@@ -18,15 +18,8 @@ $(document).ready( function () {
         "responsive": true,
         "autoWidth": false,
         ajax:{
-        headers: {
-            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-        },
         url: root + "/admin/guru/ajax/",
-        type: "post",
-        data: function (data) {
-            data = '';
-            return data
-        }
+        type: "get",
         },
         columns:[
         { data: 'DT_RowIndex', name: 'DT_RowIndex'},

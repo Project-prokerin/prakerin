@@ -35,7 +35,7 @@
                 </div>
             <div>
             <div class="mb-3">
-                    <label class="form-label">Test WPT IQ</label>
+                    <label class="form-label">Kegiatan WPT IQ</label>
             </div>
                 <div class="mb-3 form-check" style="margin-top: -20px">
                     <input type="checkbox" name="test_wpt_iq" class="form-check-input test_iq"
@@ -51,7 +51,7 @@
             </div>
             <div>
                 <div class="mb-3">
-                    <label class="form-label">Test Personality Interview</label>
+                    <label class="form-label">Tahap Personality Interview</label>
                 </div>
                 <div class="mb-3 form-check" style="margin-top: -20px">
                     <input type="checkbox" name="personality_interview" class="form-check-input person"
@@ -67,7 +67,7 @@
             <div>
 
                 <div class="mb-3">
-                    <label class="form-label">Test Soft Skill</label>
+                    <label class="form-label">Tahap Soft Skill</label>
                 </div>
                 <div class="mb-3 form-check" style="margin-top: -20px">
                     <input type="checkbox" name="soft_skill" class="form-check-input skill" value="sudah"

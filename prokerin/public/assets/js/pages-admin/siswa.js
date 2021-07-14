@@ -1,5 +1,6 @@
 $(document).ready( function () {
     var filter = $('#search').val();
+    console.log('tet\st');
     root = window.location.protocol + '//' + window.location.host;
     var table = $('#table9').DataTable({
         dom:
@@ -17,15 +18,15 @@ $(document).ready( function () {
         "responsive": true,
         "autoWidth": false,
         ajax:{
-        headers: {
-            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-        },
+        // headers: {
+        //     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        // },
         url: root+"/admin/siswa/ajax/",
-        type: "post",
-        data: function (data) {
-            data = '';
-            return data
-        }
+        type: "get",
+        // data: function (data) {
+        //     data = ' ';
+        //     return data 
+        // }
         },
         columns:[
         { data: 'DT_RowIndex', name: 'DT_RowIndex'},

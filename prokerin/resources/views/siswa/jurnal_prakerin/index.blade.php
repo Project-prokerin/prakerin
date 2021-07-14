@@ -57,7 +57,7 @@
 @section('main')
 {{-- sweet alert --}}
 @if (session('alert'))
-    <div class="flesh" data-id="{{ session('alert') }}"></div>
+    <div class="flesh" data-id="{{ session('alert') }}">{{ session('alert') }}</div>
 @endif
 {{-- ens sweet --}}
             <div class="card">
@@ -160,7 +160,7 @@ $(document).ready(function () {
                 // colump dari controller
                 columns: [
                     {data: 'DT_RowIndex', name: 'DT_RowIndex'},
-                      {data: 'tanggal_pelaksanaan', name: 'tanggal_pelaksanaan'}, //add colump di data tab;e
+                      {data: 'hari_pelaksanaan', name: 'hari_pelaksanaan'}, //add colump di data tab;e
                     {data: 'kompetisi_dasar', name: 'kompetisi_dasar'},
                     {data: 'topik_pekerjaan', name: 'topik_pekerjaan'},
 

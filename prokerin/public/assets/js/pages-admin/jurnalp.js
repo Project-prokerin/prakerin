@@ -16,15 +16,8 @@ $(document).ready(function () {
         "responsive": true,
         "autoWidth": false,
         ajax: {
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            },
             url: root+"/admin/jurnal/ajax/",
-            type: "post",
-            data: function (data) {
-                data = '';
-                return data
-            }
+            type: "get",
         },
         columns: [{
                 data: 'DT_RowIndex',
@@ -43,8 +36,8 @@ $(document).ready(function () {
                 name: 'topik_pekerjaan'
             },
             {
-                data: 'tanggal_pelaksanaan',
-                name: 'tanggal_pelaksanaan'
+                data: 'hari_pelaksanaan',
+                name: 'hari_pelaksanaan'
             }, //add colump di data tab;e
 
 
@@ -85,11 +78,15 @@ $(document).ready(function () {
             if (result.value) {
                 id = $(this).data('id');
                 $.ajax({
+                     headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
                     url: root+"/admin/jurnal/delete/" + id,
                     type: "DELETE",
 
-                    data: {
-                        _token: '{{csrf_token()}}'
+                    data: function () {
+                        $data = '';
+                        return $data;
                     },
                     success: function (data) {
                         console.log(data);

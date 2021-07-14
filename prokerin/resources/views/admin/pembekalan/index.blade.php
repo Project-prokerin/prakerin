@@ -2,8 +2,12 @@
 @push('link')
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
 <style>
+    a{
+        text-decoration: underline;
+        color: blue;
+    }
+</style>
 
-    </style>
 @endpush
 @section('title', 'Prakerin | Data Pembekalan Magang')
 @section('judul', 'DATA PEMBEKALAN MAGANG')
@@ -46,9 +50,9 @@
                     No
                   </th>
                   <th>Nama</th>
-                  <th>Test WPT IQ</th>
-                  <th>PI</th>
-                  <th>Test Soft Skill</th>
+                  <th>Ketiatan WPT IQ</th>
+                  <th>Tahap PI</th>
+                  <th>Tahap Soft Skill</th>
                   <th>Portofolio</th>
                   <th>Action</th>
                 </tr>

@@ -25,4 +25,8 @@ class kelompok_laporan extends Model
                                     // foreign  owner key
         return $this->hasOne(guru::class, 'id','id_guru');
     }
+    public function nilai_prakerin()
+    {
+        return $this->hasMany(nilai_prakerin::class, 'id_kelompok_laporan', 'id');
+    }
 }

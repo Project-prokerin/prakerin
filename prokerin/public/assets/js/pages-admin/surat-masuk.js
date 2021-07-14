@@ -53,7 +53,7 @@ $(document).ready( function () {
         "responsive": true,
         "autoWidth": false,
         ajax:{
-        headers: {
+       headers: {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         },
         url: root+'/admin/surat_masuk/ajax',

@@ -18,15 +18,8 @@ $(document).ready( function () {
         "responsive": true,
         "autoWidth": false,
         ajax:{
-        headers: {
-            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-        },
         url: root + "/admin/data_prakerin/ajax/",
-        type: "post",
-        data: function (data) {
-            data = '';
-            return data
-        }
+        type: "get",
         },
         columns:[
         {data: 'DT_RowIndex', name: 'DT_RowIndex'},

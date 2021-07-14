@@ -180,12 +180,12 @@ $('#setujui').click(function (event) {
     event.preventDefault();
     var form = $('#tandatangan_form'),
         url = form.attr('action'),
-        method = form.attr('method');
+        type = form.attr('method');
     form.find('.invalid-feedback').remove();
     form.find('.form-control').removeClass('is-invalid')
     $.ajax({
         url: url,
-        method: method,
+        type: type,
         data: form.serialize(),
         success: function name(data) {
             console.log(data.data);

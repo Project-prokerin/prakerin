@@ -675,35 +675,35 @@
 
            @foreach ($jurnalP_siswa as $junalP)
 
-            @if ($junalP->tanggal_pelaksanaan->isoFormat('dddd') === 'Senin')
+            @if ($junalP->hari_pelaksanaan->isoFormat('dddd') === 'Senin')
             <tr>
                 <td>Senin</th>
                 <td>{{date('h: i A', strtotime($junalP->jam_masuk))}}</th>
                 <td>{{date('h: i A', strtotime($junalP->jam_istirahat))}}</th>
                 <td>{{date('h: i A', strtotime($junalP->jam_pulang))}}</th>
             </tr>
-            @elseif($junalP->tanggal_pelaksanaan->isoFormat('dddd') === 'Selasa')
+            @elseif($junalP->hari_pelaksanaan->isoFormat('dddd') === 'Selasa')
             <tr>
                 <td>Selasa</th>
                 <td>{{date('h: i A', strtotime($junalP->jam_masuk))}}</th>
                 <td>{{date('h: i A', strtotime($junalP->jam_istirahat))}}</th>
                 <td>{{date('h: i A', strtotime($junalP->jam_pulang))}}</th>
             </tr>
-            @elseif($junalP->tanggal_pelaksanaan->isoFormat('dddd') === 'Rabu')
+            @elseif($junalP->hari_pelaksanaan->isoFormat('dddd') === 'Rabu')
             <tr>
                 <td>Rabu</th>
                 <td>{{date('h: i A', strtotime($junalP->jam_masuk))}}</th>
                 <td>{{date('h: i A', strtotime($junalP->jam_istirahat))}}</th>
                 <td>{{date('h: i A', strtotime($junalP->jam_pulang))}}</th>
             </tr>
-            @elseif($junalP->tanggal_pelaksanaan->isoFormat('dddd') === 'Kamis')
+            @elseif($junalP->hari_pelaksanaan->isoFormat('dddd') === 'Kamis')
             <tr>
                 <td>Kamis</th>
                 <td>{{date('h: i A', strtotime($junalP->jam_masuk))}}</th>
                 <td>{{date('h: i A', strtotime($junalP->jam_istirahat))}}</th>
                 <td>{{date('h: i A', strtotime($junalP->jam_pulang))}}</th>
             </tr>
-            @elseif($junalP->tanggal_pelaksanaan->isoFormat('dddd') === 'Jumat')
+            @elseif($junalP->hari_pelaksanaan->isoFormat('dddd') === 'Jumat')
             <tr>
                 <td>Jumat</th>
                 <td>{{date('h: i A', strtotime($junalP->jam_masuk))}}</th>
@@ -974,7 +974,7 @@
                         <td>{{ ($j > 1) ? $i - (30 * ($j - 1)) : $i  }}</td>
                         <td>{{ $jurnalP_siswa[$i]['kompetisi_dasar'] }}</td>
                         <td>{{ $jurnalP_siswa[$i]['topik_pekerjaan'] }}</td>
-                        <td>{{ $jurnalP_siswa[$i]['tanggal_pelaksanaan']->isoFormat('D MMMM Y') }}</td>
+                        <td>{{ $jurnalP_siswa[$i]['hari_pelaksanaan']->isoFormat('D MMMM Y') }}</td>
                         <td></td>
                     </tr>
                     @else

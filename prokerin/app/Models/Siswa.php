@@ -54,4 +54,12 @@ class Siswa extends Model
     {
         return $this->hasOne(pengajuan_prakerin::class, 'id_siswa', 'id');
     }
+        public function penelusuran_tamatan()
+    {
+        return $this->hasOne(penelusuran_tamatan::class,'id_siswa','id');
+    }
+    public function nilai_prakerin()
+    {
+        return $this->hasMany(nilai_prakerin::class, 'id_siswa', 'id');
+    }
 }

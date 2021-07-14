@@ -23,7 +23,7 @@ class CreateKategoriNilaiPrakerinTable extends Migration
         });
 
         Schema::table('nilai_prakerin', function (Blueprint $table) {
-            $table->foreign('id_ketegori')->references('id')->on('kategori_nilai_prakerin')->onDelete('set null')->onUpdate('cascade');
+            $table->foreign('id_ketegori')->references('id')->on('kategori_nilai_prakerin')->onDelete('cascade')->onUpdate('cascade');
         });
     }
 

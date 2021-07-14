@@ -32,48 +32,84 @@
 @endsection
 @section('main')
 <div class="row">
-    <div class="col-12">
-      <div class="card">
-        <div class="card-header">
-          <h4>Jurnal Prakerin</h4>
-        </div>
-        <div class="card-body">
 
-          <div class="table-responsive" id="mytable4">
-            <table class="table table-striped" id="table99">
-              <thead class="text-left">
-                <tr>
-                  <th>
-                    No
-                  </th>
-                     <th>Nama siswa</th>
-                         <th>Kompetisi Dasar</th>
-                        <th>Topik Pembelajaran</th>
-                        <th>Tanggal Pelaksanaan</th>
+  <div class="col-12">
 
+    <div class="card">
 
+      <div class="card-header">
 
-                  <th>Action</th>
-                </tr>
-              </thead>
-              <tbody class="text-left">
-                <tr>
-                  <td>
-                    1
-                  </td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
+        <h4>Jurnal Prakerin</h4>
+
       </div>
+
+      <div class="card-body">
+
+
+
+        <div class="table-responsive" id="mytable4">
+
+          <table class="table table-striped" id="table99">
+
+            <thead class="text-left">
+
+              <tr>
+
+                <th>
+
+                  No
+
+                </th>
+
+                <th>Nama siswa</th>
+
+                <th>Kompetisi Dasar</th>
+
+                <th>Topik Pembelajaran</th>
+
+                <th>Hari kerja</th>
+
+                <th style="width: 100px;">Action</th>
+
+              </tr>
+
+            </thead>
+
+            <tbody class="text-left">
+
+              <tr>
+
+                <td>
+
+                  1
+
+                </td>
+
+                <td></td>
+
+                <td></td>
+
+                <td></td>
+
+                <td></td>
+
+                <td></td>
+
+              </tr>
+
+            </tbody>
+
+          </table>
+
+        </div>
+
+      </div>
+
     </div>
+
   </div>
+
+</div>
 
 
       <span id="role" data-role="{{ Auth::user()->role }}"></span>

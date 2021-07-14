@@ -123,7 +123,7 @@
         <h6 class="card-title">Kompetensi Dasar</h6>
         <div class="textarea">
             <textarea class="form-control  @error('kompetisi_dasar') is-invalid @enderror" name="kompetisi_dasar" id="kompetisi_dasar">{{ old('kompetisi_dasar') }}</textarea>
-            @error('kompetisi_dasar') 
+            @error('kompetisi_dasar')
             <div class="invalid-feedback">{{ $message }}</div>
             @enderror
         </div>
@@ -131,7 +131,7 @@
         <h6 class="card-title">Topik Pekerjaan</h6>
         <div class="textarea">
             <textarea  class="form-control  @error('topik_pekerjaan') is-invalid @enderror" name="topik_pekerjaan" id="topik_pekerjaan"> {{ old('topik_pekerjaan') }}</textarea>
-            @error('topik_pekerjaan') 
+            @error('topik_pekerjaan')
             <div class="invalid-feedback">{{ $message }}</div>
             @enderror
         </div>
@@ -147,15 +147,15 @@
         <br>
     <div class="">
         <div class="form-group">
-            <label><h6>Tanggal Pelaksanaan</h6></label>
+            <label><h6>Hari Pelaksanaan</h6></label>
             <div class="input-group in-jurnal">
             <div class="input-group-prepend">
                 <div class="input-group-text">
                 <i class="fas fa-calendar"></i>
                 </div>
             </div>
-            <input type="date" class="form-control daterange-cus @error('tanggal_pelaksanaan') is-invalid @enderror" value="{{ old('tanggal_pelaksanaan') }}" name="tanggal_pelaksanaan" id="tanggal_pelaksanaan">
-            @error('tanggal_pelaksanaan') 
+            <input type="date" class="form-control daterange-cus @error('hari_pelaksanaan') is-invalid @enderror" value="{{ old('hari_pelaksanaan') }}" name="hari_pelaksanaan" id="hari_pelaksanaan">
+            @error('hari_pelaksanaan')
                 <div class="invalid-feedback">{{ $message }}</div>
             @enderror
             </div>
@@ -169,7 +169,7 @@
                 </div>
             </div>
             <input type="time" class="form-control timepicker @error('jam_masuk') is-invalid @enderror" value="{{ old('jam_masuk') }}" name="jam_masuk" id="jam_masuk">
-            @error('jam_masuk') 
+            @error('jam_masuk')
                 <div class="invalid-feedback">{{ $message }}</div>
             @enderror
             </div>
@@ -183,7 +183,7 @@
                 </div>
             </div>
             <input type="time" class="form-control timepicker @error('jam_istiharat') is-invalid @enderror" value="{{ old('jam_istiharat') }}" name="jam_istiharat" id="jam_istiharat">
-            @error('jam_istiharat') 
+            @error('jam_istiharat')
                 <div class="invalid-feedback">{{ $message }}</div>
             @enderror
             </div>
@@ -197,7 +197,7 @@
                 </div>
             </div>
             <input type="time" class="form-control timepicker @error('jam_pulang') is-invalid @enderror" value="{{ old('jam_pulang') }}"  name="jam_pulang" id="jam_pulang" >
-            @error('jam_pulang') 
+            @error('jam_pulang')
                 <div class="invalid-feedback">{{ $message }}</div>
             @enderror
             </div>
@@ -207,12 +207,12 @@
 </div>
 {{-- tgl-jam --}}
 
-                            
-                            
-                            
+
+
+
         <a href="{{ route('user.jurnal') }}" class="btn btn-danger ml-5 mb-3 mr-3">Kembali</a>
         <button type="submit" id="submit" class="btn btn-success mb-3">tambah</button>
-        </form>                    
+        </form>
 </div>
 @endsection
 @push('script')

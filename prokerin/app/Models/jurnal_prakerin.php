@@ -10,7 +10,7 @@ class jurnal_prakerin extends Model
     use HasFactory;
     protected $table = 'jurnal_prakerin';
     protected $guarded = [];
-    protected $dates = ['tanggal_pelaksanaan','jam_masuk','jam_istirahat','jam_pulang'];
+    protected $dates = ['hari_pelaksanaan','jam_masuk','jam_istirahat','jam_pulang'];
     public function siswa()
     {
                                             // owner key
@@ -22,6 +22,6 @@ class jurnal_prakerin extends Model
         return $this->belongsTo(perusahaan::class, 'id_perusahaan');
     }
     public function fasilitas_prakerin(){
-        return $this->hasMany(fasilitas_prakerin::class, 'id_jurnal_prakerin', 'id');
+        return $this->hasOne(fasilitas_prakerin::class, 'id_jurnal_prakerin', 'id');
     }
 }
