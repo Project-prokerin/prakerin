@@ -27,7 +27,7 @@
         </div>
         <div class="card-body">
           <div class="table-responsive" id="">
-            <table class="table table-striped" id="">
+            <table class="table table-striped" id="table9">
               <thead class="text-center">
                 <tr>
                   <th>
@@ -61,5 +61,5 @@
 <span class="d-none" id="role">{{ Auth::user()->role }}</span>
 @endsection
 @push('script')
-<script src="{{ asset('assets/js/pages-admin/disposisi.js') }}" ></script>
+<script src="{{ asset('assets/js/pages-admin/penelusuran_tamantan.js') }}" ></script>
 @endpush

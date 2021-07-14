@@ -16,15 +16,18 @@ class nilai_prakerinSeeder extends Seeder
     {
 
         $faker = Faker::create('id_ID');
-        for ($i=1; $i <= 6 ; $i++) {
-            DB::table('nilai_prakerin')->insert([
-           'id_siswa' => $i,
-           'id_kelompok_laporan' => null,
-            'nilai' => '0',
-            'keterangan' => $faker->randomElement($array = ['A','B','C','D','E']),
-            'id_ketegori' => $i,
-        ]);
+        for ($j=1; $j <= 7 ; $j++) {
+            for ($i = 1; $i <= 6; $i++) {
+                DB::table('nilai_prakerin')->insert([
+                    'id_siswa' => $i,
+                    'id_kelompok_laporan' => null,
+                    'nilai' => $faker->randomElement($array = ['90', '80', '70', '60']),
+                    'keterangan' => $faker->randomElement($array = ['A', 'B', 'C', 'D']),
+                    'id_ketegori' => $faker->randomElement($array = [1, 2, 3, 4, 5, 6, 7]),
+                ]);
+            }
         }
+
 
         for ($i = 1; $i <= 3; $i++) {
             DB::table('nilai_prakerin')->insert([

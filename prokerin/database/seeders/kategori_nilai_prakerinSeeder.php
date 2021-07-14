@@ -16,14 +16,60 @@ class kategori_nilai_prakerinSeeder extends Seeder
     public function run()
     {
         $faker = Faker::create('id_ID');
-
-        for ($i=1; $i <= 16 ; $i++) {
             DB::table('kategori_nilai_prakerin')->insert([
-                'aspek_yang_dinilai' => $faker->randomElement($array = ['intensif', 'kedisiplinan', 'tanggung jawab']),
-                'jurusan' => $faker->randomElement($array =  ['RPL', 'BC', 'TKJ', 'TEI', 'MM']),
-                'domain' => $faker->randomElement(['pelaksanaan', 'ketrampilan']),
-                'keterangan' => $faker->randomElement(['Nilai Sekolah', 'Nilai Perusahaan']),
+                'aspek_yang_dinilai' => 'intensif',
+                'jurusan' => 'RPL',
+                'domain' => 'pelaksanaan',
+                'keterangan' => 'Nilai Perusahaan',
             ]);
-        }
+            DB::table('kategori_nilai_prakerin')->insert([
+                'aspek_yang_dinilai' => 'kedisiplinan',
+                'jurusan' => 'RPL',
+                'domain' => 'pelaksanaan',
+                'keterangan' => 'Nilai Perusahaan',
+            ]);
+            DB::table('kategori_nilai_prakerin')->insert([
+                'aspek_yang_dinilai' => 'tanggung jawab',
+                'jurusan' => 'RPL',
+                'domain' => 'pelaksanaan',
+                'keterangan' => 'Nilai Perusahaan',
+            ]);
+            DB::table('kategori_nilai_prakerin')->insert([
+                'aspek_yang_dinilai' => 'kerjinan',
+                'jurusan' => 'RPL',
+                'domain' => 'pelaksanaan',
+                'keterangan' => 'Nilai Perusahaan',
+            ]);
+            DB::table('kategori_nilai_prakerin')->insert([
+                'aspek_yang_dinilai' => 'kerjsama',
+                'jurusan' => 'RPL',
+                'domain' => 'pelaksanaan',
+                'keterangan' => 'Nilai Perusahaan',
+            ]);
+            DB::table('kategori_nilai_prakerin')->insert([
+                'aspek_yang_dinilai' => 'Motor_otomotif',
+                'jurusan' => 'RPL',
+                'domain' => 'ketrampilan',
+                'keterangan' => 'Nilai Perusahaan',
+            ]);
+            DB::table('kategori_nilai_prakerin')->insert([
+                'aspek_yang_dinilai' => 'Litstrik Otomotif',
+                'jurusan' => 'RPL',
+                'domain' => 'ketrampilan',
+                'keterangan' => 'Nilai Perusahaan',
+            ]);
+            // nilai sekolah
+            DB::table('kategori_nilai_prakerin')->insert([
+                'aspek_yang_dinilai' => 'Nilai Laporan Tertulis',
+                'jurusan' => 'RPL',
+                'domain' => 'ketrampilan',
+                'keterangan' => 'Nilai Sekolah',
+            ]);
+            DB::table('kategori_nilai_prakerin')->insert([
+                'aspek_yang_dinilai' => 'Presentasi Sidang Laporan',
+                'jurusan' => 'RPL',
+                'domain' => 'pelaksanaan',
+                'keterangan' => 'Nilai Sekolah',
+            ]);
     }
 }

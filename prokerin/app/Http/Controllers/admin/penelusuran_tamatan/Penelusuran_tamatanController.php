@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\admin\penelusuran_tamatan;
 
 use App\Http\Controllers\Controller;
+use App\Models\Penelusuran_tamatan;
 use Illuminate\Http\Request;
+use Yajra\DataTables\Contracts\DataTable;
 
 class Penelusuran_tamatanController extends Controller
 {
@@ -22,6 +24,27 @@ class Penelusuran_tamatanController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function ajax(Request $request)
+    {
+        if ($request->ajax()) {
+            $Penelusuran_tamatan = Penelusuran_tamatan::all();
+            return datatables()->of($Penelusuran_tamatan)
+                ->addColumn('nama', function($data){
+                    return $data->siswa->nama_siswa;
+                })
+                ->addColumn('action', function ($data) {
+                    $button = '<a href="/admin/penelusuran_tamatan/detail/' . $data->id . '"   id="' . $data->id . '" class="edit btn btn-primary btn-sm"><i class="fas fa-search"></i></a>';
+                    $button .= '&nbsp';
+                    $button .= '<a  href="/admin/penelusuran_tamatan/edit/' . $data->id . '" id="edit" data-toggle="tooltip"  data-id="' . $data->id . '" data-original-title="Edit" class="edit btn btn-warning btn-sm edit-post"><i class="fas fa-pencil-alt"></i></a>';
+                    $button .= '&nbsp';
+                    $button .= '<button type="button" name="delete" id="hapus" data-id="' . $data->id . '" class="delete btn btn-danger btn-sm"><i class="fas fa-trash"></i></button>';
+                    return $button;
+                })
+                ->rawColumns(['action','nama_siswa'])
+                ->addIndexColumn()->make(true);
+        }
+
+    }
     public function create()
     {
         //
@@ -80,6 +103,7 @@ class Penelusuran_tamatanController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Penelusuran_tamatan::destroy($id);
+        return response()->json(['data' => 'berhasil']);
     }
 }
