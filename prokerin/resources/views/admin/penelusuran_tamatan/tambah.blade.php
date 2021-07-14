@@ -13,176 +13,135 @@
 @endsection
 @section('main')
 
-<div class="card" style="height: 600px;">
+<div class="card">
     <div class="card-header mt-2">
         <h4 class="pt-2"><i class="fas fa-align-justify mr-2"></i>Tambah Data Tamatan Penelusuran</h4>
     </div>
     <div class="card-body">
-        <div class="">
-            <div class="col-lg-12" style="height: 500px;">
-                <div class="">
-                    <div class="container">
-                        <form action="{{ route('penelusuran_tamantan.post') }}" method="POST" id="form">
-                            @csrf
-                            <div class="row mb-5">
-                                {{-- card col 1 --}}
-                                <div class="col-6">
-                                    <div class="mb-3 col-lg-10">
-                                        <label>Nama Siswa Alumni</label>
-                                        <select name="id_alumni"
-                                            class="form-control   @error('id_alumni')  is-invalid  @enderror select2"
-                                            id="id_alumni">
-                                            <option value="">--Cari Siswa Alumni--</option>
-                                            @foreach ($alumni as $alum)
-                                            <option value="{{$alum->id}}"
-                                                {{(old('id_alumni') == $alum->id) ? 'selected' : ''}}>{{$alum->nama}}
-                                            </option>
-                                            @endforeach
-                                        </select>
-                                        <div id="invalid_siswa" class="invalid-feedback d-none"></div>
-                                    </div>
-                                    <div class="mb-3 col-lg-10">
-                                        <label>Kelas</label>
-                                        <input type="text" name="kelas" class="form-control input_KJ kelas" disabled >
-                                        <div id="invalid_siswa" class="invalid-feedback d-none "></div>
-                                    </div>
-                                    <div class="mb-3 col-lg-10">
-                                        <label>Jurusan</label>
-                                        <input type="text" name="jurusan" class="form-control input_KJ jurusan" disabled>
-                                        <div id="invalid_siswa" class="invalid-feedback d-none "></div>
-                                    </div>
-                                        <div class="mb-3 col-lg-10">
-                                        <label>Tahun lulus</label>
-                                        <input type="text" name="tahun_lulus" class="form-control input_KJ tahun_lulus" disabled>
-                                        <div id="invalid_siswa" class="invalid-feedback d-none "></div>
-                                    </div>
-                                    <div class="mb-3 col-lg-10">
-                                        <label>Status</label>
-                                        <select id="status" name="status"
-                                            class="form-control   @error('status')  is-invalid  @enderror select2">
-                                            <option value="#">--Cari Status--</option>
-                                            <option value="bekerja">Bekerja</option>
-                                            <option value="kuliah">Kuliah</option>
-                                            <option value="Wirausaha">Wirausaha</option>
-                                            <option value="Bekerja dan Kuliah">Bekerja & Kuliah</option>
-                                            <option value="Wirausaha dan Kuliah">Wirausaha & Kuliah</option>
-                                        </select>
-                                        @error('status')
-                                        <div class="invalid-feedback">{{ $message }}</div>
-                                        @enderror
-                                    </div>
-                                </div>
+        <div class="col-lg-12">
+            <form action="{{ route('penelusuran_tamantan.post') }}" method="POST" id="form">
+                @csrf
+                <div class="row mb-5">
+                    {{-- card col 1 --}}
+                    <div class="col-6">
+                        <div class="mb-3 col-lg-10">
+                            <label>Nama Siswa Alumni</label>
+                            <select name="id_alumni"
+                                class="form-control   @error('id_alumni')  is-invalid  @enderror select2"
+                                id="id_alumni">
+                                <option value="">--Cari Siswa Alumni--</option>
+                                {{-- @foreach ($alumni as $alum)
+                                <option value="{{$alum->id}}"
+                                    {{(old('id_alumni') == $alum->id) ? 'selected' : ''}}>{{$alum->nama}}
+                                </option>
+                                @endforeach --}}
+                            </select>
+                            <div id="invalid_siswa" class="invalid-feedback d-none"></div>
+                        </div>
+                        <div class="mb-3 col-lg-10">
+                            <label>Kelas</label>
+                            <input type="text" name="kelas" class="form-control input_KJ kelas" disabled >
+                        </div>
+                        <div class="mb-3 col-lg-10">
+                            <label>Jurusan</label>
+                            <input type="text" name="jurusan" class="form-control input_KJ jurusan" disabled>
+                        </div>
+                            <div class="mb-3 col-lg-10">
+                            <label>Tahun lulus</label>
+                            <input type="text" name="tahun_lulus" class="form-control input_KJ tahun_lulus" disabled>
+                        </div>
+                        <div class="mb-3 col-lg-10">
+                            <label>Status</label>
+                            <select id="status" name="status"
+                                class="form-control   @error('status')  is-invalid  @enderror select2">
+                                <option value="#">--Cari Status--</option>
+                                <option value="bekerja">Bekerja</option>
+                                <option value="kuliah">Kuliah</option>
+                                <option value="Wirausaha">Wirausaha</option>
+                                <option value="Bekerja dan Kuliah">Bekerja & Kuliah</option>
+                                <option value="Wirausaha dan Kuliah">Wirausaha & Kuliah</option>
+                            </select>
+                            <div id="invalid_status" class="invalid-feedback d-none"></div>
+                        </div>
+                    </div>
 
-                                {{-- card col 2 --}}
-                                <div class="col-6">
-                                    {{-- bekerja --}}
-                                    <div class="mb-3 col-lg-10" id="namaperusahaan" hidden>
-                                        <label>Nama Perusahaan</label>
-                                        <div class="mb-3">
-                                            <input type="text"  id="namaperusahaan"
-                                                class="form-control @error('')  is-invalid  @enderror form-control"
-                                                value="" name="nama_perusahaan">
-                                            <div id="invalid_namaperusahaan" class="invalid-feedback d-none"></div>
-                                        </div>
-                                    </div>
-                                    <div class="mb-3 col-lg-10" id="alamatperusahaan" hidden>
-                                        <label>Alamat Perusahaan</label>
-                                        <div class="mb-3">
-                                            <input type="text"  id=""
-                                                class="form-control @error('')  is-invalid  @enderror form-control"
-                                                value="{{ old('') }}" name="alamat_perusahaan">
-                                            @error('')
-                                            <div class="invalid-feedback">{{ $message }}</div>
-                                            @enderror
-                                        </div>
-                                    </div>
-                                    <div class="mb-3 col-lg-10" id="tahunkuliah" hidden>
-                                        <label>Tahun Masuk Kuliah</label>
-                                        <div class="mb-3">
-                                            <input type="text"  id=""
-                                                class="form-control @error('')  is-invalid  @enderror form-control"
-                                                value="{{ old('') }}" name="tahun_kuliah">
-                                            @error('')
-                                            <div class="invalid-feedback">{{ $message }}</div>
-                                            @enderror
-                                        </div>
-                                    </div>
-                                    {{-- tutup --}}
-
-                                    {{-- kuliah --}}
-                                    <div class="mb-3 col-lg-10" id="namakampus" hidden>
-                                        <label>Nama Kampus</label>
-                                        <div class="mb-3">
-                                            <input type="text"  id=""
-                                                class="form-control @error('')  is-invalid  @enderror form-control"
-                                                value="{{ old('') }}" name="nama_kampus">
-                                            @error('')
-                                            <div class="invalid-feedback">{{ $message }}</div>
-                                            @enderror
-                                        </div>
-                                    </div>
-                                    <div class="mb-3 col-lg-10" id="alamatkampus" hidden>
-                                        <label>Alamat Kampus</label>
-                                        <div class="mb-3">
-                                            <input type="text"  id=""
-                                                class="form-control @error('')  is-invalid  @enderror form-control"
-                                                value="{{ old('') }}" name="alamat_kampus">
-                                            @error('')
-                                            <div class="invalid-feedback">{{ $message }}</div>
-                                            @enderror
-                                        </div>
-                                    </div>
-                                    <div class="mb-3 col-lg-10" id="tahunmasuk" hidden>
-                                        <label>Tahun Masuk</label>
-                                        <div class="mb-3">
-                                            <input type="text"  id=""
-                                                class="form-control @error('')  is-invalid  @enderror form-control"
-                                                value="{{ old('') }}" name="tahun_masuk_kuliah">
-                                            @error('')
-                                            <div class="invalid-feedback">{{ $message }}</div>
-                                            @enderror
-                                        </div>
-                                    </div>
-                                    {{-- tutup --}}
-
-                                    {{-- wirausaha --}}
-                                    {{-- <div class="mb-3 col-lg-10" id="namabrand" hidden>
-                                        <label>Nama Brand</label>
-                                        <div class="mb-3">
-                                            <input type="text"  id=""
-                                                class="form-control @error('')  is-invalid  @enderror form-control"
-                                                value="{{ old('') }}" >
-                                            @error('')
-                                            <div class="invalid-feedback">{{ $message }}</div>
-                                            @enderror
-                                        </div>
-                                    </div> --}}
-                                    <div class="mb-3 col-lg-10" id="namausaha" hidden>
-                                        <label>Nama Usaha</label>
-                                        <div class="mb-3">
-                                            <input type="text" name="nama_usaha" id=""
-                                                class="form-control @error('')  is-invalid  @enderror form-control"
-                                                value="{{ old('') }}">
-                                            @error('')
-                                            <div class="invalid-feedback">{{ $message }}</div>
-                                            @enderror
-                                        </div>
-                                    </div>
-                                    {{-- tutup --}}
-
-                                    <div class="row">
-                                        <a class="btn btn-danger ml-auto mr-3 text-white mt-3 mb-3" id="kembali">kembali
-                                        </a>
-                                        <button type="submit" id="cek_submit"
-                                            class="text-white mr-3 btn btn-success mt-3 mb-3"><i
-                                                class="fas fa-check"></i> Submit</button>
-                                    </div>
+                    {{-- card col 2 --}}
+                    <div class="col-6">
+                        {{-- bekerja --}}
+                            <div class="mb-3 col-lg-10" id="namaperusahaan" hidden>
+                                <label>Nama Perusahaan</label>
+                                <div class="mb-3">
+                                    <input type="text" name="" id="valid_namaperusahaan" class="form-control @error('')  is-invalid  @enderror form-control" value="" >
+                                    <div id="invalid_namaperusahaan" class="invalid-feedback d-none"></div>
                                 </div>
                             </div>
-                        </form>
+                            <div class="mb-3 col-lg-10" id="alamatperusahaan" hidden>
+                                <label>Alamat Perusahaan</label>
+                                <div class="mb-3">
+                                    <input type="text" name="" id="valid_alamatperusahaan" class="form-control @error('')  is-invalid  @enderror form-control" value="{{ old('') }}" >
+                                    <div id="invalid_alamatperusahaan" class="invalid-feedback d-none"></div>
+                                </div>
+                            </div>
+                            <div class="mb-3 col-lg-10" id="tahunkuliah" hidden>
+                                <label>Tahun Masuk Kuliah</label>
+                                <div class="mb-3">
+                                    <input type="text" name="" id="valid_tahunkuliah" class="form-control @error('')  is-invalid  @enderror form-control" value="{{ old('') }}" >
+                                    <div id="invalid_tahunkuliah" class="invalid-feedback d-none"></div>
+                                </div>
+                            </div>
+                        {{-- tutup --}}
+
+                        {{-- kuliah --}}
+                            <div class="mb-3 col-lg-10" id="namakampus" hidden>
+                                <label>Nama Kampus</label>
+                                <div class="mb-3">
+                                    <input type="text" name="" id="valid_namakampus" class="form-control @error('')  is-invalid  @enderror form-control" value="{{ old('') }}" >
+                                    <div id="invalid_namakampus" class="invalid-feedback d-none"></div>
+                                </div>
+                            </div>
+                            <div class="mb-3 col-lg-10" id="alamatkampus" hidden>
+                                <label>Alamat Kampus</label>
+                                <div class="mb-3">
+                                    <input type="text" name="" id="valid_alamatkampus" class="form-control @error('')  is-invalid  @enderror form-control" value="{{ old('') }}" >
+                                    <div id="invalid_alamatkampus" class="invalid-feedback d-none"></div>
+                                </div>
+                            </div>
+                            <div class="mb-3 col-lg-10" id="tahunmasuk" hidden>
+                                <label>Tahun Masuk</label>
+                                <div class="mb-3">
+                                    <input type="text" name="" id="valid_tahunmasuk" class="form-control @error('')  is-invalid  @enderror form-control" value="{{ old('') }}" >
+                                    <div id="invalid_tahunmasuk" class="invalid-feedback d-none"></div>
+                                </div>
+                            </div>
+                        {{-- tutup --}}
+
+                        {{-- wirausaha --}}
+                            <div class="mb-3 col-lg-10" id="namabrand" hidden>
+                                <label>Nama Brand</label>
+                                <div class="mb-3">
+                                    <input type="text" name="" id="valid_namabrand" class="form-control @error('')  is-invalid  @enderror form-control" value="{{ old('') }}" >
+                                    <div id="invalid_namabrand" class="invalid-feedback d-none"></div>
+                                </div>
+                            </div>
+                            <div class="mb-3 col-lg-10" id="namausaha" hidden>
+                                <label>Nama Usaha</label>
+                                <div class="mb-3">
+                                    <input type="text" name="" id="valid_namausaha" class="form-control @error('')  is-invalid  @enderror form-control" value="{{ old('') }}" >
+                                    <div id="invalid_namausaha" class="invalid-feedback d-none"></div>
+                                </div>
+                            </div>
+                        {{-- tutup --}}
+
+                        <div class="row">
+                            <a class="btn btn-danger ml-auto mr-3 text-white mt-3 mb-3" id="kembali">kembali
+                            </a>
+                            <button type="submit" id="cek_submit" class="text-white mr-3 btn btn-success mt-3 mb-3">
+                                <i class="fas fa-check"></i> Submit
+                            </button>
+                        </div>
                     </div>
                 </div>
-            </div>
+            </form>
         </div>
     </div>
 </div>
@@ -273,7 +232,21 @@
         var nama = $('#id_alumni').val();
         var status = $('#status').val();
 
-        if (nama == '' || status == '') {
+        var namaperusahaan = $('#valid_namaperusahaan').val();
+        var alamatperusahaan = $('#valid_alamatperusahaan').val();
+        var tahunkuliah = $('#valid_tahunkuliah').val();
+
+        var namakampus = $('#valid_namakampus').val();
+        var alamatkampus = $('#valid_alamatkampus').val();
+        var tahunmasuk = $('#valid_tahunmasuk').val();
+
+        var namabrand = $('#valid_namabrand').val();
+        var namausaha = $('#valid_namausaha').val();
+
+        // if (nama == '' || status == '' ||
+        //     namaperusahaan = '' || alamatperusahaan = '' || tahunkuliah = '' ||
+        //     namakampus = '' || alamatkampus = '' || tahunmasuk = '' ||
+        //     namabrand = '' || namausaha = '') {
             // option
             if (nama == '') {
                 $('#id_alumni').addClass('is-invalid');
@@ -288,11 +261,66 @@
             } else {
                 $('#invalid_status').addClass('d-none');
             }
-        } else {
-            $('#form').submit();
-        }
+
+            if (namaperusahaan == '') {
+            $('#valid_namaperusahaan').addClass('is-invalid');
+            $('#invalid_namaperusahaan').html('nama perusahaan tidak boleh kosong').removeClass('d-none');
+            }else{
+                $('#invalid_namaperusahaan').addClass('d-none');
+            }
+            if (alamatperusahaan == '') {
+            $('#valid_alamatperusahaan').addClass('is-invalid');
+            $('#invalid_alamatperusahaan').html('alamat perusahaan tidak boleh kosong').removeClass('d-none');
+            }else{
+                $('#invalid_alamatperusahaan').addClass('d-none');
+            }
+            if (tahunkuliah == '') {
+            $('#valid_tahunkuliah').addClass('is-invalid');
+            $('#invalid_tahunkuliah').html('tahun kuliah tidak boleh kosong').removeClass('d-none');
+            }else{
+                $('#invalid_tahunkuliah').addClass('d-none');
+            }
+
+
+
+            if (namakampus == '') {
+            $('#valid_namakampus').addClass('is-invalid');
+            $('#invalid_namakampus').html('nama kampus tidak boleh kosong').removeClass('d-none');
+            }else{
+                $('#invalid_namakampus').addClass('d-none');
+            }
+            if (alamatkampus == '') {
+            $('#valid_alamatkampus').addClass('is-invalid');
+            $('#invalid_alamatkampus').html('alamat kampus tidak boleh kosong').removeClass('d-none');
+            }else{
+                $('#invalid_alamatkampus').addClass('d-none');
+            }
+            if (tahunmasuk == '') {
+            $('#valid_tahunmasuk').addClass('is-invalid');
+            $('#invalid_tahunmasuk').html('tahun masuk tidak boleh kosong').removeClass('d-none');
+            }else{
+                $('#invalid_tahunmasuk').addClass('d-none');
+            }
+
+
+
+            if (namabrand == '') {
+            $('#valid_namabrand').addClass('is-invalid');
+            $('#invalid_namabrand').html('nama brand tidak boleh kosong').removeClass('d-none');
+            }else{
+                $('#invalid_namabrand').addClass('d-none');
+            }
+            if (namausaha == '') {
+            $('#valid_namausaha').addClass('is-invalid');
+            $('#invalid_namausaha').html('nama usaha tidak boleh kosong').removeClass('d-none');
+            }else{
+                $('#invalid_namausaha').addClass('d-none');
+            }
+
+        // } else {
+        //     $('#form').submit();
+        // }
     });
  });
 </script>
-{{-- <script src="{{ asset('assets/js/pages-admin/.js') }}"></script> --}}
 @endpush

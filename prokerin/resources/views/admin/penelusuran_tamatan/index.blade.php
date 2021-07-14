@@ -1,7 +1,12 @@
 @extends('template.master')
 @push('link')
 <style>
-
+    .tambahbutton{
+        margin-bottom: -15px;
+    }
+    .button2{
+        margin-bottom: -35px;
+    }
 </style>
 @endpush
 @section('title','Prakerin | Tamatan Penelusuran')
@@ -27,6 +32,7 @@
         </div>
         <div class="card-body">
           <div class="table-responsive" id="">
+
             <table class="table table-striped" id="table9">
               <thead class="text-center">
                 <tr>
