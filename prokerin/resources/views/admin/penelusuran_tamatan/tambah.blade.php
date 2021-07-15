@@ -30,6 +30,7 @@
                                 class="form-control   @error('id_alumni')  is-invalid  @enderror select2"
                                 id="id_alumni">
                                 <option value="">--Cari Siswa Alumni--</option>
+                                {{-- <option value="siswa1">siswa1</option> --}}
                                 @foreach ($alumni as $alum)
                                 <option value="{{$alum->id}}" {{(old('id_alumni') == $alum->id) ? 'selected' : ''}}>
                                     {{$alum->nama}}
@@ -54,7 +55,7 @@
                             <label>Status</label>
                             <select id="status" name="status"
                                 class="form-control   @error('status')  is-invalid  @enderror select2">
-                                <option value="#">--Cari Status--</option>
+                                <option value="">--Cari Status--</option>
                                 <option value="bekerja">Bekerja</option>
                                 <option value="kuliah">Kuliah</option>
                                 <option value="Wirausaha">Wirausaha</option>
@@ -238,12 +239,23 @@
 
                 $('#namabrand').prop('hidden', false);
                 $('#namausaha').prop('hidden', false);
+            } else if ($("#status option:selected").val() == '') {
+                $('#namaperusahaan').prop('hidden', 'true');
+                $('#alamatperusahaan').prop('hidden', 'true');
+                $('#tahunkuliah').prop('hidden', 'true');
+
+                $('#namakampus').prop('hidden', 'true');
+                $('#alamatkampus').prop('hidden', 'true');
+                $('#tahunmasuk').prop('hidden', 'true');
+
+                $('#namabrand').prop('hidden', 'true');
+                $('#namausaha').prop('hidden', 'true');
             }
         });
 
 
        $('#cek_submit').on('click', function (e) {
-        // e.preventDefault();
+        e.preventDefault();
         var nama = $('#id_alumni').val();
         var status = $('#status').val();
 
@@ -258,16 +270,17 @@
         var namabrand = $('#valid_namabrand').val();
         var namausaha = $('#valid_namausaha').val();
 
-        // if (nama == '' || status == '' ||
-        //     namaperusahaan = '' || alamatperusahaan = '' || tahunkuliah = '' ||
-        //     namakampus = '' || alamatkampus = '' || tahunmasuk = '' ||
-        //     namabrand = '' || namausaha = '') {
+        if (nama == '' || status == '' ||
+            namaperusahaan == '' || alamatperusahaan == '' || tahunkuliah == '' ||
+            namakampus == '' || alamatkampus == '' || tahunmasuk == '' ||
+            namabrand == '' || namausaha == '') {
             // option
             if (nama == '') {
                 $('#id_alumni').addClass('is-invalid');
                 $('#invalid_siswa').html('nama siswa alumni tidak boleh kosong').removeClass('d-none');
             } else {
                 $('#invalid_siswa').addClass('d-none');
+                $('#id_alumni').removeClass('is-invalid');
             }
 
             if (status == '') {
@@ -275,6 +288,7 @@
                 $('#invalid_status').html('status siswa alumni tidak boleh kosong').removeClass('d-none');
             } else {
                 $('#invalid_status').addClass('d-none');
+                $('#status').removeClass('is-invalid');
             }
 
             if (namaperusahaan == '') {
@@ -282,18 +296,21 @@
             $('#invalid_namaperusahaan').html('nama perusahaan tidak boleh kosong').removeClass('d-none');
             }else{
                 $('#invalid_namaperusahaan').addClass('d-none');
+                $('#valid_namaperusahaan').removeClass('is-invalid');
             }
             if (alamatperusahaan == '') {
             $('#valid_alamatperusahaan').addClass('is-invalid');
             $('#invalid_alamatperusahaan').html('alamat perusahaan tidak boleh kosong').removeClass('d-none');
             }else{
                 $('#invalid_alamatperusahaan').addClass('d-none');
+                $('#valid_alamatperusahaan').removeClass('is-invalid');
             }
             if (tahunkuliah == '') {
             $('#valid_tahunkuliah').addClass('is-invalid');
             $('#invalid_tahunkuliah').html('tahun kuliah tidak boleh kosong').removeClass('d-none');
             }else{
                 $('#invalid_tahunkuliah').addClass('d-none');
+                $('#valid_tahunkuliah').removeClass('is-invalid');
             }
 
 
@@ -303,18 +320,21 @@
             $('#invalid_namakampus').html('nama kampus tidak boleh kosong').removeClass('d-none');
             }else{
                 $('#invalid_namakampus').addClass('d-none');
+                $('#valid_namakampus').removeClass('is-invalid');
             }
             if (alamatkampus == '') {
             $('#valid_alamatkampus').addClass('is-invalid');
             $('#invalid_alamatkampus').html('alamat kampus tidak boleh kosong').removeClass('d-none');
             }else{
                 $('#invalid_alamatkampus').addClass('d-none');
+                $('#valid_alamatkampus').removeClass('is-invalid');
             }
             if (tahunmasuk == '') {
             $('#valid_tahunmasuk').addClass('is-invalid');
             $('#invalid_tahunmasuk').html('tahun masuk tidak boleh kosong').removeClass('d-none');
             }else{
                 $('#invalid_tahunmasuk').addClass('d-none');
+                $('#valid_tahunmasuk').removeClass('is-invalid');
             }
 
 
@@ -324,17 +344,19 @@
             $('#invalid_namabrand').html('nama brand tidak boleh kosong').removeClass('d-none');
             }else{
                 $('#invalid_namabrand').addClass('d-none');
+                $('#valid_namabrand').removeClass('is-invalid');
             }
             if (namausaha == '') {
             $('#valid_namausaha').addClass('is-invalid');
             $('#invalid_namausaha').html('nama usaha tidak boleh kosong').removeClass('d-none');
             }else{
                 $('#invalid_namausaha').addClass('d-none');
+                $('#valid_namausaha').removeClass('is-invalid');
             }
 
-        // } else {
-        //     $('#form').submit();
-        // }
+        } else {
+            $('#form').submit();
+        }
     });
     });
 
