@@ -58,7 +58,7 @@ class alumniController extends Controller
     {
         $request->validated();
         alumni_siswa::create($request->all());
-        return redirect()->route('alumni_siswa.index')->with('success','Data alumni berhasil di tambahkan');
+        return redirect()->route('alumni_siswa.index')->with('berhasil','Data alumni berhasil di tambahkan');
     }
 
     /**
@@ -101,7 +101,7 @@ class alumniController extends Controller
             'jurusan' => $request->jurusan,
             'tahun_lulus' => $request->tahun_lulus
         ]);
-        return redirect()->route('alumni_siswa.index')->with('success', 'Data alumni berhasil di tambahkan');
+        return redirect()->route('alumni_siswa.index')->with('berhasil', 'Data alumni berhasil di tambahkan');
     }
 
     /**
@@ -114,5 +114,14 @@ class alumniController extends Controller
     {
         alumni_siswa::destroy($id);
         return response()->json(['data'=>'berhasil']);
+    }
+    public function download_template_excel()
+    {
+        $name = 'Template Excel.xlsx';
+        $file = public_path() . "/file/Excel/Import Template/$name";
+        $headers = array(
+            'Content-Type: application/pdf',
+        );
+        return Response()->download($file, $name, $headers);
     }
 }

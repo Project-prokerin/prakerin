@@ -30,8 +30,8 @@ use App\Http\Controllers\user\userController;
 
 // for pakage only
 use App\Http\Controllers\PDF\PDFController;
-use App\Http\Controllers\Excel\ExcelController;
-
+use App\Http\Controllers\Excel\ExportExcelController as ExcelController;
+use App\Http\Controllers\Excel\ImportExcelController;
 
 /*
 |--------------------------------------------------------------------------
@@ -357,6 +357,9 @@ Route::prefix('admin')->middleware(['web', 'auth', 'role:bkk,hubin,admin,kurikul
         Route::delete('alumni_siswa/delete/{id}', [alumniController::class, 'destroy'])->name('alumni_siswa.delete');
         Route::post('/alumni_siswa/destroy', [alumniController::class, 'delete_all'])->name('alumni_siswa.delete-all');
         Route::get('/export/excel/alumni_siswa', [ExcelController::class, 'alumni_siswa'])->name('export.alumni_siswa');
+        // download template , import excel & template
+        Route::get('/template/alumni/excel',[alumniController::class, 'download_template_excel'])->name('template.alumni.excel');
+        Route::post('/import/excel/alumni_siswa', [ImportExcelController::class, 'alumni_siswa'])->name('export.alumni_siswa');
         Route::get('/alumni_siswa/{name}/download', [alumniController::class, 'downloads'])->name('alumni_siswa.download');
     });
 

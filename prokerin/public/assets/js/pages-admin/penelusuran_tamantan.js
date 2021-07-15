@@ -35,19 +35,18 @@ $('.btn-table').append(
     '<a href="'+root+'/admin/penelusuran_tamantan/tambah"class="btn btn-primary tambahbutton"> Tambah Data <i class="fas fa-plus"></i></a>'
 );
 $('#table9_filter').prepend(
-    // '<a href="'+root+'/admin/export/excel/penelusuran_tamantan"class="btn btn-success mr-3  ml-2"> Excel <i class="fas fa-cloud-download-alt"></i></a>'+
-        '<button class="btn btn-danger dropdown-toggle mr-3" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">'+
-            'Import <i class="fas fa-cloud-download-alt"></i>'+
-        '</button>'+
-        '<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">'+
-            '<a class="dropdown-item" href="#">Template 1</a>'+
-            '<a class="dropdown-item" href="#">Template 2</a>'+
-        '</div>'
+    '<a href="'+root+'/admin/export/excel/penelusuran_tamantan"class="btn btn-success mr-3  ml-2"> Excel <i class="fas fa-cloud-download-alt"></i></a>'
 );
 
 // search engine
 $("#search").keyup(function () {
     table.search( this.value ).draw();
+})
+
+// koosng form kalau modalnya di close
+$('#modal_close').click(function(){
+    console.log('clicked');
+    ('#file').val(' ')
 })
 
     // hapus data

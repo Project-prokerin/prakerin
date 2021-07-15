@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Excel;
 
+use App\Exports\alumni_sekolah\AlumniExport;
 use App\Exports\kelas\kelasExport;
 use App\Exports\disposisi\DisposisiExport;
 use App\Exports\guru\data_guruExport;
@@ -15,10 +16,12 @@ use App\Exports\jurnalh\JurnalHExport as JurnalHExportt;
 use App\Exports\jurnalp\JurnalPExport as JurnalPExportt;
 use App\Exports\jurusan\jurusanExport;
 use App\Exports\pembekalan\multiExport as PembekalanMultiExport;
+use App\Exports\penelusuran_tamtan\multiExport as Penelusuran_tamtanMultiExport;
 use App\Exports\siswa\multiExport as SiswaMultiExport;
 use App\Exports\surat_keluar\surat_keluarExport;
 use App\Exports\surat_masuk\surat_masukExport;
 use App\Http\Controllers\Controller;
+use App\Models\alumni_siswa;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Excel;
 use App\Models\Siswa;
@@ -34,9 +37,10 @@ use App\Models\kelas;
 use App\Models\Surat_keluar;
 use App\Models\Surat_M;
 use App\Models\Surat_masuk;
+use App\Models\Penelusuran_tamatan;
 
 // use Maatwebsite\Excel\Facades\Excel;
-class ExcelController extends Controller
+class ExportExcelController extends Controller
 {
 private $excel;
 public function __construct(Excel $excel)
@@ -57,7 +61,7 @@ public function __construct(Excel $excel)
         $prakerin = data_prakerin::select('id_kelas')->distinct()->with('kelas')->get();
         // validasi jika kosong
         if (count($prakerin)<1) {
-            return redirect('/data_prakerin')->with('gagal', 'data anda masih kosong');
+            return redirect('/admin/data_prakerin')->with('gagal', 'data anda masih kosong');
         }
         // jalankan
             $headings =
@@ -79,7 +83,7 @@ public function __construct(Excel $excel)
         $prakerin = data_prakerin::select('id_kelas')->distinct()->with('kelas')->get();
         // validasi jika kosong
         if (count($prakerin) < 1) {
-            return redirect('/data_prakerin')->with('gagal', 'data anda masih kosong');
+            return redirect('/admin/data_prakerin')->with('gagal', 'data anda masih kosong');
         }
         // jalankan
         $headings =
@@ -101,7 +105,7 @@ public function __construct(Excel $excel)
     {
         $guru = guru::all();
         if (count($guru)<1) {
-            return redirect('/guru')->with('gagal', 'data anda masih kosong');
+            return redirect('/admin/guru')->with('gagal', 'data anda masih kosong');
         }
         $headings =
             [
@@ -118,7 +122,7 @@ public function __construct(Excel $excel)
     {
         $perusahaan = perusahaan::select('id_jurusan')->distinct()->get();
         if (count($perusahaan) < 1) {
-            return redirect('/perusahaan')->with('gagal', 'data anda masih kosong');
+            return redirect('/admin/perusahaan')->with('gagal', 'data anda masih kosong');
         }
         $headings = [
             'NO',
@@ -133,7 +137,7 @@ public function __construct(Excel $excel)
     {
         $siswa = Siswa::select('id_kelas')->distinct()->with('kelas')->get();
         if (count($siswa) < 1) {
-            return redirect('/siswa')->with('gagal', 'data anda masih kosong');
+            return redirect('/admin/siswa')->with('gagal', 'data anda masih kosong');
         }
         return $this->excel->download(new SiswaMultiExport($siswa), 'DATA SISWA SMK TARUNA BHAKTI DEPOK.xlsx');
     }
@@ -175,5 +179,36 @@ public function __construct(Excel $excel)
     {
         $surat_k = Surat_keluar::all();
         return $this->excel->download(new surat_keluarExport($surat_k), 'Surat penugasan.xlsx');
+    }
+    public function alumni_siswa()
+    {
+        $alumni = alumni_siswa::all();
+        return $this->excel->download(new AlumniExport($alumni), 'Alumni Siswa.xlsx');
+    }
+    public function penelusuran_tamantan()
+    {
+        $pen = Penelusuran_tamatan::all();
+        // status
+        $stat = collect([
+            [
+            'status' => "bekerja",
+            ],
+            [
+                'status' => "kuliah",
+            ],
+            [
+                'status' => "Wirausaha",
+            ],
+            [
+                'status' => "Bekerja dan Kuliah",
+            ],
+            [
+                'status' => "Wirausaha dan Kuliah",
+            ],
+        ]);
+        if (count($pen) < 1) {
+            return redirect('/admin/penelusuran_tamatan')->with('gagal', 'data anda masih kosong');
+        }
+        return $this->excel->download(new Penelusuran_tamtanMultiExport($pen,$stat), 'Data Penelusuran Tamatan.xlsx');
     }
 }
