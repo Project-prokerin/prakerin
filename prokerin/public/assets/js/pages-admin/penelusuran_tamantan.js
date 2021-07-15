@@ -35,7 +35,7 @@ $('.btn-table').append(
     '<a href="'+root+'/admin/penelusuran_tamantan/tambah"class="btn btn-primary tambahbutton"> Tambah Data <i class="fas fa-plus"></i></a>'
 );
 $('#table9_filter').prepend(
-    '<a href="'+root+'/admin/export/excel/penelusuran_tamantan"class="btn btn-success mr-3  ml-2"> Excel <i class="fas fa-cloud-download-alt"></i></a>'+
+    // '<a href="'+root+'/admin/export/excel/penelusuran_tamantan"class="btn btn-success mr-3  ml-2"> Excel <i class="fas fa-cloud-download-alt"></i></a>'+
         '<button class="btn btn-danger dropdown-toggle mr-3" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">'+
             'Import <i class="fas fa-cloud-download-alt"></i>'+
         '</button>'+

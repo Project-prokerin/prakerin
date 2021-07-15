@@ -30,106 +30,121 @@
                                 class="form-control   @error('id_alumni')  is-invalid  @enderror select2"
                                 id="id_alumni">
                                 <option value="">--Cari Siswa Alumni--</option>
-                                {{-- @foreach ($alumni as $alum)
-                                <option value="{{$alum->id}}"
-                                    {{(old('id_alumni') == $alum->id) ? 'selected' : ''}}>{{$alum->nama}}
-                                </option>
-                                @endforeach --}}
+                                  @foreach ($alumni as $alum)
+                                            <option value="{{$alum->id}}"
+                                                {{(old('id_alumni', $pen->id_alumni) == $alum->id) ? 'selected' : ''}}>{{$alum->nama}}
+                                            </option>
+                                            @endforeach
                             </select>
                             <div id="invalid_siswa" class="invalid-feedback d-none"></div>
                         </div>
                         <div class="mb-3 col-lg-10">
                             <label>Kelas</label>
-                            <input type="text" name="kelas" class="form-control input_KJ kelas" disabled >
+                            <input type="text" name="kelas" value="{{ old('kelas', $pen->alumni_siswa->kelas) }}" class="form-control input_KJ kelas" disabled >
                         </div>
                         <div class="mb-3 col-lg-10">
                             <label>Jurusan</label>
-                            <input type="text" name="jurusan" class="form-control input_KJ jurusan" disabled>
+                            <input type="text" name="jurusan"  value="{{ old('kelas', $pen->alumni_siswa->jurusan) }}" class="form-control input_KJ jurusan" disabled>
                         </div>
                             <div class="mb-3 col-lg-10">
                             <label>Tahun lulus</label>
-                            <input type="text" name="tahun_lulus" class="form-control input_KJ tahun_lulus" disabled>
+                            <input type="text" name="tahun_lulus"  value="{{ old('kelas', $pen->alumni_siswa->tahun_lulus) }}" class="form-control input_KJ tahun_lulus" disabled>
                         </div>
                         <div class="mb-3 col-lg-10">
                             <label>Status</label>
                             <select id="status" name="status"
                                 class="form-control   @error('status')  is-invalid  @enderror select2">
                                 <option value="#">--Cari Status--</option>
-                                <option value="bekerja">Bekerja</option>
-                                <option value="kuliah">Kuliah</option>
-                                <option value="Wirausaha">Wirausaha</option>
-                                <option value="Bekerja dan Kuliah">Bekerja & Kuliah</option>
-                                <option value="Wirausaha dan Kuliah">Wirausaha & Kuliah</option>
+                                  <option {{ ($pen->status == 'bekerja') ? 'selected' : '' }} value="bekerja">Bekerja</option>
+                                            <option {{ ($pen->status == 'kuliah') ? 'selected' : '' }} value="kuliah">Kuliah</option>
+                                            <option {{ ($pen->status == 'Wirausaha') ? 'selected' : '' }} value="Wirausaha">Wirausaha</option>
+                                            <option {{ ($pen->status == 'Bekerja dan Kuliah') ? 'selected' : '' }} value="Bekerja dan Kuliah">Bekerja & Kuliah</option>
+                                            <option {{ ($pen->status == 'Wirausaha dan Kuliah') ? 'selected' : '' }} value="Wirausaha dan Kuliah">Wirausaha & Kuliah</option>
                             </select>
                             <div id="invalid_status" class="invalid-feedback d-none"></div>
                         </div>
                     </div>
 
                     {{-- card col 2 --}}
-                    <div class="col-6">
+                 <div class="col-6">
                         {{-- bekerja --}}
-                            <div class="mb-3 col-lg-10" id="namaperusahaan" hidden>
-                                <label>Nama Perusahaan</label>
-                                <div class="mb-3">
-                                    <input type="text" name="" id="valid_namaperusahaan" class="form-control @error('')  is-invalid  @enderror form-control" value="" >
-                                    <div id="invalid_namaperusahaan" class="invalid-feedback d-none"></div>
-                                </div>
+                        <div class="mb-3 col-lg-10" id="namaperusahaan" hidden>
+                            <label>Nama Perusahaan</label>
+                            <div class="mb-3">
+                                <input type="text" name="nama_perusahaan" id="valid_namaperusahaan"
+                                    class="form-control @error('')  is-invalid  @enderror form-control" value="{{ old('nama_perusahaan', empty($pen->nama_perusahaan) ? '' : $pen->nama_perusahaan) }}">
+                                <div id="invalid_namaperusahaan" class="invalid-feedback d-none"></div>
                             </div>
-                            <div class="mb-3 col-lg-10" id="alamatperusahaan" hidden>
-                                <label>Alamat Perusahaan</label>
-                                <div class="mb-3">
-                                    <input type="text" name="" id="valid_alamatperusahaan" class="form-control @error('')  is-invalid  @enderror form-control" value="{{ old('') }}" >
-                                    <div id="invalid_alamatperusahaan" class="invalid-feedback d-none"></div>
-                                </div>
+                        </div>
+                        <div class="mb-3 col-lg-10" id="alamatperusahaan" hidden>
+                            <label>Alamat Perusahaan</label>
+                            <div class="mb-3">
+                                <input type="text" name="alamat_perusahaan" id="valid_alamatperusahaan"
+                                    class="form-control @error('')  is-invalid  @enderror form-control"
+                                    value="{{ old('alamat_perusahaan',empty($pen->alamat_perusahaan) ? '' : $pen->alamat_perusahaan) }}">
+                                <div id="invalid_alamatperusahaan" class="invalid-feedback d-none"></div>
                             </div>
-                            <div class="mb-3 col-lg-10" id="tahunkuliah" hidden>
-                                <label>Tahun Masuk Kuliah</label>
-                                <div class="mb-3">
-                                    <input type="text" name="" id="valid_tahunkuliah" class="form-control @error('')  is-invalid  @enderror form-control" value="{{ old('') }}" >
-                                    <div id="invalid_tahunkuliah" class="invalid-feedback d-none"></div>
-                                </div>
+                        </div>
+                        <div class="mb-3 col-lg-10" id="tahunkuliah" hidden>
+                            <label>Tahun Masuk Kuliah</label>
+                            <div class="mb-3">
+                                <input type="text" name="tahun_kuliah" id="valid_tahunkuliah"
+                                    class="form-control @error('')  is-invalid  @enderror form-control"
+                                    value="{{ old('tahun_kuliah',empty($pen->tahun_kuliah) ? '' : $pen->tahun_kuliah) }}">
+                                <div id="invalid_tahunkuliah" class="invalid-feedback d-none"></div>
                             </div>
+                        </div>
                         {{-- tutup --}}
 
                         {{-- kuliah --}}
-                            <div class="mb-3 col-lg-10" id="namakampus" hidden>
-                                <label>Nama Kampus</label>
-                                <div class="mb-3">
-                                    <input type="text" name="" id="valid_namakampus" class="form-control @error('')  is-invalid  @enderror form-control" value="{{ old('') }}" >
-                                    <div id="invalid_namakampus" class="invalid-feedback d-none"></div>
-                                </div>
+                        <div class="mb-3 col-lg-10" id="namakampus" hidden>
+                            <label>Nama Kampus</label>
+                            <div class="mb-3">
+                                <input type="text" name="nama_kampus" id="valid_namakampus"
+                                    class="form-control @error('')  is-invalid  @enderror form-control"
+                                    value="{{ old('nama_kampus',empty($pen->nama_kampus) ? '' : $pen->nama_kampus) }}">
+                                <div id="invalid_namakampus" class="invalid-feedback d-none"></div>
                             </div>
-                            <div class="mb-3 col-lg-10" id="alamatkampus" hidden>
-                                <label>Alamat Kampus</label>
-                                <div class="mb-3">
-                                    <input type="text" name="" id="valid_alamatkampus" class="form-control @error('')  is-invalid  @enderror form-control" value="{{ old('') }}" >
-                                    <div id="invalid_alamatkampus" class="invalid-feedback d-none"></div>
-                                </div>
+                        </div>
+                        <div class="mb-3 col-lg-10" id="alamatkampus" hidden>
+                            <label>Alamat Kampus</label>
+                            <div class="mb-3">
+                                <input type="text" name="alamat_kampus" id="valid_alamatkampus"
+                                    class="form-control @error('')  is-invalid  @enderror form-control"
+                                    value="{{ old('alamat_kampus',empty($pen->alamat_kampus) ? '' : $pen->alamat_kampus) }}">
+                                <div id="invalid_alamatkampus" class="invalid-feedback d-none"></div>
                             </div>
-                            <div class="mb-3 col-lg-10" id="tahunmasuk" hidden>
-                                <label>Tahun Masuk</label>
-                                <div class="mb-3">
-                                    <input type="text" name="" id="valid_tahunmasuk" class="form-control @error('')  is-invalid  @enderror form-control" value="{{ old('') }}" >
-                                    <div id="invalid_tahunmasuk" class="invalid-feedback d-none"></div>
-                                </div>
+                        </div>
+                        <div class="mb-3 col-lg-10" id="tahunmasuk" hidden>
+                            <label>Tahun Masuk</label>
+                            <div class="mb-3">
+                                <input type="text" name="tahun_masuk_kuliah" id="valid_tahunmasuk"
+                                    class="form-control @error('')  is-invalid  @enderror form-control"
+                                    value="{{ old('tahun_masuk',empty($pen->tahun_masuk_kuliah) ? '' : $pen->tahun_masuk_kuliah) }}">
+                                <div id="invalid_tahunmasuk" class="invalid-feedback d-none"></div>
                             </div>
+                        </div>
                         {{-- tutup --}}
 
                         {{-- wirausaha --}}
-                            <div class="mb-3 col-lg-10" id="namabrand" hidden>
-                                <label>Nama Brand</label>
-                                <div class="mb-3">
-                                    <input type="text" name="" id="valid_namabrand" class="form-control @error('')  is-invalid  @enderror form-control" value="{{ old('') }}" >
-                                    <div id="invalid_namabrand" class="invalid-feedback d-none"></div>
-                                </div>
+                        {{-- <div class="mb-3 col-lg-10" id="namabrand" hidden>
+                            <label>Nama Brand</label>
+                            <div class="mb-3">
+                                <input type="text" name="nama_brand" id="valid_namabrand"
+                                    class="form-control @error('')  is-invalid  @enderror form-control"
+                                    value="{{ old('nama_brand') }}">
+                                <div id="invalid_namabrand" class="invalid-feedback d-none"></div>
                             </div>
-                            <div class="mb-3 col-lg-10" id="namausaha" hidden>
-                                <label>Nama Usaha</label>
-                                <div class="mb-3">
-                                    <input type="text" name="" id="valid_namausaha" class="form-control @error('')  is-invalid  @enderror form-control" value="{{ old('') }}" >
-                                    <div id="invalid_namausaha" class="invalid-feedback d-none"></div>
-                                </div>
+                        </div> --}}
+                        <div class="mb-3 col-lg-10" id="namausaha" hidden>
+                            <label>Nama Usaha</label>
+                            <div class="mb-3">
+                                <input type="text" name="nama_usaha" id="valid_namausaha"
+                                    class="form-control @error('')  is-invalid  @enderror form-control"
+                                    value="{{ old('nama_usaha',empty($pen->nama_usaha) ? '' : $pen->nama_usaha) }}">
+                                <div id="invalid_namausaha" class="invalid-feedback d-none"></div>
                             </div>
+                        </div>
                         {{-- tutup --}}
 
                         <div class="row">
@@ -228,7 +243,7 @@
 
 
     $('#cek_submit').on('click', function (e) {
-        e.preventDefault();
+        // e.preventDefault();
         var nama = $('#id_alumni').val();
         var status = $('#status').val();
 
