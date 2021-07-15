@@ -15,7 +15,7 @@ class CreatePengajuanPrakerinTable extends Migration
     {
         Schema::create('pengajuan_prakerin', function (Blueprint $table) {
             $table->id();
-            $table->integer('no')->unsigned();
+            $table->string('no');
             $table->foreignId('id_guru')->nullable()->constrained('guru')->onDelete('set null')->onUpdate('cascade');
             $table->foreignId('id_siswa')->nullable()->constrained('siswa')->onDelete('set null')->onUpdate('cascade');
             $table->string('nama_perusahaan');
