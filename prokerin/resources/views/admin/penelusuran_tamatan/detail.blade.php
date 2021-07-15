@@ -58,16 +58,61 @@
                     <label class="form-label col-7 pleft">Lulus Tahun</label>
                     <label class="form-label">: {{ $pen->alumni_siswa->tahun_lulus }} </label>
                   </div>
-                  <div class="row g-3 align-items-center">
+                  <div class="row g-3 align-items-center mb-3">
                     <label class="form-label col-7 pleft">Status</label>
                     <label class="form-label">: {{ $pen->status }}</label>
+                    <select id="status" class="col-5 form-control form-control-sm form-control-plaintext">
+                        <option value="">Lihat Status</option>
+                        <option value="bekerja">Bekerja</option>
+                        <option value="wirausaha">Wirausaha</option>
+                        <option value="kuliah">Kuliah</option>
+                        <option value="bekerja&kuliah">Bekerja & Kuliah</option>
+                        <option value="wirausaha&kuliah">Wirausaha & Kuliah</option>
+                    </select>
+                  </div>
+                  <div class="" id="bekerja" hidden>
+                    <div class="row g-3 align-items-center">
+                        <label class="form-label col-7 pleft">Nama Perusahaan</label>
+                        <label class="form-label">: </label>
+                    </div>
+                    <div class="row g-3 align-items-center">
+                        <label class="form-label col-7 pleft">Alamat Perusahaan</label>
+                        <label class="form-label">: </label>
+                    </div>
+                    <div class="row g-3 align-items-center">
+                        <label class="form-label col-7 pleft">Tahun Kuliah</label>
+                        <label class="form-label">: </label>
+                    </div>
+                  </div>
+                  <div class="" id="wirausaha" hidden>
+                    <div class="row g-3 align-items-center">
+                        <label class="form-label col-7 pleft">Nama Kampus</label>
+                        <label class="form-label">: </label>
+                    </div>
+                    <div class="row g-3 align-items-center">
+                        <label class="form-label col-7 pleft">Alamat Kampus</label>
+                        <label class="form-label">: </label>
+                    </div>
+                    <div class="row g-3 align-items-center">
+                        <label class="form-label col-7 pleft">Tahun Masuk</label>
+                        <label class="form-label">: </label>
+                    </div>
+                  </div>
+                  <div class="" id="kuliah" hidden>
+                    <div class="row g-3 align-items-center">
+                        <label class="form-label col-7 pleft">Nama Brand</label>
+                        <label class="form-label">: </label>
+                    </div>
+                    <div class="row g-3 align-items-center">
+                        <label class="form-label col-7 pleft">Nama Usaha</label>
+                        <label class="form-label">: </label>
+                    </div>
                   </div>
                   {{-- make if else + isinya ya wal --}}
                   <div style="margin-top: 40px; margin-bottom:40px;">
                     <a href="" type="button" class="btn btn-danger "><i class="fas fa-backspace"></i>   Kembali</a>
-                </div>
+                  </div>
             </div>
-
     </div>
     </div>
 
@@ -76,4 +121,37 @@
 </div>
 @endsection
 @push('script')
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script>
+$(window).load(function(){
+        $("#status").change(function() {
+			console.log($("#status option:selected").val());
+			if ($("#status option:selected").val() == '') {
+				$('#bekerja').prop('hidden', 'true');
+				$('#wirausaha').prop('hidden', 'true');
+				$('#kuliah').prop('hidden', 'true');
+			} else if ($("#status option:selected").val() == 'bekerja') {
+				$('#bekerja').prop('hidden', false);
+                $('#wirausaha').prop('hidden', 'true');
+				$('#kuliah').prop('hidden', 'true');
+			} else if ($("#status option:selected").val() == 'wirausaha') {
+				$('#bekerja').prop('hidden', 'true');
+                $('#wirausaha').prop('hidden', false);
+				$('#kuliah').prop('hidden', 'true');
+			} else if ($("#status option:selected").val() == 'kuliah') {
+				$('#bekerja').prop('hidden', 'true');
+                $('#wirausaha').prop('hidden', 'true');
+				$('#kuliah').prop('hidden', false);
+			} else if ($("#status option:selected").val() == 'bekerja&kuliah') {
+				$('#bekerja').prop('hidden', false);
+                $('#wirausaha').prop('hidden', 'true');
+				$('#kuliah').prop('hidden', false);
+			} else if ($("#status option:selected").val() == 'wirausaha&kuliah') {
+				$('#bekerja').prop('hidden', 'true');
+                $('#wirausaha').prop('hidden', false);
+				$('#kuliah').prop('hidden', false);
+			}
+		});
+});
+</script>
 @endpush

@@ -73,7 +73,7 @@
                             <label>Nama Perusahaan</label>
                             <div class="mb-3">
                                 <input type="text" name="nama_perusahaan" id="valid_namaperusahaan"
-                                    class="form-control @error('')  is-invalid  @enderror form-control" value="{{ old('nama_perusahaan') }}">
+                                    class="form-control @error('valid_namaperusahaan')  is-invalid  @enderror form-control" value="{{ old('nama_perusahaan') }}">
                                 <div id="invalid_namaperusahaan" class="invalid-feedback d-none"></div>
                             </div>
                         </div>
@@ -81,7 +81,7 @@
                             <label>Alamat Perusahaan</label>
                             <div class="mb-3">
                                 <input type="text" name="alamat_perusahaan" id="valid_alamatperusahaan"
-                                    class="form-control @error('')  is-invalid  @enderror form-control"
+                                    class="form-control @error('valid_alamatperusahaan')  is-invalid  @enderror form-control"
                                     value="{{ old('alamat_perusahaan') }}">
                                 <div id="invalid_alamatperusahaan" class="invalid-feedback d-none"></div>
                             </div>
@@ -90,7 +90,7 @@
                             <label>Tahun Masuk Kuliah</label>
                             <div class="mb-3">
                                 <input type="text" name="tahun_kuliah" id="valid_tahunkuliah"
-                                    class="form-control @error('')  is-invalid  @enderror form-control"
+                                    class="form-control @error('valid_tahunkuliah')  is-invalid  @enderror form-control"
                                     value="{{ old('tahun_kuliah') }}">
                                 <div id="invalid_tahunkuliah" class="invalid-feedback d-none"></div>
                             </div>
@@ -339,13 +339,13 @@
 
 
 
-            if (namabrand == '') {
-            $('#valid_namabrand').addClass('is-invalid');
-            $('#invalid_namabrand').html('nama brand tidak boleh kosong').removeClass('d-none');
-            }else{
-                $('#invalid_namabrand').addClass('d-none');
-                $('#valid_namabrand').removeClass('is-invalid');
-            }
+            // if (namabrand == '') {
+            // $('#valid_namabrand').addClass('is-invalid');
+            // $('#invalid_namabrand').html('nama brand tidak boleh kosong').removeClass('d-none');
+            // }else{
+            //     $('#invalid_namabrand').addClass('d-none');
+            //     $('#valid_namabrand').removeClass('is-invalid');
+            // }
             if (namausaha == '') {
             $('#valid_namausaha').addClass('is-invalid');
             $('#invalid_namausaha').html('nama usaha tidak boleh kosong').removeClass('d-none');
