@@ -333,7 +333,7 @@ Route::prefix('admin')->middleware(['web', 'auth', 'role:bkk,hubin,admin,kurikul
     Route::middleware('role:bkk,hubin,admin,kurikulum,tu')->group(function () {
         Route::get('penelusuran_tamantan', [Penelusuran_tamatanPenelusuran_tamatanController::class, 'index'])->name('penelusuran_tamantan.index');
         Route::get('penelusuran_tamantan/ajax', [Penelusuran_tamatanPenelusuran_tamatanController::class, 'ajax'])->name('penelusuran_tamantan.ajax');
-        Route::get('penelusuran_tamantan/detail/{id}', [Penelusuran_tamatanPenelusuran_tamatanController::class, 'detail'])->name('penelusuran_tamantan.detail');
+        Route::get('penelusuran_tamatan/detail/{id}', [Penelusuran_tamatanPenelusuran_tamatanController::class, 'show'])->name('penelusuran_tamantan.detail');
         Route::get('penelusuran_tamantan/tambah', [Penelusuran_tamatanPenelusuran_tamatanController::class, 'tambah'])->name('penelusuran_tamantan.tambah');
         Route::post('penelusuran_tamantan/tambah/post', [Penelusuran_tamatanPenelusuran_tamatanController::class, 'store'])->name('penelusuran_tamantan.post');
         Route::get('penelusuran_tamantan/edit/{id}', [Penelusuran_tamatanPenelusuran_tamatanController::class, 'edit'])->name('penelusuran_tamantan.edit');

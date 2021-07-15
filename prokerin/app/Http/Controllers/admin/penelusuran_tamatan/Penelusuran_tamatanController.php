@@ -82,7 +82,7 @@ class Penelusuran_tamatanController extends Controller
     public function show($id)
     {
         $pen = Penelusuran_tamatan::where('id', $id)->first();
-        return view('admin.penelusuran_tamatan.detail', compact('alumni'));
+        return view('admin.penelusuran_tamatan.detail', compact('pen'));
     }
 
     /**
