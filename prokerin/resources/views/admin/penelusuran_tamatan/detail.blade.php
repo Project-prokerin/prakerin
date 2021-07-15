@@ -44,24 +44,25 @@
                 <h5 class="card-title mb-4" style="margin-top: -20px;">Data Siswa Alumni</h5>
                   <div class="row g-3 align-items-center">
                     <label class="form-label col-7 pleft">Nama</label>
-                    <label class="form-label">:</label>
+                    <label class="form-label">: {{ $pen->alumni_siswa->nama }}</label>
                   </div>
                   <div class="row g-3 align-items-center">
                     <label class="form-label col-7 pleft">Kelas</label>
-                    <label class="form-label">:</label>
+                    <label class="form-label">: {{ $pen->alumni_siswa->kelas }}</label>
                   </div>
                   <div class="row g-3 align-items-center">
                     <label class="form-label col-7 pleft">Jurusan</label>
-                    <label class="form-label">: </label>
+                    <label class="form-label">: {{ $pen->alumni_siswa->jurusan }}</label>
                   </div>
                   <div class="row g-3 align-items-center">
                     <label class="form-label col-7 pleft">Lulus Tahun</label>
-                    <label class="form-label">: </label>
+                    <label class="form-label">: {{ $pen->alumni_siswa->tahun_lulus }} </label>
                   </div>
                   <div class="row g-3 align-items-center">
                     <label class="form-label col-7 pleft">Status</label>
-                    <label class="form-label">:</label>
+                    <label class="form-label">: {{ $pen->status }}</label>
                   </div>
+                  {{-- make if else + isinya ya wal --}}
                   <div style="margin-top: 40px; margin-bottom:40px;">
                     <a href="" type="button" class="btn btn-danger "><i class="fas fa-backspace"></i>   Kembali</a>
                 </div>
