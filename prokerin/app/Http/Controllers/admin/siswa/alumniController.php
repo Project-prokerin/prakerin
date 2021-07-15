@@ -7,6 +7,7 @@ use App\Models\alumni_siswa;
 use Illuminate\Http\Request;
 use App\Http\Requests\admin\alumniRequest;
 use App\Models\jurusan;
+use Illuminate\Support\Facades\Auth;
 
 class alumniController extends Controller
 {
@@ -23,18 +24,33 @@ class alumniController extends Controller
     public function ajax(Request $request)
     {
         if ($request->ajax()) {
-            $siwa = alumni_siswa::orderby('created_at', 'desc')->get();
-            return datatables()->of($siwa)
-                ->addColumn('action', function ($data) {
-                    // $button = '<a href="/admin/siswa/detail/' . $data->id . '"   id="' . $data->id . '" class="edit btn btn-primary btn-sm"><i class="fas fa-search"></i></a>';
-                    // $button .= '&nbsp';
-                    $button = '<a  href="/admin/alumni_siswa/edit/' . $data->id . '" id="edit" data-toggle="tooltip"  data-id="' . $data->id . '" data-original-title="Edit" class="edit btn btn-warning btn-sm edit-post"><i class="fas fa-pencil-alt"></i></a>';
-                    $button .= '&nbsp';
-                    $button .= '<button type="button" name="delete" id="hapus" data-id="' . $data->id . '" class="delete btn btn-danger btn-sm"><i class="fas fa-trash"></i></button>';
-                    return $button;
-                })
-                ->rawColumns(['action'])
-                ->addIndexColumn()->make(true);
+                if (Auth::user()->role == 'bkk' or Auth::user()->role == 'admin') {
+                    $siwa = alumni_siswa::orderby('created_at', 'desc')->get();
+                    return datatables()->of($siwa)
+                        ->addColumn('action', function ($data) {
+                            $button = '<a href="/admin/siswa/detail/' . $data->id . '"   id="' . $data->id . '" class="edit btn btn-primary btn-sm"><i class="fas fa-search"></i></a>';
+                            $button .= '&nbsp';
+                            $button = '<a  href="/admin/alumni_siswa/edit/' . $data->id . '" id="edit" data-toggle="tooltip"  data-id="' . $data->id . '" data-original-title="Edit" class="edit btn btn-warning btn-sm edit-post"><i class="fas fa-pencil-alt"></i></a>';
+                            $button .= '&nbsp';
+                            $button .= '<button type="button" name="delete" id="hapus" data-id="' . $data->id . '" class="delete btn btn-danger btn-sm"><i class="fas fa-trash"></i></button>';
+                            return $button;
+                        })
+                        ->rawColumns(['action'])
+                        ->addIndexColumn()->make(true);
+                } else {
+                    $siwa = alumni_siswa::orderby('created_at', 'desc')->get();
+                    return datatables()->of($siwa)
+                        ->addColumn('action', function ($data) {
+                            $button = '<a href="/admin/siswa/detail/' . $data->id . '"   id="' . $data->id . '" class="edit btn btn-primary btn-sm"><i class="fas fa-search"></i></a>';
+                            $button .= '&nbsp';
+                            // $button = '<a  href="/admin/alumni_siswa/edit/' . $data->id . '" id="edit" data-toggle="tooltip"  data-id="' . $data->id . '" data-original-title="Edit" class="edit btn btn-warning btn-sm edit-post"><i class="fas fa-pencil-alt"></i></a>';
+                            // $button .= '&nbsp';
+                            // $button .= '<button type="button" name="delete" id="hapus" data-id="' . $data->id . '" class="delete btn btn-danger btn-sm"><i class="fas fa-trash"></i></button>';
+                            return $button;
+                        })
+                        ->rawColumns(['action'])
+                        ->addIndexColumn()->make(true);
+                }
         }
     }
     /**

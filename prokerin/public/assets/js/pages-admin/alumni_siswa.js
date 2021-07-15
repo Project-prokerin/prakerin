@@ -49,24 +49,22 @@ $(document).ready(function () {
         ],
     });
 
-    if(role === 'bkk' || role === 'admin')
-    {
-            $('.btn-table').append(
-            '<a href="' + root + '/admin/alumni_siswa/tambah"class="btn btn-primary "> Tambah Data <i class="fas fa-plus"></i></button></a>'
+    if (role == 'admin' ||  role == 'bkk') {
+        $('.btn-table').append(
+            '<a href="'+root+'/admin/penelusuran_tamantan/tambah" class="btn btn-primary"> Tambah Data <i class="fas fa-plus"></i></a>'
         );
-       $('#table9_filter').prepend(
-    '<a href="'+root+'/admin/export/excel/alumni_siswa"class="btn btn-success mr-3  ml-2">Export Excel <i class="fas fa-cloud-download-alt"></i></a>'+
-        '<button class="btn btn-danger dropdown-toggle mr-3" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">'+
-            'Import Excel <i class="fas fa-cloud-download-alt"></i>'+
-        '</button>'+
-        '<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">'+
-            '<a class="dropdown-item" href="'+root+'/admin/template/alumni/excel">Template Excel</a>'+
-            '<button data-toggle="modal" data-target="#importExcel" class="dropdown-item" href="#">Import File</button>'+
-        '</div>'
-);
-
-
+        $('#table9_filter').prepend(
+            '<a href="'+root+'/admin/export/excel/alumni_siswa "class="btn btn-success ml-2">Export <i class="fas fa-file-excel"></i></a>'+
+            '<button class="btn btn-danger dropdown-toggle mr-3 ml-2" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">'+
+                'Import <i class="fas fa-file-excel"></i>'+
+            '</button>'+
+            '<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">'+
+                '<a class="dropdown-item" href="'+root+'/admin/template/alumni/excel">Template Excel</a>'+
+                '<button data-toggle="modal" data-target="#importExcel" class="dropdown-item" href="#">Import File</button>'+
+            '</div>'
+        );
     }
+
 
 
     // search engine
