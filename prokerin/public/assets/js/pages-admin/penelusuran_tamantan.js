@@ -31,9 +31,13 @@ $(document).ready( function () {
         ],
     });
 
-$('.btn-table').append(
-    '<a href="'+root+'/admin/penelusuran_tamantan/tambah"class="btn btn-primary tambahbutton"> Tambah Data <i class="fas fa-plus"></i></a>'
-);
+    role = $('#role').text();
+    if (role == 'admin' ||  role == 'bkk') {
+        $('.btn-table').append(
+            '<a href="'+root+'/admin/penelusuran_tamantan/tambah"class="btn btn-primary tambahbutton"> Tambah Data <i class="fas fa-plus"></i></a>'
+        );
+    }
+
 $('#table9_filter').prepend(
     '<a href="'+root+'/admin/export/excel/penelusuran_tamantan"class="btn btn-success mr-3  ml-2"> Excel <i class="fas fa-cloud-download-alt"></i></a>'
 );

@@ -7,6 +7,8 @@ use App\Models\alumni_siswa;
 use App\Models\Penelusuran_tamatan;
 use Illuminate\Http\Request;
 use Yajra\DataTables\Contracts\DataTable;
+use Illuminate\Support\Facades\Auth;
+
 
 class Penelusuran_tamatanController extends Controller
 {
@@ -28,24 +30,45 @@ class Penelusuran_tamatanController extends Controller
     public function ajax(Request $request)
     {
         if ($request->ajax()) {
-            $Penelusuran_tamatan = Penelusuran_tamatan::orderby('created_at','desc')->with('alumni_siswa')->get();
-            return datatables()->of($Penelusuran_tamatan)
-                ->addColumn('nama_siswa', function($data){
-                    return $data->alumni_siswa->nama;
-                })
-                ->addColumn('tahun_lulus', function ($data) {
-                    return $data->alumni_siswa->tahun_lulus;
-                })
-                ->addColumn('action', function ($data) {
-                    $button = '<a href="/admin/penelusuran_tamatan/detail/' . $data->id . '"   id="' . $data->id . '" class="edit btn btn-primary btn-sm"><i class="fas fa-search"></i></a>';
-                    $button .= '&nbsp';
-                    $button .= '<a  href="/admin/penelusuran_tamantan/edit/' . $data->id . '" id="edit" data-toggle="tooltip"  data-id="' . $data->id . '" data-original-title="Edit" class="edit btn btn-warning btn-sm edit-post"><i class="fas fa-pencil-alt"></i></a>';
-                    $button .= '&nbsp';
-                    $button .= '<button type="button" name="delete" id="hapus" data-id="' . $data->id . '" class="delete btn btn-danger btn-sm"><i class="fas fa-trash"></i></button>';
-                    return $button;
-                })
-                ->rawColumns(['action','nama_siswa','tahun_lulus'])
-                ->addIndexColumn()->make(true);
+            if (Auth::user()->role == 'bkk' or Auth::user()->role == 'admin') {
+                $Penelusuran_tamatan = Penelusuran_tamatan::orderby('created_at','desc')->with('alumni_siswa')->get();
+                return datatables()->of($Penelusuran_tamatan)
+                    ->addColumn('nama_siswa', function($data){
+                        return $data->alumni_siswa->nama;
+                    })
+                    ->addColumn('tahun_lulus', function ($data) {
+                        return $data->alumni_siswa->tahun_lulus;
+                    })
+                    ->addColumn('action', function ($data) {
+                        $button = '<a href="/admin/penelusuran_tamatan/detail/' . $data->id . '"   id="' . $data->id . '" class="edit btn btn-primary btn-sm"><i class="fas fa-search"></i></a>';
+                        $button .= '&nbsp';
+                        $button .= '<a  href="/admin/penelusuran_tamantan/edit/' . $data->id . '" id="edit" data-toggle="tooltip"  data-id="' . $data->id . '" data-original-title="Edit" class="edit btn btn-warning btn-sm edit-post"><i class="fas fa-pencil-alt"></i></a>';
+                        $button .= '&nbsp';
+                        $button .= '<button type="button" name="delete" id="hapus" data-id="' . $data->id . '" class="delete btn btn-danger btn-sm"><i class="fas fa-trash"></i></button>';
+                        return $button;
+                    })
+                    ->rawColumns(['action','nama_siswa','tahun_lulus'])
+                    ->addIndexColumn()->make(true);
+            } else {
+                $Penelusuran_tamatan = Penelusuran_tamatan::orderby('created_at','desc')->with('alumni_siswa')->get();
+                return datatables()->of($Penelusuran_tamatan)
+                    ->addColumn('nama_siswa', function($data){
+                        return $data->alumni_siswa->nama;
+                    })
+                    ->addColumn('tahun_lulus', function ($data) {
+                        return $data->alumni_siswa->tahun_lulus;
+                    })
+                    ->addColumn('action', function ($data) {
+                        $button = '<a href="/admin/penelusuran_tamatan/detail/' . $data->id . '"   id="' . $data->id . '" class="edit btn btn-primary btn-sm"><i class="fas fa-search"></i></a>';
+                        $button .= '&nbsp';
+                        // $button .= '<a  href="/admin/penelusuran_tamantan/edit/' . $data->id . '" id="edit" data-toggle="tooltip"  data-id="' . $data->id . '" data-original-title="Edit" class="edit btn btn-warning btn-sm edit-post"><i class="fas fa-pencil-alt"></i></a>';
+                        // $button .= '&nbsp';
+                        // $button .= '<button type="button" name="delete" id="hapus" data-id="' . $data->id . '" class="delete btn btn-danger btn-sm"><i class="fas fa-trash"></i></button>';
+                        return $button;
+                    })
+                    ->rawColumns(['action','nama_siswa','tahun_lulus'])
+                    ->addIndexColumn()->make(true);
+            }
         }
 
     }
