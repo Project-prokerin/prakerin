@@ -64,35 +64,33 @@
                         </div>
                     </div>
                     @endif
-
-                    @if (Auth::user()->role == 'hubin' or Auth::user()->role == 'kaprog')
-                    <div class="mb-2 col-12 row">
-                        <label for="" class="col-sm-4 col-form-label">Nilai Sekolah</label>
-                        <div class="mb-3 col-sm-3">
-                            <input type="number" name="" id="" class="form-control-sm @error('')  is-invalid  @enderror form-control" value="{{ old('') }}" >
-                        </div>
-                    </div>
-                    @endif
-
-                    @if (Auth::user()->role == 'siswa' or Auth::user()->role == 'admin')
-                    <div class="mb-2 col-12 row">
-                        <label for="" class="col-sm-4 col-form-label">Nilai Perusahaan</label>
-                        <div class="mb-3 col-sm-3">
-                            <input type="number" name="" id="" class="form-control-sm @error('')  is-invalid  @enderror form-control" value="{{ old('') }}" >
-                        </div>
-                    </div>
-                    @endif
-
                     <div class="mb-2 col-12 row">
                         <label for="" class="col-sm-4 col-form-label">Aspek Yang Dinilai</label>
                         <div class="mb-3 col-8">
                             <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
                         </div>
                     </div>
+                    @if (Auth::user()->role == 'hubin' or Auth::user()->role == 'kaprog')
+                    <div class="mb-2 col-12 row">
+                        <label for="" class="col-sm-4 col-form-label">Nilai</label>
+                        <div class="mb-3 col-sm-3">
+                            <input type="number" name="" id="nilai" class="form-control-sm @error('')  is-invalid  @enderror form-control" value="{{ old('') }}" >
+                        </div>
+                    </div>
+                    @endif
+
+                    @if (Auth::user()->role == 'siswa' or Auth::user()->role == 'admin')
+                    <div class="mb-2 col-12 row">
+                        <label for="" class="col-sm-4 col-form-label">Nilai</label>
+                        <div class="mb-3 col-sm-3">
+                            <input type="number" name="" id="nilai" class="form-control-sm @error('')  is-invalid  @enderror form-control" value="{{ old('') }}" >
+                        </div>
+                    </div>
+                    @endif
                     <div class="mb-2 col-12 row">
                         <label for="" class="col-sm-4 col-form-label">Keterangan</label>
                         <div class="mb-3 col-sm-3">
-                            <input type="text" name="" id="" class="form-control-sm @error('')  is-invalid  @enderror form-control" value="{{ old('') }}" >
+                            <input type="text" name="" id="keterangan" class="form-control-sm @error('')  is-invalid  @enderror form-control" value="{{ old('') }}" disabled>
                         </div>
                     </div>
                     <div class="mb-2 col-12 row">
@@ -163,5 +161,30 @@
 
 @endsection
 @push('script')
+<script>
+    $(document).ready(function () {
 
+        $('#nilai').keyup(function (e) {
+        nilai = $('#nilai').val();
+        console.log(nilai);
+        if(nilai > 8.60)
+        {
+            $('#keterangan').val('A');
+        }else
+        if(nilai > 7.10 && nilai < 8.59){
+            $('#keterangan').val('B');
+        }
+        else
+        if (nilai > 6 && nilai < 7.09)  {
+            $('#keterangan').val('C');
+        }else
+        if (nilai < 6) {
+            $('#keterangan').val('D');
+        }else{
+             $('#keterangan').val('');
+        }
+        })
+
+    })
+</script>
 @endpush

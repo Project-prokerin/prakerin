@@ -367,6 +367,10 @@ Route::prefix('admin')->middleware(['web', 'auth', 'role:bkk,hubin,admin,kurikul
     Route::middleware('role:hubin,admin,kurikulum,tu,siswa')->group(function () {
         Route::get('nilai_prakerin', [Nilai_PrakerinController::class, 'index'])->name('nilai_prakerin.index');
         Route::get('nilai_prakerin/ajax', [Nilai_PrakerinController::class, 'ajax'])->name('nilai_prakerin.ajax');
+        Route::post('nilai_prakerin/ajax', [Nilai_PrakerinController::class, 'ajax'])->name('nilai_prakerin.ajax');
+        Route::get('nilai_prakerin/column/ajax', [Nilai_PrakerinController::class, 'getNameColumn'])->name('nilai_prakerin.getNameColumn');
+        Route::get('nilai_prakerin/get_option/ajax', [Nilai_PrakerinController::class, 'get_option'])->name('nilai_prakerin.get_option');
+        // Route::post('nilai_prakerin/get_option/ajax', [Nilai_PrakerinController::class, 'ajax'])->name('nilai_prakerin.ajax');
         Route::get('nilai_prakerin/detail/{id}', [Nilai_PrakerinController::class, 'detail'])->name('nilai_prakerin.detail');
         Route::get('nilai_prakerin/tambah', [Nilai_PrakerinController::class, 'tambah'])->name('nilai_prakerin.tambah');
         Route::post('nilai_prakerin/tambah/post', [Nilai_PrakerinController::class, 'store'])->name('nilai_prakerin.post');
