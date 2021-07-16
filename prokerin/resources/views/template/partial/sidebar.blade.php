@@ -304,6 +304,12 @@
                     <span>Pembekalan Magang</span>
                 </a>
             </li>
+            <li class="@if (Request::is('admin/nilai_prakerin','admin/nilai_prakerin/*')) active @endif">
+                <a href="{{ route('nilai_prakerin.index') }}" class="nav-link">
+                    <i class="fas fa-th"></i>
+                    <span>Nilai Data Prakerin</span>
+                </a>
+            </li>
             @if(siswa('data_prakerin')->status === 'Pengajuan' || empty(siswa('data_prakerin')))
             @else
             <li class="@if (Request::is('user/status','user/status/*')) active @endif">
