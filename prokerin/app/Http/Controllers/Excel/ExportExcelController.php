@@ -15,6 +15,7 @@ use App\Exports\siswa\SiswaExport as SiswaExportt;
 use App\Exports\jurnalh\JurnalHExport as JurnalHExportt;
 use App\Exports\jurnalp\JurnalPExport as JurnalPExportt;
 use App\Exports\jurusan\jurusanExport;
+use App\Exports\nilai_prakerin\siswa\multiExport as Nilai_prakerinSiswaMultiExport;
 use App\Exports\pembekalan\multiExport as PembekalanMultiExport;
 use App\Exports\penelusuran_tamtan\multiExport as Penelusuran_tamtanMultiExport;
 use App\Exports\siswa\multiExport as SiswaMultiExport;
@@ -38,6 +39,7 @@ use App\Models\Surat_keluar;
 use App\Models\Surat_M;
 use App\Models\Surat_masuk;
 use App\Models\Penelusuran_tamatan;
+use Carbon\Carbon;
 
 // use Maatwebsite\Excel\Facades\Excel;
 class ExportExcelController extends Controller
@@ -210,5 +212,16 @@ public function __construct(Excel $excel)
             return redirect('/admin/penelusuran_tamatan')->with('gagal', 'data anda masih kosong');
         }
         return $this->excel->download(new Penelusuran_tamtanMultiExport($pen,$stat), 'Data Penelusuran Tamatan.xlsx');
+    }
+
+    public function nilai_prakerin()
+    {
+        $siswa = Siswa::select('id_kelas')->distinct()->with('kelas')->get();
+        if (count($siswa) < 1) {
+            return redirect('/admin/nilai_prkaerin')->with('gagal', 'data anda masih kosong');
+        }
+        $sekarang = Carbon::now()->format('Y');
+        $tahun_depan =  Carbon::now()->addYear(1)->format('Y');
+        return $this->excel->download(new Nilai_prakerinSiswaMultiExport($siswa), "Data Nilai Akhir prakerin tahun $sekarang - $tahun_depan.xlsx");
     }
 }
