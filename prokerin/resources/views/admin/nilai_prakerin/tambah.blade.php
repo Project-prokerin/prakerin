@@ -6,8 +6,9 @@
 @section('title', 'Prakerin | Nilai Data Prakerin Siswa')
 @section('judul', 'Nilai Data Prakerin Siswa ')
 @section('breadcrump')
-        <div class="breadcrumb-item "><a href="{{ route('index.user') }}"><i class="fas fa-tachometer-alt"></i> DASBOARD</a></div>
-        <div class="breadcrumb-item"> <i class="fas fa-newspaper"></i> NILAI PRAKERIN SISWA</div>
+<div class="breadcrumb-item "><a href="{{ route('index.user') }}"><i class="fas fa-tachometer-alt"></i> DASBOARD</a>
+</div>
+<div class="breadcrumb-item"> <i class="fas fa-newspaper"></i> NILAI PRAKERIN SISWA</div>
 @endsection
 @section('main')
 <div class="card" style="">
@@ -67,14 +68,21 @@
                     <div class="mb-2 col-12 row">
                         <label for="" class="col-sm-4 col-form-label">Aspek Yang Dinilai</label>
                         <div class="mb-3 col-8">
-                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                            <select name="" id="aspek" class="form-control  aspek  @error('')  is-invalid  @enderror select2">
+                                <option value="">--Pilih Aspek--</option>
+                                @foreach ($kategori as $item)
+                                <option value="{{ $item->id }}">{{ $item->aspek_yang_dinilai }}</option>
+                                @endforeach
+                            </select>
                         </div>
                     </div>
                     @if (Auth::user()->role == 'hubin' or Auth::user()->role == 'kaprog')
                     <div class="mb-2 col-12 row">
                         <label for="" class="col-sm-4 col-form-label">Nilai</label>
                         <div class="mb-3 col-sm-3">
-                            <input type="number" name="" id="nilai" class="form-control-sm @error('')  is-invalid  @enderror form-control" value="{{ old('') }}" >
+                            <input type="number" name="" id="nilai"
+                                class="form-control-sm @error('')  is-invalid  @enderror form-control"
+                                value="{{ old('') }}">
                         </div>
                     </div>
                     @endif
@@ -83,23 +91,27 @@
                     <div class="mb-2 col-12 row">
                         <label for="" class="col-sm-4 col-form-label">Nilai</label>
                         <div class="mb-3 col-sm-3">
-                            <input type="number" name="" id="nilai" class="form-control-sm @error('')  is-invalid  @enderror form-control" value="{{ old('') }}" >
+                            <input type="number" name="" id="nilai"
+                                class="form-control-sm @error('')  is-invalid  @enderror form-control"
+                                value="{{ old('') }}">
                         </div>
                     </div>
                     @endif
                     <div class="mb-2 col-12 row">
                         <label for="" class="col-sm-4 col-form-label">Keterangan</label>
                         <div class="mb-3 col-sm-3">
-                            <input type="text" name="" id="keterangan" class="form-control-sm @error('')  is-invalid  @enderror form-control" value="{{ old('') }}" disabled>
+                            <input type="text" name="" id="keterangan"
+                                class="form-control-sm @error('')  is-invalid  @enderror form-control"
+                                value="{{ old('') }}" disabled>
                         </div>
                     </div>
                     <div class="mb-2 col-12 row">
                         <label for="" class="col-sm-4 col-form-label">Domain</label>
                         <div class="mb-3 col-8">
-                            <select name="" class="form-control   @error('')  is-invalid  @enderror select2">
+                            <select name="" id="domain" class="form-control domain    @error('')  is-invalid  @enderror select2" disabled>
                                 <option value="">--Pilih Domain--</option>
-                                <option value="pelaksanaan">Pelaksanaan</option>
-                                <option value="keterampilan">Keterampilan</option>
+                                {{-- <option value="pelaksanaan">Pelaksanaan</option>
+                                <option value="keterampilan">Keterampilan</option> --}}
                             </select>
                         </div>
                     </div>
@@ -115,9 +127,9 @@
                                 </div>
                                 <table class="ml-5 table-sm table-bordered">
                                     <thead class="text-center">
-                                    <tr>
-                                        <th scope="col" colspan="2" style="width: 300px;">Keterangan</th>
-                                    </tr>
+                                        <tr>
+                                            <th scope="col" colspan="2" style="width: 300px;">Keterangan</th>
+                                        </tr>
                                     </thead>
                                     <tbody class="text-center">
                                         <tr>
@@ -137,8 +149,9 @@
                                             <td>C</td>
                                         </tr>
                                         <tr>
-                                            <td>< 6.00</td>
-                                            <td>D</td>
+                                            <td>
+                                                < 6.00</td> <td>D
+                                            </td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -286,26 +299,57 @@
     $(document).ready(function () {
 
         $('#nilai').keyup(function (e) {
-        nilai = $('#nilai').val();
-        console.log(nilai);
-        if(nilai > 8.60)
-        {
-            $('#keterangan').val('A');
-        }else
-        if(nilai > 7.10 && nilai < 8.59){
-            $('#keterangan').val('B');
-        }
-        else
-        if (nilai > 6 && nilai < 7.09)  {
-            $('#keterangan').val('C');
-        }else
-        if (nilai < 6) {
-            $('#keterangan').val('D');
-        }else{
-             $('#keterangan').val('');
-        }
+            nilai = $('#nilai').val();
+            console.log(nilai);
+            if (nilai > 8.60) {
+                $('#keterangan').val('A');
+            } else
+            if (nilai > 7.10 && nilai < 8.59) {
+                $('#keterangan').val('B');
+            } else
+            if (nilai > 6 && nilai < 7.09) {
+                $('#keterangan').val('C');
+            } else
+            if (nilai < 6) {
+                $('#keterangan').val('D');
+            } else {
+                $('#keterangan').val('');
+            }
         })
 
+        // ngambil domain
+          $('.siswa').change(function (e) {
+            id = $(this).val();
+            console.log('berubah');
+            $.ajax({
+                url: '/admin/nilai_prakerin/option/tambah/ajax/'+id,
+                method: 'get',
+                success: function (response) {
+                    $('.domain').append('<option value="'+response.jurusan.id+'" selected>'+response.jurusan.domain+'</option>')
+                },
+                fail: function (erorr) {
+
+                }
+            });
+        })
+
+        $('.aspek').change(function (e) {
+            id = $(this).val();
+            console.log('berubah');
+            $.ajax({
+                url: '/admin/nilai_prakerin/option/tambah/ajax/'+id,
+                method: 'get',
+                success: function (response) {
+                    $('.domain').append('<option value="'+response.kategori.id+'" selected>'+response.kategori.domain+'</option>')
+                },
+                fail: function (erorr) {
+
+                }
+            });
+        })
+
+
     })
+
 </script>
 @endpush
