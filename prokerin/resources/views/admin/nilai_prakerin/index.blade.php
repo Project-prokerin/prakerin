@@ -59,10 +59,6 @@
                             <tr>
                                 <td> 1</td>
                                 <td></td>
-                                {{-- @foreach ($kategori as $item)
-                                <td> </td>
-                                @endforeach
-                                <td></td> --}}
                             </tr>
                         </tbody>
                     </table>

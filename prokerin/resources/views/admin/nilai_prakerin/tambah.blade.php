@@ -145,10 +145,131 @@
                             </div>
                         </div>
                     </div>
-                    <div class="modal-footer mt-4">
-                        <div class="row" style="">
-                            <button type="submit" class="btn btn-success mr-3"><i class="fas fa-check"></i> submit</button>
-                            <a href="" type="submit" class="btn btn-danger"><i class="fas fa-times"></i> Batal</a>
+
+                </div>
+
+                <div class="card-body">
+                    <div class="container mt-4">
+                        <h5 class="card-title">Kategori Nilai Prakerin</h5>
+                    </div><hr>
+
+                    <div class="row">
+                        {{-- card col 1 --}}
+                        <div class="col-6">
+                            <div class="">
+                                <div class="col-11">
+                                    <h6 class="">A. Pelaksanaan</h6>
+                                </div>
+                                <div class="">
+                                    <div class="mt-2 mb-2 col-12 row">
+                                        <label for="" class="ml-4 col-sm-5 col-form-label">Kedisiplinan</label>
+                                        <div class="mb-3 col-sm-4">
+                                            <input type="number" name="" id="" class="form-control-sm @error('')  is-invalid  @enderror form-control" value="{{ old('') }}" >
+                                            @error('')
+                                                <div class="invalid-feedback">{{ $message }}</div>
+                                            @enderror
+                                        </div>
+                                    </div>
+                                    <div class="mb-2 col-12 row">
+                                        <label for="" class="ml-4 col-sm-5 col-form-label">Tanggung Jawab</label>
+                                        <div class="mb-3 col-sm-4">
+                                            <input type="number" name="" id="" class="form-control-sm @error('')  is-invalid  @enderror form-control" value="{{ old('') }}" >
+                                            @error('')
+                                                <div class="invalid-feedback">{{ $message }}</div>
+                                            @enderror
+                                        </div>
+                                    </div>
+                                    <div class="mb-2 col-12 row">
+                                        <label for="" class="ml-4 col-sm-5 col-form-label">Inisiatif</label>
+                                        <div class="mb-3 col-sm-4">
+                                            <input type="number" name="" id="" class="form-control-sm @error('')  is-invalid  @enderror form-control" value="{{ old('') }}" >
+                                            @error('')
+                                                <div class="invalid-feedback">{{ $message }}</div>
+                                            @enderror
+                                        </div>
+                                    </div>
+                                    <div class="mb-2 col-12 row">
+                                        <label for="" class="ml-4 col-sm-5 col-form-label">Kerajinan</label>
+                                        <div class="mb-3 col-sm-4">
+                                            <input type="number" name="" id="" class="form-control-sm @error('')  is-invalid  @enderror form-control" value="{{ old('') }}" >
+                                            @error('')
+                                                <div class="invalid-feedback">{{ $message }}</div>
+                                            @enderror
+                                        </div>
+                                    </div>
+                                    <div class="mb-2 col-12 row">
+                                        <label for="" class="ml-4 col-sm-5 col-form-label">Kerja Sama</label>
+                                        <div class="mb-3 col-sm-4">
+                                            <input type="number" name="" id="" class="form-control-sm @error('')  is-invalid  @enderror form-control" value="{{ old('') }}" >
+                                            @error('')
+                                                <div class="invalid-feedback">{{ $message }}</div>
+                                            @enderror
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        {{-- card col 2 --}}
+                        <div class="col-6">
+                            <div class="">
+                                <div class="col-11">
+                                    <h6 class="">B. Keterampilan</h6>
+                                </div>
+                                <div class="">
+                                    <div class="mt-2 mb-2 col-12 row">
+                                        <label for="" class="ml-4 col-sm-5 col-form-label">Motor Otomotif</label>
+                                        <div class="mb-3 col-sm-4">
+                                            <input type="number" name="" id="" class="form-control-sm @error('')  is-invalid  @enderror form-control" value="{{ old('') }}" >
+                                            @error('')
+                                                <div class="invalid-feedback">{{ $message }}</div>
+                                            @enderror
+                                        </div>
+                                    </div>
+                                    <div class="mb-2 col-12 row">
+                                        <label for="" class="ml-4 col-sm-5 col-form-label">Listrik Otomotif</label>
+                                        <div class="mb-3 col-sm-4">
+                                            <input type="number" name="" id="" class="form-control-sm @error('')  is-invalid  @enderror form-control" value="{{ old('') }}" >
+                                            @error('')
+                                                <div class="invalid-feedback">{{ $message }}</div>
+                                            @enderror
+                                        </div>
+                                    </div>
+                                    <div class="mb-2 col-12 row">
+                                        <label for="" class="ml-4 col-sm-5 col-form-label">Chasis Dan Pemindahan Tenaga</label>
+                                        <div class="mb-3 col-sm-4">
+                                            <input type="number" name="" id="" class="form-control-sm @error('')  is-invalid  @enderror form-control" value="{{ old('') }}" >
+                                            @error('')
+                                                <div class="invalid-feedback">{{ $message }}</div>
+                                            @enderror
+                                        </div>
+                                    </div>
+                                    <div class="mb-2 col-12 row">
+                                        <label for="" class="ml-4 col-sm-5 col-form-label">Pompa Sentrifugal</label>
+                                        <div class="mb-3 col-sm-4">
+                                            <input type="number" name="" id="" class="form-control-sm @error('')  is-invalid  @enderror form-control" value="{{ old('') }}" >
+                                            @error('')
+                                                <div class="invalid-feedback">{{ $message }}</div>
+                                            @enderror
+                                        </div>
+                                    </div>
+                                    <div class="mb-2 col-12 row">
+                                        <label for="" class="ml-4 col-sm-5 col-form-label">Las Listrik</label>
+                                        <div class="mb-3 col-sm-4">
+                                            <input type="number" name="" id="" class="form-control-sm @error('')  is-invalid  @enderror form-control" value="{{ old('') }}" >
+                                            @error('')
+                                                <div class="invalid-feedback">{{ $message }}</div>
+                                            @enderror
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal-footer mt-4">
+                                <div class="row" style="">
+                                    <button type="submit" class="btn btn-success mr-3"><i class="fas fa-check"></i> submit</button>
+                                    <a href="" type="submit" class="btn btn-danger"><i class="fas fa-times"></i> Batal</a>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
