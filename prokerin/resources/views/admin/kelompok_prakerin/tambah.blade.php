@@ -63,7 +63,7 @@
                                     <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
                             </div>
-                        
+
                         <div class="form-group col-6">
                             <label class="d-block">Nama Guru</label>
                             <select class="form-control select2 @error('id_guru')  is-invalid  @enderror" name="id_guru" id="">
@@ -140,10 +140,10 @@
                    </div>
                 </div>
             </div>
-            {{-- <button type="submit" class="btn btn-success ml-3" style="margin-top:20px;"><i class="fas fa-check"></i> submit</button>
+            <button type="submit" class="btn btn-success ml-3" style="margin-top:20px;"><i class="fas fa-check"></i> submit</button>
             <a href="{{ route('kelompok.index') }}" type="submit" class="btn btn-danger"style="margin-top:20px;">
                 <i class="fas fa-times"></i> Cancel
-            </a> --}}
+            </a>
         </form>
     </div>
 </div>
@@ -161,7 +161,7 @@
                 url: 'fetch/' + id,
                 success: function (response) {
                 var response = JSON.parse(response);
-                console.log(response);   
+                console.log(response);
                 $('.prakerin').empty();
                 $('.prakerin').append(`<option value="0" disabled selected>--Cari Siswa--</option>`);
                 response.forEach(element => {

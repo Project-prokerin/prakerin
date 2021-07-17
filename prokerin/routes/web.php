@@ -374,7 +374,8 @@ Route::prefix('admin')->middleware(['web', 'auth', 'role:bkk,hubin,admin,kurikul
 
         Route::get('nilai_prakerin/detail/{id}', [Nilai_PrakerinController::class, 'detail'])->name('nilai_prakerin.detail');
         Route::get('nilai_prakerin/tambah', [Nilai_PrakerinController::class, 'tambah'])->name('nilai_prakerin.tambah');
-        Route::get('nilai_prakerin/option/tambah/ajax/{id}', [Nilai_PrakerinController::class, 'option_tambah'])->name('nilai_prakerin.tambah');
+        Route::get('nilai_prakerin/option/tambah_1/ajax/{id}', [Nilai_PrakerinController::class, 'option_tambah_1'])->name('nilai_prakerin.tambah');
+        Route::get('nilai_prakerin/option/tambah_2/ajax/{id}', [Nilai_PrakerinController::class, 'option_tambah_2'])->name('nilai_prakerin.tambah');
         Route::post('nilai_prakerin/tambah/post', [Nilai_PrakerinController::class, 'store'])->name('nilai_prakerin.post');
         Route::get('nilai_prakerin/edit/{id}', [Nilai_PrakerinController::class, 'edit'])->name('nilai_prakerin.edit');
         Route::put('nilai_prakerin/update/{nilai_prakerin}', [Nilai_PrakerinController::class, 'update'])->name('nilai_prakerin.update');
