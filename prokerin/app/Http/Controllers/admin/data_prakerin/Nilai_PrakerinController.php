@@ -15,20 +15,51 @@ class Nilai_PrakerinController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $kategori = Kategori_nilai_prakerin::all()->unique('aspek_yang_dinilai')->where('keterangan','Nilai Perusahaan');
+
+        if ($request->jurusan) {
+            $kategori = Kategori_nilai_prakerin::all()->unique('aspek_yang_dinilai')->where('keterangan', 'Nilai Perusahaan')->where('jurusan', $request->jurusan);
+            return response()->json(['data' => $kategori]);
+        }else{
+            $kategori = Kategori_nilai_prakerin::all()->unique('aspek_yang_dinilai')->where('keterangan', 'Nilai Perusahaan')->where('jurusan', "RPL");
+        }
         return view('admin.nilai_prakerin.index', compact('kategori'));
     }
 
-    public function getNameColumn()
+    public function getNameColumn($val)
     {
-        $kategori = Kategori_nilai_prakerin::select('aspek_yang_dinilai')->where('keterangan','Nilai Perusahaan')->distinct('aspek_yang_dinilai')->get();
+        if(!empty($val)){
+            $kategori = Kategori_nilai_prakerin::select('aspek_yang_dinilai')->where('keterangan', 'Nilai Perusahaan')->distinct('aspek_yang_dinilai')->where('jurusan', $val)->get();
+        }else{
+            $kategori = Kategori_nilai_prakerin::select('aspek_yang_dinilai')->where('keterangan', 'Nilai Perusahaan')->distinct('aspek_yang_dinilai')->where('jurusan','RPL')->get();
+        }
+        $kategori = Kategori_nilai_prakerin::select('aspek_yang_dinilai')->where('keterangan', 'Nilai Perusahaan')->distinct('aspek_yang_dinilai')->where('jurusan', $val)->get();
         return response()->json(['data'=> $kategori]);
     }
 
     public function get_option(){
-        $kelas = kelas::has('jurusan')->with('jurusan')->get();
+        $kelas = [
+            [
+                "id" =>"RPL",
+                "kelas" => "RPL",
+            ],
+            [
+                "id" => "MM",
+                "kelas" => "MM",
+            ],
+            [
+                "id" => "BC",
+                "kelas" => "BC",
+            ], [
+                "id" => "TKJ",
+                "kelas" => "TKJ",
+            ],
+            [
+                "id" => "TEI",
+                "kelas" => "TEI",
+            ]
+        ];
         return response()->json(['kelas' => $kelas]);
     }
 
@@ -36,11 +67,23 @@ class Nilai_PrakerinController extends Controller
     {
         if ($request->ajax()) {
             if ($request->filter) {
-                $siswa = Siswa::where('id_kelas', $request->filter)->get();
+                $kategori = Kategori_nilai_prakerin::select('id')->where('keterangan', 'Nilai Perusahaan')->where('jurusan', $request->filter)->get();
+                $arr = [];
+                foreach ($kategori as $key => $value) {
+                    $arr[] = $value->id;
+                }
+                $nilai = Nilai_prakerin::has('siswa')->select('id_siswa')->whereIn('id_ketegori', $arr)->distinct('id_siswa')->get();
+                $arr_nilai = [];
+                foreach ($nilai as $key => $value) {
+                    $arr_nilai[] = $value->id_siswa;
+                }
+                $siswa = Siswa::whereIn('id', $arr_nilai)->get();
+                $kategori = Kategori_nilai_prakerin::all()->unique('aspek_yang_dinilai')->where('keterangan', 'Nilai Perusahaan')->where('jurusan', $request->filter);
             }else{
-                $siswa = Siswa::all();
+                $siswa = Siswa::has('nilai_prakerin');
+                $kategori = Kategori_nilai_prakerin::all()->unique('aspek_yang_dinilai')->where('keterangan', 'Nilai Perusahaan');
             }
-            $kategori = Kategori_nilai_prakerin::all()->unique('aspek_yang_dinilai')->where('keterangan', 'Nilai Perusahaan');
+
             $a = datatables()->of($siswa)
                 ->addColumn('nama_siswa', function ( $nilai) {
                     if (empty($nilai->nama_siswa)) {
@@ -78,9 +121,15 @@ class Nilai_PrakerinController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function option_tambah($id)
+    {
+        $kategori = Kategori_nilai_prakerin::where('id',$id)->first();
+        return response()->json(['kategori' => $kategori ]);
+    }
     public function tambah()
     {
-        return view('admin.nilai_prakerin.tambah');
+        $kategori = Kategori_nilai_prakerin::all()->unique('aspek_yang_dinilai')->where('keterangan', 'Nilai Perusahaan');
+        return view('admin.nilai_prakerin.tambah', compact('kategori'));
     }
 
     /**
