@@ -9,12 +9,12 @@
 </style>
 
 @endpush
-@section('title', 'Prakerin | Nilai Data Prakerin')
-@section('judul', 'Nilai Data Prakerin')
+@section('title', 'Prakerin | Kategori')
+@section('judul', 'KATEGORI')
 @section('breadcrump')
 <div class="breadcrumb-item "><a href="{{ route('admin.dashboard') }}"><i class="fas fa-tachometer-alt"></i>
         DASBOARD</a></div>
-<div class="breadcrumb-item"> <i class="fas fa-newspaper"></i> NILAI DATA PRAKERIN</div>
+<div class="breadcrumb-item"> <i class="fas fa-newspaper"></i> KATEGORI</div>
 @endsection
 @section('main')
 @if (session('success'))
@@ -38,7 +38,7 @@
     <div class="col-12">
         <div class="card">
             <div class="card-header">
-                <h4>Nilai Data Prakerin</h4>
+                <h4>Kategori</h4>
             </div>
             <div class="card-body">
                 <div class="row">
@@ -48,7 +48,7 @@
                     </div>
                     <div class="col-md-6">
                         <div class="row">
-                            <div class="col-md-7">
+                            <div class="col-md-4">
                                 <select name="" class="form-control mb-2  jurusan  @error('')  is-invalid  @enderror select2">
                                     <option value="RPL">--Pilih Jurusan--</option>
                                     <option value="RPL" selected>RPL</option>
@@ -58,8 +58,8 @@
                                     <option value="TEI">TEI</option>
                                 </select>
                             </div>
-                            <div class="col-md-5">
-                                <a href="/admin/export/excel/nilai_prakerin" class="btn btn-success mr-3  ml-2"> Excel
+                            <div class="col-md-8">
+                                <a href="/admin/export/excel/nilai_prakerin" class="btn btn-success mr-3 ml-2"> Excel
                                     <i class="fas fa-cloud-download-alt"></i></button></a>
                                 <label>Search:<input type="search" id="search" class="form-control form-control-sm" placeholder=""
                                         aria-controls="table19"></label>
@@ -74,12 +74,17 @@
 
                     <table class="table table-striped" id="table9">
                         <thead class="text-center">
-                            {{-- @if (Auth::user()->role == 'admin' or Auth::user()->role == '')
+                            @if (Auth::user()->role == 'admin' or Auth::user()->role == '')
                             <tr>
                                 <th>No</th>
                                 <th>Siswa</th>
+                                <th>Jurusan</th>
+                                <th>Aspek yang dinilai</th>
+                                <th>Domain</th>
+                                <th>Nilai Sekolah</th>
+                                <th>Nilai Perusahaan</th>
                             </tr>
-                            @endif --}}
+                            @endif
                         </thead>
                         <tbody class="text-center">
                             <tr>
@@ -95,5 +100,5 @@
 </div>
 @endsection
 @push('script')
-<script src="{{ asset('assets/js/pages-admin/nilai-prakerin.js') }}"></script>
+<script src="{{ asset('assets/js/pages-admin/kategori.js') }}"></script>
 @endpush

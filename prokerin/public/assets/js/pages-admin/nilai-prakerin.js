@@ -25,7 +25,7 @@ $(document).ready(function () {
             success: function (response) {
                 console.log(response);
                 $('#table9 tr').eq(0).empty().append();
-                $('#table9 tr ').eq(0).append('<th>No</th>' + '<th>Nama Siswa</th>');
+                $('#table9 tr ').eq(0).append('<th>No</th>' + '<th style="width:100px;">Nama Siswa</th>');
                 response.data.forEach(element => {
                     if (element.aspek_yang_dinilai) {
                         $('#table9 tr ').eq(0).append('<th>' + element.aspek_yang_dinilai + '</th>');
@@ -34,7 +34,7 @@ $(document).ready(function () {
                     }
 
                 });
-                $('#table9 tr ').eq(0).append('<th>Action</th>');
+                $('#table9 tr ').eq(0).append('<th style="width:100px;">Action</th>');
             },
 
             error: function (data) {

@@ -2,17 +2,17 @@
 @push('link')
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
 @endpush
-@section('title', 'Prakerin | Nilai Data Prakerin Siswa')
-@section('judul', 'Nilai Data Prakerin Siswa ')
+@section('title', 'Prakerin | Kategori')
+@section('judul', 'KATEGORI')
 @section('breadcrump')
 <div class="breadcrumb-item "><a href="{{ route('index.user') }}"><i class="fas fa-tachometer-alt"></i> DASBOARD</a>
 </div>
-<div class="breadcrumb-item"> <i class="fas fa-newspaper"></i> NILAI PRAKERIN SISWA</div>
+<div class="breadcrumb-item"> <i class="fas fa-newspaper"></i> KATEGORI</div>
 @endsection
 @section('main')
 <div class="card" style="">
     <div class="card-header">
-        <h4 class="pt-2 card-title"><i class="fas fa-th"></i> Tambah Data Nilai Prakerin</h4>
+        <h4 class="pt-2 card-title"><i class="fas fa-th"></i> Tambah Data Nilai Kategori</h4>
     </div>
     <div class="card-body">
         <form action="{{ route('nilai_prakerin.post') }}" method="POST">

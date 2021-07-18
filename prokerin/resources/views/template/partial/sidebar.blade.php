@@ -79,13 +79,33 @@
                 </a>
             </li>
             @endif
-            @if (Auth::user()->role == 'hubin' or Auth::user()->role == 'admin' or Auth::user()->role == 'tu' or Auth::user()->role == 'siswa' or $role == 'kurikulum')
+            {{-- @if (Auth::user()->role == 'hubin' or Auth::user()->role == 'admin' or Auth::user()->role == 'tu' or Auth::user()->role == 'siswa' or $role == 'kurikulum')
             <li class="@if (Request::is('admin/nilai_prakerin','admin/nilai_prakerin/*')) active @endif">
                 <a href="{{ route('nilai_prakerin.index') }}" class="nav-link">
                     <i class="fas fa-th"></i>
                     <span>Nilai Data Prakerin</span>
                 </a>
             </li>
+            @endif --}}
+            @if(Auth::user()->role == 'hubin' or Auth::user()->role == 'admin' or Auth::user()->role == 'tu' or Auth::user()->role == 'siswa' or Auth::user()->role == 'kurikulum')
+            <li class="dropdown
+            @if (Request::is('admin/surat_keluar','admin/surat_keluar/*'))
+            active
+            @elseif(Request::is('admin/nilai_prakerin','admin/nilai_prakerin/*'))
+            active
+            @endif
+            ">
+                <a href="" class="nav-link has-dropdown"><i class="fas fa-th"></i><span> Nilai Prakerin</span></a>
+                <ul class="dropdown-menu" style="display: none;">
+                    <li class="@if (Request::is('admin/surat_keluar','admin/surat_keluar/*')) active @endif"><a class="nav-link "
+                            href="{{ route('admin.surat_keluar.index') }}">Kategori</a></li>
+                    <li class="@if (Request::is('admin/nilai_prakerin','admin/nilai_prakerin/*')) active @endif"><a class="nav-link "
+                            href="{{ route('nilai_prakerin.index') }}">Nilai Data Prakerin</a></li>
+
+                </ul>
+
+            </li>
+
             @endif
             @if($role == "hubin" or Auth::user()->role == "kepsek" or $role == "admin" or $role == "kaprog")
             <li class="dropdown
@@ -310,6 +330,7 @@
                     <span>Nilai Data Prakerin</span>
                 </a>
             </li>
+
             @if(siswa('data_prakerin')->status === 'Pengajuan' || empty(siswa('data_prakerin')))
             @else
             <li class="@if (Request::is('user/status','user/status/*')) active @endif">
