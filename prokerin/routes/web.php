@@ -368,7 +368,7 @@ Route::prefix('admin')->middleware(['web', 'auth', 'role:bkk,hubin,admin,kurikul
     });
 
     // nilai prakerin
-    Route::middleware('role:hubin,admin,kurikulum,tu,siswa')->group(function () {
+    Route::middleware('role:hubin,admin,kurikulum,tu,siswa,kaprog')->group(function () {
         Route::get('nilai_prakerin', [Nilai_PrakerinController::class, 'index'])->name('nilai_prakerin.index');
         Route::post('nilai_prakerin/header/ajax', [Nilai_PrakerinController::class, 'index'])->name('nilai_prakerin.header.index');
         Route::get('nilai_prakerin/ajax', [Nilai_PrakerinController::class, 'ajax'])->name('nilai_prakerin.ajax');

@@ -74,7 +74,7 @@
 
                     <table class="table table-striped" id="table9">
                         <thead class="text-center">
-                            @if (Auth::user()->role == 'admin' or Auth::user()->role == '')
+                            @if (Auth::user()->role == 'admin' or Auth::user()->role == 'kaprog')
                             <tr>
                                 <th>No</th>
                                 <th>Siswa</th>

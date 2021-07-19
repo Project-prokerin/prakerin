@@ -79,14 +79,6 @@
                 </a>
             </li>
             @endif
-            {{-- @if (Auth::user()->role == 'hubin' or Auth::user()->role == 'admin' or Auth::user()->role == 'tu' or Auth::user()->role == 'siswa' or $role == 'kurikulum')
-            <li class="@if (Request::is('admin/nilai_prakerin','admin/nilai_prakerin/*')) active @endif">
-                <a href="{{ route('nilai_prakerin.index') }}" class="nav-link">
-                    <i class="fas fa-th"></i>
-                    <span>Nilai Data Prakerin</span>
-                </a>
-            </li>
-            @endif --}}
             @if(Auth::user()->role == 'kaprog' or Auth::user()->role == 'hubin' or Auth::user()->role == 'admin' or Auth::user()->role == 'tu' or Auth::user()->role == 'siswa' or Auth::user()->role == 'kurikulum')
             <li class="dropdown
             @if (Request::is('admin/kategori','admin/kategori/*'))
