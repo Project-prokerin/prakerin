@@ -89,7 +89,7 @@
             @endif --}}
             @if(Auth::user()->role == 'kaprog' or Auth::user()->role == 'hubin' or Auth::user()->role == 'admin' or Auth::user()->role == 'tu' or Auth::user()->role == 'siswa' or Auth::user()->role == 'kurikulum')
             <li class="dropdown
-            @if (Request::is('admin/surat_keluar','admin/surat_keluar/*'))
+            @if (Request::is('admin/kategori','admin/kategori/*'))
             active
             @elseif(Request::is('admin/nilai_prakerin','admin/nilai_prakerin/*'))
             active
@@ -97,8 +97,8 @@
             ">
                 <a href="" class="nav-link has-dropdown"><i class="fas fa-th"></i><span> Nilai Prakerin</span></a>
                 <ul class="dropdown-menu" style="display: none;">
-                    <li class="@if (Request::is('admin/surat_keluar','admin/surat_keluar/*')) active @endif"><a class="nav-link "
-                            href="{{ route('admin.surat_keluar.index') }}">Kategori</a></li>
+                    <li class="@if (Request::is('admin/kategori','admin/kategori/*')) active @endif"><a class="nav-link "
+                            href="{{ route('kategori.index') }}">Kategori</a></li>
                     <li class="@if (Request::is('admin/nilai_prakerin','admin/nilai_prakerin/*')) active @endif"><a class="nav-link "
                             href="{{ route('nilai_prakerin.index') }}">Nilai Data Prakerin</a></li>
 
@@ -324,12 +324,26 @@
                     <span>Pembekalan Magang</span>
                 </a>
             </li>
-            <li class="@if (Request::is('admin/nilai_prakerin','admin/nilai_prakerin/*')) active @endif">
-                <a href="{{ route('nilai_prakerin.index') }}" class="nav-link">
-                    <i class="fas fa-th"></i>
-                    <span>Nilai Data Prakerin</span>
-                </a>
+            @if(Auth::user()->role == 'siswa')
+            <li class="dropdown
+            @if (Request::is('admin/kategori','admin/kategori/*'))
+            active
+            @elseif(Request::is('admin/nilai_prakerin','admin/nilai_prakerin/*'))
+            active
+            @endif
+            ">
+                <a href="" class="nav-link has-dropdown"><i class="fas fa-th"></i><span> Nilai Prakerin</span></a>
+                <ul class="dropdown-menu" style="display: none;">
+                    <li class="@if (Request::is('admin/kategori','admin/kategori/*')) active @endif"><a class="nav-link "
+                            href="{{ route('kategori.index') }}">Kategori</a></li>
+                    <li class="@if (Request::is('admin/nilai_prakerin','admin/nilai_prakerin/*')) active @endif"><a class="nav-link "
+                            href="{{ route('nilai_prakerin.index') }}">Nilai Data Prakerin</a></li>
+
+                </ul>
+
             </li>
+
+            @endif
 
             @if(siswa('data_prakerin')->status === 'Pengajuan' || empty(siswa('data_prakerin')))
             @else

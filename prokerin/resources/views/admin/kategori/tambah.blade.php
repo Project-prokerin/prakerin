@@ -27,9 +27,9 @@
                             <select name="id_siswa" id="siswa"
                             class="form-control   @error('siswa')  is-invalid  @enderror select2">
                                 <option value="">--Cari Siswa--</option>
-                                @foreach ($siswa as $item)
+                                {{-- @foreach ($siswa as $item)
                                 <option value="{{ $item->id }}">{{ $item->nama_siswa }}</option>
-                                @endforeach
+                                @endforeach --}}
                             </select>
                             <div id="invalid_siswa" class="invalid-feedback d-none"></div>
                         </div>

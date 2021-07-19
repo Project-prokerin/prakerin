@@ -43,7 +43,7 @@
             <div class="card-body">
                 <div class="row">
                     <div class="col-md-6">
-                        <a href="/admin/nilai_prakerin/tambah" class="btn btn-primary ml-3 "> Tambah Data <i
+                        <a href="/admin/kategori/tambah" class="btn btn-primary ml-3 "> Tambah Data <i
                                 class="fas fa-plus"></i></button></a>
                     </div>
                     <div class="col-md-6">

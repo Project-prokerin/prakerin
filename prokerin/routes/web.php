@@ -8,6 +8,7 @@ use App\Http\Controllers\admin\siswa\siswaController;
 use App\Http\Controllers\admin\guru\guruController;
 use App\Http\Controllers\admin\perusahaan\perusahaanController;
 use App\Http\Controllers\admin\data_prakerin\data_prakerinController;
+use App\Http\Controllers\admin\data_prakerin\KategoriController;
 use App\Http\Controllers\admin\data_prakerin\pengajuan_prakerinController;
 use App\Http\Controllers\admin\pembekalan\pembekalanContoller;
 use App\Http\Controllers\admin\jurnal\jurnal_harianController;
@@ -85,7 +86,7 @@ Route::prefix('admin')->middleware(['web', 'auth', 'role:admin,kepsek,tu,kaprog,
         Route::get('surat_masuk/{id}/disposisi/view', [DiposisiController::class, 'detail'])->name('desposisi.view');
         Route::get('surat_masuk/{id}/disposisi/tambah/', [DiposisiController::class, 'tambah_disposisi'])->name('desposisi.tambah');
         Route::get('surat_masuk/{id}/disposisi/edit', [DiposisiController::class, 'edit'])->name('desposisi.edit');
-        
+
         Route::post('surat_masuk/feedback/store', [DiposisiController::class, 'feedback_store'])->name('disposisi.feedback.store');
         // Route::patch('surat_masuk/{id}/feedback/edit', [DiposisiController::class, 'feedback_edit'])->name('disposisi.feedback.edit');
         Route::put('surat_masuk/{id}/feedback/update', [DiposisiController::class, 'feedback_update'])->name('disposisi.feedback.update');
@@ -317,7 +318,7 @@ Route::middleware(['web', 'auth', 'role:kaprog,hubin,admin,kepsek'])->group(func
 });
 
 // bkk                                                               #disini
-Route::prefix('admin')->middleware(['web', 'auth', 'role:bkk,hubin,admin,kurikulum,tu'])->group(function () {
+Route::prefix('admin')->middleware(['web', 'auth', 'role:bkk,hubin,admin,kurikulum,tu,kaprog,siswa'])->group(function () {
     Route::middleware('role:bkk,hubin,admin')->group(function () {
         Route::get('pembekalan', [pembekalanContoller::class, 'index'])->name('pembekalan.index');
         Route::get('pembekalan/ajax', [pembekalanContoller::class, 'ajax'])->name('pembekalan.ajax');
@@ -386,6 +387,26 @@ Route::prefix('admin')->middleware(['web', 'auth', 'role:bkk,hubin,admin,kurikul
         Route::post('/nilai_prakerin/destroy', [Nilai_PrakerinController::class, 'delete_all'])->name('nilai_prakerin.delete-all');
         Route::get('/export/excel/nilai_prakerin', [ExcelController::class, 'nilai_prakerin'])->name('export.nilai_prakerin');
         Route::get('/nilai_prakerin/{name}/download', [Nilai_PrakerinController::class, 'downloads'])->name('nilai_prakerin.download');
+    });
+
+    //kategori nilai
+    Route::middleware('role:hubin,admin,kurikulum,tu,siswa,kaprog')->group(function () {
+        Route::get('kategori', [KategoriController::class, 'index'])->name('kategori.index');
+        Route::post('kategori/header/ajax', [KategoriController::class, 'index'])->name('kategori.header.index');
+        Route::get('kategori/ajax', [KategoriController::class, 'ajax'])->name('kategori.ajax');
+        Route::post('kategori/ajax', [KategoriController::class, 'ajax'])->name('kategori.ajax');
+        Route::get('kategori/column/ajax/{val}', [KategoriController::class, 'getNameColumn'])->name('kategori.getNameColumn');
+        Route::get('kategori/get_option/ajax', [KategoriController::class, 'get_option'])->name('kategori.get_option');
+
+        Route::get('kategori/detail/{id}', [KategoriController::class, 'detail'])->name('kategori.detail');
+        Route::get('kategori/tambah', [KategoriController::class, 'tambah'])->name('kategori.tambah');
+        Route::post('kategori/tambah/post', [KategoriController::class, 'store'])->name('kategori.post');
+        Route::get('kategori/edit/{id}', [KategoriController::class, 'edit'])->name('kategori.edit');
+        Route::put('kategori/update/{kategori}', [KategoriController::class, 'update'])->name('kategori.update');
+        Route::delete('kategori/delete/{id}', [KategoriController::class, 'destroy'])->name('kategori.delete');
+        Route::post('/kategori/destroy', [KategoriController::class, 'delete_all'])->name('kategori.delete-all');
+        Route::get('/export/excel/kategori', [ExcelController::class, 'kategori'])->name('export.kategori');
+        Route::get('/kategori/{name}/download', [KategoriController::class, 'downloads'])->name('kategori.download');
     });
 });
 
