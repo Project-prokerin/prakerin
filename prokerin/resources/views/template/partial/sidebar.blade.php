@@ -87,7 +87,7 @@
                 </a>
             </li>
             @endif --}}
-            @if(Auth::user()->role == 'hubin' or Auth::user()->role == 'admin' or Auth::user()->role == 'tu' or Auth::user()->role == 'siswa' or Auth::user()->role == 'kurikulum')
+            @if(Auth::user()->role == 'kaprog' or Auth::user()->role == 'hubin' or Auth::user()->role == 'admin' or Auth::user()->role == 'tu' or Auth::user()->role == 'siswa' or Auth::user()->role == 'kurikulum')
             <li class="dropdown
             @if (Request::is('admin/surat_keluar','admin/surat_keluar/*'))
             active

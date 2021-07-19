@@ -94,10 +94,7 @@
             </div> --}}
             <div>
                 <div id="dynamic_field">
-                    @foreach ($kategori as $item)
-                    @php $nilai = \App\Models\nilai_prakerin::where('id_ketegori', $item->id)->where('id_siswa',$siswa_main->id)->first(); @endphp
-                    <input type="text" class="d-none" name="id_nilai[]" value="{{ !empty($nilai->id) ? $nilai->id : '' }}">
-                        <div>
+                    <div id="row0">
                         <div class="">
                             <div class="row">
                                 <label class="" style="margin-left: 33px;">Aspek yang dinilai</label>
@@ -106,43 +103,160 @@
                         </div>
                         <div class="mt-2 col-12 row">
                             <div class="col-sm-5">
-                                <select id="aspek" name="aspek[]"
-                                    class="form-control aspek select2 @error('')  is-invalid  @enderror "  disabled>
+                                <select id="aspek0" name="aspek0"
+                                    class="form-control aspek0 select2 @error('')  is-invalid  @enderror ">
                                     <option value="">--Cari Aspek--</option>
-                                    <option value="{{ $item->id }}" selected >{{ $item->aspek_yang_dinilai }}</option>
+                                    <option value="{{ $kategori_edit0->id }}" selected>{{ $kategori_edit0->aspek_yang_dinilai }}</option>
+                                    @foreach ($kategori as $item)
+                                    <option value="{{ $item->id }}" sele>{{ $item->aspek_yang_dinilai }}</option>
+                                    @endforeach
                                 </select>
                                 <div id="invalid_aspek" class="invalid-feedback d-none"></div>
                             </div>
                             <div class="mb-3 col-sm-3">
-                                <input type="number" name="nilai[]" id="nilai_1"
-                                    class="form-control @error('')  is-invalid  @enderror form-control" value="{{ !empty($nilai->nilai) ? $nilai->nilai : '0' }}">
+                                <input type="number" name="nilai[]" value="{{$aspek_edit0->nilai}}" id="nilai_0"
+                                    class="form-control @error('')  is-invalid  @enderror form-control">
                                 <div id="invalid_nilai" class="invalid-feedback d-none"></div>
                             </div>
 
                             <div class="mb-2 col-12 row">
                                 <label for="keterangan"  class="col-sm-5 col-form-label">Keterangan</label>
                                 <div class="mb-3 col-sm-3"  style="margin-left: 15px;">
-                                    <input type="text" name="keterangan[]" id="keterangan_1" value="{{ !empty($nilai->keterangan) ? $nilai->keterangan : 'D' }}" class="form-control keterangan"
+                                    <input type="text" value="{{$aspek_edit0->keterangan}}" name="keterangan[]" id="keterangan_0" class="form-control keterangan"
                                        readonly >
                                 </div>
                             </div>
                             <div class="mb-2 col-12 row">
                                 <label class="col-sm-3 col-form-label">Domain</label>
                                 <div class="mb-3 col-6" style="margin-left: -0px;">
-                                    <select name="domain[]" id="domain"
+                                    <select name="domain0" id="domain0"
                                         class="form-control domain    @error('')  is-invalid  @enderror select2"
                                         disabled>
                                         <option value="">-- Domain --</option>
-                                        <option value="{{ $item->domain }}" selected>{{ $item->domain }}</option>
-                                        {{-- <option value="pelaksanaan">Pelaksanaan</option>
-                                        <option value="keterampilan">Keterampilan</option> --}}
+                                        <option value="{{ $kategori_edit0->id }}" selected>{{ $kategori_edit0->domain }}</option>
+                                     
                                     </select>
                                     <div id="invalid_domain" class="invalid-feedback d-none"></div>
                                 </div>
                             </div>
+                            <div class="mb-3 col-sm-4">
+                                <button type="button" name="" id="add" class="btn btn-success">Add More</button>
+                            </div>
+                        </div>
+                    </div>  
+                    
+                    @for ($e = 1; $e < count($aspek); $e++)
+                    <div id="row{{$e}}" style="display:block;">
+                        <div class="">
+                            <div class="row">
+                                <label class="" style="margin-left: 33px;">Aspek yang dinilai</label>
+                                <label class="" style="margin-left: 70px;">Nilai</label>
+                            </div>
+                        </div>
+                        <div class="mt-2 col-12 row">
+                            <div class="col-sm-5">
+                                <select id="aspek{{$e}}" name="aspek{{$e}}"
+                                    class="form-control aspek0 select2 @error('')  is-invalid  @enderror ">
+                                    <option value="">--Cari Aspek--</option>
+                                    <option value="{{ $kategori_edit[$e]->id }}" selected>{{ $kategori_edit[$e]->aspek_yang_dinilai }}</option>
+                                    @foreach ($kategori as $item)
+                                    <option value="{{ $item->id }}" sele>{{ $item->aspek_yang_dinilai }}</option>
+                                    @endforeach
+                                </select>
+                                <div id="invalid_aspek" class="invalid-feedback d-none"></div>
+                            </div>
+                            <div class="mb-3 col-sm-3">
+                                <input type="number" name="nilai[]" value="{{$aspek[$e]->nilai}}" id="nilai_{{$e}}"
+                                    class="form-control @error('')  is-invalid  @enderror form-control">
+                                <div id="invalid_nilai" class="invalid-feedback d-none"></div>
+                            </div>
+                            <div class="mb-3 col-sm-4">
+                                <button type="button" name="remove" id="{{$e}}" class="btn btn-danger btn_remove">X</button>
+                                </div>
+    
+                            <div class="mb-2 col-12 row">
+                                <label for="keterangan"  class="col-sm-5 col-form-label">Keterangan</label>
+                                <div class="mb-3 col-sm-3"  style="margin-left: 15px;">
+                                    <input type="text" value="{{$aspek[$e]->keterangan}}"  name="keterangan[]" id="keterangan_{{$e}}" class="form-control keterangan"
+                                       readonly >
+                                </div>
+                            </div>
+                            <div class="mb-2 col-12 row">
+                                <label class="col-sm-3 col-form-label">Domain</label>
+                                <div class="mb-3 col-6" style="margin-left: -0px;">
+                                    <select name="domain{{$e}}" id="domain{{$e}}"
+                                        class="form-control domain    @error('')  is-invalid  @enderror select2"
+                                        disabled>
+                                        <option value="">-- Domain --</option>
+                                        <option value="{{ $kategori_edit[$e]->id }}" selected>{{ $kategori_edit[$e]->domain }}</option>
+                                    </select>
+                                    <div id="invalid_domain" class="invalid-feedback d-none"></div>
+                                </div>
+                            </div>
+                            <div class="mb-3 col-sm-4">
+                                {{-- <button type="button" name="" id="add" class="btn btn-success">Add More</button> --}}
+                            </div>
                         </div>
                     </div>
-                    @endforeach
+                    @endfor
+
+                        
+                    <input type="hidden" id="count" value="{{count($aspek)}}">
+
+                    @for ($i = count($aspek); $i <= 50; $i++)
+                    <div id="row{{$i}}" style="display:none;">
+                      <div class="">
+                          <div class="row">
+                              <label class="" style="margin-left: 33px;">Aspek yang dinilai</label>
+                              <label class="" style="margin-left: 70px;">Nilai</label>
+                          </div>
+                      </div>
+                      <div class="mt-2 col-12 row">
+                          <div class="col-sm-5">
+                              <select id="aspek{{$i}}" name="aspek{{$i}}"
+                                  class="form-control aspek0 select2 @error('')  is-invalid  @enderror ">
+                                  <option value="">--Cari Aspek--</option>
+                                  @foreach ($kategori as $item)
+                                  <option value="{{ $item->id }}" sele>{{ $item->aspek_yang_dinilai }}</option>
+                                  @endforeach
+                              </select>
+                              <div id="invalid_aspek" class="invalid-feedback d-none"></div>
+                          </div>
+                          <div class="mb-3 col-sm-3">
+                              <input type="number" name="nilai[]" id="nilai_{{$i}}"
+                                  class="form-control @error('')  is-invalid  @enderror form-control">
+                              <div id="invalid_nilai" class="invalid-feedback d-none"></div>
+                          </div>
+                          <div class="mb-3 col-sm-4">
+                              <button type="button" name="remove" id="{{$i}}" class="btn btn-danger btn_remove">X</button>
+                              </div>
+  
+                          <div class="mb-2 col-12 row">
+                              <label for="keterangan"  class="col-sm-5 col-form-label">Keterangan</label>
+                              <div class="mb-3 col-sm-3"  style="margin-left: 15px;">
+                                  <input type="text" name="keterangan[]" id="keterangan_{{$i}}" class="form-control keterangan"
+                                     readonly >
+                              </div>
+                          </div>
+                          <div class="mb-2 col-12 row">
+                              <label class="col-sm-3 col-form-label">Domain</label>
+                              <div class="mb-3 col-6" style="margin-left: -0px;">
+                                  <select name="domain{{$i}}" id="domain{{$i}}"
+                                      class="form-control domain    @error('')  is-invalid  @enderror select2"
+                                      disabled>
+                                      <option value="">-- Domain --</option>
+                                      {{-- <option value="pelaksanaan">Pelaksanaan</option>
+                                      <option value="keterampilan">Keterampilan</option> --}}
+                                  </select>
+                                  <div id="invalid_domain" class="invalid-feedback d-none"></div>
+                              </div>
+                          </div>
+                          <div class="mb-3 col-sm-4">
+                              {{-- <button type="button" name="" id="add" class="btn btn-success">Add More</button> --}}
+                          </div>
+                      </div>
+                  </div>
+                    @endfor
 
                 </div>
             </div>
@@ -224,7 +338,7 @@
         <div class="row" style="">
             <button id="cek_submit" type="submit" class="btn btn-success mr-3 text-white"><i class="fas fa-check"></i>
                 submit</button>
-            <a href="" type="submit" class="btn btn-danger"><i class="fas fa-times"></i> Batal</a>
+            <a href="{{route('nilai_prakerin.index')}}" type="submit" class="btn btn-danger"><i class="fas fa-times"></i> Batal</a>
         </div>
     </div>
 </div>
@@ -238,126 +352,139 @@
 @endsection
 @push('script')
 <script>
-    $(document).ready(function () {
-        var i = 1;
+      $(document).ready(function () {
+
+        let clicks =  parseInt($('#count').val());
+        // console.log(clicks)
+        
         $('#add').click(function () {
-            i++;
-            $('#dynamic_field').append(
-                '<div id="row' + i + '">' +
-                '<div class="">' +
-                '<div class="row">' +
-                '<label class="" style="margin-left: 33px;">Aspek yang dinilai</label>' +
-                '<label class="" style="margin-left: 70px;">Nilai</label>' +
-                '</div>' +
-                '</div>' +
-                '<div class="mt-2 col-12 row" >' +
-                '<div class="col-sm-5"">' +
-                '<select id="aspek[]" name="aspek[]" class="form-control aspek select2 @error('
-                ')  is-invalid  @enderror ">' +
-                '<option value="">--Cari Aspek--</option>' +
-                '</select>' +
-                '</div>' +
-                '<div class="mb-3 col-sm-3">' +
-                '<input type="number" name="nilai[]" id="nilai_' + i + '" class="form-control @error('
-                ')  is-invalid  @enderror form-control">' +
-                '</div>' +
-                '<div class="mb-3 col-sm-4">' +
-                '<button type="button" name="remove" id="' + i +
-                '" class="btn btn-danger btn_remove">X</button>' +
-                '</div>' +
-                '<div class="mb-2 col-12 row">' +
-                '<label for="" class="col-sm-5 col-form-label">Keterangan</label>' +
-                '<div class="mb-3 col-sm-3" style="margin-left: 15px;">' +
-                '<input type="number" name="keterangan[]" id="keterangan_' + i +
-                '" class="form-control" disabled>' +
-                '</div>' +
-                '</div>' +
-                '<div class="mb-2 col-12 row">' +
-                '<label class="col-sm-3 col-form-label">Domain</label>' +
-                '<div class="mb-3 col-6" style="margin-left: -0px;">' +
-                '<select name="domain[]" id="domain" class="form-control domain    @error('
-                ')  is-invalid  @enderror select2">' +
-                '<option value="">--Pilih Domain--</option>' +
-                '<option value="pelaksanaan">Pelaksanaan</option>' +
-                '<option value="keterampilan">Keterampilan</option>' +
-                '</select>' +
-                '</div>' +
-                '</div>' +
-                '</div>' +
-                '</div>'
-            );
+           var  a = clicks += 1;
+                $('#row'+ a+'').show();
+                console.log(a)
+                
+            // i++;
+
+            // $('#dynamic_field').append(
+            //     '<div id="row' + i + '">' +
+            //     '<div class="">' +
+            //     '<div class="row">' +
+            //     '<label class="" style="margin-left: 33px;">Aspek yang dinilai</label>' +
+            //     '<label class="" style="margin-left: 70px;">Nilai</label>' +
+            //     '</div>' +
+            //     '</div>' +
+            //     '<div class="mt-2 col-12 row" >' +
+            //     '<div class="col-sm-5"">' +
+            //     '<select id="aspek'+i+'" name="aspek'+i+'" class="form-control aspek'+i+' select2 @error('
+            //     ')  is-invalid  @enderror ">' +
+            //     '<option value="">--Cari Aspek--</option>' +
+            //     '<option value="1">intensif</option>' +
+            //     '</select>' +
+            //     '</div>' +
+            //     '<div class="mb-3 col-sm-3">' +
+            //     '<input type="number" name="nilai[]" id="nilai_' + i + '" class="form-control @error('
+            //     ')  is-invalid  @enderror form-control">' +
+            //     '</div>' +
+            //     '<div class="mb-3 col-sm-4">' +
+            //     '<button type="button" name="remove" id="' + i +
+            //     '" class="btn btn-danger btn_remove">X</button>' +
+            //     '</div>' +
+            //     '<div class="mb-2 col-12 row">' +
+            //     '<label for="" class="col-sm-5 col-form-label">Keterangan</label>' +
+            //     '<div class="mb-3 col-sm-3" style="margin-left: 15px;">' +
+            //     '<input type="number" name="keterangan[]" id="keterangan_' + i +
+            //     '" class="form-control" disabled>' +
+            //     '</div>' +
+            //     '</div>' +
+            //     '<div class="mb-2 col-12 row">' +
+            //     '<label class="col-sm-3 col-form-label">Domain</label>' +
+            //     '<div class="mb-3 col-6" style="margin-left: -0px;">' +
+            //     '<select name="domain'+i+'" id="domain'+i+'" class="form-control domain    @error('')  is-invalid  @enderror select2" disabled>' +
+            //     '<option value="">-- Domain--</option>' +
+            //     // '<option value="pelaksanaan">Pelaksanaan</option>' +
+            //     // '<option value="keterampilan">Keterampilan</option>' +
+            //     '</select>' +
+            //     '<div id="invalid_domain" class="invalid-feedback d-none"></div>'+
+            //     '</div>' +
+            //     '</div>' +
+            //     '</div>' +
+            //     '</div>'
+            // );
+            
         });
+        
         $(document).on('click', '.btn_remove', function () {
             var button_id = $(this).attr("id");
-            $('#row' + button_id + '').remove();
+            //jika true /hide maka  buat isi yang ada di dalem row value = "" / null
+            if ($('#row' + button_id + '').hide()) {
+                $('#aspek'+button_id + '').val("");
+                $('#nilai_'+button_id + '').val("");
+                $('#keterangan_'+button_id + '').val("");
+                $('#domain'+button_id + '').val("");
+                
+            }
+            
+            
         });
 
 
-        $('#cek_submit').on('click', function () {
-            var siswa = $('#siswa').val();
-            var jurusan = $('#jurusan').val();
-            var aspek = $('#aspek').val();
-            var nilai = $('#nilai').val();
-            var domain = $('#domain').val();
+        // $('#cek_submit').on('click', function (e) {
+        //     event.preventDefault();
+        //                  var siswa = $('#siswa').val();
+        //                  var jurusan = $('#jurusan').val();
+         
+        //                  var aspek0 = $("#aspek0").val();
+        //                  var nilai0 = $("#nilai_0").val();
+        //                  var domain0 = $("#domain0").val();
+        //                  if ( aspek0 == '' || nilai0 == '' || domain0 == '') {
+        //                  // option
+        //                     // let showRow  =  $('#row0').show();
 
+        //                         //  if (showRow) {
+        //                               if (aspek0 == '') {
+        //                                   $('#aspek0').addClass('is-invalid');
+        //                                   $('#invalid_aspek').html('aspek tidak boleh kosong').removeClass('d-none');
+        //                               } else {
+        //                                   $('#invalid_aspek').addClass('d-none');
+        //                                   $('#aspek0').removeClass('is-invalid');
 
+        //                               }
+                                  
+        //                               if (nilai0 == '') {
+        //                                   $('#nilai_0').addClass('is-invalid');
+        //                                   $('#invalid_nilai').html('nilai tidak boleh kosong').removeClass('d-none');
+        //                               } else {
+        //                                   $('#invalid_nilai').addClass('d-none');
+        //                                   $('#nilai_0').removeClass('is-invalid');
 
-            if (siswa == '' || jurusan == '' || aspek == '' || nilai == '' || domain == '') {
-                // option
-                if (siswa == '') {
-                    $('#siswa').addClass('is-invalid');
-                    $('#invalid_siswa').html('siswa tidak boleh kosong').removeClass('d-none');
-                } else {
-                    $('#invalid_siswa').addClass('d-none');
-                    $('#siswa').removeClass('is-invalid');
+        //                               }
+                                  
+        //                               if (domain0 == '') {
+        //                                   $('#domain0').addClass('is-invalid');
+        //                                   $('#invalid_domain').html('domain tidak boleh kosong').removeClass('d-none');
+        //                               } else {
+        //                                   $('#invalid_domain').addClass('d-none');
+        //                                   $('#domain0').removeClass('is-invalid');
 
-                }
+        //                               }
+        //                         //  }
+                             
+        //                      } else {
+                            
+        //                      }
 
-                if (jurusan == '') {
-                    $('#jurusan').addClass('is-invalid');
-                    $('#invalid_jurusan').html('jurusan tidak boleh kosong').removeClass('d-none');
-                } else {
-                    $('#invalid_jurusan').addClass('d-none');
-                    $('#jurusan').removeClass('is-invalid');
-
-                }
-
-                if (aspek == '') {
-                    $('#aspek').addClass('is-invalid');
-                    $('#invalid_aspek').html('aspek tidak boleh kosong').removeClass('d-none');
-                } else {
-                    $('#invalid_aspek').addClass('d-none');
-                    $('#aspek').removeClass('is-invalid');
-
-                }
-
-                if (nilai == '') {
-                    $('#nilai').addClass('is-invalid');
-                    $('#invalid_nilai').html('nilai tidak boleh kosong').removeClass('d-none');
-                } else {
-                    $('#invalid_nilai').addClass('d-none');
-                    $('#nilai').removeClass('is-invalid');
-
-                }
-
-                if (domain == '') {
-                    $('#domain').addClass('is-invalid');
-                    $('#invalid_domain').html('domain tidak boleh kosong').removeClass('d-none');
-                } else {
-                    $('#invalid_domain').addClass('d-none');
-                    $('#domain').removeClass('is-invalid');
-
-                }
-
-            } else {}
-        });
+        // });
+        
         var titles = [];
-        $('option[name^=aspek]').each(function () {
+        $('option[name^=aspek0]').each(function () {
             titles.push($(this).val());
         });
-        console.log(titles);
-        console.log()
-        for (let i = 1; i < 10; i++) {
+        $('option[name^=aspek1]').each(function () {
+            titles.push($(this).val());
+        });
+        
+        console.log(titles,'title');
+        // console.log()
+        for (let i = 0; i <= 10; i++) {
             $('#nilai_' + i).keyup(function (e) {
                 nilai = $('#nilai_' + i).val();
                 console.log(nilai);
@@ -382,14 +509,15 @@
 
         // ngambil domain
 
+       for (let index = 0; index <= 50; index++) {
         $('#jurusan').change(function (e) {
-            $('.aspek').empty().append();
+            $('.aspek'+index+'').empty().append();
 
             id = $(this).val();
             if (id) {
-                $('.aspek').append('<option>-- Mencari.. --</option>')
+                $('.aspek'+index+'').append('<option>-- Mencari.. --</option>')
             } else {
-                $('.aspek').append('<option>-- Pilih Aspek --</option>')
+                $('.aspek'+index+'').append('<option>-- Pilih Aspek --</option>')
             }
             console.log(id);
             $.ajax({
@@ -397,51 +525,81 @@
                 method: 'get',
                 success: function (response) {
                     //console.log(response.kategori);
-                    $('.aspek').empty().append();
+                    $('.aspek'+index+'').empty().append();
                     if (response.kategori != 0) {
-                        $('.aspek').append('<option>-- Pilih Aspek --</option>')
+                        $('.aspek'+index+'').append('<option>-- Pilih Aspek --</option>')
                         response.kategori.forEach(element => {
                             if (element) {
-                                $('.aspek').append('<option value="' + element.id +
+                                $('.aspek'+index+'').append('<option value="' + element.id +
                                     '" >' + element.aspek_yang_dinilai +
                                     '</option>')
                             } else {
-                                $('.aspek').append(
+                                $('.aspek'+index+'').append(
                                     '<option>Aspek kategori kosong</option>')
                             }
                         });
                     } else {
-                        $('.aspek').append('<option>Kategori kosong</option>')
+                        $('.aspek'+index+'').append('<option>Kategori kosong</option>')
                     }
                 },
                 fail: function (erorr) {
-                    $('.aspek').append('<option>-- Pilih Aspek --</option>')
+                    $('.aspek'+index+'').append('<option>-- Pilih Aspek --</option>')
                 }
             });
         })
+       }
         // gua pengen ambil id nya nur tapi bingung gw kalo multi slect gmna
-        $('select[name*="aspek"]').change(function (e) {
+        // gua makan dulu nur
+
+        // $('select[name="aspek0"]').change(function (e) {
+        //     id = $(this).val();
+        //     console.log('berubah',id);
+        //     if (id ) {
+        //         $('#domain').append('<option>-- Mencari.. --</option>')
+        //     } else {
+        //         $('#domain').append('<option>-- Domain --</option>')
+        //     }
+        //     $.ajax({
+        //         url: '/admin/nilai_prakerin/option/tambah_2/ajax/' + id,
+        //         method: 'get',
+        //         success: function (response) {
+        //             console.log(response);
+        //             $('#domain').empty().append();
+        //             $('#domain').append('<option value="' + response.kategori.id +
+        //                 '" selected>' + response.kategori.domain + '</option>')
+        //         },
+        //         fail: function (erorr) {
+        //         $('#domain').append('<option>-- Domain --</option>')
+        //         }
+        //     });
+        // })
+        
+        for (let x = 0; x <= 50; x++) {
+            // const element = array[index];
+            
+        $('select[name="aspek'+x+'"]').change(function (e) {
             id = $(this).val();
-            console.log('berubah');
+            console.log('berubah',id);
             if (id ) {
-                $('#domain').append('<option>-- Mencari.. --</option>')
+                $('#domain'+x+'').append('<option>-- Mencari.. --</option>')
             } else {
-                $('#domain').append('<option>-- Domain --</option>')
+                $('#domain'+x+'').append('<option>-- Domain --</option>')
             }
             $.ajax({
                 url: '/admin/nilai_prakerin/option/tambah_2/ajax/' + id,
                 method: 'get',
                 success: function (response) {
                     console.log(response);
-                    $('#domain').empty().append();
-                    $('#domain').append('<option value="' + response.kategori.id +
+                    $('#domain'+x+'').empty().append();
+                    $('#domain'+x+'').append('<option value="' + response.kategori.id +
                         '" selected>' + response.kategori.domain + '</option>')
                 },
                 fail: function (erorr) {
- $('#domain').append('<option>-- Domain --</option>')
+                $('#domain'+x+'').append('<option>-- Domain --</option>')
                 }
             });
         })
+        }
 
     });
 

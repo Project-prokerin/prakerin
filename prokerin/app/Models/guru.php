@@ -62,4 +62,14 @@ class guru extends Model
     {
         return $this->hasOne(isi_surat::class, 'id_guru','id');
     }
+
+      // feedback
+      public function feedback_dari() // dari
+      {
+          return $this->hasMany(feedback::class, 'id_untuk', 'id');
+      }
+      public function feedback_untuk() // untuk
+      {
+          return $this->hasMany(feedback::class, 'id_dari', 'id');
+      }
 }

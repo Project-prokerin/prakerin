@@ -15,29 +15,66 @@ class nilai_prakerinSeeder extends Seeder
     public function run()
     {
 
-        $faker = Faker::create('id_ID');
-        for ($j=1; $j <= 7 ; $j++) {
-            for ($i = 1; $i <= 6; $i++) {
+        // $faker = Faker::create('id_ID');
                 DB::table('nilai_prakerin')->insert([
-                    'id_siswa' => $i,
+                    'id_siswa' => 1,
                     'id_kelompok_laporan' => null,
-                    'nilai' => $faker->randomElement($array = ['90', '80', '70', '60']),
-                    'keterangan' => $faker->randomElement($array = ['A', 'B', 'C', 'D']),
-                    'id_ketegori' => $faker->randomElement($array = [1, 2, 3, 4, 5, 6, 7]),
+                    'nilai' => '90',
+                    'keterangan' => 'A',
+                    'id_ketegori' => 3,
                 ]);
-            }
-        }
+                DB::table('nilai_prakerin')->insert([
+                    'id_siswa' => 1,
+                    'id_kelompok_laporan' => null,
+                    'nilai' => '75',
+                    'keterangan' => 'B',
+                    'id_ketegori' => 2,
+                ]);
+                DB::table('nilai_prakerin')->insert([
+                    'id_siswa' => 1,
+                    'id_kelompok_laporan' => null,
+                    'nilai' => '40',
+                    'keterangan' => 'D',
+                    'id_ketegori' => 1,
+                ]);
+
+                
+                DB::table('nilai_prakerin')->insert([
+                    'id_siswa' => 2,
+                    'id_kelompok_laporan' => null,
+                    'nilai' => '80',
+                    'keterangan' => 'B',
+                    'id_ketegori' => 5,
+                ]);
+                DB::table('nilai_prakerin')->insert([
+                    'id_siswa' => 2,
+                    'id_kelompok_laporan' => null,
+                    'nilai' => '20',
+                    'keterangan' => 'D',
+                    'id_ketegori' => 1,
+                ]);
+                DB::table('nilai_prakerin')->insert([
+                    'id_siswa' => 2,
+                    'id_kelompok_laporan' => null,
+                    'nilai' => '90',
+                    'keterangan' => 'A',
+                    'id_ketegori' => 3,
+                ]);
+             
+               
+             
+        // }
 
 
-        for ($i = 1; $i <= 3; $i++) {
-            DB::table('nilai_prakerin')->insert([
-                'id_siswa' => null,
-                'id_kelompok_laporan' => $i,
-                'nilai' => '0',
-                'keterangan' => $faker->randomElement($array = ['A', 'B', 'C', 'D', 'E']),
-                'id_ketegori' => $i,
-            ]);
-        }
+        // for ($i = 1; $i <= 3; $i++) {
+        //     DB::table('nilai_prakerin')->insert([
+        //         'id_siswa' => null,
+        //         'id_kelompok_laporan' => $i,
+        //         'nilai' => '0',
+        //         'keterangan' => $faker->randomElement($array = ['A', 'B', 'C', 'D', 'E']),
+        //         'id_ketegori' => $i,
+        //     ]);
+        // }
 
     }
 }

@@ -8,6 +8,7 @@ use App\Models\Disposisi;
 use App\Models\Surat_masuk;
 use App\Models\Surat_M;
 use App\Models\Detail_surat;
+use App\Models\feedback;
 use App\Models\guru;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -56,7 +57,29 @@ class Surat_masukController extends Controller
                                         return $button;
                                     }
                                     $id = $data->surat_m->detail_surat->disposisi->id;
-                                    $button .= '<a href="/admin/surat_masuk/' . $id . '/disposisi/view"   id="' . $id . '" class="edit btn btn-success btn-sm">view</a>';
+                                    // $button .= '<a href="/admin/surat_masuk/' . $id . '/disposisi/view"   id="' . $id . '" class="edit btn btn-success btn-sm">view</a>';
+                                    $feedback = feedback::where('id',$id)->first(); 
+                                    if (empty($feedback)) {
+                                        $button .= '&nbsp <a href="/admin/surat_masuk/' . $id . '/disposisi/view"   id="' . $id . '" class="edit btn btn-success btn-sm">view  <small> 
+                                        <div class="dropup-secondary">
+                                           <span class="dropupp-secondary badge badge-sm badge-secondary text-secondary">0 
+                                            <div class="dropup-secondary-content"> <span>Belum ada feedback</span> </div>
+                                        </span></small> 
+                                        </div>
+                                      </a>';
+                                    
+                                    }else{
+                                        $button .= '&nbsp <a href="/admin/surat_masuk/' . $id . '/disposisi/view"   id="' . $id . '" class="edit btn btn-success btn-sm">view  <small> 
+                                        <div class="dropup-primary">
+                                            <span class="dropupp-primary badge badge-sm badge-primary text-primary">0  
+                                                <div class="dropup-primary-content"> 
+                                                    <span>Sudah ada feedback</span>  
+                                                </div>
+                                        </span></small> 
+                                        </div>
+                                       </a>';
+
+                                    }
                                     if (Auth::user()->role == 'admin' or Auth::user()->role == 'kepsek' or Auth::user()->role == 'kaprog') {
                                         $button .= ' <a href="/admin/surat_masuk/' . $id . '/disposisi/edit"   id="' . $id . '" class="edit btn btn-warning btn-sm">edit</a>';
                                         $button .= ' <button type="button" name="delete" id="hapus-disposisi" data-id="' . $id . '" class="delete_disposisi btn btn-danger btn-sm">hapus</button>';
@@ -126,7 +149,28 @@ class Surat_masukController extends Controller
                             if (empty($data)) {
                                 $button .= '<a href="#" class="edit btn btn-danger btn-sm">Kosong</a>';
                             }else{
-                                $button .= '&nbsp <a href="/admin/surat_masuk/' . $data->id . '/disposisi/view"   id="' . $data->id . '" class="edit btn btn-success btn-sm">view</a>';
+                                $feedback = feedback::where('id',$data->id)->first(); 
+                                    if (empty($feedback)) {
+                                        $button .= '&nbsp <a href="/admin/surat_masuk/' . $data->id . '/disposisi/view"   id="' . $data->id . '" class="edit btn btn-success btn-sm">view  <small> 
+                                        <div class="dropup-secondary">
+                                           <span class="dropupp-secondary badge badge-sm badge-secondary text-secondary">0 
+                                            <div class="dropup-secondary-content"> <span>Belum ada feedback</span> </div>
+                                        </span></small> 
+                                        </div>
+                                      </a>';
+                                    
+                                    }else{
+                                        $button .= '&nbsp <a href="/admin/surat_masuk/' . $data->id . '/disposisi/view"   id="' . $data->id . '" class="edit btn btn-success btn-sm">view  <small> 
+                                        <div class="dropup-primary">
+                                            <span class="dropupp-primary badge badge-sm badge-primary text-primary">0  
+                                                <div class="dropup-primary-content"> 
+                                                    <span>Sudah ada feedback</span>  
+                                                </div>
+                                        </span></small> 
+                                        </div>
+                                       </a>';
+
+                                    }
                             }
 
                             return $button;
@@ -277,7 +321,8 @@ class Surat_masukController extends Controller
     public function download($id)
     {
         $surat = Surat_masuk::find($id)->first();
-        $file = public_path() . "/" . $surat->surat_m->path_surat;
+    
+        $file = public_path() . "/".$surat->surat_m->path_surat;
         $nama = explode(' ', basename($surat->surat_m->path_surat))[1];
         $headers = array('Content-Type: application/pdf',);
         return Response::download($file, $nama, $headers);

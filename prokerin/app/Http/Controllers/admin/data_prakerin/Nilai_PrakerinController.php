@@ -114,7 +114,7 @@ class Nilai_PrakerinController extends Controller
                     $button .= '&nbsp';
                     $button .= '<a  href="../admin/nilai_prakerin/edit/' . $data->id . '" id="edit" data-toggle="tooltip"  data-id="' . $data->id . '" data-original-title="Edit" class="edit btn btn-warning btn-sm edit-post"><i class="fas fa-pencil-alt"></i></a>';
                     $button .= '&nbsp';
-                    // $button .= '<button type="button" name="delete" id="hapus" data-id="' . $data->id . '" class="delete btn btn-danger btn-sm"><i class="fas fa-trash"></i></button>';
+                    $button .= '<button type="button" name="delete" id="hapus" data-id="' . $data->id . '" class="delete btn btn-danger btn-sm"><i class="fas fa-trash"></i></button>';
                     return $button;
                 });
                 $a->rawColumns(['action', 'nama_siswa']);
@@ -150,24 +150,66 @@ class Nilai_PrakerinController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
-        // ambil siswa
-        $siswa = Siswa::where('id',$request->id_siswa)->first();
-        // cara ambil id_kategpru
-        // ituing juamlah aspek nya
-        for ($i=0; $i < count($request->aspek) ; $i++) {
-            Nilai_prakerin::create([
-                "id_siswa" => $siswa->id,
-                "id_ketegori" => $request->aspek[$i], // id_kategori
-                "nilai" => $request->nilai[$i], // nilai
-                "keterangan" => $request->keterangan[$i],
-                "id_kelompok_laporan" => $siswa->data_prakerin->kelompok_laporan->id
-            ]);
-        }
-        return redirect()->route('nilai_prakerin.index')->with('success','Nilai berhasil di masukan');
-    }
+  
+ public function store(Request $request)
+ {
+     // ambil siswa
+    
+     // dd($request);
+     // for ($i=0; $i <= 3; $i++) { 
+     $aspek[] = $request->aspek0;                
+     $aspek[] = $request->aspek1;                
+     $aspek[] = $request->aspek2;                
+     $aspek[] = $request->aspek3;
+     $aspek[] = $request->aspek4;
+     $aspek[] = $request->aspek5;
+     $aspek[] = $request->aspek6;
+     $aspek[] = $request->aspek7;
+     $aspek[] = $request->aspek8;
+     $aspek[] = $request->aspek9;
 
+     // $nilai
+     
+     //  cari value array selain null
+     if ( $keyNilai = array_diff($request->nilai,[null])) {
+         //proses mengurutkan index dari 0
+         foreach ($keyNilai as $kuy) {
+             $nilaii[] = $kuy;
+            }
+            
+        }
+        // dd($request->nilai,$aspek);
+     if ( $keyKeterangan = array_diff($request->keterangan,[null])) {
+         foreach ($keyKeterangan as $kuy) {
+             $keterangann[] = $kuy;
+         }
+         
+     }
+     if ( $keyAspek = array_diff($aspek,["-- Pilih Aspek --",null])) {
+         foreach ($keyAspek as $kuy) {
+             $aspekk[] = $kuy;
+         }
+         
+     }
+
+
+     // dd($aspekk,$keterangann,$nilaii);
+
+     $siswa = Siswa::where('id',$request->id_siswa)->first();
+     // cara ambil id_kategpru
+     // ituing juamlah aspek nya
+     
+     for ($i=0; $i < count($aspekk) ; $i++) {
+         Nilai_prakerin::create([
+             "id_siswa" => $siswa->id,
+             "id_ketegori" => $aspekk[$i], // id_kategori
+             "nilai" => $nilaii[$i], // nilai
+             "keterangan" => $keterangann[$i],
+             "id_kelompok_laporan" => $siswa->data_prakerin->kelompok_laporan->id
+         ]);
+     }
+     return redirect()->route('nilai_prakerin.index')->with('success','Nilai berhasil di masukan');
+ }
     /**
      * Display the specified resource.
      *
@@ -188,20 +230,31 @@ class Nilai_PrakerinController extends Controller
     public function edit($id)
     {
         $siswa = Siswa::get();
-
+        // dd($id)
         $siswa_main = Siswa::where('id',$id)->first();
         $nilai = Nilai_prakerin::where('id_siswa', $id)->get();
-        $id = [];
-        foreach ($nilai as $key => $value) {
-            $id[] = $value->id_ketegori;
-        }
-        $get_collec_jurusan =  Kategori_nilai_prakerin::all()->whereIn('id', [3])->where('keterangan', 'Nilai Perusahaan')->unique('jurusan');
+        // $id = [];
+        // foreach ($nilai as $key => $value) {
+            //     $id[] = $value->id_ketegori;
+            // }
+            $get_collec_jurusan =  Kategori_nilai_prakerin::all()->whereIn('id', [3])->where('keterangan', 'Nilai Perusahaan')->unique('jurusan');
+            // dd($get_collec_jurusan->toArray());
         $jurusan = [];
         foreach ($get_collec_jurusan as $key => $value) {
             $jurusan[] = $value->jurusan;
         }
-        $kategori = Kategori_nilai_prakerin::all()->unique('aspek_yang_dinilai')->where('keterangan', 'Nilai Perusahaan')->where('jurusan', $jurusan[0]);
-        return view('admin.nilai_prakerin.edit', compact('kategori', 'siswa','nilai','siswa_main','jurusan'));
+        $aspek = Nilai_prakerin::where('id_siswa',$id)->get();
+        // dd($aspek[0]->id_ketegori);
+        for ($i=0; $i < count($aspek); $i++) { 
+            $kategori_edit[] = Kategori_nilai_prakerin::where('id',$aspek[$i]->id_ketegori)->first();
+        }
+        // dd($kategori_edit);
+        $aspek_edit0 = Nilai_prakerin::where('id_siswa',$id[0])->first();
+        $kategori_edit0 = Kategori_nilai_prakerin::where('id',$aspek[0]->id_ketegori)->first();
+        $kategori = Kategori_nilai_prakerin::where('keterangan','Nilai Perusahaan')->get();
+        // dd($aspek->toArray());
+        // $kategori = Kategori_nilai_prakerin::all()->unique('aspek_yang_dinilai')->where('keterangan', 'Nilai Perusahaan')->where('jurusan', $jurusan[0]);
+        return view('admin.nilai_prakerin.edit', compact('siswa_main','siswa','jurusan','kategori_edit','kategori','kategori_edit0','aspek_edit0','aspek'));
     }
 
     /**
@@ -213,24 +266,74 @@ class Nilai_PrakerinController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $siswa = Siswa::where('id', $id)->first();
-        for ($i = 0; $i < count($request->aspek); $i++) {
-            $nilai = Nilai_prakerin::where('id_ketegori', $request->aspek[$i])->where('id_siswa', $id)->first();
-            if (empty($nilai)) { // jika nilai masih kosong tambah
-                Nilai_prakerin::create([
-                    "id_siswa" => $siswa->id,
-                    "id_ketegori" => $request->aspek[$i], // id_kategori
-                    "nilai" => $request->nilai[$i], // nilai
-                    "keterangan" => $request->keterangan[$i],
-                    "id_kelompok_laporan" => $siswa->data_prakerin->kelompok_laporan->id
-                ]);
-            }else{ // jika nilai sudah ada update
-                Nilai_prakerin::where('id', $request->id_nilai[$i])->update([
-                    "nilai" => $request->nilai[$i], // nilai
-                    "keterangan" => $request->keterangan[$i],
-                ]);
+        // dd($request);
+        $count =  Nilai_prakerin::where('id_siswa',$id)->count();
+        // dd($request->id_siswa); 
+        $aspek[] = $request->aspek0;                
+        $aspek[] = $request->aspek1;                
+        $aspek[] = $request->aspek2;                
+        $aspek[] = $request->aspek3;
+        $aspek[] = $request->aspek4;
+        $aspek[] = $request->aspek5;
+        $aspek[] = $request->aspek6;
+        $aspek[] = $request->aspek7;
+        $aspek[] = $request->aspek8;
+        $aspek[] = $request->aspek9;
+   
+        // $nilai
+        
+        //  cari value array selain null
+        if ( $keyNilai = array_diff($request->nilai,[null])) {
+            //proses mengurutkan index dari 0
+            foreach ($keyNilai as $kuy) {
+                $nilaii[] = $kuy;
+               }
+               
+           }
+           // dd($request->nilai,$aspek);
+        if ( $keyKeterangan = array_diff($request->keterangan,[null])) {
+            foreach ($keyKeterangan as $kuy) {
+                $keterangann[] = $kuy;
             }
+            
         }
+        if ( $keyAspek = array_diff($aspek,["-- Pilih Aspek --",null])) {
+            foreach ($keyAspek as $kuy) {
+                $aspekk[] = $kuy;
+            }
+            
+        }
+   
+   
+        // dd($aspekk,$keterangann,$nilaii);
+   
+        // cara ambil id_kategpru
+        // ituing juamlah aspek nya
+        
+        if ($count > $aspekk || $count < $aspekk ) {
+            nilai_prakerin::where('id_siswa',$id)->delete();
+            $siswa = Siswa::where('id',$id)->first();
+            
+          for ($i=0; $i < count($aspekk) ; $i++) {
+              Nilai_prakerin::create([
+                  "id_siswa" => $siswa->id,
+                  "id_ketegori" => $aspekk[$i], // id_kategori
+                  "nilai" => $nilaii[$i], // nilai
+                  "keterangan" => $keterangann[$i],
+                  "id_kelompok_laporan" => $siswa->data_prakerin->kelompok_laporan->id
+              ]);
+          }
+      }else{
+       
+      for ($i=0; $i < count($aspekk) ; $i++) {
+          Nilai_prakerin::where('id_siswa',$id)->update([
+              "id_ketegori" => $aspekk[$i], // id_kategori
+              "nilai" => $nilaii[$i], // nilai
+              "keterangan" => $keterangann[$i],
+              "id_kelompok_laporan" => $siswa->data_prakerin->kelompok_laporan->id
+          ]);
+      }
+      }
         return redirect()->route('nilai_prakerin.index')->with('success', 'Nilai berhasil di update');
         // dd($nilai);
     }

@@ -69,7 +69,7 @@ Route::prefix('admin')->middleware(['web', 'auth', 'role:admin,kepsek,tu'])->gro
 Route::prefix('admin')->middleware(['web', 'auth', 'role:admin,kepsek,tu,kaprog,kurikulum,kesiswaan,hubin,sarpras'])->group(function () {
     // data surat
     Route::get('surat_masuk', [Surat_masukController::class, 'index_admin'])->name('admin.surat_masuk.index');
-    Route::get('surat_masuk/ajax', [Surat_masukController::class, 'ajax_admin'])->name('admin.surat_masuk.ajax');
+    Route::post('surat_masuk/ajax', [Surat_masukController::class, 'ajax_admin'])->name('admin.surat_masuk.ajax');
     Route::get('surat_masuk/detail/{id}', [Surat_masukController::class, 'detail_surat'])->name('admin.surat_masuk.detail');
     Route::get('surat_masuk/tambah', [Surat_masukController::class, 'tambah_surat'])->name('admin.surat_masuk.tambah');
     Route::post('surat_masuk/post', [Surat_masukController::class, 'store_surat'])->name('admin.surat_masuk.post');
@@ -81,11 +81,14 @@ Route::prefix('admin')->middleware(['web', 'auth', 'role:admin,kepsek,tu,kaprog,
 
 
     // disposisi table surat
-    Route::middleware(['web', 'auth', 'role:kurikulum,admin,kepsek,tu,kaprog'])->group(function () {
+    Route::middleware(['web', 'auth', 'role:kesiswaan,hubin,kurikulum,admin,kepsek,tu,kaprog'])->group(function () {
         Route::get('surat_masuk/{id}/disposisi/view', [DiposisiController::class, 'detail'])->name('desposisi.view');
         Route::get('surat_masuk/{id}/disposisi/tambah/', [DiposisiController::class, 'tambah_disposisi'])->name('desposisi.tambah');
         Route::get('surat_masuk/{id}/disposisi/edit', [DiposisiController::class, 'edit'])->name('desposisi.edit');
-
+        
+        Route::post('surat_masuk/feedback/store', [DiposisiController::class, 'feedback_store'])->name('disposisi.feedback.store');
+        // Route::patch('surat_masuk/{id}/feedback/edit', [DiposisiController::class, 'feedback_edit'])->name('disposisi.feedback.edit');
+        Route::put('surat_masuk/{id}/feedback/update', [DiposisiController::class, 'feedback_update'])->name('disposisi.feedback.update');
 
         // table disposisi
         Route::get('disposisi', [DiposisiController::class, 'index'])->name('admin.disposisi.index');

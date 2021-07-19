@@ -9,6 +9,12 @@ use App\Models\Disposisi;
 use App\Models\Surat_masuk;
 use App\Models\Detail_surat;
 
+
+use App\Models\guru;
+// use Notification;
+use App\Models\feedback;
+
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -53,7 +59,19 @@ class DiposisiController extends Controller
     }
     public function detail($id)
     {
-        return view('admin.disposisi.detail', ['disposisi' => Disposisi::find($id)->first()]);
+        // $untuk = 
+        // dd($id);
+        // $untuk = Surat_masuk::where('id',$id)->first();
+        if (empty(feedback::where('id',$id)->first())) {
+            $feedback = "";
+        }else {
+            $feedback = feedback::where('id',$id)->first(); 
+            
+        }
+        $untuk =  Surat_masuk::where('id',$id)->first();
+        $disposisi =  Disposisi::where('id',$id)->first();
+        // dd($id);
+        return view('admin.disposisi.detail', compact('untuk','disposisi','feedback'));
     }
     // table surat
     public function tambah_disposisi($id)
@@ -152,5 +170,54 @@ class DiposisiController extends Controller
         $d->detail_surat->surat_m->surat_masuk()->update(['status' => 'pengajuan']);
         $d->delete();
         return response()->json($data = 'berhasil');
+    }
+
+
+
+    public function feedback_store(Request $request)
+    {
+        
+        $request->validate([
+            'description_feedback' => 'required',
+
+        ],[
+            'required' => 'Feedback tidak boleh ksosong',
+        ]);
+        
+          feedback::create([
+                'id_disposisi' => $request->disposisi,
+                'id_dari' =>  $request->id_dari,
+                'id_untuk' => $request->id_untuk,
+                'description_feedback' => $request->description_feedback,
+                'created_at' => Carbon::now()
+          ]);
+    
+        
+        $untuk = guru::where('id_user',$request->id_untuk)->first();
+        // dd($untuk);
+        
+        return redirect()->route('admin.surat_masuk.index')->with('pesan', 'Berhasil Mengirim Feedback ke '.$untuk->nama.' |  Jabatan:'.$untuk->jabatan);
+
+
+    }
+
+    public function feedback_update(Request $request,$id)
+    { 
+        $request->validate([
+            'description_feedback' => 'required',
+
+        ],[
+            'required' => 'Feedback tidak boleh ksosong',
+        ]);
+        feedback::find($id)->update([
+        'description_feedback' => $request->description_feedback,
+  ]);
+
+
+$dari = guru::where('id_user',$request->id_dari)->first();
+$untuk = guru::where('id_user',$request->id_untuk)->first();
+
+return redirect()->route('admin.surat_masuk.index')->with('pesan', $dari->nama.'  Berhasil  Mengubah Feedback ke '.$untuk->nama.' |  Jabatan:'.$untuk->jabatan);
+
     }
 }

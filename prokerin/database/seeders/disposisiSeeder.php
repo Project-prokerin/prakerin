@@ -15,12 +15,12 @@ class disposisiSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('disposisi')->insert([
-            'id_detail_surat' => '1',
-            'Pokjatujuan' => 'hubin',
-            'Keterangan_disposisi' => 'keterangan',
-            'created_at' => Carbon::now()
-        ]);
+        // DB::table('disposisi')->insert([
+        //     'id_detail_surat' => '1',
+        //     'Pokjatujuan' => 'hubin',
+        //     'Keterangan_disposisi' => 'keterangan',
+        //     'created_at' => Carbon::now()
+        // ]);
     }
 
 }
