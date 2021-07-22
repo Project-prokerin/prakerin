@@ -208,15 +208,7 @@
                 </div>
                
             </div>
-            @if (Auth::user()->role == 'hubin' or Auth::user()->role == 'kaprog')
-            <div class="mb-2 col-12 row">
-                <label for="" class="col-sm-4 col-form-label">Nilai</label>
-                <div class="mb-3 col-sm-3">
-                    <input type="number" name="" id="nilai"
-                        class="form-control-sm @error('')  is-invalid  @enderror form-control" value="{{ old('') }}">
-                </div>
-            </div>
-            @endif
+
 
             @if (Auth::user()->role == 'siswa' or Auth::user()->role == 'admin')
             {{-- <div class="mb-2 col-12 row">
@@ -281,6 +273,7 @@
         </div>
     </div>
 </div>
+<input type="hidden" id="auth" value="{{Auth::user()->role}}">
 <div class="card-body">
     <div class="modal-footer" style="">
         <div class="row" style="">
@@ -304,7 +297,7 @@
     $(document).ready(function () {
         var clicks = 0;
         $('#add').click(function () {
-           var  a = clicks += 1;
+                var  a = clicks += 1;
                 $('#row'+ a+'').show();
                 console.log(a)
                 
@@ -360,7 +353,7 @@
         
         $(document).on('click', '.btn_remove', function () {
             var button_id = $(this).attr("id");
-            //jika true /hide maka  buat isi yang ada di dalem row value = "" / null
+            //jika true /hide maka  buat isi yang ada di dalem row value = "" /
             if ($('#row' + button_id + '').hide()) {
                 $('#aspek'+button_id + '').val("");
                 $('#nilai_'+button_id + '').val("");
@@ -440,7 +433,7 @@
                 if (nilai > 70.10 && nilai < 80.59) {
                     $('#keterangan_' + i).val('B');
                 } else
-                if (nilai > 60 && nilai < 70.09) {
+                if (nilai >= 60 && nilai < 70.09) {
                     $('#keterangan_' + i).val('C');
                 } else
                 if (nilai < 60) {
@@ -454,98 +447,195 @@
 
 
         // ngambil domain
+let role = $('#auth').val();
 
-       for (let index = 0; index <= 50; index++) {
-        $('#jurusan').change(function (e) {
-            $('.aspek'+index+'').empty().append();
-
-            id = $(this).val();
-            if (id) {
-                $('.aspek'+index+'').append('<option>-- Mencari.. --</option>')
-            } else {
-                $('.aspek'+index+'').append('<option>-- Pilih Aspek --</option>')
-            }
-            console.log(id);
-            $.ajax({
-                url: '/admin/nilai_prakerin/option/tambah_1/ajax/' + id,
-                method: 'get',
-                success: function (response) {
-                    //console.log(response.kategori);
-                    $('.aspek'+index+'').empty().append();
-                    if (response.kategori != 0) {
-                        $('.aspek'+index+'').append('<option>-- Pilih Aspek --</option>')
-                        response.kategori.forEach(element => {
-                            if (element) {
-                                $('.aspek'+index+'').append('<option value="' + element.id +
-                                    '" >' + element.aspek_yang_dinilai +
-                                    '</option>')
-                            } else {
-                                $('.aspek'+index+'').append(
-                                    '<option>Aspek kategori kosong</option>')
-                            }
-                        });
-                    } else {
-                        $('.aspek'+index+'').append('<option>Kategori kosong</option>')
-                    }
-                },
-                fail: function (erorr) {
-                    $('.aspek'+index+'').append('<option>-- Pilih Aspek --</option>')
-                }
-            });
-        })
-       }
-        // gua pengen ambil id nya nur tapi bingung gw kalo multi slect gmna
-        // gua makan dulu nur
-
-        // $('select[name="aspek0"]').change(function (e) {
-        //     id = $(this).val();
-        //     console.log('berubah',id);
-        //     if (id ) {
-        //         $('#domain').append('<option>-- Mencari.. --</option>')
-        //     } else {
-        //         $('#domain').append('<option>-- Domain --</option>')
-        //     }
-        //     $.ajax({
-        //         url: '/admin/nilai_prakerin/option/tambah_2/ajax/' + id,
-        //         method: 'get',
-        //         success: function (response) {
-        //             console.log(response);
-        //             $('#domain').empty().append();
-        //             $('#domain').append('<option value="' + response.kategori.id +
-        //                 '" selected>' + response.kategori.domain + '</option>')
-        //         },
-        //         fail: function (erorr) {
-        //         $('#domain').append('<option>-- Domain --</option>')
-        //         }
-        //     });
-        // })
-        
-        for (let x = 0; x <= 50; x++) {
-            // const element = array[index];
+if (role != 'kaprog') {
+    for (let index = 0; index <= 50; index++) {
+                  $('#jurusan').change(function (e) {
+                      $('.aspek'+index+'').empty().append();
+                    
+                      id = $(this).val();
+                      if (id) {
+                          $('.aspek'+index+'').append('<option>-- Mencari.. --</option>')
+                      } else {
+                          $('.aspek'+index+'').append('<option>-- Pilih Aspek --</option>')
+                      }
+                      console.log(id);
+                      $.ajax({
+                          url: '/admin/nilai_prakerin/option/tambah_1/ajax/' + id,
+                          method: 'get',
+                          success: function (response) {
+                              //console.log(response.kategori);
+                              $('.aspek'+index+'').empty().append();
+                              if (response.kategori != 0) {
+                                  $('.aspek'+index+'').append('<option>-- Pilih Aspek --</option>')
+                                  response.kategori.forEach(element => {
+                                      if (element) {
+                                          $('.aspek'+index+'').append('<option value="' + element.id +
+                                              '" >' + element.aspek_yang_dinilai +
+                                              '</option>')
+                                      } else {
+                                          $('.aspek'+index+'').append(
+                                              '<option>Aspek kategori kosong</option>')
+                                      }
+                                  });
+                              } else {
+                                  $('.aspek'+index+'').append('<option>Kategori kosong</option>')
+                              }
+                          },
+                          fail: function (erorr) {
+                              $('.aspek'+index+'').append('<option>-- Pilih Aspek --</option>')
+                          }
+                      });
+                  })
+                 }
+                  // gua pengen ambil id nya nur tapi bingung gw kalo multi slect gmna
+                  // gua makan dulu nur
             
-        $('select[name="aspek'+x+'"]').change(function (e) {
-            id = $(this).val();
-            console.log('berubah',id);
-            if (id ) {
-                $('#domain'+x+'').append('<option>-- Mencari.. --</option>')
-            } else {
-                $('#domain'+x+'').append('<option>-- Domain --</option>')
-            }
-            $.ajax({
-                url: '/admin/nilai_prakerin/option/tambah_2/ajax/' + id,
-                method: 'get',
-                success: function (response) {
-                    console.log(response);
-                    $('#domain'+x+'').empty().append();
-                    $('#domain'+x+'').append('<option value="' + response.kategori.id +
-                        '" selected>' + response.kategori.domain + '</option>')
-                },
-                fail: function (erorr) {
-                $('#domain'+x+'').append('<option>-- Domain --</option>')
-                }
-            });
-        })
-        }
+                  // $('select[name="aspek0"]').change(function (e) {
+                  //     id = $(this).val();
+                  //     console.log('berubah',id);
+                  //     if (id ) {
+                  //         $('#domain').append('<option>-- Mencari.. --</option>')
+                  //     } else {
+                  //         $('#domain').append('<option>-- Domain --</option>')
+                  //     }
+                  //     $.ajax({
+                  //         url: '/admin/nilai_prakerin/option/tambah_2/ajax/' + id,
+                  //         method: 'get',
+                  //         success: function (response) {
+                  //             console.log(response);
+                  //             $('#domain').empty().append();
+                  //             $('#domain').append('<option value="' + response.kategori.id +
+                  //                 '" selected>' + response.kategori.domain + '</option>')
+                  //         },
+                  //         fail: function (erorr) {
+                  //         $('#domain').append('<option>-- Domain --</option>')
+                  //         }
+                  //     });
+                  // })
+                    
+                  for (let x = 0; x <= 50; x++) {
+                      // const element = array[index];
+                      
+                  $('select[name="aspek'+x+'"]').change(function (e) {
+                      id = $(this).val();
+                      console.log('berubah',id);
+                      if (id ) {
+                          $('#domain'+x+'').append('<option>-- Mencari.. --</option>')
+                      } else {
+                          $('#domain'+x+'').append('<option>-- Domain --</option>')
+                      }
+                      $.ajax({
+                          url: '/admin/nilai_prakerin/option/tambah_2/ajax/' + id,
+                          method: 'get',
+                          success: function (response) {
+                              console.log(response);
+                              $('#domain'+x+'').empty().append();
+                              $('#domain'+x+'').append('<option value="' + response.kategori.id +
+                                  '" selected>' + response.kategori.domain + '</option>')
+                          },
+                          fail: function (erorr) {
+                          $('#domain'+x+'').append('<option>-- Domain --</option>')
+                          }
+                      });
+                  })
+                  }
+}else {
+    for (let index = 0; index <= 50; index++) {
+                  $('#jurusan').change(function (e) {
+                      $('.aspek'+index+'').empty().append();
+                    
+                      id = $(this).val();
+                      if (id) {
+                          $('.aspek'+index+'').append('<option>-- Mencari.. --</option>')
+                      } else {
+                          $('.aspek'+index+'').append('<option>-- Pilih Aspek --</option>')
+                      }
+                      console.log(id);
+                      $.ajax({
+                          url: '/admin/nilai_prakerin/option/tambah_kaprog1/ajax/' + id,
+                          method: 'get',
+                          success: function (response) {
+                              //console.log(response.kategori);
+                              $('.aspek'+index+'').empty().append();
+                              if (response.kategori != 0) {
+                                  $('.aspek'+index+'').append('<option>-- Pilih Aspek --</option>')
+                                  response.kategori.forEach(element => {
+                                      if (element) {
+                                          $('.aspek'+index+'').append('<option value="' + element.id +
+                                              '" >' + element.aspek_yang_dinilai +
+                                              '</option>')
+                                      } else {
+                                          $('.aspek'+index+'').append(
+                                              '<option>Aspek kategori kosong</option>')
+                                      }
+                                  });
+                              } else {
+                                  $('.aspek'+index+'').append('<option>Kategori kosong</option>')
+                              }
+                          },
+                          fail: function (erorr) {
+                              $('.aspek'+index+'').append('<option>-- Pilih Aspek --</option>')
+                          }
+                      });
+                  })
+                 }
+                  // gua pengen ambil id nya nur tapi bingung gw kalo multi slect gmna
+                  // gua makan dulu nur
+            
+                  // $('select[name="aspek0"]').change(function (e) {
+                  //     id = $(this).val();
+                  //     console.log('berubah',id);
+                  //     if (id ) {
+                  //         $('#domain').append('<option>-- Mencari.. --</option>')
+                  //     } else {
+                  //         $('#domain').append('<option>-- Domain --</option>')
+                  //     }
+                  //     $.ajax({
+                  //         url: '/admin/nilai_prakerin/option/tambah_kaprog2/ajax/' + id,
+                  //         method: 'get',
+                  //         success: function (response) {
+                  //             console.log(response);
+                  //             $('#domain').empty().append();
+                  //             $('#domain').append('<option value="' + response.kategori.id +
+                  //                 '" selected>' + response.kategori.domain + '</option>')
+                  //         },
+                  //         fail: function (erorr) {
+                  //         $('#domain').append('<option>-- Domain --</option>')
+                  //         }
+                  //     });
+                  // })
+                    
+                  for (let x = 0; x <= 50; x++) {
+                      // const element = array[index];
+                      
+                  $('select[name="aspek'+x+'"]').change(function (e) {
+                      id = $(this).val();
+                      console.log('berubah',id);
+                      if (id ) {
+                          $('#domain'+x+'').append('<option>-- Mencari.. --</option>')
+                      } else {
+                          $('#domain'+x+'').append('<option>-- Domain --</option>')
+                      }
+                      $.ajax({
+                          url: '/admin/nilai_prakerin/option/tambah_kaprog2/ajax/' + id,
+                          method: 'get',
+                          success: function (response) {
+                              console.log(response);
+                              $('#domain'+x+'').empty().append();
+                              $('#domain'+x+'').append('<option value="' + response.kategori.id +
+                                  '" selected>' + response.kategori.domain + '</option>')
+                          },
+                          fail: function (erorr) {
+                          $('#domain'+x+'').append('<option>-- Domain --</option>')
+                          }
+                      });
+                  })
+                  }
+}
+
+               
 
     });
 

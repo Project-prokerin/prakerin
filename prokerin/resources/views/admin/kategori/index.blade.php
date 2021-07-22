@@ -43,14 +43,14 @@
             <div class="card-body">
                 <div class="row">
                     <div class="col-md-6">
-                        <a href="/admin/kategori/tambah" class="btn btn-primary ml-3 "> Tambah Data <i
-                                class="fas fa-plus"></i></button></a>
+                        {{-- <a href="/admin/kategori/tambah" class="btn btn-primary ml-3 "> Tambah Data <i
+                                class="fas fa-plus"></i></button></a> --}}
                     </div>
                     <div class="col-md-6">
                         <div class="row">
                             <div class="col-md-4">
                                 <select name="" class="form-control mb-2  jurusan  @error('')  is-invalid  @enderror select2">
-                                    <option value="RPL">--Pilih Jurusan--</option>
+                                    <option value="">--Pilih Jurusan--</option>
                                     <option value="RPL" selected>RPL</option>
                                     <option value="MM">MM</option>
                                     <option value="BC">BC</option>
@@ -72,25 +72,19 @@
 
                 <div class="table-responsive">
 
-                    <table class="table table-striped" id="table9">
+                    <table class="table table-striped" id="table19">
                         <thead class="text-center">
-                            @if (Auth::user()->role == 'admin' or Auth::user()->role == 'kaprog')
                             <tr>
                                 <th>No</th>
-                                <th>Siswa</th>
-                                <th>Jurusan</th>
                                 <th>Aspek yang dinilai</th>
+                                <th>Jurusan</th>
                                 <th>Domain</th>
-                                <th>Nilai Sekolah</th>
-                                <th>Nilai Perusahaan</th>
+                                <th>Keterangan</th>
+                                <th>Action</th>
                             </tr>
-                            @endif
                         </thead>
                         <tbody class="text-center">
-                            <tr>
-                                <td> 1</td>
-                                <td></td>
-                            </tr>
+                       
                         </tbody>
                     </table>
                 </div>

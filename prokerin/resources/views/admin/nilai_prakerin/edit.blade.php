@@ -19,6 +19,14 @@
         <h4 class="pt-2 card-title"><i class="fas fa-th"></i> Tambah Data Nilai Prakerin</h4>
     </div>
     <div class="card-body">
+        @if (session('success'))
+<div class="alert alert-danger alert-dismissible fade show" role="alert">
+    {{ session('success') }}
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+@endif
         <form action="{{ route('nilai_prakerin.update', $siswa_main->id) }}" method="POST">
             @csrf
             @method('put')
@@ -260,15 +268,7 @@
 
                 </div>
             </div>
-            @if (Auth::user()->role == 'hubin' or Auth::user()->role == 'kaprog')
-            <div class="mb-2 col-12 row">
-                <label for="" class="col-sm-4 col-form-label">Nilai</label>
-                <div class="mb-3 col-sm-3">
-                    <input type="number" name="" id="nilai"
-                        class="form-control-sm @error('')  is-invalid  @enderror form-control" value="{{ old('') }}">
-                </div>
-            </div>
-            @endif
+           
 
             @if (Auth::user()->role == 'siswa' or Auth::user()->role == 'admin')
             {{-- <div class="mb-2 col-12 row">
@@ -494,7 +494,7 @@
                 if (nilai > 70.10 && nilai < 80.59) {
                     $('#keterangan_' + i).val('B');
                 } else
-                if (nilai > 60 && nilai < 70.09) {
+                if (nilai >= 60 && nilai < 70.09) {
                     $('#keterangan_' + i).val('C');
                 } else
                 if (nilai < 60) {

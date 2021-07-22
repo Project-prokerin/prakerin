@@ -380,6 +380,10 @@ Route::prefix('admin')->middleware(['web', 'auth', 'role:bkk,hubin,admin,kurikul
         Route::get('nilai_prakerin/tambah', [Nilai_PrakerinController::class, 'tambah'])->name('nilai_prakerin.tambah');
         Route::get('nilai_prakerin/option/tambah_1/ajax/{id}', [Nilai_PrakerinController::class, 'option_tambah_1'])->name('nilai_prakerin.tambah');
         Route::get('nilai_prakerin/option/tambah_2/ajax/{id}', [Nilai_PrakerinController::class, 'option_tambah_2'])->name('nilai_prakerin.tambah');
+
+        Route::get('nilai_prakerin/option/tambah_kaprog1/ajax/{id}', [Nilai_PrakerinController::class, 'option_kaprog_1'])->name('nilai_prakerin.tambah');
+        Route::get('nilai_prakerin/option/tambah_kaprog2/ajax/{id}', [Nilai_PrakerinController::class, 'option_kaprog_2'])->name('nilai_prakerin.tambah');
+
         Route::post('nilai_prakerin/tambah/post', [Nilai_PrakerinController::class, 'store'])->name('nilai_prakerin.post');
         Route::get('nilai_prakerin/edit/{id}', [Nilai_PrakerinController::class, 'edit'])->name('nilai_prakerin.edit');
         Route::put('nilai_prakerin/update/{nilai_prakerin}', [Nilai_PrakerinController::class, 'update'])->name('nilai_prakerin.update');
@@ -393,11 +397,10 @@ Route::prefix('admin')->middleware(['web', 'auth', 'role:bkk,hubin,admin,kurikul
     Route::middleware('role:hubin,admin,kurikulum,tu,siswa,kaprog')->group(function () {
         Route::get('kategori', [KategoriController::class, 'index'])->name('kategori.index');
         Route::post('kategori/header/ajax', [KategoriController::class, 'index'])->name('kategori.header.index');
+        // Route::get('kategori/ajax', [KategoriController::class, 'ajax'])->name('kategori.ajax');
         Route::get('kategori/ajax', [KategoriController::class, 'ajax'])->name('kategori.ajax');
-        Route::post('kategori/ajax', [KategoriController::class, 'ajax'])->name('kategori.ajax');
         Route::get('kategori/column/ajax/{val}', [KategoriController::class, 'getNameColumn'])->name('kategori.getNameColumn');
         Route::get('kategori/get_option/ajax', [KategoriController::class, 'get_option'])->name('kategori.get_option');
-
         Route::get('kategori/detail/{id}', [KategoriController::class, 'detail'])->name('kategori.detail');
         Route::get('kategori/tambah', [KategoriController::class, 'tambah'])->name('kategori.tambah');
         Route::post('kategori/tambah/post', [KategoriController::class, 'store'])->name('kategori.post');
