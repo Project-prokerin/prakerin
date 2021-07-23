@@ -100,7 +100,7 @@ class Nilai_PrakerinController extends Controller
             }
            }else{
             if ($request->filter) {
-                $kategori = Kategori_nilai_prakerin::select('id')->where('jurusan', $request->filter)->get();
+                $kategori = Kategori_nilai_prakerin::select('id')->where('keterangan', 'Nilai Sekolah')->where('jurusan', $request->filter)->get();
                 $arr_id_kategori = [];
                 foreach ($kategori as $key => $value) {
                     $arr_id_kategori[] = $value->id; // mendapat id kategori
@@ -181,8 +181,46 @@ class Nilai_PrakerinController extends Controller
     public function tambah()
     {
 
-        $siswa = Siswa::doesntHave('nilai_prakerin')->get();
+        if (Auth::user()->role != 'kaprog') {
+                 // $siswa = Siswa::doesntHave('nilai_prakerin')->get();
+        $kategoriS = Kategori_nilai_prakerin::select('id')->where('keterangan', 'Nilai Perusahaan')->get();
+        $arr_id_kategori = [];
+        foreach ($kategoriS as $key => $value) {
+            $arr_id_kategori[] = $value->id; // mendapat id kategori
+        }
+        // mengambil uniuq id siswa
+        $nilai = Nilai_prakerin::has('siswa')->select('id_siswa')->whereIn('id_ketegori', $arr_id_kategori)->get()->unique('id_siswa');
+        $arr_id_siswa = [];
+        // masukin ke aray
+        foreach ($nilai as $key => $value) {
+            $arr_id_siswa[] = $value->id_siswa;
+        }
+        // ini nyari siswa yg idnya unique
+        $siswa = Siswa::whereNotIn('id', $arr_id_siswa)->get();
+        // dd($siswa->toArray());
         $kategori = Kategori_nilai_prakerin::all()->unique('aspek_yang_dinilai')->where('keterangan', 'Nilai Perusahaan');
+            
+        }else{
+               // $siswa = Siswa::doesntHave('nilai_prakerin')->get();
+        $kategoriS = Kategori_nilai_prakerin::select('id')->where('keterangan', 'Nilai Sekolah')->get();
+        $arr_id_kategori = [];
+        foreach ($kategoriS as $key => $value) {
+            $arr_id_kategori[] = $value->id; // mendapat id kategori
+        }
+        // mengambil uniuq id siswa
+        $nilai = Nilai_prakerin::has('siswa')->select('id_siswa')->whereIn('id_ketegori', $arr_id_kategori)->get()->unique('id_siswa');
+        $arr_id_siswa = [];
+        // masukin ke aray
+        foreach ($nilai as $key => $value) {
+            $arr_id_siswa[] = $value->id_siswa;
+        }
+        // ini nyari siswa yg idnya unique
+        $siswa = Siswa::whereNotIn('id', $arr_id_siswa)->get();
+        // dd($siswa->toArray());
+        $kategori = Kategori_nilai_prakerin::all()->unique('aspek_yang_dinilai')->where('keterangan', 'Nilai Perusahaan');
+        }
+
+      
         return view('admin.nilai_prakerin.tambah', compact('kategori','siswa'));
     }
 
@@ -271,6 +309,31 @@ class Nilai_PrakerinController extends Controller
      */
     public function edit($id)
     {
+                 
+           
+        $kategoriSekolah = nilai_prakerin::where('id_siswa',$id)->get();
+        // $KS = $kategoriSekolah->kategori_nilai_prakerin->keterangan;
+        // dd($kategoriSekolah->toArray());
+        foreach ($kategoriSekolah as $key ) {
+            $a[$key->id] = $key->kategori_nilai->keterangan  ;
+            
+        }
+
+        $NilaiPerusahaan = array_diff($a,['Nilai Sekolah']);
+        $NilaiSekolah = array_diff($a,['Nilai Perusahaan']);
+        // dd($NilaiSekolah,$NilaiPerusahaan);
+
+        foreach ($NilaiPerusahaan as $key => $value) {
+            $NP[] =  $key;
+        }
+        foreach ($NilaiSekolah as $key => $value) {
+            $NS[] =  $key;
+        }
+  
+            dd($NS,$NP);
+  
+
+        
         $siswa = Siswa::get();
         // dd($id)
         $siswa_main = Siswa::where('id',$id)->first();
@@ -290,7 +353,7 @@ class Nilai_PrakerinController extends Controller
                if (Auth::user()->role != 'kaprog') {
                                // dd($aspek[0]->id_ketegori);
                         for ($i=0; $i < count($aspek); $i++) { 
-                            $kategori_edit[] = Kategori_nilai_prakerin::where('id',$aspek[$i]->id_ketegori)->first();
+                            $kategori_edit[] = Kategori_nilai_prakerin::where('id',$aspek[$i]->id_ketegori)->where('keterangan','Nilai Perusahaan')->first();
                         }
                         // dd($kategori_edit);
                         $aspek_edit0 = Nilai_prakerin::where('id_siswa',$id[0])->first();
@@ -449,7 +512,36 @@ class Nilai_PrakerinController extends Controller
      */
     public function destroy($id)
     {
-        nilai_prakerin::where('id_siswa',$id)->delete();
-        return response()->json($data = 'berhasil');
+     
+        
+        $kategoriSekolah = nilai_prakerin::where('id_siswa',$id)->get();
+        // $KS = $kategoriSekolah->kategori_nilai_prakerin->keterangan;
+        // dd($kategoriSekolah->toArray());
+        foreach ($kategoriSekolah as $key ) {
+            $a[$key->id] = $key->kategori_nilai->keterangan  ;
+            
+        }
+
+        $NilaiPerusahaan = array_diff($a,['Nilai Sekolah']);
+        $NilaiSekolah = array_diff($a,['Nilai Perusahaan']);
+        // dd($NilaiSekolah,$NilaiPerusahaan);
+
+        foreach ($NilaiPerusahaan as $key => $value) {
+            $NP[] =  $key;
+        }
+        foreach ($NilaiSekolah as $key => $value) {
+            $NS[] =  $key;
+        }
+  
+  
+
+      
+        if (Auth::user()->role != 'kaprog') {
+                nilai_prakerin::where('id_siswa',$id)->whereIn('id',$NP)->delete();
+            return response()->json($data = 'berhasil');
+        }else{
+                nilai_prakerin::where('id_siswa',$id)->whereIn('id',$NS)->delete();
+              return response()->json($data = 'berhasil');
+        }
     }
 }
