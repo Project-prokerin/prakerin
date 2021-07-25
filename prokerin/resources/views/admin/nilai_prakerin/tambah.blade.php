@@ -279,7 +279,7 @@
         <div class="row" style="">
             <button id="cek_submit" type="submit" class="btn btn-success mr-3 text-white"><i class="fas fa-check"></i>
                 submit</button>
-            <a href="" type="submit" class="btn btn-danger"><i class="fas fa-times"></i> Batal</a>
+            <a href="{{route('nilai_prakerin.index')}}" type="submit" class="btn btn-danger"><i class="fas fa-times"></i> Batal</a>
         </div>
     </div>
 </div>
@@ -447,6 +447,7 @@
 
 
         // ngambil domain
+        
 let role = $('#auth').val();
 
 if (role != 'kaprog') {

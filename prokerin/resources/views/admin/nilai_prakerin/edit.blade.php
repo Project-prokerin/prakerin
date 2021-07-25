@@ -66,7 +66,7 @@
                         </div>
                     </div>
                     @endif
-                    @if (Auth::user()->role == 'hubin')
+                    {{-- @if (Auth::user()->role == 'hubin')
                     <div class="mb-2 col-12 row">
                         <label for="" class="col-sm-4 col-form-label">Kelompok</label>
                         <div class="mb-3 col-8">
@@ -88,7 +88,7 @@
                             </select>
                         </div>
                     </div>
-                    @endif
+                    @endif --}}
                     {{-- <div class="mb-2 col-12 row">
                         <label for="" class="col-sm-4 col-form-label">Aspek Yang Dinilai</label>
                         <div class="mb-3 col-8">
@@ -153,65 +153,69 @@
                         </div>
                     </div>  
                     
-                    @for ($e = 1; $e < count($aspek); $e++)
-                    <div id="row{{$e}}" style="display:block;">
-                        <div class="">
-                            <div class="row">
-                                <label class="" style="margin-left: 33px;">Aspek yang dinilai</label>
-                                <label class="" style="margin-left: 70px;">Nilai</label>
-                            </div>
-                        </div>
-                        <div class="mt-2 col-12 row">
-                            <div class="col-sm-5">
-                                <select id="aspek{{$e}}" name="aspek{{$e}}"
-                                    class="form-control aspek0 select2 @error('')  is-invalid  @enderror ">
-                                    <option value="">--Cari Aspek--</option>
-                                    <option value="{{ $kategori_edit[$e]->id }}" selected>{{ $kategori_edit[$e]->aspek_yang_dinilai }}</option>
-                                    @foreach ($kategori as $item)
-                                    <option value="{{ $item->id }}" sele>{{ $item->aspek_yang_dinilai }}</option>
-                                    @endforeach
-                                </select>
-                                <div id="invalid_aspek" class="invalid-feedback d-none"></div>
-                            </div>
-                            <div class="mb-3 col-sm-3">
-                                <input type="number" name="nilai[]" value="{{$aspek[$e]->nilai}}" id="nilai_{{$e}}"
-                                    class="form-control @error('')  is-invalid  @enderror form-control">
-                                <div id="invalid_nilai" class="invalid-feedback d-none"></div>
-                            </div>
-                            <div class="mb-3 col-sm-4">
-                                <button type="button" name="remove" id="{{$e}}" class="btn btn-danger btn_remove">X</button>
-                                </div>
-    
-                            <div class="mb-2 col-12 row">
-                                <label for="keterangan"  class="col-sm-5 col-form-label">Keterangan</label>
-                                <div class="mb-3 col-sm-3"  style="margin-left: 15px;">
-                                    <input type="text" value="{{$aspek[$e]->keterangan}}"  name="keterangan[]" id="keterangan_{{$e}}" class="form-control keterangan"
-                                       readonly >
+                 @if (count($kategori_edit) < 2)
+                     
+                 @else 
+                        @for ($e = 1; $e < count($kategori_edit); $e++)
+                        <div id="row{{$e}}" style="display:block;">
+                            <div class="">
+                                <div class="row">
+                                    <label class="" style="margin-left: 33px;">Aspek yang dinilai</label>
+                                    <label class="" style="margin-left: 70px;">Nilai</label>
                                 </div>
                             </div>
-                            <div class="mb-2 col-12 row">
-                                <label class="col-sm-3 col-form-label">Domain</label>
-                                <div class="mb-3 col-6" style="margin-left: -0px;">
-                                    <select name="domain{{$e}}" id="domain{{$e}}"
-                                        class="form-control domain    @error('')  is-invalid  @enderror select2"
-                                        disabled>
-                                        <option value="">-- Domain --</option>
-                                        <option value="{{ $kategori_edit[$e]->id }}" selected>{{ $kategori_edit[$e]->domain }}</option>
+                            <div class="mt-2 col-12 row">
+                                <div class="col-sm-5">
+                                    <select id="aspek{{$e}}" name="aspek{{$e}}"
+                                        class="form-control aspek0 select2 @error('')  is-invalid  @enderror ">
+                                        <option value="">--Cari Aspek--</option>
+                                        <option value="{{ $kategori_edit[$e]->id }}" selected>{{ $kategori_edit[$e]->aspek_yang_dinilai }}</option>
+                                        @foreach ($kategori as $item)
+                                        <option value="{{ $item->id }}" sele>{{ $item->aspek_yang_dinilai }}</option>
+                                        @endforeach
                                     </select>
-                                    <div id="invalid_domain" class="invalid-feedback d-none"></div>
+                                    <div id="invalid_aspek" class="invalid-feedback d-none"></div>
+                                </div>
+                                <div class="mb-3 col-sm-3">
+                                    <input type="number" name="nilai[]" value="{{$aspek_edit[$e]->nilai}}" id="nilai_{{$e}}"
+                                        class="form-control @error('')  is-invalid  @enderror form-control">
+                                    <div id="invalid_nilai" class="invalid-feedback d-none"></div>
+                                </div>
+                                <div class="mb-3 col-sm-4">
+                                    <button type="button" name="remove" id="{{$e}}" class="btn btn-danger btn_remove">X</button>
+                                    </div>
+                                
+                                <div class="mb-2 col-12 row">
+                                    <label for="keterangan"  class="col-sm-5 col-form-label">Keterangan</label>
+                                    <div class="mb-3 col-sm-3"  style="margin-left: 15px;">
+                                        <input type="text" value="{{$aspek_edit[$e]->keterangan}}"  name="keterangan[]" id="keterangan_{{$e}}" class="form-control keterangan"
+                                           readonly >
+                                    </div>
+                                </div>
+                                <div class="mb-2 col-12 row">
+                                    <label class="col-sm-3 col-form-label">Domain</label>
+                                    <div class="mb-3 col-6" style="margin-left: -0px;">
+                                        <select name="domain{{$e}}" id="domain{{$e}}"
+                                            class="form-control domain    @error('')  is-invalid  @enderror select2"
+                                            disabled>
+                                            <option value="">-- Domain --</option>
+                                            <option value="{{ $kategori_edit[$e]->id }}" selected>{{ $kategori_edit[$e]->domain }}</option>
+                                        </select>
+                                        <div id="invalid_domain" class="invalid-feedback d-none"></div>
+                                    </div>
+                                </div>
+                                <div class="mb-3 col-sm-4">
+                                    {{-- <button type="button" name="" id="add" class="btn btn-success">Add More</button> --}}
                                 </div>
                             </div>
-                            <div class="mb-3 col-sm-4">
-                                {{-- <button type="button" name="" id="add" class="btn btn-success">Add More</button> --}}
-                            </div>
                         </div>
-                    </div>
-                    @endfor
+                        @endfor
+                 @endif
 
                         
-                    <input type="hidden" id="count" value="{{count($aspek)}}">
+                    <input type="hidden" id="count" value="{{count($aspek_edit)}}">
 
-                    @for ($i = count($aspek); $i <= 50; $i++)
+                    @for ($i = count($aspek_edit); $i <= 50; $i++)
                     <div id="row{{$i}}" style="display:none;">
                       <div class="">
                           <div class="row">
@@ -333,6 +337,8 @@
         </div>
     </div>
 </div>
+<input type="hidden" id="auth" value="{{Auth::user()->role}}">
+
 <div class="card-body">
     <div class="modal-footer" style="">
         <div class="row" style="">
@@ -508,98 +514,193 @@
 
 
         // ngambil domain
+        let role = $('#auth').val();
 
-       for (let index = 0; index <= 50; index++) {
-        $('#jurusan').change(function (e) {
-            $('.aspek'+index+'').empty().append();
-
-            id = $(this).val();
-            if (id) {
-                $('.aspek'+index+'').append('<option>-- Mencari.. --</option>')
-            } else {
-                $('.aspek'+index+'').append('<option>-- Pilih Aspek --</option>')
-            }
-            console.log(id);
-            $.ajax({
-                url: '/admin/nilai_prakerin/option/tambah_1/ajax/' + id,
-                method: 'get',
-                success: function (response) {
-                    //console.log(response.kategori);
-                    $('.aspek'+index+'').empty().append();
-                    if (response.kategori != 0) {
-                        $('.aspek'+index+'').append('<option>-- Pilih Aspek --</option>')
-                        response.kategori.forEach(element => {
-                            if (element) {
-                                $('.aspek'+index+'').append('<option value="' + element.id +
-                                    '" >' + element.aspek_yang_dinilai +
-                                    '</option>')
-                            } else {
-                                $('.aspek'+index+'').append(
-                                    '<option>Aspek kategori kosong</option>')
-                            }
-                        });
-                    } else {
-                        $('.aspek'+index+'').append('<option>Kategori kosong</option>')
-                    }
-                },
-                fail: function (erorr) {
-                    $('.aspek'+index+'').append('<option>-- Pilih Aspek --</option>')
-                }
-            });
-        })
-       }
-        // gua pengen ambil id nya nur tapi bingung gw kalo multi slect gmna
-        // gua makan dulu nur
-
-        // $('select[name="aspek0"]').change(function (e) {
-        //     id = $(this).val();
-        //     console.log('berubah',id);
-        //     if (id ) {
-        //         $('#domain').append('<option>-- Mencari.. --</option>')
-        //     } else {
-        //         $('#domain').append('<option>-- Domain --</option>')
-        //     }
-        //     $.ajax({
-        //         url: '/admin/nilai_prakerin/option/tambah_2/ajax/' + id,
-        //         method: 'get',
-        //         success: function (response) {
-        //             console.log(response);
-        //             $('#domain').empty().append();
-        //             $('#domain').append('<option value="' + response.kategori.id +
-        //                 '" selected>' + response.kategori.domain + '</option>')
-        //         },
-        //         fail: function (erorr) {
-        //         $('#domain').append('<option>-- Domain --</option>')
-        //         }
-        //     });
-        // })
-        
-        for (let x = 0; x <= 50; x++) {
-            // const element = array[index];
+if (role != 'kaprog') {
+    for (let index = 0; index <= 50; index++) {
+                  $('#jurusan').change(function (e) {
+                      $('.aspek'+index+'').empty().append();
+                    
+                      id = $(this).val();
+                      if (id) {
+                          $('.aspek'+index+'').append('<option>-- Mencari.. --</option>')
+                      } else {
+                          $('.aspek'+index+'').append('<option>-- Pilih Aspek --</option>')
+                      }
+                      console.log(id);
+                      $.ajax({
+                          url: '/admin/nilai_prakerin/option/tambah_1/ajax/' + id,
+                          method: 'get',
+                          success: function (response) {
+                              //console.log(response.kategori);
+                              $('.aspek'+index+'').empty().append();
+                              if (response.kategori != 0) {
+                                  $('.aspek'+index+'').append('<option>-- Pilih Aspek --</option>')
+                                  response.kategori.forEach(element => {
+                                      if (element) {
+                                          $('.aspek'+index+'').append('<option value="' + element.id +
+                                              '" >' + element.aspek_yang_dinilai +
+                                              '</option>')
+                                      } else {
+                                          $('.aspek'+index+'').append(
+                                              '<option>Aspek kategori kosong</option>')
+                                      }
+                                  });
+                              } else {
+                                  $('.aspek'+index+'').append('<option>Kategori kosong</option>')
+                              }
+                          },
+                          fail: function (erorr) {
+                              $('.aspek'+index+'').append('<option>-- Pilih Aspek --</option>')
+                          }
+                      });
+                  })
+                 }
+                  // gua pengen ambil id nya nur tapi bingung gw kalo multi slect gmna
+                  // gua makan dulu nur
             
-        $('select[name="aspek'+x+'"]').change(function (e) {
-            id = $(this).val();
-            console.log('berubah',id);
-            if (id ) {
-                $('#domain'+x+'').append('<option>-- Mencari.. --</option>')
-            } else {
-                $('#domain'+x+'').append('<option>-- Domain --</option>')
-            }
-            $.ajax({
-                url: '/admin/nilai_prakerin/option/tambah_2/ajax/' + id,
-                method: 'get',
-                success: function (response) {
-                    console.log(response);
-                    $('#domain'+x+'').empty().append();
-                    $('#domain'+x+'').append('<option value="' + response.kategori.id +
-                        '" selected>' + response.kategori.domain + '</option>')
-                },
-                fail: function (erorr) {
-                $('#domain'+x+'').append('<option>-- Domain --</option>')
-                }
-            });
-        })
-        }
+                  // $('select[name="aspek0"]').change(function (e) {
+                  //     id = $(this).val();
+                  //     console.log('berubah',id);
+                  //     if (id ) {
+                  //         $('#domain').append('<option>-- Mencari.. --</option>')
+                  //     } else {
+                  //         $('#domain').append('<option>-- Domain --</option>')
+                  //     }
+                  //     $.ajax({
+                  //         url: '/admin/nilai_prakerin/option/tambah_2/ajax/' + id,
+                  //         method: 'get',
+                  //         success: function (response) {
+                  //             console.log(response);
+                  //             $('#domain').empty().append();
+                  //             $('#domain').append('<option value="' + response.kategori.id +
+                  //                 '" selected>' + response.kategori.domain + '</option>')
+                  //         },
+                  //         fail: function (erorr) {
+                  //         $('#domain').append('<option>-- Domain --</option>')
+                  //         }
+                  //     });
+                  // })
+                    
+                  for (let x = 0; x <= 50; x++) {
+                      // const element = array[index];
+                      
+                  $('select[name="aspek'+x+'"]').change(function (e) {
+                      id = $(this).val();
+                      console.log('berubah',id);
+                      if (id ) {
+                          $('#domain'+x+'').append('<option>-- Mencari.. --</option>')
+                      } else {
+                          $('#domain'+x+'').append('<option>-- Domain --</option>')
+                      }
+                      $.ajax({
+                          url: '/admin/nilai_prakerin/option/tambah_2/ajax/' + id,
+                          method: 'get',
+                          success: function (response) {
+                              console.log(response);
+                              $('#domain'+x+'').empty().append();
+                              $('#domain'+x+'').append('<option value="' + response.kategori.id +
+                                  '" selected>' + response.kategori.domain + '</option>')
+                          },
+                          fail: function (erorr) {
+                          $('#domain'+x+'').append('<option>-- Domain --</option>')
+                          }
+                      });
+                  })
+                  }
+}else {
+    for (let index = 0; index <= 50; index++) {
+                  $('#jurusan').change(function (e) {
+                      $('.aspek'+index+'').empty().append();
+                    
+                      id = $(this).val();
+                      if (id) {
+                          $('.aspek'+index+'').append('<option>-- Mencari.. --</option>')
+                      } else {
+                          $('.aspek'+index+'').append('<option>-- Pilih Aspek --</option>')
+                      }
+                      console.log(id);
+                      $.ajax({
+                          url: '/admin/nilai_prakerin/option/tambah_kaprog1/ajax/' + id,
+                          method: 'get',
+                          success: function (response) {
+                              //console.log(response.kategori);
+                              $('.aspek'+index+'').empty().append();
+                              if (response.kategori != 0) {
+                                  $('.aspek'+index+'').append('<option>-- Pilih Aspek --</option>')
+                                  response.kategori.forEach(element => {
+                                      if (element) {
+                                          $('.aspek'+index+'').append('<option value="' + element.id +
+                                              '" >' + element.aspek_yang_dinilai +
+                                              '</option>')
+                                      } else {
+                                          $('.aspek'+index+'').append(
+                                              '<option>Aspek kategori kosong</option>')
+                                      }
+                                  });
+                              } else {
+                                  $('.aspek'+index+'').append('<option>Kategori kosong</option>')
+                              }
+                          },
+                          fail: function (erorr) {
+                              $('.aspek'+index+'').append('<option>-- Pilih Aspek --</option>')
+                          }
+                      });
+                  })
+                 }
+                  // gua pengen ambil id nya nur tapi bingung gw kalo multi slect gmna
+                  // gua makan dulu nur
+            
+                  // $('select[name="aspek0"]').change(function (e) {
+                  //     id = $(this).val();
+                  //     console.log('berubah',id);
+                  //     if (id ) {
+                  //         $('#domain').append('<option>-- Mencari.. --</option>')
+                  //     } else {
+                  //         $('#domain').append('<option>-- Domain --</option>')
+                  //     }
+                  //     $.ajax({
+                  //         url: '/admin/nilai_prakerin/option/tambah_kaprog2/ajax/' + id,
+                  //         method: 'get',
+                  //         success: function (response) {
+                  //             console.log(response);
+                  //             $('#domain').empty().append();
+                  //             $('#domain').append('<option value="' + response.kategori.id +
+                  //                 '" selected>' + response.kategori.domain + '</option>')
+                  //         },
+                  //         fail: function (erorr) {
+                  //         $('#domain').append('<option>-- Domain --</option>')
+                  //         }
+                  //     });
+                  // })
+                    
+                  for (let x = 0; x <= 50; x++) {
+                      // const element = array[index];
+                      
+                  $('select[name="aspek'+x+'"]').change(function (e) {
+                      id = $(this).val();
+                      console.log('berubah',id);
+                      if (id ) {
+                          $('#domain'+x+'').append('<option>-- Mencari.. --</option>')
+                      } else {
+                          $('#domain'+x+'').append('<option>-- Domain --</option>')
+                      }
+                      $.ajax({
+                          url: '/admin/nilai_prakerin/option/tambah_kaprog2/ajax/' + id,
+                          method: 'get',
+                          success: function (response) {
+                              console.log(response);
+                              $('#domain'+x+'').empty().append();
+                              $('#domain'+x+'').append('<option value="' + response.kategori.id +
+                                  '" selected>' + response.kategori.domain + '</option>')
+                          },
+                          fail: function (erorr) {
+                          $('#domain'+x+'').append('<option>-- Domain --</option>')
+                          }
+                      });
+                  })
+                  }
+}
 
     });
 

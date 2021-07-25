@@ -310,28 +310,7 @@ class Nilai_PrakerinController extends Controller
     public function edit($id)
     {
                  
-           
-        $kategoriSekolah = nilai_prakerin::where('id_siswa',$id)->get();
-        // $KS = $kategoriSekolah->kategori_nilai_prakerin->keterangan;
-        // dd($kategoriSekolah->toArray());
-        foreach ($kategoriSekolah as $key ) {
-            $a[$key->id] = $key->kategori_nilai->keterangan  ;
-            
-        }
-
-        $NilaiPerusahaan = array_diff($a,['Nilai Sekolah']);
-        $NilaiSekolah = array_diff($a,['Nilai Perusahaan']);
-        // dd($NilaiSekolah,$NilaiPerusahaan);
-
-        foreach ($NilaiPerusahaan as $key => $value) {
-            $NP[] =  $key;
-        }
-        foreach ($NilaiSekolah as $key => $value) {
-            $NS[] =  $key;
-        }
-  
-            dd($NS,$NP);
-  
+     
 
         
         $siswa = Siswa::get();
@@ -343,37 +322,74 @@ class Nilai_PrakerinController extends Controller
             //     $id[] = $value->id_ketegori;
             // }
             $get_collec_jurusan =  Kategori_nilai_prakerin::all()->whereIn('id', $id)->where('keterangan', 'Nilai Perusahaan')->unique('jurusan');
-            // dd($get_collec_jurusan->toArray());
         $jurusan = [];
         foreach ($get_collec_jurusan as $key => $value) {
             $jurusan[] = $value->jurusan;
         }
-        // dd($jurusan);
         $aspek = Nilai_prakerin::where('id_siswa',$id)->get();
+
+        foreach ($aspek as $key ) {
+            $a[$key->id] = $key->kategori_nilai->keterangan  ;
+            
+        }
+
+        $NilaiPerusahaan = array_diff($a,['Nilai Sekolah']);
+        $NilaiSekolah = array_diff($a,['Nilai Perusahaan']);
+
+        foreach ($NilaiPerusahaan as $key => $value) {
+            $NP[] =  $key;
+        }
+        foreach ($NilaiSekolah as $key => $value) {
+            $NS[] =  $key;
+        }
+        // dd($NP);
+  
+
                if (Auth::user()->role != 'kaprog') {
-                               // dd($aspek[0]->id_ketegori);
                         for ($i=0; $i < count($aspek); $i++) { 
-                            $kategori_edit[] = Kategori_nilai_prakerin::where('id',$aspek[$i]->id_ketegori)->where('keterangan','Nilai Perusahaan')->first();
+                            $kategoriEdit[] = Kategori_nilai_prakerin::where('id',$aspek[$i]->id_ketegori)->where('keterangan','Nilai Perusahaan')->first();
                         }
-                        // dd($kategori_edit);
-                        $aspek_edit0 = Nilai_prakerin::where('id_siswa',$id[0])->first();
-                        $kategori_edit0 = Kategori_nilai_prakerin::where('id',$aspek[0]->id_ketegori)->first();
+                        if ( $editNP = array_diff($kategoriEdit,[null])) {
+                            foreach ($editNP as $kuy) {
+                                $kategori_edit[] = $kuy;
+                            }
+                            
+                        }
+
+                        for ($x=0; $x < count($NP); $x++) { 
+                            $aspek_edit[] = Nilai_prakerin::where('id',$NP[$x])->first();
+
+                        }
+                        // dd($aspek_edit);
+                        $aspek_edit0 = Nilai_prakerin::where('id',$NP[0])->first();
+                        $kategori_edit0 = Kategori_nilai_prakerin::where('id',$kategori_edit[0]->id)->first();
                         $kategori = Kategori_nilai_prakerin::where('keterangan','Nilai Perusahaan')->get();
-                    
-               }else{
-                                // dd($aspek[0]->id_ketegori);
-                         for ($i=0; $i < count($aspek); $i++) { 
-                             $kategori_edit[] = Kategori_nilai_prakerin::where('id',$aspek[$i]->id_ketegori)->where('keterangan','Nilai Sekolah')->first();
-                         }
-                         // dd($kategori_edit);
-                         $aspek_edit0 = Nilai_prakerin::where('id_siswa',$id[0])->first();
-                         $kategori_edit0 = Kategori_nilai_prakerin::where('id',$aspek[0]->id_ketegori)->first();
-                         $kategori = Kategori_nilai_prakerin::where('keterangan','Nilai Sekolah')->get();
+                        // dd($NP);
+                        // return view('admin.nilai_prakerin.edit', compact('siswa_main','siswa','jurusan','kategori_edit','kategori','kategori_edit0','aspek_edit0','aspek'));
+                        
+                    }else{
+                          //    dd($aspek_edit0);
+                          for ($i=0; $i < count($aspek); $i++) { 
+                              $kategoriEdit[] = Kategori_nilai_prakerin::where('id',$aspek[$i]->id_ketegori)->where('keterangan','Nilai Sekolah')->first();
+                          }
+                          if ( $editNS = array_diff($kategoriEdit,[null])) {
+                              foreach ($editNS as $kuy) {
+                                  $kategori_edit[] = $kuy;
+                              }
+
+                          }
+                          for ($x=0; $x < count($NS); $x++) { 
+                            $aspek_edit[] = Nilai_prakerin::where('id',$NS[$x])->first();
+
+                        }
+                          $aspek_edit0 = Nilai_prakerin::where('id',$NS[0])->first();
+                          $kategori_edit0 = Kategori_nilai_prakerin::where('id',$kategori_edit[0]->id)->first();
+                          $kategori = Kategori_nilai_prakerin::where('keterangan','Nilai Sekolah')->get();
                      
                }
         // dd($siswa_main,$siswa,$jurusan,$kategori_edit,$kategori,$kategori_edit0,$aspek_edit0,$aspek);
         // $kategori = Kategori_nilai_prakerin::all()->unique('aspek_yang_dinilai')->where('keterangan', 'Nilai Perusahaan')->where('jurusan', $jurusan[0]);
-        return view('admin.nilai_prakerin.edit', compact('siswa_main','siswa','jurusan','kategori_edit','kategori','kategori_edit0','aspek_edit0','aspek'));
+        return view('admin.nilai_prakerin.edit', compact('siswa_main','siswa','jurusan','kategori_edit','kategori','kategori_edit0','aspek_edit0','aspek_edit'));
     }
 
     /**
@@ -410,7 +426,6 @@ class Nilai_PrakerinController extends Controller
                }
                
            }
-           // dd($request->nilai,$aspek);
         if ( $keyKeterangan = array_diff($request->keterangan,[null])) {
             foreach ($keyKeterangan as $kuy) {
                 $keterangann[] = $kuy;
@@ -425,6 +440,27 @@ class Nilai_PrakerinController extends Controller
             
         }
        
+        // dd($nilaii,$aspekk,$keterangann);
+        
+        $kategoriSekolah = nilai_prakerin::where('id_siswa',$id)->get();
+        // $KS = $kategoriSekolah->kategori_nilai_prakerin->keterangan;
+        // dd($kategoriSekolah->toArray());
+        foreach ($kategoriSekolah as $key ) {
+            $a[$key->id] = $key->kategori_nilai->keterangan  ;
+            
+        }
+
+        $NilaiPerusahaan = array_diff($a,['Nilai Sekolah']);
+        $NilaiSekolah = array_diff($a,['Nilai Perusahaan']);
+        // dd($NilaiSekolah,$NilaiPerusahaan);
+
+        foreach ($NilaiPerusahaan as $key => $value) {
+            $NP[] =  $key;
+        }
+        foreach ($NilaiSekolah as $key => $value) {
+            $NS[] =  $key;
+        }
+
         if (Auth::user()->role != 'kaprog') {
             if (empty($aspekk)) {
                 nilai_prakerin::where('id_siswa',$id)->delete();
@@ -432,7 +468,7 @@ class Nilai_PrakerinController extends Controller
     
             }else{
                 if ($count > $aspekk || $count < $aspekk ) {
-                    nilai_prakerin::where('id_siswa',$id)->delete();
+                    nilai_prakerin::where('id_siswa',$id)->whereIn('id',$NP)->delete();
                     $siswa = Siswa::where('id',$id)->first();
                     
                   for ($i=0; $i < count($aspekk) ; $i++) {
@@ -467,7 +503,7 @@ class Nilai_PrakerinController extends Controller
             }else{
 
                 if ($count > $aspekk || $count < $aspekk ) {
-                    nilai_prakerin::where('id_siswa',$id)->delete();
+                    Nilai_prakerin::where('id_siswa',$id)->whereIn('id',$NS)->delete();
                     $siswa = Siswa::where('id',$id)->first();
                     
                   for ($i=0; $i < count($aspekk) ; $i++) {
