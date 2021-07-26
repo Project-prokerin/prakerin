@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\admin\data_prakerin;
+namespace App\Http\Controllers\user\data_prakerin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Kategori_nilai_prakerin;

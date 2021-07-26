@@ -23,4 +23,7 @@ class jurusan extends Model
     {
         return $this->hasMany(perusahaan::class, 'id_jurusan', 'id');
     }
+    public function nilai_prakerin(){
+        return $this->HasMany(nilai_prakerin::class, 'id_jurusan','id');
+      }
 }

@@ -22,5 +22,8 @@ class Nilai_prakerin extends Model
     {
         return $this->belongsTo(Kategori_nilai_prakerin::class, 'id_ketegori');
     }
+    Public function jurusan(){
+        return $this->belongsTo(jurusan::class,'id_jurusan');
+      }
     
 }
