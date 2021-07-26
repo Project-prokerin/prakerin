@@ -49,7 +49,7 @@
                     <div class="col-md-6">
                         <div class="row">
                             <div class="col-md-4">
-                                <select name="" class="form-control mb-2  jurusan  @error('')  is-invalid  @enderror select2">
+                                <select name="" id="jurusan" class="form-control mb-2  jurusan  @error('')  is-invalid  @enderror select2">
                                     <option value="">--Pilih Jurusan--</option>
                                     <option value="RPL" selected>RPL</option>
                                     <option value="MM">MM</option>
@@ -84,7 +84,7 @@
                             </tr>
                         </thead>
                         <tbody class="text-center">
-                       
+
                         </tbody>
                     </table>
                 </div>

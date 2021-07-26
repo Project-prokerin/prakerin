@@ -49,6 +49,7 @@ $(document).ready(function () {
             url: root + "/admin/nilai_prakerin/column/ajax/" + val,
             type: "get",
             success: function (response) {
+                // array of object buat column
                 column = [{
                         data: 'DT_RowIndex',
                         name: 'DT_RowIndex',
@@ -106,7 +107,9 @@ $(document).ready(function () {
                 });
                 // table.draw();
                 $('.jurusan').change(function (e) {
+                    // di apus tablenya
                     table.clear().destroy();
+                    // table di refresh (setaip loop akan membuat table & request baru jadinya)
                     table.draw();
                 })
                 // $('.btn-table').append(

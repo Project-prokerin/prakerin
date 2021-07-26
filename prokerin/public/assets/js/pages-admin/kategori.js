@@ -1,17 +1,17 @@
 $(document).ready( function () {
     var filter = $('#search').val();
+    console.log(filter);
     root = window.location.protocol + '//' + window.location.host;
     var table = $('#table19').DataTable({
         dom:
-        "<'row'<'ol-sm-12 col-md-6 btn-table'><'col-sm-12 col-md-6  pdf-button'f>>" +
+        "<'row'<'ol-sm-12 col-md-6 btn-table'><'col-sm-12 col-md-6  pdf-button'>>" +
         "<'row'<'col-sm-12'tr>>" +
         "<'row'<'col-sm-5'i><'col-sm-7'p>>",
         bLengthChange: false,
         ordering:false,
         info: true,
         filtering:false,
-        searching: false,
-
+        searching: true,
         serverside: true,
         processing: true,
         serverSide: true,
@@ -23,8 +23,8 @@ $(document).ready( function () {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             },
             data: function (d) {
-                d.approved = $('.jurusan').val(),
-                d.search = filter
+                d.approved = $('#jurusan').val();
+                // d.search = filter
             },
         url: root+"/admin/kategori/ajax/",
         type: "get",
@@ -40,12 +40,12 @@ $(document).ready( function () {
     });
 
     $('.btn-table').append(
-        '<a href="'+root+'/admin/kelas/tambah"class="btn btn-primary "> Tambah Data <i class="fas fa-plus"></i></button></a>'
+        '<a href="'+root+'/admin/kategori/tambah"class="btn btn-primary "> Tambah Data <i class="fas fa-plus"></i></button></a>'
     );
-    $('#table11_filter').prepend(
-        '<a href="'+root+'/admin/export/excel/kelas"class="btn btn-success mr-3  ml-2"> Excel <i class="fas fa-cloud-download-alt"></i></button></a>'
-    );
-    $('.jurusan').change(function(){
+    // $('#table11_filter').prepend(
+    //     '<a href="'+root+'/admin/export/excel/kelas"class="btn btn-success mr-3  ml-2"> Excel <i class="fas fa-cloud-download-alt"></i></button></a>'
+    // );
+    $('#jurusan').change(function(){
         table.draw();
     });
 
