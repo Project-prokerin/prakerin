@@ -31,27 +31,31 @@ class KategoriController extends Controller
     public function ajax(Request $request)
     {
         if ($request->ajax()) {
-            $kategoriNilaiPrakerin = Kategori_nilai_prakerin::select('*');
+            if ($request->approved) {
+                $kategoriNilaiPrakerin = Kategori_nilai_prakerin::where('jurusan', $request->approved)->orderBy('created_at', 'DESC')->get();
+            }else{
+                $kategoriNilaiPrakerin = Kategori_nilai_prakerin::orderBy('created_at', 'DESC')->get();
+            }
             return datatables()->of($kategoriNilaiPrakerin)
-            ->addIndexColumn()
+            // ->addIndexColumn()
 
-            ->filter(function ($instance) use ($request) {
-                if ($request->get('jurusan') == 'RPL' || $request->get('jurusan') == 'MM' || $request->get('jurusan') == 'BC' || $request->get('jurusan') == 'TKJ' || $request->get('jurusan') == 'TEI') {
-                    $instance->where('jurusan', $request->get('jurusan'));
-                }
-                if (!empty($request->get('search'))) {
-                     $instance->where(function($w) use($request){
-                        $search = $request->get('search');
-                        $w->orWhere('aspek_yang _dinilai', 'LIKE', "%$search%")
-                        ->orWhere('jurusan', 'LIKE', "%$search%")
-                        ->orWhere('domain', 'LIKE', "%$search%")
-                        ->orWhere('keterangan', 'LIKE', "%$search%");
-                    });
-                }
-            })
+            // ->filter(function ($instance) use ($request) {
+            //     if ($request->get('jurusan') == 'RPL' || $request->get('jurusan') == 'MM' || $request->get('jurusan') == 'BC' || $request->get('jurusan') == 'TKJ' || $request->get('jurusan') == 'TEI') {
+            //         $instance->where('jurusan', $request->get('jurusan'));
+            //     }
+            //     if (!empty($request->get('search'))) {
+            //          $instance->where(function($w) use($request){
+            //             $search = $request->get('search');
+            //             $w->orWhere('aspek_yang _dinilai', 'LIKE', "%$search%")
+            //             ->orWhere('jurusan', 'LIKE', "%$search%")
+            //             ->orWhere('domain', 'LIKE', "%$search%")
+            //             ->orWhere('keterangan', 'LIKE', "%$search%");
+            //         });
+            //     }
+            // })
 
-          
-           
+
+
                 ->addColumn('action', function ($data) {
                     $button = '<a href="/admin/kategori/detail/' . $data->id . '"   id="' . $data->id . '" class="edit btn btn-primary btn-sm"><i class="fas fa-search"></i></a>';
                     $button .= '&nbsp';
@@ -61,15 +65,15 @@ class KategoriController extends Controller
                     return $button;
                 })
                 ->rawColumns(['action'])
-                ->make(true);
+                ->addIndexColumn()->make(true);
         }
-        
+
     }
 
     public function tambah()
     {
         $jurusan = jurusan::all();
-    
+
         return view('admin.kategori.tambah',compact('jurusan'));
     }
 
@@ -120,7 +124,7 @@ class KategoriController extends Controller
         ],[
             'required' => 'Tidak Boleh kosong',
         ]);
-        
+
     Kategori_nilai_prakerin::find($id)->update([
         'aspek_yang_dinilai' => $request->aspek_yang_dinilai,
         'jurusan' => $request->jurusan,
