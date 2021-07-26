@@ -28,6 +28,7 @@ use App\Http\Controllers\admin\siswa\alumniController;
 // user routeus
 // ex App\Http\Controllers\user\namaController;
 use App\Http\Controllers\user\userController;
+use App\Http\Controllers\user\SiswaNilai_PrakerinController;
 
 // for pakage only
 use App\Http\Controllers\PDF\PDFController;
@@ -368,7 +369,7 @@ Route::prefix('admin')->middleware(['web', 'auth', 'role:bkk,hubin,admin,kurikul
     });
 
     // nilai prakerin
-    Route::middleware('role:hubin,admin,kurikulum,tu,siswa,kaprog')->group(function () {
+    Route::middleware('role:hubin,admin,kurikulum,tu,kaprog')->group(function () {
         Route::get('nilai_prakerin', [Nilai_PrakerinController::class, 'index'])->name('nilai_prakerin.index');
         Route::post('nilai_prakerin/header/ajax', [Nilai_PrakerinController::class, 'index'])->name('nilai_prakerin.header.index');
         Route::get('nilai_prakerin/ajax', [Nilai_PrakerinController::class, 'ajax'])->name('nilai_prakerin.ajax');
@@ -457,6 +458,33 @@ Route::middleware(['web', 'auth', 'role:siswa'])->group(function () {
 
     // kelompok laporan
     Route::get('/user/kelompok_laporan', [userController::class, 'kelompok_laporan'])->name('user.kelompok_laporan');
+
+
+
+
+    //nilai prakerin 
+    Route::get('/siswa/nilai_prakerin', [SiswaNilai_PrakerinController::class, 'index'])->name('Siswanilai_prakerin.index');
+    Route::post('/siswa/nilai_prakerin/header/ajax', [SiswaNilai_PrakerinController::class, 'index'])->name('Siswanilai_prakerin.header.index');
+    Route::get('/siswa/nilai_prakerin/ajax', [SiswaNilai_PrakerinController::class, 'ajax'])->name('Siswanilai_prakerin.ajax');
+    Route::post('/siswa/nilai_prakerin/ajax', [SiswaNilai_PrakerinController::class, 'ajax'])->name('Siswanilai_prakerin.ajax');
+    Route::get('/siswa/nilai_prakerin/column/ajax/{val}', [SiswaNilai_PrakerinController::class, 'getNameColumn'])->name('Siswanilai_prakerin.getNameColumn');
+    Route::get('/siswa/nilai_prakerin/get_option/ajax', [SiswaNilai_PrakerinController::class, 'get_option'])->name('Siswanilai_prakerin.get_option');
+
+    Route::get('/siswa/nilai_prakerin/detail/{id}', [SiswaNilai_PrakerinController::class, 'detail'])->name('Siswanilai_prakerin.detail');
+    Route::get('/siswa/nilai_prakerin/tambah', [SiswaNilai_PrakerinController::class, 'tambah'])->name('Siswanilai_prakerin.tambah');
+    Route::get('/siswa/nilai_prakerin/option/tambah_1/ajax/{id}', [SiswaNilai_PrakerinController::class, 'option_tambah_1'])->name('Siswanilai_prakerin.tambah');
+    Route::get('/siswa/nilai_prakerin/option/tambah_2/ajax/{id}', [SiswaNilai_PrakerinController::class, 'option_tambah_2'])->name('Siswanilai_prakerin.tambah');
+
+    Route::get('/siswa/nilai_prakerin/option/tambah_kaprog1/ajax/{id}', [SiswaNilai_PrakerinController::class, 'option_kaprog_1'])->name('Siswanilai_prakerin.tambah');
+    Route::get('/siswa/nilai_prakerin/option/tambah_kaprog2/ajax/{id}', [SiswaNilai_PrakerinController::class, 'option_kaprog_2'])->name('Siswanilai_prakerin.tambah');
+
+    Route::post('/siswa/nilai_prakerin/tambah/post', [SiswaNilai_PrakerinController::class, 'store'])->name('Siswanilai_prakerin.post');
+    Route::get('/siswa/nilai_prakerin/edit/{id}', [SiswaNilai_PrakerinController::class, 'edit'])->name('Siswanilai_prakerin.edit');
+    Route::put('/siswa/nilai_prakerin/update/{nilai_prakerin}', [SiswaNilai_PrakerinController::class, 'update'])->name('Siswanilai_prakerin.update');
+    Route::delete('/siswa/nilai_prakerin/delete/{id}', [SiswaNilai_PrakerinController::class, 'destroy'])->name('Siswanilai_prakerin.delete');
+    Route::post('/siswa/nilai_prakerin/destroy', [SiswaNilai_PrakerinController::class, 'delete_all'])->name('Siswanilai_prakerin.delete-all');
+    Route::get('/siswa/export/excel/nilai_prakerin', [ExcelController::class, 'nilai_prakerin'])->name('export.nilai_prakerin');
+    Route::get('/siswa/nilai_prakerin/{name}/download', [SiswaNilai_PrakerinController::class, 'downloads'])->name('Siswanilai_prakerin.download');
 
 });
 Route::middleware(['web', 'auth', 'role:siswa,admin,kaprog'])->group(function () {

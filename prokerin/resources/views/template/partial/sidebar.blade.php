@@ -316,26 +316,26 @@
                     <span>Pembekalan Magang</span>
                 </a>
             </li>
-            @if(Auth::user()->role == 'siswa')
-            <li class="dropdown
-            @if (Request::is('admin/kategori','admin/kategori/*'))
-            active
-            @elseif(Request::is('admin/nilai_prakerin','admin/nilai_prakerin/*'))
-            active
-            @endif
-            ">
-                <a href="" class="nav-link has-dropdown"><i class="fas fa-th"></i><span> Nilai Prakerin</span></a>
-                <ul class="dropdown-menu" style="display: none;">
-                    <li class="@if (Request::is('admin/kategori','admin/kategori/*')) active @endif"><a class="nav-link "
-                            href="{{ route('kategori.index') }}">Kategori</a></li>
-                    <li class="@if (Request::is('admin/nilai_prakerin','admin/nilai_prakerin/*')) active @endif"><a class="nav-link "
-                            href="{{ route('nilai_prakerin.index') }}">Nilai Data Prakerin</a></li>
+                 @if(App\Models\Nilai_prakerin::where('id_siswa',Auth::user()->siswa->id)->get()->isEmpty()))
+                 
+                 @else 
+                 <li class="dropdown
 
-                </ul>
+                 @if(Request::is('siswa/nilai_prakerin','siswa/nilai_prakerin/*'))
+                 active
+                 @endif
+                 ">
+                     <a href="" class="nav-link has-dropdown"><i class="fas fa-th"></i><span> Nilai Prakerin</span></a>
+                     <ul class="dropdown-menu" style="display: none;">
 
-            </li>
+                         <li class="@if (Request::is('siswa/nilai_prakerin','siswa/nilai_prakerin/*')) active @endif"><a class="nav-link "
+                                 href="{{ route('Siswanilai_prakerin.index') }}">Nilai Data Prakerin</a></li>
 
-            @endif
+                     </ul>
+                 
+                 </li>
+             
+                 @endif
 
             @if(siswa('data_prakerin')->status === 'Pengajuan' || empty(siswa('data_prakerin')))
             @else
