@@ -102,7 +102,7 @@ class KategoriController extends Controller
 
     public function detail($id)
     {
-        $detail = Kategori_nilai_prakerin::find('id',$id)->first();
+        $detail = Kategori_nilai_prakerin::where('id',$id)->first();
         return view('admin.kategori.detail',compact('detail'));
     }
 
