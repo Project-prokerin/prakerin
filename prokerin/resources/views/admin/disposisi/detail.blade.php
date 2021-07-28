@@ -50,7 +50,7 @@ detail disposisi.blade
 
     }
 
-    content {
+    /* content {
   width: 100%;
   line-height: 1.4;
   background-color: #5252ff;
@@ -78,6 +78,110 @@ textarea {
 
 .boxSizing-borderBox {
   box-sizing: border-box;
+} */
+
+.contact-form{
+    background: #fff;
+    margin-top: 40px;
+    margin-bottom: 5%;
+    width: 70%;
+    margin-left:17px;
+
+}
+.contact-form .form-control{
+    border-radius:1rem;
+}
+
+
+
+
+.contact-image{
+    text-align: center;
+}
+.contact-image img{
+    border-radius:30px;
+    width: 11%;
+    margin-top: -40px;
+    /* transform: rotate(29deg); */
+    margin-bottom:50px;
+    box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+    background: white;
+}
+.contact-form form{
+    padding: 50px;
+}
+
+.contact-form h3{
+    margin-bottom: 10px;
+    margin-top: -10%;
+    text-align: center;
+    color: #0062cc;
+}
+
+
+
+
+
+
+
+/* RESET */
+* {
+  padding: 0;
+  margin: 0;
+  font-size: 1em;
+  box-sizing: border-box;
+  
+  /* color: hsl(0, 0%, 50%); */
+}
+
+/* Containing areas */
+.container { 
+  width: 600px; 
+  margin: 1em auto;
+}
+.ta-container {
+  width: 100%;
+  border: 1px solid hsl(0, 0%, 70%);
+  border-radius: 0.25em;
+  margin: 0.25em 0 1.5em;
+}
+.hasfocus {
+  box-shadow: 0px 0px 6px hsl(210, 50%, 60%);
+}
+
+/* The textarea itself */
+textarea { 
+  padding: 0.25em;
+  width: 100%;
+  max-width: 100%;
+  border: none;
+  vertical-align:bottom;
+  color: hsl(0, 0%, 50%);
+  border-radius: 0.25em;
+  outline: none;
+}
+
+/* The status bar */ 
+.status-bar { 
+  background: hsl(0, 0%, 90%);
+  padding: 0.25em;
+  text-align: right;
+  font-family: sans-serif;
+  font-size: 0.7em;
+  width: 100%;
+  color: hsl(0, 0%, 50%);
+  border-radius: 0 0 0.25em 0.25em;
+}
+table { 
+  width: auto;
+  margin-left: auto;
+  line-height: 1em;
+}
+.charcount, .remaining { 
+  font-weight: bold;
+}
+.over {
+  color: hsl(0, 80%, 60%);
 }
 
 </style>
@@ -159,93 +263,59 @@ textarea {
 
 
 </div>
-       @if ((Auth::user()->role == 'tu' or  Auth::user()->role == 'admin' or Auth::user()->role == 'kepsek' or Auth::user()->role == 'kaprog' or Auth::user()->role == 'kesiswaan' or Auth::user()->role == 'kurikulum' or Auth::user()->role == 'hubin' or Auth::user()->role == 'sarpras' or Auth::user()->role == 'bkk'))
-        @if (!empty($feedback))
-        <div class="row">
-            <div class="col-12 ">
-              <div class="card">
-                <form action="{{route('disposisi.feedback.update',[$feedback->id])}}" method="POST" class="needs-validation" >
-                    @method('put')
-                    @csrf
-                  <div class="card-header">
-                    <h4 style="color:#EA2027;">FeedBack</h4>
-                  </div>
-                  <div class="card-body">
-                    <div class="form-group mb-0">
-                      <label>Pesan</label>
-                      <input type="hidden" name="id_dari" value="{{Auth::user()->id}}">
-                      <input type="hidden" name="id_untuk" value="{{$untuk->id_dari}}">
-                      <input type="hidden" name="disposisi" value="{{$disposisi->id}}">
-                      @if (Auth::user()->role == "kepsek" || Auth::user()->role == "kaprog" || Auth::user()->role == "sarpras" || Auth::user()->role == 'tu' )
-                      <textarea disabled name="description_feedback" class="form-control" style="width:600px;height:200px;"  required="">{{$feedback->description_feedback}}</textarea>
-                      @else 
-                      <textarea  name="description_feedback" class="@error('description_feedback') is-invalid @enderror form-control" style="width:600px;height:200px;"  required="">{{$feedback->description_feedback}}</textarea>
-                      @error('description_feedback')
-                      <div class="invalid-feedback">{{ $message }}</div>
-                  @enderror
-                      @endif
-                    </div>
-                  </div>
-                  <div class="card-footer text-right">
-                      @if (Auth::user()->role == "kepsek" || Auth::user()->role == "kaprog"  || Auth::user()->role == "sarpras" || Auth::user()->role == 'tu' )
-                      <a href="{{ route('admin.surat_masuk.index') }}" type="button" class="btn btn-danger ">   Kembali</a>
-                          
-                      @else
-                      <a href="{{ route('admin.surat_masuk.index') }}" type="button" class="btn btn-danger ">   Kembali</a>
-                      <button class="btn btn-success">Update</button>
-    
-                      @endif
-                  </div>
-                </form>
+<div class="row">
+  <div class=" contact-form card">
+              <div class="contact-image">
+                  <img src="https://icon-library.com/images/feedback-icon-png/feedback-icon-png-20.jpg" alt="-"/>
               </div>
-            </div>
-          </div>
-        </div>
-        @else 
-        <div class="row">
-            <div class="col-12 ">
-              <div class="card">
-                <form action="{{route('disposisi.feedback.store')}}" method="POST" class="needs-validation" >
-                    @csrf
-                  <div class="card-header">
-                    <h4 style="color:#EA2027;">FeedBack</h4>
+
+              <form id="theform" action="javascript:void(0);" method="POST">
+                <h3>Feedback</h3>
+                <div class="ta-container">
+                  <textarea id="about-yourself" class="ta" name="about-yourself" rows="6" cols="75" data-maxchars="20" data-over="false" placeholder="Enter text here..." required></textarea>
+                  <div class="status-bar">
+                    <table>
+                      <label class="form-label col-7 pleft">Nama Pengirim</label>
+
+                      <label class="form-label">: </label>
+                      <label class="form-label col-7 pleft">Waktu</label>
+
+                      <label class="form-label">: </label>
+                      {{-- <tr><td>Nama Pengirim:</td><td class="charcount"></td></tr>
+                      <tr><td class="remaining-label">Waktu:</td><td class="remaining"></td></tr> --}}
+                    </table>
                   </div>
-                  <div class="card-body">
-                    <div class="form-group mb-0">
-                      <label>Pesan</label>
-                      <input type="hidden" name="id_dari" value="{{Auth::user()->id}}">
-                      <input type="hidden" name="id_untuk" value="{{$untuk->id_untuk}}">
-                      <input type="hidden" name="disposisi" value="{{$disposisi->id}}">
-                      @if (Auth::user()->role == "kepsek" || Auth::user()->role == "kaprog" || Auth::user()->role == "sarpras" || Auth::user()->role == 'tu' )
-                      <textarea disabled name="description_feedback" class="form-control" style="width:600px;height:200px; font-size: 30px; color: rgb(170, 164, 164);"  required="">
-                    Belum ada feedback
-                     </textarea>
-                      @else
-                      <textarea  name="description_feedback" class="@error('description_feedback') is-invalid @enderror form-control" style="width:600px;height:200px;"  required="">
-                         </textarea>
-                         @error('description_feedback')
-                         <div class="invalid-feedback">{{ $message }}</div>
-                     @enderror
-                      @endif
-                    </div>
-                  </div>
-                  <div class="card-footer text-right">
-                      @if (Auth::user()->role == "kepsek" || Auth::user()->role == "kaprog" || Auth::user()->role == "sarpras" || Auth::user()->role == 'tu' )
-                      <a href="{{ route('admin.surat_masuk.index') }}" type="button" class="btn btn-danger ">   Kembali</a>
-                          
-                      @else
-                      <a href="{{ route('admin.surat_masuk.index') }}" type="button" class="btn btn-danger ">   Kembali</a>
+                </div>
+                <div class="footer">
+                  <a href="{{ route('admin.surat_masuk.index') }}" type="button" class="btn btn-danger ">Kembali</a>
                       <button class="btn btn-success">Submit</button>
-    
-                      @endif
                   </div>
-                </form>
-              </div>
-            </div>
-          </div>
-        </div>
-        @endif
-       @endif
+                
+            
+                
+                
+                
+              </form>
+              
+
+
+              {{-- <form method="post">
+                  <h3>FeedBack</h3>
+                 <div class="row">
+                    
+                      <div class="col-md-12">
+                          <div class="form-group">
+                              <textarea name="txtMsg" class="form-control" placeholder="Tuliskan Pesan" style="width: 100%; height: 150px;"></textarea>
+                          </div>
+                      </div>
+                  </div>
+                  <div class="footer">
+                  <a href="{{ route('admin.surat_masuk.index') }}" type="button" class="btn btn-danger ">Kembali</a>
+                      <button class="btn btn-success">Submit</button>
+                  </div>
+              </form>
+  </div> --}}
+                </div>
 
 
        
