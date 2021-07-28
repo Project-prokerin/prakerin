@@ -8,6 +8,9 @@ use App\Http\Requests\admin\disposisiRequest;
 use App\Models\Disposisi;
 use App\Models\Surat_masuk;
 use App\Models\Detail_surat;
+// use Registered;
+use Illuminate\Auth\Events\Registered;
+
 
 
 use App\Models\guru;
@@ -64,14 +67,29 @@ class DiposisiController extends Controller
         // $untuk = Surat_masuk::where('id',$id)->first();
         if (empty(feedback::where('id',$id)->first())) {
             $feedback = "";
+             
+            $feedbackDetail_from = '';
+        $feedbackDetail_date = '';
         }else {
             $feedback = feedback::where('id',$id)->first(); 
-            
+             
+            $feedbackDetail_from = guru::where('id_user',$feedback->id_dari)->first();
+        $feedbackDetail_date = $feedback->created_at;
         }
-        $untuk =  Surat_masuk::where('id',$id)->first();
+        
+
+        // $feedbackDetail = feedback::where()
+        $from =  Surat_masuk::where('id',$id)->first();
+        // dd($from->id_dari);
+
+        // guru::where('id',)
+
+        // $untuk = guru::where('id_user',$request->id_untuk)->first();
+
+
         $disposisi =  Disposisi::where('id',$id)->first();
         // dd($id);
-        return view('admin.disposisi.detail', compact('untuk','disposisi','feedback'));
+        return view('admin.disposisi.detail', compact('from','disposisi','feedback','feedbackDetail_from','feedbackDetail_date'));
     }
     // table surat
     public function tambah_disposisi($id)
@@ -176,23 +194,26 @@ class DiposisiController extends Controller
 
     public function feedback_store(Request $request)
     {
-        
         $request->validate([
             'description_feedback' => 'required',
-
+            
         ],[
             'required' => 'Feedback tidak boleh ksosong',
         ]);
+        // dd($request);
         
-          feedback::create([
-                'id_disposisi' => $request->disposisi,
-                'id_dari' =>  $request->id_dari,
-                'id_untuk' => $request->id_untuk,
-                'description_feedback' => $request->description_feedback,
-                'created_at' => Carbon::now()
-          ]);
-    
-        
+      
+            event(new Registered(
+                $feedback = feedback::create([
+                    'id_disposisi' => $request->disposisi,
+                    'id_dari' =>  $request->id_dari,
+                    'id_untuk' => $request->id_untuk,
+                    'description_feedback' => $request->description_feedback,
+                    'created_at' => Carbon::now()
+                    ])
+            ));
+            
+            
         $untuk = guru::where('id_user',$request->id_untuk)->first();
         // dd($untuk);
         

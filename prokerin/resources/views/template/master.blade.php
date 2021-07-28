@@ -121,7 +121,10 @@
 <body>
     <div id="app">
         <div class="main-wrapper main-wrapper-1">
-            @include('template.partial.navbar')
+          {{-- $notifUnread = Auth::user()->notifications->where('read_at',null); --}}
+            
+          @include('template.partial.navbar',['notifications'=>auth()->user()->unreadNotifications,'notifUnread'=>Auth::user()->notifications->where('read_at',null)])
+
             @include('template.partial.sidebar')
 
 

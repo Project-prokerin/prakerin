@@ -25,6 +25,9 @@ use App\Http\Controllers\admin\penelusuran_tamantan\Penelusuran_tamatanControlle
 use App\Http\Controllers\admin\data_prakerin\Nilai_PrakerinController;
 use App\Http\Controllers\admin\penelusuran_tamatan\Penelusuran_tamatanController as Penelusuran_tamatanPenelusuran_tamatanController;
 use App\Http\Controllers\admin\siswa\alumniController;
+
+use App\Http\Controllers\admin\Notif\NotificationController;
+
 // user routeus
 // ex App\Http\Controllers\user\namaController;
 use App\Http\Controllers\user\userController;
@@ -102,6 +105,12 @@ Route::prefix('admin')->middleware(['web', 'auth', 'role:admin,kepsek,tu,kaprog,
         Route::get('disposisi/edit/{id}', [DiposisiController::class, 'edit'])->name('admin.disposisi.edit'); // edit disposisi biasa
         Route::put('disposisi/update/{id}', [DiposisiController::class, 'update'])->name('admin.disposisi.update'); // update disposisi
         Route::delete('disposisi/delete/{id}', [DiposisiController::class, 'destroy'])->name('admin.disposisi.delete'); // table disposisi
+
+
+        Route::post('/Notification/ajax', [NotificationController::class, 'ajax'])->name('notification.ajax');
+        Route::post('/Notification/mark', [NotificationController::class, 'markNotification'])->name('markNotification.mark');
+    
+
     });
 
     Route::middleware(['web', 'auth', 'role:admin,kepsek,kaprog,hubin'])->group(function () {
@@ -485,6 +494,7 @@ Route::middleware(['web', 'auth', 'role:siswa'])->group(function () {
     Route::post('/siswa/nilai_prakerin/destroy', [SiswaNilai_PrakerinController::class, 'delete_all'])->name('Siswanilai_prakerin.delete-all');
     Route::get('/siswa/export/excel/nilai_prakerin', [ExcelController::class, 'nilai_prakerin'])->name('export.nilai_prakerin');
     Route::get('/siswa/nilai_prakerin/{name}/download', [SiswaNilai_PrakerinController::class, 'downloads'])->name('Siswanilai_prakerin.download');
+
 
 });
 Route::middleware(['web', 'auth', 'role:siswa,admin,kaprog'])->group(function () {
