@@ -15,7 +15,8 @@ class KategoriController extends Controller
 {
     public function index(Request $request)
     {
-        return view('admin.kategori.index');
+        $jurusan = jurusan::all();
+        return view('admin.kategori.index', compact('jurusan'));
     }
 
     public function getNameColumn($val)
@@ -32,7 +33,7 @@ class KategoriController extends Controller
     {
         if ($request->ajax()) {
             if ($request->approved) {
-                $kategoriNilaiPrakerin = Kategori_nilai_prakerin::where('jurusan', $request->approved)->orderBy('created_at', 'DESC')->get();
+                $kategoriNilaiPrakerin = Kategori_nilai_prakerin::where('id_jurusan', $request->approved)->orderBy('created_at', 'DESC')->get();
             }else{
                 $kategoriNilaiPrakerin = Kategori_nilai_prakerin::orderBy('created_at', 'DESC')->get();
             }
@@ -54,7 +55,9 @@ class KategoriController extends Controller
             //     }
             // })
 
-
+                ->editColumn('jurusan', function($data){
+                    return $data->jurusan->singkatan_jurusan;
+                })
 
                 ->addColumn('action', function ($data) {
                     $button = '<a href="/admin/kategori/detail/' . $data->id . '"   id="' . $data->id . '" class="edit btn btn-primary btn-sm"><i class="fas fa-search"></i></a>';
@@ -92,7 +95,7 @@ class KategoriController extends Controller
 
         Kategori_nilai_prakerin::create([
             'aspek_yang_dinilai' => $request->aspek_yang_dinilai,
-            'jurusan' => $request->jurusan,
+            'id_jurusan' => $request->jurusan,
             'domain' => $request->domain,
             'keterangan' => $request->keterangan,
         ]);
@@ -127,7 +130,7 @@ class KategoriController extends Controller
 
     Kategori_nilai_prakerin::find($id)->update([
         'aspek_yang_dinilai' => $request->aspek_yang_dinilai,
-        'jurusan' => $request->jurusan,
+        'id_jurusan' => $request->jurusan,
         'domain' => $request->domain,
         'keterangan' => $request->keterangan,
     ]);

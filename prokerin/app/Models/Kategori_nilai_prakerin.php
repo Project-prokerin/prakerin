@@ -14,4 +14,8 @@ class Kategori_nilai_prakerin extends Model
     {
         return $this->hasOne(nilai_prakerin::class, 'id_ketegori','id');
     }
+    public function jurusan()
+    {
+        return $this->belongsTo(jurusan::class,'id_jurusan');
+    }
 }
