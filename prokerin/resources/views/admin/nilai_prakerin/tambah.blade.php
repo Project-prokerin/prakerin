@@ -7,7 +7,7 @@
     ok mantap codingan nya mumet akwdpoak
     wkwkw  liat bawah nur di js nya--}}
     <style>
-        
+
         #row1 {
   width: 100%;
 }
@@ -54,11 +54,14 @@
                             <select name="" id="jurusan"
                                 class="form-control   @error('')  is-invalid  @enderror select2">
                                 <option value="">--Pilih Jurusan--</option>
-                                <option value="RPL">RPL</option>
+                                {{-- <option value="RPL">RPL</option>
                                 <option value="MM">MM</option>
                                 <option value="BC">BC</option>
                                 <option value="TKJ">TKJ</option>
-                                <option value="TEI">TEI</option>
+                                <option value="TEI">TEI</option> --}}
+                                @foreach ($jurusan as $item)
+                                    <option value="{{ $item->id }}" {{ ($item->id == old('jurusan')) ? 'selected' : '' }}>{{ $item->singkatan_jurusan  }}</option>
+                                @endforeach
                             </select>
                             <div id="invalid_jurusan" class="invalid-feedback d-none"></div>
                         </div>
@@ -206,7 +209,7 @@
                 </div>
                   @endfor
                 </div>
-               
+
             </div>
 
 
@@ -300,7 +303,7 @@
                 var  a = clicks += 1;
                 $('#row'+ a+'').show();
                 console.log(a)
-                
+
             // i++;
 
             // $('#dynamic_field').append(
@@ -348,9 +351,9 @@
             //     '</div>' +
             //     '</div>'
             // );
-            
+
         });
-        
+
         $(document).on('click', '.btn_remove', function () {
             var button_id = $(this).attr("id");
             //jika true /hide maka  buat isi yang ada di dalem row value = "" /
@@ -359,10 +362,10 @@
                 $('#nilai_'+button_id + '').val("");
                 $('#keterangan_'+button_id + '').val("");
                 $('#domain'+button_id + '').val("");
-                
+
             }
-            
-            
+
+
         });
 
 
@@ -370,7 +373,7 @@
         //     event.preventDefault();
         //                  var siswa = $('#siswa').val();
         //                  var jurusan = $('#jurusan').val();
-         
+
         //                  var aspek0 = $("#aspek0").val();
         //                  var nilai0 = $("#nilai_0").val();
         //                  var domain0 = $("#domain0").val();
@@ -387,7 +390,7 @@
         //                                   $('#aspek0').removeClass('is-invalid');
 
         //                               }
-                                  
+
         //                               if (nilai0 == '') {
         //                                   $('#nilai_0').addClass('is-invalid');
         //                                   $('#invalid_nilai').html('nilai tidak boleh kosong').removeClass('d-none');
@@ -396,7 +399,7 @@
         //                                   $('#nilai_0').removeClass('is-invalid');
 
         //                               }
-                                  
+
         //                               if (domain0 == '') {
         //                                   $('#domain0').addClass('is-invalid');
         //                                   $('#invalid_domain').html('domain tidak boleh kosong').removeClass('d-none');
@@ -406,13 +409,13 @@
 
         //                               }
         //                         //  }
-                             
+
         //                      } else {
-                            
+
         //                      }
 
         // });
-        
+
         var titles = [];
         $('option[name^=aspek0]').each(function () {
             titles.push($(this).val());
@@ -420,7 +423,7 @@
         $('option[name^=aspek1]').each(function () {
             titles.push($(this).val());
         });
-        
+
         console.log(titles,'title');
         // console.log()
         for (let i = 0; i <= 10; i++) {
@@ -447,14 +450,14 @@
 
 
         // ngambil domain
-        
+
 let role = $('#auth').val();
 
 if (role != 'kaprog') {
     for (let index = 0; index <= 50; index++) {
                   $('#jurusan').change(function (e) {
                       $('.aspek'+index+'').empty().append();
-                    
+
                       id = $(this).val();
                       if (id) {
                           $('.aspek'+index+'').append('<option>-- Mencari.. --</option>')
@@ -466,6 +469,7 @@ if (role != 'kaprog') {
                           url: '/admin/nilai_prakerin/option/tambah_1/ajax/' + id,
                           method: 'get',
                           success: function (response) {
+                              console.log(response);
                               //console.log(response.kategori);
                               $('.aspek'+index+'').empty().append();
                               if (response.kategori != 0) {
@@ -492,7 +496,7 @@ if (role != 'kaprog') {
                  }
                   // gua pengen ambil id nya nur tapi bingung gw kalo multi slect gmna
                   // gua makan dulu nur
-            
+
                   // $('select[name="aspek0"]').change(function (e) {
                   //     id = $(this).val();
                   //     console.log('berubah',id);
@@ -515,10 +519,10 @@ if (role != 'kaprog') {
                   //         }
                   //     });
                   // })
-                    
+
                   for (let x = 0; x <= 50; x++) {
                       // const element = array[index];
-                      
+
                   $('select[name="aspek'+x+'"]').change(function (e) {
                       id = $(this).val();
                       console.log('berubah',id);
@@ -546,7 +550,7 @@ if (role != 'kaprog') {
     for (let index = 0; index <= 50; index++) {
                   $('#jurusan').change(function (e) {
                       $('.aspek'+index+'').empty().append();
-                    
+
                       id = $(this).val();
                       if (id) {
                           $('.aspek'+index+'').append('<option>-- Mencari.. --</option>')
@@ -584,7 +588,7 @@ if (role != 'kaprog') {
                  }
                   // gua pengen ambil id nya nur tapi bingung gw kalo multi slect gmna
                   // gua makan dulu nur
-            
+
                   // $('select[name="aspek0"]').change(function (e) {
                   //     id = $(this).val();
                   //     console.log('berubah',id);
@@ -607,10 +611,10 @@ if (role != 'kaprog') {
                   //         }
                   //     });
                   // })
-                    
+
                   for (let x = 0; x <= 50; x++) {
                       // const element = array[index];
-                      
+
                   $('select[name="aspek'+x+'"]').change(function (e) {
                       id = $(this).val();
                       console.log('berubah',id);
@@ -636,7 +640,7 @@ if (role != 'kaprog') {
                   }
 }
 
-               
+
 
     });
 

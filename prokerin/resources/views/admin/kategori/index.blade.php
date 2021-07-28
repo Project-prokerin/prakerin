@@ -51,16 +51,14 @@
                             <div class="col-md-4">
                                 <select name="" id="jurusan" class="form-control mb-2  jurusan  @error('')  is-invalid  @enderror select2">
                                     <option value="">--Pilih Jurusan--</option>
-                                    <option value="RPL" selected>RPL</option>
-                                    <option value="MM">MM</option>
-                                    <option value="BC">BC</option>
-                                    <option value="TKJ">TKJ</option>
-                                    <option value="TEI">TEI</option>
+                                    @foreach ($jurusan as $item)
+                                        <option value="{{ $item->id }}" {{ ($item->id == 1) ? 'selected' : '' }}>{{ $item->singkatan_jurusan }}</option>
+                                    @endforeach
                                 </select>
                             </div>
                             <div class="col-md-8">
-                                <a href="/admin/export/excel/nilai_prakerin" class="btn btn-success mr-3 ml-2"> Excel
-                                    <i class="fas fa-cloud-download-alt"></i></button></a>
+                                {{-- <a href="/admin/export/excel/nilai_prakerin" class="btn btn-success mr-3 ml-2"> Excel
+                                    <i class="fas fa-cloud-download-alt"></i></button></a> --}}
                                 <label>Search:<input type="search" id="search" class="form-control form-control-sm" placeholder=""
                                         aria-controls="table19"></label>
                             </div>

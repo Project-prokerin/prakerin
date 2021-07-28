@@ -41,7 +41,7 @@
                                 class="form-control   @error('jurusan')  is-invalid  @enderror select2">
                                 <option value="">--Pilih Jurusan--</option>
                                @foreach ($jurusan as $jrsn)
-                               <option value="{{$jrsn->singkatan_jurusan}}">{{$jrsn->singkatan_jurusan}}</option>
+                               <option value="{{$jrsn->id}}">{{$jrsn->singkatan_jurusan}}</option>
                                @endforeach
                             </select>
                             @error('jurusan')
@@ -49,7 +49,7 @@
                         @enderror
                         </div>
                     </div>
-      
+
 
 </div>
 
@@ -66,7 +66,7 @@
                             <option value="">--Pilih Domain--</option>
                             <option value="pelaksanaan">pelaksanaan</option>
                             <option value="ketrampilan">ketrampilan</option>
-                          
+
                         </select>
                         @error('domain')
                         <div class="invalid-feedback">{{ $message }}</div>

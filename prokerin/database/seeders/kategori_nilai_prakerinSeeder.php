@@ -18,56 +18,56 @@ class kategori_nilai_prakerinSeeder extends Seeder
         $faker = Faker::create('id_ID');
             DB::table('kategori_nilai_prakerin')->insert([
                 'aspek_yang_dinilai' => 'intensif',
-                'jurusan' => 'RPL',
+                'id_jurusan' => '1',
                 'domain' => 'pelaksanaan',
                 'keterangan' => 'Nilai Perusahaan',
             ]);
             DB::table('kategori_nilai_prakerin')->insert([
                 'aspek_yang_dinilai' => 'kedisiplinan',
-                'jurusan' => 'RPL',
+                'id_jurusan' => '1',
                 'domain' => 'pelaksanaan',
                 'keterangan' => 'Nilai Perusahaan',
             ]);
             DB::table('kategori_nilai_prakerin')->insert([
                 'aspek_yang_dinilai' => 'tanggung jawab',
-                'jurusan' => 'RPL',
+                'id_jurusan' => '1',
                 'domain' => 'pelaksanaan',
                 'keterangan' => 'Nilai Perusahaan',
             ]);
             DB::table('kategori_nilai_prakerin')->insert([
                 'aspek_yang_dinilai' => 'kerjinan',
-                'jurusan' => 'RPL',
+                'id_jurusan' => '1',
                 'domain' => 'pelaksanaan',
                 'keterangan' => 'Nilai Perusahaan',
             ]);
             DB::table('kategori_nilai_prakerin')->insert([
                 'aspek_yang_dinilai' => 'kerjsama',
-                'jurusan' => 'RPL',
+                'id_jurusan' => '1',
                 'domain' => 'pelaksanaan',
                 'keterangan' => 'Nilai Perusahaan',
             ]);
             DB::table('kategori_nilai_prakerin')->insert([
                 'aspek_yang_dinilai' => 'Motor_otomotif',
-                'jurusan' => 'RPL',
+                'id_jurusan' => '1',
                 'domain' => 'ketrampilan',
                 'keterangan' => 'Nilai Perusahaan',
             ]);
             DB::table('kategori_nilai_prakerin')->insert([
                 'aspek_yang_dinilai' => 'Litstrik Otomotif',
-                'jurusan' => 'RPL',
+                'id_jurusan' => '1',
                 'domain' => 'ketrampilan',
                 'keterangan' => 'Nilai Perusahaan',
             ]);
             // nilai sekolah
             DB::table('kategori_nilai_prakerin')->insert([
                 'aspek_yang_dinilai' => 'Nilai Laporan Tertulis',
-                'jurusan' => 'RPL',
+                'id_jurusan' => '1',
                 'domain' => 'ketrampilan',
                 'keterangan' => 'Nilai Sekolah',
             ]);
             DB::table('kategori_nilai_prakerin')->insert([
                 'aspek_yang_dinilai' => 'Presentasi Sidang Laporan',
-                'jurusan' => 'RPL',
+                'id_jurusan' => '1',
                 'domain' => 'pelaksanaan',
                 'keterangan' => 'Nilai Sekolah',
             ]);

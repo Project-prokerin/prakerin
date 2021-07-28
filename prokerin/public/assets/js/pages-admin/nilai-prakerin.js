@@ -17,8 +17,8 @@ $(document).ready(function () {
         table_ajax(val);
         header_ajax(val);
     })
-
-    function header_ajax(val = "RPL") {
+    // buat header table
+    function header_ajax(val = 1) {
         $.ajax({
             url: root + "/admin/nilai_prakerin/column/ajax/" + val,
             type: "get",
@@ -26,8 +26,10 @@ $(document).ready(function () {
                 console.log(response);
                 $('#table9 tr').eq(0).empty().append();
                 $('#table9 tr ').eq(0).append('<th>No</th>' + '<th style="width:100px;">Nama Siswa</th>');
+                // loop lement untuk membuat tr baru di thead nya
                 response.data.forEach(element => {
                     if (element.aspek_yang_dinilai) {
+                        // membuat tr baru di eq 0 ( yang baris pertama / ke 0))
                         $('#table9 tr ').eq(0).append('<th>' + element.aspek_yang_dinilai + '</th>');
                     } else {
                         $('#table9 tr ').eq(0).append('<th>Aspek Nilai kosong</th>');
@@ -43,8 +45,8 @@ $(document).ready(function () {
         });
     }
 
-    // ajax
-    function table_ajax(val = "RPL") {
+    // buat column table
+    function table_ajax(val = 1) {
         $.ajax({
             url: root + "/admin/nilai_prakerin/column/ajax/" + val,
             type: "get",

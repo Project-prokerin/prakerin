@@ -25,5 +25,9 @@ class jurusan extends Model
     }
     public function nilai_prakerin(){
         return $this->HasMany(nilai_prakerin::class, 'id_jurusan','id');
-      }
+    }
+    public function kategori_nilai_prakerin()
+    {
+        return $this->hasMany(kategori_nilai_prakerin::class,'id_jurusan','id');
+    }
 }

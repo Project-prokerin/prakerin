@@ -52,9 +52,10 @@
                 </a>
             </li>
             @endif
-            @if (Auth::user()->role == 'kaprog' or Auth::user()->role == 'hubin' or Auth::user()->role == 'bkk' or Auth::user()->role == "kepsek" or $role == "admin")
+            {{-- @if (Auth::user()->role == 'kaprog' or Auth::user()->role == 'hubin' or Auth::user()->role == 'bkk' or Auth::user()->role == "kepsek" or $role == "admin")
             <li class="menu-header">PRAKERIN</li>
-            @endif
+            @endif --}}
+            <li class="menu-header">PRAKERIN</li>
             @if (Auth::user()->role == 'kaprog' or Auth::user()->role == 'hubin' or $role == 'admin')
             <li class="@if (Request::is('admin/perusahaan','admin/perusahaan/*')) active @endif">
                 <a href="{{ route('perusahaan.index') }}" class="nav-link">
@@ -317,8 +318,8 @@
                 </a>
             </li>
                  @if(App\Models\Nilai_prakerin::where('id_siswa',Auth::user()->siswa->id)->get()->isEmpty()))
-                 
-                 @else 
+
+                 @else
                  <li class="dropdown
 
                  @if(Request::is('siswa/nilai_prakerin','siswa/nilai_prakerin/*'))
@@ -332,9 +333,9 @@
                                  href="{{ route('Siswanilai_prakerin.index') }}">Nilai Data Prakerin</a></li>
 
                      </ul>
-                 
+
                  </li>
-             
+
                  @endif
 
             @if(siswa('data_prakerin')->status === 'Pengajuan' || empty(siswa('data_prakerin')))

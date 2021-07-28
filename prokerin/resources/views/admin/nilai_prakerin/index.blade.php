@@ -51,11 +51,9 @@
                             <div class="col-md-7">
                                 <select name="" class="form-control mb-2  jurusan  @error('')  is-invalid  @enderror select2">
                                     <option value="RPL">--Pilih Jurusan--</option>
-                                    <option value="RPL" selected>RPL</option>
-                                    <option value="MM">MM</option>
-                                    <option value="BC">BC</option>
-                                    <option value="TKJ">TKJ</option>
-                                    <option value="TEI">TEI</option>
+                                    @foreach ($jurusan as $item)
+                                        <option value="{{ $item->id }}" {{ ($item->id == 1) ? 'selected' : '' }}>{{ $item->singkatan_jurusan }}</option>
+                                    @endforeach
                                 </select>
                             </div>
                             <div class="col-md-5">
@@ -66,12 +64,9 @@
                             </div>
                         </div>
 
-
                     </div>
                 </div>
-
                 <div class="table-responsive">
-
                     <table class="table table-striped" id="table9">
                         <thead class="text-center">
                             {{-- @if (Auth::user()->role == 'admin' or Auth::user()->role == '')

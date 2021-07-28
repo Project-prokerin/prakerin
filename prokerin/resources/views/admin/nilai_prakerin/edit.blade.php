@@ -56,11 +56,9 @@
                             <select name="" id="jurusan"
                                 class="form-control   @error('')  is-invalid  @enderror select2" disabled>
                                 <option value="">--Pilih Jurusan--</option>
-                                <option value="RPL" {{ ($jurusan[0] == "RPL") ? 'selected' : ' ' }}>RPL</option>
-                                <option value="MM" {{ ($jurusan[0] == "MM") ? 'selected' : ' ' }}>MM</option>
-                                <option value="BC" {{ ($jurusan[0] == "BC") ? 'selected' : ' ' }}>BC</option>
-                                <option value="TKJ" {{ ($jurusan[0] == "TKJ") ? 'selected' : ' ' }}>TKJ</option>
-                                <option value="TEI" {{ ($jurusan[0] == "TEI") ? 'selected' : ' ' }}>TEI</option>
+                                @foreach ($jurusan_table as $item)
+                                    <option value="{{ $item->id }}" {{ ($jurusan[0] == $item->id) ? 'selected' : ' ' }}>RPL</option>
+                                @endforeach
                             </select>
                             <div id="invalid_jurusan" class="invalid-feedback d-none"></div>
                         </div>
@@ -142,7 +140,7 @@
                                         disabled>
                                         <option value="">-- Domain --</option>
                                         <option value="{{ $kategori_edit0->id }}" selected>{{ $kategori_edit0->domain }}</option>
-                                     
+
                                     </select>
                                     <div id="invalid_domain" class="invalid-feedback d-none"></div>
                                 </div>
@@ -151,11 +149,11 @@
                                 <button type="button" name="" id="add" class="btn btn-success">Add More</button>
                             </div>
                         </div>
-                    </div>  
-                    
+                    </div>
+
                  @if (count($kategori_edit) < 2)
-                     
-                 @else 
+
+                 @else
                         @for ($e = 1; $e < count($kategori_edit); $e++)
                         <div id="row{{$e}}" style="display:block;">
                             <div class="">
@@ -184,7 +182,7 @@
                                 <div class="mb-3 col-sm-4">
                                     <button type="button" name="remove" id="{{$e}}" class="btn btn-danger btn_remove">X</button>
                                     </div>
-                                
+
                                 <div class="mb-2 col-12 row">
                                     <label for="keterangan"  class="col-sm-5 col-form-label">Keterangan</label>
                                     <div class="mb-3 col-sm-3"  style="margin-left: 15px;">
@@ -212,8 +210,8 @@
                         @endfor
                  @endif
 
-                 
-                        
+
+
                     <input type="hidden" id="count" value="{{count($aspek_edit)}}">
 
                     @for ($i = count($aspek_edit); $i <= 50; $i++)
@@ -243,7 +241,7 @@
                           <div class="mb-3 col-sm-4">
                               <button type="button" name="remove" id="{{$i}}" class="btn btn-danger btn_remove">X</button>
                               </div>
-  
+
                           <div class="mb-2 col-12 row">
                               <label for="keterangan"  class="col-sm-5 col-form-label">Keterangan</label>
                               <div class="mb-3 col-sm-3"  style="margin-left: 15px;">
@@ -273,7 +271,7 @@
 
                 </div>
             </div>
-           
+
 
             @if (Auth::user()->role == 'siswa' or Auth::user()->role == 'admin')
             {{-- <div class="mb-2 col-12 row">
@@ -363,12 +361,12 @@
 
         let clicks =  parseInt($('#count').val());
         // console.log(clicks)
-        
+
         $('#add').click(function () {
            var  a = clicks += 1;
                 $('#row'+ a+'').show();
                 console.log(a)
-                
+
             // i++;
 
             // $('#dynamic_field').append(
@@ -416,9 +414,9 @@
             //     '</div>' +
             //     '</div>'
             // );
-            
+
         });
-        
+
         $(document).on('click', '.btn_remove', function () {
             var button_id = $(this).attr("id");
             //jika true /hide maka  buat isi yang ada di dalem row value = "" / null
@@ -427,10 +425,10 @@
                 $('#nilai_'+button_id + '').val("");
                 $('#keterangan_'+button_id + '').val("");
                 $('#domain'+button_id + '').val("");
-                
+
             }
-            
-            
+
+
         });
 
 
@@ -438,7 +436,7 @@
         //     event.preventDefault();
         //                  var siswa = $('#siswa').val();
         //                  var jurusan = $('#jurusan').val();
-         
+
         //                  var aspek0 = $("#aspek0").val();
         //                  var nilai0 = $("#nilai_0").val();
         //                  var domain0 = $("#domain0").val();
@@ -455,7 +453,7 @@
         //                                   $('#aspek0').removeClass('is-invalid');
 
         //                               }
-                                  
+
         //                               if (nilai0 == '') {
         //                                   $('#nilai_0').addClass('is-invalid');
         //                                   $('#invalid_nilai').html('nilai tidak boleh kosong').removeClass('d-none');
@@ -464,7 +462,7 @@
         //                                   $('#nilai_0').removeClass('is-invalid');
 
         //                               }
-                                  
+
         //                               if (domain0 == '') {
         //                                   $('#domain0').addClass('is-invalid');
         //                                   $('#invalid_domain').html('domain tidak boleh kosong').removeClass('d-none');
@@ -474,13 +472,13 @@
 
         //                               }
         //                         //  }
-                             
+
         //                      } else {
-                            
+
         //                      }
 
         // });
-        
+
         var titles = [];
         $('option[name^=aspek0]').each(function () {
             titles.push($(this).val());
@@ -488,7 +486,7 @@
         $('option[name^=aspek1]').each(function () {
             titles.push($(this).val());
         });
-        
+
         console.log(titles,'title');
         // console.log()
         for (let i = 0; i <= 10; i++) {
@@ -521,7 +519,7 @@ if (role != 'kaprog') {
     for (let index = 0; index <= 50; index++) {
                   $('#jurusan').change(function (e) {
                       $('.aspek'+index+'').empty().append();
-                    
+
                       id = $(this).val();
                       if (id) {
                           $('.aspek'+index+'').append('<option>-- Mencari.. --</option>')
@@ -559,7 +557,7 @@ if (role != 'kaprog') {
                  }
                   // gua pengen ambil id nya nur tapi bingung gw kalo multi slect gmna
                   // gua makan dulu nur
-            
+
                   // $('select[name="aspek0"]').change(function (e) {
                   //     id = $(this).val();
                   //     console.log('berubah',id);
@@ -582,10 +580,10 @@ if (role != 'kaprog') {
                   //         }
                   //     });
                   // })
-                    
+
                   for (let x = 0; x <= 50; x++) {
                       // const element = array[index];
-                      
+
                   $('select[name="aspek'+x+'"]').change(function (e) {
                       id = $(this).val();
                       console.log('berubah',id);
@@ -613,7 +611,7 @@ if (role != 'kaprog') {
     for (let index = 0; index <= 50; index++) {
                   $('#jurusan').change(function (e) {
                       $('.aspek'+index+'').empty().append();
-                    
+
                       id = $(this).val();
                       if (id) {
                           $('.aspek'+index+'').append('<option>-- Mencari.. --</option>')
@@ -651,7 +649,7 @@ if (role != 'kaprog') {
                  }
                   // gua pengen ambil id nya nur tapi bingung gw kalo multi slect gmna
                   // gua makan dulu nur
-            
+
                   // $('select[name="aspek0"]').change(function (e) {
                   //     id = $(this).val();
                   //     console.log('berubah',id);
@@ -674,10 +672,10 @@ if (role != 'kaprog') {
                   //         }
                   //     });
                   // })
-                    
+
                   for (let x = 0; x <= 50; x++) {
                       // const element = array[index];
-                      
+
                   $('select[name="aspek'+x+'"]').change(function (e) {
                       id = $(this).val();
                       console.log('berubah',id);
