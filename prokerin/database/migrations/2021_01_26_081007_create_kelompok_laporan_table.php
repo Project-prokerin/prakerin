@@ -15,7 +15,7 @@ class CreateKelompokLaporanTable extends Migration
     {
         Schema::create('kelompok_laporan', function (Blueprint $table) {
             $table->id();
-            $table->integer('no')->unsigned();
+            $table->string('no');
             $table->bigInteger('id_guru')->unsigned()->nullable();
             $table->bigInteger('id_data_prakerin')->unsigned()->nullable();
             $table->string('nama_perusahaan');

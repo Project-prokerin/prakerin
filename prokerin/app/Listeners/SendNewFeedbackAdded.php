@@ -25,7 +25,8 @@ class SendNewFeedbackAdded
      */
     public function handle($event)
     {
-        //pilih akun/role yang ingin dikirim notif nya ke tu
+        //pilih akun/role yang ingin dikirim notif nya ke tu,kurikulum,kesiswaan,admin
+        // $tu = User::whereIn('role',['tu','kurikulum','kesiswaan','admin'])->get();
         $tu = User::where('role','tu')->get();
     Notification::send($tu, new NewFeedbackAdded($event->user));
     }

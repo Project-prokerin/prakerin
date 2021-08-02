@@ -28,6 +28,9 @@ class Surat_keluarController extends Controller
      */
     public function index()
     {
+
+
+    
         return view('admin.surat_keluar.index');
     }
 
