@@ -21,7 +21,7 @@
           </div>
           <div class=" dropdown-list-content dropdown-list-message" id="contentNotif">
           @forelse ($notifications as $notification)
-          <a href="" id="FeedbackContent" style="margin-left: -40px;" data-id="{{ $notification->id }}" class="mark-as-read text-left dropdown-item dropdown-item-unread">
+          <a href="#" id="FeedbackContent" style="margin-left: -40px;" data-id="{{ $notification->id }}" class="mark-as-read text-left dropdown-item dropdown-item-unread">
             <div class="dropdown-item-desc">
               <b style="color: black;">{{$notification->data['dari']}}</b>
               <p>{{$notification->feedback_description}}</p>

@@ -8,9 +8,9 @@ $(document).ready(function() {
                 return [{ data: 'DT_RowIndex', name: 'DT_RowIndex' },
                 { data: 'guru', name: 'guru' },
                 { data: 'nama_perusahaan', name: 'nama_perusahaan' },
-                // { data: 'persetujuan', name: 'persetujuan' },
+                { data: 'persetujuan', name: 'persetujuan' },
                 { data: 'action', name: 'action' },]
-            } else if (role == "kepsek" || role == 'kaprog' || role == 'admin') {
+            } else if ( role == 'kaprog' || role == 'admin') {
                 return [{ data: 'DT_RowIndex', name: 'DT_RowIndex' },
                 { data: 'guru', name: 'guru' },
                 { data: 'nama_perusahaan', name: 'nama_perusahaan' },
@@ -187,7 +187,7 @@ $(document).ready(function() {
 $(document).on('click', '#accButton', function (event) {
     event.preventDefault();
     let href = $(this).attr("data-attr");
-
+    console.log(href)
     $.ajax({
         url: href,
         beforeSend: function () {
@@ -259,62 +259,171 @@ $('#setujuimagang').click(function (event) {
 
 
 
-$(document).ready(function() {
 
 
-    $(document).on('click', '#kelompoks', function() {
 
 
-        swal("Masukan Nomor Surat", {
-                content: "input",
-            })
-            .then((value) => {
-                var id = $(this).data('no');
-                // var nomor = value;
-                $.ajaxSetup({
-                    headers: {
-                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                    }
-                });
+
+
+
+
+
+// $(document).ready(function() {
+
+// // Ori
+//     $(document).on('click', '#kelompoks', function() {
+       
+
+//         swal("Masukan Nomor Surat", {
+//                 content: "input",
+//             })
+//             .then((value) => {
+//                 var id = $(this).data('no');
+//                 // var nomor = value;
+//                 $.ajaxSetup({
+//                     headers: {
+//                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+//                     }
+//                 });
 
               
 
-                $.ajax({
-                    url: root+"/admin/export/pdf/pengajuan_prakerin/" + id + "/" + value,
-                    type: "POST",
-                    data: {
-                        "id": id,
-                        "nomor": value,
-                    },
-                    xhrFields: {
-                        responseType: 'blob'
-                    },
-                    success: function(response) {
-                        // swal(`Berhasil Di download!`);
-                        swal({
-                            title: "Success!",
-                            text: "Berhasil Di Download",
-                            icon: "success",
-                        });
-                        var blob = new Blob([response]);
+//                 $.ajax({
+//                     url: root+"/admin/export/pdf/pengajuan_prakerin/"+id+"/" + value,
+//                     type: "POST",
+//                     data: {
+//                         "id": id,
+//                         "nomor": value,
+//                     },
+//                     xhrFields: {
+//                         responseType: 'blob'
+//                     },
+//                     success: function(response) {
+//                         swal({
+//                             title: "Success!",
+//                             text: "Berhasil Di Download",
+//                             icon: "success",
+//                         });
+//                         var blob = new Blob([response]);
+//                         var link = document.createElement('a');
+//                         link.href = window.URL.createObjectURL(blob);
+//                         link.download = "Prakerin.pdf";
+//                         link.click();
+//                     },
+//                     error: function(blob) {
+//                         console.log(id,blob);
+//                         swal({
+//                             title: "Error!",
+//                             text: "Gagal Di Download",
+//                             icon: "error",
+//                         });
+
+
+//                     }
+//                 });
+
+//             });
+//     })
+
+
+
+
+
+
+
+
+
+
+// });
+
+
+
+
+$(document).on('click', '#kelompoks', function (event) {
+    event.preventDefault();
+    let href = $(this).attr("data-attr");
+    console.log(href)
+    
+    $.ajax({
+        url: href,
+        beforeSend: function () {
+            $('#loader').show();
+        },
+        // return the result
+        success: function (result) {
+            $('#downloadModal').modal("show");
+            $('#downloadBody').html(result).show();
+        },
+        complete: function () {
+            $('#loader').hide();
+        },
+        error: function (jqXHR, testStatus, error) {
+            // console.log(error);
+            alert("Page " + href + " cannot open. Error:" + error);
+            $('#loader').hide();
+        },
+        timeout: 8000
+    })
+
+
+
+});
+
+$('#download').click(function (event) {
+    event.preventDefault();
+    var form = $('#export_form'),
+        url = form.attr('action'),
+        method = form.attr('method');
+    form.find('.invalid-feedback').remove();
+    form.find('.form-control').removeClass('is-invalid');
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+    $.ajax({
+        url: url,
+        type: method,
+        data: form.serialize(),
+        xhrFields: {
+            responseType: 'blob'
+        },
+        success: function name(data) {
+            console.log(data.data);
+            form.trigger('reset');
+            $('#downloadModal').modal('hide');
+            alert = Swal.fire({
+                title: 'Berhasil',
+                text: ' Berhasil Magang! ',
+                icon: 'success',
+                confirmButtonText: 'tutup'
+            })
+            var blob = new Blob([data]);
                         var link = document.createElement('a');
                         link.href = window.URL.createObjectURL(blob);
                         link.download = "Prakerin.pdf";
                         link.click();
-                    },
-                    error: function(blob) {
-                        console.log(blob);
-                        swal({
-                            title: "Error!",
-                            text: "Gagal Di Download",
-                            icon: "error",
-                        });
+
+            setInterval(() => {
+                alert
+            }, 7000);
+
+            location.reload();
+        },
+        error: function (xhr) {
+            console.log(xhr.responseJSON)
+            var err = xhr.responseJSON;
+            if ($.isEmptyObject(err) == false) {
+                $.each(err.errors, function (key, value) {
+
+                    $('#' + key).addClass('is-invalid').closest('.input-group').append(
+                        '<div class="invalid-feedback">' + value + '</div>')
+                    console.log(key);
+                })
+            }
+        }
+    });
+})
 
 
-                    }
-                });
 
-            });
-    })
-
-});

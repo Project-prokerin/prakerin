@@ -177,17 +177,15 @@
                 <hr class="hr-2">
                 <hr class="hr-3">
                 <h6 class="font6" style="margin-top: 1px; font-size: 14px;">No &nbsp;&nbsp;&nbsp;&nbsp; :&nbsp;
-                    {{ $nomor }}/421.5-SMK.TB/HUBIN/PRAKERIN/II/2021</h6>
+                    {{ $nomor }}/421.5-SMK.TB/HUBIN/PRAKERIN/{{$bulan}}/{{$tahun}}</h6>
                 <h6 class="font6" style="margin-top: -32px; font-size: 14px; ">Lamp :&nbsp; -</h6>
                 <h6 class="font6" style="margin-top: -32px; font-size: 14px; ">Hal &nbsp;&nbsp;&nbsp; :&nbsp; <a href=""
                         style=" color:black; font-weight: bolder;">Pelaksanaan Prakerin</a></h6>
                 <h6 class="font6" style="font-weight: 300px;font-size: 14px; margin-top: -15px;">Kepada</h6>
                 <h6 class="font6" style="font-weight: 300px;font-size: 14px; margin-top: -25px; ">Yth.
-                    &nbsp;&nbsp;&nbsp; <b style="font-weight: bolder;">Bapak / Ibu Pimpinan PT Abadiri Paradipa
-                        (ABDIRA)</b> </h6>
+                    &nbsp;&nbsp;&nbsp; <b style="font-weight: bolder;">Bapak / Ibu Pimpinan PT {{$perusahaan}} </b> </h6>
                 <h6 class="font6" style="font-weight: 300px;font-size: 14px; margin-top: -30px; ">
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; jln Gama Setia Barat 2 No 8
-                    Bhakti Jaya Kec. Sukmajaya Kota Depok 16418 </h6>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {{$alamat_perusahaan}} </h6>
                 <h6 class="font6" style="font-weight: 300px;font-size: 14px; margin-top: -30px; ">
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Di </h6>
                 <h6 class="font6" style="font-weight: 300px;font-size: 14px; margin-top: -30px; ">
@@ -195,7 +193,7 @@
                 <h6 class="font6" style="font-weight: 300px;font-size: 14px; margin-top: -25px; ">
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Dengan hormat, </h6>
                 <div class="container">
-                    <div style="width: 660px;">
+                    <div style="width: 660px;text-align:justify;">
                         <p style="font-size: 14px; margin-top: -25px; " class="font6">
                             Salam sejahtera kami sampaikan semoga Bapak/Ibu selalu dalam keadaaan sehat wal'afiat serta
                             selalu diberikan kelancaran dalam menjalankan
@@ -206,9 +204,9 @@
                             yang salah satunya adalah pelaksanaan <b>Praktek Kerja Industri (PRAKERIN)</b>
                             bagi peserta didik tingkat kelas XII(Dua Belas),dengan ini SMK Taruna Bhakti mengucapkan
                             terima kasih atas kesediaannya menerima peserta didik kami untuk melaksanakan
-                            prakerin di tempat saudara,dan untuk itu mulai hari selasa tanggal 22 Februari 2021 kami
+                            prakerin di tempat saudara,dan untuk itu mulai hari {{$hari_from}} tanggal {{$date_from}} kami
                             akan mengantarkan peserta didik kami untuk mulai melaksanakan prakerin di tempat
-                            saudara selama 3 bulan sampai dengan tanggal 22 Mei 2021 dengan data sebagai berikut :
+                            saudara selama {{$jumlah_bulan}}  sampai dengan tanggal {{$date_end}} dengan data sebagai berikut :
                         </p>
                     </div>
                     <div class="container-table">
@@ -229,9 +227,9 @@
                               
                                     <tr>
                                       <td>{{ $loop->iteration }}</td>
-                                      <td>{{ $kel->data_prakerin->siswa->nipd }}</td>
-                                      <td>{{ $kel->data_prakerin->nama }}</td>
-                                      <td>{{ $kel->data_prakerin->kelas->jurusan }}</td>
+                                      <td>{{ $kel->siswa->nipd }}</td>
+                                      <td>{{ $kel->siswa->nama_siswa }}</td>
+                                      <td>{{ $kel->siswa->kelas->jurusan->jurusan }}</td>
                                   </tr>
 
 
@@ -240,7 +238,7 @@
                         </table>
                     </div>
 
-                    <div>
+                    <div class="bwhtbl" style="width:660px;text-align: justify;">
                         <p style="font-size: 14px; margin-top: 3px; " class="font6">
                             Besar harapan kami kepada saudara agar membimbing serta mendidik peserta didik kami dalam
                             pelaksanaan prakerinnya agar bisa menjadi insan yang bermutu dan berkualitas.
@@ -249,7 +247,7 @@
                         </p>
                     </div>
                     <div class="ttd">
-                        <h6 class="font6">Depok, {{ $waktu }}</h6>
+                        <h6 class="font6" style="margin-right: 52px;" >Depok, {{ $waktu }}</h6>
                         <h6 class="font6" style="margin-top: -30px;">Kepala SMK Taruna Bhakti</h6>
                     </div>
 
@@ -264,8 +262,8 @@
                         </ol>
                     </div>
                     <div style="text-align: right;">
-                        <h6 style="font-size: 14px; margin-top: 80px;">Ramadin Tarigan, ST</h6>
-                        <h6 style="font-size: 14px; font-weight: light; margin-top: -30px;">NIK. 19760329200411101</h6>
+                        <h6 style="font-size: 14px; margin-top: 80px;margin-right:30px;">Ramadin Tarigan, ST</h6>
+                        <h6 style="font-size: 14px; font-weight: light; margin-top: -30px;margin-right:10px;">NIK. 19760329200411101</h6>
                     </div>
 
 

@@ -115,7 +115,7 @@ Route::prefix('admin')->middleware(['web', 'auth', 'role:admin,kepsek,tu,kaprog,
 
     Route::middleware(['web', 'auth', 'role:admin,kepsek,kaprog,hubin'])->group(function () {
         Route::get('surat_keluar', [Surat_keluarController::class, 'index'])->name('admin.surat_keluar.index');
-        Route::post('surat_keluar/ajax', [Surat_keluarController::class, 'ajax'])->name('admin.surat_keluar.ajax');
+        Route::get('surat_keluar/ajax', [Surat_keluarController::class, 'ajax'])->name('admin.surat_keluar.ajax');
         Route::get('surat_keluar/detail/{id}', [Surat_keluarController::class, 'detail'])->name('admin.surat_keluar.detail');
         Route::get('surat_keluar/tambah', [Surat_keluarController::class, 'tambah'])->name('admin.surat_keluar.tambah');
         Route::get('surat_keluar/download/{id}', [Surat_keluarController::class, 'suratKdownload'])->name('admin.surat_keluar.download');
@@ -205,7 +205,7 @@ Route::prefix('admin')->middleware(['web', 'auth', 'role:admin'])->group(functio
 // untuk hubin, admin disi
 // kaprog
 Route::prefix('admin')->middleware(['web', 'auth', 'role:kaprog,hubin,admin,kepsek'])->group(function () {
-        Route::middleware(['web', 'auth', 'role:kaprog,hubin,admin'])->group(function () {
+        Route::middleware(['web', 'auth', 'role:kaprog,hubin,admin,kepsek'])->group(function () {
     // data prakerin
     Route::get('data_prakerin', [data_prakerinController::class, 'index'])->name('data_prakerin.index');
     Route::get('data_prakerin/ajax', [data_prakerinController::class, 'ajax'])->name('data_prakerin.ajax');
@@ -251,14 +251,20 @@ Route::prefix('admin')->middleware(['web', 'auth', 'role:kaprog,hubin,admin,keps
     Route::get('pengajuan_prakerin/fetch/{id}', [pengajuan_prakerinController::class, 'fetch'])->name('pengajuan_prakerin.fetch');
     Route::get('pengajuan_prakerin/fetch_edit/{id}', [pengajuan_prakerinController::class, 'fetch_edit'])->name('pengajuan_prakerin.fetch_edit');
     Route::post('pengajuan_prakerin/tambah/post', [pengajuan_prakerinController::class, 'store'])->name('pengajuan_prakerin.post');
-    Route::post('pengajuan_prakerin/acc/{no}', [pengajuan_prakerinController::class, 'acc'])->name('pengajuan_prakerin.acc');
+
+    Route::get('pengajuan_prakerin/acc/{no}', [pengajuan_prakerinController::class, 'acc'])->name('pengajuan_prakerin.acc');
+    Route::put('pengajuan_prakerin/accmagang/{no}', [pengajuan_prakerinController::class, 'accmagang'])->name('pengajuan_prakerin.accmagang');
+    Route::get('pengajuan_prakerin/Showexport/{no}', [pengajuan_prakerinController::class, 'pengajuanShowexport'])->name('pengajuan_prakerin.Showexport');
+    Route::post('/export/pdf/pengajuan_prakerin/export/{no}', [PDFController::class, 'pengajuan_prakerin'])->name('export.kelompokPengajuan');
+    // Route::post('/export/pdf/pengajuan_prakerin/{id}/{nomor}',[PDFController::class, 'pengajuan_prakerin'])->name('export.kelompok');
+
   Route::post('pengajuan_prakerin/tolak/{no}', [pengajuan_prakerinController::class, 'tolak'])->name('pengajuan_prakerin.tolak');
     Route::get('pengajuan_prakerin/edit/{id}', [pengajuan_prakerinController::class, 'edit'])->name('pengajuan_prakerin.edit');
     Route::put('pengajuan_prakerin/update/{pengajuan_prakerin}', [pengajuan_prakerinController::class, 'update'])->name('pengajuan_prakerin.update');
     Route::delete('pengajuan_prakerin/delete/{id}', [pengajuan_prakerinController::class, 'destroy'])->name('pengajuan_prakerin.delete');
     Route::post('pengajuan_prakerin/ajax', [pengajuan_prakerinController::class, 'ajax'])->name('pengajuan_prakerin.ajax');
     Route::delete('/pengajuan_prakerin/destroy/{id}', [pengajuan_prakerinController::class, 'destroy'])->name('pengajuan_prakerin.delete-all');
-    Route::post('/export/pdf/kelompok/{id}/{nomor}', [PDFController::class, 'pengajuan_prakerin'])->name('export.kelompok');
+    // Route::post('/export/pdf/pengajuan_prakerin/{id}/{nomor}',[PDFController::class, 'pengajuan_prakerin'])->name('export.kelompok');
     Route::get('/export/pdf/contoh', [PDFController::class, 'contoh'])->name('export.contoh');
 
     // kelompok magang
@@ -277,7 +283,7 @@ Route::prefix('admin')->middleware(['web', 'auth', 'role:kaprog,hubin,admin,keps
     Route::post('kelompok/ajax', [kelompokController::class, 'ajax'])->name('kelompok.ajax');
     Route::delete('/kelompok/destroy_all/{id}', [kelompokController::class, 'delete_all'])->name('kelompok.delete-all');
     Route::get('/export/excel/kelompok', [ExcelController::class, 'kelompok']);
-    Route::post('/export/pdf/kelompok/{id}/{nomor}', [PDFController::class, 'kelompokPrakerin'])->name('export.kelompok');
+    // Route::post('/export/pdf/kelompok/{id}/{nomor}', [PDFController::class, 'kelompokPrakerin'])->name('export.kelompok');
     Route::get('/export/pdf/contoh', [PDFController::class, 'contoh'])->name('export.contoh');
 
 
@@ -295,7 +301,7 @@ Route::prefix('admin')->middleware(['web', 'auth', 'role:kaprog,hubin,admin,keps
 
     // data perusahaan
     Route::get('perusahaan', [perusahaanController::class, 'index'])->name('perusahaan.index');
-    Route::post('perusahaan/ajax', [perusahaanController::class, 'ajax'])->name('perusahaan.ajax');
+    Route::get('perusahaan/ajax', [perusahaanController::class, 'ajax'])->name('perusahaan.ajax');
     Route::get('perusahaan/detail/{id}', [perusahaanController::class, 'detail'])->name('perusahaan.detail');
     Route::get('perusahaan/tambah', [perusahaanController::class, 'tambah'])->name('perusahaan.tambah');
     Route::post('perusahaan/tambah/post', [perusahaanController::class, 'store'])->name('perusahaan.post');
@@ -328,8 +334,8 @@ Route::middleware(['web', 'auth', 'role:kaprog,hubin,admin,kepsek'])->group(func
 });
 
 // bkk                                                               #disini
-Route::prefix('admin')->middleware(['web', 'auth', 'role:bkk,hubin,admin,kurikulum,tu,kaprog,siswa'])->group(function () {
-    Route::middleware('role:bkk,hubin,admin')->group(function () {
+Route::prefix('admin')->middleware(['web', 'auth', 'role:bkk,hubin,admin,kurikulum,tu,kaprog,kepsek,siswa'])->group(function () {
+    Route::middleware('role:bkk,hubin,admin,kepsek')->group(function () {
         Route::get('pembekalan', [pembekalanContoller::class, 'index'])->name('pembekalan.index');
         Route::get('pembekalan/ajax', [pembekalanContoller::class, 'ajax'])->name('pembekalan.ajax');
         Route::get('pembekalan/detail/{id}', [pembekalanContoller::class, 'detail'])->name('pembekalan.detail');
@@ -378,7 +384,7 @@ Route::prefix('admin')->middleware(['web', 'auth', 'role:bkk,hubin,admin,kurikul
     });
 
     // nilai prakerin
-    Route::middleware('role:hubin,admin,kurikulum,tu,kaprog')->group(function () {
+    Route::middleware('role:hubin,admin,kurikulum,tu,kaprog,kepsek')->group(function () {
         Route::get('nilai_prakerin', [Nilai_PrakerinController::class, 'index'])->name('nilai_prakerin.index');
         Route::post('nilai_prakerin/header/ajax', [Nilai_PrakerinController::class, 'index'])->name('nilai_prakerin.header.index');
         Route::get('nilai_prakerin/ajax', [Nilai_PrakerinController::class, 'ajax'])->name('nilai_prakerin.ajax');
@@ -404,7 +410,7 @@ Route::prefix('admin')->middleware(['web', 'auth', 'role:bkk,hubin,admin,kurikul
     });
 
     //kategori nilai
-    Route::middleware('role:hubin,admin,kurikulum,tu,siswa,kaprog')->group(function () {
+    Route::middleware('role:hubin,admin,kurikulum,tu,siswa,kaprog,kepsek')->group(function () {
         Route::get('kategori', [KategoriController::class, 'index'])->name('kategori.index');
         Route::post('kategori/header/ajax', [KategoriController::class, 'index'])->name('kategori.header.index');
         // Route::get('kategori/ajax', [KategoriController::class, 'ajax'])->name('kategori.ajax');

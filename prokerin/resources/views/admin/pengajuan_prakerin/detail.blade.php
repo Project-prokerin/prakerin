@@ -1,3 +1,4 @@
+{{-- detail pengajuan  --}}
 @extends('template.master')
 @push('link')
 <style>
@@ -61,10 +62,10 @@
            @foreach ($pengajuan_prakerin as $pengajuan)
            <tr>
             <th scope="row">{{$loop->iteration}}</th>
-            <td>{{$pengajuan->data_prakerin->siswa->nipd}}</td>
-            <td>{{$pengajuan->data_prakerin->nama}}</td>
-            <td>{{$pengajuan->data_prakerin->kelas->jurusan->jurusan}}</td>
-            <td>{{$pengajuan->data_prakerin->kelas->level}}</td>
+            <td>{{$pengajuan->siswa->nipd}}</td>
+            <td>{{$pengajuan->siswa->nama_siswa}}</td>
+            <td>{{$pengajuan->siswa->kelas->jurusan->jurusan}}</td>
+            <td>{{$pengajuan->siswa->kelas->level}}</td>
             <td>
                 <button type="button" class="btn btn-primary"><i class="fas fa-search"></i></button>
                 <button type="button" class="btn btn-warning"><i class="fas fa-pencil-alt"></i></button>
