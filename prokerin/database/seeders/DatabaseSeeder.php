@@ -47,8 +47,6 @@ class DatabaseSeeder extends Seeder
         $this->call([jurnal_prakerinSeeder::class]);
         $this->call([jurnal_harianSeeder::class]);
         $this->call([fasilitas_prakerinSeeder::class]);
-        $this->call([orang_tuaSeeder::class]);
-        $this->call([asal_sekolahSeeder::class]);
         $this->call([surat_masukSeeder::class]);
         $this->call([surat_mSeeder::class]);
         $this->call([detail_suratSeeder::class]);

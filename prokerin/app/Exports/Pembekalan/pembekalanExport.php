@@ -42,11 +42,10 @@ class pembekalanExport implements FromQuery, WithHeadings, WithMapping, WithStyl
         return
             [
                 'no',
-                'nama_siswa',
-                'test_wpt_iq',
-                'personality_interview',
-                'soft_skill',
-                'file_portofolio',
+                'nama siswa',
+                'psikotes',
+                'soft skill',
+                'file portofolio',
                 // 'guru bk',
             ];
     }
@@ -56,8 +55,7 @@ class pembekalanExport implements FromQuery, WithHeadings, WithMapping, WithStyl
 
                 'no',
                 !empty($siswa->nama_siswa) ? $siswa->nama_siswa : '',
-                !empty($siswa->pembekalan_magang-> test_wpt_iq) ? 'sudah' : 'belum',
-                !empty($siswa->pembekalan_magang->personality_interview) ? 'sudah' : 'belum',
+                !empty($siswa->pembekalan_magang-> psikotes) ? 'sudah' : 'belum',
                 !empty($siswa->pembekalan_magang->soft_skill) ? 'sudah' : 'belum',
                 !empty($siswa->pembekalan_magang->file_portofolio) ? 'sudah' : 'belum',
                 // !empty($pembekalan->guru) ? $pembekalan->guru->nama : '',
@@ -90,9 +88,12 @@ class pembekalanExport implements FromQuery, WithHeadings, WithMapping, WithStyl
         $sheet->mergeCells('B3:E3')->setCellValue('B3', 'SMK TARUNA BHAKTI DEPOK');
         $sheet->mergeCells('B4:E4')->setCellValue('B4', 'Pembekalan magang siswa');
 
+        // loop array value
         foreach (array_values($columnindex) as $i => $value) {
+            // jika value di array == higest col
             if ($value === $highestCol) {
                 // $panjang_col = $i;
+                // buat valriable panjangkol yang isinya panjang column ex 1,2,3,4,5 | A,B,C,D,E
                 $panjang_col = $i + 1;
             }
         }
@@ -102,6 +103,8 @@ class pembekalanExport implements FromQuery, WithHeadings, WithMapping, WithStyl
                 // dd($columnindex[$i] . ($i + 6));
                 $cell =  $sheet->getCellByColumnAndRow($j, $i + 6);
                 if ($cell->getValue() === 'belum') {
+                    // mendapat column adn row ex. column 1 baris 7 | column a baris 7
+                    // get style untuk mewarnai A7 -> warnanya text nya putih
                     $sheet->getCellByColumnAndRow($j, $i + 6)->getStyle($columnindex[$i] . ($i + 6))->getFont()->getColor('#FFFFFF')->setARGB(\PhpOffice\PhpSpreadsheet\Style\Color::COLOR_WHITE);
                     $sheet->getCellByColumnAndRow($j, $i + 6)->getStyle($columnindex[$i] . ($i + 6))->getFill()->setFillType(\PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID)->getStartColor()->setARGB('FFFF0000');
                     // $data = $this->data;;
@@ -174,7 +177,7 @@ class pembekalanExport implements FromQuery, WithHeadings, WithMapping, WithStyl
             'C' => 20,
             'D' => 20,
             'E' => 20,
-            'F' => 20
+            // 'F' => 20
         ];
     }
     public function title():string

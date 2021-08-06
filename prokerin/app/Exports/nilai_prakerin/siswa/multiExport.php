@@ -21,7 +21,7 @@ class multiExport implements WithMultipleSheets
             $getData = Siswa::where('id_kelas', $value->kelas->id)->get();
             $sheets[] = new nilai_prakerinExport($this->siswa, $value->kelas->level,$value->kelas->jurusan->singkatan_jurusan, $getData,$value->kelas->id);
         }
-
+        dd($sheets);
         return $sheets;
     }
 }

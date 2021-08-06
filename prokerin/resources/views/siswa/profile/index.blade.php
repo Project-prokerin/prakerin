@@ -117,12 +117,12 @@
                             <label class="form-label">: {{ siswa('main')->kelas->level  }}</label>
                           </div>
                           <div class="row g-3 align-items-center">
-                            <label class="form-label col-7 pleft">No.Telephone</label>
-                            <label class="form-label">: {{ siswa('main')->no_hp }}</label>
+                            <label class="form-label col-7 pleft">Tempat lahir</label>
+                            <label class="form-label">: {{ siswa('main')->tempat_lahir }}</label>
                           </div>
                           <div class="row g-3 align-items-center">
-                            <label class="form-label col-7 pleft">Email</label>
-                            <label class="form-label">: {{ siswa('main')->email }}</label>
+                            <label class="form-label col-7 pleft">Tanggal lahir</label>
+                            <label class="form-label">: {{ siswa('main')->tanggal_lahir->Isoformat('d MMM Y') }}</label>
                           </div>
                     </div>
                 </div>

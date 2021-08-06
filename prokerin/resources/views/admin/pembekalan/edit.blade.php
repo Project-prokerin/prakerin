@@ -35,37 +35,21 @@
                 </div>
             <div>
             <div class="mb-3">
-                    <label class="form-label">Kegiatan WPT IQ</label>
+                    <label class="form-label">Kegiatan Psikotes</label>
             </div>
                 <div class="mb-3 form-check" style="margin-top: -20px">
-                    <input type="checkbox" name="test_wpt_iq" class="form-check-input test_iq"
-                    @if(old('test_wpt_iq') == 'sudah' or $pembekalan->test_wpt_iq == 'sudah') checked @endif value="sudah">
+                    <input type="checkbox" name="psikotes" class="form-check-input psikotes"
+                    @if(old('psikotes') == 'sudah' or $pembekalan->psikotes == 'sudah') checked @endif value="sudah">
                     <label class="form-check-label" >Sudah</label>
                     <span class="m-5"></span>
-                    <input type="checkbox" name="test_wpt_iq" class="form-check-input test_iq"
-                    @if(old('test_wpt_iq') == 'belum' or $pembekalan->test_wpt_iq == 'belum') checked @endif value="belum">
+                    <input type="checkbox" name="psikotes" class="form-check-input psikotes"
+                    @if(old('psikotes') == 'belum' or $pembekalan->psikotes == 'belum') checked @endif value="belum">
                     <label class="form-check-label">Belum</label>
-                    <li class="d-inline validated text-danger ml-4"></li>
+                    <li class="d-inline validated text-danger err-psikotes ml-4"></li>
                 </div>
 
             </div>
             <div>
-                <div class="mb-3">
-                    <label class="form-label">Tahap Personality Interview</label>
-                </div>
-                <div class="mb-3 form-check" style="margin-top: -20px">
-                    <input type="checkbox" name="personality_interview" class="form-check-input person"
-                    @if(old('personality_interview') == 'sudah' or $pembekalan->personality_interview == 'sudah') checked @endif value="sudah">
-                    <label class="form-check-label">Sudah</label>
-                    <span class="m-5"></span>
-                    <input type="checkbox" name="personality_interview" class="form-check-input person"
-                    @if(old('personality_interview') == 'belum' or $pembekalan->personality_interview == 'belum') checked @endif value="belum">
-                    <label class="form-check-label">Belum</label>
-                    <li class="d-inline validated text-danger ml-4"></li>
-                </div>
-            </div>
-            <div>
-
                 <div class="mb-3">
                     <label class="form-label">Tahap Soft Skill</label>
                 </div>
@@ -77,7 +61,7 @@
                     <input type="checkbox" name="soft_skill" class="form-check-input skill"  value="belum"
                     @if(old('soft_skill') == 'belum' or $pembekalan->soft_skill == 'belum') checked @endif>
                     <label class="form-check-label">Belum</label>
-                    <li class="d-inline validated text-danger ml-4"></li>
+                    <li class="d-inline validated er-skill text-danger ml-4"></li>
                 </div>
             </div>
             <div class="row">
@@ -90,7 +74,7 @@
             <div class="mb-3">
                 <label class="form-label">Portfolio</label>
                 <input class="form-control" type="text" name="text" id="formFile" value="{{ links($pembekalan->file_portofolio) }}" disabled>
-                <label class="form-label mt-2">Edit portofolio</label>
+                <label class="form-label mt-2">Edit portofolio ( boleh kosong )</label>
                 <input class="form-control file " accept="application/pdf" type="file" name="file" id="formFile" value="{{ $pembekalan->file_poprtofolio }}">
                 <div class="invalid-feedback d-none" id="invalid_file"></div>
             </div>
@@ -113,12 +97,31 @@
 
     $('a#selanjutnya').on('click', function (params) {
         var nama = $('#nama').val();
-        if (nama == '') {
+        psikotes = $('.psikotes').is(":checked");
+        skill = $('.skill').is(":checked");
+        if (nama == '' || psikotes == false  || skill == false )  {
+            // option
+            if (nama == '') {
             $('#nama').addClass('is-invalid');
             $('#invalid_siswa').html('nama siswa tidak boleh kosong').removeClass('d-none');
+            }else{
+                $('#invalid_siswa').addClass('d-none');
+            }
+            // checkbx 1
+            if (psikotes == false)
+            {
+                $('.err-psikotes').html('required');
+            }else{
+                $('.err-psikotes').html('');
+            }
+            if (skill == false)
+            {
+                $('.err-skill').html('required');
+            }else{
+                $('.err-skill').html('');
+            }
         }
         else{
-            $('#invalid_siswa').addClass('d-none');
             $("section#2").show();
             $("section#1").hide()
         }

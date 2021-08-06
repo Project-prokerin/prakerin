@@ -83,8 +83,7 @@ class pembekalanContoller extends Controller
             $pem = pembekalan_magang::create([
                 'id_siswa' => $request->siswa,
                 'id_guru' => Auth()->id(),
-                'test_wpt_iq' => $request->test_wpt_iq,
-                'personality_interview' => $request->personality_interview,
+                'psikotes' => $request->psikotes,
                 'soft_skill' => $request->soft_skill,
                 'file_portofolio' => "file/portofolio/$file"
             ]);
@@ -92,8 +91,7 @@ class pembekalanContoller extends Controller
             $pem = pembekalan_magang::create([
                 'id_siswa' => $request->siswa,
                 'id_guru' => Auth()->id(),
-                'test_wpt_iq' => $request->test_wpt_iq,
-                'personality_interview' => $request->personality_interview,
+                'psikotes' => $request->psikotes,
                 'soft_skill' => $request->soft_skill,
                 'file_portofolio' => 'belum'
             ]);
@@ -146,8 +144,7 @@ class pembekalanContoller extends Controller
             $pem = pembekalan_magang::where('id', $id)->update([
                 'id_siswa' => $request->siswa,
                 'id_guru' => Auth()->id(),
-                'test_wpt_iq' => $request->test_wpt_iq,
-                'personality_interview' => $request->personality_interview,
+                'psikotes' => $request->psikotes,
                 'soft_skill' => $request->soft_skill,
                 'file_portofolio' =>  "file/portofolio/$file"
             ]);
@@ -155,8 +152,7 @@ class pembekalanContoller extends Controller
             $pem = pembekalan_magang::where('id', $id)->update([
                 'id_siswa' => $request->siswa,
                 'id_guru' => Auth()->id(),
-                'test_wpt_iq' => $request->test_wpt_iq,
-                'personality_interview' => $request->personality_interview,
+                'psikotes' => $request->psikotes,
                 'soft_skill' => $request->soft_skill,
             ]);
         }
@@ -188,7 +184,7 @@ class pembekalanContoller extends Controller
     public function destroy($id)
     {
         $pem = pembekalan_magang::where('id', $id)->first();
-          dd($pem);
+        //   dd($pem);
         if (File::exists("$pem->file_portofolio")) {
             File::delete("$pem->file_portofolio");
         }

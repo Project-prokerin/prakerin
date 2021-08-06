@@ -25,20 +25,19 @@ class profileRequest extends FormRequest
     {
         return [
             "nama_siswa" => "required",
-            "email" => "required|email",
-            "no_hp" => "required|min:8",
-            "kelas" => "required"
+            "kelas" => "required",
+            "tempat_lahir" => "required",
+            "tanggal_lahir" => "required"
         ];
     }
     public function messages()
     {
         return [
             'nama_siswa.required' => 'Nama tidak boleh kosong',
-            'email.required' => 'email tidak boleh kosong',
-            'no_hp.required' => 'no_hp tidak boleh kosong',
-            'no_hp.min' => 'minimal 8 character',
-            'email.email' => 'Email harus alamat email yang valid',
-            "kelas.required" => "Kelas anda tidak boleh kosong"
+                "kelas.required" => "Kelas anda tidak boleh kosong",
+            'tempat_lahir.required' => 'Tempat lahir tidak boleh kosong',
+            'tanggal_lahir.required' => 'Tanggal lahir tidak boleh kosong',
+
         ];
     }
 }

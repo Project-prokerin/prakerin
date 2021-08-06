@@ -19,7 +19,7 @@ use Maatwebsite\Excel\Concerns\WithColumnWidths;
 use Maatwebsite\Excel\Concerns\WithTitle;
 use Maatwebsite\Excel\Sheet;
 use PhpOffice\PhpSpreadsheet\Worksheet\Worksheet;
-
+use Carbon\Carbon;
 
 
 class SiswaExport implements FromQuery, WithHeadings, WithMapping, WithCustomStartCell, WithStyles,WithColumnWidths, ShouldAutoSize, WithTitle
@@ -53,9 +53,12 @@ class SiswaExport implements FromQuery, WithHeadings, WithMapping, WithCustomSta
             [
                 'no',
                 'NIPD',
+                'Nisn',
                 'Nama',
-                'Email',
-                'Jenis Kelamin',
+                'kelas',
+                'jurusan',
+                'Tempat lahir',
+                'Tanggal Lahir'
             ];
     }
     public function map($siswa): array
@@ -63,9 +66,12 @@ class SiswaExport implements FromQuery, WithHeadings, WithMapping, WithCustomSta
         return [
             '',
             $siswa->nipd,
+            $siswa->nisn,
             $siswa->nama_siswa,
-            $siswa->email,
-            $siswa->jk,
+            $siswa->kelas->level,
+            $siswa->kelas->jurusan->singkatan_jurusan,
+            $siswa->tempat_lahir,
+            $siswa->tanggal_lahir->Isoformat('d MMMM Y'),
             // !empty($pembekalan->guru) ? $pembekalan->guru->nama : '',
         ];
     }
@@ -161,6 +167,8 @@ class SiswaExport implements FromQuery, WithHeadings, WithMapping, WithCustomSta
             'D' => 15,
             'E' => 25,
             'F' => 15,
+            'H' => 20,
+            'I' => 20,
         ];
     }
 

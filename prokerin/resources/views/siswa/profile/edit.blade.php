@@ -45,9 +45,9 @@
                                     @enderror
                                 </div>
                                 <div class="form-group col-md-6 col-12">
-                                    <label>Email</label>
-                                    <input type="text"  class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email',  siswa('main')->email) }}" required="">
-                                    @error('email')
+                                    <label>Tempat lahir</label>
+                                    <input type="text"  class="form-control @error('tempat_lahir') is-invalid @enderror" name="tempat_lahir" value="{{ old('tempat_lahir',  siswa('main')->tempat_lahir) }}" required="">
+                                    @error('tempat_lahir')
                                         <div class="invalid_feedback">{{ $message }}</div>
                                     @enderror
                                 </div>
@@ -67,9 +67,9 @@
                                 @enderror
                                 </div>
                                 <div class="form-group col-md-4 col-12">
-                                <label>nomor    hp</label>
-                                <input type="text"class="form-control @error('no_hp') is-invalid @enderror" name="no_hp" value="{{ old('no_hp', siswa('main')->no_hp) }}">
-                                @error('no_hp')
+                                <label>Tanggal lahir</label>
+                                <input type="date"class="form-control ui-datepicker  @error('tanggal_lahir') is-invalid @enderror" name="tanggal_lahir" value="{{ old('tanggal_lahir', siswa('main')->tanggal_lahir->format('Y-m-d')) }}" >
+                                @error('tanggal_lahir')
                                     <div class="invalid_feedback">{{ $message }}</div>
                                 @enderror
                                         </div>

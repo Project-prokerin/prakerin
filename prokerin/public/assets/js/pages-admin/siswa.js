@@ -25,16 +25,17 @@ $(document).ready( function () {
         type: "get",
         // data: function (data) {
         //     data = ' ';
-        //     return data 
+        //     return data
         // }
         },
         columns:[
         { data: 'DT_RowIndex', name: 'DT_RowIndex'},
         { data: 'nipd', name:'nipd'},
+        { data: 'nisn', name:'nisn'},
         { data: 'nama_siswa', name:'nama_siswa'},
-        { data: 'email', name:'email'},
         { data: 'kelas',name:'kelas'},
         { data: 'jurusan',name:'jurusan'},
+        { data: 'tanggal', name:'tanggal'},
         { data: 'action',name:'action'}
         ],
     });

@@ -18,7 +18,7 @@ class CreateGuruTable extends Migration
             $table->foreignId('id_user')->nullable()->constrained('users')->onDelete('set null')->onUpdate("cascade");
             $table->bigInteger('nik')->unsigned();
             $table->string('nama', 100);
-            $table->enum('jabatan',['admin','litbang', 'tu','kaprog','kepsek','waka','bkk', 'hubin','kurikulum','kesiswaan','sarpras','kejuruan'])->nullable();
+            $table->enum('jabatan',['admin','litbang', 'tu','kaprog','kepsek','waka','bkk', 'hubin','kurikulum','kesiswaan','sarpras','kejuruan', 'pembimbing'])->nullable();
             $table->bigInteger('id_jurusan')->unsigned()->nullable();
             $table->string('no_telp');
             $table->timestamps();

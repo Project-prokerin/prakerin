@@ -47,10 +47,12 @@
                             No
                           </th>
                           <th>NIPD</th>
-                          <th>Nama</th>
-                          <th>Email</th>
-                          <th>Kelas</th>
+                          <th>Nisn</th>
+                           <th>Nama</th>
+                           <th>Kelas</th>
                           <th>Jurusan</th>
+                          <th>Tanggal lahir</th>
+
                           <th>Action</th>
                         </tr>
                       </thead>

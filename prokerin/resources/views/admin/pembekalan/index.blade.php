@@ -50,8 +50,7 @@
                     No
                   </th>
                   <th>Nama</th>
-                  <th>Ketiatan WPT IQ</th>
-                  <th>Tahap PI</th>
+                  <th>Tahap Psikotes</th>
                   <th>Tahap Soft Skill</th>
                   <th>Portofolio</th>
                   <th>Action</th>
@@ -62,7 +61,6 @@
                   <td>
                     1
                   </td>
-                  <td></td>
                   <td></td>
                   <td></td>
                   <td></td>

@@ -79,15 +79,11 @@
                     <div class="flash" data-id="{{ session('alert') }}"></div>
             @endif --}}
             <tr>
-                <th scope="row"  class="text-dark"  style="background-color:#f2f2f2">Test WPT IQ</th>
-                <td class="" style="{{ warna('test_wpt_iq') }}">{{ PembekalanText('test_wpt_iq') }}</td>
+                <th scope="row" class="text-dark" >Tahap Psikotes</th>
+                <td style="{{ warna('psikotes') }}">{{ PembekalanText('psikotes') }}</td>
             </tr>
             <tr>
-                <th scope="row" class="text-dark" >Test Personality interview</th>
-                <td style="{{ warna('personality_interview') }}">{{ PembekalanText('personality_interview') }}</td>
-            </tr>
-            <tr>
-                <th scope="row" class="text-dark"  style="background-color:#f2f2f2">Test soft skill</th>
+                <th scope="row" class="text-dark"  style="background-color:#f2f2f2">Tahap soft skill</th>
                 <td style="{{ warna('soft_skill') }}">{{ PembekalanText('soft_skill') }}</td>
             </tr>
             <tr>

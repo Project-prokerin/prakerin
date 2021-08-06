@@ -23,21 +23,20 @@ $(document).ready( function () {
         columns:[
         { data: 'DT_RowIndex', name: 'DT_RowIndex'},
         { data: 'siswa', name:'siswa'},
-        { data: 'test_wpt_iq', name:'test_wpt_iq'},
-        { data: 'personality_interview', name:'personality_interview'},
+        { data: 'psikotes', name:'psikotes'},
         { data: 'soft_skill',name:'soft_skill'},
         { data: 'file',name:'file'},
         { data: 'action',name:'action'}
         ],
         columnDefs: [
-        { targets: [1,2,3,4], 'createdCell':  function (td, cellData, rowData, row, col) {
+        { targets: [2,3], 'createdCell':  function (td, cellData, rowData, row, col) {
                 if (cellData == 'belum') { // untuk MEWARNAI COLUMN TABLE
                     $(td).addClass('bg-danger text-white');
                 }else if (cellData == 'sudah') {
                     $(td).addClass('bg-success text-white');
                 }
         }},
-        { targets: [5], 'createdCell':  function (td, cellData, rowData, row, col) {
+        { targets: [4], 'createdCell':  function (td, cellData, rowData, row, col) {
                 if (cellData == 'belum') { // untuk MEWARNAI COLUMN TABLE
                     $(td).addClass('bg-danger  text-white');
                 }else{

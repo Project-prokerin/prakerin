@@ -21,8 +21,7 @@ class pembekalanSeeder extends Seeder
         $faker->addProvider(new \Xvladqt\Faker\LoremFlickrProvider($faker));
         for ($i=1; $i <= 6 ; $i++) {
             DB::table('pembekalan_magang')->insert([
-                'test_wpt_iq' => 'sudah',
-                'personality_interview' => 'sudah',
+                'psikotes' => 'sudah',
                 'soft_skill' => 'sudah',
                 'file_portofolio' => "file/portofolio/$i default.pdf",
                 'id_siswa' => $i,

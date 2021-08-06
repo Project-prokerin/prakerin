@@ -312,9 +312,9 @@ class userController extends Controller
 
             'id_kelas' => $request->kelas,
 
-            'email' => $request->email,
+            'tempat_lahir' => $request->tempat_lahir,
 
-            'no_hp' => $request->no_hp
+            'tanggal_lahir' => $request->tanggal_lahir
 
         ]);
 

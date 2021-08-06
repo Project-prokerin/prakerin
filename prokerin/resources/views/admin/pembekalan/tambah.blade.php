@@ -37,34 +37,19 @@
                 </div>
             <div>
             <div class="mb-3">
-                    <label class="form-label">Kegiatan WPT IQ</label>
+                    <label class="form-label">Tahap Psikotes</label>
             </div>
                 <div class="mb-3 form-check" style="margin-top: -20px">
-                    <input type="checkbox" name="test_wpt_iq" class="form-check-input test_iq"
+                    <input type="checkbox" name="psikotes" class="form-check-input psikotes"
                     value="sudah">
                     <label class="form-check-label" >Sudah</label>
                     <span class="m-5"></span>
-                    <input type="checkbox" name="test_wpt_iq" class="form-check-input test_iq"
+                    <input type="checkbox" name="psikotes" class="form-check-input psikotes"
                     value="belum">
                     <label class="form-check-label">Belum</label>
-                    <li class="d-inline err-test_iq text-danger ml-4"></li>
+                    <li class="d-inline err-psikotes text-danger ml-4"></li>
                 </div>
 
-            </div>
-            <div>
-                <div class="mb-3">
-                    <label class="form-label">Tahap Personality Interview</label>
-                </div>
-                <div class="mb-3 form-check" style="margin-top: -20px">
-                    <input type="checkbox" name="personality_interview" class="form-check-input person"
-                    value="sudah">
-                    <label class="form-check-label">Sudah</label>
-                    <span class="m-5"></span>
-                    <input type="checkbox" name="personality_interview" class="form-check-input person"
-                    value="belum">
-                    <label class="form-check-label">Belum</label>
-                    <li class="d-inline err-person text-danger ml-4"></li>
-                </div>
             </div>
             <div>
 
@@ -113,10 +98,9 @@ $(document).ready(function () {
 
     $('a#selanjutnya').on('click', function (params) {
         var nama = $('#nama').val();
-        test_iq = $('.test_iq').is(":checked");
-        person = $('.person').is(":checked");
+        psikotes = $('.psikotes').is(":checked");
         skill = $('.skill').is(":checked");
-        if (nama == '' || test_iq == false || person == false || skill == false )  {
+        if (nama == '' || psikotes == false  || skill == false )  {
             // option
             if (nama == '') {
             $('#nama').addClass('is-invalid');
@@ -125,17 +109,11 @@ $(document).ready(function () {
                 $('#invalid_siswa').addClass('d-none');
             }
             // checkbx 1
-            if (test_iq == false)
+            if (psikotes == false)
             {
-                $('.err-test_iq').html('required');
+                $('.err-psikotes').html('required');
             }else{
-                $('.err-test_iq').html('');
-            }
-            if (person == false)
-            {
-                $('.err-person').html('required');
-            }else{
-                $('.err-person').html('');
+                $('.err-psikotes').html('');
             }
             if (skill == false)
             {
@@ -157,7 +135,7 @@ $(document).ready(function () {
         if (type === 'application/pdf') {
             console.log(type);
             $('#formFile').val(item);
-            $('#invalid_file').addClass('d-none');
+            $('#invalid_file').addClass('d-none'); // validasi
             $('.file').removeClass('is-invalid');
         }else{
             $('.file').addClass('is-invalid');
@@ -170,26 +148,21 @@ $(document).ready(function () {
     $('a#kembali').on('click', function (params) {
         $("section#2").hide();
         $("section#1").show()
-    $(".test_iq").change(function()
-        {
-            $(".test_iq").prop('checked',false);
-            $(this).prop('checked',true);
-        });
-    $(".person").change(function()
-        {
-            $(".person").prop('checked',false);
-            $(this).prop('checked',true);
-        });
-    $(".makan_siang").change(function()
-        {
-            $(".makan_siang").prop('checked',false);
-            $(this).prop('checked',true);
-        });
-    $(".intensif").change(function()
-        {
-            $(".intensif").prop('checked',false);
-            $(this).prop('checked',true);
-        });
+    // $(".psikotes").change(function()
+    //     {
+    //         $(".psikotes").prop('checked',false);
+    //         $(this).prop('checked',true);
+    //     });
+    // $(".makan_siang").change(function()
+    //     {
+    //         $(".makan_siang").prop('checked',false);
+    //         $(this).prop('checked',true);
+    //     });
+    // $(".intensif").change(function()
+    //     {
+    //         $(".intensif").prop('checked',false);
+    //         $(this).prop('checked',true);
+    //     });
     })
 });
 </script>
