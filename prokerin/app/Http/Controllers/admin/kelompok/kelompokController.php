@@ -61,10 +61,45 @@ class kelompokController extends Controller
     public function tambah(Request $request)
     {
 
+        if (kelompok_laporan::all()->isEmpty()) {
+            $no =  siswa::all()->count();
+                for ($i=1; $i <= $no; $i++) {
+                    //mengambil jumlah siswa yang akan di loop 
+                    $nomor[] = $i; 
+                }
+                $noKelompok = $nomor;
+            }else{
+                $no =  siswa::all()->count();
+                for ($i=1; $i <= $no; $i++) {
+                    //mengambil jumlah siswa yang akan di loop 
+                    $nomor[] = $i; 
+                }
+                
+                
+                
+                $users = kelompok_laporan::all();
+                // mencari pengajuan yang memiliki no duplicate dan di jadikan unique
+                   $usersUnique = $users->unique("no");
+                   
+                   foreach ($usersUnique as $key ) {
+                           $w = explode('|',$key->no);
+                        //    dd($w);
+                           // membuat array untuk index baru
+                           $unique[] =   $w[0];
+                        //    dd($unique);
+                           
+                        }
+                    
+                    $a1=$nomor;
+                    $a2=$unique;
+                    //membandingkan isi array dari jumlah siswa dengan no unique 
+                    $noKelompok=array_diff($a1,$a2);
+            }
+
         $data_prakerin = data_prakerin::doesntHave('kelompok_laporan')->where('status','Magang')->get();
         $perusahaan = perusahaan::all();
         $guru = guru::all();
-        return view('admin.kelompok_prakerin.tambah',compact('data_prakerin','perusahaan','guru'));
+        return view('admin.kelompok_prakerin.tambah',compact('noKelompok','data_prakerin','perusahaan','guru'));
     }
 
     /**
@@ -77,6 +112,7 @@ class kelompokController extends Controller
     {
 
 
+
         $request->validated();
         $data = $request->all();
     //    array($data);
@@ -86,12 +122,20 @@ class kelompokController extends Controller
     // $id_dataP = [];
         // $condition = $input['id_data_prakerin'];
 
+        // foreach ($data['id_data_prakerin'] as $key => $val) {
+
+        // }
+        // dd($nama);
+
         // if (count($data['id_data_prakerin']  > 0) ) {
             // $arr = [];
             foreach ($data['id_data_prakerin'] as $key => $value) {
                 // $arr[] = $data['id_data_prakerin'][$key];
+            $nama[] = data_prakerin::where('id', $value)->first();
+            $new_name = str_replace(' ', '', $nama[0]->nama);
+
                 $data2 = array(
-                    'no'   => $data['no'],
+                    'no'   => $data['no']."|".$new_name,
                     'id_guru'   => $data['id_guru'],
                     'id_data_prakerin'   => $data['id_data_prakerin'][$key],
                     'nama_perusahaan'   => $perusahaan->nama,
@@ -136,13 +180,14 @@ class kelompokController extends Controller
      */
     public function edit($id)
     {
-        $data_prakerin = data_prakerin::doesntHave('kelompok_laporan')->doesntHave('pengajuan_prakerin')->where('status','Magang')->get();
+        $data_prakerin = data_prakerin::where('status','Magang')->get();
         // dd($data_prakerin);
         $perusahaan = perusahaan::all();
         $guru = guru::all();
         $siswa = Siswa::all();
         $kelompok_laporan = kelompok_laporan::where('no',$id)->with('data_prakerin')->get();
         $perusahaan_select = perusahaan::where('nama',$kelompok_laporan[0]->nama_perusahaan)->first();
+
         return view('admin.kelompok_prakerin.edit',compact('perusahaan_select','kelompok_laporan','perusahaan','guru','data_prakerin','siswa'));
 
         // return view('admin.kelompok_prakerin.edit');
@@ -155,14 +200,14 @@ class kelompokController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(kelompok_laporanRequest $request)
+    public function update(Request $request)
     {
         // $input = Input::all();
         // $id_dataP = $request->id_data_prakerin;
         // dd($request->id_data_prakerin);
         // $perusahaan = Perusahaan::find('id',$request->id_perusahaan)->first();
         // $data = $request->all();
-        $request->validated();
+        // $request->validated();
         $no = kelompok_laporan::where('no',$request->no[0])->get();
         // dd();
     
@@ -172,12 +217,15 @@ class kelompokController extends Controller
 
             $data = $request->all();
 
-            // dd($data['no'][0]);
+            $no = preg_replace('/[^0-9.]+/', '',$data['no'][0]);
+
             $perusahaan = perusahaan::where('id', $data['id_perusahaan'])->first();
             foreach ($data['id_data_prakerin'] as $key => $value) {
                 // $arr[] = $data['id_data_prakerin'][$key];
+                $nama[] = data_prakerin::where('id', $value)->first();
+                $new_name = str_replace(' ', '', $nama[0]->nama);
                 $data2 = array(
-                    'no'   => $data['no'][0],
+                    'no'   => $no.'|'.$new_name,
                     'id_guru'   => $data['id_guru'],
                     'id_data_prakerin'   => $data['id_data_prakerin'][$key],
                     'nama_perusahaan'   => $perusahaan->nama,

@@ -41,7 +41,7 @@ $(document).ready(function () {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             },
             url: root+'/admin/surat_keluar/ajax/',
-            type: "post",
+            type: "get",
             data: function (data) {
                 data = '';
                 return data

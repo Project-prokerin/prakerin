@@ -35,16 +35,6 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
 <div class="card">
     <div class="card-header">
       <h4>Tambah Kelompok</h4>
@@ -56,14 +46,21 @@
                 <div class="col-7">
                     <div class="row">
                             <div class="form-group col-6">
-                                <label class="d-block">No Telephone</label>
-                                <input class="form-control @error('no_telpon')  is-invalid  @enderror" type="number"
-                                    name="no_telpon" placeholder="no tlp" aria-label="default input example">
+                                <label class="d-block">Nomor Kelompok</label>
+                                <select class="form-control select2 @error('no')  is-invalid  @enderror" name="no" id="">
+                                    <option value="">--Pilih Nomor--</option>
+                                   
+                              @foreach ($noKelompok as $item)
+                                  <option value="{{$item}}">{{$item}}</option>
+                              @endforeach
+                                
+                                  
+                                </select>
                                 @error('no')
                                     <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
                             </div>
-
+                        
                         <div class="form-group col-6">
                             <label class="d-block">Nama Guru</label>
                             <select class="form-control select2 @error('id_guru')  is-invalid  @enderror" name="id_guru" id="">
@@ -116,22 +113,9 @@
                                       <td class="col-7">
                                         <select id="id_data_prakerin" name="id_data_prakerin[]"
                                             class="form-control select2 prakerin  @error('id_data_prakerin')  is-invalid  @enderror ">
-                                            {{-- <option value="">--Cari Siswa--</option>
-                                            @forelse ($data_prakerin as $item)
-                                                @if (empty($item->kelompok_laporan))
-                                                    <option value="{{ $item->id }}">{{ $item->nama }}</option>
-                                                @endif
-                                            @empty
-                                                <option disabled>Semua Siswa telah mendapat kelompok!</option>
-                                            @endforelse --}}
+                                        
                                         </select>
-                                            {{-- @if ($errors->has(`id_data_prakerin.2`))
-                                                <span class="text-danger">
-                                                    <small>
-                                                        {{ $errors->first('id_data_prakerin.2') }}
-                                                    </small>
-                                                </span>
-                                            @endif --}}
+                                      
                                       </td>
                                       <td><button type="button" name="add" id="add" class="btn btn-success">Add More</button></td>
                                     </tr>
@@ -140,15 +124,16 @@
                    </div>
                 </div>
             </div>
-            <button type="submit" class="btn btn-success ml-3" style="margin-top:20px;"><i class="fas fa-check"></i> submit</button>
+            {{-- <button type="submit" class="btn btn-success ml-3" style="margin-top:20px;"><i class="fas fa-check"></i> submit</button>
             <a href="{{ route('kelompok.index') }}" type="submit" class="btn btn-danger"style="margin-top:20px;">
                 <i class="fas fa-times"></i> Cancel
-            </a>
+            </a> --}}
         </form>
     </div>
 </div>
 @endsection
 @push('script')
+<script src="{{ asset('template') }}/node_modules/select2/dist/js/select2.full.min.js"></script>
 
 <script>
           $(document).ready(function () {
@@ -161,7 +146,7 @@
                 url: 'fetch/' + id,
                 success: function (response) {
                 var response = JSON.parse(response);
-                console.log(response);
+                console.log(response);   
                 $('.prakerin').empty();
                 $('.prakerin').append(`<option value="0" disabled selected>--Cari Siswa--</option>`);
                 response.forEach(element => {
@@ -179,22 +164,9 @@
                   i++;
                   $('#dynamic_field').append('<tr id="row'+i+'"><td>'+
                                                 '<select id="id_data_prakerin" name="id_data_prakerin[]" class="form-control select2  prakerin @error('id_data_prakerin')  is-invalid  @enderror ">'+
-                                                    // '<option value="">--Cari Siswa--</option>'+
-                                                    // '@forelse ($data_prakerin as $item)'+
-                                                    //     '@if (empty($item->kelompok_laporan))'+
-                                                    //         '<option value="{{ $item->id }}">{{ $item->nama }}</option>'+
-                                                    //     '@endif'+
-                                                    // '@empty'+
-                                                    //     '<option disabled>Semua Siswa telah mendapat kelompok!</option>'+
-                                                    // '@endforelse'+
+                                                 
                                                 '</select>'+
-                                                    '@if ($errors->has(`id_data_prakerin.2`))'+
-                                                        '<span class="text-danger">'+
-                                                            '<small>'+
-                                                                '{{ $errors->first('id_data_prakerin.2') }}'+
-                                                            '</small>'+
-                                                        '</span>'+
-                                                    '@endif'+
+                                                 
                                             '</td><td><button type="button" name="remove" id="'+i+'" class="btn btn-danger btn_remove">X</button></td></tr>');
 
              });
@@ -217,5 +189,4 @@
         });
 
     </script>
-    <script src="{{ asset('template/') }}/node_modules/select2/dist/js/select2.full.min.js"></script>
 @endpush
