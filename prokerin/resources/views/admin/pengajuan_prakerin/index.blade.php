@@ -1,5 +1,7 @@
 @extends('template.master')
 @push('link')
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+
     <style>
 
     </style>
@@ -91,14 +93,46 @@
             </div>
           </div>
 
+          <div class="modal fade" id="accModal" aria-labelledby="accModalLabel" aria-hidden="true" data-backdrop="false">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-body" id="accBody">
+    
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="submit" id="setujuimagang" class="btn btn-primary">Setujui</button>
+                    </div>
+                </div>
+            </div>
+            </form>
+        </div>
+    
+    <div class="modal fade" id="downloadModal" aria-labelledby="downloadModalLabel" aria-hidden="true" data-backdrop="false">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-body" id="downloadBody">
+    
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="submit" id="download" class="btn btn-primary">download</button>
+                    </div>
+                </div>
+            </div>
+            </form>
+        </div>
+
                 <span id="role" data-role="{{ Auth::user()->role }}"></span>
 @endsection
 @push('script')
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script src="{{ asset('assets/js/pages-admin/pengajuan_prakerin.js') }}" ></script>
 
-    <script>
+  
+    {{-- <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script> --}}
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
 
 
-    </script>
 @endpush

@@ -50,12 +50,16 @@ class Siswa extends Model
     {
         return $this->belongsTo(kelas::class,'id_kelas');
     }
-      public function pengajuan_prakerin()
+    public function pengajuan_prakerin()
     {
         return $this->hasOne(pengajuan_prakerin::class, 'id_siswa', 'id');
     }
-    public function nilai_prakerin()
-    {
-        return $this->hasMany(Nilai_prakerin::class, 'id_siswa', 'id');
-    }
+  public function penelusuran_tamatan()
+  {
+    return $this->hasOne(penelusuran_tamatan::class, 'id_siswa', 'id');
+  }
+  public function nilai_prakerin()
+  {
+    return $this->hasMany(nilai_prakerin::class, 'id_siswa', 'id');
+  }
 }
