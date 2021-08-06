@@ -10,10 +10,10 @@ class kelompok_laporan extends Model
     use HasFactory;
     protected $table = 'kelompok_laporan';
     protected $guarded = [];
-    public function data_prakerin()
+    public function siswa()
     {
                                               // foreign owner key
-        return $this->hasOne(data_prakerin::class,'id','id_data_prakerin');
+        return $this->hasOne(Siswa::class,'id','id_siswa');
     }
     public function laporan_prakerin()
     {

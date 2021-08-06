@@ -61,10 +61,10 @@
            @foreach ($kelompok_laporan as $kel)
            <tr>
             <th scope="row">{{$loop->iteration}}</th>
-            <td>{{$kel->data_prakerin->siswa->nipd}}</td>
-            <td>{{$kel->data_prakerin->nama}}</td>
-            <td>{{$kel->data_prakerin->kelas->jurusan->jurusan}}</td>
-            <td>{{$kel->data_prakerin->kelas->level}}</td>
+            <td>{{$kel->siswa->nipd}}</td>
+            <td>{{$kel->siswa->nama_siswa}}</td>
+            <td>{{$kel->siswa->kelas->jurusan->jurusan}}</td>
+            <td>{{$kel->siswa->kelas->level}}</td>
             <td>
                 <button type="button" class="btn btn-primary"><i class="fas fa-search"></i></button>
                 <button type="button" class="btn btn-warning"><i class="fas fa-pencil-alt"></i></button>

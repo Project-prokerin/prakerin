@@ -2,7 +2,9 @@
 
 @php $role = Auth::user()->role; @endphp
 
-@if (Auth::user()->role == 'admin' or Auth::user()->role == 'tu' or Auth::user()->role == 'kepsek' or Auth::user()->role == 'kaprog' or Auth::user()->role == 'kesiswaan' or Auth::user()->role == 'kurikulum' or Auth::user()->role == 'hubin' or Auth::user()->role == 'sarpras' or Auth::user()->role == 'bkk')
+@if (Auth::user()->role == 'admin' or Auth::user()->role == 'tu' or Auth::user()->role == 'kepsek' or Auth::user()->role
+== 'kaprog' or Auth::user()->role == 'kesiswaan' or Auth::user()->role == 'kurikulum' or Auth::user()->role == 'hubin'
+or Auth::user()->role == 'sarpras' or Auth::user()->role == 'bkk')
 
 <div class="main-sidebar position-fixed">
     <aside id="sidebar-wrapper">
@@ -39,13 +41,13 @@
                     <span>Data Kelas</span>
                 </a>
             </li>
-             <li class="@if (Request::is('admin/jurusan','admin/jurusan/*')) active @endif">
+            <li class="@if (Request::is('admin/jurusan','admin/jurusan/*')) active @endif">
                 <a href="{{ route('jurusan.index') }}" class="nav-link">
                     <i class="fas fa-users"></i>
                     <span>Data Jurusan</span>
                 </a>
             </li>
-             <li class="@if (Request::is('admin/tanda-tangan','admin/tanda-tangan/*')) active @endif">
+            <li class="@if (Request::is('admin/tanda-tangan','admin/tanda-tangan/*')) active @endif">
                 <a href="{{ route('tanda-tangan.index') }}" class="nav-link">
                     <i class="fas fa-user"></i>
                     <span>Data TTD</span>
@@ -72,6 +74,15 @@
                 </a>
             </li>
             @endif
+            <li class="@if (Request::is('admin/kelompok','admin/kelompok/*')) active @endif">
+
+                <a href="{{ route('kelompok.index') }}" class="nav-link"><i class="fas fa-users"></i>
+
+                    <span>Kelompok Pembuatan Laporan</span>
+
+                </a>
+
+            </li>
             @if (Auth::user()->role == 'kaprog' or Auth::user()->role == 'hubin' or $role == 'admin')
             <li class="@if (Request::is('admin/data_prakerin','admin/data_prakerin/*')) active @endif">
                 <a href="{{ route('data_prakerin.index') }}" class="nav-link">
@@ -80,7 +91,8 @@
                 </a>
             </li>
             @endif
-            @if(Auth::user()->role == 'kaprog' or Auth::user()->role == 'hubin' or Auth::user()->role == 'admin' or Auth::user()->role == 'tu' or Auth::user()->role == 'siswa' or Auth::user()->role == 'kurikulum')
+            @if(Auth::user()->role == 'kaprog' or Auth::user()->role == 'hubin' or Auth::user()->role == 'admin' or
+            Auth::user()->role == 'tu' or Auth::user()->role == 'siswa' or Auth::user()->role == 'kurikulum')
             <li class="dropdown
             @if (Request::is('admin/kategori','admin/kategori/*'))
             active
@@ -90,10 +102,10 @@
             ">
                 <a href="" class="nav-link has-dropdown"><i class="fas fa-th"></i><span> Nilai Prakerin</span></a>
                 <ul class="dropdown-menu" style="display: none;">
-                    <li class="@if (Request::is('admin/kategori','admin/kategori/*')) active @endif"><a class="nav-link "
-                            href="{{ route('kategori.index') }}">Kategori</a></li>
-                    <li class="@if (Request::is('admin/nilai_prakerin','admin/nilai_prakerin/*')) active @endif"><a class="nav-link "
-                            href="{{ route('nilai_prakerin.index') }}">Nilai Data Prakerin</a></li>
+                    <li class="@if (Request::is('admin/kategori','admin/kategori/*')) active @endif"><a
+                            class="nav-link " href="{{ route('kategori.index') }}">Kategori</a></li>
+                    <li class="@if (Request::is('admin/nilai_prakerin','admin/nilai_prakerin/*')) active @endif"><a
+                            class="nav-link " href="{{ route('nilai_prakerin.index') }}">Nilai Data Prakerin</a></li>
 
                 </ul>
 
@@ -110,10 +122,11 @@
             ">
                 <a href="" class="nav-link has-dropdown"><i class="fas fa-file-alt"></i><span>Surat Prakerin</span></a>
                 <ul class="dropdown-menu" style="display: none;">
-                    <li class="@if (Request::is('admin/surat_keluar','admin/surat_keluar/*')) active @endif"><a class="nav-link "
-                            href="{{ route('admin.surat_keluar.index') }}">Surat Penugasan</a></li>
-                    <li class="@if (Request::is('admin/pengajuan_prakerin','admin/pengajuan_prakerin/*')) active @endif"><a class="nav-link "
-                            href="{{ route('pengajuan_prakerin.index') }}">Pengajuan Prakerin</a></li>
+                    <li class="@if (Request::is('admin/surat_keluar','admin/surat_keluar/*')) active @endif"><a
+                            class="nav-link " href="{{ route('admin.surat_keluar.index') }}">Surat Penugasan</a></li>
+                    <li
+                        class="@if (Request::is('admin/pengajuan_prakerin','admin/pengajuan_prakerin/*')) active @endif">
+                        <a class="nav-link " href="{{ route('pengajuan_prakerin.index') }}">Pengajuan Prakerin</a></li>
 
                 </ul>
 
@@ -121,7 +134,7 @@
 
             @endif
 
-             @if($role == "hubin" or $role == "admin" or $role == "kaprog")
+            @if($role == "hubin" or $role == "admin" or $role == "kaprog")
 
             <li class="dropdown
 
@@ -140,11 +153,9 @@
                 <ul class="dropdown-menu" style="display: none;">
 
                     <li class="@if (Request::is('admin/jurnal','admin/jurnal/*')) active @endif"><a class="nav-link "
-
                             href="{{ route('jurnal.index') }}">Data Awal Jurnal Prakerin</a></li>
 
                     <li class="@if (Request::is('admin/jurnalH','admin/jurnalH/*')) active @endif"><a class="nav-link "
-
                             href="{{ route('jurnalH.index') }}">Jurnal Harian</a></li>
 
                 </ul>
@@ -153,15 +164,7 @@
 
 
 
-            <li class="@if (Request::is('admin/kelompok','admin/kelompok/*')) active @endif">
 
-                <a href="{{ route('kelompok.index') }}" class="nav-link"><i class="fas fa-users"></i>
-
-                    <span>Kelompok Pembuatan Laporan</span>
-
-                </a>
-
-            </li>
 
             <li class="@if (Request::is('admin/laporan','admin/laporan/*')) active @endif">
 
@@ -177,7 +180,9 @@
 
 
 
-            @if (Auth::user()->role == 'admin' or Auth::user()->role == 'tu' or Auth::user()->role == 'kepsek' or Auth::user()->role == 'kaprog' or Auth::user()->role == 'kesiswaan' or Auth::user()->role == 'kurikulum' or Auth::user()->role == 'hubin' or Auth::user()->role == 'sarpras')
+            @if (Auth::user()->role == 'admin' or Auth::user()->role == 'tu' or Auth::user()->role == 'kepsek' or
+            Auth::user()->role == 'kaprog' or Auth::user()->role == 'kesiswaan' or Auth::user()->role == 'kurikulum' or
+            Auth::user()->role == 'hubin' or Auth::user()->role == 'sarpras')
 
             {{-- <li class="menu-header">Takola</li> --}}
 
@@ -197,9 +202,10 @@
 
             @endif
 
-            @if (Auth::user()->role == 'admin' or Auth::user()->role == 'tu' or Auth::user()->role == 'kepsek' or Auth::user()->role == 'kaprog')
+            @if (Auth::user()->role == 'admin' or Auth::user()->role == 'tu' or Auth::user()->role == 'kepsek' or
+            Auth::user()->role == 'kaprog')
 
-<li class='@if (Request::is("admin/disposisi","admin/disposisi/*")) active @endif'>
+            <li class='@if (Request::is("admin/disposisi","admin/disposisi/*")) active @endif'>
 
                 <a href='{{ route('admin.disposisi.index') }}' class="nav-link">
 
@@ -217,7 +223,7 @@
 
             <li class="menu-header">Alumni</li>
 
-               <li class='@if (Request::is("admin/alumni_siswa","admin/alumni_siswa/*")) active @endif'>
+            <li class='@if (Request::is("admin/alumni_siswa","admin/alumni_siswa/*")) active @endif'>
 
                 <a href="{{ route('alumni_siswa.index') }}" class="nav-link">
 
@@ -317,29 +323,31 @@
                     <span>Pembekalan Magang</span>
                 </a>
             </li>
-                 @if(App\Models\Nilai_prakerin::where('id_siswa',Auth::user()->siswa->id)->get()->isEmpty()))
+            <li class="@if (Request::is('user/kelompok_laporan','user/kelompok_laporan/*')) active @endif">
+                <a href="{{ route('user.kelompok_laporan') }}" class="nav-link">
+                    <i class="fas fa-users"></i>
+                    <span>Kelompok Laporan</span>
+                </a>
+            </li>
 
-                 @else
-                 <li class="dropdown
+            @if(siswa('data_prakerin')->status === 'Pengajuan' || empty(siswa('data_prakerin')))
+            @else
+            <li class="dropdown
 
                  @if(Request::is('siswa/nilai_prakerin','siswa/nilai_prakerin/*'))
                  active
                  @endif
                  ">
-                     <a href="" class="nav-link has-dropdown"><i class="fas fa-th"></i><span> Nilai Prakerin</span></a>
-                     <ul class="dropdown-menu" style="display: none;">
+                <a href="" class="nav-link has-dropdown"><i class="fas fa-th"></i><span> Nilai Prakerin</span></a>
+                <ul class="dropdown-menu" style="display: none;">
 
-                         <li class="@if (Request::is('siswa/nilai_prakerin','siswa/nilai_prakerin/*')) active @endif"><a class="nav-link "
-                                 href="{{ route('Siswanilai_prakerin.index') }}">Nilai Data Prakerin</a></li>
+                    <li class="@if (Request::is('siswa/nilai_prakerin','siswa/nilai_prakerin/*')) active @endif"><a
+                            class="nav-link " href="{{ route('Siswanilai_prakerin.index') }}">Nilai Data Prakerin</a>
+                    </li>
 
-                     </ul>
+                </ul>
 
-                 </li>
-
-                 @endif
-
-            @if(siswa('data_prakerin')->status === 'Pengajuan' || empty(siswa('data_prakerin')))
-            @else
+            </li>
             <li class="@if (Request::is('user/status','user/status/*')) active @endif">
                 <a href="{{ route('user.status') }}" class="nav-link">
                     <i class="fas fa-user"></i>
@@ -363,15 +371,9 @@
                     </li>
                 </ul>
             </li>
-            <li class="@if (Request::is('user/kelompok_laporan','user/kelompok_laporan/*')) active @endif">
-                <a href="{{ route('user.kelompok_laporan') }}" class="nav-link">
-                    <i class="fas fa-users"></i>
-                    <span>Kelompok Laporan</span>
-                </a>
-            </li>
+
             @endif
     </aside>
 </div>
 @endif
 @endif
-

@@ -17,57 +17,57 @@ class kelompoklaporanSeeder extends Seeder
         $faker = Faker::create('id_ID');
         DB::table('kelompok_laporan')->insert([
             'no' => 1,
-            'id_guru' => 17,
-            'id_data_prakerin' => 1,
+            'id_guru' => 18,
+            'id_siswa' => 1,
             'nama_perusahaan' => 'Thiel, Lowe and Blick',
             'no_telpon' => '08999991',
         ])  ;
         DB::table('kelompok_laporan')->insert([
             'no' => 1,
-            'id_guru' => 17,
-            'id_data_prakerin' => 2,
+            'id_guru' => 18,
+            'id_siswa' => 2,
             'nama_perusahaan' => 'Thiel, Lowe and Blick',
             'no_telpon' => '08999991',
         ])  ;
         DB::table('kelompok_laporan')->insert([
             'no' => 1,
-            'id_guru' => 17,
-            'id_data_prakerin' => 3,
+            'id_guru' => 18,
+            'id_siswa' => 3,
             'nama_perusahaan' => 'Thiel, Lowe and Blick',
             'no_telpon' => '08999991',
         ])  ;
         DB::table('kelompok_laporan')->insert([
             'no' => 1,
-            'id_guru' => 17,
-            'id_data_prakerin' => 4,
+            'id_guru' => 18,
+            'id_siswa' => 4,
             'nama_perusahaan' => 'Thiel, Lowe and Blick',
             'no_telpon' => '08999991',
         ])  ;
         DB::table('kelompok_laporan')->insert([
             'no' => 2,
-            'id_guru' => 18,
-            'id_data_prakerin' => 5,
+            'id_guru' => 19,
+            'id_siswa' => 5,
             'nama_perusahaan' => 'Feil, Oberbrunner and Gottlieb',
             'no_telpon' => '08999991',
         ])  ;
         DB::table('kelompok_laporan')->insert([
             'no' => 2,
-            'id_guru' => 18,
-            'id_data_prakerin' => 6,
+            'id_guru' => 19,
+            'id_siswa' => 6,
             'nama_perusahaan' => 'Feil, Oberbrunner and Gottlieb',
             'no_telpon' => '08999991',
         ])  ;
         DB::table('kelompok_laporan')->insert([
             'no' => 2,
-            'id_guru' => 18,
-            'id_data_prakerin' => 7,
+            'id_guru' => 19,
+            'id_siswa' => 7,
             'nama_perusahaan' => 'Feil, Oberbrunner and Gottlieb',
             'no_telpon' => '08999991',
         ])  ;
         DB::table('kelompok_laporan')->insert([
             'no' => 2,
-            'id_guru' => 18,
-            'id_data_prakerin' => 8,
+            'id_guru' => 19,
+            'id_siswa' => 8,
             'nama_perusahaan' => 'Feil, Oberbrunner and Gottlieb',
             'no_telpon' => '08999991',
         ])  ;

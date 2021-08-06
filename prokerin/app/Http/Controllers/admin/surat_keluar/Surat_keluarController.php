@@ -30,7 +30,7 @@ class Surat_keluarController extends Controller
     {
 
 
-    
+
         return view('admin.surat_keluar.index');
     }
 
@@ -182,7 +182,7 @@ class Surat_keluarController extends Controller
     public function tambah(Request $request)
     {
         // $suratt = $request->session()->get('suratt');
-        $guru = guru::all();
+        $guru = guru::where('jabatan','pembimbing')->get();
         return view('admin.surat_keluar.tambah', compact('guru'));
     }
 
@@ -228,7 +228,7 @@ class Surat_keluarController extends Controller
     public function store(Request $request)
     {
 
-        
+
         // dd($request);
         $id_guru = guru::where('id',$request->id_guru)->first();
 
@@ -272,7 +272,6 @@ class Surat_keluarController extends Controller
         $tempat = $request->tempat;
         $tanggal = $request->tanggal;
         $pukul = $request->pukul;
-
         $pdf_name = time() . "SuratTugas.pdf";
         $path = public_path('surat/surat_keluar/' . $pdf_name);
         $SuratKeluar = PDF::loadView('export.PDF.contoh', compact('nama_Surat','nama','nik','alamat','tempat','jumlah_hari','date_from','date_end','date_year','hari_from','hari_end','pukul'))->setOptions(['defaultFont' => 'sans-serif','isHtml5ParserEnabled' => true, 'isRemoteEnabled' => true])->save($path);
@@ -350,18 +349,18 @@ class Surat_keluarController extends Controller
     public function edit($id)
     {
             //
-      
+
     //         $template = Template_surat::all();
     //         $surat_k = Surat_keluar::all();
     //         $isi = Isi_surat::all();
     //         $detail_s_k = Detail_surat_k::all();
     //         // $ttd = Tanda_tangan::all();
-    
+
     //         // Surat_keluar::destroy(23);
     //         // template_surat::destroy(23);
     //         // Detail_surat_k::destroy(23);
     //         // Isi_surat::destroy();
-    
+
     //         dd(
     //         $template,
     //         $surat_k,
@@ -370,9 +369,9 @@ class Surat_keluarController extends Controller
     //     // $ttd
     // );
 
-    
 
-        $guru = guru::all();
+
+        $guru = guru::where('jabatan','pembimbing')->first();
 
         $surat_k = Surat_keluar::where('id',$id)->first();
         $isi_surat = Isi_surat::where('id',$id)->first();
@@ -528,7 +527,7 @@ class Surat_keluarController extends Controller
         $tandatangan = Tanda_tangan::all();
         $surat_keluar = Surat_keluar::find($id);
         $isi_surat = Isi_surat::find($id);
-        
+
 
         return view('admin.surat_keluar.tandatangan',compact('tandatangan','surat_keluar','isi_surat'));
 
@@ -544,7 +543,7 @@ class Surat_keluarController extends Controller
         ]);
 
 
-        
+
 
         $ttd = Tanda_tangan::find($request->ttd);
 
@@ -559,7 +558,7 @@ class Surat_keluarController extends Controller
 
 
 
-       
+
 
        $id_guru = guru::where('id',$request->id_guru)->first();
 

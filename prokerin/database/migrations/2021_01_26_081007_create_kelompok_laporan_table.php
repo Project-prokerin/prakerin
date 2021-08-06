@@ -17,11 +17,11 @@ class CreateKelompokLaporanTable extends Migration
             $table->id();
             $table->string('no');
             $table->bigInteger('id_guru')->unsigned()->nullable();
-            $table->bigInteger('id_data_prakerin')->unsigned()->nullable();
+            $table->bigInteger('id_siswa')->unsigned()->nullable();
             $table->string('nama_perusahaan');
             $table->string('no_telpon', 13);
             // $table->string('jurusan', 100);
-            $table->foreign('id_data_prakerin')->references('id')->on('data_prakerin')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('id_siswa')->references('id')->on('siswa')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
         });
     }

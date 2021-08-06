@@ -88,7 +88,7 @@
                 {{-- </tr> --}}
                 <tr>
                     <th scope="col">Anggota {{ $index + 1 }}</th>
-                    <td>{{ $item->data_prakerin->nama }}</td>
+                    <td>{{ $item->siswa->nama_siswa }}</td>
                 </tr>
                 @endforeach
                 @endif

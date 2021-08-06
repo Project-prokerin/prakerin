@@ -13,6 +13,6 @@ class detail_pengajuan_prakerin extends Model
 
     public function pengajuan_prakerin()
     {
-        return $this->belongsTo(detail_pengajuan_prakerin::class, 'id');
+        return $this->belongsTo(pengajuan_prakerin::class, 'id');
     }
 }

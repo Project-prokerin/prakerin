@@ -87,7 +87,7 @@ class pengajuan_prakerinController extends Controller
                         $button .= ' ';
                         $button .= '<button id="tolak"  data-no="'.$data->no.'"  data-toggle="modal"  class="tolak btn btn-danger btn-sm ml-1"><i class="fas fa-times"></i></button>';
                         return $button;
-                  
+
                     }
 
                         // return $button;
@@ -213,50 +213,50 @@ class pengajuan_prakerinController extends Controller
         // }else{
         // }
         // dd(pengajuan_prakerin::all());
-        $siswa = siswa::doesntHave('data_prakerin')->whereHas('pembekalan_magang', function ($query) { return $query->where('test_wpt_iq', '=', 'sudah')->where('personality_interview', '=', 'sudah')->where('soft_skill', '=', 'sudah')->whereNotNull('file_portofolio'); })->get();
-        
-            
-         
+        $siswa = siswa::doesntHave('data_prakerin')->whereHas('pembekalan_magang', function ($query) { return $query->where('psikotes', '=', 'sudah')->where('soft_skill', '=', 'sudah')->whereNotNull('file_portofolio'); })->get();
+
+
+
             if (pengajuan_prakerin::all()->isEmpty()) {
                 $no =  siswa::all()->count();
                     for ($i=1; $i <= $no; $i++) {
-                        //mengambil jumlah siswa yang akan di loop 
-                        $nomor[] = $i; 
+                        //mengambil jumlah siswa yang akan di loop
+                        $nomor[] = $i;
                     }
                     $noKelompok = $nomor;
                 }else{
                     $no =  siswa::all()->count();
                     for ($i=1; $i <= $no; $i++) {
-                        //mengambil jumlah siswa yang akan di loop 
-                        $nomor[] = $i; 
+                        //mengambil jumlah siswa yang akan di loop
+                        $nomor[] = $i;
                     }
-                    
-                    
-                    
+
+
+
                     $users = pengajuan_prakerin::all();
                     // mencari pengajuan yang memiliki no duplicate dan di jadikan unique
                        $usersUnique = $users->unique("no");
                     //    dd($usersUnique);
-                       
+
                     // dd($w);
-                    
+
                     foreach ($usersUnique as $key ) {
                            $w = explode('|',$key->no);
                         //    dd($w);
                            // membuat array untuk index baru
                            $unique[] =   $w[0];
                         //    dd($unique);
-                           
+
                         }
-                        
+
                         $a1=$nomor;
                         $a2=$unique;
-                        //membandingkan isi array dari jumlah siswa dengan no unique 
+                        //membandingkan isi array dari jumlah siswa dengan no unique
                         $noKelompok=array_diff($a1,$a2);
                 }
-          
+
             $perusahaan = perusahaan::all();
-            $guru = guru::all();
+            $guru = guru::where('jabatan', 'pembimbing')->doesntHave('kelompok_laporan')->doesntHave('data_prakerin')->get();
             return view('admin.pengajuan_prakerin.tambah', compact('noKelompok','siswa', 'perusahaan', 'guru'));
 
 
@@ -284,7 +284,7 @@ class pengajuan_prakerinController extends Controller
 
         // foreach ($data['id_data_prakerin'] as $w => $val) {
         // }
-// 
+//
         // dd($nama[0]->nama_siswa);
 
         foreach($data['id_data_prakerin'] as $key => $value){
@@ -321,7 +321,7 @@ class pengajuan_prakerinController extends Controller
            $pengajuan_prakerin = pengajuan_prakerin::create($data2);
         }
         $surat_number = pengajuan_prakerin::all()->unique('no');
-        
+
         detail_pengajuan_prakerin::create([
             'id_pengajuan_prakerin' => $pengajuan_prakerin->id,
             'no_surat' =>  str_pad($surat_number->count() + 1, 3, "0", STR_PAD_LEFT),
@@ -367,15 +367,15 @@ class pengajuan_prakerinController extends Controller
 //         dd(Carbon::now()->format('Y'));
 //         $month = Carbon::now()->format('m');
 //         $bulan  = numberToRomanRepresentation($month);
-        
+
 // dd($month,$bulan);
 //         $tanggal_range = explode('s.d.','2021-8-03  s.d.  2021-10-3');
 //         $from_t =  $tanggal_range[0];
 //         $end_t =  $tanggal_range[1];
 //         $from =  new Carbon($tanggal_range[0]);
 //         $end =  new Carbon($tanggal_range[1]);
-  
-        
+
+
 //         $date1 = new Carbon($from_t);
 //         $date2 = new Carbon($end_t);
         // $hari_from = Carbon::parse($from)->isoFormat('dddd');
@@ -386,28 +386,28 @@ class pengajuan_prakerinController extends Controller
         //      $jumlah_bulan  = $difference->d.' Hari'; //4
         //  }
         // dd($jumlah_bulan);
-  
+
         // $date1 = new Carbon($from_t);
         // $date2 = new Carbon($end_t);
         // $difference = $date1->diff($date2);
 
         // $jumlah_month  = $difference->m; //4
-        
+
         // if ($jumlah_month == 0) {
         //     $jumlah_month  = $difference->d; //4
 
         // }
         // // dd($diffInMonths);
-        
+
         //  $jumlah_hari = $from->diff($end)->days;
         //  $hari_from = Carbon::parse($from)->isoFormat('dddd');
         // //  $hari_end = Carbon::parse($end)->isoFormat('dddd');
-  
+
         //  $date_from = Carbon::parse($from)->isoFormat('D MMMM ');
         //  $date_end = Carbon::parse($end)->isoFormat('D MMMM ');
         //  $date_year = $from->year;
 
-      
+
         //  dd($hari_from,$date_from,$jumlah_hari.'jumlah hari',$jumlah_month.'jumlah bulan');
         // $month = Carbon::now()->month();
 //    dd($month->format('m'));
@@ -416,7 +416,7 @@ class pengajuan_prakerinController extends Controller
 // dd($perusahaan);
         // $pengajuan_prakerin = pengajuan_prakerin::where('no',$id)->with('siswa')->whereNotNull('id_siswa')->get();
         // $perusahaan = pengajuan_prakerin::where('no',$id)->first();
-   
+
         // dd($perusahaan);
 
         // $pengajuan_prakerin = pengajuan_prakerin::where('no', $id)->with('data_prakerin')->get();
@@ -432,18 +432,53 @@ class pengajuan_prakerinController extends Controller
      */
     public function edit($id)
     {
-        
-           
+
+        if (pengajuan_prakerin::all()->isEmpty()) {
+            $no =  siswa::all()->count();
+            for ($i = 1; $i <= $no; $i++) {
+                //mengambil jumlah siswa yang akan di loop
+                $nomor[] = $i;
+            }
+            $noKelompok = $nomor;
+        } else {
+            $no =  siswa::all()->count();
+            for ($i = 1; $i <= $no; $i++) {
+                //mengambil jumlah siswa yang akan di loop
+                $nomor[] = $i;
+            }
+
+
+
+            $users = pengajuan_prakerin::all();
+            // mencari pengajuan yang memiliki no duplicate dan di jadikan unique
+            $usersUnique = $users->unique("no");
+            //    dd($usersUnique);
+
+            // dd($w);
+
+            foreach ($usersUnique as $key) {
+                $w = explode('|', $key->no);
+                //    dd($w);
+                // membuat array untuk index baru
+                $unique[] =   $w[0];
+                //    dd($unique);
+
+            }
+
+            $a1 = $nomor;
+            $a2 = $unique;
+            //membandingkan isi array dari jumlah siswa dengan no unique
+            $noKelompok = array_diff($a1, $a2);
+        }
         // $no =  detail_pengajuan_prakerin::all();
         // dd($no);
-        $data_prakerin = data_prakerin::doesntHave('kelompok_laporan')->where('status','Pengajuan')->get();
+        $data_prakerin = Siswa::doesntHave('kelompok_laporan')->get();
         $perusahaan = perusahaan::all();
-        $guru = guru::all();
+        $guru = guru::where('jabatan','pembimbing');
         $siswa = Siswa::all();
         $pengajuan_prakerin = pengajuan_prakerin::where('no', $id)->with('siswa')->get();
-        $perusahaan_select = perusahaan::where('nama',$pengajuan_prakerin[0]->nama_perusahaan)->first();
-
-        return view('admin.pengajuan_prakerin.edit', compact('perusahaan_select','pengajuan_prakerin', 'perusahaan', 'guru', 'data_prakerin', 'siswa'));
+        $perusahaan_select = perusahaan::where('nama',$pengajuan_prakerin[0]->nama_perusahaan)->get() ;
+        return view('admin.pengajuan_prakerin.edit', compact('perusahaan_select','pengajuan_prakerin', 'perusahaan', 'guru', 'data_prakerin', 'siswa', 'noKelompok'));
 
         // return view('admin.pengajuan_prakerin.edit');
     }
@@ -457,13 +492,13 @@ class pengajuan_prakerinController extends Controller
      */
     public function update(Request $request)
     {
-     
+
         // dd($request);
             $no = Pengajuan_prakerin::where('no',$request->no[0])->get();
             // dd();
 
             if (count($no) > count($request->id_data_prakerin) || count($no) < count($request->id_data_prakerin ) ) {
-             
+
                 // dd($request);
                 $peng = pengajuan_prakerin::where('no', $request->no[0])->get();
                 # hapus data prakerin
@@ -473,7 +508,7 @@ class pengajuan_prakerinController extends Controller
                 }
                 pengajuan_prakerin::where('no', $request->no[0])->delete();
 
-             
+
                 $data = $request->all();
 
                 // $nama = [];
@@ -481,9 +516,9 @@ class pengajuan_prakerinController extends Controller
                 //  foreach ($data['id_data_prakerin'] as $w => $val) {
                 //     $nama[] = Siswa::where('id', $nama);
                 //  }
-             
+
                  // dd($nama);
-             
+
                  foreach($data['id_data_prakerin'] as $key => $value){
                      $siswa = Siswa::where('id',$value)->first();
                      // dd($siswa);
@@ -501,12 +536,13 @@ class pengajuan_prakerinController extends Controller
                  }
                 //  foreach ($data['id_data_prakerin'] as $w => $val) {
                 //  }
-             
+
                 $no = preg_replace('/[^0-9.]+/', '',$data['no'][0]);
                 // dd($no);
                 // dd();
                 // dd($data['no'][0]);
                 $perusahaan = perusahaan::where('id', $data['id_perusahaan'])->first();
+                ;
                 foreach ($data['id_data_prakerin'] as $key => $value) {
                     // $arr[] = $data['id_data_prakerin'][$key];
                     $nama[] = Siswa::where('id', $value)->first();
@@ -584,7 +620,7 @@ class pengajuan_prakerinController extends Controller
 
         return view('admin.pengajuan_prakerin.accPengajuan',compact('pengajuan'));
         // return view('admin.surat_keluar.tandatangan',compact('tandatangan','surat_keluar','isi_surat'));
-        
+
     }
 
     public function accmagang(Request $request,$no)
@@ -626,7 +662,7 @@ class pengajuan_prakerinController extends Controller
 
         return view('admin.pengajuan_prakerin.Exportpdf',compact('pengajuan'));
         // return view('admin.surat_keluar.tandatangan',compact('tandatangan','surat_keluar','isi_surat'));
-        
+
     }
 
 
@@ -686,7 +722,7 @@ class pengajuan_prakerinController extends Controller
 
     public function fetch(Request $request,$id)
     {
-        return json_encode(siswa::doesntHave('data_prakrin'))->whereHas('pembekalan_magang', function ($query) { return $query->where('test_wpt_iq', '=', 'sudah')->where('personality_interview', '=', 'sudah')->where('soft_skill', '=', 'sudah')->whereNotNull('file_portofolio'); })->where('id_perusahaan', $id)->get();
+        return json_encode(siswa::doesntHave('data_prakrin')->whereHas('pembekalan_magang', function ($query) { return $query->where('test_wpt_iq', '=', 'sudah')->where('personality_interview', '=', 'sudah')->where('soft_skill', '=', 'sudah')->whereNotNull('file_portofolio'); })->where('id_perusahaan', $id)->get());
 
         // return json_encode(siswa::doesntHave('data_prakrin')->where('status','Pengajuan')->where('id_perusahaan', $id)->get());
     }

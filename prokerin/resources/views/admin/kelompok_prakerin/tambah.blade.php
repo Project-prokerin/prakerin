@@ -49,18 +49,18 @@
                                 <label class="d-block">Nomor Kelompok</label>
                                 <select class="form-control select2 @error('no')  is-invalid  @enderror" name="no" id="">
                                     <option value="">--Pilih Nomor--</option>
-                                   
+
                               @foreach ($noKelompok as $item)
                                   <option value="{{$item}}">{{$item}}</option>
                               @endforeach
-                                
-                                  
+
+
                                 </select>
                                 @error('no')
                                     <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
                             </div>
-                        
+
                         <div class="form-group col-6">
                             <label class="d-block">Nama Guru</label>
                             <select class="form-control select2 @error('id_guru')  is-invalid  @enderror" name="id_guru" id="">
@@ -111,11 +111,25 @@
                             <table class="table" id="dynamic_field">
                                  <tr>
                                       <td class="col-7">
-                                        <select id="id_data_prakerin" name="id_data_prakerin[]"
-                                            class="form-control select2 prakerin  @error('id_data_prakerin')  is-invalid  @enderror ">
-                                        
+                                        <select id="id_siswa" name="id_siswa[]"
+                                            class="form-control select2 prakerin  @error('id_siswa')  is-invalid  @enderror ">
+                                          <option value="">--Cari Siswa--</option>
+                                            @forelse ($siswa as $item)
+                                                @if (empty($item->kelompok_laporan))
+                                                    <option value="{{ $item->id }}">{{ $item->nama_siswa }}</option>
+                                                @endif
+                                            @empty
+                                                <option disabled>Semua Siswa telah mendapat kelompok!</option>
+                                            @endforelse
                                         </select>
-                                      
+                                            @if ($errors->has(`id_siswa.2`))
+                                                <span class="text-danger">
+                                                    <small>
+                                                        {{ $errors->first('id_siswa.2') }}
+                                                    </small>
+                                                </span>
+                                            @endif
+
                                       </td>
                                       <td><button type="button" name="add" id="add" class="btn btn-success">Add More</button></td>
                                     </tr>
@@ -136,26 +150,28 @@
 <script src="{{ asset('template') }}/node_modules/select2/dist/js/select2.full.min.js"></script>
 
 <script>
-          $(document).ready(function () {
-                $('#id_perusahaan').on('change', function () {
-                let id = $(this).val();
-                $('.prakerin').empty();
-                $('.prakerin').append(`<option value="0" disabled selected>Mencari...</option>`).show('slow');
-                $.ajax({
-                type: 'GET',
-                url: 'fetch/' + id,
-                success: function (response) {
-                var response = JSON.parse(response);
-                console.log(response);   
-                $('.prakerin').empty();
-                $('.prakerin').append(`<option value="0" disabled selected>--Cari Siswa--</option>`);
-                response.forEach(element => {
-                    $('.prakerin').append(`<option value="${element.id}">${element.nama}</option>`);
-                    });
-                }
-            });
-        });
-    });
+    //       $(document).ready(function () {
+    //             $('#id_perusahaan').on('change', function () {
+    //             let id = $(this).val();
+    //             $('.prakerin').empty();
+    //             $('.prakerin').append(`<option value="0" disabled selected>Mencari...</option>`).show('slow');
+    //             $.ajax({
+    //             type: 'GET',
+    //             url: 'fetch/' + id,
+    //             success: function (response) {
+    //             var response = JSON.parse(response);
+    //             console.log(response);
+    //             $('.prakerin').empty();
+    //             $('.prakerin').append(`<option value="0" disabled selected>--Cari Siswa--</option>`);
+    //             response.forEach(element => {
+    //                 $('.prakerin').append(`<option value="${element.id}">${element.nama}</option>`);
+    //                 });
+    //             }
+    //         });
+    //     });
+    // });
+
+
 
 
         $(document).ready(function(){
@@ -163,10 +179,23 @@
              $('#add').click(function(){
                   i++;
                   $('#dynamic_field').append('<tr id="row'+i+'"><td>'+
-                                                '<select id="id_data_prakerin" name="id_data_prakerin[]" class="form-control select2  prakerin @error('id_data_prakerin')  is-invalid  @enderror ">'+
-                                                 
+                                                '<select id="id_data_prakerin" name="id_siswa[]" class="form-control select2  prakerin @error('id_siswa')  is-invalid  @enderror ">'+
+                                                    '<option value="">--Cari Siswa--</option>'+
+                                                    '@forelse ($siswa as $item)'+
+                                                        '@if (empty($item->kelompok_laporan))'+
+                                                            '<option value="{{ $item->id }}">{{ $item->nama_siswa }}</option>'+
+                                                        '@endif'+
+                                                    '@empty'+
+                                                        '<option disabled>Semua Siswa telah mendapat kelompok!</option>'+
+                                                    '@endforelse'+
                                                 '</select>'+
-                                                 
+                                                    '@if ($errors->has(`id_data_prakerin.2`))'+
+                                                        '<span class="text-danger">'+
+                                                            '<small>'+
+                                                                '{{ $errors->first('id_siswa.2') }}'+
+                                                            '</small>'+
+                                                        '</span>'+
+                                                    '@endif'+
                                             '</td><td><button type="button" name="remove" id="'+i+'" class="btn btn-danger btn_remove">X</button></td></tr>');
 
              });

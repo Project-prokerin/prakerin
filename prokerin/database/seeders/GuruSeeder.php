@@ -107,6 +107,7 @@ class GuruSeeder extends Seeder
             'no_telp' => $faker->randomNumber(9),
         ]);
 
+        //  kelompok prakerin
         DB::table('guru')->insert([
             'id_user' => '19',
             'nik' => $faker->nik,
@@ -118,6 +119,23 @@ class GuruSeeder extends Seeder
 
         DB::table('guru')->insert([
             'id_user' => '20',
+            'nik' => $faker->nik,
+            'nama' => $faker->title . "" . $faker->name,
+            'jabatan' => 'pembimbing',
+            'id_jurusan' => null,
+            'no_telp' => $faker->randomNumber(9),
+        ]);
+        // data prakerin
+         DB::table('guru')->insert([
+            'id_user' => '21',
+            'nik' => $faker->nik,
+            'nama' => $faker->title . "" . $faker->name,
+            'jabatan' => 'pembimbing',
+            'id_jurusan' => null,
+            'no_telp' => $faker->randomNumber(9),
+        ]);
+        DB::table('guru')->insert([
+            'id_user' => '22',
             'nik' => $faker->nik,
             'nama' => $faker->title . "" . $faker->name,
             'jabatan' => 'pembimbing',

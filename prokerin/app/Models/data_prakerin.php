@@ -16,11 +16,11 @@ class data_prakerin extends Model
     {   // belongsto invers dari relasi
         return $this->belongsTo(Siswa::class, 'id_siswa');
     }
-    public function kelompok_laporan()
-    {
-        return $this->hasOne(kelompok_laporan::class, 'id_data_prakerin','id');
-    }
-  
+    // public function kelompok_laporan()
+    // {
+    //     return $this->hasOne(kelompok_laporan::class, 'id_data_prakerin','id');
+    // }
+
     public function pengajuan_prakerin()
     {
         return $this->hasOne(pengajuan_prakerin::class, 'id_data_prakerin', 'id');

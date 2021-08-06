@@ -36,16 +36,6 @@ class Siswa extends Model
           // foreign, owner key
         return $this->hasOne(pembekalan_magang::class,'id_siswa','id');
     }
-    public function orang_tua()
-    {
-          // foreign, owner key
-        return $this->hasOne(orang_tua::class, 'id_siswa', 'id');
-    }
-    public function sekolah_asal()
-    {
-          // foreign, owner key
-        return $this->hasOne(sekolah_asal::class, 'id_siswa', 'id');
-    }
     public function kelas()
     {
         return $this->belongsTo(kelas::class,'id_kelas');
@@ -62,4 +52,8 @@ class Siswa extends Model
   {
     return $this->hasMany(nilai_prakerin::class, 'id_siswa', 'id');
   }
+    public function kelompok_laporan()
+    {
+        return $this->hasOne(kelompok_laporan::class, 'id_siswa', 'id');
+    }
 }
