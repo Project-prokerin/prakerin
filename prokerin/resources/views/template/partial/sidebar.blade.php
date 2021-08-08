@@ -4,7 +4,7 @@
 
 @if (Auth::user()->role == 'admin' or Auth::user()->role == 'tu' or Auth::user()->role == 'kepsek' or Auth::user()->role
 == 'kaprog' or Auth::user()->role == 'kesiswaan' or Auth::user()->role == 'kurikulum' or Auth::user()->role == 'hubin'
-or Auth::user()->role == 'sarpras' or Auth::user()->role == 'bkk')
+or Auth::user()->role == 'sarpras' or Auth::user()->role == 'bkk' or Auth::user()->role == 'pembimbing')
 
 <div class="main-sidebar position-fixed">
     <aside id="sidebar-wrapper">
@@ -58,7 +58,7 @@ or Auth::user()->role == 'sarpras' or Auth::user()->role == 'bkk')
             <li class="menu-header">PRAKERIN</li>
             @endif --}}
             <li class="menu-header">PRAKERIN</li>
-            @if (Auth::user()->role == 'kaprog' or Auth::user()->role == 'hubin' or $role == 'admin' or $role == 'kepsek' )
+            @if (Auth::user()->role == 'kaprog' or Auth::user()->role == 'hubin' or $role == 'admin' or $role == 'kepsek' or $role == 'pembimbing' )
             <li class="@if (Request::is('admin/perusahaan','admin/perusahaan/*')) active @endif">
                 <a href="{{ route('perusahaan.index') }}" class="nav-link">
                     <i class="far fa-building"></i>
@@ -66,7 +66,7 @@ or Auth::user()->role == 'sarpras' or Auth::user()->role == 'bkk')
                 </a>
             </li>
             @endif
-            @if (Auth::user()->role == 'bkk' or Auth::user()->role == 'hubin' or $role == 'admin' or $role == 'kepsek' )
+            @if (Auth::user()->role == 'bkk' or Auth::user()->role == 'hubin' or $role == 'admin' or $role == 'kepsek'  or $role == 'pembimbing'  )
             <li class="@if (Request::is('admin/pembekalan','admin/pembekalan/*')) active @endif">
                 <a href="{{ route('pembekalan.index') }}" class="nav-link">
                     <i class="fas fa-newspaper"></i>
@@ -83,7 +83,7 @@ or Auth::user()->role == 'sarpras' or Auth::user()->role == 'bkk')
                 </a>
 
             </li>
-            @if (Auth::user()->role == 'kaprog' or Auth::user()->role == 'hubin' or $role == 'admin' or $role == 'kepsek')
+            @if (Auth::user()->role == 'kaprog' or Auth::user()->role == 'hubin' or $role == 'admin' or $role == 'kepsek' or $role == 'pembimbing')
             <li class="@if (Request::is('admin/data_prakerin','admin/data_prakerin/*')) active @endif">
                 <a href="{{ route('data_prakerin.index') }}" class="nav-link">
                     <i class="fas fa-th"></i>
@@ -134,7 +134,7 @@ or Auth::user()->role == 'sarpras' or Auth::user()->role == 'bkk')
 
             @endif
 
-            @if($role == "hubin" or $role == "admin" or $role == "kaprog" or $role == "kepsek")
+            @if($role == "hubin" or $role == "admin" or $role == "kaprog" or $role == "kepsek" )
 
             <li class="dropdown
 
@@ -165,7 +165,6 @@ or Auth::user()->role == 'sarpras' or Auth::user()->role == 'bkk')
 
 
 
-
             <li class="@if (Request::is('admin/laporan','admin/laporan/*')) active @endif">
 
                 <a href="{{ route('laporan.index') }}" class="nav-link"><i class="fas fa-file-alt"></i>
@@ -178,6 +177,18 @@ or Auth::user()->role == 'sarpras' or Auth::user()->role == 'bkk')
 
             @endif
 
+
+            @if ($role == "pembimbing")
+            <li class="@if (Request::is('admin/laporan','admin/laporan/*')) active @endif">
+
+                <a href="{{ route('laporan.index') }}" class="nav-link"><i class="fas fa-file-alt"></i>
+
+                    <span>Laporan Prakerin</span>
+
+                </a>
+
+            </li>
+            @endif
 
 
             @if (Auth::user()->role == 'admin' or Auth::user()->role == 'tu' or Auth::user()->role == 'kepsek' or
@@ -220,7 +231,7 @@ or Auth::user()->role == 'sarpras' or Auth::user()->role == 'bkk')
             @endif
 
             {{-- @if (Auth::user()->role == 'bkk' or Auth::user()->role == 'hubin' or Auth::user()->role == 'admin' or Auth::user()->role == 'kurikulum' or Auth::user()->role == 'tu') --}}
-
+            @if ($role != 'pembimbing')
             <li class="menu-header">Alumni</li>
 
             <li class='@if (Request::is("admin/alumni_siswa","admin/alumni_siswa/*")) active @endif'>
@@ -246,6 +257,8 @@ or Auth::user()->role == 'sarpras' or Auth::user()->role == 'bkk')
                 </a>
 
             </li>
+                
+            @endif
 
 
             {{-- @endif --}}

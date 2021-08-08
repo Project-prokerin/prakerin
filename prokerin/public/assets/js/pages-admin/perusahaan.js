@@ -32,7 +32,7 @@ $(document).ready( function () {
         ],
     });
     role = $('#role').data('role');
-    if(role != "kaprog")
+    if(role != "kaprog" && role != "kepsek" && role != "pembimbing")
     {
          $('.btn-table').append(
         '<a href="'+root+'/admin/perusahaan/tambah"class="btn btn-primary "> Tambah Data <i class="fas fa-plus"></i></button></a>'

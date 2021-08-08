@@ -1,6 +1,8 @@
 $(document).ready(function() {
     var filter = $('#search').val();
     root = window.location.protocol + '//' + window.location.host;
+    role = $('#role').data('role');
+
     var table = $('#table30').DataTable({
         dom:
         "<'row'<'ol-sm-12 col-md-6 btn-table'><'col-sm-12 col-md-6  pdf-button'f>>" +
@@ -44,9 +46,12 @@ $(document).ready(function() {
             [0, 'asc']
         ]
     });
-    $('.btn-table').append(
-        '<a href="'+root+'/admin/kelompok/tambah"class="btn btn-primary "> Tambah Data <i class="fas fa-plus"></i></button></a>'
-    );
+
+    if (role == "hubin" || role == "kaprog" || role == "admin" ) {
+        $('.btn-table').append(
+            '<a href="'+root+'/admin/kelompok/tambah"class="btn btn-primary "> Tambah Data <i class="fas fa-plus"></i></button></a>'
+        );
+    }
 
     // search engine
     $("#search").keyup(function() {

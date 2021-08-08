@@ -10,6 +10,8 @@ use App\Models\data_prakerin;
 use App\Models\guru;
 use App\Models\Siswa;
 use DB;
+use Illuminate\Support\Facades\Auth;
+
 use App\Http\Requests\admin\kelompok_laporanRequest;
 
 class kelompokController extends Controller
@@ -22,8 +24,9 @@ class kelompokController extends Controller
     public function index()
     {
 
+        // dd($guruP);
 
-        // $kelompokLaporan = kelompok_laporan::distinct('no','id_guru')->get(['no','id_guru']);
+        // $kelompokLaporan = kelompok_laporan::distinct('no','id_guru')->where('id_guru',$guruP->id)->get(['no','id_guru']);
         // dd($kelompokLaporan);
         return view('admin.kelompok_prakerin.index');
     }
@@ -36,8 +39,10 @@ class kelompokController extends Controller
     public function ajax(Request $request)
     {
         if ($request->ajax()) {
-            // with('data_prakerin')->with('guru')->
-            $kelompokLaporan = kelompok_laporan::distinct('no','id_guru','nama_perusahaan')->get(['no','id_guru','nama_perusahaan']);;
+            $role = Auth::user()->role;
+            if ($role != 'pembimbing') {
+               // with('data_prakerin')->with('guru')->
+            $kelompokLaporan = kelompok_laporan::distinct('no','id_guru','nama_perusahaan')->get(['no','id_guru','nama_perusahaan']);
             // dd($kelompok_laporan);
             return datatables()->of($kelompokLaporan)->addColumn('guru', function (kelompok_laporan $kelompok_laporan) {
                     return $kelompok_laporan->guru->nama;
@@ -55,6 +60,33 @@ class kelompokController extends Controller
                 })
                 ->rawColumns(['action'])
                 ->addIndexColumn()->make(true);
+            }else{
+             $guruP = guru::where('id_user',Auth::id())->first();
+
+                 // with('data_prakerin')->with('guru')->
+                 $kelompokLaporan = kelompok_laporan::distinct('no','id_guru','nama_perusahaan')->where('id_guru',$guruP->id)->get(['no','id_guru','nama_perusahaan']);
+            // dd($kelompok_laporan);
+            return datatables()->of($kelompokLaporan)->addColumn('guru', function (kelompok_laporan $kelompok_laporan) {
+                    return $kelompok_laporan->guru->nama;
+                })
+                // ->addColumn('id_perusahaan', function (kelompok_laporan $kelompok_laporan) {
+                //     return $kelompok_laporan->perusahaan->nama;
+                // })
+                    ->addColumn('action', function ($data) {
+                    $button = '<a href="../admin/kelompok/detail/'.$data->no . '"   id="' . $data->no . '" class="edit btn btn-primary btn-sm"><i class="fas fa-search"></i></a>';
+                    $button .= '&nbsp';
+                    if (Auth::user()->role != "kaprog" && Auth::user()->role != 'pembimbing' && Auth::user()->role != 'kepsek' ) {
+                        
+                            $button .= '<a  href="../admin/kelompok/edit/'.$data->no.'" id="edit" data-toggle="tooltip"  data-id="' . $data->no . '" data-original-title="Edit" class="edit btn btn-warning btn-sm edit-post"><i class="fas fa-pencil-alt"></i></a>';
+                            $button .= '&nbsp';
+                            $button .= '<button type="button" name="delete" id="hapus" data-no="' . $data->no . '" class="delete btn btn-danger btn-sm"><i class="fas fa-trash"></i></button>';
+                        }
+                    return $button;
+                })
+                ->rawColumns(['action'])
+                ->addIndexColumn()->make(true);
+            }
+           
         }
         // return response()->json();
     }

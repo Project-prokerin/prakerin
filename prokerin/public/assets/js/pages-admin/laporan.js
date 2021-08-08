@@ -4,6 +4,8 @@
 $(document).ready(function() {
     var filter = $('#search').val();
     root = window.location.protocol + '//' + window.location.host;
+    role = $('#role').data('role');
+
     var table = $('#table16').DataTable({
         dom: "<'row'<'ol-sm-12 col-md-6 btn-table'><'col-sm-12 col-md-6  pdf-button'f>>" +
             "<'row'<'col-sm-12'tr>>" +
@@ -48,9 +50,11 @@ $(document).ready(function() {
         ]
     });
 
-    $('.btn-table').append(
-        '<a href="'+root+'/admin/laporan/tambah"class="btn btn-primary " data-toggle="modal" data-target="#exampleModal"> Tambah Data <i class="fas fa-plus"></i></button></a>'
-    );
+    if (role == "hubin" || role == "kaprog" || role == "admin" ) {
+        $('.btn-table').append(
+            '<a href="'+root+'/admin/laporan/tambah"class="btn btn-primary " data-toggle="modal" data-target="#exampleModal"> Tambah Data <i class="fas fa-plus"></i></button></a>'
+        );
+    }
     $('#table16_filter').prepend(
         '<a href="'+root+'/admin/export/excel/laporan"class="btn btn-success mr-3  ml-2"> Excel <i class="fas fa-cloud-download-alt"></i></button></a>'
     );

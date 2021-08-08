@@ -1,6 +1,8 @@
 $(document).ready( function () {
     root = window.location.protocol + '//' + window.location.host;
     filter = $('#search').val();
+    role = $('#role').data('role');
+
     console.log(filter);
     var table = $('#table19').DataTable({
         dom:
@@ -61,10 +63,13 @@ $(document).ready( function () {
         }},
         ],
     });
-    role = $('#role').data('role');
-    $('.btn-table').append(
-        '<a href="'+root+'/admin/data_prakerin/tambah"class="btn btn-primary "> Tambah Data <i class="fas fa-plus"></i></button></a>'
-    );
+
+    if(role != "kaprog" && role != "kepsek" && role != "pembimbing")
+    {
+        $('.btn-table').append(
+            '<a href="'+root+'/admin/data_prakerin/tambah"class="btn btn-primary "> Tambah Data <i class="fas fa-plus"></i></button></a>'
+        );
+    }
     if(role == "hubin" || role == 'kaprog' || role == 'admin')
     $('#table19_filter').prepend(
     '<a href="'+root+'/admin/export/excel/data_prakerin"class="btn btn-success mr-3  ml-2"> Excel <i class="fas fa-cloud-download-alt"></i></button></a>'

@@ -46,9 +46,14 @@ $(document).ready( function () {
         ],
     });
 
-    $('.btn-table').append(
-        '<a href="'+root+'/admin/pembekalan/tambah"class="btn btn-primary "> Tambah Data <i class="fas fa-plus"></i></button></a>'
-    );
+
+    role = $('#role').data('role');
+    if(role != "kaprog" && role != "kepsek" && role != "pembimbing")
+    {
+        $('.btn-table').append(
+            '<a href="'+root+'/admin/pembekalan/tambah"class="btn btn-primary "> Tambah Data <i class="fas fa-plus"></i></button></a>'
+        );
+    }
     $('#table13_filter').prepend(
         '<a href="'+root+'/admin/export/excel/pembekalan"class="btn btn-success mr-3  ml-2"> Excel <i class="fas fa-cloud-download-alt"></i></button></a>'
     );

@@ -81,8 +81,16 @@ class userController extends Controller
     public function index(Request $request)
 
     {
+     $pembekalan_magang =   pembekalan_magang::where('id_siswa',Auth::user()->id)->first();
+     $jurnalH_siswa = jurnal_harian::where('id_siswa',Auth::user()->id)->get();
+     $jurnalP_siswa = jurnal_prakerin::where('id_siswa',Auth::user()->id)->get();
+     $perusahaan = perusahaan::all();
+    //  dd($jurnalH_siswa,$jurnalP_siswa);
+    $statusMagang_siswa = data_prakerin::where('id_siswa',Auth::user()->id)->first();
+    $kelompokLaporan_siswa = kelompok_laporan::where('id_siswa',Auth::user()->id)->first();
 
-        return view('siswa.dashboard');
+    // dd($statusMagang);
+        return view('siswa.dashboard',compact('pembekalan_magang','jurnalH_siswa','jurnalP_siswa','perusahaan','statusMagang_siswa','kelompokLaporan_siswa'));
 
     }
 

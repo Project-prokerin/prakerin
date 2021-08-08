@@ -52,9 +52,13 @@ class pembekalanContoller extends Controller
                     }
                 })
                 ->addColumn('action', function ($data) {
-                    $button = '<a  href="/admin/pembekalan/edit/' . $data->id . '" id="edit" data-toggle="tooltip"  data-id="' . $data->id . '" data-original-title="Edit" class="edit btn btn-warning btn-sm edit-post"><i class="fas fa-pencil-alt"></i></a>';
+                    $button = '<a href="/admin/pembekalan/detail/' . $data->id . '"   id="' . $data->id . '" class="edit btn btn-primary btn-sm"><i class="fas fa-search"></i></a>';
                     $button .= '&nbsp';
-                    $button .= '<button type="button" name="delete" id="hapus" data-id="' . $data->id . '" class="delete btn btn-danger btn-sm"><i class="fas fa-trash"></i></button>';
+                    if (Auth::user()->role != "kaprog" && Auth::user()->role != 'pembimbing' && Auth::user()->role != 'kepsek' ) {
+                        $button = '<a  href="/admin/pembekalan/edit/' . $data->id . '" id="edit" data-toggle="tooltip"  data-id="' . $data->id . '" data-original-title="Edit" class="edit btn btn-warning btn-sm edit-post"><i class="fas fa-pencil-alt"></i></a>';
+                        $button .= '&nbsp';
+                        $button .= '<button type="button" name="delete" id="hapus" data-id="' . $data->id . '" class="delete btn btn-danger btn-sm"><i class="fas fa-trash"></i></button>';
+                    }
                     return $button;
                 })
                 ->rawColumns(['action','siswa','file'])
@@ -105,9 +109,13 @@ class pembekalanContoller extends Controller
      * @param  \App\Models\pembekalan_magang  $pembekalan_magang
      * @return \Illuminate\Http\Response
      */
-    public function  detail(pembekalan_magang $pembekalan_magang)
+    public function  detail(pembekalan_magang $pembekalan_magang,$id)
     {
-        return view('admin.pembekalan.detail');
+
+        // dd($id);
+     $pembekalan_magang =   pembekalan_magang::where('id_siswa',$id)->first();
+
+        return view('admin.pembekalan.detail',compact('pembekalan_magang'));
     }
 
     /**

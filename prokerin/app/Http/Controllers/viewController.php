@@ -66,7 +66,7 @@ class viewController extends Controller
             $total_jurnal = $jurnalH + $jurnalP;
 
             return view('admin.dashboard',compact('total_suratP','pengajuan_prakerin','guru','siswa','surat_masuk','surat_keluar','disposisi','total_surat','jurnalP','jurnalH','total_jurnal','kelas','kelompok_prakerin','data_prakerin','jurusan','tanda_tangan','pembekalan_magang','laporan_prakerin'));
-        }else if(Auth::user()->role == "kaprog" or Auth::user()->role == "hubin" or Auth::user()->role == "kesiswaan" or Auth::user()->role == "kurikulum" or Auth::user()->role == "sarpras" ){
+        }else if(Auth::user()->role == "kaprog" or Auth::user()->role == "hubin" or Auth::user()->role == "kesiswaan" or Auth::user()->role == "kurikulum" or Auth::user()->role == "sarpras"  or Auth::user()->role == "pembimbing" ){
             $surat_masuk = surat_masuk::all()->count();
             $surat_keluar = surat_keluar::all()->count();
             $disposisi = Disposisi::all()->count();
