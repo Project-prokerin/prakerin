@@ -79,7 +79,11 @@ edit view kelompok
                                 <option value="{{ $perusahaan_select->id }}" selected>
                                     {{ $pengajuan_prakerin[0]->nama_perusahaan }}</option>
                                 @foreach ($perusahaan as $perusahaann)
+                                    @if ($perusahaann->id == $perusahaan_select->id )
+                                    
+                                    @else 
                                     <option value="{{ $perusahaann->id }}">{{ $perusahaann->nama }}</option>
+                                    @endif
                                 @endforeach
                             </select>
                             @error('id_perusahaan')
@@ -131,9 +135,7 @@ edit view kelompok
                                                      <option value="{{ $item->id_siswa }}" selected>
                                                          {{ $item->siswa->nama_siswa }}</option>
                                                         @foreach ($siswa as $item)
-                                                         @if (empty($item->pengajuan_prakerin))
-                                                             <option value="{{ $item->id }}" >{{ $item->nama }}</option>
-                                                         @endif
+                                                             <option value="{{ $item->id }}" >{{ $item->nama_siswa }}</option>
                                                      @endforeach
                                                  </select>
                                                  </td>
@@ -145,14 +147,6 @@ edit view kelompok
                                     
                             </table>
                        </div>
-
-
-
-                       
-
-
-                    
-
                         <button type="submit" class="btn btn-success ml-3"><i class="fas fa-check"></i> submit</button>
                         <a href="{{ route('pengajuan_prakerin.index') }}" type="submit" class="btn btn-danger"><i
                                 class="fas fa-times"></i> Cancel</a>
@@ -187,13 +181,10 @@ edit view kelompok
                           i++;
                           $('#dynamic_field').append('<tr id="row'+i+'"><td>'+
                                                         '<select name="id_data_prakerin[]" class="form-control select2 prakerin @error('id_data_prakerin')  is-invalid  @enderror ">'+
-                                                            '@forelse ($siswa as $item)'+
-                                                                  '@if (empty($item->kelompok_laporan))'+
-                                                                      '<option value="{{ $item->id }}">{{ $item->nama_siswa }}</option>'+
-                                                                 '@endif'+
-                                                                 '@empty'+
-                                                                     '<option disabled>Semua Siswa telah mendapat kelompok!</option>'+
-                                                            '@endforelse'+
+                            
+                                                            '@foreach ($siswa as $item)'+
+                                                             '<option value="{{ $item->id }}" >{{ $item->nama_siswa }}</option>'+
+                                                     '@endforeach'+
                                                         '</select>'+
                                                            
                                                     '</td><td><button type="button" name="remove" id="'+i+'" class="btn btn-danger btn_remove">X</button></td></tr>');

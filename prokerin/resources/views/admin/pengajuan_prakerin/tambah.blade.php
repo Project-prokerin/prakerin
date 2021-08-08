@@ -51,11 +51,11 @@
                             <label class="d-block">Nomor Kelompok</label>
                             <select class="form-control select2 @error('no')  is-invalid  @enderror" name="no" id="">
                                 <option value="">--Pilih Nomor--</option>
-                                <option value="1" @if (old('no') === '1') selected @endif>1</option>
-                                <option value="2" @if (old('no') === '2') selected @endif>2</option>
-                                <option value="3" @if (old('no') === '3') selected @endif>3</option>
-                                <option value="4" @if (old('no') === '4') selected @endif>4</option>
-                                <option value="5" @if (old('no') === '5') selected @endif>5</option>
+                              
+                                @foreach ($noKelompok as $item)
+                                <option value="{{$item}}">{{$item}}</option>
+                            @endforeach
+
                             </select>
                             @error('no')
                                 <div class="invalid-feedback">{{ $message }}</div>

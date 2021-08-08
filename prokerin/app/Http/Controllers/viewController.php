@@ -101,8 +101,8 @@ class viewController extends Controller
             $disposisi = Disposisi::all()->count();
 
             //test wpt yang sudah di test
-            $test_WPT =    pembekalan_magang::where('test_wpt_iq','sudah')->count();
-            $test_PT = pembekalan_magang::where('personality_interview','sudah')->count();
+            $test_psikotes =    pembekalan_magang::where('psikotes','sudah')->count();
+            // $test_PT = pembekalan_magang::where('personality_interview','sudah')->count();
             $test_SS = pembekalan_magang::where('soft_Skill','sudah')->count();
             $test_Portofolio = pembekalan_magang::all()->count();
             //endte
@@ -111,7 +111,7 @@ class viewController extends Controller
         $pembekalan_magang = pembekalan_magang::all()->count();
 
 
-        return view('admin.dashboard',compact('pembekalan_magang','test_WPT','test_PT','test_SS','test_Portofolio','pengajuan_prakerin','surat_masuk','surat_keluar','total_surat','disposisi','total_suratP'));
+        return view('admin.dashboard',compact('pembekalan_magang','test_psikotes','test_SS','test_Portofolio','pengajuan_prakerin','surat_masuk','surat_keluar','total_surat','disposisi','total_suratP'));
 
         }
 

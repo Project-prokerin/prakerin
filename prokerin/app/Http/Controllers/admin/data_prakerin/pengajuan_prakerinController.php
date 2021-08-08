@@ -93,23 +93,11 @@ class pengajuan_prakerinController extends Controller
                         // return $button;
                     })
                     ->addColumn('action', function ($data) {
-                    if (Auth::user()->role != "hubin" or Auth::user()->role != "kaprog" or Auth::user()->role != "admin") {
                         $button = '<a href="../admin/pengajuan_prakerin/detail/' . $data->no . '"   id="' . $data->no . '" class="edit btn btn-primary btn-sm"><i class="fas fa-search"></i></a>';
                         $button .= '&nbsp';
                         $button .= '&nbsp&nbsp&nbsp&nbsp&nbsp';
                         $button .= '<button type="button" name="kelompoks"  id="kelompoks"  data-attr="/admin/pengajuan_prakerin/Showexport/'.$data->no.'"   class="btn  btn-danger mr-3 rounded-pill"><i class="fas fa-cloud-download-alt"></i> PDsF</button>';
                         // $button .= '<button id="kelompoks" type="button" data-no="' . $data->no . '" class="btn btn-danger mr-3 rounded-pill"><i class="fas fa-cloud-download-alt"></i> PDF</button>';
-                        return $button;
-                    }
-                        $button = '<a href="../admin/pengajuan_prakerin/detail/' . $data->no . '"   id="' . $data->no . '" class="edit btn btn-primary btn-sm"><i class="fas fa-search"></i></a>';
-                        $button .= '&nbsp';
-                        $button .= '<a  href="../admin/pengajuan_prakerin/edit/' . $data->no . '" id="edit" data-toggle="tooltip"  data-id="' . $data->no . '" data-original-title="Edit" class="edit btn btn-warning btn-sm edit-post"><i class="fas fa-pencil-alt"></i></a>';
-                        $button .= '&nbsp';
-                        $button .= '<button type="button" name="delete" id="hapus" data-no="' . $data->no . '" class="delete btn btn-danger btn-sm"><i class="fas fa-trash"></i></button>';
-                        $button .= '&nbsp&nbsp&nbsp&nbsp&nbsp';
-                        $button .= '<button type="button" name="kelompoks"  id="kelompoks"  data-attr="/admin/pengajuan_prakerin/Showexport/'.$data->no.'"   class="edit btn-danger mr-3 rounded-pill"><i class="fas fa-cloud-download-alt"></i> PDsF</button>';
-                        // $button .= '<button type="button" name="acc"        id="accButton" data-attr="/admin/pengajuan_prakerin/acc/'.$data->no.'" class="edit btn btn-success btn-sm"><i class="fas fa-check"></i></button>';
-
                         return $button;
                     })
                     ->rawColumns(['persetujuan','action','guru'])
@@ -241,10 +229,10 @@ class pengajuan_prakerinController extends Controller
                     // dd($w);
 
                     foreach ($usersUnique as $key ) {
-                           $w = explode('|',$key->no);
+                           $w = explode(' ',$key->no)[1];
                         //    dd($w);
                            // membuat array untuk index baru
-                           $unique[] =   $w[0];
+                           $unique[] =   $w;
                         //    dd($unique);
 
                         }
@@ -311,7 +299,7 @@ class pengajuan_prakerinController extends Controller
         $new_name = str_replace(' ', '', $nama[0]->nama_siswa);
 
             $data2 = array(
-                'no'   => $data['no']."|".$new_name,
+                'no'   => 'Kelompok '.$data['no']." - ".$new_name,
                 'id_guru'   => $data['id_guru'],
                 'id_siswa'   => $data['id_data_prakerin'][$key],
                 'nama_perusahaan'   => $perusahaan->nama,
@@ -364,6 +352,9 @@ class pengajuan_prakerinController extends Controller
      */
     public function detail($id)
     {
+
+
+
 //         dd(Carbon::now()->format('Y'));
 //         $month = Carbon::now()->format('m');
 //         $bulan  = numberToRomanRepresentation($month);
@@ -472,13 +463,15 @@ class pengajuan_prakerinController extends Controller
         }
         // $no =  detail_pengajuan_prakerin::all();
         // dd($no);
-        $data_prakerin = Siswa::doesntHave('kelompok_laporan')->get();
+        // $data_prakerin = Siswa::doesntHave('kelompok_laporan')->get();
         $perusahaan = perusahaan::all();
-        $guru = guru::where('jabatan','pembimbing');
-        $siswa = Siswa::all();
+        $guru = guru::where('jabatan','pembimbing')->doesntHave('kelompok_laporan')->doesntHave('data_prakerin')->get();
+        // $siswa = Siswa::all()->toArray();
+        $siswa = Siswa::doesntHave('data_prakerin')->whereHas('pembekalan_magang', function ($query) { return $query->where('psikotes', '=', 'sudah')->where('soft_skill', '=', 'sudah')->whereNotNull('file_portofolio'); })->get();
+        // dd($siswa->toArray());
         $pengajuan_prakerin = pengajuan_prakerin::where('no', $id)->with('siswa')->get();
-        $perusahaan_select = perusahaan::where('nama',$pengajuan_prakerin[0]->nama_perusahaan)->get() ;
-        return view('admin.pengajuan_prakerin.edit', compact('perusahaan_select','pengajuan_prakerin', 'perusahaan', 'guru', 'data_prakerin', 'siswa', 'noKelompok'));
+        $perusahaan_select = perusahaan::where('nama',$pengajuan_prakerin[0]->nama_perusahaan)->first() ;
+        return view('admin.pengajuan_prakerin.edit', compact('perusahaan_select','pengajuan_prakerin', 'perusahaan', 'guru', 'siswa', 'noKelompok'));
 
         // return view('admin.pengajuan_prakerin.edit');
     }
@@ -501,15 +494,19 @@ class pengajuan_prakerinController extends Controller
 
                 // dd($request);
                 $peng = pengajuan_prakerin::where('no', $request->no[0])->get();
+                // dd($peng);
                 # hapus data prakerin
                 foreach ($peng as $key => $value) {
                     # ini gua coba update 2 data
-                    data_prakerin::whereIn('id_siswa', [$value->id_siswa])->delete();
+                  $w =  data_prakerin::whereIn('id_siswa', [$value->id_siswa])->delete();
+                //   dd($w);
                 }
                 pengajuan_prakerin::where('no', $request->no[0])->delete();
 
 
                 $data = $request->all();
+
+                // dd($data);
 
                 // $nama = [];
 
@@ -544,12 +541,13 @@ class pengajuan_prakerinController extends Controller
                 $perusahaan = perusahaan::where('id', $data['id_perusahaan'])->first();
                 ;
                 foreach ($data['id_data_prakerin'] as $key => $value) {
-                    // $arr[] = $data['id_data_prakerin'][$key];
+                    
                     $nama[] = Siswa::where('id', $value)->first();
                    $new_name = str_replace(' ', '', $nama[0]->nama_siswa);
+   
                     // dd($no.'|'.$new_name);
                     $data2 = array(
-                        'no'   => $no.'|'.$new_name,
+                        'no'   => 'Kelompok '.$no." - ".$new_name,
                         'id_guru'   => $data['id_guru'],
                         'id_siswa'   => $data['id_data_prakerin'][$key],
                         'nama_perusahaan'   => $perusahaan->nama,
@@ -564,19 +562,24 @@ class pengajuan_prakerinController extends Controller
                     'id_pengajuan_prakerin' => $pengajuan_prakerin->id,
                     'no_surat' =>  str_pad($surat_number->count() + 1, 3, "0", STR_PAD_LEFT),
                 ]);
-        return redirect()->route('pengajuan_prakerin.index')->with(['success' => 'Pengajuan ' . $no.'|'.$new_name . ' berhasil di Update  !']);
+        return redirect()->route('pengajuan_prakerin.index')->with(['success' => 'Pengajuan ' .'Kelompok '.$no." - ".$new_name . ' berhasil di Update  !']);
                 // return response()->json($data = 'berhasil');
             }else{
                 // dd($request);
+                $no = preg_replace('/[^0-9.]+/', '',$request->no[0]);
+
                 $perusahaan = perusahaan::where('id', $request->id_perusahaan)->first();
                 foreach ($request->id_data_prakerin as $key => $val) {
+                    $nama[] = Siswa::where('id', $val)->first();
+                   $new_name = str_replace(' ', '', $nama[0]->nama_siswa);
                     $data = pengajuan_prakerin::where('id', $request->id[$key])->where('no', $request->no[$key])->update([
+                        'no'   => 'Kelompok '.$no." - ".$new_name,
                         'nama_perusahaan'   => $perusahaan->nama,
                         'id_guru'   => $request->id_guru,
                     ]);
                     // dd($data);
                 }
-                return redirect()->route('pengajuan_prakerin.index')->with(['success' => 'Pengajuan berhasil di Update  !']);
+                return redirect()->route('pengajuan_prakerin.index')->with(['success' => 'Pengajuan '.'Kelompok '.$no." - ".$new_name.' berhasil di Update  !']);
 
             }
 
@@ -658,9 +661,11 @@ class pengajuan_prakerinController extends Controller
     public function pengajuanShowexport($id)
     {
 
+       
         $pengajuan = pengajuan_prakerin::where('no',$id)->first();
-
-        return view('admin.pengajuan_prakerin.Exportpdf',compact('pengajuan'));
+        $cekTgl = data_prakerin::where('id_guru',$pengajuan->id_guru)->first();
+     
+        return view('admin.pengajuan_prakerin.Exportpdf',compact('cekTgl','pengajuan'));
         // return view('admin.surat_keluar.tandatangan',compact('tandatangan','surat_keluar','isi_surat'));
 
     }
@@ -722,7 +727,7 @@ class pengajuan_prakerinController extends Controller
 
     public function fetch(Request $request,$id)
     {
-        return json_encode(siswa::doesntHave('data_prakrin')->whereHas('pembekalan_magang', function ($query) { return $query->where('test_wpt_iq', '=', 'sudah')->where('personality_interview', '=', 'sudah')->where('soft_skill', '=', 'sudah')->whereNotNull('file_portofolio'); })->where('id_perusahaan', $id)->get());
+        return json_encode(siswa::doesntHave('data_prakrin')->whereHas('pembekalan_magang', function ($query) { return $query->where('psikotes', '=', 'sudah')->where('soft_skill', '=', 'sudah')->whereNotNull('file_portofolio'); })->where('id_perusahaan', $id)->get());
 
         // return json_encode(siswa::doesntHave('data_prakrin')->where('status','Pengajuan')->where('id_perusahaan', $id)->get());
     }

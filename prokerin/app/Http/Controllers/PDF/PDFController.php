@@ -10,6 +10,7 @@ use App\Models\perusahaan;
 use Illuminate\Support\Facades\Auth;
 use App\Models\pengajuan_prakerin;
 use App\Models\Tanda_tangan;
+use App\Models\data_prakerin;
 use App\Models\Siswa;
 use App\Models\orang_tua;
 // export pdf
@@ -32,50 +33,61 @@ class PDFController extends Controller
 
         $no = $request->no_surat;
 
-        
+        if ($request->tgl_magang == null ) {
+            $pengajuan = pengajuan_prakerin::where('no',$id)->first();
+            $cekTgl = data_prakerin::where('id_guru',$pengajuan->id_guru)->first();
+            // $tanggal_range = explode('s.d.',$request->tgl_magang);
+            $from_t =  $cekTgl->tgl_mulai;
+            $end_t =  $cekTgl->tgl_selesai;
+            $from =  new Carbon($cekTgl->tgl_mulai);
+        $end =  new Carbon($cekTgl->tgl_selesai);
+            
+        }else{
             $tanggal_range = explode('s.d.',$request->tgl_magang);
             $from_t =  $tanggal_range[0];
             $end_t =  $tanggal_range[1];
             $from =  new Carbon($tanggal_range[0]);
         $end =  new Carbon($tanggal_range[1]);
-  
-        
-        $date1 = new Carbon($from_t);
-        $date2 = new Carbon($end_t);
-        $difference = $date1->diff($date2);
-         $jumlah_bulan  = $difference->m.' Bulan'; //4
-         if ($jumlah_bulan == 0) {
-             $jumlah_bulan  = $difference->d.' Hari'; //4
-         }
- 
-         $hari_from = Carbon::parse($from)->isoFormat('dddd');
-        //  $hari_end = Carbon::parse($end)->isoFormat('dddd');
-         $date_from = Carbon::parse($from)->isoFormat('D MMMM ');
-         $date_end = Carbon::parse($end)->isoFormat('D MMMM ');
-         $date_year = $from->year;
-
-         
-         //ada
-        $nomor = $no;
-        $month = Carbon::now()->format('m');
-        $bulan  = numberToRomanRepresentation($month);
-        $tahun = Carbon::now()->format('Y');
+            
+        }
 
     
+    $date1 = new Carbon($from_t);
+    $date2 = new Carbon($end_t);
+    $difference = $date1->diff($date2);
+     $jumlah_bulan  = $difference->m.' Bulan'; //4
+     if ($jumlah_bulan == 0) {
+         $jumlah_bulan  = $difference->d.' Hari'; //4
+     }
+
+     $hari_from = Carbon::parse($from)->isoFormat('dddd');
+    //  $hari_end = Carbon::parse($end)->isoFormat('dddd');
+     $date_from = Carbon::parse($from)->isoFormat('D MMMM ');
+     $date_end = Carbon::parse($end)->isoFormat('D MMMM ');
+     $date_year = $from->year;
+
+     
+     //ada
+    $nomor = $no;
+    $month = Carbon::now()->format('m');
+    $bulan  = numberToRomanRepresentation($month);
+    $tahun = Carbon::now()->format('Y');
+
+
+
+    $perusahaan = pengajuan_prakerin::where('no',$id)->first()->nama_perusahaan;
+    $alamat_perusahaan  = perusahaan::where('nama',$perusahaan)->first()->alamat;
     
-        $perusahaan = pengajuan_prakerin::where('no',$id)->first()->nama_perusahaan;
-        $alamat_perusahaan  = perusahaan::where('nama',$perusahaan)->first()->alamat;
-        
-        $waktu = Carbon::now()->isoFormat('D MMMM Y');
-    
-
-
-        $kelompok = pengajuan_prakerin::where('no', $id)->get();
+    $waktu = Carbon::now()->isoFormat('D MMMM Y');
 
 
 
-        $KPrakerin = PDF::loadView('export.PDF.kelompok_prakerin', compact('hari_from','date_from','date_end','jumlah_bulan','alamat_perusahaan','perusahaan','kelompok','nomor','waktu','bulan','tahun'))->setOptions(['defaultFont' => 'sans-serif', 'isHtml5ParserEnabled' => true, 'isRemoteEnabled' => true]);
-        return $KPrakerin->download('KelompokPrakerin.PDF');
+    $kelompok = pengajuan_prakerin::where('no', $id)->get();
+
+
+
+    $KPrakerin = PDF::loadView('export.PDF.kelompok_prakerin', compact('hari_from','date_from','date_end','jumlah_bulan','alamat_perusahaan','perusahaan','kelompok','nomor','waktu','bulan','tahun'))->setOptions(['defaultFont' => 'sans-serif', 'isHtml5ParserEnabled' => true, 'isRemoteEnabled' => true]);
+    return $KPrakerin->download('KelompokPrakerin.PDF');
         // return $KPrakerin->stream();
         // return response()->json();
 

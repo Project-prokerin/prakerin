@@ -135,7 +135,7 @@ class kelompokController extends Controller
 
                 kelompok_laporan::create($data2);
             }
-            return redirect()->route('kelompok.index')->with(['success' => 'Kelompok berhasil di buat!']);
+            return redirect()->route('kelompok.index')->with(['success' => 'Kelompok '.$data['no'].' - '.$new_name.' berhasil di buat!']);
 
 
     }
@@ -183,13 +183,13 @@ class kelompokController extends Controller
             $users = kelompok_laporan::where('no',$id)->get();
             // mencari pengajuan yang memiliki no duplicate dan di jadikan unique
             $usersUnique = $users->unique('no');
-
+            // dd($usersUnique);
             // loop yang unique
             foreach ($usersUnique as $key) {
 
                 // explode / pecah ambil index ke 1
                 $w = explode(' ', $key->no)[1];
-
+                // dd($w);
                 // membuat array untuk index baru
                 $unique[] =   $w;
                 //    dd($unique);
@@ -212,8 +212,8 @@ class kelompokController extends Controller
         // mencari hanya angka memakai regex
         // $no = preg_replace('/[^0-9.]+/', '', 'kelompok '.$kelompok_laporan->no);
         //
-
-        $perusahaan_select = kelompok_laporan::where('no',$kelompok_laporan[0]->nama_perusahaan)->first();
+        $perusahaan_select = perusahaan::where('nama',$kelompok_laporan[0]->nama_perusahaan)->first();
+        // $perusahaan_select = kelompok_laporan::where('no',$kelompok_laporan[0]->nama_perusahaan)->first();
         return view('admin.kelompok_prakerin.edit',compact('perusahaan_select','kelompok_laporan','perusahaan','guru','siswa', 'no_nomor','no_unique'));
 
         // return view('admin.kelompok_prakerin.edit');
@@ -230,7 +230,7 @@ class kelompokController extends Controller
     {
         // $input = Input::all();
         // $id_dataP = $request->id_data_prakerin;
-        // dd($request->id_data_prakerin);
+        // dd($request);
         // $perusahaan = Perusahaan::find('id',$request->id_perusahaan)->first();
         // $data = $request->all();
         // $request->validated();
@@ -242,16 +242,21 @@ class kelompokController extends Controller
 
 
             $data = $request->all();
-
+            // dd($data);
             $no = preg_replace('/[^0-9.]+/', '', $data['no'][0]);
+            // dd($no);/
 
             $perusahaan = perusahaan::where('id', $data['id_perusahaan'])->first();
             foreach ($data['id_siswa'] as $key => $value) {
+                    // dd($value);
                 // $arr[] = $data['id_siswa'][$key];
-                $nama[] = Siswa::where('id', $value)->first();
-                $new_name = str_replace(' ', '', $nama[0]->nama_sisswa);
-                $data2 = array(
-                    'no'   => 'Kelompok '.$data['no']." - ".$new_name,
+                // dd($arr);
+                $nama[] = Siswa::where('id',$value)->first();
+                // dd($nama);
+                $new_name = str_replace(' ', '', $nama[0]->nama_siswa);
+                // dd($new_name); 
+             $data2 = array(
+                    'no'   => 'Kelompok '.$no." - ".$new_name,
                     'id_guru'   => $data['id_guru'],
                     'id_siswa'   => $data['id_siswa'][$key],
                     'nama_perusahaan'   => $perusahaan->nama,
@@ -262,16 +267,19 @@ class kelompokController extends Controller
                 $pengajuan_prakerin = kelompok_laporan::create($data2);
             }
 
-            return redirect()->route('kelompok.index')->with(['update' => 'Pengajuan ' . $request->no[0] . ' berhasil di Update  !']);
+            return redirect()->route('kelompok.index')->with(['success' => 'Pengajuan   Kelompok '.$no.' - '.$new_name . ' berhasil di Update  !']);
 
 
             // return response()->json($data = 'berhasil');
         } else {
             $perusahaan = perusahaan::where('id', $request->id_perusahaan)->first();
-
+            $no = preg_replace('/[^0-9.]+/', '', $request->no[0]);
             foreach ($request->id_siswa as $key => $val) {
+                $nama[] = Siswa::where('id',$val)->first();
+                $new_name = str_replace(' ', '', $nama[0]->nama_siswa);
                 $data = kelompok_laporan::where('id', $request->id[$key])->where('no', $request->no[$key])->update([
-                    'no'   => $request->no[$key],
+                    
+                    'no'   => 'Kelompok '.$no." - ".$new_name,
                     'id_guru'   => $request->id_guru,
                     'id_siswa'   => $request->id_siswa[$key],
                     'nama_perusahaan'   => $perusahaan->nama,
@@ -280,7 +288,8 @@ class kelompokController extends Controller
 
                 ]);
             }
-            return redirect()->route('kelompok.index')->with(['update' => 'Pengajuan ' . $request->no[0] . ' berhasil di Update  !']);
+            return redirect()->route('kelompok.index')->with(['success' => 'Pengajuan   Kelompok '.$no.' - '.$new_name . ' berhasil di Update  !']);
+
 
         }
     }

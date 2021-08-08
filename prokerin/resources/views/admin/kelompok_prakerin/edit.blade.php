@@ -78,7 +78,12 @@ edit view kelompok
                             <option value="{{ $perusahaan_select->id }}" selected>
                                 {{ $kelompok_laporan[0]->nama_perusahaan }}</option>
                             @foreach ($perusahaan as $perusahaann)
+                                @if ($perusahaann->id == $perusahaan_select->id)
+    
+                                @else
                                 <option value="{{ $perusahaann->id }}">{{ $perusahaann->nama }}</option>
+                                
+                                @endif
                             @endforeach
                         </select>
                         @error('id_perusahaan')
@@ -112,15 +117,16 @@ edit view kelompok
                            @foreach ($kelompok_laporan as $item)
                                          <tr id="row{{$loop->iteration}}">
                                              <td class="col-7">
-                                                 <select name="id_data_prakerin[]"
-                                                 class="form-control prakerin  @error('id_data_prakerin')  is-invalid  @enderror select2">
+                                                 <select name="id_siswa[]"
+                                                 class="form-control prakerin  @error('id_siswa')  is-invalid  @enderror select2">
                                                  <option value="">--Cari Siswa--</option>
-                                                 <option value="{{ $item->id_data_prakerin }}" selected>
-                                                     {{ $item->data_prakerin->nama }}</option>
-                                                    @foreach ($data_prakerin as $item)
-                                                     @if (empty($item->kelompok_laporan))
-                                                         <option value="{{ $item->id }}" >{{ $item->nama }}</option>
-                                                     @endif
+                                                 <option value="{{ $item->id_siswa }}" selected>
+                                                     {{ $item->siswa->nama_siswa }}</option>
+                                                    @foreach ($siswa as $item)
+                                                    {{-- {{dd($siswa)}} --}}
+                                                     {{-- @if (empty($item->kelompok_laporan)) --}}
+                                                         <option value="{{ $item->id }}" >{{ $item->nama_siswa }}</option>
+                                                     {{-- @endif --}}
                                                  @endforeach
                                              </select>
                                              </td>
@@ -160,29 +166,29 @@ edit view kelompok
         <script src="{{ asset('template/') }}/node_modules/select2/dist/js/select2.full.min.js"></script>
 
         <script>
-             $(document).ready(function () {
-                        $('#perusahaan').on('change', function () {
-                        let id = $(this).val();
-                        $('.prakerin').empty();
-                        $('.prakerin').append(`<option value="0" disabled selected>Mencari...</option>`).show('slow');
-                        $.ajax({
-                        type: 'GET',
-                        url: '../fetch_edit/' + id,                        
-                        success: function (response) {
-                        var response = JSON.parse(response);
-                        console.log(response);   
-                        $('.prakerin').empty();
-                        $('.prakerin').append(`<option value="0" disabled selected>--Cari Siswa--</option>`);
-                        response.forEach(element => {
-                            $('.prakerin').append(`<option value="${element.id}">${element.nama}</option>`);
-                            });
-                        }
-                    });
+            //  $(document).ready(function () {
+            //             $('#perusahaan').on('change', function () {
+            //             let id = $(this).val();
+            //             $('.prakerin').empty();
+            //             $('.prakerin').append(`<option value="0" disabled selected>Mencari...</option>`).show('slow');
+            //             $.ajax({
+            //             type: 'GET',
+            //             url: '../fetch_edit/' + id,                        
+            //             success: function (response) {
+            //             var response = JSON.parse(response);
+            //             console.log(response);   
+            //             $('.prakerin').empty();
+            //             $('.prakerin').append(`<option value="0" disabled selected>--Cari Siswa--</option>`);
+            //             response.forEach(element => {
+            //                 $('.prakerin').append(`<option value="${element.id}">${element.nama}</option>`);
+            //                 });
+            //             }
+            //         });
 
     
 
-                });
-            });
+            //     });
+            // });
         
         
         
@@ -192,15 +198,15 @@ edit view kelompok
                      $('#add').click(function(){
                           i++;
                           $('#dynamic_field').append('<tr id="row'+i+'"><td>'+
-                                                        '<select name="id_data_prakerin[]" class="form-control select2 prakerin @error('id_data_prakerin')  is-invalid  @enderror ">'+
-                                                            // '<option value="">--Cari Siswa--</option>'+
-                                                            // '@forelse ($data_prakerin as $item)'+
-                                                            //     '@if (empty($item->kelompok_laporan))'+
-                                                            //         '<option value="{{ $item->id }}">{{ $item->nama }}</option>'+
-                                                            //     '@endif'+
-                                                            // '@empty'+
-                                                            //     '<option disabled>Semua Siswa telah mendapat kelompok!</option>'+
-                                                            // '@endforelse'+
+                                                        '<select name="id_siswa[]" class="form-control select2 prakerin @error('id_siswa')  is-invalid  @enderror ">'+
+                                                            '<option value="">--Cari Siswa--</option>'+
+                                                            '@forelse ($siswa as $item)'+
+                                                                // '@if (empty($item->kelompok_laporan))'+
+                                                                    '<option value="{{ $item->id }}">{{ $item->nama_siswa }}</option>'+
+                                                                // '@endif'+
+                                                            '@empty'+
+                                                                '<option disabled>Semua Siswa telah mendapat kelompok!</option>'+
+                                                            '@endforelse'+
                                                         '</select>'+
                                                             '@if ($errors->has(`id_data_prakerin.2`))'+
                                                                 '<span class="text-danger">'+

@@ -35,21 +35,30 @@
                                     </div>
                         @enderror
                 </div>
-                        <div class="mb-3">
-                                <label class="form-label">Tanggal Mulai S.d Selesai Magang</label>
-                                <div class="d-flex">
-                                    <i class="far fa-calendar-times border text-center" style="padding:10px;"></i>
-                                <input type="text" id="tgl_magang" name="tgl_magang" class="form-control
-                                @error('tanggal') is-invalid @enderror" placeholder="xxxx-xx-xx s.d. xxxx-xx-xx " value="">
-                                </div>
-                                @error('tanggal')
-                                                <div class="invalid-feedback">
-                                                    {{ $message }}
-                                                </div>
-                                    @enderror
-                            </div>
-                            {{-- <span id="showCustome" class="btn  badge-primary" style="border-radius: 20px;">Ubah Nama Tandatangan</span> --}}
 
+
+                @if($cekTgl->tgl_mulai == null && $cekTgl->tgl_selesai == null)
+                <div class="mb-3">
+                        <label class="form-label">Tanggal Mulai S.d Selesai Magang</label>
+                        <div class="d-flex">
+                            <i class="far fa-calendar-times border text-center" style="padding:10px;"></i>
+                        <input type="text" id="tgl_magang" name="tgl_magang" class="form-control
+                        @error('tanggal') is-invalid @enderror" placeholder="xxxx-xx-xx s.d. xxxx-xx-xx " value="">
+                        </div>
+                        @error('tanggal')
+                                        <div class="invalid-feedback">
+                                            {{ $message }}
+                                        </div>
+                            @enderror
+                    </div>
+                @else
+                <input type="hidden" id="tgl_magang" name="tgl_magang" class="form-control
+                @error('tanggal') is-invalid @enderror" placeholder="xxxx-xx-xx s.d. xxxx-xx-xx " value="">
+
+                   
+                @endif
+                {{-- <span id="showCustome" class="btn  badge-primary" style="border-radius: 20px;">Ubah Nama Tandatangan</span> --}}
+                
 
 {{-- <div id="custome" style="display: none;">
     <div class="mb-3">

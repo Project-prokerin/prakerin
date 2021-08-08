@@ -394,7 +394,7 @@ $('#download').click(function (event) {
             $('#downloadModal').modal('hide');
             alert = Swal.fire({
                 title: 'Berhasil',
-                text: ' Berhasil Magang! ',
+                text: ' Berhasil Download Surat Pengajuan! ',
                 icon: 'success',
                 confirmButtonText: 'tutup'
             })
