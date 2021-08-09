@@ -124,7 +124,7 @@
           {{-- $notifUnread = Auth::user()->notifications->where('read_at',null); --}}
             
           @include('template.partial.navbar',['notifications'=>auth()->user()->unreadNotifications,'notifUnread'=>Auth::user()->notifications->where('read_at',null)])
-
+          
             @include('template.partial.sidebar')
 
 

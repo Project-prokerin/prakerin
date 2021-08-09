@@ -1,6 +1,4 @@
-detail disposisi
 
-detail disposisi.blade
 {{-- 
 @extends('template.master')
 
@@ -160,7 +158,8 @@ textarea {
                       <label>Pesan</label>
                       <input type="hidden" name="id_dari" value="{{Auth::user()->id}}">
                       <input type="hidden" name="id_untuk" value="{{$from->id_dari}}">
-                      <input type="hidden" name="disposisi" value="{{$disposisi->id}}">
+                                              <input type="hidden" name="id_detail_surat" value="{{$disposisi->id_detail_surat}}">
+
                       @if (Auth::user()->role == 'kepsek' || Auth::user()->role == 'kaprog' || Auth::user()->role == 'sarpras' || Auth::user()->role == 'tu')
                       <textarea disabled name="description_feedback" class="form-control" style="width:600px;height:200px;"  required="">{{$feedback->description_feedback}}</textarea>
                       @else 
@@ -200,7 +199,8 @@ textarea {
                       <label>Pesan</label>
                       <input type="hidden" name="id_dari" value="{{Auth::user()->id}}">
                       <input type="hidden" name="id_untuk" value="{{$from->id_dari}}">
-                      <input type="hidden" name="disposisi" value="{{$disposisi->id}}">
+                                              <input type="hidden" name="id_detail_surat" value="{{$disposisi->id_detail_surat}}">
+
                       @if (Auth::user()->role == 'kepsek' || Auth::user()->role == 'kaprog' || Auth::user()->role == 'sarpras' || Auth::user()->role == 'tu')
                       <textarea disabled name="description_feedback" class="form-control" style="width:600px;height:200px; font-size: 30px; color: rgb(170, 164, 164);"  required="">
                     Belum ada feedback
@@ -447,7 +447,7 @@ textarea {
                       <div class="ta-container">
                         <input type="hidden" name="id_dari" value="{{Auth::user()->id}}">
                         <input type="hidden" name="id_untuk" value="{{$from->id_dari}}">
-                        <input type="hidden" name="disposisi" value="{{$disposisi->id}}">
+                        <input type="hidden" name="id_detail_surat" value="{{$disposisi->id_detail_surat}}">
                         @if (Auth::user()->role == 'kepsek' || Auth::user()->role == 'kaprog' || Auth::user()->role == 'sarpras' || Auth::user()->role == 'tu')
                         <textarea id="about-yourself" disabled name="description_feedback" class="ta"  rows="6" cols="75" 
                         data-over="false"  required="">{{$feedback->description_feedback}}</textarea>
@@ -474,7 +474,7 @@ textarea {
                             </div>
                             <div class="col-6">
                               <label class="form-label" style="font-size: 1em;">Waktu</label>
-                              <label class="form-label time" style="font-size: 1.1em;">: <b>{{Carbon\Carbon::now()->toTimeString()}}</b></label>
+                              <label class="form-label times" style="font-size: 1.1em;">: <b>{{Carbon\Carbon::now()->toTimeString()}}</b></label>
                             </div>
                            </div>
                         </div>
@@ -517,7 +517,8 @@ textarea {
                       <div class="ta-container">
                         <input type="hidden" name="id_dari" value="{{Auth::user()->id}}">
                         <input type="hidden" name="id_untuk" value="{{$from->id_dari}}">
-                        <input type="hidden" name="disposisi" value="{{$disposisi->id}}">
+                                                <input type="hidden" name="id_detail_surat" value="{{$disposisi->id_detail_surat}}">
+
                   @if (Auth::user()->role == 'kepsek' || Auth::user()->role == 'kaprog' || Auth::user()->role == 'sarpras' || Auth::user()->role == 'tu')
                             <textarea disabled  id="about-yourself" class="ta" name="description_feedback" rows="6" cols="75" 
                               data-over="false"  required>Belum ada Feedback</textarea>
@@ -547,7 +548,7 @@ textarea {
                                   </div>
                                   <div class="col-6">
                                     <label class="form-label" style="font-size: 1em;">Waktu</label>
-                                    <label class="form-label time" style="font-size: 1.1em;" >: <b>{{Carbon\Carbon::now()->toTimeString()}}</b></label>
+                                    <label class="form-label times" style="font-size: 1.1em;" >: <b>{{Carbon\Carbon::now()->toTimeString()}}</b></label>
                                   </div>
                                  </div>
                               </div>
@@ -579,7 +580,7 @@ textarea {
         <script>
           setInterval("my_function();",1000); 
     function my_function(){
-      $('.time').load(location.href + ' .time');
+      $('.times').load(location.href + ' .times');
 
     }
         </script>

@@ -22,113 +22,121 @@ class Surat_masukController extends Controller
     public function index_admin()
     {
 
+    $notifications = auth()->user()->unreadNotifications;
+    $notifUnread = Auth::user()->notifications->where('read_at',null)->toArray();
+    
+    dd($notifications,$notifUnread[0]['data']['description_feedback'],Carbon::parse($notifUnread[0]['data']['waktu_pengiriman'])->format('Y-m-d h:i:s'),feedback::where('created_at','2021-08-09T19:53:28')->first());
+    
         return view('admin.surat_masuk.index');
     }
     public function ajax_admin(Request $request)
     {
         if ($request->ajax()) {
             if (Auth::user()->role == 'admin' or Auth::user()->role == 'kepsek' or Auth::user()->role == 'tu' or  Auth::user()->role == 'kaprog') {
-            $surat = Surat_masuk::get();
-            return datatables()->of($surat)
-                ->addColumn('nama', function ($data) {
-                    return $data->surat_m->nama_surat;
-                })
-                ->addColumn('untuk', function ($data) {
-                    return $data->untuk_guru->nama;
-                })
-                ->addColumn('dari', function ($data) {
-                    return $data->dari_guru->nama;
-                })
-                ->addColumn('jabatan', function ($data) {
-                    return $data->untuk_guru->jabatan;
-                })
-                ->addColumn('disposisi', function ($data) {
+                     $surat = Surat_masuk::get();
+                     return datatables()->of($surat)
+                         ->addColumn('nama', function ($data) {
+                             return $data->surat_m->nama_surat;
+                         })
+                         ->addColumn('untuk', function ($data) {
+                             return $data->untuk_guru->nama;
+                         })
+                         ->addColumn('dari', function ($data) {
+                             return $data->dari_guru->nama;
+                         })
+                         ->addColumn('jabatan', function ($data) {
+                             return $data->untuk_guru->jabatan;
+                         })
+                         ->addColumn('disposisi', function ($data) {
 
-                    $button = '';
-                    if (Auth::user()->role == "tu") {
-                        switch ($data->status) {
-                            case 'tolak':
+                             $button = '';
+                             if (Auth::user()->role == "tu") {
+                                 switch ($data->status) {
+                                     case 'tolak':
+                                             $button .=  '<span class="badge bg-danger text-white" style="font-size: 12px; " ><b>Pengajuan Di tolak</b></span>';
+                                             return $button;
+                                         break;                                
+                                     case 'acc':
+                                             if (empty($data->surat_m->detail_surat->disposisi)) {
+                                                     $button .=  '<span class="badge bg-danger text-white" style="font-size: 12px; " ><b>Disposisi Kosong</b></span>';
+                                                 return $button;
+                                             }
+                                     // $disposisi = disposisi::get();
+                                         
+                                             $id = $data->id;
+                                             // $button .= '<a href="/admin/surat_masuk/' . $id . '/disposisi/view"   id="' . $id . '" class="edit btn btn-success btn-sm">view</a>';
+                                             $feedback = feedback::where('id_detail_surat',$data->id)->first(); 
+                                             if (empty($feedback)) {
+                                                 $button .= '&nbsp <a href="/admin/surat_masuk/' . $id . '/disposisi/view"   id="' . $id . '" class="edit btn btn-success btn-sm">view  <small> 
+                                                 <div class="dropup-secondary">
+                                                    <span class="dropupp-secondary badge badge-sm badge-secondary text-secondary">0 
+                                                     <div class="dropup-secondary-content"> <span>Belum ada feedback</span> </div>
+                                                 </span></small> 
+                                                 </div>
+                                               </a>';
+
+                                             }else{
+                                                 $button .= '&nbsp <a href="/admin/surat_masuk/' . $id . '/disposisi/view"   id="' . $id . '" class="edit btn btn-success btn-sm">view  <small> 
+                                                 <div class="dropup-primary">
+                                                     <span class="dropupp-primary badge badge-sm badge-primary text-primary">0  
+                                                         <div class="dropup-primary-content"> 
+                                                             <span>Sudah ada feedback</span>  
+                                                         </div>
+                                                 </span></small> 
+                                                 </div>
+                                                </a>';
+
+                                             }
+                                             // if (Auth::user()->role == 'admin' or Auth::user()->role == 'kepsek' or Auth::user()->role == 'kaprog') {
+                                             //     $button .= ' <a href="/admin/surat_masuk/' . $id . '/disposisi/edit"   id="' . $id . '" class="edit btn btn-warning btn-sm">edit</a>';
+                                             //     $button .= ' <button type="button" name="delete" id="hapus-disposisi" data-id="' . $id . '" class="delete_disposisi btn btn-danger btn-sm">hapus</button>';
+                                             // }
+                                             // return $button;
+                                             break;
+                                     case 'pengajuan':
+                                             $button .=  '<span class="badge bg-warning text-white" style="font-size: 12px; " ><b>Pengajuan Surat</b></span>';
+                                             return $button;
+                                             break;
+
+                                         }
+                                     
+                             }
+                            else if(Auth::user()->role == 'admin' or Auth::user()->role == 'kaprog' or Auth::user()->role == 'kepsek') {
+                                if ($data->status == "tolak") {
                                     $button .=  '<span class="badge bg-danger text-white" style="font-size: 12px; " ><b>Pengajuan Di tolak</b></span>';
-                                    return $button;
-                                break;
-                            case 'acc':
-                                    if (empty($data->surat_m->detail_surat->disposisi)) {
-                                            $button .=  '<span class="badge bg-danger text-white" style="font-size: 12px; " ><b>Disposisi Kosong</b></span>';
-                                        return $button;
-                                    }
-                                    $id = $data->surat_m->detail_surat->disposisi->id;
-                                    // $button .= '<a href="/admin/surat_masuk/' . $id . '/disposisi/view"   id="' . $id . '" class="edit btn btn-success btn-sm">view</a>';
-                                    $feedback = feedback::where('id',$id)->first(); 
-                                    if (empty($feedback)) {
-                                        $button .= '&nbsp <a href="/admin/surat_masuk/' . $id . '/disposisi/view"   id="' . $id . '" class="edit btn btn-success btn-sm">view  <small> 
-                                        <div class="dropup-secondary">
-                                           <span class="dropupp-secondary badge badge-sm badge-secondary text-secondary">0 
-                                            <div class="dropup-secondary-content"> <span>Belum ada feedback</span> </div>
-                                        </span></small> 
-                                        </div>
-                                      </a>';
-                                    
-                                    }else{
-                                        $button .= '&nbsp <a href="/admin/surat_masuk/' . $id . '/disposisi/view"   id="' . $id . '" class="edit btn btn-success btn-sm">view  <small> 
-                                        <div class="dropup-primary">
-                                            <span class="dropupp-primary badge badge-sm badge-primary text-primary">0  
-                                                <div class="dropup-primary-content"> 
-                                                    <span>Sudah ada feedback</span>  
-                                                </div>
-                                        </span></small> 
-                                        </div>
-                                       </a>';
-
-                                    }
-                                    if (Auth::user()->role == 'admin' or Auth::user()->role == 'kepsek' or Auth::user()->role == 'kaprog') {
-                                        $button .= ' <a href="/admin/surat_masuk/' . $id . '/disposisi/edit"   id="' . $id . '" class="edit btn btn-warning btn-sm">edit</a>';
-                                        $button .= ' <button type="button" name="delete" id="hapus-disposisi" data-id="' . $id . '" class="delete_disposisi btn btn-danger btn-sm">hapus</button>';
-                                    }
-                                    return $button;
-                                    break;
-                            case 'pengajuan':
-                                    $button .=  '<span class="badge bg-warning text-white" style="font-size: 12px; " ><b>Pengajuan Surat</b></span>';
-                                    return $button;
-                                    break;
-
+                                }else if($data->status == "acc"){
+                                         $id_suratMasuk = $data->id;
+                                         $id = $data->id;
+                                        $button .= '<a href="/admin/surat_masuk/' . $id . '/disposisi/view"   id="' . $id . '" class="edit btn btn-success btn-sm">view</a>';
+                                            $button .= ' <a href="/admin/surat_masuk/' . $id . '/disposisi/edit"   id="' . $id . '" class="edit btn btn-warning btn-sm">edit</a>';
+                                            $button .= ' <button type="button" name="delete" id="hapus-disposisi" data-id="' . $id_suratMasuk . '" class="delete_disposisi btn btn-danger btn-sm">hapus</button>';
                                 }
-
-                    }
-                    else if(Auth::user()->role == 'admin' or Auth::user()->role == 'kaprog' or Auth::user()->role == 'kepsek') {
-                        if ($data->status == "tolak") {
-                            $button .=  '<span class="badge bg-danger text-white" style="font-size: 12px; " ><b>Pengajuan Di tolak</b></span>';
-                        }else if($data->status == "acc"){
-                                 $id = $data->surat_m->detail_surat->disposisi->id;
-                                $button .= '<a href="/admin/surat_masuk/' . $id . '/disposisi/view"   id="' . $id . '" class="edit btn btn-success btn-sm">view</a>';
-                                    $button .= ' <a href="/admin/surat_masuk/' . $id . '/disposisi/edit"   id="' . $id . '" class="edit btn btn-warning btn-sm">edit</a>';
-                                    $button .= ' <button type="button" name="delete" id="hapus-disposisi" data-id="' . $id . '" class="delete_disposisi btn btn-danger btn-sm">hapus</button>';
-                        }
-                        else{
-                            $id = $data->id;
-                            $button .= '<a href="/admin/surat_masuk/' . $id . '/disposisi/tambah"   id="' . $data->id . '" class="edit btn btn-primary btn-sm"><i class="fas fa-plus"></i></a>';
-                            $button .= '  <button id="surat-batal" data-id="' . $id . '" class=" btn btn-danger btn-sm"><i class="fas fa-times"></i></button>';
-                        }
-
-                        }
-
-                    return $button;
-                    }
-                )
-                ->addColumn('action', function ($data) {
-                    $button = '<a href="/admin/surat_masuk/download/' . $data->id . '"   id="' . $data->id . '" class="edit btn btn-success btn-sm"><i class="fa fa-download"></i></a>';
-                    $button .= '&nbsp';
-                    $button .= '<a href="/admin/surat_masuk/detail/' . $data->id . '"   id="' . $data->id . '" class="edit btn btn-primary btn-sm"><i class="fas fa-search"></i></a>';
-                    $button .= '&nbsp';
-                    if(Auth::user()->role == 'admin' or Auth::user()->role == 'tu'){
-                    $button .= '<a  href="/admin/surat_masuk/edit/' . $data->id . '" id="edit" data-toggle="tooltip"  data-id="' . $data->id . '" data-original-title="Edit" class="edit btn btn-warning btn-sm edit-post"><i class="fas fa-pencil-alt"></i></a>';
-                    $button .= '&nbsp';
-                    $button .= '<button type="button" name="delete" id="hapus" data-id="' . $data->id . '" class="delete btn btn-danger btn-sm"><i class="fas fa-trash"></i></button>';
-                    }
-                    return $button;
-                })
-
-                ->rawColumns(['action', 'untuk', 'nama', 'jabatan', 'disposisi','dari'])
-                ->addIndexColumn()->make(true);
+                                else{
+                                    $id = $data->id;
+                                    $button .= '<a href="/admin/surat_masuk/' . $id . '/disposisi/tambah"   id="' . $data->id . '" class="edit btn btn-primary btn-sm"><i class="fas fa-plus"></i></a>';
+                                    $button .= '  <button id="surat-batal" data-id="' . $id . '" class=" btn btn-danger btn-sm"><i class="fas fa-times"></i></button>';
+                                }
+                            
+                                }
+                            
+                            return $button;
+                            }
+                        )
+                        ->addColumn('action', function ($data) {
+                            $button = '<a href="/admin/surat_masuk/download/' . $data->id . '"   id="' . $data->id . '" class="edit btn btn-success btn-sm"><i class="fa fa-download"></i></a>';
+                            $button .= '&nbsp';
+                            $button .= '<a href="/admin/surat_masuk/detail/' . $data->id . '"   id="' . $data->id . '" class="edit btn btn-primary btn-sm"><i class="fas fa-search"></i></a>';
+                            $button .= '&nbsp';
+                            if(Auth::user()->role == 'admin' or Auth::user()->role == 'tu'){
+                            $button .= '<a  href="/admin/surat_masuk/edit/' . $data->id . '" id="edit" data-toggle="tooltip"  data-id="' . $data->id . '" data-original-title="Edit" class="edit btn btn-warning btn-sm edit-post"><i class="fas fa-pencil-alt"></i></a>';
+                            $button .= '&nbsp';
+                            $button .= '<button type="button" name="delete" id="hapus" data-id="' . $data->id . '" class="delete btn btn-danger btn-sm"><i class="fas fa-trash"></i></button>';
+                            }
+                            return $button;
+                        })
+                    
+                        ->rawColumns(['action', 'untuk', 'nama', 'jabatan', 'disposisi','dari'])
+                        ->addIndexColumn()->make(true);
                 }else {
                     $surat = Disposisi::where('Pokjatujuan', Auth::user()->role)->get();
                     return datatables()->of($surat)
@@ -149,9 +157,9 @@ class Surat_masukController extends Controller
                             if (empty($data)) {
                                 $button .= '<a href="#" class="edit btn btn-danger btn-sm">Kosong</a>';
                             }else{
-                                $feedback = feedback::where('id',$data->id)->first(); 
+                                $feedback = feedback::where('id_detail_surat',$data->id_detail_surat)->first(); 
                                     if (empty($feedback)) {
-                                        $button .= '&nbsp <a href="/admin/surat_masuk/' . $data->id . '/disposisi/view"   id="' . $data->id . '" class="edit btn btn-success btn-sm">view  <small> 
+                                        $button .= '&nbsp <a href="/admin/surat_masuk/' . $data->id_detail_surat . '/disposisi/view"   id="' . $data->id_detail_surat . '" class="edit btn btn-success btn-sm">view  <small> 
                                         <div class="dropup-secondary">
                                            <span class="dropupp-secondary badge badge-sm badge-secondary text-secondary">0 
                                             <div class="dropup-secondary-content"> <span>Belum ada feedback</span> </div>
@@ -160,7 +168,7 @@ class Surat_masukController extends Controller
                                       </a>';
                                     
                                     }else{
-                                        $button .= '&nbsp <a href="/admin/surat_masuk/' . $data->id . '/disposisi/view"   id="' . $data->id . '" class="edit btn btn-success btn-sm">view  <small> 
+                                        $button .= '&nbsp <a href="/admin/surat_masuk/' . $data->id_detail_surat . '/disposisi/view"   id="' . $data->id_detail_surat . '" class="edit btn btn-success btn-sm">view  <small> 
                                         <div class="dropup-primary">
                                             <span class="dropupp-primary badge badge-sm badge-primary text-primary">0  
                                                 <div class="dropup-primary-content"> 

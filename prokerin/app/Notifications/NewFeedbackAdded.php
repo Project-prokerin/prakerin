@@ -8,6 +8,8 @@ use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 use App\Models\feedback;
 use App\Models\guru;
+use Carbon\Carbon;
+
 class NewFeedbackAdded extends Notification
 {
     use Queueable;
@@ -68,6 +70,8 @@ class NewFeedbackAdded extends Notification
             'untuk' => $untuk->nama,
             'dari' => $dari->nama,
             'dari_jabatan' => $dari->jabatan,
+            'waktu_pengiriman' => $this->feedback->created_at,
+
         ];
     }
 }

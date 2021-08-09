@@ -64,31 +64,43 @@ class DiposisiController extends Controller
     {
         // $untuk = 
         // dd($id);
+        // dd(
+        //     feedback::all(),
+        //     Surat_masuk::all(),
+        //     Surat_M::all(),
+        //     Disposisi::all(),
+        // );
+        $disposisi = disposisi::where('id_detail_surat',$id)->first();
+        // dd($disposisi);
         // $untuk = Surat_masuk::where('id',$id)->first();
-        if (empty(feedback::where('id',$id)->first())) {
+        // dd(feedback::where('id_detail_surat',4)->first());
+       
+        if (empty(feedback::where('id_detail_surat',$disposisi->id_detail_surat)->first())) {
             $feedback = "";
              
             $feedbackDetail_from = '';
         $feedbackDetail_date = '';
         }else {
-            $feedback = feedback::where('id',$id)->first(); 
+            $feedback = feedback::where('id_detail_surat',$disposisi->id_detail_surat)->first(); 
              
             $feedbackDetail_from = guru::where('id_user',$feedback->id_dari)->first();
         $feedbackDetail_date = $feedback->created_at;
         }
-        
+
+        // $detailSuratM_id = disposisi->id_detail_surat::find($id);
+        // dd($detailSuratM_id);
 
         // $feedbackDetail = feedback::where()
-        $from =  Surat_masuk::where('id',$id)->first();
-        // dd($from->id_dari);
+        $from =  Surat_masuk::where('id',$disposisi->id_detail_surat)->first();
+        // dd($from);
 
         // guru::where('id',)
 
         // $untuk = guru::where('id_user',$request->id_untuk)->first();
 
 
-        $disposisi =  Disposisi::where('id',$id)->first();
-        // dd($id);
+        // $disposisi =  Disposisi::where('id',$id)->first();
+        // dd($disposisi);
         return view('admin.disposisi.detail', compact('from','disposisi','feedback','feedbackDetail_from','feedbackDetail_date'));
     }
     // table surat
@@ -156,8 +168,8 @@ class DiposisiController extends Controller
         // if (Auth::user()->role != "admin" or Auth::user()->role != "kepsek" or Auth::user()->role != "kepsek") {
         //     return back();
         // }
-        $surat = Disposisi::find($id);
-        // dd($surat->id);
+        $surat = Disposisi::where('id_detail_surat',$id)->first();
+        // dd($surat);
         return view('admin.disposisi.edit', compact('surat'));
     }
     public function update(disposisiRequest $request, $id)
@@ -169,22 +181,17 @@ class DiposisiController extends Controller
             'Keterangan_disposisi' =>  $request->Keterangan_disposisi,
             'created_at' => Carbon::now()
         ]);
-        return 'berhasil';
-        switch (Route::currentRouteName()) {
-            case "admin.disposisi.patch":
+        // return 'berhasil';
+      
                 return redirect()->route('admin.surat_masuk.index')->with('pesan', 'Berhasil Update disposisi!');
-                break;
-            case "admin.disposisi.post":
-                return redirect()->route('admin.disposisi.index')->with('pesan', 'Berhasil Update disposisi!');
-                break;
-        }
+         
 
 
     }
     public function destroy($id)
     {
 
-        $d = Disposisi::find($id)->first();
+        $d = Disposisi::where('id_detail_surat',$id)->first();
         $d->detail_surat->surat_m->surat_masuk()->update(['status' => 'pengajuan']);
         $d->delete();
         return response()->json($data = 'berhasil');
@@ -205,7 +212,7 @@ class DiposisiController extends Controller
       
             event(new Registered(
                 $feedback = feedback::create([
-                    'id_disposisi' => $request->disposisi,
+                    'id_detail_surat' => $request->id_detail_surat,
                     'id_dari' =>  $request->id_dari,
                     'id_untuk' => $request->id_untuk,
                     'description_feedback' => $request->description_feedback,
