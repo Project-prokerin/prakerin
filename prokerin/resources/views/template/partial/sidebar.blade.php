@@ -343,9 +343,14 @@ or Auth::user()->role == 'sarpras' or Auth::user()->role == 'bkk' or Auth::user(
                 </a>
             </li>
 
-            @if(siswa('data_prakerin')->status == 'Batal' ||siswa('data_prakerin')->status == 'Pengajuan' ||  empty(siswa('data_prakerin')))
+            @if(siswa('data_prakerin')->status == 'Batal' || siswa('data_prakerin')->status == 'Pengajuan' ||  empty(siswa('data_prakerin')))
             
-            
+            <li class="@if (Request::is('user/status','user/status/*')) active @endif">
+                <a href="{{ route('user.status') }}" class="nav-link">
+                    <i class="fas fa-user"></i>
+                    <span>Status Magang</span>
+                </a>
+            </li>
             
             @else
             <li class="dropdown

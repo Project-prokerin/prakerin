@@ -29,8 +29,8 @@
           <h4>Tambah Surat</h4>
         </div>
         <div class="card-body">
-            <div class="row">
-                <div class="col-sm-4">
+            <div class="row" >
+                <div class="col-sm-8">
                     <div class="">
                         <div class="" style="height: auto;">
                             <div class="card-body">
@@ -73,7 +73,7 @@
 
                                         <div class="mb-3 mt-3">
                                             <label for="">Masukan surat</label>
-                                            <input name="surat" name="surat" id="surat" class="form-control @error('surat')
+                                            <input name="surat"  id="surat" class="form-control @error('surat')
                                             is-invalid
                                     @enderror" type="file" />
                                              @error('surat')
@@ -98,7 +98,7 @@
                 </div>
                 {{--  --}}
                 {{--  --}}
-                <div class="col-sm-8">
+                <div class="col-sm-12">
                     <div class="">
                         <div class="" style="height: auto;">
                             <div class="row">

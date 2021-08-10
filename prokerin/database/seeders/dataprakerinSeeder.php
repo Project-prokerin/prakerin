@@ -64,50 +64,50 @@ class dataprakerinSeeder extends Seeder
             'status' => "Pengajuan",
             'created_at' => Carbon::now()
         ]);
-        DB::table('data_prakerin')->insert([
-            'nama' => 'Radit',
-            'id_kelas' => 3,
-            'id_siswa' => 5,
-            'id_perusahaan' => 2,
-            'id_guru' => 21,
-            'tgl_mulai' => '2020-10-10',
-            'tgl_selesai' => '2021-11-11',
-            'status' => "Magang",
-            'created_at' => Carbon::now()
-        ]);
-        DB::table('data_prakerin')->insert([
-            'nama' => 'Falih',
-            'id_kelas' => 3,
-            'id_siswa' => 6,
-            'id_perusahaan' => 2,
-            'id_guru' => 21,
-            'tgl_mulai' => '2020-10-10',
-            'tgl_selesai' => '2021-11-11',
-            'status' => "Magang",
-            'created_at' => Carbon::now()
-        ]);
-        DB::table('data_prakerin')->insert([
-            'nama' => 'VIk',
-            'id_kelas' => 3,
-            'id_siswa' => 7,
-            'id_perusahaan' => 2,
-            'id_guru' => 21,
-            'tgl_mulai' => '2020-10-10',
-            'tgl_selesai' => '2021-11-11',
-            'status' => "Magang",
-            'created_at' => Carbon::now()
-        ]);
-        DB::table('data_prakerin')->insert([
-            'nama' => 'Jiarisa',
-            'id_kelas' => 3,
-            'id_siswa' => 8,
-            'id_perusahaan' => 2,
-            'id_guru' => 21,
-            'tgl_mulai' => '2020-10-10',
-            'tgl_selesai' => '2021-11-11',
-            'status' => "Magang",
-            'created_at' => Carbon::now()
-        ]);
+        // DB::table('data_prakerin')->insert([
+        //     'nama' => 'Radit',
+        //     'id_kelas' => 3,
+        //     'id_siswa' => 5,
+        //     'id_perusahaan' => 2,
+        //     'id_guru' => 21,
+        //     'tgl_mulai' => '2020-10-10',
+        //     'tgl_selesai' => '2021-11-11',
+        //     'status' => "Magang",
+        //     'created_at' => Carbon::now()
+        // ]);
+        // DB::table('data_prakerin')->insert([
+        //     'nama' => 'Falih',
+        //     'id_kelas' => 3,
+        //     'id_siswa' => 6,
+        //     'id_perusahaan' => 2,
+        //     'id_guru' => 21,
+        //     'tgl_mulai' => '2020-10-10',
+        //     'tgl_selesai' => '2021-11-11',
+        //     'status' => "Magang",
+        //     'created_at' => Carbon::now()
+        // ]);
+        // DB::table('data_prakerin')->insert([
+        //     'nama' => 'VIk',
+        //     'id_kelas' => 3,
+        //     'id_siswa' => 7,
+        //     'id_perusahaan' => 2,
+        //     'id_guru' => 21,
+        //     'tgl_mulai' => '2020-10-10',
+        //     'tgl_selesai' => '2021-11-11',
+        //     'status' => "Magang",
+        //     'created_at' => Carbon::now()
+        // ]);
+        // DB::table('data_prakerin')->insert([
+        //     'nama' => 'Jiarisa',
+        //     'id_kelas' => 3,
+        //     'id_siswa' => 8,
+        //     'id_perusahaan' => 2,
+        //     'id_guru' => 21,
+        //     'tgl_mulai' => '2020-10-10',
+        //     'tgl_selesai' => '2021-11-11',
+        //     'status' => "Magang",
+        //     'created_at' => Carbon::now()
+        // ]);
 
     }
 }

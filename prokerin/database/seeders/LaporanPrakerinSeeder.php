@@ -14,11 +14,12 @@ class LaporanPrakerinSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('laporan_prakerin')->insert([
-            'judul_laporan' => 'INi Judul Laporan',
-            'id_kelompok_laporan' => 1,
+        // DB::table('laporan_prakerin')->insert([
+        //     'judul_laporan' => 'INi Judul Laporan',
+        //     'id_kelompok_laporan' => 1,
+        //     'no' => 1,
           
-        ]);
+        // ]);
      
     }
 }

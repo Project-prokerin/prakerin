@@ -83,6 +83,7 @@ class laporanController extends Controller
         laporan_prakerin::create([
             'judul_laporan' => $request->judul_laporan,
             'id_kelompok_laporan' => $id_kelompok_laporan->id,
+            'no' => $request->id_kelompok_laporan
         ]);
 
 

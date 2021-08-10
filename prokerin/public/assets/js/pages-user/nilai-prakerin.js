@@ -10,41 +10,41 @@ $(document).ready(function () {
 
     // ini buat filter
     table_ajax();
-    // header_ajax();
-    // $('.jurusan').change(function () {
-    //     val = $(this).val();
-    //     datas = []
-    //     table_ajax(val);
-    //     header_ajax(val);
-    // })
+    header_ajax();
+    $('.jurusan').change(function () {
+        val = $(this).val();
+        datas = []
+        table_ajax(val);
+        header_ajax(val);
+    })
 
-    // function header_ajax(val = "RPL") {
-    //     $.ajax({
-    //         url: root + "/siswa/nilai_prakerin/column/ajax/" + val,
-    //         type: "get",
-    //         success: function (response) {
-    //             console.log(response);
-    //             $('#table9 tr').eq(0).empty().append();
-    //             $('#table9 tr ').eq(0).append('<th>No</th>' + '<th style="width:100px;">Nama Siswa</th>');
-    //             response.data.forEach(element => {
-    //                 if (element.aspek_yang_dinilai) {
-    //                     $('#table9 tr ').eq(0).append('<th>' + element.aspek_yang_dinilai + '</th>');
-    //                 } else {
-    //                     $('#table9 tr ').eq(0).append('<th>Aspek Nilai kosong</th>');
-    //                 }
+    function header_ajax(val = 1) {
+        $.ajax({
+            url: root + "/siswa/nilai_prakerin/column/ajax/" + val,
+            type: "get",
+            success: function (response) {
+                console.log(response);
+                $('#table9 tr').eq(0).empty().append();
+                $('#table9 tr ').eq(0).append('<th>No</th>' + '<th style="width:100px;">Nama Siswa</th>');
+                response.data.forEach(element => {
+                    if (element.aspek_yang_dinilai) {
+                        $('#table9 tr ').eq(0).append('<th>' + element.aspek_yang_dinilai + '</th>');
+                    } else {
+                        $('#table9 tr ').eq(0).append('<th>Aspek Nilai kosong</th>');
+                    }
 
-    //             });
-    //             $('#table9 tr ').eq(0).append('<th style="width:100px;">Action</th>');
-    //         },
+                });
+                $('#table9 tr ').eq(0).append('<th style="width:100px;">Action</th>');
+            },
 
-    //         error: function (data) {
-    //             console.log('Error:', data);
-    //         }
-    //     });
-    // }
+            error: function (data) {
+                console.log('Error:', data);
+            }
+        });
+    }
 
     // ajax
-    function table_ajax(val = "RPL") {
+    function table_ajax(val = 1) {
         $.ajax({
             url: root + "/siswa/nilai_prakerin/column/ajax/" + val,
             type: "get",

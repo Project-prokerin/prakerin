@@ -198,7 +198,8 @@ class Surat_masukController extends Controller
 
     public function detail_surat($id)
     {
-        $surat = Surat_masuk::find($id)->first();
+        // $surat = Surat_masuk::find($id)->first();
+    $surat =    Surat_masuk::findOrFail($id);
 
         return response()->file(
             public_path($surat->surat_m->path_surat)
@@ -258,9 +259,9 @@ class Surat_masukController extends Controller
 
     public function edit_surat($id)
     {
-        if (Auth::user()->role != "tu") {
-            return back();
-        }
+        // if (Auth::user()->role != "tu") {
+        //     return back();
+        // }
         return view('admin.surat_masuk.edit', ['surat_masuk' => Surat_masuk::findOrFail($id), 'guru' => guru::whereIn('jabatan', ['kepsek','keprog'])->get()]);
     }
 
@@ -328,7 +329,8 @@ class Surat_masukController extends Controller
 
     public function download($id)
     {
-        $surat = Surat_masuk::find($id)->first();
+        $surat =    Surat_masuk::findOrFail($id);
+
     
         $file = public_path() . "/".$surat->surat_m->path_surat;
         $nama = explode(' ', basename($surat->surat_m->path_surat))[1];

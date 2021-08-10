@@ -132,7 +132,12 @@ class data_prakerinController extends Controller
     public function detail($id)
     {
         // dd($id);
-        return view('admin.data_prakerin.detail');
+        $siswa = Siswa::doesntHave('data_prakerin')->get();
+        $perusahaan = perusahaan::all();
+        $guru = guru::all();
+        $dataPrakerin = data_prakerin::findOrFail($id);
+        $kelas = kelas::all();
+        return view('admin.data_prakerin.detail',compact('dataPrakerin','perusahaan','guru','siswa','id','kelas'));
     }
 
     /**

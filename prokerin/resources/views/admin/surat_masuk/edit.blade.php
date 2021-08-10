@@ -30,7 +30,7 @@
         </div>
         <div class="card-body">
             <div class="row">
-                <div class="col-sm-4">
+                <div class="col-md-8">
                     <div class="">
                         <div class="" style="height: auto;">
                             <div class="card-body">
@@ -100,7 +100,10 @@
                 </div>
                 {{--  --}}
                 {{--  --}}
-                <div class="col-sm-8">
+                
+            </div>
+            <div class="row">
+                <div class="col-md-12">
                     <div class="">
                         <div class="" style="height: auto;">
                             <div class="row">

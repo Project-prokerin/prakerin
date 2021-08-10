@@ -282,11 +282,11 @@ class userController extends Controller
 
     {
 
-        if (siswa('data_prakerin')->status === 'Pengajuan' || siswa('data_prakerin') == '') {
+        // if (siswa('data_prakerin')->status === 'Pengajuan' || siswa('data_prakerin') == '') {
 
-            return back();
+        //     return back();
 
-        }
+        // }
 
         return view('siswa.status.index');
 
@@ -662,9 +662,20 @@ class userController extends Controller
 
         $laporan =  !empty(siswa('main')->kelompok_laporan->laporan_prakerin->nama) ? siswa('main')->kelompok_laporan->laporan_prakerin->nama : 'Judul lapora belum di tentukan';
 
+        
+        // dd(Auth::user()->siswa->id);
+        // $laporan = kelompok_laporan
+        $kelompok = kelompok_laporan::select('*')->where('id_guru', $id_guru)->where('no', $no_kelompok)->wherehas('siswa')->get();
+
+        if (empty($laporan)) {
+            $laporan = 'Belum ada judul Laporan';
+        }else {
+            $laporan = laporan_prakerin::where('no',$no_kelompok)->first();
+
+        }
             // dd(Auth::user()->siswa->data_prakerin);
 
-        $kelompok = kelompok_laporan::select('*')->where('id_guru', $id_guru)->where('no', $no_kelompok)->wherehas('siswa')->get();
+        // dd($laporan);
 
         return view('siswa.kelompok_laporan.index', compact('kelompok','no_kelompok','guru_nama','laporan'));
 

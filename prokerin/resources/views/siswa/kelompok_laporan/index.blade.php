@@ -82,7 +82,7 @@
                 </tr>
                 <tr>
                     <th scope="row" class="text-left">Judul Laporan</th>
-                    <td style="">{{ $laporan }}</td>
+                    <td style="">{{ $laporan->judul_laporan }}</td>
                 </tr>
                 @foreach ($kelompok as $index => $item)
                 {{-- </tr> --}}

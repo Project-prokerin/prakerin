@@ -270,7 +270,7 @@
                                     </div>
                                   </div>
                             </div>
-                  @         else 
+                            @else 
                             <div class="card-body">
                                 <div class="alert  alert-danger alert-has-icon">
                                     <div class="alert-icon"><i class="far fa-lightbulb"></i></div>

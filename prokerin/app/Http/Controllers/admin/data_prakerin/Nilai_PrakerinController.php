@@ -134,7 +134,7 @@ class Nilai_PrakerinController extends Controller
                     return $nilai->nama_siswa;
                 });
                 foreach ($kategori as $key => $value) {
-                $nilai = Nilai_prakerin::all();
+                // $nilai = Nilai_prakerin::all();
                 $a->addColumn($value->aspek_yang_dinilai, function ($siswa) use ($value)  {
                 $nilai_prakerin = Nilai_prakerin::where('id_siswa', $siswa->id)->where('id_ketegori',$value->id)->first();
                     if (empty($nilai_prakerin->nilai)) {

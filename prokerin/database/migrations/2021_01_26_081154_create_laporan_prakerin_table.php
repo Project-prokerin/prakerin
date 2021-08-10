@@ -18,8 +18,10 @@ class CreateLaporanPrakerinTable extends Migration
             $table->string('judul_laporan');
             // $table->string('nama_perusahaan');
             // $table->longText('lokasi_perusahaan');
+            $table->string('no');
             $table->bigInteger('id_kelompok_laporan')->unsigned();
             $table->foreign('id_kelompok_laporan')->references('id')->on('kelompok_laporan')->onDelete('cascade')->onUpdate('cascade');
+
             $table->timestamps();
         });
     }

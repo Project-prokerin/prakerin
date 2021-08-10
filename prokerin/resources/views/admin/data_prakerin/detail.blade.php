@@ -1,7 +1,28 @@
 @extends('template.master')
 @push('link')
 <style>
-    
+    .mtop{
+        margin-top: -10px;
+    }
+    .pleft{
+        padding-left: 15px;
+    }
+    .garis{
+        height: 10px;
+        width: auto;
+        background-color: rgb(82, 82, 255);
+    }
+    .title{
+        padding-top: 10px;
+    }
+    h5{
+        color: rgb(82, 82, 255);
+    }
+    .title i{
+        font-size: 20px;
+        margin-left: 5px;
+        margin-right: 5px;
+    }
 </style>
 @endpush
 @section('title', 'Prakerin | Data Prakerin')
@@ -15,79 +36,64 @@
   <div class="breadcrumb-item"> <i class="fas fa-th"></i>>DATA PRAKERIN</div>
 @endsection
 @section('main')
-<div class="card">
-  <div class="card-header">
-    <div class="container text-center mt-5 mb-3 ml-1">
-      <h3>Detail Data Prakerin</h3>
+<div>
+    <div class="garis"></div>
+    <div class="card-header">
+        <h5 class="title"><i class="far fa-address-card"></i> Informasi Data Prakerin</h5>
     </div>
-  </div>
-  <div class="card-body">
-    <div class="container">
-      <form action="" method="POST">
-        <div class="row mt-3 ml-4 ">
-          <div class="col-6  kanan">
-              <!-- perusa -->
-              <div class="mb-3 col-lg-10">
-                  <label>Nama Perusahaan</label>
-                  <div class="">
-                    <p class="fs-4" style="font-size: 15px">Joko bambang yudhoyono</p>
+    <div class="card">
+    <div class="row">
+        <div class="col-sm-8 mt-4">
+            <div class="card-body" id="">
+                <h5 class="card-title">Data Prakerin</h5>
+                  <div class="row g-3 align-items-center">
+                    <label class="form-label col-7 pleft">Nama Perusahaan</label>
+                    <label class="form-label">: {{ $dataPrakerin->perusahaan->nama }}</label>
                   </div>
-              </div>
-
-              <!-- guru -->
-              <div class="mb-3 col-lg-10">
-                  <label>Nama Guru</label>
-                  <div class="">
-                    <p class="fs-4" style="font-size: 15px">Joko bambang yudhoyono</p>
+                  <div class="row g-3 align-items-center">
+                    <label class="form-label col-7 pleft">Nama Guru</label>
+                    <label class="form-label">: {{ $dataPrakerin->guru->nama }} </label>
                   </div>
-              </div>
-
-
-              <!-- siswa -->
-              <div class="mb-3 col-lg-10">
-                  <label>Nama Siswa</label>
-                  <div class="">
-                    <p class="fs-4" style="font-size: 15px">Joko bambang yudhoyono</p>
+                  <div class="row g-3 align-items-center">
+                    <label class="form-label col-7 pleft">Nama Siswa</label>
+                    <label class="form-label">: {{ $dataPrakerin->nama }} </label>
                   </div>
-              </div>
-
-
-              <!-- kelas -->
-              <div class="mb-3 col-lg-10 ">
-                  <label>Kelas</label>
-                  <div class="">
-                    <p class="fs-4" style="font-size: 15px">Joko bambang yudhoyono</p>
+                  <div class="row g-3 align-items-center">
+                    <label class="form-label col-7 pleft">Kelas</label>
+                    <label class="form-label">: {{ $dataPrakerin->kelas->level }} </label>
                   </div>
-              </div>
-              <!-- jurusan -->
-              <div class="mb-3 col-lg-10  mb-5">
-                  <label>Jurusan</label>
-                  <div class="">
-                    <p class="fs-4" style="font-size: 15px">Joko bambang yudhoyono</p>
+                  <div class="row g-3 align-items-center">
+                    <label class="form-label col-7 pleft">Jurusan</label>
+                    <label class="form-label">: {{ $dataPrakerin->kelas->jurusan->jurusan }}</label>
                   </div>
-              </div>
-          </div>
-          <div class="col-6">
-              <div class="mb-3 ">
-                  <label>Tanggal Mulai</label>
-                  <div class="">
-                    <p class="fs-4" style="font-size: 15px">Joko bambang yudhoyono</p>
-                  </div>
-              </div>
+                  <div class="row g-3 align-items-center">
+                    <label class="form-label col-7 pleft">Tanggal Mulai</label>
+                    @if ($dataPrakerin->status === 'Magang')
+                        <label class="form-label">: {{$dataPrakerin->tgl_mulai->isoFormat('dddd, D MMMM Y');}}</label>
+                    @else 
+                    <label class="form-label">: </label>
 
-              <div class="mb-5 ">
-                  <label>Tanggal Selesai</label>
-                  <div class="">
-                    <p class="fs-4" style="font-size: 15px">Joko bambang yudhoyono</p>
+                    @endif
                   </div>
-              </div>
+                  <div class="row g-3 align-items-center">
+                    <label class="form-label col-7 pleft">Tanggal Selesai</label>
+                    @if ($dataPrakerin->status === 'Magang')
+                        <label class="form-label">: {{$dataPrakerin->tgl_selesai->isoFormat('dddd, D MMMM Y');}}</label>
+                    @else 
+                    <label class="form-label">:</label>
 
-              <a href="{{route('data_prakerin.index')}}" type="submit" class="btn btn-success"><i class="fas fa-arrow-circle-left"></i> Kembali</a>
-          </div>
-        </div>
-      </form>
+                    @endif 
+                  </div>
+                  <div style="margin-top: 40px; margin-bottom:40px;">
+                    <a href="{{ route('data_prakerin.index') }}" type="button" class="btn btn-danger "><i class="fas fa-backspace"></i>   Kembali</a>
+                </div>
+            </div>
+
     </div>
-  </div>
+    </div>
+
+
+
 </div>
 @endsection
 @push('script')

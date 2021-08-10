@@ -481,7 +481,7 @@ Route::middleware(['web', 'auth', 'role:siswa'])->group(function () {
     Route::get('/siswa/nilai_prakerin', [SiswaNilai_PrakerinController::class, 'index'])->name('Siswanilai_prakerin.index');
     Route::get('/siswa/nilai_prakerin/header/ajax', [SiswaNilai_PrakerinController::class, 'index'])->name('Siswanilai_prakerin.header.index');
     Route::get('/siswa/nilai_prakerin/ajax', [SiswaNilai_PrakerinController::class, 'ajax'])->name('Siswanilai_prakerin.ajax');
-    // Route::get('/siswa/nilai_prakerin/ajax', [SiswaNilai_PrakerinController::class, 'ajax'])->name('Siswanilai_prakerin.ajax');
+    Route::post('/siswa/nilai_prakerin/ajax', [SiswaNilai_PrakerinController::class, 'ajax'])->name('Siswanilai_prakerin.ajax');
     Route::get('/siswa/nilai_prakerin/column/ajax/{val}', [SiswaNilai_PrakerinController::class, 'getNameColumn'])->name('Siswanilai_prakerin.getNameColumn');
     Route::get('/siswa/nilai_prakerin/get_option/ajax', [SiswaNilai_PrakerinController::class, 'get_option'])->name('Siswanilai_prakerin.get_option');
 

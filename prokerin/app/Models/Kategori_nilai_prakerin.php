@@ -12,7 +12,7 @@ class Kategori_nilai_prakerin extends Model
     protected $guarded = [];
     public function nilai_prakerin()
     {
-        return $this->hasOne(nilai_prakerin::class, 'id_ketegori','id');
+        return $this->hasOne(Nilai_prakerin::class, 'id_ketegori','id');
     }
     public function jurusan()
     {

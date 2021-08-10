@@ -19,8 +19,22 @@ class SiswaNilai_PrakerinController extends Controller
      */
     public function index(Request $request)
     {
-        // $kategori = Kategori_nilai_prakerin::select('aspek_yang_dinilai')->where('keterangan', 'Nilai Perusahaan')->distinct('aspek_yang_dinilai')->where('jurusan', $val)->get();
-        // dd($kategori);
+
+        $siswa = Siswa::where('id_user',Auth::user()->id)->get();
+        $kategori = Kategori_nilai_prakerin::all()->unique('aspek_yang_dinilai')->where('keterangan', 'Nilai Perusahaan')->where('id_jurusan', 1);
+        // dd($siswa,$kategori->toArray());
+
+        // foreach ($kategori as $key => $value) {
+        //     $nilai_prakerin = Nilai_prakerin::where('id_siswa',$siswa->id)->where('id_ketegori',$value->id)->first();
+        //     if (empty($nilai_prakerin->nilai)) {
+        //         return "0";
+        //     }
+        //     return $nilai_prakerin->nilai;
+        // };
+        // dd($nilai_prakerin);
+        // $siswa = Siswa::where('id_user',Auth::user()->id)->get();
+        // $kategori = Kategori_nilai_prakerin::all()->unique('aspek_yang_dinilai')->where('keterangan', 'Nilai Perusahaan');
+        // dd($siswa->toArray(),$kategori->toArray());
 
         if ($request->jurusan) {
             $kategori = Kategori_nilai_prakerin::all()->unique('aspek_yang_dinilai')->where('keterangan', 'Nilai Perusahaan')->where('jurusan', $request->jurusan);
@@ -36,7 +50,7 @@ class SiswaNilai_PrakerinController extends Controller
             if(!empty($val)){
                 $kategori = Kategori_nilai_prakerin::select('aspek_yang_dinilai')->where('keterangan', 'Nilai Perusahaan')->distinct('aspek_yang_dinilai')->where('id_jurusan', $val)->get();
             }else{
-                $kategori = Kategori_nilai_prakerin::select('aspek_yang_dinilai')->where('keterangan', 'Nilai Perusahaan')->distinct('aspek_yang_dinilai')->where('id_jurusan','RPL')->get();
+                $kategori = Kategori_nilai_prakerin::select('aspek_yang_dinilai')->where('keterangan', 'Nilai Perusahaan')->distinct('aspek_yang_dinilai')->where('id_jurusan', 1)->get();
             }
             $kategori = Kategori_nilai_prakerin::select('aspek_yang_dinilai')->where('keterangan', 'Nilai Perusahaan')->distinct('aspek_yang_dinilai')->where('id_jurusan', $val)->get();
         return response()->json(['data'=> $kategori]);
@@ -71,46 +85,42 @@ class SiswaNilai_PrakerinController extends Controller
     {
         if ($request->ajax()) {
 
-                $siswa = Siswa::where('id_user',Auth::user()->id)->first();
-                $kategori = Kategori_nilai_prakerin::all()->unique('aspek_yang_dinilai')->where('keterangan', 'Nilai Perusahaan');
-                // dd($kategori);
+            
+            $siswa = Siswa::where('id_user',Auth::user()->id)->get();
+            $kategori = Kategori_nilai_prakerin::all()->unique('aspek_yang_dinilai')->where('keterangan', 'Nilai Perusahaan');
+            // dd($kategori);
 
 
-               $a = datatables()->of($siswa)
-                    ->addColumn('nama_siswa', function ( $nilai) {
-                        // dd($nilai);
-                        if (empty($nilai->nama_siswa)) {
-                            return "Siswa kosong";
-                        }
-                        return $nilai->nama_siswa;
-                    });
-                    foreach ($kategori as $key => $value) {
+           $a = datatables()->of($siswa)
+                ->addColumn('nama_siswa', function ( $nilai) {
+                    // dd($nilai);
+                    if (empty($nilai->nama_siswa)) {
+                        return "Siswa kosong";
+                    }
+                    return $nilai->nama_siswa;
+                });
+                foreach ($kategori as $key => $value) {
                     $a->addColumn($value->aspek_yang_dinilai, function ($siswa) use ($value)  {
-                    $nilai_prakerin = Nilai_prakerin::where('id_siswa', Auth::user()->siswa->id)->where('id_ketegori',$value->id)->first();
-                        if (empty($nilai_prakerin->nilai)) {
-                            return "0";
-                        }
-                        return $nilai_prakerin->nilai;
-                    });
-                    };
-                    // $a// ->addColumn('tgl_pelaksanaan', function($data){
-                    //     return $data->created_at->format('m-d-Y');
-                    // })
-                    $a->addColumn('action', function ($data) {
-                        $button = '<a href="/siswa/data_prakerin/detail/' . $data->id . '"   id="' . $data->id . '" class="edit btn btn-primary btn-sm"><i class="fas fa-search"></i></a>';
-                        $button .= '&nbsp';
-                        $button .= '<a  href="../siswa/nilai_prakerin/edit/' . $data->id . '" id="edit" data-toggle="tooltip"  data-id="' . $data->id . '" data-original-title="Edit" class="edit btn btn-warning btn-sm edit-post"><i class="fas fa-pencil-alt"></i></a>';
-                        $button .= '&nbsp';
-                        if (Auth::user()->role == 'siswa') {
-
-                        }else {
-                            $button .= '<button type="button" name="delete" id="hapus" data-id="' . $data->id . '" class="delete btn btn-danger btn-sm"><i class="fas fa-trash"></i></button>';
-
-                        }
-                        return $button;
-                    });
-                    $a->rawColumns(['action', 'nama_siswa']);
-                    return $a->addIndexColumn()->make(true);
+                        $nilai_prakerin = Nilai_prakerin::where('id_siswa', Auth::user()->siswa->id)->where('id_ketegori',$value->id)->first();
+                            if (empty($nilai_prakerin->nilai)) {
+                                return "0";
+                            }
+                            return $nilai_prakerin->nilai;
+                        });
+                };
+                // $a// ->addColumn('tgl_pelaksanaan', function($data){
+                //     return $data->created_at->format('m-d-Y');
+                // })
+                $a->addColumn('action', function ($data) {
+                    $button = '<a href="/siswa/data_prakerin/detail/' . $data->id . '"   id="' . $data->id . '" class="edit btn btn-primary btn-sm"><i class="fas fa-search"></i></a>';
+                    $button .= '&nbsp';
+                    $button .= '<a  href="../siswa/nilai_prakerin/edit/' . $data->id . '" id="edit" data-toggle="tooltip"  data-id="' . $data->id . '" data-original-title="Edit" class="edit btn btn-warning btn-sm edit-post"><i class="fas fa-pencil-alt"></i></a>';
+                    $button .= '&nbsp';
+                        // $button .= '<button type="button" name="delete" id="hapus" data-id="' . $data->id . '" class="delete btn btn-danger btn-sm"><i class="fas fa-trash"></i></button>';
+                    return $button;
+                });
+                $a->rawColumns(['action', 'nama_siswa']);
+                return $a->addIndexColumn()->make(true);
         }
     }
     /**
@@ -233,7 +243,7 @@ class SiswaNilai_PrakerinController extends Controller
              "id_ketegori" => $aspekk[$i], // id_kategori
              "nilai" => $nilaii[$i], // nilai
              "keterangan" => $keterangann[$i],
-             "id_kelompok_laporan" => $siswa->data_prakerin->kelompok_laporan->id
+             "id_kelompok_laporan" => $siswa->kelompok_laporan->id
          ]);
      }
      return redirect()->route('Siswanilai_prakerin.index')->with('success','Nilai berhasil di masukan');
@@ -431,7 +441,7 @@ class SiswaNilai_PrakerinController extends Controller
                           "id_ketegori" => $aspekk[$i], // id_kategori
                           "nilai" => $nilaii[$i], // nilai
                           "keterangan" => $keterangann[$i],
-                          "id_kelompok_laporan" => $siswa->data_prakerin->kelompok_laporan->id
+                          "id_kelompok_laporan" => $siswa->kelompok_laporan->id
                       ]);
                   }
               }else{
@@ -440,7 +450,7 @@ class SiswaNilai_PrakerinController extends Controller
                       "id_ketegori" => $aspekk[$i], // id_kategori
                       "nilai" => $nilaii[$i], // nilai
                       "keterangan" => $keterangann[$i],
-                      "id_kelompok_laporan" => $siswa->data_prakerin->kelompok_laporan->id
+                      "id_kelompok_laporan" => $siswa->kelompok_laporan->id
                   ]);
               }
               }
@@ -466,7 +476,7 @@ class SiswaNilai_PrakerinController extends Controller
                           "id_ketegori" => $aspekk[$i], // id_kategori
                           "nilai" => $nilaii[$i], // nilai
                           "keterangan" => $keterangann[$i],
-                          "id_kelompok_laporan" => $siswa->data_prakerin->kelompok_laporan->id
+                          "id_kelompok_laporan" => $siswa->kelompok_laporan->id
                       ]);
                   }
               }else{
@@ -475,7 +485,7 @@ class SiswaNilai_PrakerinController extends Controller
                       "id_ketegori" => $aspekk[$i], // id_kategori
                       "nilai" => $nilaii[$i], // nilai
                       "keterangan" => $keterangann[$i],
-                      "id_kelompok_laporan" => $siswa->data_prakerin->kelompok_laporan->id
+                      "id_kelompok_laporan" => $siswa->kelompok_laporan->id
                   ]);
               }
               }
