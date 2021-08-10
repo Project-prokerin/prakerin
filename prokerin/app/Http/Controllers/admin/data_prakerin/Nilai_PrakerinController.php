@@ -7,6 +7,7 @@ use App\Models\jurusan;
 use App\Models\Kategori_nilai_prakerin;
 use App\Models\kelas;
 use App\Models\Nilai_prakerin;
+use App\Models\kelompok_laporan;
 use Illuminate\Http\Request;
 use App\Models\Siswa;
 use Database\Seeders\kategori_nilai_prakerinSeeder;
@@ -237,6 +238,8 @@ class Nilai_PrakerinController extends Controller
 
  public function store(Request $request)
  {
+    // dd($request);
+
      // ambil siswa
     $jumlah_aspek =  Kategori_nilai_prakerin::all();
 
@@ -283,9 +286,12 @@ class Nilai_PrakerinController extends Controller
      }
 
 
-     // dd($aspekk,$keterangann,$nilaii);
+    //  dd($aspekk,$keterangann,$nilaii);
 
      $siswa = Siswa::where('id',$request->id_siswa)->first();
+    //  kelom
+    //  dd($siswa->kelompok_laporan->id);
+
      // cara ambil id_kategpru
      // ituing juamlah aspek nya
 
@@ -295,7 +301,7 @@ class Nilai_PrakerinController extends Controller
              "id_ketegori" => $aspekk[$i], // id_kategori
              "nilai" => $nilaii[$i], // nilai
              "keterangan" => $keterangann[$i],
-             "id_kelompok_laporan" => $siswa->data_prakerin->kelompok_laporan->id
+             "id_kelompok_laporan" => $siswa->kelompok_laporan->id
          ]);
      }
      return redirect()->route('nilai_prakerin.index')->with('success','Nilai berhasil di masukan');
@@ -414,9 +420,9 @@ class Nilai_PrakerinController extends Controller
     public function update(Request $request, $id)
     {
 
-        // dd($request);
+        // dd($id,$request->toArray());
         $count =  Nilai_prakerin::where('id_siswa',$id)->count();
-        // dd($request->id_siswa);
+        // dd($count);
       $aspek[] = $request->aspek0;
     $aspek[] = $request->aspek1;
     $aspek[] = $request->aspek2;
@@ -460,7 +466,7 @@ class Nilai_PrakerinController extends Controller
 
         // dd($nilaii,$aspekk,$keterangann);
 
-        $kategoriSekolah = nilai_prakerin::where('id_siswa',$id)->get();
+        $kategoriSekolah = Nilai_prakerin::where('id_siswa',$id)->get();
         // $KS = $kategoriSekolah->kategori_nilai_prakerin->keterangan;
         // dd($kategoriSekolah->toArray());
         foreach ($kategoriSekolah as $key ) {
@@ -495,7 +501,7 @@ class Nilai_PrakerinController extends Controller
                           "id_ketegori" => $aspekk[$i], // id_kategori
                           "nilai" => $nilaii[$i], // nilai
                           "keterangan" => $keterangann[$i],
-                          "id_kelompok_laporan" => $siswa->data_prakerin->kelompok_laporan->id
+                          "id_kelompok_laporan" => $siswa->kelompok_laporan->id
                       ]);
                   }
               }else{
@@ -504,7 +510,7 @@ class Nilai_PrakerinController extends Controller
                       "id_ketegori" => $aspekk[$i], // id_kategori
                       "nilai" => $nilaii[$i], // nilai
                       "keterangan" => $keterangann[$i],
-                      "id_kelompok_laporan" => $siswa->data_prakerin->kelompok_laporan->id
+                      "id_kelompok_laporan" => $siswa->kelompok_laporan->id
                   ]);
               }
               }

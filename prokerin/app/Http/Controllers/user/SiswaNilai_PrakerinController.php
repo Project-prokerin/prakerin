@@ -19,6 +19,8 @@ class SiswaNilai_PrakerinController extends Controller
      */
     public function index(Request $request)
     {
+        // $kategori = Kategori_nilai_prakerin::select('aspek_yang_dinilai')->where('keterangan', 'Nilai Perusahaan')->distinct('aspek_yang_dinilai')->where('jurusan', $val)->get();
+        // dd($kategori);
 
         if ($request->jurusan) {
             $kategori = Kategori_nilai_prakerin::all()->unique('aspek_yang_dinilai')->where('keterangan', 'Nilai Perusahaan')->where('jurusan', $request->jurusan);
@@ -32,11 +34,11 @@ class SiswaNilai_PrakerinController extends Controller
     public function getNameColumn($val)
     {
             if(!empty($val)){
-                $kategori = Kategori_nilai_prakerin::select('aspek_yang_dinilai')->where('keterangan', 'Nilai Perusahaan')->distinct('aspek_yang_dinilai')->where('jurusan', $val)->get();
+                $kategori = Kategori_nilai_prakerin::select('aspek_yang_dinilai')->where('keterangan', 'Nilai Perusahaan')->distinct('aspek_yang_dinilai')->where('id_jurusan', $val)->get();
             }else{
-                $kategori = Kategori_nilai_prakerin::select('aspek_yang_dinilai')->where('keterangan', 'Nilai Perusahaan')->distinct('aspek_yang_dinilai')->where('jurusan','RPL')->get();
+                $kategori = Kategori_nilai_prakerin::select('aspek_yang_dinilai')->where('keterangan', 'Nilai Perusahaan')->distinct('aspek_yang_dinilai')->where('id_jurusan','RPL')->get();
             }
-            $kategori = Kategori_nilai_prakerin::select('aspek_yang_dinilai')->where('keterangan', 'Nilai Perusahaan')->distinct('aspek_yang_dinilai')->where('jurusan', $val)->get();
+            $kategori = Kategori_nilai_prakerin::select('aspek_yang_dinilai')->where('keterangan', 'Nilai Perusahaan')->distinct('aspek_yang_dinilai')->where('id_jurusan', $val)->get();
         return response()->json(['data'=> $kategori]);
     }
 
@@ -69,7 +71,7 @@ class SiswaNilai_PrakerinController extends Controller
     {
         if ($request->ajax()) {
 
-                $siswa = Siswa::where('id_user',Auth::user()->id)->get();
+                $siswa = Siswa::where('id_user',Auth::user()->id)->first();
                 $kategori = Kategori_nilai_prakerin::all()->unique('aspek_yang_dinilai')->where('keterangan', 'Nilai Perusahaan');
                 // dd($kategori);
 

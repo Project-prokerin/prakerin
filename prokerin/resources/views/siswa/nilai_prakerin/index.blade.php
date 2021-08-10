@@ -46,28 +46,28 @@
                         <a href="/admin/nilai_prakerin/tambah" class="btn btn-primary ml-3 "> Tambah Data <i
                                 class="fas fa-plus"></i></button></a>
                     </div>
-                    {{-- <div class="col-md-6">
+                    <div class="col-md-6">
                         <div class="row">
                             <div class="col-md-7">
-                                <select name="" class="form-control mb-2  jurusan  @error('')  is-invalid  @enderror select2">
-                                    <option value="RPL">--Pilih Jurusan--</option>
-                                    <option value="RPL" selected>RPL</option>
-                                    <option value="MM">MM</option>
-                                    <option value="BC">BC</option>
+                                <select  name="" class="form-control mb-2  jurusan  @error('')  is-invalid  @enderror select2">
+                                    {{-- <option value="RPL">--Pilih Jurusan--</option>
+                                    {{-- {{-- <option value="RPL" selected>RPL</option> --}}
+                                    <option value="{{Auth::user()->siswa->kelas->jurusan->id}}" selected>{{Auth::user()->siswa->kelas->jurusan->singkatan_jurusan}}</option>
+                                    {{-- <option value="BC">BC</option>
                                     <option value="TKJ">TKJ</option>
-                                    <option value="TEI">TEI</option>
+                                    <option value="TEI">TEI</option> --}} --}} --}}
                                 </select>
                             </div>
-                            <div class="col-md-5">
+                            {{-- <div class="col-md-5">
                                 <a href="/admin/export/excel/nilai_prakerin" class="btn btn-success mr-3  ml-2"> Excel
                                     <i class="fas fa-cloud-download-alt"></i></button></a>
                                 <label>Search:<input type="search" id="search" class="form-control form-control-sm" placeholder=""
                                         aria-controls="table19"></label>
-                            </div>
+                            </div> --}}
                         </div>
 
 
-                    </div> --}}
+                    </div>
                 </div>
 
                 <div class="table-responsive">

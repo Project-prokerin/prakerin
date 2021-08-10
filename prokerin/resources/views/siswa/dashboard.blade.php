@@ -227,12 +227,62 @@
             </div>
             <div class="card-wrap" style="margin-top: 33px;">
                 <a href="status" class="text-decoration-none">
-                    <div class="card-header">
-                        <h4>Status Magang</h4>
-                    </div>
-                    <div class="card-body">
-                        <h5>Status Selesai Magang?</h5>
-                    </div>
+                   @if ($statusMagang_siswa == '')
+                   <div class="card-body">
+                    <div class="alert  alert-dark alert-has-icon">
+                        <div class="alert-icon"><i class="far fa-lightbulb"></i></div>
+                        <div class="alert-body">
+                          <div class="alert-title">Status Magang</div>
+                          Belum melakaukan pengajuan
+                        </div>
+                      </div>
+                </div>
+                   @else 
+                            @if ($statusMagang_siswa->status === 'Pengajuan')
+                            <div class="card-body">
+                                <div class="alert  alert-primary alert-has-icon">
+                                    <div class="alert-icon"><i class="far fa-lightbulb"></i></div>
+                                    <div class="alert-body">
+                                      <div class="alert-title">Status Magang</div>
+                                      Pengajuan
+                                    </div>
+                                  </div>
+                            </div>
+                                
+                            @elseif($statusMagang_siswa->status === 'Magang')
+                            <div class="card-body">
+                                <div class="alert  alert-warning alert-has-icon">
+                                    <div class="alert-icon"><i class="far fa-lightbulb"></i></div>
+                                    <div class="alert-body">
+                                      <div class="alert-title">Status Magang</div>
+                                      Magang
+                                    </div>
+                                  </div>
+                            </div>
+                                
+                            @elseif($statusMagang_siswa->status === 'Selesai')
+                            <div class="card-body">
+                                <div class="alert  alert-success alert-has-icon">
+                                    <div class="alert-icon"><i class="far fa-lightbulb"></i></div>
+                                    <div class="alert-body">
+                                      <div class="alert-title">Status Magang</div>
+                                      Selesai
+                                    </div>
+                                  </div>
+                            </div>
+                  @         else 
+                            <div class="card-body">
+                                <div class="alert  alert-danger alert-has-icon">
+                                    <div class="alert-icon"><i class="far fa-lightbulb"></i></div>
+                                    <div class="alert-body">
+                                      <div class="alert-title">Status Magang</div>
+                                      Batal
+                                    </div>
+                                  </div>
+                            </div>
+                        
+                            @endif
+                   @endif
                 </a>
             </div>
         </div>
@@ -246,13 +296,13 @@
                 </div>
                 <div class="card-stats-items">
                     <div class="card-stats-item" style="margin-right: 60px;">
-                        <div class="card-stats-item-count" style="margin-left: 35px;width: 50px;">{{count($jurnalP_siswa)}}</div>
+                        <div class="card-stats-item-count" style="margin-left: 35px;width: 50px;"> {{$statusMagang_siswa->status != 'Magang' ? '0' : count($jurnalP_siswa)}}</div>
                         <a href="jurnal" class="text-decoration-none">
                             <div class="" style="width: 120px;">Jurnal Prakerin</div>
                         </a>
                     </div>
                     <div class="card-stats-item">
-                        <div class="card-stats-item-count" style="margin-left: 35px;width: 50px;">{{count($jurnalH_siswa)}}</div>
+                        <div class="card-stats-item-count" style="margin-left: 35px;width: 50px;">{{ $statusMagang_siswa->status != 'Magang' ? '0' : count($jurnalH_siswa)}}</div>
                         <a href="jurnalH" class="text-decoration-none">
                             <div class="" style="width: 120px;">Jurnal Harian</div>
                         </a>

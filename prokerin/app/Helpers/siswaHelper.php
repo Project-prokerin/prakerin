@@ -32,7 +32,7 @@ function siswa($value)
             return empty(Auth::user()->siswa) ? '' : Auth::user()->siswa;
             break;
         case 'data_prakerin' || 'jurnal_harian' || 'jurnal_prakerin' || 'pembekalan_magang';
-            return empty(Auth::user()->siswa->$value)? '' : Auth::user()->siswa->$value;
+            return empty(Auth::user()->siswa->$value) ? '' : Auth::user()->siswa->$value;
             break;
         }
 }

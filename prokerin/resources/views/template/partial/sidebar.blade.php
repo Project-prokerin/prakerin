@@ -343,7 +343,10 @@ or Auth::user()->role == 'sarpras' or Auth::user()->role == 'bkk' or Auth::user(
                 </a>
             </li>
 
-            @if(siswa('data_prakerin')->status === 'Pengajuan' || empty(siswa('data_prakerin')))
+            @if(siswa('data_prakerin')->status == 'Batal' ||siswa('data_prakerin')->status == 'Pengajuan' ||  empty(siswa('data_prakerin')))
+            
+            
+            
             @else
             <li class="dropdown
 
@@ -367,13 +370,13 @@ or Auth::user()->role == 'sarpras' or Auth::user()->role == 'bkk' or Auth::user(
                     <span>Status Magang</span>
                 </a>
             </li>
-            <li class="dropdown
-            @if (Request::is('user/jurnalH','user/jurnalH/*'))
-            active
-            @elseif(Request::is('user/jurnal','user/jurnal/*'))
-            active
-            @endif
-            ">
+                 <li class="dropdown
+                      @if (Request::is('user/jurnalH','user/jurnalH/*'))
+                      active
+                      @elseif(Request::is('user/jurnal','user/jurnal/*'))
+                      active
+                      @endif
+                 ">
                 <a href="#" class="nav-link has-dropdown"><i class="far fa-newspaper"></i> <span>Jurnal</span></a>
                 <ul class="dropdown-menu" style="display: none;">
                     <li class="@if (Request::is('user/jurnal','user/jurnal/*')) active @endif">

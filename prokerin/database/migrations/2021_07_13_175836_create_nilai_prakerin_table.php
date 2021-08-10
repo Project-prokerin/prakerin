@@ -16,7 +16,8 @@ class CreateNilaiPrakerinTable extends Migration
         Schema::create('nilai_prakerin', function (Blueprint $table) {
             $table->id();
             $table->foreignId('id_siswa')->nullable()->constrained('siswa')->onDelete('cascade')->onUpdate('cascade');
-            $table->foreignId('id_kelompok_laporan')->nullable()->constrained('siswa')->onDelete('cascade')->onUpdate('cascade');
+            $table->bigInteger('id_kelompok_laporan')->unsigned()->nullable()->constrained('siswa')->onDelete('cascade')->onUpdate('cascade');
+            // $table->foreignId('id_kelompok_laporan')->nullable()->constrained('siswa')->onDelete('cascade')->onUpdate('cascade');
             $table->string('nilai');
             $table->enum('keterangan', ['A','B','C','D','E']);
             $table->bigInteger('id_ketegori')->unsigned()->nullable();

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\admin\laporan;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\laporan_prakerin;
+use App\Models\perusahaan;
 use App\Models\kelompok_laporan;
 use App\Http\Requests\admin\laporan_prakerinRequest;
 use Illuminate\Support\Facades\Auth;
@@ -19,6 +20,7 @@ class laporanController extends Controller
     {
         $kelompok = Kelompok_laporan::all()->unique(['no']);
         // $usersUnique = $kelompok;
+        // dd($kelompok);
 // $userDuplicates = $kelompok->diff($usersUnique);
 // dd($kelompok->toArray());
         return view('admin.laporan_prakerin.index',compact('kelompok'));
@@ -38,7 +40,8 @@ class laporanController extends Controller
                     return $laporan_prakerin->kelompok_laporan->nama_perusahaan;
                 })
                 ->addColumn('alamat_perusahaan', function (laporan_prakerin $laporan_prakerin) {
-                    return $laporan_prakerin->kelompok_laporan->data_prakerin->perusahaan->alamat;
+                    $lokasi = perusahaan::where('nama',$laporan_prakerin->kelompok_laporan->nama_perusahaan)->first();
+                    return $lokasi->alamat;
                 })
                 ->addColumn('action', function ($data) {
                     $button = '<button type="button"   id="' . $data->id . '" class="edit btn btn-primary btn-sm"><i class="fas fa-search"></i></button>';

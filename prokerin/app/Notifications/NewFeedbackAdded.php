@@ -70,7 +70,7 @@ class NewFeedbackAdded extends Notification
             'untuk' => $untuk->nama,
             'dari' => $dari->nama,
             'dari_jabatan' => $dari->jabatan,
-            'waktu_pengiriman' => $this->feedback->created_at,
+            'id_detail_surat' => $this->feedback->id_detail_surat,
 
         ];
     }

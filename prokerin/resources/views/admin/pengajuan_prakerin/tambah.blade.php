@@ -161,13 +161,10 @@
                   $('#dynamic_field').append('<tr id="row'+i+'"><td>'+
                                                 '<select name="id_data_prakerin[]" class="form-control select2 prakerin @error('id_data_prakerin')  is-invalid  @enderror ">'+
                                                     '<option value="">--Cari Siswa--</option>'+
-                                                    '@forelse ($siswa as $item)'+
-                                                        '@if (empty($item->kelompok_laporan))'+
-                                                            '<option value="{{ $item->id }}">{{ $item->nama_siswa }}</option>'+
-                                                        '@endif'+
-                                                    '@empty'+
-                                                        '<option disabled>Semua Siswa telah mendapat kelompok!</option>'+
-                                                    '@endforelse'+
+                                                    
+                                                    '@foreach ($siswa as $item)'+
+                                                             '<option value="{{ $item->id }}" >{{ $item->nama_siswa }}</option>'+
+                                                     '@endforeach'+
                                                 '</select>'+
                                                     '@if ($errors->has(`id_data_prakerin.2`))'+
                                                         '<span class="text-danger">'+

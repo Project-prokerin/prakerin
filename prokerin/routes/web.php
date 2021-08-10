@@ -204,8 +204,8 @@ Route::prefix('admin')->middleware(['web', 'auth', 'role:admin'])->group(functio
 // modul hubin (prakerin)
 // untuk hubin, admin disi
 // kaprog
-Route::prefix('admin')->middleware(['web', 'auth', 'role:kaprog,hubin,admin,kepsek,pembimbing'])->group(function () {
-        Route::middleware(['web', 'auth', 'role:kaprog,hubin,admin,kepsek,pembimbing'])->group(function () {
+Route::prefix('admin')->middleware(['web', 'auth', 'role:kaprog,hubin,admin,kepsek,pembimbing,tu'])->group(function () {
+        Route::middleware(['web', 'auth', 'role:kaprog,hubin,admin,kepsek,pembimbing,tu'])->group(function () {
     // data prakerin
     Route::get('data_prakerin', [data_prakerinController::class, 'index'])->name('data_prakerin.index');
     Route::get('data_prakerin/ajax', [data_prakerinController::class, 'ajax'])->name('data_prakerin.ajax');
@@ -479,9 +479,9 @@ Route::middleware(['web', 'auth', 'role:siswa'])->group(function () {
 
     //nilai prakerin 
     Route::get('/siswa/nilai_prakerin', [SiswaNilai_PrakerinController::class, 'index'])->name('Siswanilai_prakerin.index');
-    Route::post('/siswa/nilai_prakerin/header/ajax', [SiswaNilai_PrakerinController::class, 'index'])->name('Siswanilai_prakerin.header.index');
+    Route::get('/siswa/nilai_prakerin/header/ajax', [SiswaNilai_PrakerinController::class, 'index'])->name('Siswanilai_prakerin.header.index');
     Route::get('/siswa/nilai_prakerin/ajax', [SiswaNilai_PrakerinController::class, 'ajax'])->name('Siswanilai_prakerin.ajax');
-    Route::post('/siswa/nilai_prakerin/ajax', [SiswaNilai_PrakerinController::class, 'ajax'])->name('Siswanilai_prakerin.ajax');
+    // Route::get('/siswa/nilai_prakerin/ajax', [SiswaNilai_PrakerinController::class, 'ajax'])->name('Siswanilai_prakerin.ajax');
     Route::get('/siswa/nilai_prakerin/column/ajax/{val}', [SiswaNilai_PrakerinController::class, 'getNameColumn'])->name('Siswanilai_prakerin.getNameColumn');
     Route::get('/siswa/nilai_prakerin/get_option/ajax', [SiswaNilai_PrakerinController::class, 'get_option'])->name('Siswanilai_prakerin.get_option');
 
