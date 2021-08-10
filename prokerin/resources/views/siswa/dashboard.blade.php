@@ -241,7 +241,7 @@
                             @if ($statusMagang_siswa->status === 'Pengajuan')
                             <div class="card-body">
                                 <div class="alert  alert-primary alert-has-icon">
-                                    <div class="alert-icon"><i class="far fa-lightbulb"></i></div>
+                                    <div class="alert-icon"><i class="fas fa-file-signature"></i></div>
                                     <div class="alert-body">
                                       <div class="alert-title">Status Magang</div>
                                       Pengajuan
@@ -252,7 +252,7 @@
                             @elseif($statusMagang_siswa->status === 'Magang')
                             <div class="card-body">
                                 <div class="alert  alert-warning alert-has-icon">
-                                    <div class="alert-icon"><i class="far fa-lightbulb"></i></div>
+                                    <div class="alert-icon"><i class="fas fa-briefcase"></i></div>
                                     <div class="alert-body">
                                       <div class="alert-title">Status Magang</div>
                                       Magang

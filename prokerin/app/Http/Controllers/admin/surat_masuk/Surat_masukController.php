@@ -25,7 +25,9 @@ class Surat_masukController extends Controller
     $notifications = auth()->user()->unreadNotifications;
     $notifUnread = Auth::user()->notifications->where('read_at',null)->toArray();
     
-    // dd($notifications,$notifUnread[0]['data']['id_detail_surat']);
+
+  
+
     
         return view('admin.surat_masuk.index');
     }

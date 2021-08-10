@@ -77,7 +77,7 @@
                                 <a href="#">
                                     <table border="1">
                                         <tr>
-                                            <td style="height:30px; width:30px;"><i class="far fa-user" style="margin-left: 8px;"></i></td>
+                                            <td style="height:30px; width:30px;"><i class="fas fa-building" style="margin-left: 8px;"></i></td>
                                         </tr>
                                     </table>
                                 </a>
@@ -90,7 +90,7 @@
                                 <a href="#">
                                     <table border="1">
                                         <tr>
-                                            <td style="height:30px; width:30px;"><i class="far fa-user" style="margin-left: 8px;"></i></td>
+                                            <td style="height:30px; width:30px;"><i class="fas fa-align-center" style="margin-left: 8px;"></i></td>
                                         </tr>
                                     </table>
                                 </a>
@@ -133,7 +133,7 @@
                             <a href="#">
                                 <table border="1">
                                     <tr>
-                                        <td style="height:30px; width:30px;"><i class="far fa-user" style="margin-left: 8px;"></i></td>
+                                        <td style="height:30px; width:30px;"><i class="fas fa-map-marked-alt" style="margin-left: 8px;"></i></td>
                                     </tr>
                                 </table>
                             </a>
@@ -146,7 +146,7 @@
                         <a href="#">
                             <table border="1">
                                 <tr>
-                                    <td style="height:30px; width:30px;"><i class="far fa-user" style="margin-left: 8px;"></i></td>
+                                    <td style="height:30px; width:30px;"><i class="fas fa-link" style="margin-left: 8px;"></i></td>
                                 </tr>
                             </table>
                         </a>
@@ -159,7 +159,7 @@
                         <a href="#">
                             <table border="1">
                                 <tr>
-                                    <td style="height:30px; width:30px;"><i class="far fa-user" style="margin-left: 8px;"></i></td>
+                                    <td style="height:30px; width:30px;"><i class="far fa-envelope" style="margin-left: 8px;"></i></td>
                                 </tr>
                             </table>
                         </a>
@@ -172,7 +172,7 @@
                         <a href="#">
                             <table border="1">
                                 <tr>
-                                    <td style="height:30px; width:30px;"><i class="far fa-user" style="margin-left: 8px;"></i></td>
+                                    <td style="height:30px; width:30px;"><i class="fab fa-amilia" style="margin-left: 8px;"></i></td>
                                 </tr>
                             </table>
                         </a>
