@@ -51,6 +51,25 @@ class PDFController extends Controller
             
         }
 
+        if ($request->nama_tandatangan == ''    ) {
+            $namaT =   'Ramadin Tarigan, ST';
+            
+        }else{
+            $namaT =   $request->nama_tandatangan;
+        }
+
+        if ( $request->nik_tandatangan == '') {
+            $nikT =   '19760329200411101';
+        }else{
+            $nikT =   $request->nik_tandatangan;
+        }
+
+        if ($request->jabatan_tandatangan == '') {
+            $jabatanT =   'Kepala SMK Taruna Bhakti';
+        }else{
+            $jabatanT =   $request->jabatan_tandatangan;
+            
+        }
     
     $date1 = new Carbon($from_t);
     $date2 = new Carbon($end_t);
@@ -86,7 +105,7 @@ class PDFController extends Controller
 
 
 
-    $KPrakerin = PDF::loadView('export.PDF.kelompok_prakerin', compact('hari_from','date_from','date_end','jumlah_bulan','alamat_perusahaan','perusahaan','kelompok','nomor','waktu','bulan','tahun'))->setOptions(['defaultFont' => 'sans-serif', 'isHtml5ParserEnabled' => true, 'isRemoteEnabled' => true]);
+    $KPrakerin = PDF::loadView('export.PDF.kelompok_prakerin', compact('jabatanT','nikT','namaT','hari_from','date_from','date_end','jumlah_bulan','alamat_perusahaan','perusahaan','kelompok','nomor','waktu','bulan','tahun'))->setOptions(['defaultFont' => 'sans-serif', 'isHtml5ParserEnabled' => true, 'isRemoteEnabled' => true]);
     return $KPrakerin->download('KelompokPrakerin.PDF');
         // return $KPrakerin->stream();
         // return response()->json();

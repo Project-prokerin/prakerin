@@ -139,7 +139,7 @@
                     <h4 style="text-align: center; font-size:20px;">{{$nama_Surat}}</h3>
                     <h6 class="font6" style="margin-top: 1px; font-size: 14px; text-align: center;">Nomor
                         &nbsp;&nbsp; :&nbsp;
-                        /421.5-SMK.TB/HUBIN/PRAKERIN/II/2021</h6>
+                        {{$nomorSurat}}/421.5-SMK.TB/HUBIN/PRAKERIN/{{$bulan}}/{{$tahun}}</h6>
                     <h6 class="font6" style="font-weight: 300px;font-size: 14px; margin-top: -15px; margin-left: 0px; text-align:left;">
                     Dasar Surat undangan dari Kementrian Pendidikan dan Kebudayaan, Kepala sekolah Menengah
                     Kejuruan (SMK) Taruna Bhakti Depok memberikan tugas Kepada :</h6>
@@ -167,7 +167,7 @@
                     <h6 class="font6" style="font-weight: 300px;font-size: 14px; margin-top: -15px;  text-align:left; margin-left:80px;">
                         Tempat &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: {{$tempat}} </h6>
                     <h6 class="font6" style="font-weight: 300px;font-size: 14px; margin-top: -15px;  text-align:left; margin-left:80px;">
-                        Alamat &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: {{$alamat  }} </h6>
+                        Alamat &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: {{strip_tags($alamat)    }} </h6>
 
                 </div>
                 <div class="container">
@@ -180,7 +180,7 @@
                     </div>
                 </div>
                 <div class="ttd">
-                    <h6 class="font6">Depok, </h6>
+                    <h6 class="font6" style="margin-right:123px;">Depok, </h6>
                     <h6 class="font6" style="margin-top: -30px;">Kepala SMK Taruna Bhakti</h6>
                 </div>
 
@@ -208,15 +208,15 @@
                 @if (!empty($tandatangan_kepsek))
                 
                 <div style="text-align: right; margin-top:-60px;">
-                    <img src="{{'data:image/png;base64,'.base64_encode(file_get_contents(public_path("$tandatangan_kepsek")))}}" style="margin-top: -20px; z-index: 2; width: 200px; height: 170px;"/> 
+                    <img src="{{'data:image/png;base64,'.base64_encode(file_get_contents(public_path("$tandatangan_kepsek")))}}" style="margin-top: 1px; z-index: 2; width: 120px; height: 100px;margin-right:20px;"/> 
         
-                    <h6 style="font-size: 14px; margin-top: -40px;">Ramadin Tarigan, ST  <br><span style="font-size: 14px; font-weight: light; ">NIK. 19760329200411101 </span></h6>
+                    <h6 style="font-size: 14px; margin-top: -10px;margin-right:30px;">Ramadin Tarigan, ST  <br><span style="font-size: 14px; font-weight: light;margin-right:-20px; ">NIK. 19760329200411101 </span></h6>
                     
                 </div>
                 @else
-                <div style="text-align: right; margin-top:-60px;">
-                    <h6 style="font-size: 14px; margin-top: 80px;">Ramadin Tarigan, ST</h6>
-                    <h6 style="font-size: 14px; font-weight: light; margin-top: -30px;">NIK. 19760329200411101</h6>
+                <div style="text-align: right; margin-top:20px;">
+                    <h6 style="font-size: 14px; margin-top: 50px;margin-right:30px;">Ramadin Tarigan, ST</h6>
+                    <h6 style="font-size: 14px; font-weight: light; margin-top: -30px;margin-right:10px;">NIK. 19760329200411101</h6>
                 </div>
                 @endif
 
@@ -259,7 +259,7 @@
 
                     <h6 class="font6" style="margin-top: 1px; font-size: 14px; text-align: left;">Nomor
                         &nbsp;&nbsp; :&nbsp;
-                        /421.5-SMK.TB/HUBIN/PRAKERIN/II/2021</h6>
+                        {{$nomorSurat}}/421.5-SMK.TB/HUBIN/PRAKERIN/{{$bulan}}/{{$tahun}}</h6>
                     <h6 class="font6" style="margin-top: -32px; font-size: 14px; text-align:left; ">Lembar Ke &nbsp;&nbsp;&nbsp; :&nbsp; <a href=""
                         style=" color:black; font-weight: bolder;">1 (satu)</a></h6>
 
@@ -316,7 +316,7 @@
                                     <ol type="a">
                                         <li>SMK Taruna Bhakti</li>
                                         <li>{{$tempat}}
-                                            <br>{{$alamat}}.
+                                            <br>{{strip_tags($alamat)    }}.
                                         </li>
                                     </ol>
                                 </td>
@@ -416,7 +416,7 @@
 
                             <h6 class="font6" style="margin-top: 1px; font-size: 14px; text-align: left;">Nomor
                                 &nbsp;&nbsp; :&nbsp;
-                                /421.5-SMK.TB/HUBIN/PRAKERIN/II/2021</h6>
+                                {{$nomorSurat}}/421.5-SMK.TB/HUBIN/PRAKERIN/{{$bulan}}/{{$tahun}}</h6>
                             <h6 class="font6" style="margin-top: -32px; font-size: 14px; text-align:left; ">Lembar Ke &nbsp;&nbsp;&nbsp; :&nbsp; <a href=""
                                 style=" color:black; font-weight: bolder;">1 (satu)</a></h6>
 

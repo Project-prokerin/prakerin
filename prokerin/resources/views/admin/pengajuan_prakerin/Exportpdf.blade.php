@@ -1,3 +1,4 @@
+
 <form action="{{route('export.kelompokPengajuan',$pengajuan->no)}}" method="POST" id="export_form">
     @csrf
 
@@ -57,15 +58,17 @@
 
                    
                 @endif
-                {{-- <span id="showCustome" class="btn  badge-primary" style="border-radius: 20px;">Ubah Nama Tandatangan</span> --}}
+                <span id="showCustome" class="btn  badge-primary" style="border-radius: 20px;">Customize Pentandatangan</span>
                 
 
-{{-- <div id="custome" style="display: none;">
+<div id="custome" style="display: none;">
+    <br>
+    <br>
     <div class="mb-3">
         <label class="form-label">Nama tanda-tangan</label>
         <div class="d-flex">
-        <input type="text" id="nama_tandatangan" name="nama_tandatangan" class="form-control
-        @error('nama_tandatangan') is-invalid @enderror"  value="">
+        <input type="text" maxlength="30" id="nama_tandatangan" name="nama_tandatangan" class="form-control
+        @error('nama_tandatangan') is-invalid @enderror" value='' >
         </div>
         @error('nama_tandatangan')
                         <div class="invalid-feedback">
@@ -76,8 +79,8 @@
     <div class="mb-3">
         <label class="form-label">NIK tanda-tangan</label>
         <div class="d-flex">
-        <input type="text" id="nik_tandatangan" name="nik_tandatangan" class="form-control
-        @error('nik_tandatangan') is-invalid @enderror"  value="">
+        <input type="number" id="nik_tandatangan" name="nik_tandatangan" class="form-control
+        @error('nik_tandatangan') is-invalid @enderror" value='' >
         </div>
         @error('nik_tandatangan')
                         <div class="invalid-feedback">
@@ -85,7 +88,19 @@
                         </div>
             @enderror
     </div>
-</div> --}}
+    <div class="mb-3">
+        <label class="form-label">Jabatan tanda-tangan</label>
+        <div class="d-flex">
+        <input type="text" maxlength="30" id="jabatan_tandatangan" name="jabatan_tandatangan" class="form-control
+        @error('jabatan_tandatangan') is-invalid @enderror" placeholder="contoh: Wakil SMK Taruna Bhakti" value='' >
+        </div>
+        @error('jabatan_tandatangan')
+                        <div class="invalid-feedback">
+                            {{ $message }}
+                        </div>
+            @enderror
+    </div>
+</div>
 
 
             </div>
@@ -122,14 +137,23 @@
 
 
         $(document).ready(function(){
-  $("#showCustome").click(function(){
-    $("#custome").toggle();
+
+            $("#showCustome").click(function(){
+    $("#custome").show();
+    alert('Kosong kan jika tidak ada yang di Custome');
   });
+
+//   if($('#yourID').css('display') == 'none')
+//         {
+//                         document.getElementById("nama_tandatangan").value = "";
+//                         document.getElementById("nik_tandatangan").value = "";
+//                         document.getElementById("jabatan_tandatangan").value = "";
+//         }
+
+         
 });
 
-    // if (condition) {
-        
-    // }
+
         </script>
 
 

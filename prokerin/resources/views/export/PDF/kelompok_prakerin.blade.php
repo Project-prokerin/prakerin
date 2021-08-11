@@ -247,8 +247,8 @@
                         </p>
                     </div>
                     <div class="ttd">
-                        <h6 class="font6" style="margin-right: 27px;" >Depok, {{ $waktu }}</h6>
-                        <h6 class="font6" style="margin-top: -30px;">Kepala SMK Taruna Bhakti</h6>
+                        <h6 class="font6" style="margin-right: 52px;" >Depok, {{ $waktu }}</h6>
+                        <h6 class="font6" style="margin-top: -30px;">{{$jabatanT}}</h6>
                     </div>
 
 
@@ -262,8 +262,8 @@
                         </ol>
                     </div>
                     <div style="text-align: right;">
-                        <h6 style="font-size: 14px; margin-top: 120px;margin-right:30px;">Ramadin Tarigan, ST</h6>
-                        <h6 style="font-size: 14px; font-weight: light; margin-top: -30px;margin-right:10px;">NIK. 19760329200411101</h6>
+                        <h6 style="font-size: 14px; margin-top: 80px;margin-right:30px;">{{$namaT}}</h6>
+                        <h6 style="font-size: 14px; font-weight: light; margin-top: -30px;margin-right:10px;">NIK. {{$nikT}}</h6>
                     </div>
 
 
