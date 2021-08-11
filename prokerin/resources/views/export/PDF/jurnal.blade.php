@@ -155,7 +155,7 @@
             </h6>
             <h6 class="font6" style="font-weight: 300px;font-size: 14px; margin-top: -25px;  text-align:left; margin-left:110px;">
                 Nama Orang Tua / Wali<span style="margin-left: 63px;">
-                                        :&nbsp; {{$identitas_orangtua->nama_ayah}}
+                                        :&nbsp;
                                     </span>
             </h6>
             <h6 class="font6" style="font-weight: 300px;font-size: 14px; margin-top: -25px;  text-align:left; margin-left:110px;">

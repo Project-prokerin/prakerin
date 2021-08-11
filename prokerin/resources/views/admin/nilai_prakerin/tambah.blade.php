@@ -31,7 +31,7 @@
             <div class="row mb-5">
                 {{-- card col 1 --}}
                 <div class="col-6">
-                    @if (Auth::user()->role == 'admin' or Auth::user()->role == 'kaprog')
+                    @if (Auth::user()->role == 'admin' or Auth::user()->role == 'kaprog' or Auth::user()->role == 'hubin')
                     <div class="mb-2 col-12 row">
                         <label for="" class="col-sm-4 col-form-label">Siswa</label>
                         <div class="mb-3 col-8">
@@ -67,29 +67,36 @@
                         </div>
                     </div>
                     @endif
-                    @if (Auth::user()->role == 'hubin')
+                    {{-- @if (Auth::user()->role == 'hubin')
                     <div class="mb-2 col-12 row">
                         <label for="" class="col-sm-4 col-form-label">Kelompok</label>
                         <div class="mb-3 col-8">
-                            <select name="" id="siswa" class="form-control   @error('')  is-invalid  @enderror select2">
-                                <option value="">--Cari Kelompok--</option>
-                                <option value="1">Kelompok 1</option>
-                                <option value="2">Kelompok 2</option>
+                            <select name="id_siswa" id="siswa" class="form-control   @error('')  is-invalid  @enderror select2">
+                                @foreach ($kelompok as $item)
+                                    <option value="{{ $item->id_siswa }}">{{ $item->no }}</option>
+                                @endforeach
                             </select>
                         </div>
                     </div>
-                    <div class="mb-2 col-12 row">
+                      <div class="mb-2 col-12 row">
                         <label for="" class="col-sm-4 col-form-label">Jurusan</label>
                         <div class="mb-3 col-8">
                             <select name="" id="jurusan"
                                 class="form-control   @error('')  is-invalid  @enderror select2">
                                 <option value="">--Pilih Jurusan--</option>
-                                <option value="rpl">Rekayasa Perangkat Lunak</option>
-                                <option value="mm">Multimedia</option>
+                                {{-- <option value="RPL">RPL</option>
+                                <option value="MM">MM</option>
+                                <option value="BC">BC</option>
+                                <option value="TKJ">TKJ</option>
+                                <option value="TEI">TEI</option> --}}
+                                {{-- @foreach ($jurusan as $item)
+                                    <option value="{{ $item->id }}" {{ ($item->id == old('jurusan')) ? 'selected' : '' }}>{{ $item->singkatan_jurusan  }}</option>
+                                @endforeach
                             </select>
+                            <div id="invalid_jurusan" class="invalid-feedback d-none"></div>
                         </div>
                     </div>
-                    @endif
+                    @endif  --}}
                     {{-- <div class="mb-2 col-12 row">
                         <label for="" class="col-sm-4 col-form-label">Aspek Yang Dinilai</label>
                         <div class="mb-3 col-8">

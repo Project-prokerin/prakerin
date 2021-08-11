@@ -100,7 +100,7 @@
                     for (let i = 0; i < len; i++) {
                             let perusahaan = result.perusahaan[i];
                             deskripsi = perusahaan.deskripsi_perusahaan;
-                            console.log(perusahaan)
+                            //console.log(perusahaan)
                             let card = '<a href="/user/perusahaan/'+perusahaan.id+'" class="text-decoration-none text-dark">' +
                                 '<div class="col-sm-11">' +
                                 '<div class="card">' +

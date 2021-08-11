@@ -89,9 +89,9 @@
             <tr>
                 <th scope="row" class="text-dark"  >Portofolio</th>
                 <td style="{{ warna('file_portofolio') }}">
-            @if (empty(siswa('main')))
-                Anda tidak di izinkan untuk mengisi halaman ini
-            @else
+                @if (empty(siswa('main')))
+                    Anda tidak di izinkan untuk mengisi halaman ini
+                @else
                 @if (siswa('pembekalan_magang')->file_portofolio !== 'belum')
 
                 <form action="{{ route('user.pembekalan.delete') }}" id="form" method="POST">

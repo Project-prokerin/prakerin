@@ -82,7 +82,7 @@
                 </tr>
                 <tr>
                     <th scope="row" class="text-left">Judul Laporan</th>
-                    <td style="">{{ $laporan->judul_laporan }}</td>
+                    <td style="">{{ (empty($laporan->judul_laporan)) ? 'Judul laporan kosong' : '' }}</td>
                 </tr>
                 @foreach ($kelompok as $index => $item)
                 {{-- </tr> --}}

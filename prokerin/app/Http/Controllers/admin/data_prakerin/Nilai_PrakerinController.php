@@ -84,7 +84,7 @@ class Nilai_PrakerinController extends Controller
         if ($request->ajax()) {
            if (Auth::user()->role != 'kaprog') {
             if ($request->filter) {
-                $kategori = Kategori_nilai_prakerin::select('id')->where('keterangan', 'Nilai Perusahaan')->where('id_jurusan', $request->filter)->get();
+            $kategori = Kategori_nilai_prakerin::select('id')->where('keterangan', 'Nilai Perusahaan')->where('id_jurusan', $request->filter)->get();
                 $arr_id_kategori = [];
                 foreach ($kategori as $key => $value) {
                     $arr_id_kategori[] = $value->id; // mendapat id kategori
@@ -186,7 +186,7 @@ class Nilai_PrakerinController extends Controller
     public function tambah()
     {
 
-        if (Auth::user()->role != 'kaprog') {
+        if (Auth::user()->role !== 'kaprog') {
                  // $siswa = Siswa::doesntHave('nilai_prakerin')->get();
         $kategoriS = Kategori_nilai_prakerin::select('id')->where('keterangan', 'Nilai Perusahaan')->get();
         $arr_id_kategori = [];
@@ -204,7 +204,7 @@ class Nilai_PrakerinController extends Controller
         $siswa = Siswa::whereNotIn('id', $arr_id_siswa)->get();
         // dd($siswa->toArray());
         $kategori = Kategori_nilai_prakerin::all()->unique('aspek_yang_dinilai')->where('keterangan', 'Nilai Perusahaan');
-
+            $kelompok = kelompok_laporan::all()->unique('no');
         }else{
                // $siswa = Siswa::doesntHave('nilai_prakerin')->get();
         $kategoriS = Kategori_nilai_prakerin::select('id')->where('keterangan', 'Nilai Sekolah')->get();
@@ -223,10 +223,12 @@ class Nilai_PrakerinController extends Controller
         $siswa = Siswa::whereNotIn('id', $arr_id_siswa)->get();
         // dd($siswa->toArray());
         $kategori = Kategori_nilai_prakerin::all()->unique('aspek_yang_dinilai')->where('keterangan', 'Nilai Perusahaan');
+        $kelompok = kelompok_laporan::all()->unique('no');
         }
 
         $jurusan = jurusan::all();
-        return view('admin.nilai_prakerin.tambah', compact('kategori','siswa','jurusan'));
+
+        return view('admin.nilai_prakerin.tambah', compact('kategori','siswa','jurusan','kelompok'));
     }
 
     /**
@@ -287,8 +289,12 @@ class Nilai_PrakerinController extends Controller
 
 
     //  dd($aspekk,$keterangann,$nilaii);
+     if(Auth::user()->role == 'admmin' or Auth::user()->role == 'hubin'){
+            $siswa = Siswa::where('id', $request->id_siswa)->first();
+     }else{
+            $siswa = Siswa::where('id', $request->id_siswa)->first();
+     }
 
-     $siswa = Siswa::where('id',$request->id_siswa)->first();
     //  kelom
     //  dd($siswa->kelompok_laporan->id);
 
