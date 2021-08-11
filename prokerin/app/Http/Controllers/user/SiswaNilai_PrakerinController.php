@@ -20,10 +20,23 @@ class SiswaNilai_PrakerinController extends Controller
     public function index(Request $request)
     {
 
-        $siswa = Siswa::where('id_user',Auth::user()->id)->get();
-        $kategori = Kategori_nilai_prakerin::all()->unique('aspek_yang_dinilai')->where('keterangan', 'Nilai Perusahaan')->where('id_jurusan', 1);
-        // dd($siswa,$kategori->toArray());
-
+        // $siswa = Nilai_prakerin::has('siswa')->where('id_siswa',Auth::user()->siswa->id)->get();
+        // $kategori = Kategori_nilai_prakerin::all()->unique('aspek_yang_dinilai')->where('keterangan', 'Nilai Perusahaan')->where('id_jurusan', 1);
+        // $kategoriPerusahan = Kategori_nilai_prakerin::where('keterangan','Nilai Perusahaan')->get()->toArray();
+        // $nilaiPerusahaan = Nilai_prakerin::whereIn('id_ketegori',)
+        // $KP = [];
+        // foreach ($kategoriPerusahan as $key => $value) {
+        //     $KP[] = $value['id'];  
+        // }
+        // $cekNilai = Nilai_prakerin::has('siswa')->where('id_siswa',Auth::user()->siswa->id)->whereIn('id_ketegori',$KP)->get();                   
+        // // dd($KP,$kategoriPerusahan,$cekNilai->toArray());
+        // if (empty($cekNilai->toArray())) {
+        //     dd('kosong');
+        // }else {
+        //     dd('tidak kosong');
+        // }
+       
+// dd($kategori,$nilai_prakerin);
         // foreach ($kategori as $key => $value) {
         //     $nilai_prakerin = Nilai_prakerin::where('id_siswa',$siswa->id)->where('id_ketegori',$value->id)->first();
         //     if (empty($nilai_prakerin->nilai)) {
@@ -112,12 +125,29 @@ class SiswaNilai_PrakerinController extends Controller
                 //     return $data->created_at->format('m-d-Y');
                 // })
                 $a->addColumn('action', function ($data) {
-                    $button = '<a href="/siswa/data_prakerin/detail/' . $data->id . '"   id="' . $data->id . '" class="edit btn btn-primary btn-sm"><i class="fas fa-search"></i></a>';
-                    $button .= '&nbsp';
-                    $button .= '<a  href="../siswa/nilai_prakerin/edit/' . $data->id . '" id="edit" data-toggle="tooltip"  data-id="' . $data->id . '" data-original-title="Edit" class="edit btn btn-warning btn-sm edit-post"><i class="fas fa-pencil-alt"></i></a>';
-                    $button .= '&nbsp';
+
+                        $kategoriPerusahan = Kategori_nilai_prakerin::where('keterangan','Nilai Perusahaan')->get()->toArray();
+                        // $nilaiPerusahaan = Nilai_prakerin::whereIn('id_ketegori',)
+                        // $KP = [];
+                        foreach ($kategoriPerusahan as $key => $value) {
+                            $KP[] = $value['id'];  
+                        }
+                        $cekNilai = Nilai_prakerin::has('siswa')->where('id_siswa',Auth::user()->siswa->id)->whereIn('id_ketegori',$KP)->get();   
+
+                        if (empty($cekNilai->toArray())) {
+                            $button = '<button  type="button"  onclick="belumAdaNilai()"  id="belumAdaNilai"  data-original-title="Edit" class=" edit btn btn-danger btn-sm edit-post"><i class="fas fa-pencil-alt"></i></button>';
+                        }else{
+                            $button = '<a   href="../siswa/nilai_prakerin/edit/' . $data->id . '" id="edit" data-toggle="tooltip"  data-id="' . $data->id . '" data-original-title="Edit" class="edit btn btn-warning btn-sm edit-post"><i class="fas fa-pencil-alt"></i></a>';
+                            $button .= '&nbsp';
+
+                        }
+                    
+                // $button = '<a  href="/siswa/data_prakerin/detail/' . $data->id . '"   id="' . $data->id . '" class="edit btn btn-primary btn-sm"><i class="fas fa-search"></i></a>';
+                // $button .= '&nbsp';
+            
+   
+            return $button;
                         // $button .= '<button type="button" name="delete" id="hapus" data-id="' . $data->id . '" class="delete btn btn-danger btn-sm"><i class="fas fa-trash"></i></button>';
-                    return $button;
                 });
                 $a->rawColumns(['action', 'nama_siswa']);
                 return $a->addIndexColumn()->make(true);

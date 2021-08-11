@@ -40,7 +40,7 @@
                     @if (count($kelompok)<1)
                         Anda belum masuk kelompok
                     @else
-                        KELOMPOK  {{ $no_kelompok }}
+                          {{ $no_kelompok }}
                     @endif
                     </th>
                 </tr>

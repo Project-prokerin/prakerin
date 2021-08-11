@@ -22,7 +22,7 @@
           <div class=" dropdown-list-content dropdown-list-message" id="contentNotif">
           @forelse ($notifications as $notification)
           {{-- {{url('/admin/surat_masuk/' . $notification->data['id_detail_surat'] . '/disposisi/view')}} --}}
-          <a href="#" id="FeedbackContent" style="margin-left: -40px;" data-id="{{ $notification->id }}" class="text-left dropdown-item dropdown-item-unread mark-as-read">
+          <a href="{{url('/admin/surat_masuk/' . $notification->data['id_detail_surat'] . '/disposisi/view')}}" id="FeedbackContent" style="margin-left: -40px;" data-id="{{ $notification->id }}" class="text-left dropdown-item dropdown-item-unread mark-as-read">
             <div class="dropdown-item-desc">
               <b style="color: black;">{{$notification->data['dari']}}</b>
               <p>{{$notification->feedback_description}}</p>

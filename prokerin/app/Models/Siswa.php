@@ -50,7 +50,7 @@ class Siswa extends Model
   }
   public function Nilai_prakerin()
   {
-    return $this->hasMany(nilai_prakerin::class, 'id_siswa', 'id');
+    return $this->hasMany(Nilai_prakerin::class, 'id_siswa', 'id');
   }
     public function kelompok_laporan()
     {

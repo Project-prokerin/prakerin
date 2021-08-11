@@ -171,6 +171,14 @@ $(document).ready(function () {
     }
 
 
+    
+
+
+
 
 
 });
+
+function belumAdaNilai(){
+    alert('Belum ada izin');
+}

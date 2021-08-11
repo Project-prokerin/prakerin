@@ -94,7 +94,9 @@
         </div>
     </div>
 </div>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 @endsection
 @push('script')
+
 <script src="{{ asset('assets/js/pages-user/nilai-prakerin.js') }}"></script>
 @endpush
