@@ -328,8 +328,8 @@ class userController extends Controller
 
             'nama_siswa' => $request->nama_siswa,
 
-            'id_kelas' => $request->kelas,
-
+            'kelas' => $request->kelas,
+            'jurusan' => $request->jurusan,
             'tempat_lahir' => $request->tempat_lahir,
 
             'tanggal_lahir' => $request->tanggal_lahir
@@ -662,7 +662,7 @@ class userController extends Controller
 
         $laporan =  !empty(siswa('main')->kelompok_laporan->laporan_prakerin->nama) ? siswa('main')->kelompok_laporan->laporan_prakerin->nama : 'Judul lapora belum di tentukan';
 
-        
+
         // dd(Auth::user()->siswa->id);
         // $laporan = kelompok_laporan
         $kelompok = kelompok_laporan::select('*')->where('id_guru', $id_guru)->where('no', $no_kelompok)->wherehas('siswa')->get();

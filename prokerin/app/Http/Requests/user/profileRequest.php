@@ -26,6 +26,7 @@ class profileRequest extends FormRequest
         return [
             "nama_siswa" => "required",
             "kelas" => "required",
+            "jurusan" => "required",
             "tempat_lahir" => "required",
             "tanggal_lahir" => "required"
         ];
@@ -35,6 +36,7 @@ class profileRequest extends FormRequest
         return [
             'nama_siswa.required' => 'Nama tidak boleh kosong',
                 "kelas.required" => "Kelas anda tidak boleh kosong",
+            "jurusan.required" => "Jurusan anda tidak boleh kosong",
             'tempat_lahir.required' => 'Tempat lahir tidak boleh kosong',
             'tanggal_lahir.required' => 'Tanggal lahir tidak boleh kosong',
 

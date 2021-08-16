@@ -4,7 +4,10 @@
    #mytable4{
         overflow-x: hidden;
     }
-
+    .modal-backdrop
+    {
+        position: static !important;
+    }
 </style>
 @endpush
 @section('title', 'Prakerin | Data siswa')
@@ -14,22 +17,33 @@
         <div class="breadcrumb-item"> <i class="fas fa-user"></i> DATA SISWA</div>
 @endsection
 @section('main')
-    @if (session('success'))
+    @if ($messege = Session::get('success'))
     <div class="alert alert-success alert-dismissible fade show" role="alert">
-        {{ session('success') }}
+        {{ $messege }}
         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
             <span aria-hidden="true">&times;</span>
             </button>
         </div>
     @endif
 
-    @if (session('fail'))
+    @if ($messege = Session::get('fail'))
     <div class="alert alert-danger alert-dismissible fade show" role="alert">
-        {{ session('fail') }}
+        {{ $messege }}
         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
             <span aria-hidden="true">&times;</span>
         </button>
         </div>
+    @endif
+
+    @if(isset($errors) && $errors->any())
+        @foreach ($errors->all() as $error)
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            {{ $error }}
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        </div>
+        @endforeach
     @endif
         <div class="row">
             <div class="col-12">
@@ -50,7 +64,7 @@
                           <th>Nisn</th>
                            <th>Nama</th>
                            <th>Kelas</th>
-                          <th>Jurusan</th>
+                            <th>Jurusan</th>
                           <th>Tanggal lahir</th>
 
                           <th>Action</th>
@@ -75,6 +89,31 @@
               </div>
             </div>
           </div>
+
+          {{--  model for import --}}
+<div class="modal" id="importExcel" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <form method="post" action="/admin/import/excel/siswa" enctype="multipart/form-data">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Import Excel</h5>
+                </div>
+                <div class="modal-body">
+                    @csrf
+                    <label>Pilih file excel</label>
+                    <div class="form-group">
+                        <input type="file" name="file" required="required" id="file" accept=".xlsx, .xls, .csv">
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" id="modal_close" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Import</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
 @endsection
 @push('script')
 <script src="{{ asset('assets/js/pages-admin/siswa.js') }}" ></script>

@@ -60,17 +60,17 @@
                   </div>
                   <div class="row g-3 align-items-center">
                     <label class="form-label col-7 pleft">Kelas</label>
-                    <label class="form-label">: {{ $dataPrakerin->kelas->level }} </label>
+                    <label class="form-label">: {{ $dataPrakerin->kelas }} </label>
                   </div>
                   <div class="row g-3 align-items-center">
                     <label class="form-label col-7 pleft">Jurusan</label>
-                    <label class="form-label">: {{ $dataPrakerin->kelas->jurusan->jurusan }}</label>
+                    <label class="form-label">: {{ $dataPrakerin->jurusan }}</label>
                   </div>
                   <div class="row g-3 align-items-center">
                     <label class="form-label col-7 pleft">Tanggal Mulai</label>
                     @if ($dataPrakerin->status === 'Magang')
                         <label class="form-label">: {{$dataPrakerin->tgl_mulai->isoFormat('dddd, D MMMM Y');}}</label>
-                    @else 
+                    @else
                     <label class="form-label">: </label>
 
                     @endif
@@ -79,10 +79,10 @@
                     <label class="form-label col-7 pleft">Tanggal Selesai</label>
                     @if ($dataPrakerin->status === 'Magang')
                         <label class="form-label">: {{$dataPrakerin->tgl_selesai->isoFormat('dddd, D MMMM Y');}}</label>
-                    @else 
+                    @else
                     <label class="form-label">:</label>
 
-                    @endif 
+                    @endif
                   </div>
                   <div style="margin-top: 40px; margin-bottom:40px;">
                     <a href="{{ route('data_prakerin.index') }}" type="button" class="btn btn-danger "><i class="fas fa-backspace"></i>   Kembali</a>

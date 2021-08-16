@@ -22,12 +22,10 @@ class CreateSiswaTable extends Migration
            // $table->enum('jk', ['L', 'P']);
             $table->string('tempat_lahir');
             $table->date('tanggal_lahir');
-            $table->bigInteger('id_kelas')->nullable()->unsigned();
+            $table->string('kelas',100);
+            $table->string('jurusan',100);
             $table->timestamps();
         });
-        // Schema::table('users', function (Blueprint $table) {
-        //     $table->foreign('id_siswa')->references('id')->on('siswa')->onDelete('cascade')->onUpdate("cascade");
-        // });
 
     }
 

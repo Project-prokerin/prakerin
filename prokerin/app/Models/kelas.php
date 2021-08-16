@@ -22,7 +22,4 @@ class kelas extends Model
     public function data_prakerin(){
         return $this->hasMany(data_prakerin::class, 'id_kelas' ,'id');
     }
-    public function jurnal_harian(){
-        return $this->hasMany(jurnal_harian::class, 'id_kelas' ,'id');
-    }
 }

@@ -109,7 +109,7 @@ Route::prefix('admin')->middleware(['web', 'auth', 'role:admin,kepsek,tu,kaprog,
 
         Route::post('/Notification/ajax', [NotificationController::class, 'ajax'])->name('notification.ajax');
         Route::post('/Notification/mark', [NotificationController::class, 'markNotification'])->name('markNotification.mark');
-    
+
 
     });
 
@@ -147,6 +147,8 @@ Route::prefix('admin')->middleware(['web', 'auth', 'role:admin'])->group(functio
     Route::delete('siswa/delete/{id}',[siswaController::class, 'destroy'])->name('siswa.delete');
     Route::post('/siswa/excel/destroy', [siswaController::class, 'delete_all'])->name('siswa.delete-all');
     Route::get('/export/excel/siswa', [ExcelController::class, 'siswa'])->name('export.siswa');
+    Route::get('/template/siswa/excel', [SiswaController::class,'template_excel'])->name('template.excel.siswa');
+    Route::post('/import/excel/siswa',[ImportExcelController::class,'siswa'])->name('import.siswa');
 
     // data guru
     Route::get('guru', [guruController::class, 'index'])->name('guru.index');
@@ -477,7 +479,7 @@ Route::middleware(['web', 'auth', 'role:siswa'])->group(function () {
 
 
 
-    //nilai prakerin 
+    //nilai prakerin
     Route::get('/siswa/nilai_prakerin', [SiswaNilai_PrakerinController::class, 'index'])->name('Siswanilai_prakerin.index');
     Route::get('/siswa/nilai_prakerin/header/ajax', [SiswaNilai_PrakerinController::class, 'index'])->name('Siswanilai_prakerin.header.index');
     Route::get('/siswa/nilai_prakerin/ajax', [SiswaNilai_PrakerinController::class, 'ajax'])->name('Siswanilai_prakerin.ajax');

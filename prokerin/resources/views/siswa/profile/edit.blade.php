@@ -54,15 +54,29 @@
                                 </div>
 
                                 <div class="row mr-3 ml-3">
-                                <div class="form-group col-md-8 col-12">
+                                <div class="form-group col-md-4 col-12">
                                     <label>Kelas</label>
-                                    <select class="form-control  @error('kelas') is-invalid @enderror"  name="kelas" id="">
+                                    <input type="text" class="form-control @error('kelas') is-invalid @enderror" name="kelas" value="{{ old('kelas',siswa('main')->kelas) }}">
+                                    {{-- <select class="form-control  @error('kelas') is-invalid @enderror"  name="kelas" id="">
                                     <option value="" {{ ( old('kelas') == '') ? 'selected' : '' }}>Pilih kelas</option>
                                     @foreach ($kelas as $item)
                                             <option value="{{ $item->id }}" @if(old('kelas',siswa('main')->kelas->jurusan->id) == $item->id ) selected @endif>{{ $item->level .' '. $item->jurusan->singkatan_jurusan ." (".$item->jurusan->jurusan.")"  }}</option>
                                     @endforeach
-                                </select>
+                                </select> --}}
                                 @error('kelas')
+                                        <div class="invalid_feedback">{{ $message }}</div>
+                                @enderror
+                                </div>
+                                  <div class="form-group col-md-4 col-12">
+                                    <label>Jurusan</label>
+                                    <input type="text" class="form-control @error('jurusan') is-invalid @enderror" name="jurusan" value="{{ old('jurusan',siswa('main')->jurusan) }}">
+                                    {{-- <select class="form-control  @error('kelas') is-invalid @enderror"  name="kelas" id="">
+                                    <option value="" {{ ( old('kelas') == '') ? 'selected' : '' }}>Pilih kelas</option>
+                                    @foreach ($kelas as $item)
+                                            <option value="{{ $item->id }}" @if(old('kelas',siswa('main')->kelas->jurusan->id) == $item->id ) selected @endif>{{ $item->level .' '. $item->jurusan->singkatan_jurusan ." (".$item->jurusan->jurusan.")"  }}</option>
+                                    @endforeach
+                                </select> --}}
+                                @error('jurusan')
                                         <div class="invalid_feedback">{{ $message }}</div>
                                 @enderror
                                 </div>

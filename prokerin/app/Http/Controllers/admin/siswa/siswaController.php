@@ -51,18 +51,19 @@ class siswaController extends Controller
             $siwa = Siswa::orderby('nama_siswa', 'ASC')->get();
             return datatables()->of($siwa)
             ->editColumn('kelas', function ($data) {
-                if (empty($data->kelas->level)) {
+                if (empty($data->kelas)) {
                     return "kelas Belum Terdaftar";
                 }
-                return $data->kelas->level;
-            })
-                ->editColumn('jurusan', function ($data) {
-                if (empty($data->kelas->jurusan)) {
-                    return "kelas Belum Terdaftar";
-                }
-                    return $data->kelas->jurusan->singkatan_jurusan;
+                return $data->kelas;
                 })
-                 ->editColumn('tanggal', function ($data) {
+                ->editColumn('jurusan', function ($data) {
+                    if (empty($data->jurusan)) {
+                        return "Jurusan Belum Terdaftar";
+                    }
+                    // return $data->kelas->jurusan->singkatan_jurusan;
+                    return $data->jurusan;
+                })
+                ->editColumn('tanggal', function ($data) {
                 if (empty($data->tanggal_lahir)) {
                     return "Tanggal lahir kosong";
                 }
@@ -95,7 +96,7 @@ class siswaController extends Controller
         // dd($request->id_siswa);
         $user = User::create(['username' => $request->nipd, 'role' => 'siswa', 'password' => Hash::make('password')]);
         $request->request->add(['id_user' => $user->id]);
-        $siswa = Siswa::create(['nama_siswa' => $request->nama_siswa, 'nipd' => $request->nipd,'nisn'=> $request->nisn,  'tempat_lahir' => $request->tempat_lahir, 'tanggal_lahir' => $request->tanggal_lahir,'id_kelas' => $request->kelas, 'created_at' => Carbon::now() ,'id_user' => $request->id_user]);
+        $siswa = Siswa::create(['nama_siswa' => $request->nama_siswa, 'nipd' => $request->nipd,'nisn'=> $request->nisn,  'tempat_lahir' => $request->tempat_lahir, 'tanggal_lahir' => $request->tanggal_lahir,'kelas' => $request->kelas,'jurusan' =>$request->jurusan ,'created_at' => Carbon::now() ,'id_user' => $request->id_user]);
         return redirect()->route('siswa.index')->with('success', 'Data berhasil di tambah!');
     }
 
@@ -134,7 +135,7 @@ class siswaController extends Controller
     public function update(siswaRequest $request, $id)
     {
         $validated = $request->validated();
-        $siswa = Siswa::where('id', $id)->update(['nama_siswa' => $request->nama_siswa, 'nipd' => $request->nipd,'nisn' => $request->nisn, 'tempat_lahir' => $request->tempat_lahir, 'tanggal_lahir' => $request->tanggal_lahir, 'id_kelas' => $request->kelas,  'updated_at' => Carbon::now()]);
+        $siswa = Siswa::where('id', $id)->update(['nama_siswa' => $request->nama_siswa, 'nipd' => $request->nipd,'nisn' => $request->nisn, 'tempat_lahir' => $request->tempat_lahir, 'tanggal_lahir' => $request->tanggal_lahir, 'kelas' => $request->kelas, 'jurusan' => $request->jurusan,  'updated_at' => Carbon::now()]);
 
         $getSiswa = Siswa::where('id', $id)->first();
         $user = User::where('id', $getSiswa->id_user)->update(['username' => $request->nipd]);
@@ -157,5 +158,13 @@ class siswaController extends Controller
     }
     public function delete_all(Request $request){
 
+    }
+
+    public function template_excel()
+    {
+        $path = public_path('\file\Excel\Import Template\Template Excel siswa.xlsx');
+        $name = basename($path);
+        $headers = ["Content-Type:   application/vnd.ms-excel; charset=utf-8"];
+        return response()->download($path, $name, $headers);
     }
 }

@@ -36,12 +36,14 @@ class data_prakerinController extends Controller
             $dataPrakerin = data_prakerin::with('perusahaan')->orderby('created_at','DESC');
             return datatables()->of($dataPrakerin)
             ->editColumn('kelas', function($data){
+                //return $data->kelas->level;
                 return $data->kelas->level;
             })
             ->editColumn('jurusan', function ($data) {
-                if (empty($data->kelas->jurusan)) {
+                if (empty($data->kelas->jurusan->singkatan_jurusan)) {
                     return "Jurusan Belum Terdaftar";
                 }
+                // return $data->kelas->jurusan->singkatan_jurusan;
                 return $data->kelas->jurusan->singkatan_jurusan;
             })
             ->editColumn('tgl_mulai', function ($dataPrakerin) {

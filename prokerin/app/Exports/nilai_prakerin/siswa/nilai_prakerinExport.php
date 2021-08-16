@@ -33,17 +33,17 @@ class nilai_prakerinExport implements FromQuery, WithHeadings, WithMapping, With
     // {
     //     return Siswa::all();
     // }
-    public function __construct($siswa, $kelas, $jurusan, $getdata,$id_kelas)
+    public function __construct($siswa, $kelas, $jurusan, $getdata)
     {
             $this->siswa = $siswa;
             $this->kelas = $kelas;
             $this->jurusan = $jurusan;
             $this->getData = $getdata;
-            $this->id_kelas = $id_kelas;
+            // $this->id_kelas = $id_kelas;
     }
     public function query()
     {
-        return Siswa::query()->where('id_kelas', $this->id_kelas);
+        return Siswa::query()->where('kelas', $this->kelas)->where('jurusan',$this->jurusan);
     }
     public function headings(): array
     {
@@ -78,8 +78,8 @@ class nilai_prakerinExport implements FromQuery, WithHeadings, WithMapping, With
         return [
             '',
             $siswa->nama_siswa,
-            $siswa->kelas->level  ,
-            $siswa->kelas->jurusan->singkatan_jurusan,
+            $siswa->kelas  ,
+            $siswa->jurusan,
             !empty($siswa->data_prakerin->kelompok_laporan->laporan_prakerin->judul_laporan) ? $siswa->data_prakerin->kelompok_laporan->laporan_prakerin->judul_laporan : '-',
             !empty($siswa->data_prakerin->perusahaan->nama) ? $siswa->data_prakerin->perusahaan->nama : '-',
             !empty($nilai_akhir) ? round($nilai_akhir,2) : '0'

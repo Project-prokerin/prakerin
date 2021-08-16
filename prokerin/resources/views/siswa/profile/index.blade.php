@@ -108,13 +108,13 @@
                             <label class="form-label col-7 pleft">Nama Siswa</label>
                             <label class="form-label">: {{ siswa('main')->nama_siswa }}</label>
                           </div>
-                          <div class="row g-3 align-items-center">
-                            <label class="form-label col-7 pleft">Jurusan</label>
-                            <label class="form-label">: {{ siswa('main')->kelas->jurusan->singkatan_jurusan ." (".siswa('main')->kelas->jurusan->jurusan.")" }}</label>
+                            <div class="row g-3 align-items-center">
+                            <label class="form-label col-7 pleft">Kelas</label>
+                            <label class="form-label">: {{ siswa('main')->kelas  }}</label>
                           </div>
                           <div class="row g-3 align-items-center">
-                            <label class="form-label col-7 pleft">Kelas</label>
-                            <label class="form-label">: {{ siswa('main')->kelas->level  }}</label>
+                            <label class="form-label col-7 pleft">Jurusan</label>
+                            <label class="form-label">: {{ siswa('main')->jurusan  }}</label>
                           </div>
                           <div class="row g-3 align-items-center">
                             <label class="form-label col-7 pleft">Tempat lahir</label>

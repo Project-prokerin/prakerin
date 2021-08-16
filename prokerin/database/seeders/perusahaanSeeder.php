@@ -27,7 +27,7 @@ class perusahaanSeeder extends Seeder
         DB::table('perusahaan')->insert([
                 'nama' => $faker->company,
                 'foto' => 'default.jpg',
-                'id_jurusan' => $faker->randomElement($array = array(1,2,3,4,5)),
+                'bidang_usaha' => $faker->randomElement($array = array('RPL','BC','TKJ','MM')),
                 'alamat' => $faker->address,
                 'link' => $faker->url,
                 'email' => $faker->email,
@@ -38,8 +38,8 @@ class perusahaanSeeder extends Seeder
                 'created_at' => Carbon::now()
         ]);
 
-      
-    
+
+
     }
 }
 }

@@ -21,7 +21,8 @@ class siswaSeeder extends Seeder
         'nipd' => '942929291',
         'nisn' => '000000',
         //'jk' => 'L',
-        'id_kelas' => '1',
+        'kelas' => 'X ',
+        'jurusan' => 'RPL 3',
         'tempat_lahir' => 'Daratan',
         'tanggal_lahir' => '1998-01-023',
     ]);
@@ -31,7 +32,8 @@ class siswaSeeder extends Seeder
         'nipd' => '942929292',
         'nisn' => '000000',
         //'jk' => 'L',
-        'id_kelas' => '1',
+        'kelas' => 'X ',
+        'jurusan' => 'RPL 3',
         'tempat_lahir' => 'Daratan',
         'tanggal_lahir' => '1998-01-023',
     ]);
@@ -41,7 +43,8 @@ class siswaSeeder extends Seeder
         'nipd' => '942929293',
         'nisn' => '000000',
         //'jk' => 'L',
-        'id_kelas' => '1',
+        'kelas' => 'X ',
+        'jurusan' => 'RPL 3',
         'tempat_lahir' => 'Daratan',
         'tanggal_lahir' => '1998-01-023',
     ]);
@@ -51,7 +54,8 @@ class siswaSeeder extends Seeder
         'nipd' => '942929294',
         'nisn' => '000000',
         //'jk' => 'L',
-        'id_kelas' => '2',
+        'kelas' => 'X ',
+        'jurusan' => 'RPL 3',
         'tempat_lahir' => 'Daratan',
         'tanggal_lahir' => '1998-01-023',
     ]);
@@ -62,7 +66,8 @@ class siswaSeeder extends Seeder
         'nipd' => '942929295',
         'nisn' => '000000',
         //'jk' => 'L',
-        'id_kelas' => '2',
+        'kelas' => 'X',
+        'jurusan' => 'RPL 3',
         'tempat_lahir' => 'Daratan',
         'tanggal_lahir' => '1998-01-023',
     ]);
@@ -73,7 +78,8 @@ class siswaSeeder extends Seeder
         'nipd' => '942929296',
         'nisn' => '000000',
         //'jk' => 'L',
-        'id_kelas' => '3',
+        'kelas' => 'X',
+        'jurusan'=> 'RPL 3',
         'tempat_lahir' => 'Daratan',
         'tanggal_lahir' => '1998-01-023',
     ]);
@@ -83,7 +89,8 @@ class siswaSeeder extends Seeder
         'nipd' => '942929297',
         'nisn' => '000000',
         //'jk' => 'P',
-        'id_kelas' => '3',
+        'kelas' => 'X',
+        'jurusan' => 'RPL 3',
         'tempat_lahir' => 'Daratan',
         'tanggal_lahir' => '1998-01-023',
     ]);
@@ -93,7 +100,8 @@ class siswaSeeder extends Seeder
         'nipd' => '942929298',
         'nisn' => '000000',
         //'jk' => 'P',
-        'id_kelas' => '3',
+        'kelas' => 'X ',
+        'jurusan' => 'RPL 3',
         'tempat_lahir' => 'Daratan',
         'tanggal_lahir' => '1998-01-023',
     ]);

@@ -62,13 +62,13 @@
                                 </div>
                                 <div class="mb-3">
                                     <label>Bidang usaha</label>
-                                    <select name="id_jurusan" class="form-control  select2 @error('id_jurusan')  is-invalid  @enderror select2" name="id_jurusan" id="">
+                                    <select name="bidang_usaha" class="form-control  select2 @error('bidang_usaha')  is-invalid  @enderror select2" name="bidang_usaha" id="">
                                         <option value="" selected>--Pilih Bidang usaha--</option>
-                                        @foreach ($jurusan as $item)
+                                        {{-- @foreach ($jurusan as $item)
                                         <option value="{{ $item->id }}" {{(old('id_jurusan') == $item->id) ? 'selected' : ''}}>{{ $item->singkatan_jurusan }}</option>
-                                        @endforeach
+                                        @endforeach --}}
                                     </select>
-                                        @error('id_jurusan')
+                                        @error('bidang_usaha')
                                             <div class="invalid-feedback">{{ $message }}</div>
                                         @enderror
                                 </div>
@@ -131,10 +131,10 @@
                             {{ $message }}
                         </div>
                         @enderror
-                          
+
                     </div>
                     <div style="margin-left: 25px; margin-top:10px;">
-                   
+
                     </div>
                 </div>
             </div>
@@ -169,7 +169,7 @@
                                 <label class="form-label">Deskripsi Perusahaan</label>
                                 <div class="d-flex">
                                     <i class="fas fa-align-left border text-center pt-3"></i>
-                                    
+
                                     <textarea type="text"  name="deskripsi_perusahaan" class="summernote form-control form-control-sm
                                     @error('deskripsi_perusahaan')
                                             is-invalid

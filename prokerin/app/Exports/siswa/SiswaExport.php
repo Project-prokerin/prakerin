@@ -35,17 +35,17 @@ class SiswaExport implements FromQuery, WithHeadings, WithMapping, WithCustomSta
     // {
     //     return Siswa::all();
     // }
-    public function __construct($siswa, $kelas, $jurusan, $getdata,$id_kelas)
+    public function __construct($siswa, $getdata,$kelas,$jurusan)
     {
             $this->siswa = $siswa;
-            $this->kelas = $kelas;
+            // $this->kelas = $kelas;
             $this->jurusan = $jurusan;
             $this->getData = $getdata;
-            $this->id_kelas = $id_kelas;
+            $this->kelas = $kelas;
     }
     public function query()
     {
-        return Siswa::query()->where('id_kelas', $this->id_kelas);
+        return Siswa::query()->where('kelas', $this->kelas);
     }
     public function headings(): array
     {
@@ -68,8 +68,8 @@ class SiswaExport implements FromQuery, WithHeadings, WithMapping, WithCustomSta
             $siswa->nipd,
             $siswa->nisn,
             $siswa->nama_siswa,
-            $siswa->kelas->level,
-            $siswa->kelas->jurusan->singkatan_jurusan,
+            $siswa->kelas,
+            $siswa->jurusan,
             $siswa->tempat_lahir,
             $siswa->tanggal_lahir->Isoformat('d MMMM Y'),
             // !empty($pembekalan->guru) ? $pembekalan->guru->nama : '',
@@ -95,8 +95,8 @@ class SiswaExport implements FromQuery, WithHeadings, WithMapping, WithCustomSta
         $sheet->getStyle('B6:' . $highestCol . $highestRow)->getAlignment()->setVertical(\PhpOffice\PhpSpreadsheet\Style\Alignment::VERTICAL_CENTER);
         $sheet->getStyle('B6:' . $highestCol . $highestRow)->getAlignment()->setHorizontal(\PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER);
 
-        $sheet->mergeCells('B3:F3')->setCellValue('B3', 'SMK TARUNA BHAKTI DEPOK');
-        $sheet->mergeCells('B4:F4')->setCellValue('B4', 'Data Siswa');
+        $sheet->mergeCells('B3:i3')->setCellValue('B3', 'SMK TARUNA BHAKTI DEPOK');
+        $sheet->mergeCells('B4:i4')->setCellValue('B4', 'Data Siswa');
 
 
         foreach (array_values($columnindex) as $i => $value) {
@@ -175,6 +175,6 @@ class SiswaExport implements FromQuery, WithHeadings, WithMapping, WithCustomSta
 
     public function title() : string
     {
-        return $this->kelas.' '. $this->jurusan;
+        return $this->kelas.' '.$this->jurusan;
     }
 }

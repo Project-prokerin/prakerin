@@ -25,17 +25,16 @@ class pembekalanExport implements FromQuery, WithHeadings, WithMapping, WithStyl
     use Exportable;
     private $filename = 'pembekalan_magang.xlsx';
 
-    public function __construct($pembekalan, $jurusan, $kelas, $getData, $id_kelas)
+    public function __construct($pembekalan, $kelas,$jurusan,  $getData)
     {
         $this->pembekalan = $pembekalan;
         $this->kelas = $kelas;
         $this->jurusan = $jurusan;
         $this->getData = $getData;
-        $this->id_kelas = $id_kelas;
     }
     public function query()
     {
-        return Siswa::query()->where('id_kelas', $this->id_kelas)->with('pembekalan_magang');
+        return Siswa::query()->where([['kelas', $this->kelas],['jurusan',$this->jurusan]])->with('pembekalan_magang');
     }
     public function headings(): array
     {

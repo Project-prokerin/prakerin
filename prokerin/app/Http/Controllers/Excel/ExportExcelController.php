@@ -52,7 +52,7 @@ public function __construct(Excel $excel)
 // pembekalan magang export
     public function pembekalan()
     {
-        $pembekalan = Siswa::select('id_kelas')->with('kelas')->has('pembekalan_magang')->distinct()->get();
+        $pembekalan = Siswa::select('kelas','jurusan')->has('pembekalan_magang')->distinct()->get();
         // $heading =
         return $this->excel->download(new PembekalanMultiExport($pembekalan), 'pembekalan.xlsx');
     }
@@ -137,7 +137,7 @@ public function __construct(Excel $excel)
     }
     public function siswa()
     {
-        $siswa = Siswa::select('id_kelas')->distinct()->with('kelas')->get();
+        $siswa = Siswa::select('kelas','jurusan')->distinct()->get();
         if (count($siswa) < 1) {
             return redirect('/admin/siswa')->with('gagal', 'data anda masih kosong');
         }
@@ -216,7 +216,7 @@ public function __construct(Excel $excel)
 
     public function nilai_prakerin()
     {
-        $siswa = Siswa::select('id_kelas')->distinct()->with('kelas')->get();
+        $siswa = Siswa::select('kelas','jurusan')->distinct()->get();
         if (count($siswa) < 1) {
             return redirect('/admin/nilai_prkaerin')->with('gagal', 'data anda masih kosong');
         }

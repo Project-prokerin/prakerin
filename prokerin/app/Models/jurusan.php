@@ -19,10 +19,10 @@ class jurusan extends Model
     {
         return $this->hasMany(guru::class, 'id_jurusan', 'id');
     }
-    public function perusahaan()
-    {
-        return $this->hasMany(perusahaan::class, 'id_jurusan', 'id');
-    }
+    // public function perusahaan()
+    // {
+    //     return $this->hasMany(perusahaan::class, 'id_jurusan', 'id');
+    // }
     public function nilai_prakerin(){
         return $this->HasMany(Nilai_prakerin::class, 'id_jurusan','id');
     }

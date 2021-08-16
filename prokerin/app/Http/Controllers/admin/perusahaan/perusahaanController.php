@@ -35,10 +35,10 @@ class perusahaanController extends Controller
             $perusahaan = perusahaan::orderby('id','DESC')->get();
             return datatables()->of($perusahaan)
             ->editColumn('bidang_usaha', function ($data) {
-                if (empty($data->jurusan)) {
+                if (empty($data->bidang_usaha)) {
                     return "Bidang usaha kosong";
                 }
-                return $data->jurusan->singkatan_jurusan;
+                return $data->bidang_usaha;
             })
                 ->editColumn('tanggal_mou', function ($data) {
                     return $data->tanggal_mou->isoFormat('DD MMMM YYYY');

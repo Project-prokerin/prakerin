@@ -74,7 +74,8 @@
                                 <label class="form-label">Kelas</label>
                                 <div class="d-flex">
                                     <i class="fas fa-user border text-center pt-2"></i>
-                                    <select class="form-control  select2 @error('kelas') is-invalid @enderror"
+                                    <input type="text" class="form-control @error('kelas') is-invalid @enderror" name="kelas" value="{{ old('kelas') }}" >
+                                    {{-- <select class="form-control  select2 @error('kelas') is-invalid @enderror"
                                         name="kelas">
                                         <option value=" " selected>Pilih Kelas</option>
                                         @foreach ($kelas as $item)
@@ -82,9 +83,32 @@
                                             @endif>{{ $item->level .' '. $item->jurusan->singkatan_jurusan }}
                                         </option>
                                         @endforeach
-                                    </select>
+                                    </select> --}}
                                 </div>
                                 @error('kelas')
+                                <div class="invalid-feedback">
+                                    {{ $message }}
+                                </div>
+                                @enderror
+                            </div>
+                        </div>
+                         <div class="col-md-6">
+                            <div class="mb-3">
+                                <label class="form-label">Jurusan</label>
+                                <div class="d-flex">
+                                    <i class="fas fa-user border text-center pt-2"></i>
+                                    <input type="text" class="form-control @error('jurusan') is-invalid @enderror" name="jurusan" value="{{ old('jurusan') }}" >
+                                    {{-- <select class="form-control  select2 @error('kelas') is-invalid @enderror"
+                                        name="kelas">
+                                        <option value=" " selected>Pilih Kelas</option>
+                                        @foreach ($kelas as $item)
+                                        <option value="{{ $item->id }}" @if(old('kelas')===$item->id) selected
+                                            @endif>{{ $item->level .' '. $item->jurusan->singkatan_jurusan }}
+                                        </option>
+                                        @endforeach
+                                    </select> --}}
+                                </div>
+                                @error('jurusan')
                                 <div class="invalid-feedback">
                                     {{ $message }}
                                 </div>

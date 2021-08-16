@@ -19,8 +19,8 @@ class multiExport implements WithMultipleSheets
     {
         $sheets = [];
         foreach ($this->siswa as $key => $value) {
-            $getData = Siswa::where('id_kelas', $value->kelas->id)->get();
-            $sheets[] = new SiswaExport($this->siswa, $value->kelas->level,$value->kelas->jurusan->singkatan_jurusan, $getData,$value->kelas->id);
+            $getData = Siswa::where('kelas', $value->kelas)->get();
+            $sheets[] = new SiswaExport($this->siswa, $getData,$value->kelas,$value->jurusan);
         }
 
         return $sheets;

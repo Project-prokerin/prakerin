@@ -25,9 +25,9 @@ class CreateJurusanTable extends Migration
         Schema::table('guru', function (Blueprint $table) {
             $table->foreign('id_jurusan')->references('id')->on('jurusan')->onDelete('set null')->onUpdate("cascade");
         });
-        Schema::table('perusahaan', function (Blueprint $table) {
-            $table->foreign('id_jurusan')->references('id')->on('jurusan')->onDelete('set null')->onUpdate("cascade");
-        });
+        // Schema::table('perusahaan', function (Blueprint $table) {
+        //     $table->foreign('id_jurusan')->references('id')->on('jurusan')->onDelete('set null')->onUpdate("cascade");
+        // });
     }
 
     /**
