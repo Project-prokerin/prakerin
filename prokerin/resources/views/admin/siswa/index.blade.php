@@ -1,96 +1,128 @@
 @extends('template.master')
 @push('link')
 <style>
-   #mytable4{
+    #mytable4 {
         overflow-x: hidden;
     }
-    .modal-backdrop
-    {
+
+    .modal-backdrop {
         position: static !important;
     }
+
 </style>
 @endpush
 @section('title', 'Prakerin | Data siswa')
 @section('judul', 'DATA SISWA')
 @section('breadcrump')
-        <div class="breadcrumb-item "><a href="{{ route('admin.dashboard') }}"><i class="fas fa-tachometer-alt"></i> DASBOARD</a></div>
-        <div class="breadcrumb-item"> <i class="fas fa-user"></i> DATA SISWA</div>
+<div class="breadcrumb-item "><a href="{{ route('admin.dashboard') }}"><i class="fas fa-tachometer-alt"></i>
+        DASBOARD</a></div>
+<div class="breadcrumb-item"> <i class="fas fa-user"></i> DATA SISWA</div>
 @endsection
 @section('main')
-    @if ($messege = Session::get('success'))
-    <div class="alert alert-success alert-dismissible fade show" role="alert">
-        {{ $messege }}
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-            </button>
-        </div>
-    @endif
+@if ($messege = Session::get('success'))
+<div class="alert alert-success alert-dismissible fade show" role="alert">
+    {{ $messege }}
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+@endif
 
-    @if ($messege = Session::get('fail'))
-    <div class="alert alert-danger alert-dismissible fade show" role="alert">
-        {{ $messege }}
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-        </button>
-        </div>
-    @endif
+@if ($messege = Session::get('fail'))
+<div class="alert alert-danger alert-dismissible fade show" role="alert">
+    {{ $messege }}
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+@endif
+@if(isset($errors) && $errors->any())
+@foreach ($errors->all() as $error)
+<div class="alert alert-danger alert-dismissible fade show" role="alert">
+    {{ $error }}
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+@endforeach
+@endif
 
-    @if(isset($errors) && $errors->any())
-        @foreach ($errors->all() as $error)
-        <div class="alert alert-danger alert-dismissible fade show" role="alert">
-            {{ $error }}
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-        </button>
-        </div>
-        @endforeach
-    @endif
-        <div class="row">
-            <div class="col-12">
-              <div class="card">
-                <div class="card-header">
-                  <h4>Data Siswa</h4>
-                </div>
-                <div class="card-body">
+{{-- yang ini masih ngebug --}}
+@if (Session()->has('erorr'))
+<div class="alert alert-danger">
+    <table class="table table-bordered ">
+        <thead>
+            <tr>
+                <td>Row</td>
+                <td>Atributte / Column</td>
+                <td>Erorr</td>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (Session()->get('erorr') as $errors)
 
-                  <div class="table-responsive" id="mytable4">
-                    <table class="table table-striped" id="table9">
-                      <thead class="text-center">
-                        <tr>
-                          <th>
-                            No
-                          </th>
-                          <th>NIPD</th>
-                          <th>Nisn</th>
-                           <th>Nama</th>
-                           <th>Kelas</th>
-                            <th>Jurusan</th>
-                          <th>Tanggal lahir</th>
-
-                          <th>Action</th>
-                        </tr>
-                      </thead>
-                      <tbody class="text-center">
-                        <tr>
-                          <td>
-                            1
-                          </td>
-                          <td></td>
-                          <td></td>
-                          <td></td>
-                          <td></td>
-                          <td>
-                          </td>
-                        </tr>
-                      </tbody>
-                    </table>
-                  </div>
-                </div>
-              </div>
+            <tr>
+                <td>{{ $errors->row() }}</td>
+                <td>{{ $errors->attribute() }}</td>
+                <td>
+                    <ul>
+                        @foreach ($errors->errors() as $item)
+                        <li>{{ $item }}</li>
+                        @endforeach
+                    </ul>
+                </td>
+            </tr>
+            @endforeach
+        </tbody>
+    </table>
+</div>
+@endif
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header">
+                <h4>Data Siswa</h4>
             </div>
-          </div>
+            <div class="card-body">
 
-          {{--  model for import --}}
+                <div class="table-responsive" id="mytable4">
+                    <table class="table table-striped" id="table9">
+                        <thead class="text-center">
+                            <tr>
+                                <th>
+                                    No
+                                </th>
+                                <th>NIPD</th>
+                                <th>Nisn</th>
+                                <th>Nama</th>
+                                <th>Kelas</th>
+                                <th>Jurusan</th>
+                                <th>Tanggal lahir</th>
+
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody class="text-center">
+                            <tr>
+                                <td>
+                                    1
+                                </td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{{--  model for import --}}
 <div class="modal" id="importExcel" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <form method="post" action="/admin/import/excel/siswa" enctype="multipart/form-data">
@@ -116,6 +148,5 @@
 </div>
 @endsection
 @push('script')
-<script src="{{ asset('assets/js/pages-admin/siswa.js') }}" ></script>
+<script src="{{ asset('assets/js/pages-admin/siswa.js') }}"></script>
 @endpush
-

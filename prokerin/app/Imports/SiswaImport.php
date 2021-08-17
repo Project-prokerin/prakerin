@@ -13,11 +13,14 @@ use Maatwebsite\Excel\Concerns\SkipsErrors;
 use Maatwebsite\Excel\Concerns\SkipsOnError;
 use Maatwebsite\Excel\Concerns\WithValidation;
 use Maatwebsite\Excel\Concerns\Importable;
+use Maatwebsite\Excel\Concerns\SkipsFailures;
+use Maatwebsite\Excel\Concerns\SkipsOnFailure;
 use Throwable;
-
-class SiswaImport implements ToCollection,WithHeadingRow,WithValidation,SkipsOnError
+// use Maatwebsite\Excel\Validators\Failure;
+class SiswaImport implements ToCollection,WithHeadingRow,WithValidation,SkipsOnError,SkipsOnFailure
 {
-    use Importable, SkipsErrors;
+    //  import     skip jjika erorr(errors) jskips jika gagal (failurs)
+    use Importable, SkipsErrors,SkipsFailures;
 
     /**
     * @param Collection $collection
@@ -55,5 +58,7 @@ class SiswaImport implements ToCollection,WithHeadingRow,WithValidation,SkipsOnE
     // public function onError(Throwable $error)
     // {
     // }
+
+
 
 }

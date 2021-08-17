@@ -29,12 +29,17 @@ class ImportExcelController extends Controller
         $nama_file = time() . ' ' . $file->getClientOriginalName();
         $file->move(public_path() . '\file\Excel\Import File', $nama_file); // masukin file
         $import = new SiswaImport;
-        $import->import(public_path('/file/Excel/Import File/' . $nama_file));
             try {
-                Excel::import(new SiswaImport, public_path('/file/Excel/Import File/' . $nama_file));
+            $import->import(public_path('/file/Excel/Import File/' . $nama_file));
                 return redirect()->route('siswa.index')->with('success', 'Data siswa berhasil di import');
             } catch (\Throwable $th) {
-                return redirect()->route('siswa.index')->with('fail', 'Import Excel tidak sesuai dengan Template');
+                // dd($import->failures());
+                if ($import->failures()->isNotEmpty()) {
+                return redirect()->route('siswa.index')->with('erorr', $import->failures());
+                }else {
+                return redirect()->route('siswa.index')->with('fail', 'Excel Tidak sesuai dengan template');
+                }
+
             }
     }
 }
