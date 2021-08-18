@@ -336,14 +336,40 @@ or Auth::user()->role == 'sarpras' or Auth::user()->role == 'bkk' or Auth::user(
                     <span>Pembekalan Magang</span>
                 </a>
             </li>
+
+            {{-- {{dd(siswa('pembekalan_magang'))}} --}}
+            {{-- cel jika auth nya siswa make true --}}
+            @if (Auth::user()->role === 'siswa')
+                {{-- dan jika siswa ini telah menyudahi Pembekalan magang / sudah semua  maka tampilkan  --}}
+                {{-- {{dd( siswa('pembekalan_magang') )}}     --}}
+                 @if (siswa('pembekalan_magang') == '')
+                  {{-- kalo pembekalan nya belum ada atau belum ikut pembekalan maka tidak tampil kelompok sidebar --}}
+
+                 @else 
+
+                             @if (siswa('pembekalan_magang')->psikotes === 'sudah' && siswa('pembekalan_magang')->soft_skill === 'sudah' && siswa('pembekalan_magang')->file_portofolio !== null )
+                                 <li class="@if (Request::is('user/kelompok_laporan','user/kelompok_laporan/*')) active @endif">
+                                     <a href="{{ route('user.kelompok_laporan') }}" class="nav-link">
+                                         <i class="fas fa-users"></i>
+                                         <span>Kelompok Laporan</span>
+                                     </a>
+                                 </li>        
+                             @endif
+                             
+                 @endif
+            
+            @else 
+
             <li class="@if (Request::is('user/kelompok_laporan','user/kelompok_laporan/*')) active @endif">
                 <a href="{{ route('user.kelompok_laporan') }}" class="nav-link">
                     <i class="fas fa-users"></i>
                     <span>Kelompok Laporan</span>
                 </a>
-            </li>
+            </li>    
 
-            @if(siswa('data_prakerin')->status == 'Batal' || siswa('data_prakerin')->status == 'Pengajuan' ||  empty(siswa('data_prakerin')))
+            @endif
+            
+            @if(empty(siswa('data_prakerin')->status)  || siswa('data_prakerin')->status == 'Batal' || siswa('data_prakerin')->status == 'Pengajuan' ||  empty(siswa('data_prakerin')))
             
             <li class="@if (Request::is('user/status','user/status/*')) active @endif">
                 <a href="{{ route('user.status') }}" class="nav-link">

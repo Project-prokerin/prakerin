@@ -201,7 +201,7 @@ class pengajuan_prakerinController extends Controller
         // }else{
         // }
         // dd(pengajuan_prakerin::all());
-        $siswa = siswa::doesntHave('data_prakerin')->whereHas('pembekalan_magang', function ($query) { return $query->where('psikotes', '=', 'sudah')->where('soft_skill', '=', 'sudah')->whereNotNull('file_portofolio'); })->get();
+        $siswa = siswa::doesntHave('data_prakerin')->has('kelompok_laporan')->get();
 
 
 
@@ -467,7 +467,7 @@ class pengajuan_prakerinController extends Controller
         $perusahaan = perusahaan::all();
         $guru = guru::where('jabatan','pembimbing')->doesntHave('kelompok_laporan')->doesntHave('data_prakerin')->get();
         // $siswa = Siswa::all()->toArray();
-        $siswa = Siswa::doesntHave('data_prakerin')->whereHas('pembekalan_magang', function ($query) { return $query->where('psikotes', '=', 'sudah')->where('soft_skill', '=', 'sudah')->whereNotNull('file_portofolio'); })->get();
+        $siswa = Siswa::doesntHave('data_prakerin')->has('kelompok_laporan')->get();
         // dd($siswa->toArray());
         $pengajuan_prakerin = pengajuan_prakerin::where('no', $id)->with('siswa')->get();
         $perusahaan_select = perusahaan::where('nama',$pengajuan_prakerin[0]->nama_perusahaan)->first() ;
@@ -566,6 +566,45 @@ class pengajuan_prakerinController extends Controller
                 // return response()->json($data = 'berhasil');
             }else{
                 // dd($request);
+                $peng = pengajuan_prakerin::where('no', $request->no[0])->get();
+                // dd($peng);
+                # hapus data prakerin
+                foreach ($peng as $key => $value) {
+                    # ini gua coba update 2 data
+                  $w =  data_prakerin::whereIn('id_siswa', [$value->id_siswa])->delete();
+                //   dd($w);
+                }
+                // pengajuan_prakerin::where('no', $request->no[0])->delete();
+
+
+                $data = $request->all();
+
+                // dd($data);
+
+                // $nama = [];
+
+                //  foreach ($data['id_data_prakerin'] as $w => $val) {
+                //     $nama[] = Siswa::where('id', $nama);
+                //  }
+
+                 // dd($nama);
+
+                 foreach($data['id_data_prakerin'] as $key => $value){
+                     $siswa = Siswa::where('id',$value)->first();
+                     // dd($siswa);
+                     $dataa = array(
+                         'nama'   => $siswa->nama_siswa,
+                         'id_kelas'         => $siswa->kelas->id,
+                         'id_siswa'      => $siswa->id,
+                         'id_perusahaan' => $request->id_perusahaan,
+                         'id_guru' => $request->id_guru,
+                         'status' => 'Pengajuan',
+                         // 'tgl_mulai' => 'NUll',
+                         // 'tgl_selesai' => 'NULL'
+                 );
+                 data_prakerin::create($dataa);
+                 }
+                
                 $no = preg_replace('/[^0-9.]+/', '',$request->no[0]);
 
                 $perusahaan = perusahaan::where('id', $request->id_perusahaan)->first();
@@ -576,6 +615,8 @@ class pengajuan_prakerinController extends Controller
                         'no'   => 'Kelompok '.$no." - ".$new_name,
                         'nama_perusahaan'   => $perusahaan->nama,
                         'id_guru'   => $request->id_guru,
+                        'id_siswa'   => $val,
+
                     ]);
                     // dd($data);
                 }

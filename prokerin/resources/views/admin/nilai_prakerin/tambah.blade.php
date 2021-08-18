@@ -2,6 +2,7 @@
 @extends('template.master')
 @push('link')
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="{{ asset('template/') }}/node_modules/select2/dist/css/select2.min.css">
 
 {{-- disnin nur
     ok mantap codingan nya mumet akwdpoak
@@ -302,6 +303,8 @@
 
 @endsection
 @push('script')
+<script src="{{ asset('template') }}/node_modules/select2/dist/js/select2.full.min.js"></script>
+
 <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
 <script>
     $(document).ready(function () {

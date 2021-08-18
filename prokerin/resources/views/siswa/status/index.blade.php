@@ -50,11 +50,27 @@
                 </tr>
                 <tr>
                     <th scope="row" class="text-left" style="background-color:#f2f2f2">Tanggal Mulai</th>
-                    <td style="background-color:#f2f2f2" > {{ empty(tanggal(siswa('data_prakerin')->tgl_mulai)) ? ' tanggal mulai magang belum di tentukan' : tanggal(siswa('data_prakerin')->tgl_mulai) }}</td>
+                    {{-- dd() --}}
+{{-- / --}}
+                    {{-- {{dd(Auth::user()->siswa->data_prakerin)}} --}}
+                    @if (siswa('data_prakerin') == null)
+                    <td style="background-color:#f2f2f2" > tanggal mulai magang belum di tentukan'</td>
+                    @elseif(empty(tanggal(siswa('data_prakerin')->tgl_mulai))) 
+                    <td style="background-color:#f2f2f2" > tanggal mulai magang belum di tentukan</td>
+                    @else 
+                    <td style="background-color:#f2f2f2" > {{ siswa('data_prakerin') == null ? 'tanggal mulai magang belum di tentukan' : tanggal(siswa('data_prakerin')->tgl_mulai) }}</td>
+                    @endif
                 </tr>
                 <tr>
                     <th scope="row" class="text-left"  >Tanggal Selesai</th>
-                    <td style="background-color:#f2f2f2">{{ empty(tanggal(siswa('data_prakerin')->tgl_selesai)) ? 'tanggal selesai magang belum di tentukan' : tanggal(siswa('data_prakerin')->tgl_selesai)  }}</td>
+                    @if (siswa('data_prakerin') == null)
+                    <td style="background-color:#f2f2f2" > tanggal mulai magang belum di tentukan'</td>
+                    @elseif(empty(tanggal(siswa('data_prakerin')->tgl_selesai))) 
+                    <td style="background-color:#f2f2f2" > tanggal mulai magang belum di tentukan</td>
+                    @else 
+                    <td style="background-color:#f2f2f2" > {{ siswa('data_prakerin') == null ? 'tanggal mulai magang belum di tentukan' : tanggal(siswa('data_prakerin')->tgl_selesai) }}</td>
+                    @endif
+                    {{-- <td style="background-color:#f2f2f2">{{ empty(tanggal(siswa('data_prakerin')->tgl_selesai)) || siswa('data_prakerin') == null  ? 'tanggal selesai magang belum di tentukan' : tanggal(siswa('data_prakerin')->tgl_selesai)  }}</td> --}}
                 </tr>
                 <tr>
                     <th scope="row" class="text-left" style="background-color:#f2f2f2">Nama Perusahaan</th>
@@ -64,11 +80,16 @@
                     <th scope="row" class="text-left" >Lokasi Perusahaan</th>
                     <td style="background-color:#f2f2f2">  {{ empty(siswa('data_prakerin')->perusahaan->alamat) ? 'alamat perusahaan belum di tentukan' : siswa('data_prakerin')->perusahaan->alamat }}</td>
                 </tr>
-                @if(siswa('data_prakerin')->status == "Selesai")
+                @if( siswa('data_prakerin') == null  )
+                
+                @elseif(siswa('data_prakerin')->status == "Selesai" )
                 <tr>
                     <th scope="row" class="text-left" style="background-color:#f2f2f2">Hasil jurnal</th>
-                    <td style="background-color:#f2f2f2" ><a href="{{ route('export.jurnal.pdf', ['id' => siswa('data_prakerin')->id]) }}" target="_blank" class="btn btn-success">Download hasil jurnal</a></td>
+                    <td style="background-color:#f2f2f2" ><a href="{{ route('export.jurnal.pdf', ['id' => siswa('main')->id]) }}" target="_blank" class="btn btn-success">Download hasil jurnal</a></td>
                 </tr>
+                @else
+
+
                 @endif
             </tbody>
             </table>

@@ -206,8 +206,8 @@ Route::prefix('admin')->middleware(['web', 'auth', 'role:admin'])->group(functio
 // modul hubin (prakerin)
 // untuk hubin, admin disi
 // kaprog
-Route::prefix('admin')->middleware(['web', 'auth', 'role:kaprog,hubin,admin,kepsek,pembimbing,tu'])->group(function () {
-        Route::middleware(['web', 'auth', 'role:kaprog,hubin,admin,kepsek,pembimbing,tu'])->group(function () {
+Route::prefix('admin')->middleware(['web', 'auth', 'role:kaprog,hubin,admin,kepsek,pembimbing,tu,siswa'])->group(function () {
+    Route::middleware(['web', 'auth', 'role:kaprog,hubin,admin,kepsek,pembimbing,tu,siswa'])->group(function () {
     // data prakerin
     Route::get('data_prakerin', [data_prakerinController::class, 'index'])->name('data_prakerin.index');
     Route::get('data_prakerin/ajax', [data_prakerinController::class, 'ajax'])->name('data_prakerin.ajax');
@@ -313,6 +313,10 @@ Route::prefix('admin')->middleware(['web', 'auth', 'role:kaprog,hubin,admin,keps
     Route::post('/perusahaan/destroy', [perusahaanController::class, 'delete_all'])->name('perusahaan.delete-all');
     Route::get('/export/excel/perusahaan', [ExcelController::class, 'perusahaan'])->name('export.perusahaan');
     Route::get('/export/pdf/perusahaan', [PDFController::class, 'perusahaan']);
+    Route::get('/template/perusahaan/excel', [perusahaanController::class,'template_excel'])->name('template.excel.perusahaan');
+    Route::post('/import/excel/perusahaan',[ImportExcelController::class,'perusahaan'])->name('import.perusahaan');
+
+
     });
 Route::middleware(['web', 'auth', 'role:kaprog,hubin,admin,kepsek'])->group(function () {
     // pengajuan magang
@@ -475,7 +479,7 @@ Route::middleware(['web', 'auth', 'role:siswa'])->group(function () {
 
     // kelompok laporan
     Route::get('/user/kelompok_laporan', [userController::class, 'kelompok_laporan'])->name('user.kelompok_laporan');
-
+    Route::PUT('/user/kelompok_laporanUpdate/{id}', [userController::class, 'kelompok_laporanUpdate'])->name('user.kelompok_laporanUpdate');
 
 
 

@@ -33,6 +33,14 @@
     </div>
         <div class="container-fluid mt-4 mb-4">
         <div class="mw-100 mx-auto ">
+            @if (session('success'))
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                {{ session('success') }}
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            @endif
             <table class="table table-bordered table-hover ">
             <thead>
                 <tr>
@@ -47,6 +55,11 @@
             </thead>
             <tbody>
 
+                @if (count($kelompok) < 1)
+                    <a href="{{url('admin/kelompok/tambah')}}" class="btn btn-primary  mb-5">Ajukan Kelompok</a>
+                @else 
+
+                @endif
                 {{--  --}}
                 {{-- {{ dd($kelompok) }} --}}
                 @if(count($kelompok) < 1)
@@ -88,7 +101,32 @@
                 {{-- </tr> --}}
                 <tr>
                     <th scope="col">Anggota {{ $index + 1 }}</th>
-                    <td>{{ $item->siswa->nama_siswa }}</td>
+                    <td>
+                        <div class="row">
+                            <div class="col-8">
+                                {{ $item->siswa->nama_siswa }}
+                            </div>
+                            {{-- validasi jika akun ini sudah di buat pengajuan maka sudah tidak bisa keluar dari kelompok / sudah fix --}}
+                            @if (Auth::user()->siswa->data_prakerin === null)
+                                    {{-- cek jika nama nya sesuai tampilkan button keluar --}}
+                                    @if (Auth::user()->siswa->nama_siswa === $item->siswa->nama_siswa )
+                                    <div class="col-4">
+                                        <form action="{{route('user.kelompok_laporanUpdate',Auth::user()->siswa->id)}}" method="post">
+                                            @method('PUT')
+                                            @csrf
+                                            <button  class="btn btn-danger">Keluar</button>
+
+                                        </form>
+                                    </div>
+
+                                    @endif
+                            
+                            @else 
+                                 <button  class="badge badge-success" disabled>Sudah fix</button>
+                            @endif
+
+                        </div>
+                    </td>
                 </tr>
                 @endforeach
                 @endif
@@ -96,6 +134,7 @@
             </tbody>
             </table>
         </div>
+        
         </div>
     </div>
     @endsection
@@ -103,3 +142,4 @@
 
     @endpush
 
+	

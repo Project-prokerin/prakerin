@@ -156,4 +156,17 @@ class perusahaanController extends Controller
     public function delete_all(Request $request){
 
     }
+
+
+    public function template_excel()
+    {
+        $path = public_path('/file/Excel/Import Template/Template Excel perusahaan.xlsx');
+        $name = basename($path);
+        $headers = ["Content-Type:   application/vnd.ms-excel; charset=utf-8"];
+        return response()->download($path, $name, $headers);
+
+    }
+
+
+  
 }

@@ -51,7 +51,9 @@ class SiswaImport implements ToCollection,WithHeadingRow,WithValidation,SkipsOnE
     public function rules(): array
     {
         return [
-            '*.nipd' => ['unique:siswa,nipd','unique:siswa.users,username'],
+            // '*.nipd' => ['unique:siswa,nipd','unique:users.username'],
+            '*.nipd' => ['unique:siswa,nipd'],
+
         ];
     }
 

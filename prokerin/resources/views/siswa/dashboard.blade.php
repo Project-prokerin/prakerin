@@ -186,7 +186,15 @@
                 <div class="card-stats-items">
                     <div class="card-stats-item" style="margin-right: 0px;">
                         <div class="card-stats-item-count">
+                            {{-- {{dd($pembekalan_magang)}} --}}
+                            @if ($pembekalan_magang == null )
+                            <i class=" fa-times-circle " style="font-size: 30px;  color: red; "></i>
+                            
+                            @else 
                             <i class="{{$pembekalan_magang->psikotes == 'sudah' ? 'far fa-check-square' : 'fa-times-circle'}}" style="font-size: 30px;  {{ $pembekalan_magang->psikotes == 'sudah' ? 'color: greenyellow;' : 'color: red;'}} "></i>
+
+                            @endif
+                            {{-- <i class="{{$pembekalan_magang->psikotes == 'sudah' ? 'far fa-check-square' : 'fa-times-circle'}}" style="font-size: 30px;  {{ $pembekalan_magang->psikotes == 'sudah' ? 'color: greenyellow;' : 'color: red;'}} "></i> --}}
                             {{-- kalo bisa diubah --}}
                             {{-- 1.jika test udah dikumpulin maka yang ditampilin = ceklis --}}
                             {{-- 2.jika blum maka yang ditampilin = silang --}}
@@ -206,7 +214,13 @@
                  
                     <div class="card-stats-item" style="margin-right: 0px;">
                         <div class="card-stats-item-count">
+                            @if ($pembekalan_magang == null )
+                            <i class=" fa-times-circle " style="font-size: 30px;  color: red; "></i>
+                            
+                            @else 
                             <i class="{{$pembekalan_magang->soft_skill == 'sudah' ? 'far fa-check-square' : 'fa-times-circle'}}" style="font-size: 30px;  {{ $pembekalan_magang->soft_skill == 'sudah' ? 'color: greenyellow;' : 'color: red;'}} "></i>
+
+                            @endif
                         </div>
                         <a href="pembekalan" class="text-decoration-none">
                             <div class="" style="width: 120px;">Test Soft Skill</div>
@@ -214,7 +228,13 @@
                     </div>
                     <div class="card-stats-item">
                         <div class="card-stats-item-count">
+                            @if ($pembekalan_magang == null )
+                            <i class=" fa-times-circle " style="font-size: 30px;  color: red; "></i>
+                            
+                            @else 
                             <i class="{{$pembekalan_magang->file_portofolio != null ? 'far fa-check-square' : 'fa-times-circle'}}" style="font-size: 30px;  {{ $pembekalan_magang->file_portofolio != null ? 'color: greenyellow;' : 'color: red;'}} "></i>
+
+                            @endif
                         </div>
                         <a href="pembekalan" class="text-decoration-none">
                             <div class="" style="width: 120px;">Portfolio</div>
@@ -296,13 +316,23 @@
                 </div>
                 <div class="card-stats-items">
                     <div class="card-stats-item" style="margin-right: 60px;">
+                        {{-- dd() --}}
+                        {{-- {{dd($statusMagang_siswa)}} --}}
+                        @if ($statusMagang_siswa === "")
+                        <div class="card-stats-item-count" style="margin-left: 35px;width: 50px;">0</div>
+                        @else
                         <div class="card-stats-item-count" style="margin-left: 35px;width: 50px;"> {{$statusMagang_siswa->status != 'Magang' ? '0' : count($jurnalP_siswa)}}</div>
+                        @endif
                         <a href="jurnal" class="text-decoration-none">
                             <div class="" style="width: 120px;">Jurnal Prakerin</div>
                         </a>
                     </div>
                     <div class="card-stats-item">
+                        @if ($statusMagang_siswa === "")
+                        <div class="card-stats-item-count" style="margin-left: 35px;width: 50px;">0</div>
+                        @else
                         <div class="card-stats-item-count" style="margin-left: 35px;width: 50px;">{{ $statusMagang_siswa->status != 'Magang' ? '0' : count($jurnalH_siswa)}}</div>
+                        @endif
                         <a href="jurnalH" class="text-decoration-none">
                             <div class="" style="width: 120px;">Jurnal Harian</div>
                         </a>

@@ -63,8 +63,8 @@
             <th scope="row">{{$loop->iteration}}</th>
             <td>{{$kel->siswa->nipd}}</td>
             <td>{{$kel->siswa->nama_siswa}}</td>
-            <td>{{$kel->siswa->kelas->jurusan->jurusan}}</td>
-            <td>{{$kel->siswa->kelas->level}}</td>
+            <td>{{$kel->siswa->jurusan}}</td>
+            <td>{{$kel->siswa->kelas}}</td>
             <td>
                 <button type="button" class="btn btn-primary"><i class="fas fa-search"></i></button>
                 <button type="button" class="btn btn-warning"><i class="fas fa-pencil-alt"></i></button>

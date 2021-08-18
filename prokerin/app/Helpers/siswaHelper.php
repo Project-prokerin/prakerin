@@ -58,21 +58,32 @@ function warna($value)
     }
      // file portofolio
     if ($value === 'file_portofolio') {
+       if (Auth::user()->siswa->pembekalan_magang == '' || empty(Auth::user()->siswa->pembekalan_magang)) {
+        return 'background-color:#f2f2f2;color:black;text-decoration:none;';
+
+        }else {
         if (Auth::user()->siswa->pembekalan_magang->$value === 'belum') {
             return 'background-color:#f2f2f2;color:black;text-decoration:none;';
         }else{
             return 'background-color:#4cd137;color:white;text-decoration:none;';
         }
+       }
     }
     // normal
     // if (empty(Auth::user()->siswa->pembekalan_magang->$value)) {
     //     return 'background-color:#e84118;color:white';
     // }
-    $val = Auth::user()->siswa->pembekalan_magang->$value;
-    if ($val == 'sudah') {
-        return 'background-color:#4cd137;color:white';
-    } else if ($val == 'belum') {
+
+    if (Auth::user()->siswa->pembekalan_magang == '' || empty(Auth::user()->siswa->pembekalan_magang)) {
         return 'background-color:#e84118;color:white';
+    }else {
+        $val = Auth::user()->siswa->pembekalan_magang->$value;
+        if ($val == 'sudah') {
+            return 'background-color:#4cd137;color:white';
+        } else if ($val == 'belum') {
+            return 'background-color:#e84118;color:white';
+        }
+
     }
 }
 function PembekalanText($value)

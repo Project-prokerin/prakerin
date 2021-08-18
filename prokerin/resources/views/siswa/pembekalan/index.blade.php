@@ -92,28 +92,45 @@
                 @if (empty(siswa('main')))
                     Anda tidak di izinkan untuk mengisi halaman ini
                 @else
-                @if (siswa('pembekalan_magang')->file_portofolio !== 'belum')
 
-                <form action="{{ route('user.pembekalan.delete') }}" id="form" method="POST">
-                    <a href="{{ route('user.pembekalan.download', basename(siswa('pembekalan_magang')->file_portofolio) )  }}" class="text-white">{{ links(basename(siswa('pembekalan_magang')->file_portofolio)) }}</a>
-                    @method('put')
-                    @csrf
-                    <button type="submit" id="hapus" class="btn btn-icon icon-left  btn-danger ml-5"><i class="fas fa-times"></i>Hapus</button>
-                    </form>
+                @if (siswa('pembekalan_magang') == '' || empty(siswa('pembekalan_magang')))
+                  <form action="{{ route('user.pembekalan.post') }}" method="POST" enctype="multipart/form-data">
+                      @csrf
+                      <input type="file" class="file hover @error('file') is-invalid @enderror"  accept="application/pdf" name="file" value="{{ old('file') }}">
+                      @error('file')
+                          <div class="invalid-feedback mt-2">{{ $message }}</li>
+                      @enderror
+                      <div class="buttons mt-2 mr-5">
+                          <a href="#" class="btn btn-icon icon-left btn-a btn-danger batal"><i class="fas fa-times"></i> Batal</a>
+                          <button type="submit" class="btn btn-icon icon-left btn-a btn-success"><i class="fas fa-check"></i> Simpan</button>
+                      </div>
+                      </form>
+                @else 
+                        @if (siswa('pembekalan_magang')->file_portofolio !== 'belum')
 
-                @else
-                <form action="{{ route('user.pembekalan.post') }}" method="POST" enctype="multipart/form-data">
-                @csrf
-                <input type="file" class="file hover @error('file') is-invalid @enderror"  accept="application/pdf" name="file" value="{{ old('file') }}">
-                @error('file')
-                    <div class="invalid-feedback mt-2">{{ $message }}</li>
-                @enderror
-                <div class="buttons mt-2 mr-5">
-                    <a href="#" class="btn btn-icon icon-left btn-a btn-danger batal"><i class="fas fa-times"></i> Batal</a>
-                    <button type="submit" class="btn btn-icon icon-left btn-a btn-success"><i class="fas fa-check"></i> Simpan</button>
-                </div>
-                </form>
+                            <form action="{{ route('user.pembekalan.delete') }}" id="form" method="POST">
+                                <a href="{{ route('user.pembekalan.download', basename(siswa('pembekalan_magang')->file_portofolio) )  }}" class="text-white">{{ links(basename(siswa('pembekalan_magang')->file_portofolio)) }}</a>
+                                @method('put')
+                                @csrf
+                                <button type="submit" id="hapus" class="btn btn-icon icon-left  btn-danger ml-5"><i class="fas fa-times"></i>Hapus</button>
+                            </form>
+                            
+                        @else
+                            <form action="{{ route('user.pembekalan.post') }}" method="POST" enctype="multipart/form-data">
+                            @csrf
+                            <input type="file" class="file hover @error('file') is-invalid @enderror"  accept="application/pdf" name="file" value="{{ old('file') }}">
+                            @error('file')
+                                <div class="invalid-feedback mt-2">{{ $message }}</li>
+                            @enderror
+                            <div class="buttons mt-2 mr-5">
+                                <a href="#" class="btn btn-icon icon-left btn-a btn-danger batal"><i class="fas fa-times"></i> Batal</a>
+                                <button type="submit" class="btn btn-icon icon-left btn-a btn-success"><i class="fas fa-check"></i> Simpan</button>
+                            </div>
+                            </form>
+                        @endif
+
                 @endif
+
             @endif
                 </td>
             </tr>

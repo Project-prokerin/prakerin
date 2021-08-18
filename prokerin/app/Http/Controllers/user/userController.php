@@ -331,7 +331,6 @@ class userController extends Controller
             'kelas' => $request->kelas,
             'jurusan' => $request->jurusan,
             'tempat_lahir' => $request->tempat_lahir,
-
             'tanggal_lahir' => $request->tanggal_lahir
 
         ]);
@@ -662,12 +661,12 @@ class userController extends Controller
 
         $laporan =  !empty(siswa('main')->kelompok_laporan->laporan_prakerin->nama) ? siswa('main')->kelompok_laporan->laporan_prakerin->nama : 'Judul lapora belum di tentukan';
 
-
+        
         // dd(Auth::user()->siswa->id);
         // $laporan = kelompok_laporan
         $kelompok = kelompok_laporan::select('*')->where('id_guru', $id_guru)->where('no', $no_kelompok)->wherehas('siswa')->get();
-
-        if (empty($laporan)) {
+            // dd($kelompok);
+        if (empty($laporan)) {  
             $laporan = 'Belum ada judul Laporan';
         }else {
             $laporan = laporan_prakerin::where('no',$no_kelompok)->first();
@@ -681,19 +680,67 @@ class userController extends Controller
 
     }
 
+    public function kelompok_laporanUpdate(Request $request,$id)
+    {
+        // dd($id);
+
+        $id_siswa =  kelompok_laporan::where('id_siswa', $id)->first();
+
+        kelompok_laporan::where('id_siswa', $id)->delete();
+
+        $kelompok = kelompok_laporan::where('no', $id_siswa->no)->get()->toArray();
+        
+
+            // dd(count($kelompok));
+            // $data = $request->all();
+            // dd($data);
+            // $no = preg_replace('/[^0-9.]+/', '', $data['no'][0]);
+            // dd($no);/
+
+            // $perusahaan = perusahaan::where('id', $data['id_perusahaan'])->first();
+        //  for ($i=0; $i < ; $i++) { 
+                # code...
+            //  }
+            foreach ($kelompok as $key => $value) {
+                    // dd($value);
+                // $arr[] = $data['id_siswa'][$key];
+                // dd($arr);
+            $no = preg_replace('/[^0-9.]+/', '', $value['no']);
+
+                $nama[] = Siswa::where('id',$value['id_siswa'])->first();
+                // dd($nama);
+                $new_name = str_replace(' ', '', $nama[0]->nama_siswa);
+                // dd($new_name); 
+                $pengajuan_prakerin = kelompok_laporan::where('id_siswa',$value['id_siswa'])->update([
+                    'no'   => 'Kelompok '.$no." - ".$new_name,
+                    // 'id_guru'   => $data['id_guru'],
+                    'id_siswa'   => $value['id_siswa'],
+                    // 'nama_perusahaan'   => $perusahaan->nama,
+                    // 'no_telpon'         => $request->no_telpon,
+                    // 'jurusan'       => $data['jurusan'],
+
+
+                ]);
+            
+            }
+            
+            return redirect()->route('user.kelompok_laporan')->with(['success' => 'Anda keluar dari Kelompok  '.$no." - ".$new_name,' ']);
+
+
+    }
 
 
     public function exportJurnal($id)
 
     {
 
-
+// dd($id);
 
 
 
             $identitas_siswa  =  Siswa::where('id',$id)->first();
 
-            $identitas_orangtua  =  orang_tua::where('id',$id)->first();
+            // $identitas_orangtua  =  orang_tua::where('id',$id)->first();
 
             $dataP_siswa  =  data_prakerin::where('id',$id)->first();
 
@@ -729,7 +776,7 @@ class userController extends Controller
 
 
 
-        $pdf = PDF::loadView('export.PDF.jurnal',compact('jumlah_hari','jumlah_bulan','jurnalH_siswa','jurnalP_siswa','dataP_siswa','identitas_siswa','identitas_orangtua'));
+        $pdf = PDF::loadView('export.PDF.jurnal',compact('jumlah_hari','jumlah_bulan','jurnalH_siswa','jurnalP_siswa','dataP_siswa','identitas_siswa'));
 
 
 

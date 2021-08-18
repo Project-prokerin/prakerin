@@ -162,7 +162,7 @@ class siswaController extends Controller
 
     public function template_excel()
     {
-        $path = public_path('\file\Excel\Import Template\Template Excel siswa.xlsx');
+        $path = public_path('/file/Excel/Import Template/Template Excel siswa.xlsx');
         $name = basename($path);
         $headers = ["Content-Type:   application/vnd.ms-excel; charset=utf-8"];
         return response()->download($path, $name, $headers);

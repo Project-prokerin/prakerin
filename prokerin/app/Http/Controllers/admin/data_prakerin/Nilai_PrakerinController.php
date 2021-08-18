@@ -187,43 +187,43 @@ class Nilai_PrakerinController extends Controller
     {
 
         if (Auth::user()->role !== 'kaprog') {
-                 // $siswa = Siswa::doesntHave('nilai_prakerin')->get();
-        $kategoriS = Kategori_nilai_prakerin::select('id')->where('keterangan', 'Nilai Perusahaan')->get();
-        $arr_id_kategori = [];
-        foreach ($kategoriS as $key => $value) {
-            $arr_id_kategori[] = $value->id; // mendapat id kategori
-        }
-        // mengambil uniuq id siswa
-        $nilai = Nilai_prakerin::has('siswa')->select('id_siswa')->whereIn('id_ketegori', $arr_id_kategori)->get()->unique('id_siswa');
-        $arr_id_siswa = [];
-        // masukin ke aray
-        foreach ($nilai as $key => $value) {
-            $arr_id_siswa[] = $value->id_siswa;
-        }
-        // ini nyari siswa yg idnya unique
-        $siswa = Siswa::whereNotIn('id', $arr_id_siswa)->get();
-        // dd($siswa->toArray());
-        $kategori = Kategori_nilai_prakerin::all()->unique('aspek_yang_dinilai')->where('keterangan', 'Nilai Perusahaan');
-            $kelompok = kelompok_laporan::all()->unique('no');
+                          // $siswa = Siswa::doesntHave('nilai_prakerin')->get();
+                 $kategoriS = Kategori_nilai_prakerin::select('id')->where('keterangan', 'Nilai Perusahaan')->get();
+                 $arr_id_kategori = [];
+                 foreach ($kategoriS as $key => $value) {
+                     $arr_id_kategori[] = $value->id; // mendapat id kategori
+                 }
+                 // mengambil uniuq id siswa
+                 $nilai = Nilai_prakerin::has('siswa')->select('id_siswa')->whereIn('id_ketegori', $arr_id_kategori)->get()->unique('id_siswa');
+                 $arr_id_siswa = [];
+                 // masukin ke aray
+                 foreach ($nilai as $key => $value) {
+                     $arr_id_siswa[] = $value->id_siswa;
+                 }
+                 // ini nyari siswa yg idnya unique
+                 $siswa = Siswa::whereNotIn('id', $arr_id_siswa)->get();
+                 // dd($siswa->toArray());
+                 $kategori = Kategori_nilai_prakerin::all()->unique('aspek_yang_dinilai')->where('keterangan', 'Nilai Perusahaan');
+                     $kelompok = kelompok_laporan::all()->unique('no');
         }else{
                // $siswa = Siswa::doesntHave('nilai_prakerin')->get();
-        $kategoriS = Kategori_nilai_prakerin::select('id')->where('keterangan', 'Nilai Sekolah')->get();
-        $arr_id_kategori = [];
-        foreach ($kategoriS as $key => $value) {
-            $arr_id_kategori[] = $value->id; // mendapat id kategori
-        }
-        // mengambil uniuq id siswa
-        $nilai = Nilai_prakerin::has('siswa')->select('id_siswa')->whereIn('id_ketegori', $arr_id_kategori)->get()->unique('id_siswa');
-        $arr_id_siswa = [];
-        // masukin ke aray
-        foreach ($nilai as $key => $value) {
-            $arr_id_siswa[] = $value->id_siswa;
-        }
-        // ini nyari siswa yg idnya unique
-        $siswa = Siswa::whereNotIn('id', $arr_id_siswa)->get();
-        // dd($siswa->toArray());
-        $kategori = Kategori_nilai_prakerin::all()->unique('aspek_yang_dinilai')->where('keterangan', 'Nilai Perusahaan');
-        $kelompok = kelompok_laporan::all()->unique('no');
+                 $kategoriS = Kategori_nilai_prakerin::select('id')->where('keterangan', 'Nilai Sekolah')->get();
+                 $arr_id_kategori = [];
+                 foreach ($kategoriS as $key => $value) {
+                     $arr_id_kategori[] = $value->id; // mendapat id kategori
+                 }
+                 // mengambil uniuq id siswa
+                 $nilai = Nilai_prakerin::has('siswa')->select('id_siswa')->whereIn('id_ketegori', $arr_id_kategori)->get()->unique('id_siswa');
+                 $arr_id_siswa = [];
+                 // masukin ke aray
+                 foreach ($nilai as $key => $value) {
+                     $arr_id_siswa[] = $value->id_siswa;
+                 }
+                 // ini nyari siswa yg idnya unique
+                 $siswa = Siswa::whereNotIn('id', $arr_id_siswa)->get();
+                 // dd($siswa->toArray());
+                 $kategori = Kategori_nilai_prakerin::all()->unique('aspek_yang_dinilai')->where('keterangan', 'Nilai Perusahaan');
+                 $kelompok = kelompok_laporan::all()->unique('no');
         }
 
         $jurusan = jurusan::all();

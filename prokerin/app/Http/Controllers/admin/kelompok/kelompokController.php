@@ -132,7 +132,10 @@ class kelompokController extends Controller
             $noKelompok = array_diff($a1, $a2);
         }
 
-        $siswa = Siswa::doesntHave('kelompok_laporan')->get();
+        // $siswa = Siswa::doesntHave('kelompok_laporan')->get();
+        $siswa = Siswa::doesntHave('kelompok_laporan')->doesntHave('data_prakerin')->whereHas('pembekalan_magang', function ($query) { return $query->where('psikotes', '=', 'sudah')->where('soft_skill', '=', 'sudah')->whereNotNull('file_portofolio'); })->get();
+        // dd($siswa->toArray());
+
         $perusahaan = perusahaan::all();
         $guru = guru::doesntHave('kelompok_laporan')->doesntHave('data_prakerin')->where('jabatan','pembimbing')->get();
         return view('admin.kelompok_prakerin.tambah',compact('noKelompok','siswa','perusahaan','guru'));
@@ -146,6 +149,7 @@ class kelompokController extends Controller
      */
     public function store(kelompok_laporanRequest $request)
     {
+        
         $request->validated();
         $data = $request->all();
     //    array($data);
@@ -167,7 +171,12 @@ class kelompokController extends Controller
 
                 kelompok_laporan::create($data2);
             }
-            return redirect()->route('kelompok.index')->with(['success' => 'Kelompok '.$data['no'].' - '.$new_name.' berhasil di buat!']);
+
+            if (Auth::user()->role == 'siswa') {
+                return redirect()->route('user.kelompok_laporan')->with(['success' => 'Kelompok '.$data['no'].' - '.$new_name.' berhasil di buat!']);
+            }else {
+                return redirect()->route('kelompok.index')->with(['success' => 'Kelompok '.$data['no'].' - '.$new_name.' berhasil di buat!']);
+            }
 
 
     }
@@ -237,7 +246,9 @@ class kelompokController extends Controller
 
         $perusahaan = perusahaan::all();
         $guru = guru::where('jabatan', 'pembimbing')->get();
-        $siswa = Siswa::doesntHave('kelompok_laporan')->get();
+        $siswa = Siswa::doesntHave('data_prakerin')->whereHas('pembekalan_magang', function ($query) { return $query->where('psikotes', '=', 'sudah')->where('soft_skill', '=', 'sudah')->whereNotNull('file_portofolio'); })->get();
+
+        // $siswa = Siswa::doesntHave('kelompok_laporan')->get();
         $kelompok_laporan = kelompok_laporan::where('no', $id)->with('siswa')->get();
 
         // no kelompok memakai pref replace
