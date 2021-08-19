@@ -122,35 +122,36 @@
                         <label class="d-block">Siswa</label>
                         <div class="table-responsive">
                             <table class="table" id="dynamic_field">
-                                 <tr>
+                                     <tr>
                                       <td class="col-7">
-                                        <select id="id_siswa" name="id_siswa[]"
-                                            class="form-control select2 prakerin  @error('id_siswa')  is-invalid  @enderror ">
-                                          <option value="">--Cari Siswa--</option>
-                                          {{-- {{ dd($siswa) }} --}}
-                                          @forelse ($siswa as $item)
-                                            {{-- @if (Auth::user()->role === 'siswa')
-                                             <option value="{{ Auth::user()->siswa->id }}" selected>{{ Auth::user()->siswa->nama_siswa }}</option>
-                                            @endif --}}
-                                            @if (Auth::user()->role === 'siswa')
-                                                @if (Auth::user()->siswa->nama_siswa === $item->nama_siswa)
-                                                    <option value="{{ $item->id }}" selected >{{ $item->nama_siswa }}</option>
-                                                {{-- @else  --}}
-                                                {{-- <option value="{{ $item->id }}" disabled>{{ $item->nama_siswa }}</option> --}}
-                                                @endif
-                                                
-                                            @else 
-                                                    @if (empty($item->kelompok_laporan))
-                                                        <option value="{{ $item->id }}">{{ $item->nama_siswa }}</option>
-                                                    @endif
-
-
-                                            @endif
-                                                
-                                            @empty
-                                                <option disabled>Semua Siswa telah mendapat kelompok!</option>
-                                            @endforelse
+                                        <select class="form-control select2 @error('id_siswa')  is-invalid  @enderror" name="id_siswa[]" id="id_siswa">
+                                            <option value="">--Cari Siswa--</option>
+                                            {{-- {{ dd($siswa) }} --}}
+                                            @forelse ($siswa as $item)
+                                              {{-- @if (Auth::user()->role === 'siswa')
+                                               <option value="{{ Auth::user()->siswa->id }}" selected>{{ Auth::user()->siswa->nama_siswa }}</option>
+                                              @endif --}}
+                                              @if (Auth::user()->role === 'siswa')
+                                                  @if (Auth::user()->siswa->nama_siswa === $item->nama_siswa)
+                                                      <option value="{{ $item->id }}" selected >{{ $item->nama_siswa }}</option>
+                                                  {{-- @else  --}}
+                                                  {{-- <option value="{{ $item->id }}" disabled>{{ $item->nama_siswa }}</option> --}}
+                                                  @endif
+                                                  
+                                              @else 
+                                                      @if (empty($item->kelompok_laporan))
+                                                          <option value="{{ $item->id }}">{{ $item->nama_siswa }}</option>
+                                                      @endif
+  
+  
+                                              @endif
+                                                  
+                                              @empty
+                                                  <option disabled>Semua Siswa telah mendapat kelompok!</option>
+                                              @endforelse
                                         </select>
+
+                                     
                                             @if ($errors->has(`id_siswa.2`))
                                                 <span class="text-danger">
                                                     <small>
@@ -161,7 +162,58 @@
 
                                       </td>
                                       <td><button type="button" name="add" id="add" class="btn btn-success">Add More</button></td>
+
                                     </tr>
+                                    @for ($i = 0; $i <= 40; $i++)
+                                   <tr id="row{{$i}}" style="display: none;">
+                                    <td class="col-7" >
+                                        <select class="form-control select2 @error('id_siswa')  is-invalid  @enderror" name="id_siswa[]" id="id_siswa">
+                                            <option value="">--Cari Siswa--</option>
+                                            {{-- {{ dd($siswa) }} --}}
+                                            @forelse ($siswa as $item)
+                                              {{-- @if (Auth::user()->role === 'siswa')
+                                               <option value="{{ Auth::user()->siswa->id }}" selected>{{ Auth::user()->siswa->nama_siswa }}</option>
+                                              @endif --}}
+                                              @if (Auth::user()->role === 'siswa')
+                                                  @if (Auth::user()->siswa->nama_siswa === $item->nama_siswa)
+                                                      <option value="{{ $item->id }}" selected >{{ $item->nama_siswa }}</option>
+                                                  {{-- @else  --}}
+                                                  {{-- <option value="{{ $item->id }}" disabled>{{ $item->nama_siswa }}</option> --}}
+                                                  @endif
+                                                  
+                                              @else 
+                                                      @if (empty($item->kelompok_laporan))
+                                                          <option value="{{ $item->id }}">{{ $item->nama_siswa }}</option>
+                                                      @endif
+  
+  
+                                              @endif
+                                                  
+                                              @empty
+                                                  <option disabled>Semua Siswa telah mendapat kelompok!</option>
+                                              @endforelse
+                                        </select>
+
+                                     
+                                            @if ($errors->has(`id_siswa.2`))
+                                                <span class="text-danger">
+                                                    <small>
+                                                        {{ $errors->first('id_siswa.2') }}
+                                                    </small>
+                                                </span>
+                                            @endif
+
+                                      </td>
+                                      
+                                      </td>
+                                      <td>
+                            <button type="button" name="remove" id="{{$i}}" class="btn btn-danger btn_remove">X</button>
+
+                                          {{-- <button type="button" name="remove" id="'+i+'" class="btn btn-danger btn_remove">X</button> --}}
+                                        </td>
+
+                                   </tr>
+                                    @endfor
                             </table>
                        </div>
                    </div>
@@ -204,46 +256,27 @@
 
 
         $(document).ready(function(){
-             var i=1;
-             $('#add').click(function(){
-                  i++;
-                  $('#dynamic_field').append('<tr id="row'+i+'"><td>'+
-                                                '<select id="id_data_prakerin" name="id_siswa[]" class="form-control select2  prakerin @error('id_siswa')  is-invalid  @enderror ">'+
-                                                    '<option value="">--Cari Siswa--</option>'+
-                                                    '@forelse ($siswa as $item)'+
-                                                        '@if (empty($item->kelompok_laporan))'+
-                                                            '<option value="{{ $item->id }}">{{ $item->nama_siswa }}</option>'+
-                                                        '@endif'+
-                                                    '@empty'+
-                                                        '<option disabled>Semua Siswa telah mendapat kelompok!</option>'+
-                                                    '@endforelse'+
-                                                '</select>'+
-                                                    '@if ($errors->has(`id_data_prakerin.2`))'+
-                                                        '<span class="text-danger">'+
-                                                            '<small>'+
-                                                                '{{ $errors->first('id_siswa.2') }}'+
-                                                            '</small>'+
-                                                        '</span>'+
-                                                    '@endif'+
-                                            '</td><td><button type="button" name="remove" id="'+i+'" class="btn btn-danger btn_remove">X</button></td></tr>');
+                    var clicks = 0;
+                $('#add').click(function () {
+                        var  a = clicks += 1;
+                        $('#row'+ a+'').show();
+                        console.log(a)
+                    });
 
-             });
-             $(document).on('click', '.btn_remove', function(){
-                  var button_id = $(this).attr("id");
-                  $('#row'+button_id+'').remove();
-             });
-            //  $('#submit').click(function(){
-            //       $.ajax({
-            //            url:"",
-            //            method:"POST",
-            //            data:$('#add_name').serialize(),
-            //            success:function(data)
-            //            {
-            //                 alert(data);
-            //                 $('#add_name')[0].reset();
-            //            }
-            //       });
-            //  });
+
+
+                    $(document).on('click', '.btn_remove', function () {
+            var button_id = $(this).attr("id");
+            //jika true /hide maka  buat isi yang ada di dalem row value = "" /
+            if ($('#row' + button_id + '').hide()) {
+                $('#id_siswa'+button_id + '').val("");
+
+            }
+
+
+        });
+
+
         });
 
     </script>

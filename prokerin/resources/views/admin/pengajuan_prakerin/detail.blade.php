@@ -64,8 +64,8 @@
             <th scope="row">{{$loop->iteration}}</th>
             <td>{{$pengajuan->siswa->nipd}}</td>
             <td>{{$pengajuan->siswa->nama_siswa}}</td>
-            <td>{{$pengajuan->siswa->kelas->jurusan->jurusan}}</td>
-            <td>{{$pengajuan->siswa->kelas->level}}</td>
+            <td>{{ App\Models\kelas::where('level',$pengajuan->siswa->kelas)->first()->jurusan->jurusan}}</td>
+            <td>{{$pengajuan->siswa->kelas}}</td>
             <td>
                 <button type="button" class="btn btn-primary"><i class="fas fa-search"></i></button>
                 <button type="button" class="btn btn-warning"><i class="fas fa-pencil-alt"></i></button>

@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\pengajuan_prakerin;
 use App\Models\Tanda_tangan;
 use App\Models\data_prakerin;
+use App\Models\kelas;
 use App\Models\Siswa;
 use App\Models\orang_tua;
 // export pdf
@@ -50,7 +51,14 @@ class PDFController extends Controller
         $end =  new Carbon($tanggal_range[1]);
             
         }
+        
+        $cekTtd = pengajuan_prakerin::where('no',$id)->first()->id_tanda_tangan;
+        if ($cekTtd == null) {
+            $tandatangan_kepsek = '';
+        }else {
+            $tandatangan_kepsek = Tanda_tangan::where('id',$cekTtd)->first();
 
+        }
         if ($request->nama_tandatangan == ''    ) {
             $namaT =   'Ramadin Tarigan, ST';
             
@@ -103,9 +111,15 @@ class PDFController extends Controller
 
     $kelompok = pengajuan_prakerin::where('no', $id)->get();
 
+    // foreach ($kelompok as $key ) {
+    //     $kelas[] = kelas::where('level',$key->kelas)->first()->jurusan->jurusan;
+    // }
 
 
-    $KPrakerin = PDF::loadView('export.PDF.kelompok_prakerin', compact('jabatanT','nikT','namaT','hari_from','date_from','date_end','jumlah_bulan','alamat_perusahaan','perusahaan','kelompok','nomor','waktu','bulan','tahun'))->setOptions(['defaultFont' => 'sans-serif', 'isHtml5ParserEnabled' => true, 'isRemoteEnabled' => true]);
+
+
+
+    $KPrakerin = PDF::loadView('export.PDF.kelompok_prakerin', compact('tandatangan_kepsek','jabatanT','nikT','namaT','hari_from','date_from','date_end','jumlah_bulan','alamat_perusahaan','perusahaan','kelompok','nomor','waktu','bulan','tahun'))->setOptions(['defaultFont' => 'sans-serif', 'isHtml5ParserEnabled' => true, 'isRemoteEnabled' => true]);
     return $KPrakerin->download('KelompokPrakerin.PDF');
         // return $KPrakerin->stream();
         // return response()->json();

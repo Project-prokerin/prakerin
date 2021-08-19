@@ -149,7 +149,7 @@ class kelompokController extends Controller
      */
     public function store(kelompok_laporanRequest $request)
     {
-        
+        dd($request);
         $request->validated();
         $data = $request->all();
     //    array($data);

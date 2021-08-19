@@ -7,8 +7,10 @@ use Illuminate\Http\Request;
 use App\Models\kelompok_laporan;
 use App\Models\perusahaan;
 use App\Models\data_prakerin;
+use App\Models\Tanda_tangan;
 use App\Models\guru;
 use App\Models\Siswa;
+use App\Models\kelas;
 use App\Http\Requests\admin\pengajuan_prakerinRequest;
 use App\Models\pengajuan_prakerin;
 use App\Models\detail_pengajuan_prakerin;
@@ -277,10 +279,12 @@ class pengajuan_prakerinController extends Controller
 
         foreach($data['id_data_prakerin'] as $key => $value){
             $siswa = Siswa::where('id',$value)->first();
-            // dd($siswa);
+            
+            $kelas = kelas::where('level',$siswa->kelas)->first();
+            // dd($kelas);
             $dataa = array(
                 'nama'   => $siswa->nama_siswa,
-                'id_kelas'         => $siswa->kelas->id,
+                'id_kelas'         => $kelas->id,
                 'id_siswa'      => $siswa->id,
                 'id_perusahaan' => $request->id_perusahaan,
                 'id_guru' => $request->id_guru,
@@ -412,6 +416,11 @@ class pengajuan_prakerinController extends Controller
 
         // $pengajuan_prakerin = pengajuan_prakerin::where('no', $id)->with('data_prakerin')->get();
         $pengajuan_prakerin = pengajuan_prakerin::where('no',$id)->with('siswa')->whereNotNull('id_siswa')->get();
+
+        // foreach ($pengajuan_prakerin as $key ) {
+        //     $kelas[] = kelas::where('level',$key->siswa->kelas)->first()->toArray();
+        // }
+        // dd($kelas);
         return view('admin.pengajuan_prakerin.detail', compact('pengajuan_prakerin'));
     }
 
@@ -519,9 +528,10 @@ class pengajuan_prakerinController extends Controller
                  foreach($data['id_data_prakerin'] as $key => $value){
                      $siswa = Siswa::where('id',$value)->first();
                      // dd($siswa);
+                     $kelas = kelas::where('level',$siswa->kelas)->first();
                      $dataa = array(
                          'nama'   => $siswa->nama_siswa,
-                         'id_kelas'         => $siswa->kelas->id,
+                         'id_kelas'         => $kelas->id,
                          'id_siswa'      => $siswa->id,
                          'id_perusahaan' => $request->id_perusahaan,
                          'id_guru' => $request->id_guru,
@@ -536,7 +546,7 @@ class pengajuan_prakerinController extends Controller
 
                 $no = preg_replace('/[^0-9.]+/', '',$data['no'][0]);
                 // dd($no);
-                // dd();
+                // dd();kelas
                 // dd($data['no'][0]);
                 $perusahaan = perusahaan::where('id', $data['id_perusahaan'])->first();
                 ;
@@ -591,10 +601,11 @@ class pengajuan_prakerinController extends Controller
 
                  foreach($data['id_data_prakerin'] as $key => $value){
                      $siswa = Siswa::where('id',$value)->first();
+                     $kelas = kelas::where('level',$siswa->kelas)->first();
                      // dd($siswa);
                      $dataa = array(
                          'nama'   => $siswa->nama_siswa,
-                         'id_kelas'         => $siswa->kelas->id,
+                         'id_kelas'         => $kelas->id,
                          'id_siswa'      => $siswa->id,
                          'id_perusahaan' => $request->id_perusahaan,
                          'id_guru' => $request->id_guru,
@@ -662,7 +673,10 @@ class pengajuan_prakerinController extends Controller
 
         $pengajuan = pengajuan_prakerin::where('no',$id)->first();
 
-        return view('admin.pengajuan_prakerin.accPengajuan',compact('pengajuan'));
+        $tandatangan = Tanda_tangan::all();
+        // $surat_keluar = Surat_keluar::find($id);
+        // $isi_surat = Isi_surat::find($id);
+        return view('admin.pengajuan_prakerin.accPengajuan',compact('pengajuan','tandatangan'));
         // return view('admin.surat_keluar.tandatangan',compact('tandatangan','surat_keluar','isi_surat'));
 
     }
@@ -680,6 +694,12 @@ class pengajuan_prakerinController extends Controller
             # jangan whare no dah takutnya ada no yg duplicade jadi ada bug
            $pengajuan = pengajuan_prakerin::where('no',$no)->get();
 
+           foreach ($pengajuan as $key => $value) {
+            $data =    pengajuan_prakerin::whereIn('no', [$no])->update(
+                [
+                    'id_tanda_tangan' => $request->tanda_tangan,
+                ]);
+        }
 
             foreach ($pengajuan as $key => $value) {
                 # ini gua coba update 2 data
@@ -704,6 +724,7 @@ class pengajuan_prakerinController extends Controller
 
        
         $pengajuan = pengajuan_prakerin::where('no',$id)->first();
+        // $cekTtd = pengajuan_prakerin::where('no',$id)->first()->id_tanda_tangan;
         $cekTgl = data_prakerin::where('id_guru',$pengajuan->id_guru)->first();
      
         return view('admin.pengajuan_prakerin.Exportpdf',compact('cekTgl','pengajuan'));
@@ -722,6 +743,13 @@ class pengajuan_prakerinController extends Controller
 
                 # jangan whare no dah takutnya ada no yg duplicade jadi ada bug
            $pengajuan = pengajuan_prakerin::where('no', $no)->get();
+
+           foreach ($pengajuan as $key => $value) {
+            $data =    pengajuan_prakerin::whereIn('no', [$no])->update(
+                [
+                    'id_tanda_tangan' => null,
+                ]);
+        }
 
 
             foreach ($pengajuan as $key => $value) {

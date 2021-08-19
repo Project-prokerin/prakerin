@@ -15,4 +15,8 @@ class Tanda_tangan extends Model
     {
         return $this->hasMany(Detail_surat_k::class, 'id_tanda_tangan','id');
     }
+    public function pengajuan_prakerin()
+    {
+        return $this->hasMany(pengajuan_prakerin::class, 'id_tanda_tangan','id');
+    }
 }

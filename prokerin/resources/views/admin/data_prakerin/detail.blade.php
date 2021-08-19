@@ -60,11 +60,11 @@
                   </div>
                   <div class="row g-3 align-items-center">
                     <label class="form-label col-7 pleft">Kelas</label>
-                    <label class="form-label">: {{ $dataPrakerin->kelas }} </label>
+                    <label class="form-label">: {{ $dataPrakerin->kelas->level }} </label>
                   </div>
                   <div class="row g-3 align-items-center">
                     <label class="form-label col-7 pleft">Jurusan</label>
-                    <label class="form-label">: {{ $dataPrakerin->jurusan }}</label>
+                    <label class="form-label">: {{ $dataPrakerin->kelas->jurusan->jurusan }}</label>
                   </div>
                   <div class="row g-3 align-items-center">
                     <label class="form-label col-7 pleft">Tanggal Mulai</label>

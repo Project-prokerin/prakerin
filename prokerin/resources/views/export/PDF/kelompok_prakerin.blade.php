@@ -229,7 +229,8 @@
                                       <td>{{ $loop->iteration }}</td>
                                       <td>{{ $kel->siswa->nipd }}</td>
                                       <td>{{ $kel->siswa->nama_siswa }}</td>
-                                      <td>{{ $kel->siswa->kelas->jurusan->jurusan }}</td>
+                                <td>{{ App\Models\kelas::where('level',$kel->siswa->kelas)->first()->jurusan->jurusan}}</td>
+
                                   </tr>
 
 
@@ -238,33 +239,66 @@
                         </table>
                     </div>
 
-                    <div class="bwhtbl" style="width:660px;text-align: justify;">
-                        <p style="font-size: 14px; margin-top: 3px; " class="font6">
-                            Besar harapan kami kepada saudara agar membimbing serta mendidik peserta didik kami dalam
-                            pelaksanaan prakerinnya agar bisa menjadi insan yang bermutu dan berkualitas.
-                            <br>
-                            Demikian Surat ini kami sampaikan.Atas perhatian dan Kerjasamanya diucapkan terima kasih.
-                        </p>
-                    </div>
-                    <div class="ttd">
-                        <h6 class="font6" style="margin-right: 52px;" >Depok, {{ $waktu }}</h6>
-                        <h6 class="font6" style="margin-top: -30px;">{{$jabatanT}}</h6>
-                    </div>
+                   @if ($tandatangan_kepsek == '')
+                           <div class="bwhtbl" style="width:660px;text-align: justify;">
+                               <p style="font-size: 14px; margin-top: 3px; " class="font6">
+                                   Besar harapan kami kepada saudara agar membimbing serta mendidik peserta didik kami dalam
+                                   pelaksanaan prakerinnya agar bisa menjadi insan yang bermutu dan berkualitas.
+                                   <br>
+                                   Demikian Surat ini kami sampaikan.Atas perhatian dan Kerjasamanya diucapkan terima kasih.
+                               </p>
+                           </div>
+                           <div class="ttd">
+                               <h6 class="font6" style="margin-right: 28px;" >Depok, {{ $waktu }}</h6>
+                               <h6 class="font6" style="margin-top: -30px;">{{$jabatanT}}</h6>
+                           </div>
+                       
+                       
+                       
+                           <div class="kiri-bawah">
+                               <h6 style="font-size: 14px;">Tembusan Yth:</h6>
+                               <ol>
+                                   <li>Ketua Yayasan Setya Bhakti</li>
+                                   <li>Waka. Bidang Kurikulum</li>
+                                   <li>Pertinggal</li>
+                               </ol>
+                           </div>
+                           <div style="text-align: right;">
+                               <h6 style="font-size: 14px; margin-top: 80px;margin-right:30px;">{{$namaT}}</h6>
+                               <h6 style="font-size: 14px; font-weight: light; margin-top: -30px;margin-right:10px;">NIK. {{$nikT}}</h6>
+                           </div>
+                       
+                   @else 
+                                <div class="bwhtbl" style="width:660px;text-align: justify;">
+                                 <p style="font-size: 14px; margin-top: 3px; margin-bottom: 10px;"  class="font6">
+                                     Besar harapan kami kepada saudara agar membimbing serta mendidik peserta didik kami dalam
+                                     pelaksanaan prakerinnya agar bisa menjadi insan yang bermutu dan berkualitas.
+                                     <br>
+                                     Demikian Surat ini kami sampaikan.Atas perhatian dan Kerjasamanya diucapkan terima kasih.
+                                 </p>
+                             </div>
 
+                             <div class="ttd" style="margin-top: -18px;">
+                                 <h6 class="font6" style="margin-bottom: 10px; margin-right: 28px;" >Depok, {{ $waktu }}</h6>
+                                 <h6 class="font6" style="margin-top: -10px;">{{$jabatanT}}</h6>
+                             </div>
+                         
+                         
+                             <div class="kiri-bawah">
+                                 <h6 style="font-size: 14px;">Tembusan Yth:</h6>
+                                 <ol>
+                                     <li>Ketua Yayasan Setya Bhakti</li>
+                                     <li>Waka. Bidang Kurikulum</li>
+                                     <li>Pertinggal</li>
+                                 </ol>
+                             </div>
+                             <div style="text-align: right; margin-top: 10px; ">
+                                 <img src="{{'data:image/png;base64,'.base64_encode(file_get_contents(public_path("$tandatangan_kepsek->path_gambar")))}}" style="margin-bottom: 10px; margin-top: 1px; z-index: 2; width: 125px; height: 105px;margin-right:20px;"/> 
+                                 <h6 style="font-size: 14px; margin-top: -5px;margin-right:30px;">{{$namaT}}</h6>
+                                 <h6 style="font-size: 14px; font-weight: light; margin-top: -30px;margin-right:10px;">NIK. {{$nikT}}</h6>
+                             </div>
 
-
-                    <div class="kiri-bawah">
-                        <h6 style="font-size: 14px;">Tembusan Yth:</h6>
-                        <ol>
-                            <li>Ketua Yayasan Setya Bhakti</li>
-                            <li>Waka. Bidang Kurikulum</li>
-                            <li>Pertinggal</li>
-                        </ol>
-                    </div>
-                    <div style="text-align: right;">
-                        <h6 style="font-size: 14px; margin-top: 80px;margin-right:30px;">{{$namaT}}</h6>
-                        <h6 style="font-size: 14px; font-weight: light; margin-top: -30px;margin-right:10px;">NIK. {{$nikT}}</h6>
-                    </div>
+                   @endif
 
 
                 </div>

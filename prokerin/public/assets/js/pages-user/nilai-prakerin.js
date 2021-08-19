@@ -180,5 +180,5 @@ $(document).ready(function () {
 });
 
 function belumAdaNilai(){
-    alert('Belum ada izin');
+    alert('Nilai Belum terdaftar! ');
 }

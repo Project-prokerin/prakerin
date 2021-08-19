@@ -38,6 +38,13 @@
                                     @enderror
                             </div>
 
+                            <select name="tanda_tangan" id="tanda_tangan" class="form-control  ">
+                                <option value="" selected>Pilih Tanda-tangan</option>
+                                @foreach ($tandatangan as $ttd)
+                                    <option value="{{ $ttd->id }}">{{ $ttd->nama }}</option>
+                                @endforeach
+                            </select>
+
 
 
 

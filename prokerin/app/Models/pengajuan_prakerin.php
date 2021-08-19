@@ -25,4 +25,8 @@ class pengajuan_prakerin extends Model
     {
         return $this->hasOne(detail_pengajuan_prakerin::class, 'id_pengajuan_prakerin', 'id');
     }
+    public function tanda_tangan()
+    {
+        return $this->belongsTo(Tanda_tangan::class, 'id_tanda_tangan');
+    }
 }
