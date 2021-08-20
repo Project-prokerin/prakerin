@@ -10,7 +10,7 @@ $(document).ready(function() {
                 { data: 'nama_perusahaan', name: 'nama_perusahaan' },
                 { data: 'persetujuan', name: 'persetujuan' },
                 { data: 'action', name: 'action' },]
-            } else if ( role == 'kaprog' || role == 'admin') {
+            } else if ( role == 'hubin' || role == 'kaprog' || role == 'admin') {
                 return [{ data: 'DT_RowIndex', name: 'DT_RowIndex' },
                 { data: 'guru', name: 'guru' },
                 { data: 'nama_perusahaan', name: 'nama_perusahaan' },

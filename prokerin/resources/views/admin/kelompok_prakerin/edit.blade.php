@@ -114,27 +114,74 @@ edit view kelompok
                             <td><button type="button" name="add" id="add" class="btn btn-success">Add More</button></td>
 
                             <input type="text" hidden id="jumlah" value="{{count($kelompok_laporan)}}" >
-                           @foreach ($kelompok_laporan as $item)
-                                         <tr id="row{{$loop->iteration}}">
-                                             <td class="col-7">
-                                                 <select name="id_siswa[]"
-                                                 class="form-control prakerin  @error('id_siswa')  is-invalid  @enderror select2">
-                                                 <option value="">--Cari Siswa--</option>
-                                                 <option value="{{ $item->id_siswa }}" selected>
-                                                     {{ $item->siswa->nama_siswa }}</option>
-                                                    @foreach ($siswa as $item)
-                                                    {{-- {{dd($siswa)}} --}}
-                                                     {{-- @if (empty($item->kelompok_laporan)) --}}
-                                                         <option value="{{ $item->id }}" >{{ $item->nama_siswa }}</option>
-                                                     {{-- @endif --}}
-                                                 @endforeach
-                                             </select>
-                                             </td>
-                                             </td><td><button type="button" name="remove" id="{{$loop->iteration}}" class="btn btn-danger btn_remove">X</button></td></tr>
+                           {{-- @foreach ($kelompok_laporan as $item) --}}
+                           @for ($x = 0; $x < count($kelompok_laporan); $x++)
+                           <tr id="row{{$x}}">
+                               <td class="col-7">
+                                   <select name="id_siswa{{$x}}"
+                                   class="form-control prakerin  @error('id_siswa{{$x}}')  is-invalid  @enderror select2" id="id_siswa{{$x}}">
+                                   <option value="">--Cari Siswa--</option>
+                                   <option value="{{ $kelompok_laporan[$x]->id_siswa }}" selected>
+                                       {{ $kelompok_laporan[$x]->siswa->nama_siswa }}</option>
+                                      @foreach ($siswa as $items)
+                                      {{-- {{dd($siswa)}} --}}
+                                       @if (empty($items->kelompok_laporan))
+                                           <option value="{{ $items->id }}" >{{ $items->nama_siswa }}</option>
+                                       @endif
+                                   @endforeach
+                               </select>
+                               </td>
+                               </td><td><button type="button" name="remove" id="{{$x}}" class="btn btn-danger btn_remove">X</button></td></tr>
 
-                                         </tr>
-                            @endforeach
+                           </tr>
+                               
+                           @endfor
+                            {{-- @endforeach --}}
 
+                    <input type="hidden" id="count" value="{{count($kelompok_laporan)}}">
+
+                            @for ($i = count($kelompok_laporan); $i <= 40; $i++)
+                            <tr id="row{{$i}}" style="display: none;">
+                             <td class="col-7" >
+                                 <select class="form-control select2 @error('id_siswa{{$i}}')  is-invalid  @enderror" name="id_siswa{{$i}}" id="id_siswa{{$i}}>
+                                     <option value="">--Cari Siswa--</option>
+                                     {{-- {{ dd($siswa) }} --}}
+                                     @forelse ($siswa as $item)
+                                       {{-- @if (Auth::user()->role === 'siswa')
+                                        <option value="{{ Auth::user()->siswa->id }}" selected>{{ Auth::user()->siswa->nama_siswa }}</option>
+                                       @endif --}}
+                                               @if (empty($item->kelompok_laporan))
+                                                   <option value="{{ $item->id }}">{{ $item->nama_siswa }}</option>
+                                               @endif
+
+
+                                           
+                                       @empty
+                                           <option disabled>Semua Siswa telah mendapat kelompok!</option>
+                                       @endforelse
+                             
+                                 </select>
+
+                              
+                                     @if ($errors->has(`id_siswa.2`))
+                                         <span class="text-danger">
+                                             <small>
+                                                 {{ $errors->first('id_siswa.2') }}
+                                             </small>
+                                         </span>
+                                     @endif
+
+                               </td>
+                               
+                               </td>
+                               <td>
+                                  <button type="button" name="remove" id="{{$i}}" class="btn btn-danger btn_remove">X</button>
+
+                                   {{-- <button type="button" name="remove" id="'+i+'" class="btn btn-danger btn_remove">X</button> --}}
+                                 </td>
+
+                            </tr>
+                             @endfor
                                 
                         </table>
                    </div>
@@ -166,6 +213,9 @@ edit view kelompok
         <script src="{{ asset('template/') }}/node_modules/select2/dist/js/select2.full.min.js"></script>
 
         <script>
+            // $(document).ready(function () {
+            //     //masukin sini 
+            // });
             //  $(document).ready(function () {
             //             $('#perusahaan').on('change', function () {
             //             let id = $(this).val();
@@ -193,36 +243,27 @@ edit view kelompok
         
         
         
-                $(document).ready(function(){
-                     var i= $('#jumlah').val();
-                     $('#add').click(function(){
-                          i++;
-                          $('#dynamic_field').append('<tr id="row'+i+'"><td>'+
-                                                        '<select name="id_siswa[]" class="form-control select2 prakerin @error('id_siswa')  is-invalid  @enderror ">'+
-                                                            '<option value="">--Cari Siswa--</option>'+
-                                                            '@forelse ($siswa as $item)'+
-                                                                // '@if (empty($item->kelompok_laporan))'+
-                                                                    '<option value="{{ $item->id }}">{{ $item->nama_siswa }}</option>'+
-                                                                // '@endif'+
-                                                            '@empty'+
-                                                                '<option disabled>Semua Siswa telah mendapat kelompok!</option>'+
-                                                            '@endforelse'+
-                                                        '</select>'+
-                                                            '@if ($errors->has(`id_data_prakerin.2`))'+
-                                                                '<span class="text-danger">'+
-                                                                    '<small>'+
-                                                                        '{{ $errors->first('id_data_prakerin.2') }}'+
-                                                                    '</small>'+
-                                                                '</span>'+
-                                                            '@endif'+
-                                                    '</td><td><button type="button" name="remove" id="'+i+'" class="btn btn-danger btn_remove">X</button></td></tr>');
-        
-                     });
-                     $(document).on('click', '.btn_remove', function(){
-                          var button_id = $(this).attr("id");
-                          $('#row'+button_id+'').remove();
-                     });
-                     });
+            $(document).ready(function(){
+                let clicks =  parseInt($('#count').val());
+
+                $('#add').click(function () {
+                        var  a = clicks += 1;
+                        $('#row'+ a+'').show();
+                        console.log(a)
+                });
+
+
+
+                    $(document).on('click', '.btn_remove', function () {
+                      var button_id = $(this).attr("id");
+                      //jika true /hide maka  buat isi yang ada di dalem row value = "" /
+                      if ($('#row' + button_id + '').hide()) {
+                          $('#id_siswa'+button_id + '').val("");
+
+                   }});
+
+
+            });
         </script>
 
     @endpush

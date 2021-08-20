@@ -51,7 +51,7 @@
                   <div class="table-responsive" id="mytable4">
                     <table class="table table-striped" id="table30">
                       <thead class="text-center">
-                        @if (Auth::user()->role === 'admin')
+                        @if (Auth::user()->role === 'kaprog' || Auth::user()->role === 'hubin'|| Auth::user()->role === 'admin')
                         <tr>
                           <th>
                             No

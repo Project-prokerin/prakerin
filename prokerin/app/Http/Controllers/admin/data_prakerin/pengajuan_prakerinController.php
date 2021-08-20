@@ -158,7 +158,7 @@ class pengajuan_prakerinController extends Controller
                     ->addColumn('persetujuan', function ($data) {
                         $role = Auth::user()->role;
                         $button = '';
-                        if ( $role == "admin") {
+                        if ( $role == "admin" || $role == "hubin" ||$role == "kaprog") {
                         // $button .= '<a href="/admin/data_keluar/tolak/' . $data->id . '"   id="' . $data->id . '" class="edit btn btn-danger btn-sm"><i class="fas fa-times"></i></a>';
                         $button .= '<button type="button" name="acc" id="accButton" data-attr="/admin/pengajuan_prakerin/acc/'.$data->no.'"  class="acc btn btn-success btn-sm"><i class="fas fa-check"></i></a>';
                         $button .= ' ';

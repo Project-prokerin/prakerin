@@ -124,7 +124,7 @@
                             <table class="table" id="dynamic_field">
                                      <tr>
                                       <td class="col-7">
-                                        <select class="form-control select2 @error('id_siswa')  is-invalid  @enderror" name="id_siswa[]" id="id_siswa">
+                                        <select class="form-control select2 @error('id_siswa0')  is-invalid  @enderror" name="id_siswa0" id="">
                                             <option value="">--Cari Siswa--</option>
                                             {{-- {{ dd($siswa) }} --}}
                                             @forelse ($siswa as $item)
@@ -142,14 +142,17 @@
                                                       @if (empty($item->kelompok_laporan))
                                                           <option value="{{ $item->id }}">{{ $item->nama_siswa }}</option>
                                                       @endif
-  
-  
+    
+    
                                               @endif
                                                   
                                               @empty
                                                   <option disabled>Semua Siswa telah mendapat kelompok!</option>
                                               @endforelse
+                                    
                                         </select>
+                                        {{-- <select class="form-control select2 @error('id_siswa')  is-invalid  @enderror" name="id_siswa0" id="id_siswa">
+                                        </select> --}}
 
                                      
                                             @if ($errors->has(`id_siswa.2`))
@@ -164,10 +167,10 @@
                                       <td><button type="button" name="add" id="add" class="btn btn-success">Add More</button></td>
 
                                     </tr>
-                                    @for ($i = 0; $i <= 40; $i++)
+                                    @for ($i = 1; $i <= 40; $i++)
                                    <tr id="row{{$i}}" style="display: none;">
                                     <td class="col-7" >
-                                        <select class="form-control select2 @error('id_siswa')  is-invalid  @enderror" name="id_siswa[]" id="id_siswa">
+                                        <select class="form-control select2 @error('id_siswa{{$i}}')  is-invalid  @enderror" name="id_siswa{{$i}}" id="">
                                             <option value="">--Cari Siswa--</option>
                                             {{-- {{ dd($siswa) }} --}}
                                             @forelse ($siswa as $item)
@@ -185,13 +188,14 @@
                                                       @if (empty($item->kelompok_laporan))
                                                           <option value="{{ $item->id }}">{{ $item->nama_siswa }}</option>
                                                       @endif
-  
-  
+    
+    
                                               @endif
                                                   
                                               @empty
                                                   <option disabled>Semua Siswa telah mendapat kelompok!</option>
                                               @endforelse
+                                    
                                         </select>
 
                                      

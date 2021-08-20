@@ -149,13 +149,40 @@ class kelompokController extends Controller
      */
     public function store(kelompok_laporanRequest $request)
     {
-        dd($request);
+        // dd($request);
         $request->validated();
         $data = $request->all();
-    //    array($data);
-        // dd($data);
+
+        $kelompok[] = $request->id_siswa0;
+    $kelompok[] = $request->id_siswa1;
+    $kelompok[] = $request->id_siswa2;
+    $kelompok[] = $request->id_siswa3;
+    $kelompok[] = $request->id_siswa4;
+    $kelompok[] = $request->id_siswa5;
+    $kelompok[] = $request->id_siswa6;
+    $kelompok[] = $request->id_siswa7;
+    $kelompok[] = $request->id_siswa8;
+    $kelompok[] = $request->id_siswa9;
+    $kelompok[] = $request->id_siswa10;
+    $kelompok[] = $request->id_siswa11;
+    $kelompok[] = $request->id_siswa12;
+    $kelompok[] = $request->id_siswa13;
+    $kelompok[] = $request->id_siswa14;
+    $kelompok[] = $request->id_siswa15;
+
+    // dd($kelompok);
+        if ( $keyAspek = array_diff($kelompok,[null])) {
+            foreach ($keyAspek as $kuy) {
+                $kelompokk[] = $kuy;
+            }
+   
+        }
+    //    array($);
+        // dd($kelompokk);
         $perusahaan = perusahaan::where('id', $data['id_perusahaan'])->first();
-            foreach ($data['id_siswa'] as $key => $value) {
+
+       
+            foreach ($kelompokk as $key => $value) {
                 // $arr[] = $data['id_data_prakerin'][$key];
             $nama[] = Siswa::where('id', $value)->first();
             $new_name = str_replace(' ', '', $nama[0]->nama_siswa);
@@ -163,12 +190,12 @@ class kelompokController extends Controller
                 $data2 = array(
                     'no'   => 'Kelompok '.$data['no']." - ".$new_name,
                     'id_guru'   => $data['id_guru'],
-                    'id_siswa'   => $data['id_siswa'][$key],
+                    'id_siswa'   => $value,
                     'nama_perusahaan'   => $perusahaan->nama,
                     'no_telpon'         => $data['no_telpon'],
                     // 'jurusan'       => $data['jurusan'],
                 );
-
+                // dd($data2);
                 kelompok_laporan::create($data2);
             }
 
@@ -274,13 +301,40 @@ class kelompokController extends Controller
         // $input = Input::all();
         // $id_dataP = $request->id_data_prakerin;
         // dd($request);
+
+    
+    // dd($kelompok);
+    $kelompok[] = $request->id_siswa0;
+    $kelompok[] = $request->id_siswa1;
+    $kelompok[] = $request->id_siswa2;
+    $kelompok[] = $request->id_siswa3;
+    $kelompok[] = $request->id_siswa4;
+    $kelompok[] = $request->id_siswa5;
+    $kelompok[] = $request->id_siswa6;
+    $kelompok[] = $request->id_siswa7;
+    $kelompok[] = $request->id_siswa8;
+    $kelompok[] = $request->id_siswa9;
+    $kelompok[] = $request->id_siswa10;
+    $kelompok[] = $request->id_siswa11;
+    $kelompok[] = $request->id_siswa12;
+    $kelompok[] = $request->id_siswa13;
+    $kelompok[] = $request->id_siswa14;
+    $kelompok[] = $request->id_siswa15;
+
+    // dd($kelompok);
+        if ( $keyAspek = array_diff($kelompok,[null])) {
+            foreach ($keyAspek as $kuy) {
+                $kelompokk[] = $kuy;
+            }
+   
+        }
         // $perusahaan = Perusahaan::find('id',$request->id_perusahaan)->first();
         // $data = $request->all();
         // $request->validated();
+        // dd($kelompokk);
         $no = kelompok_laporan::where('no', $request->no[0])->get();
-        // dd();
 
-        if (count($no) > count($request->id_siswa) || count($no) < count($request->id_siswa)) {
+        if (count($no) > count($kelompokk) || count($no) < count($kelompokk)) {
             kelompok_laporan::where('no', $request->no[0])->delete();
 
 
@@ -290,9 +344,9 @@ class kelompokController extends Controller
             // dd($no);/
 
             $perusahaan = perusahaan::where('id', $data['id_perusahaan'])->first();
-            foreach ($data['id_siswa'] as $key => $value) {
+            foreach ($kelompokk as $key => $value) {
                     // dd($value);
-                // $arr[] = $data['id_siswa'][$key];
+                // $arr[] = $kelompokk[$key];
                 // dd($arr);
                 $nama[] = Siswa::where('id',$value)->first();
                 // dd($nama);
@@ -301,11 +355,12 @@ class kelompokController extends Controller
              $data2 = array(
                     'no'   => 'Kelompok '.$no." - ".$new_name,
                     'id_guru'   => $data['id_guru'],
-                    'id_siswa'   => $data['id_siswa'][$key],
+                    'id_siswa'   => $value,
                     'nama_perusahaan'   => $perusahaan->nama,
                     'no_telpon'         => $request->no_telpon,
                     // 'jurusan'       => $data['jurusan'],
                 );
+                // dd($data2);
 
                 $pengajuan_prakerin = kelompok_laporan::create($data2);
             }
@@ -317,14 +372,14 @@ class kelompokController extends Controller
         } else {
             $perusahaan = perusahaan::where('id', $request->id_perusahaan)->first();
             $no = preg_replace('/[^0-9.]+/', '', $request->no[0]);
-            foreach ($request->id_siswa as $key => $val) {
+            foreach ($kelompokk as $key => $val) {
                 $nama[] = Siswa::where('id',$val)->first();
                 $new_name = str_replace(' ', '', $nama[0]->nama_siswa);
                 $data = kelompok_laporan::where('id', $request->id[$key])->where('no', $request->no[$key])->update([
                     
                     'no'   => 'Kelompok '.$no." - ".$new_name,
                     'id_guru'   => $request->id_guru,
-                    'id_siswa'   => $request->id_siswa[$key],
+                    'id_siswa'   => $val,
                     'nama_perusahaan'   => $perusahaan->nama,
                     'no_telpon'         => $request->no_telpon,
                     // 'jurusan'       => $request->jurusan,
