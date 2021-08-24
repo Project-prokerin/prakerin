@@ -177,20 +177,12 @@
                                               {{-- @if (Auth::user()->role === 'siswa')
                                                <option value="{{ Auth::user()->siswa->id }}" selected>{{ Auth::user()->siswa->nama_siswa }}</option>
                                               @endif --}}
-                                              @if (Auth::user()->role === 'siswa')
-                                                  @if (Auth::user()->siswa->nama_siswa === $item->nama_siswa)
-                                                      <option value="{{ $item->id }}" selected >{{ $item->nama_siswa }}</option>
-                                                  {{-- @else  --}}
-                                                  {{-- <option value="{{ $item->id }}" disabled>{{ $item->nama_siswa }}</option> --}}
-                                                  @endif
-                                                  
-                                              @else 
+                                             
                                                       @if (empty($item->kelompok_laporan))
                                                           <option value="{{ $item->id }}">{{ $item->nama_siswa }}</option>
                                                       @endif
     
     
-                                              @endif
                                                   
                                               @empty
                                                   <option disabled>Semua Siswa telah mendapat kelompok!</option>
