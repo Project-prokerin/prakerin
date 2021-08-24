@@ -242,10 +242,12 @@
                    @if ($tandatangan_kepsek == '')
                            <div class="bwhtbl" style="width:660px;text-align: justify;">
                                <p style="font-size: 14px; margin-top: 3px; " class="font6">
-                                   Besar harapan kami kepada saudara agar membimbing serta mendidik peserta didik kami dalam
-                                   pelaksanaan prakerinnya agar bisa menjadi insan yang bermutu dan berkualitas.
+                                   Besar harapan kami permohonan ini bisa terkabulkan demi terjalinnya kerjasama antara
+                                   SMK Taruna Bhakti dengan perusahaan/instansi yang bapak/ibu pimpin demi terciptanya
+                                   link and match antara dunia pendidikan dengan dunia usaha/industri.
                                    <br>
-                                   Demikian Surat ini kami sampaikan.Atas perhatian dan Kerjasamanya diucapkan terima kasih.
+                                   Demikian permohonan ini kami sampaikan.Atas perhatian dan kerjasamanya kami ucapkan
+                                   terima kasih.
                                </p>
                            </div>
                            <div class="ttd">
@@ -270,12 +272,14 @@
                        
                    @else 
                                 <div class="bwhtbl" style="width:660px;text-align: justify;">
-                                 <p style="font-size: 14px; margin-top: 3px; margin-bottom: 10px;"  class="font6">
-                                     Besar harapan kami kepada saudara agar membimbing serta mendidik peserta didik kami dalam
-                                     pelaksanaan prakerinnya agar bisa menjadi insan yang bermutu dan berkualitas.
-                                     <br>
-                                     Demikian Surat ini kami sampaikan.Atas perhatian dan Kerjasamanya diucapkan terima kasih.
-                                 </p>
+                                    <p style="font-size: 14px; margin-top: 3px; " class="font6">
+                                        Besar harapan kami permohonan ini bisa terkabulkan demi terjalinnya kerjasama antara
+                                        SMK Taruna Bhakti dengan perusahaan/instansi yang bapak/ibu pimpin demi terciptanya
+                                        link and match antara dunia pendidikan dengan dunia usaha/industri.
+                                        <br>
+                                        Demikian permohonan ini kami sampaikan.Atas perhatian dan kerjasamanya kami ucapkan
+                                        terima kasih.
+                                    </p>
                              </div>
 
                              <div class="ttd" style="margin-top: -18px;">
