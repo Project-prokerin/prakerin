@@ -207,6 +207,12 @@ class Surat_masukController extends Controller
             public_path($surat->surat_m->path_surat)
         );
         return 'ini detail surat';
+
+
+        // return response()->file(
+        //     public_path()."/".$surat->surat_m->path_surat
+        // );
+        // return 'ini detail surat';
     }
 
 

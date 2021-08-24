@@ -88,7 +88,7 @@ class jurnal_prakerinController extends Controller
                 })
                 ->addColumn('action', function ($data) {
                     $button = '<a href="../admin/jurnal/detail/' . $data->id . '"   id="' . $data->id . '" class="edit btn btn-primary btn-sm"><i class="fas fa-search"></i></a>';
-                    if (Auth::user()->role != 'kaprog') {
+                    if (Auth::user()->role != 'kaprog' && Auth::user()->role != 'kepsek' && Auth::user()->role != 'tu'  && Auth::user()->role != 'bkk' ) {
 
                         $button .= '&nbsp';
 

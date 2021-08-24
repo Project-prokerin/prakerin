@@ -547,17 +547,12 @@
                         </div>
                         <div class="card-stats-items">
                             <div class="card-stats-item">
-                                <div class="card-stats-item-count">{{$test_WPT}}</div>
+                                <div class="card-stats-item-count">{{$test_psikotes}}</div>
                                 <a href="pembekalan" class="text-decoration-none">
-                                    <div class="card-stats-item-label">Test WPT IQ</div>
+                                    <div class="card-stats-item-label">Test Psikotes</div>
                                 </a>
                             </div>
-                            <div class="card-stats-item">
-                                <div class="card-stats-item-count">{{$test_PT}}</div>
-                                <a href="pembekalan" class="text-decoration-none">
-                                    <div class="card-stats-item-label">PI</div>
-                                </a>
-                            </div>
+                          
                             <div class="card-stats-item">
                                 <div class="card-stats-item-count">{{$test_SS}}</div>
                                 <a href="pembekalan" class="text-decoration-none">

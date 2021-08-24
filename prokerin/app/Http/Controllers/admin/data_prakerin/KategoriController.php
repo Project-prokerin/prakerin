@@ -10,6 +10,8 @@ use App\Models\Siswa;
 use App\Models\jurusan;
 use Database\Seeders\kategori_nilai_prakerinSeeder;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+
 
 class KategoriController extends Controller
 {
@@ -62,9 +64,12 @@ class KategoriController extends Controller
                 ->addColumn('action', function ($data) {
                     $button = '<a href="/admin/kategori/detail/' . $data->id . '"   id="' . $data->id . '" class="edit btn btn-primary btn-sm"><i class="fas fa-search"></i></a>';
                     $button .= '&nbsp';
-                    $button .= '<a  href="../admin/kategori/edit/'.$data->id.'" id="edit" data-toggle="tooltip"  data-id="' . $data->id . '" data-original-title="Edit" class="edit btn btn-warning btn-sm edit-post"><i class="fas fa-pencil-alt"></i></a>';
-                    $button .= '&nbsp';
-                    $button .= '<button type="button" name="delete" id="hapus" data-id="' . $data->id . '" class="delete btn btn-danger btn-sm"><i class="fas fa-trash"></i></button>';
+                    if (Auth::user()->role != "kaprog" && Auth::user()->role != 'pembimbing' && Auth::user()->role != 'kepsek' && Auth::user()->role != 'tu' ) {
+                        $button .= '<a  href="../admin/kategori/edit/'.$data->id.'" id="edit" data-toggle="tooltip"  data-id="' . $data->id . '" data-original-title="Edit" class="edit btn btn-warning btn-sm edit-post"><i class="fas fa-pencil-alt"></i></a>';
+                        $button .= '&nbsp';
+                        $button .= '<button type="button" name="delete" id="hapus" data-id="' . $data->id . '" class="delete btn btn-danger btn-sm"><i class="fas fa-trash"></i></button>';
+                    
+                    }
                     return $button;
                 })
                 ->rawColumns(['action'])

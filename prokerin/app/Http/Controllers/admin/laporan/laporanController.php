@@ -46,7 +46,7 @@ class laporanController extends Controller
                 ->addColumn('action', function ($data) {
                     $button = '<button type="button"   id="' . $data->id . '" class="edit btn btn-primary btn-sm"><i class="fas fa-search"></i></button>';
                     $button .= '&nbsp';
-                    if (Auth::user()->role != "kaprog" && Auth::user()->role != 'pembimbing' && Auth::user()->role != 'kepsek' ) {
+                    if ( Auth::user()->role != 'pembimbing' && Auth::user()->role != 'kepsek' && Auth::user()->role != 'tu'   && Auth::user()->role != 'bkk'  ) {
                         $button .= '<button type="button" id="editButton" data-target="#editModal" data-attr="/admin/laporan/edit/'.$data->id.'" data-toggle="modal"  class="edit btn btn-warning btn-sm edit-laporan"><i class="fas fa-pencil-alt"></i></button>';
                         $button .= '&nbsp';
                         $button .= '<button type="button" name="delete" id="hapus" data-id="' . $data->id . '" class="delete btn btn-danger btn-sm"><i class="fas fa-trash"></i></button>';

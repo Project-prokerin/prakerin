@@ -50,7 +50,7 @@
                         <table class="table table-striped" id="table80">
                             <thead class="text-center">
                                 <tr>
-                                    @if (Auth::user()->role == 'hubin')
+                                    @if (Auth::user()->role == 'hubin' || Auth::user()->role == 'tu' || Auth::user()->role == 'bkk')
                                         <th>
                                             No
                                         </th>
@@ -58,7 +58,7 @@
                                         <th>status</th>
                                         <th>tanggal surat</th>
                                         <th>Action</th>
-                                    @elseif(Auth::user()->role == 'admin' or Auth::user()->role == 'kepsek' or
+                                    @elseif(Auth::user()->role == 'admin' or Auth::user()->role == 'kepsek' or 
                                         Auth::user()->role == 'kaprog')
                                         <th>
                                             No

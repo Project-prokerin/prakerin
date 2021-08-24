@@ -64,7 +64,7 @@ $(document).ready( function () {
         ],
     });
 
-    if(role != "kaprog" && role != "kepsek" && role != "pembimbing")
+    if(role != "kaprog" && role != "kepsek" && role != "pembimbing" && role != "tu" && role != "bkk")
     {
         $('.btn-table').append(
             '<a href="'+root+'/admin/data_prakerin/tambah"class="btn btn-primary "> Tambah Data <i class="fas fa-plus"></i></button></a>'

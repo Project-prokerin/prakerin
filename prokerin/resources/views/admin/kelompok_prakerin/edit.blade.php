@@ -131,9 +131,18 @@ edit view kelompok
                                    @endforeach
                                </select>
                                </td>
-                               </td><td><button type="button" name="remove" id="{{$x}}" class="btn btn-danger btn_remove">X</button></td></tr>
+                               </td>
+                               <td>
+                                       
+                                @if (0 === $x)
+                                   
+                                @else
+                                <button type="button" name="remove" id="{{$x}}" class="btn btn-danger btn_remove">X</button>
+                                   
+                                   @endif
+                                </td>
+                            </tr>
 
-                           </tr>
                                
                            @endfor
                             {{-- @endforeach --}}
@@ -143,7 +152,7 @@ edit view kelompok
                             @for ($i = count($kelompok_laporan); $i <= 40; $i++)
                             <tr id="row{{$i}}" style="display: none;">
                              <td class="col-7" >
-                                 <select class="form-control select2 @error('id_siswa{{$i}}')  is-invalid  @enderror" name="id_siswa{{$i}}" id="id_siswa{{$i}}>
+                                 <select class="form-control select2 @error('id_siswa{{$i}}')  is-invalid  @enderror" name="id_siswa{{$i}}" id="id_siswa{{$i}}">
                                      <option value="">--Cari Siswa--</option>
                                      {{-- {{ dd($siswa) }} --}}
                                      @forelse ($siswa as $item)

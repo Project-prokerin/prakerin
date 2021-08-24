@@ -169,9 +169,9 @@ class pengajuan_prakerinController extends Controller
                         return $button;
                     })
                     ->addColumn('action', function ($data) {
-                    if (Auth::user()->role != "admin") {
+                    if (Auth::user()->role != "admin" && Auth::user()->role != "hubin" && Auth::user()->role != "kaprog" ) {
                         $button = '<a href="../admin/pengajuan_prakerin/detail/' . $data->no . '"   id="' . $data->no . '" class="edit btn btn-primary btn-sm"><i class="fas fa-search"></i></a>';
-                        $button .= '&nbsp';;
+                        $button .= '&nbsp';
                         $button .= '&nbsp&nbsp&nbsp&nbsp&nbsp';
                         $button .= '<button type="button" name="kelompoks"  id="kelompoks"  data-attr="/admin/pengajuan_prakerin/Showexport/'.$data->no.'"   class="edit btn-danger mr-3 rounded-pill"><i class="fas fa-cloud-download-alt"></i> PDsF</button>';
                         // $button .= '<button id="kelompoks" type="button" data-no="' . $data->no . '" class="btn btn-danger mr-3 rounded-pill"><i class="fas fa-cloud-download-alt"></i> PDF</button>';
@@ -264,8 +264,36 @@ class pengajuan_prakerinController extends Controller
         // dd($request);
 
 
+
+
         $request->validated();
         $data = $request->all();
+
+        $kelompok[] = $request->id_data_prakerin0;
+    $kelompok[] = $request->id_data_prakerin1;
+    $kelompok[] = $request->id_data_prakerin2;
+    $kelompok[] = $request->id_data_prakerin3;
+    $kelompok[] = $request->id_data_prakerin4;
+    $kelompok[] = $request->id_data_prakerin5;
+    $kelompok[] = $request->id_data_prakerin6;
+    $kelompok[] = $request->id_data_prakerin7;
+    $kelompok[] = $request->id_data_prakerin8;
+    $kelompok[] = $request->id_data_prakerin9;
+    $kelompok[] = $request->id_data_prakerin10;
+    $kelompok[] = $request->id_data_prakerin11;
+    $kelompok[] = $request->id_data_prakerin12;
+    $kelompok[] = $request->id_data_prakerin13;
+    $kelompok[] = $request->id_data_prakerin14;
+    $kelompok[] = $request->id_data_prakerin15;
+
+    // dd($kelompok);
+        if ( $keyAspek = array_diff($kelompok,[null])) {
+            foreach ($keyAspek as $kuy) {
+                $kelompokk[] = $kuy;
+            }
+   
+        }
+        // dd($kelompokk);
         //    array($data);
         // dd($data);
         $perusahaan = perusahaan::where('id', $data['id_perusahaan'])->first();
@@ -277,7 +305,7 @@ class pengajuan_prakerinController extends Controller
 //
         // dd($nama[0]->nama_siswa);
 
-        foreach($data['id_data_prakerin'] as $key => $value){
+        foreach($kelompokk as $key => $value){
             $siswa = Siswa::where('id',$value)->first();
             
             $kelas = kelas::where('level',$siswa->kelas)->first();
@@ -296,8 +324,8 @@ class pengajuan_prakerinController extends Controller
         }
 
 
-        foreach ($data['id_data_prakerin'] as $key => $value) {
-            // $arr[] = $data['id_data_prakerin'][$key];
+        foreach ($kelompokk as $key => $value) {
+            // $arr[] = $kelompokk[$key];
            $nama[] = Siswa::where('id', $value)->first();
 
         $new_name = str_replace(' ', '', $nama[0]->nama_siswa);
@@ -305,7 +333,7 @@ class pengajuan_prakerinController extends Controller
             $data2 = array(
                 'no'   => 'Kelompok '.$data['no']." - ".$new_name,
                 'id_guru'   => $data['id_guru'],
-                'id_siswa'   => $data['id_data_prakerin'][$key],
+                'id_siswa'   => $value,
                 'nama_perusahaan'   => $perusahaan->nama,
                 // 'jurusan'       => $data['jurusan'],
             );
@@ -495,13 +523,39 @@ class pengajuan_prakerinController extends Controller
     public function update(Request $request)
     {
 
+
+// dd($request);
+        $kelompok[] = $request->id_data_prakerin0;
+    $kelompok[] = $request->id_data_prakerin1;
+    $kelompok[] = $request->id_data_prakerin2;
+    $kelompok[] = $request->id_data_prakerin3;
+    $kelompok[] = $request->id_data_prakerin4;
+    $kelompok[] = $request->id_data_prakerin5;
+    $kelompok[] = $request->id_data_prakerin6;
+    $kelompok[] = $request->id_data_prakerin7;
+    $kelompok[] = $request->id_data_prakerin8;
+    $kelompok[] = $request->id_data_prakerin9;
+    $kelompok[] = $request->id_data_prakerin10;
+    $kelompok[] = $request->id_data_prakerin11;
+    $kelompok[] = $request->id_data_prakerin12;
+    $kelompok[] = $request->id_data_prakerin13;
+    $kelompok[] = $request->id_data_prakerin14;
+    $kelompok[] = $request->id_data_prakerin15;
+
+    // dd($kelompok);
+        if ( $keyAspek = array_diff($kelompok,[null])) {
+            foreach ($keyAspek as $kuy) {
+                $kelompokk[] = $kuy;
+            }
+   
+        }
         // dd($request);
             $no = Pengajuan_prakerin::where('no',$request->no[0])->get();
             // dd();
 
-            if (count($no) > count($request->id_data_prakerin) || count($no) < count($request->id_data_prakerin ) ) {
+            if (count($no) > count($kelompokk) || count($no) < count($kelompokk ) ) {
 
-                // dd($request);
+                // dd($kelompokk);
                 $peng = pengajuan_prakerin::where('no', $request->no[0])->get();
                 // dd($peng);
                 # hapus data prakerin
@@ -525,7 +579,7 @@ class pengajuan_prakerinController extends Controller
 
                  // dd($nama);
 
-                 foreach($data['id_data_prakerin'] as $key => $value){
+                 foreach($kelompokk as $key => $value){
                      $siswa = Siswa::where('id',$value)->first();
                      // dd($siswa);
                      $kelas = kelas::where('level',$siswa->kelas)->first();
@@ -533,8 +587,8 @@ class pengajuan_prakerinController extends Controller
                          'nama'   => $siswa->nama_siswa,
                          'id_kelas'         => $kelas->id,
                          'id_siswa'      => $siswa->id,
-                         'id_perusahaan' => $request->id_perusahaan,
-                         'id_guru' => $request->id_guru,
+                         'id_perusahaan' => $data['id_perusahaan'],
+                         'id_guru' => $data['id_guru'],
                          'status' => 'Pengajuan',
                          // 'tgl_mulai' => 'NUll',
                          // 'tgl_selesai' => 'NULL'
@@ -550,7 +604,8 @@ class pengajuan_prakerinController extends Controller
                 // dd($data['no'][0]);
                 $perusahaan = perusahaan::where('id', $data['id_perusahaan'])->first();
                 ;
-                foreach ($data['id_data_prakerin'] as $key => $value) {
+                // dd($kelompokk);
+                foreach ($kelompokk as $key => $value) {
                     
                     $nama[] = Siswa::where('id', $value)->first();
                    $new_name = str_replace(' ', '', $nama[0]->nama_siswa);
@@ -559,7 +614,7 @@ class pengajuan_prakerinController extends Controller
                     $data2 = array(
                         'no'   => 'Kelompok '.$no." - ".$new_name,
                         'id_guru'   => $data['id_guru'],
-                        'id_siswa'   => $data['id_data_prakerin'][$key],
+                        'id_siswa'   => $value,
                         'nama_perusahaan'   => $perusahaan->nama,
                         // 'jurusan'       => $data['jurusan'],
                     );
@@ -599,7 +654,7 @@ class pengajuan_prakerinController extends Controller
 
                  // dd($nama);
 
-                 foreach($data['id_data_prakerin'] as $key => $value){
+                 foreach($kelompokk as $key => $value){
                      $siswa = Siswa::where('id',$value)->first();
                      $kelas = kelas::where('level',$siswa->kelas)->first();
                      // dd($siswa);
@@ -619,7 +674,7 @@ class pengajuan_prakerinController extends Controller
                 $no = preg_replace('/[^0-9.]+/', '',$request->no[0]);
 
                 $perusahaan = perusahaan::where('id', $request->id_perusahaan)->first();
-                foreach ($request->id_data_prakerin as $key => $val) {
+                foreach ($kelompokk as $key => $val) {
                     $nama[] = Siswa::where('id', $val)->first();
                    $new_name = str_replace(' ', '', $nama[0]->nama_siswa);
                     $data = pengajuan_prakerin::where('id', $request->id[$key])->where('no', $request->no[$key])->update([

@@ -54,6 +54,8 @@ $(document).ready(function() {
         $('.btn-table').append(
             '<a href="'+root+'/admin/laporan/tambah"class="btn btn-primary " data-toggle="modal" data-target="#exampleModal"> Tambah Data <i class="fas fa-plus"></i></button></a>'
         );
+    }else {
+        
     }
     $('#table16_filter').prepend(
         '<a href="'+root+'/admin/export/excel/laporan"class="btn btn-success mr-3  ml-2"> Excel <i class="fas fa-cloud-download-alt"></i></button></a>'

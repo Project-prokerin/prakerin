@@ -51,7 +51,7 @@
                   <div class="table-responsive" id="mytable4">
                     <table class="table table-striped" id="table30">
                       <thead class="text-center">
-                        @if (Auth::user()->role === 'kaprog' || Auth::user()->role === 'hubin'|| Auth::user()->role === 'admin')
+                        @if (Auth::user()->role === 'kaprog' || Auth::user()->role === 'hubin'|| Auth::user()->role === 'admin' || Auth::user()->role === 'tu' || Auth::user()->role === 'bkk')
                         <tr>
                           <th>
                             No
@@ -59,10 +59,10 @@
                           <th>Guru Pembimbing</th>
                           <th>Perusahaan</th>
                           <th>status</th>
-                          <th>Persetujuan</th>
+                          {{-- <th>Persetujuan</th> --}}
                           <th>Action</th>
                         </tr>
-                        @elseif(Auth::user()->role === 'kepsek')
+                        @elseif(Auth::user()->role === 'kepsek' )
                         <tr>
                           <th>
                             No

@@ -39,9 +39,14 @@ $(document).ready( function () {
         ],
     });
 
-    $('.btn-table').append(
-        '<a href="'+root+'/admin/kategori/tambah"class="btn btn-primary "> Tambah Data <i class="fas fa-plus"></i></button></a>'
-    );
+    if( role != "pembimbing" && role != "tu")
+    {
+        $('.btn-table').append(
+            '<a href="'+root+'/admin/kategori/tambah"class="btn btn-primary "> Tambah Data <i class="fas fa-plus"></i></button></a>'
+        );
+
+    }
+
     // $('#table11_filter').prepend(
     //     '<a href="'+root+'/admin/export/excel/kelas"class="btn btn-success mr-3  ml-2"> Excel <i class="fas fa-cloud-download-alt"></i></button></a>'
     // );

@@ -67,7 +67,7 @@ class jurnal_harianController extends Controller
                 })
                 ->addColumn('action', function ($data) {
                     $button = '<a href="../admin/jurnalH/detail/'.$data->id . '"   id="' . $data->id . '" class="edit btn btn-primary btn-sm"><i class="fas fa-search"></i></a>';
-                    if(Auth::user()->role != 'kaprog')
+                    if(Auth::user()->role != 'kaprog' && Auth::user()->role != 'kepsek' && Auth::user()->role != 'tu'   && Auth::user()->role != 'bkk' )
                     {
                     $button .= '&nbsp';
                     $button .= '<button   id="editButton" data-target="#editModal" data-attr="/admin/jurnalH/edit/' . $data->id . '" data-toggle="modal"  class="edit btn btn-warning btn-sm edit-post"><i class="fas fa-pencil-alt"></i></button>';

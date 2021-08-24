@@ -4,18 +4,18 @@ $(document).ready(function() {
         role = $('#role').data('role');
 
         function column(role) {
-            if (role == "kepsek") {
+            if (role == "kepsek" ) {
                 return [{ data: 'DT_RowIndex', name: 'DT_RowIndex' },
                 { data: 'guru', name: 'guru' },
                 { data: 'nama_perusahaan', name: 'nama_perusahaan' },
                 { data: 'persetujuan', name: 'persetujuan' },
                 { data: 'action', name: 'action' },]
-            } else if ( role == 'hubin' || role == 'kaprog' || role == 'admin') {
+            } else if ( role == 'hubin' || role == 'kaprog' || role == 'admin' || role == "tu" || role == "bkk") {
                 return [{ data: 'DT_RowIndex', name: 'DT_RowIndex' },
                 { data: 'guru', name: 'guru' },
                 { data: 'nama_perusahaan', name: 'nama_perusahaan' },
                 { data: 'status', name: 'status' },
-                { data: 'persetujuan', name: 'persetujuan' },
+                // { data: 'persetujuan', name: 'persetujuan' },
                 { data: 'action', name: 'action' },]
             }
         }    

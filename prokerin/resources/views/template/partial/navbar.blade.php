@@ -9,9 +9,9 @@
        @if (Auth::user()->role == 'tu'  )
        
        <li class="dropdown dropdown-list-toggle " >
-         <span href="#" data-toggle="dropdown" class=" message-toggle" id="tempatNotif1">
+         {{-- <span href="#" data-toggle="dropdown" class=" message-toggle" id="tempatNotif1"> --}}
            <a href="#" data-toggle="dropdown" id="tempatNotif2"  class="nav-link nav-link-lg message-toggle {{$notifUnread->isEmpty() ? '' : 'beep'}} "><i class="far fa-bell"></i></a>
-         </span>
+         {{-- </span> --}}
          
         <div class="dropdown-menu dropdown-list dropdown-menu-right">
           <div class="dropdown-header">Feedback 
@@ -93,13 +93,13 @@ for (var i = 0; i < notifUnread; i++) {
   }, 1500 * i);
 }
 
-setInterval("notificationTime();",1000); 
-    function notificationTime(){
-      $('#contentNotif').load(location.href + ' #FeedbackContent');
-      $('#tempatNotif1').load(location.href + ' .message-toggle');
 
-    }
+// setInterval("notificationTime();",1000); 
+//     function notificationTime(){
+//       $('#contentNotif').load(location.href + ' #FeedbackContent');
+//       $('#tempatNotif1').load(location.href + ' .message-toggle');
 
+//     }
 
     
 

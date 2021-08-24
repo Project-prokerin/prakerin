@@ -71,7 +71,7 @@ Route::prefix('admin')->middleware(['web', 'auth', 'role:admin,kepsek,tu'])->gro
     Route::get('disposisi/export/excel', [ExcelController::class, 'disposisi'])->name('admin.disposisi.excel');
 });
 
-Route::prefix('admin')->middleware(['web', 'auth', 'role:admin,kepsek,tu,kaprog,kurikulum,kesiswaan,hubin,sarpras'])->group(function () {
+Route::prefix('admin')->middleware(['web', 'auth', 'role:admin,kepsek,tu,kaprog,kurikulum,kesiswaan,hubin,sarpras,bkk'])->group(function () {
     // data surat
     Route::get('surat_masuk', [Surat_masukController::class, 'index_admin'])->name('admin.surat_masuk.index');
     Route::post('surat_masuk/ajax', [Surat_masukController::class, 'ajax_admin'])->name('admin.surat_masuk.ajax');
@@ -113,7 +113,7 @@ Route::prefix('admin')->middleware(['web', 'auth', 'role:admin,kepsek,tu,kaprog,
 
     });
 
-    Route::middleware(['web', 'auth', 'role:admin,kepsek,kaprog,hubin'])->group(function () {
+    Route::middleware(['web', 'auth', 'role:admin,kepsek,kaprog,hubin,tu,bkk'])->group(function () {
         Route::get('surat_keluar', [Surat_keluarController::class, 'index'])->name('admin.surat_keluar.index');
         Route::get('surat_keluar/ajax', [Surat_keluarController::class, 'ajax'])->name('admin.surat_keluar.ajax');
         Route::get('surat_keluar/detail/{id}', [Surat_keluarController::class, 'detail'])->name('admin.surat_keluar.detail');
@@ -206,8 +206,8 @@ Route::prefix('admin')->middleware(['web', 'auth', 'role:admin'])->group(functio
 // modul hubin (prakerin)
 // untuk hubin, admin disi
 // kaprog
-Route::prefix('admin')->middleware(['web', 'auth', 'role:kaprog,hubin,admin,kepsek,pembimbing,tu,siswa'])->group(function () {
-    Route::middleware(['web', 'auth', 'role:kaprog,hubin,admin,kepsek,pembimbing,tu,siswa'])->group(function () {
+Route::prefix('admin')->middleware(['web', 'auth', 'role:kaprog,hubin,admin,kepsek,pembimbing,tu,siswa,bkk'])->group(function () {
+    Route::middleware(['web', 'auth', 'role:kaprog,hubin,admin,kepsek,pembimbing,tu,siswa,bkk'])->group(function () {
     // data prakerin
     Route::get('data_prakerin', [data_prakerinController::class, 'index'])->name('data_prakerin.index');
     Route::get('data_prakerin/ajax', [data_prakerinController::class, 'ajax'])->name('data_prakerin.ajax');
@@ -318,7 +318,7 @@ Route::prefix('admin')->middleware(['web', 'auth', 'role:kaprog,hubin,admin,keps
 
 
     });
-Route::middleware(['web', 'auth', 'role:kaprog,hubin,admin,kepsek'])->group(function () {
+Route::middleware(['web', 'auth', 'role:kaprog,hubin,admin,kepsek,tu,bkk'])->group(function () {
     // pengajuan magang
     Route::get('pengajuan_prakerin', [pengajuan_prakerinController::class, 'index'])->name('pengajuan_prakerin.index');
     Route::get('pengajuan_prakerin/ajax', [pengajuan_prakerinController::class, 'ajax'])->name('pengajuan_prakerin.ajax');
@@ -341,7 +341,7 @@ Route::middleware(['web', 'auth', 'role:kaprog,hubin,admin,kepsek'])->group(func
 
 // bkk                                                               #disini
 Route::prefix('admin')->middleware(['web', 'auth', 'role:bkk,hubin,admin,kurikulum,tu,kaprog,kepsek,siswa,pembimbing'])->group(function () {
-    Route::middleware('role:bkk,hubin,admin,kepsek,pembimbing')->group(function () {
+    Route::middleware('role:bkk,hubin,admin,kepsek,pembimbing,tu')->group(function () {
         Route::get('pembekalan', [pembekalanContoller::class, 'index'])->name('pembekalan.index');
         Route::get('pembekalan/ajax', [pembekalanContoller::class, 'ajax'])->name('pembekalan.ajax');
         Route::get('pembekalan/detail/{id}', [pembekalanContoller::class, 'detail'])->name('pembekalan.detail');
@@ -390,7 +390,7 @@ Route::prefix('admin')->middleware(['web', 'auth', 'role:bkk,hubin,admin,kurikul
     });
 
     // nilai prakerin
-    Route::middleware('role:hubin,admin,kurikulum,tu,kaprog,kepsek')->group(function () {
+    Route::middleware('role:hubin,admin,kurikulum,tu,kaprog,kepsek,bkk')->group(function () {
         Route::get('nilai_prakerin', [Nilai_PrakerinController::class, 'index'])->name('nilai_prakerin.index');
         Route::post('nilai_prakerin/header/ajax', [Nilai_PrakerinController::class, 'index'])->name('nilai_prakerin.header.index');
         Route::get('nilai_prakerin/ajax', [Nilai_PrakerinController::class, 'ajax'])->name('nilai_prakerin.ajax');
@@ -416,7 +416,7 @@ Route::prefix('admin')->middleware(['web', 'auth', 'role:bkk,hubin,admin,kurikul
     });
 
     //kategori nilai
-    Route::middleware('role:hubin,admin,kurikulum,tu,siswa,kaprog,kepsek')->group(function () {
+    Route::middleware('role:hubin,admin,kurikulum,tu,siswa,kaprog,kepsek,bkk')->group(function () {
         Route::get('kategori', [KategoriController::class, 'index'])->name('kategori.index');
         Route::post('kategori/header/ajax', [KategoriController::class, 'index'])->name('kategori.header.index');
         // Route::get('kategori/ajax', [KategoriController::class, 'ajax'])->name('kategori.ajax');

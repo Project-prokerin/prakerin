@@ -126,23 +126,48 @@ edit view kelompok
                                 <td><button type="button" name="add" id="add" class="btn btn-success">Add More</button></td>
 
                                 <input type="text" hidden id="jumlah" value="{{count($pengajuan_prakerin)}}" >
-                               @foreach ($pengajuan_prakerin as $item)
-                                             <tr id="row{{$loop->iteration}}">
-                                                 <td class="col-7">
-                                                     <select name="id_data_prakerin[]"
-                                                     class="form-control prakerin  @error('id_data_prakerin')  is-invalid  @enderror select2">
-                                                     <option value="">--Cari Siswa--</option>
-                                                     <option value="{{ $item->id_siswa }}" selected>
-                                                         {{ $item->siswa->nama_siswa }}</option>
-                                                        @foreach ($siswa as $item)
-                                                             <option value="{{ $item->id }}" >{{ $item->nama_siswa }}</option>
-                                                     @endforeach
-                                                 </select>
-                                                 </td>
-                                                 </td><td><button type="button" name="remove" id="{{$loop->iteration}}" class="btn btn-danger btn_remove">X</button></td></tr>
+                                @for ($x = 0; $x < count($pengajuan_prakerin); $x++)
+                                    <tr id="row{{$x}}">
+                                        <td class="col-7">
+                                            <select id = "id_data_prakerin{{$x}}" name="id_data_prakerin{{$x}}"
+                                            class="form-control prakerin  @error('id_data_prakerin{{$x}}')  is-invalid  @enderror select2">
+                                            <option value="">--Cari Siswa--</option>
+                                            <option value="{{ $pengajuan_prakerin[$x]->id_siswa }}" selected>
+                                                {{ $pengajuan_prakerin[$x]->siswa->nama_siswa }}</option>
+                                               @foreach ($siswa as $item)
+                                                    <option value="{{ $item->id }}" >{{ $item->nama_siswa }}</option>
+                                            @endforeach
+                                        </select>
+                                        </td>
+                                        </td><td>
+                                            @if (0 == $x)
 
-                                             </tr>
-                                @endforeach
+                                            @else 
+                                            
+                                            <button type="button" name="remove" id="{{$x}}" class="btn btn-danger btn_remove">X</button>
+                                            @endif
+                                        </td></tr>
+
+                                    </tr>
+
+                                @endfor
+
+                                @for ($i = count($pengajuan_prakerin); $i <= 40; $i++)
+                                <tr id="row{{$i}}" style="display: none;">
+                                    <td class="col-7">
+                                        <select name="id_data_prakerin{{$i}}"
+                                        class="form-control prakerin  @error('id_data_prakerin{{$i}}')  is-invalid  @enderror select2">
+                                        <option value="">--Cari Siswa--</option>
+                                           @foreach ($siswa as $item)
+                                                <option value="{{ $item->id }}" >{{ $item->nama_siswa }}</option>
+                                        @endforeach
+                                    </select>
+                                    </td>
+                                    </td><td><button type="button" name="remove" id="{{$i}}" class="btn btn-danger btn_remove">X</button></td></tr>
+
+                                </tr>
+                                @endfor
+                            
 
                                     
                             </table>
@@ -173,40 +198,28 @@ edit view kelompok
       
         
         
-        
-        
-                $(document).ready(function(){
-                     var i= $('#jumlah').val();
-                     $('#add').click(function(){
-                          i++;
-                          $('#dynamic_field').append('<tr id="row'+i+'"><td>'+
-                                                        '<select name="id_data_prakerin[]" class="form-control select2 prakerin @error('id_data_prakerin')  is-invalid  @enderror ">'+
-                            
-                                                            '@foreach ($siswa as $item)'+
-                                                             '<option value="{{ $item->id }}" >{{ $item->nama_siswa }}</option>'+
-                                                     '@endforeach'+
-                                                        '</select>'+
-                                                           
-                                                    '</td><td><button type="button" name="remove" id="'+i+'" class="btn btn-danger btn_remove">X</button></td></tr>');
-        
-                     });
-                     $(document).on('click', '.btn_remove', function(){
-                          var button_id = $(this).attr("id");
-                          $('#row'+button_id+'').remove();
-                     });
-                    //  $('#submit').click(function(){
-                    //       $.ajax({
-                    //            url:"",
-                    //            method:"POST",
-                    //            data:$('#add_name').serialize(),
-                    //            success:function(data)
-                    //            {
-                    //                 alert(data);
-                    //                 $('#add_name')[0].reset();
-                    //            }
-                    //       });
-                    //  });
+          
+$(document).ready(function(){
+                let clicks =  parseInt($('#jumlah').val());
+
+                $('#add').click(function () {
+                        var  a = clicks += 1;
+                        $('#row'+ a+'').show();
+                        console.log(a)
                 });
+
+
+
+                    $(document).on('click', '.btn_remove', function () {
+                      var button_id = $(this).attr("id");
+                      //jika true /hide maka  buat isi yang ada di dalem row value = "" /
+                      if ($('#row' + button_id + '').hide()) {
+                          $('#id_data_prakerin'+button_id + '').val("");
+
+                   }});
+
+
+            });
                 
             </script>
 

@@ -53,14 +53,24 @@ class Surat_keluarController extends Controller
         if ($request->ajax()) {
             $role = Auth::user()->role;
 
-                if ($role == "kepsek" or $role == "kepsek" ) {
+                if ($role == "kepsek" ) {
                     $surat = Surat_keluar::get();
                     return datatables()->of($surat)
                         ->addColumn('nama_surat', function ($surat) {
                             return $surat->detail_surat->template_surat->nama_surat;
                         })
                         ->addColumn('status', function($surat){
-                         return $surat->status;
+                            if ($surat->status === 'tolak') {
+                                $btn =  '<span class="badge bg-danger text-light" style="font-size: 12px; " ><b>di '.$surat->status.'</b></span>';
+                                return $btn;
+                            }else if( $surat->status === 'acc'){
+                                $btn =  '<span class="badge bg-success text-light" style="font-size: 12px; " ><b>di '.$surat->status.'</b></span>';
+                                return $btn;
+                            }else{
+                                $btn =  '<span class="badge bg-warning text-light" style="font-size: 12px; " ><b> '.$surat->status.'</b></span>';
+                                return $btn;
+                                // return $surat->status;
+                            }
 
                         })
                         ->addColumn('jabatan', function ($surat) {
@@ -114,7 +124,7 @@ class Surat_keluarController extends Controller
                             }
                             return $button;
                         })
-                        ->rawColumns(['persetujuan','action','nama_surat','tgl_surat','dari','untuk','nama','jabatan'])
+                        ->rawColumns(['persetujuan','action','nama_surat','tgl_surat','status','dari','untuk','nama','jabatan'])
                         ->addIndexColumn()->make(true);
                 }else{
                     $surat = Surat_keluar::get();
@@ -151,7 +161,7 @@ class Surat_keluarController extends Controller
                         ->addColumn('persetujuan', function ($surat) {
                             $role = Auth::user()->role;
                             $button = '';
-                            if ($role == "kepsek" or $role == "admin") {
+                            if ($role == "kepsek" or $role == "admin" or $role == "kaprog" ) {
                                 // $button .= '<a href="/admin/surat_keluar/tolak/' . $surat->id . '"   id="' . $surat->id . '" class="edit btn btn-danger btn-sm"><i class="fas fa-times"></i></a>';
                                 $button .= '<button type="button" name="tolak" id="tolak" data-id="' . $surat->id . '"  class="edit btn btn-danger btn-sm"><i class="fas fa-times"></i></a>';
                                 $button .= '&nbsp';
@@ -163,16 +173,19 @@ class Surat_keluarController extends Controller
                         ->addColumn('action', function ($surat) {
                             $role = Auth::user()->role;
                             $button = '';
-                            if ($role == "admin" or  $role == "hubin") {
-                                $button .= '<a href="/admin/surat_keluar/download/' . $surat->id . '"   id="' . $surat->id . '" class="edit btn btn-danger btn-sm"><i class="fa fa-download"></i></a>';
-                                $button .= '&nbsp';
+                            if ($role == "admin" or  $role == "hubin" or  $role == "tu") {
+                                if ($role  != 'tu') {
+                                    $button .= '<a href="/admin/surat_keluar/download/' . $surat->id . '"   id="' . $surat->id . '" class="edit btn btn-danger btn-sm"><i class="fa fa-download"></i></a>';
+                                    $button .= '&nbsp';
+                                    $button .= '<a  href="/admin/surat_keluar/edit/' . $surat->id . '" id="edit" data-toggle="tooltip"  data-id="' . $surat->id . '" data-original-title="Edit" class="edit btn btn-warning btn-sm edit-post"><i class="fas fa-pencil-alt"></i></a>';
+                                    $button .= '&nbsp';
+                                    $button .= '<button type="button" name="delete" id="hapus" data-id="' . $surat->id . '" class="delete btn btn-danger btn-sm"><i class="fas fa-trash"></i></button>';
+
+                                }
                                 $button .= '<a href="/admin/surat_keluar/stream/' . $surat->id . '"   id="' . $surat->id . '" class="edit btn btn-primary btn-sm"><i class="fas fa-search"></i></a>';
                                 $button .= '&nbsp';
-                                $button .= '<a  href="/admin/surat_keluar/edit/' . $surat->id . '" id="edit" data-toggle="tooltip"  data-id="' . $surat->id . '" data-original-title="Edit" class="edit btn btn-warning btn-sm edit-post"><i class="fas fa-pencil-alt"></i></a>';
-                                $button .= '&nbsp';
-                                $button .= '<button type="button" name="delete" id="hapus" data-id="' . $surat->id . '" class="delete btn btn-danger btn-sm"><i class="fas fa-trash"></i></button>';
-                            }else if ($role == "kaprog" or $role == "kepsek"){
-                                $button .= '<a href="/admin/surat_keluar/download/' . $surat->id . '"   id="' . $surat->id . '" class="edit btn btn-success btn-sm"><i class="fa fa-download"></i></a>';
+                            }else if ($role == "kaprog" or $role == "bkk"){
+                                $button .= '<a href="/admin/surat_keluar/download/' . $surat->id . '"   id="' . $surat->id . '" class="edit btn btn-danger btn-sm"><i class="fa fa-download"></i></a>';
                                 $button .= '&nbsp';
                                 $button .= '<a href="/admin/surat_keluar/stream/' . $surat->id . '"  id="' . $surat->id . '" class="edit btn btn-primary btn-sm"><i class="fas fa-search"></i></a>';
                                 $button .= '&nbsp';

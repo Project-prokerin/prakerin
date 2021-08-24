@@ -24,7 +24,12 @@
 @section('main')
 <div class="card" style="">
     <div class="card-header">
-        <h4 class="pt-2 card-title"><i class="fas fa-th"></i> Tambah Data Nilai Prakerin</h4>
+        @if (Auth::user()->role === 'kaprog')        
+        <h4 class="pt-2 card-title"><i class="fas fa-th"></i> Tambah Data Nilai Prakerin Sekolah</h4>
+        @else 
+        <h4 class="pt-2 card-title"><i class="fas fa-th"></i> Tambah Data Nilai Prakerin Perusahaan</h4>
+
+        @endif
     </div>
     <div class="card-body">
         <form action="{{ route('nilai_prakerin.post') }}" method="POST">
@@ -464,7 +469,7 @@
 let role = $('#auth').val();
 
 if (role != 'kaprog') {
-    for (let index = 0; index <= 50; index++) {
+               for (let index = 0; index <= 50; index++) {
                   $('#jurusan').change(function (e) {
                       $('.aspek'+index+'').empty().append();
 

@@ -4,7 +4,7 @@ $(document).ready(function () {
     role = $('#role').data('role');
 
     function column(role) {
-        if (role == "hubin") {
+        if (role == "hubin" || role == "tu" || role == "bkk") {
             return [{ data: 'DT_RowIndex', name: 'DT_RowIndex' },
             { data: 'nama_surat', name: 'nama_surat' },
             { data: 'status', name: 'status' },

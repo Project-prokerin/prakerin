@@ -16,7 +16,12 @@
 @section('main')
 <div class="card" style="">
     <div class="card-header">
-        <h4 class="pt-2 card-title"><i class="fas fa-th"></i> Tambah Data Nilai Prakerin</h4>
+        @if (Auth::user()->role === 'kaprog')        
+        <h4 class="pt-2 card-title"><i class="fas fa-th"></i> Edit Data Nilai Prakerin Sekolah</h4>
+        @else 
+        <h4 class="pt-2 card-title"><i class="fas fa-th"></i> Edit Data Nilai Prakerin Perusahaan</h4>
+
+        @endif
     </div>
     <div class="card-body">
         @if (session('success'))

@@ -55,7 +55,10 @@ $(document).ready(function () {
         ],
     });
     role = $('#role').data('role');
-    if (role != 'kaprog') {
+    if (role != 'kaprog' || role != 'tu') {
+    
+    }else {
+        
         $('.btn-table').append(
             '<a href="'+root+'/admin/jurnalH/tambah"class="btn btn-primary" data-toggle="modal" data-target="#exampleModal"> Tambah Data <i class="fas fa-plus"></i></button></a>'
         );

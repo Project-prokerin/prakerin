@@ -167,7 +167,7 @@
                                       <td><button type="button" name="add" id="add" class="btn btn-success">Add More</button></td>
 
                                     </tr>
-                                    @for ($i = 1; $i <= 40; $i++)
+                                 @for ($i = 1; $i <= 40; $i++)
                                    <tr id="row{{$i}}" style="display: none;">
                                     <td class="col-7" >
                                         <select class="form-control select2 @error('id_siswa{{$i}}')  is-invalid  @enderror" name="id_siswa{{$i}}" id="">
@@ -211,7 +211,7 @@
                                       
                                       </td>
                                       <td>
-                            <button type="button" name="remove" id="{{$i}}" class="btn btn-danger btn_remove">X</button>
+                                         <button type="button" name="remove" id="{{$i}}" class="btn btn-danger btn_remove">X</button>
 
                                           {{-- <button type="button" name="remove" id="'+i+'" class="btn btn-danger btn_remove">X</button> --}}
                                         </td>

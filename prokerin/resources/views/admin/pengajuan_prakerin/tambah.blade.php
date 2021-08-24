@@ -109,10 +109,10 @@
                         <label class="d-block">Siswa</label>
                         <div class="table-responsive">
                             <table class="table" id="dynamic_field">
-                                 <tr>
+                                   <tr>
                                       <td class="col-7">
-                                        <select name="id_data_prakerin[]"
-                                            class="form-control select2  prakerin @error('id_data_prakerin')   is-invalid  @enderror ">
+                                        <select name="id_data_prakerin0"
+                                            class="form-control select2  prakerin @error('id_data_prakerin0')   is-invalid  @enderror ">
                                             <option value="">--Cari Siswa--</option>
                                             @forelse ($siswa as $item)
                                                 @if (empty($item->data_prakrin))
@@ -122,16 +122,44 @@
                                                 <option disabled>Semua Siswa telah melakukan Pengajuan!</option>
                                             @endforelse
                                         </select>
-                                            @if ($errors->has(`id_data_prakerin.*`))
+                                            @if ($errors->has(`id_data_prakerin0`))
                                                 <span class="text-danger">
                                                     <small>
-                                                        {{ $errors->first('id_data_prakerin.*') }}
+                                                        {{ $errors->first('id_data_prakerin0') }}
                                                     </small>
                                                 </span>
                                             @endif
                                       </td>
                                       <td><button type="button" name="add" id="add" class="btn btn-success">Add More</button></td>
                                     </tr>
+
+                                    @for ($i = 1; $i <= 40; $i++)
+                                          <tr id="row{{$i}}" style="display: none;" >
+                                        <td class="col-7">
+                                          <select name="id_data_prakerin{{$i}}"
+                                              class="form-control select2  prakerin @error('id_data_prakerin{{$i}}')   is-invalid  @enderror ">
+                                              <option value="">--Cari Siswa--</option>
+                                              @forelse ($siswa as $item)
+                                                  @if (empty($item->data_prakrin))
+                                                      <option value="{{ $item->id }}">{{ $item->nama_siswa }}</option>
+                                                  @endif
+                                              @empty
+                                                  <option disabled>Semua Siswa telah melakukan Pengajuan!</option>
+                                              @endforelse
+                                          </select>
+                                              @if ($errors->has(`id_data_prakerin.*`))
+                                                  <span class="text-danger">
+                                                      <small>
+                                                          {{ $errors->first('id_data_prakerin.*') }}
+                                                      </small>
+                                                  </span>
+                                              @endif
+                                        </td>
+                                        <td>
+                                            <button type="button" name="remove" id="{{$i}}" class="btn btn-danger btn_remove">X</button>
+                                        </td>
+                                    </tr>
+                                    @endfor
                             </table>
                        </div>
                    </div>
@@ -152,44 +180,28 @@
 
 
 
-        $(document).ready(function(){
-             var i=1;
-             $('#add').click(function(){
-                  i++;
-                  $('#dynamic_field').append('<tr id="row'+i+'"><td>'+
-                                                '<select name="id_data_prakerin[]" class="form-control select2 prakerin @error('id_data_prakerin')  is-invalid  @enderror ">'+
-                                                    '<option value="">--Cari Siswa--</option>'+
-                                                    
-                                                    '@foreach ($siswa as $item)'+
-                                                             '<option value="{{ $item->id }}" >{{ $item->nama_siswa }}</option>'+
-                                                     '@endforeach'+
-                                                '</select>'+
-                                                    '@if ($errors->has(`id_data_prakerin.2`))'+
-                                                        '<span class="text-danger">'+
-                                                            '<small>'+
-                                                                '{{ $errors->first('id_data_prakerin.2') }}'+
-                                                            '</small>'+
-                                                        '</span>'+
-                                                    '@endif'+
-                                            '</td><td><button type="button" name="remove" id="'+i+'" class="btn btn-danger btn_remove">X</button></td></tr>');
+$(document).ready(function(){
+                    var clicks = 0;
+                $('#add').click(function () {
+                        var  a = clicks += 1;
+                        $('#row'+ a+'').show();
+                        console.log(a)
+                    });
 
-             });
-             $(document).on('click', '.btn_remove', function(){
-                  var button_id = $(this).attr("id");
-                  $('#row'+button_id+'').remove();
-             });
-            //  $('#submit').click(function(){
-            //       $.ajax({
-            //            url:"",
-            //            method:"POST",
-            //            data:$('#add_name').serialize(),
-            //            success:function(data)
-            //            {
-            //                 alert(data);
-            //                 $('#add_name')[0].reset();
-            //            }
-            //       });
-            //  });
+
+
+                    $(document).on('click', '.btn_remove', function () {
+            var button_id = $(this).attr("id");
+            //jika true /hide maka  buat isi yang ada di dalem row value = "" /
+            if ($('#row' + button_id + '').hide()) {
+                $('#id_siswa'+button_id + '').val("");
+
+            }
+
+
+        });
+
+
         });
         
     </script>

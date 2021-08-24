@@ -47,10 +47,14 @@ $(document).ready(function() {
         ]
     });
 
-    if (role != "hubin" || role != "kaprog" ) {
+    if (role != "hubin" && role != "kaprog"  ) {
+    
+    
+    }else {
         $('.btn-table').append(
             '<a href="'+root+'/admin/kelompok/tambah"class="btn btn-primary "> Tambah Data <i class="fas fa-plus"></i></button></a>'
         );
+        
     }
 
     // search engine
