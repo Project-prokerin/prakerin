@@ -492,9 +492,9 @@ Route::middleware(['web', 'auth', 'role:siswa'])->group(function () {
     Route::get('/siswa/nilai_prakerin/get_option/ajax', [SiswaNilai_PrakerinController::class, 'get_option'])->name('Siswanilai_prakerin.get_option');
 
     Route::get('/siswa/nilai_prakerin/detail/{id}', [SiswaNilai_PrakerinController::class, 'detail'])->name('Siswanilai_prakerin.detail');
-    Route::get('/siswa/nilai_prakerin/tambah', [SiswaNilai_PrakerinController::class, 'tambah'])->name('Siswanilai_prakerin.tambah');
-    Route::get('/siswa/nilai_prakerin/option/tambah_1/ajax/{id}', [SiswaNilai_PrakerinController::class, 'option_tambah_1'])->name('Siswanilai_prakerin.tambah');
-    Route::get('/siswa/nilai_prakerin/option/tambah_2/ajax/{id}', [SiswaNilai_PrakerinController::class, 'option_tambah_2'])->name('Siswanilai_prakerin.tambah');
+    Route::get('/siswa/nilai_prakerin/tambah', [SiswaNilai_PrakerinController::class, 'tambah'])->name('Siswanilais_prakerin.tambah');
+    Route::get('/siswa/nilai_prakerin/option/tambah_1/ajax/{id}', [SiswaNilai_PrakerinController::class, 'Soption_tambah_1'])->name('Siswanilai_prakerin.tambah');
+    Route::get('/siswa/nilai_prakerin/option/tambah_2/ajax/{id}', [SiswaNilai_PrakerinController::class, 'Soption_tambah_2'])->name('Siswanilai_prakerin.tambah');
 
     Route::get('/siswa/nilai_prakerin/option/tambah_kaprog1/ajax/{id}', [SiswaNilai_PrakerinController::class, 'option_kaprog_1'])->name('Siswanilai_prakerin.tambah');
     Route::get('/siswa/nilai_prakerin/option/tambah_kaprog2/ajax/{id}', [SiswaNilai_PrakerinController::class, 'option_kaprog_2'])->name('Siswanilai_prakerin.tambah');
