@@ -685,13 +685,14 @@ class userController extends Controller
         // dd($id);
 
         $id_siswa =  kelompok_laporan::where('id_siswa', $id)->first();
+        $jml_kelompok = kelompok_laporan::where('no', $id_siswa->no)->get()->toArray();
 
         kelompok_laporan::where('id_siswa', $id)->delete();
 
         $kelompok = kelompok_laporan::where('no', $id_siswa->no)->get()->toArray();
         
 
-            // dd(count($kelompok));
+            // dd(count($jml_kelompok));
             // $data = $request->all();
             // dd($data);
             // $no = preg_replace('/[^0-9.]+/', '', $data['no'][0]);
@@ -724,7 +725,12 @@ class userController extends Controller
             
             }
             
-            return redirect()->route('user.kelompok_laporan')->with(['success' => 'Anda keluar dari Kelompok  '.$no." - ".$new_name,' ']);
+                    if (count($jml_kelompok) > 1) {
+                        return redirect()->route('user.kelompok_laporan')->with(['success' => 'Anda keluar dari Kelompok  '.$no." - ".$new_name,' ']);
+                    }else{
+                        return redirect()->route('user.kelompok_laporan')->with(['success' => 'Anda Membubarkan Kelompok ']);
+
+                    }
 
 
     }
