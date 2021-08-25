@@ -55,7 +55,9 @@ class SiswaNilai_PrakerinController extends Controller
         }else{
             $kategori = Kategori_nilai_prakerin::all()->unique('aspek_yang_dinilai')->where('keterangan', 'Nilai Perusahaan')->where('jurusan', "RPL");
         }
-        return view('siswa.nilai_prakerin.index', compact('kategori'));
+
+        $jurusan_id = kelas::where('level',Auth::user()->siswa->kelas)->first()->jurusan->id;
+        return view('siswa.nilai_prakerin.index', compact('kategori','jurusan_id'));
     }
 
     public function getNameColumn($val)

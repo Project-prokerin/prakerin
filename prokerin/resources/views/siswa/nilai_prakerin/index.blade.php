@@ -49,7 +49,7 @@
                     <div class="col-md-6">
                         <div class="row">
                             <div class="col-md-7">
-                                <input type="hidden" class="form-control mb-2  jurusan  @error('')  is-invalid  @enderror select2" value="{{Auth::user()->siswa->kelas->jurusan->id}}">
+                                <input type="hidden" class="form-control mb-2  jurusan  @error('')  is-invalid  @enderror select2" value="{{$jurusan_id}}">
                                 {{-- <select name="" class="form-control mb-2  jurusan  @error('')  is-invalid  @enderror select2"> --}}
                                     {{-- <option value="RPL">--Pilih Jurusan--</option>
                                     <option value="RPL" selected>RPL</option>
