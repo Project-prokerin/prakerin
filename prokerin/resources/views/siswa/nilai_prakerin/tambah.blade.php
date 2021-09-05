@@ -125,6 +125,9 @@
                                     <option value="{{ $item->id }}">{{ $item->aspek_yang_dinilai }}</option>
                                     @endforeach --}}
                                 </select>
+                                @error('aspek0')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
                                 <div id="invalid_aspek" class="invalid-feedback d-none"></div>
                             </div>
                             <div class="mb-3 col-sm-3">
@@ -168,6 +171,9 @@
                             <label class="" style="margin-left: 70px;">Nilai</label>
                         </div>
                     </div>
+                    @error('aspek{{$i}}')
+                    <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
                     <div class="mt-2 col-12 row">
                         <div class="col-sm-5">
                             <select id="aspek{{$i}}" name="aspek{{$i}}"
@@ -480,7 +486,7 @@ let role = $('#auth').val();
                               //console.log(response.kategori);
                               $('.aspek'+index+'').empty().append();
                               if (response.kategori != null) {
-                                  $('.aspek'+index+'').append('<option>-- Pilih Aspek --</option>')
+                                  $('.aspek'+index+'').append('<option value="">-- Pilih Aspek --</option>')
                                   response.kategori.forEach(element => {
                                       if (element) {
                                           $('.aspek'+index+'').append('<option value="' + element.id +

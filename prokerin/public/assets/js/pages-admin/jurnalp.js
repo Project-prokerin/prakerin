@@ -50,13 +50,18 @@ $(document).ready(function () {
     });
     role = $('#role').data('role');
     console.log(role);
-    if (role != 'kaprog' || role != 'tu') {
+    if (role != 'kaprog' || role != 'tu' ) {
     
     }else{
         
         $('.btn-table').append(
             '<a href="'+root+'/admin/jurnal/tambah"class="btn btn-primary "> Tambah Data <i class="fas fa-plus"></i></button></a>'
         );
+    }
+    if(role == 'admin'){
+        $('.btn-table').append(
+            '<a href="'+root+'/admin/jurnal/tambah"class="btn btn-primary "> Tambah Data <i class="fas fa-plus"></i></button></a>'
+        );   
     }
 
 

@@ -63,6 +63,11 @@ $(document).ready(function () {
             '<a href="'+root+'/admin/jurnalH/tambah"class="btn btn-primary" data-toggle="modal" data-target="#exampleModal"> Tambah Data <i class="fas fa-plus"></i></button></a>'
         );
     }
+    if(role == 'admin'){
+        $('.btn-table').append(
+            '<a href="'+root+'/admin/jurnal/tambah"class="btn btn-primary "> Tambah Data <i class="fas fa-plus"></i></button></a>'
+        );   
+    }
 
     $('#table99_filter').prepend(
         '<a href="'+root+'/admin/export/excel/jurnalH"class="btn btn-success mr-3  ml-2"> Excel <i class="fas fa-cloud-download-alt"></i></button></a>'

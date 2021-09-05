@@ -180,11 +180,12 @@ class kelompokController extends Controller
    
         }
     //    array($);
-        // dd($kelompokk);
+    // dd($kelompokk);
+        // dd();
         $perusahaan = perusahaan::where('id', $data['id_perusahaan'])->first();
 
        
-            foreach ($kelompokk as $key => $value) {
+            foreach (array_unique($kelompokk) as $key => $value) {
                 // $arr[] = $data['id_data_prakerin'][$key];
             $nama[] = Siswa::where('id', $value)->first();
             $new_name = str_replace(' ', '', $nama[0]->nama_siswa);

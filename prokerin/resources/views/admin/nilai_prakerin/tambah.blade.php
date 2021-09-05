@@ -126,12 +126,15 @@
                         <div class="mt-2 col-12 row">
                             <div class="col-sm-5">
                                 <select id="aspek0" name="aspek0"
-                                    class="form-control aspek0 select2 @error('')  is-invalid  @enderror ">
-                                    <option value="">--Cari Aspek--</option>
+                                    class="form-control aspek0 select2 @error('aspek0')  is-invalid  @enderror ">
+                                    <option value=" ">--Cari Aspek--</option>
                                     {{-- @foreach ($kategori as $item)
                                     <option value="{{ $item->id }}">{{ $item->aspek_yang_dinilai }}</option>
                                     @endforeach --}}
                                 </select>
+                                @error('aspek0')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
                                 <div id="invalid_aspek" class="invalid-feedback d-none"></div>
                             </div>
                             <div class="mb-3 col-sm-3">
@@ -184,6 +187,9 @@
                                 <option value="{{ $item->id }}">{{ $item->aspek_yang_dinilai }}</option>
                                 @endforeach --}}
                             </select>
+                            @error('aspek{{$i}}')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
                             <div id="invalid_aspek" class="invalid-feedback d-none"></div>
                         </div>
                         <div class="mb-3 col-sm-3">
@@ -488,7 +494,7 @@ if (role != 'kaprog') {
                               //console.log(response.kategori);
                               $('.aspek'+index+'').empty().append();
                               if (response.kategori != 0) {
-                                  $('.aspek'+index+'').append('<option>-- Pilih Aspek --</option>')
+                                  $('.aspek'+index+'').append('<option value="">-- Pilih Aspek --</option>')
                                   response.kategori.forEach(element => {
                                       if (element) {
                                           $('.aspek'+index+'').append('<option value="' + element.id +

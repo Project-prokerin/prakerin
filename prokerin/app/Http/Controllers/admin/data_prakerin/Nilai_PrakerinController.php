@@ -10,6 +10,8 @@ use App\Models\Nilai_prakerin;
 use App\Models\kelompok_laporan;
 use Illuminate\Http\Request;
 use App\Models\Siswa;
+use App\Http\Requests\admin\nilaiRequest;
+
 use Database\Seeders\kategori_nilai_prakerinSeeder;
 use Illuminate\Support\Facades\Auth;
 
@@ -241,9 +243,10 @@ class Nilai_PrakerinController extends Controller
      * @return \Illuminate\Http\Response
      */
 
- public function store(Request $request)
+ public function store(nilaiRequest $request)
  {
     // dd($request);
+    $request->validated();
 
      // ambil siswa
     $jumlah_aspek =  Kategori_nilai_prakerin::all();

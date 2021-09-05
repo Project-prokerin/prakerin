@@ -168,47 +168,93 @@
 
                                     </tr>
                                  @for ($i = 1; $i <= 40; $i++)
-                                   <tr id="row{{$i}}" style="display: none;">
-                                    <td class="col-7" >
-                                        <select class="form-control select2 @error('id_siswa{{$i}}')  is-invalid  @enderror" name="id_siswa{{$i}}" id="">
-                                            <option value="">--Cari Siswa--</option>
-                                            {{-- {{ dd($siswa) }} --}}
-                                            @forelse ($siswa as $item)
-                                              {{-- @if (Auth::user()->role === 'siswa')
-                                               <option value="{{ Auth::user()->siswa->id }}" selected>{{ Auth::user()->siswa->nama_siswa }}</option>
-                                              @endif --}}
+                                        @if (Auth::user()->role === "siswa")
+                                        <tr id="row{{$i}}" style="display: none;">
+                                            <td class="col-7" >
+                                                <select class="form-control select2 @error('id_siswa{{$i}}')  is-invalid  @enderror" name="id_siswa{{$i}}" id="">
+                                                    <option value="">--Cari Siswa--</option>
+                                                    {{-- {{ dd($siswa) }} --}}
+                                                    @forelse ($siswa as $item)
+                                                            @if (Auth::user()->siswa->nama_siswa === $item->nama_siswa)
+
+                                                            @else
+
+                                                                @if (empty($item->kelompok_laporan))
+                                                                    <option value="{{ $item->id }}">{{ $item->nama_siswa }}</option>
+                                                                @endif
+                                                            @endif
+                                                     
+            
+            
+                                                          
+                                                      @empty
+                                                          <option disabled>Semua Siswa telah mendapat kelompok!</option>
+                                                      @endforelse
+                                            
+                                                </select>
+        
                                              
-                                                      @if (empty($item->kelompok_laporan))
-                                                          <option value="{{ $item->id }}">{{ $item->nama_siswa }}</option>
-                                                      @endif
-    
-    
-                                                  
-                                              @empty
-                                                  <option disabled>Semua Siswa telah mendapat kelompok!</option>
-                                              @endforelse
-                                    
-                                        </select>
+                                                    @if ($errors->has(`id_siswa.2`))
+                                                        <span class="text-danger">
+                                                            <small>
+                                                                {{ $errors->first('id_siswa.2') }}
+                                                            </small>
+                                                        </span>
+                                                    @endif
+        
+                                              </td>
+                                              
+                                              </td>
+                                              <td>
+                                                 <button type="button" name="remove" id="{{$i}}" class="btn btn-danger btn_remove">X</button>
+        
+                                                  {{-- <button type="button" name="remove" id="'+i+'" class="btn btn-danger btn_remove">X</button> --}}
+                                                </td>
+        
+                                           </tr>
+                                        @else 
 
-                                     
-                                            @if ($errors->has(`id_siswa.2`))
-                                                <span class="text-danger">
-                                                    <small>
-                                                        {{ $errors->first('id_siswa.2') }}
-                                                    </small>
-                                                </span>
-                                            @endif
+                                        <tr id="row{{$i}}" style="display: none;">
+                                            <td class="col-7" >
+                                                <select class="form-control select2 @error('id_siswa{{$i}}')  is-invalid  @enderror" name="id_siswa{{$i}}" id="">
+                                                    <option value="">--Cari Siswa--</option>
+                                                    {{-- {{ dd($siswa) }} --}}
+                                                    @forelse ($siswa as $item)
+                                                          
 
-                                      </td>
-                                      
-                                      </td>
-                                      <td>
-                                         <button type="button" name="remove" id="{{$i}}" class="btn btn-danger btn_remove">X</button>
-
-                                          {{-- <button type="button" name="remove" id="'+i+'" class="btn btn-danger btn_remove">X</button> --}}
-                                        </td>
-
-                                   </tr>
+                                                                @if (empty($item->kelompok_laporan))
+                                                                    <option value="{{ $item->id }}">{{ $item->nama_siswa }}</option>
+                                                                @endif
+                                                     
+            
+            
+                                                          
+                                                      @empty
+                                                          <option disabled>Semua Siswa telah mendapat kelompok!</option>
+                                                      @endforelse
+                                            
+                                                </select>
+        
+                                             
+                                                    @if ($errors->has(`id_siswa.2`))
+                                                        <span class="text-danger">
+                                                            <small>
+                                                                {{ $errors->first('id_siswa.2') }}
+                                                            </small>
+                                                        </span>
+                                                    @endif
+        
+                                              </td>
+                                              
+                                              </td>
+                                              <td>
+                                                 <button type="button" name="remove" id="{{$i}}" class="btn btn-danger btn_remove">X</button>
+        
+                                                  {{-- <button type="button" name="remove" id="'+i+'" class="btn btn-danger btn_remove">X</button> --}}
+                                                </td>
+        
+                                           </tr>
+                                        @endif
                                     @endfor
                             </table>
                        </div>

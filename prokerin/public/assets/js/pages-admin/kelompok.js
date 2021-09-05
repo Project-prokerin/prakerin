@@ -47,7 +47,7 @@ $(document).ready(function() {
         ]
     });
 
-    if (role != "hubin" && role != "kaprog"  ) {
+    if (role != "hubin" && role != "kaprog"  && role != "admin"  ) {
     
     
     }else {

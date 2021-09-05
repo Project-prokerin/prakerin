@@ -9,6 +9,8 @@ use App\Models\kelompok_laporan;
 use App\Models\jurusan;
 use App\Models\Nilai_prakerin;
 use Illuminate\Http\Request;
+use App\Http\Requests\user\siswaNilaiRequest;
+
 use App\Models\Siswa;
 use Database\Seeders\kategori_nilai_prakerinSeeder;
 use Auth;
@@ -225,8 +227,11 @@ class SiswaNilai_PrakerinController extends Controller
      * @return \Illuminate\Http\Response
      */
 
- public function store(Request $request)
+ public function store(siswaNilaiRequest $request)
  {
+     
+    $request->validated();
+
     $jumlah_aspek =  Kategori_nilai_prakerin::all();
 
     $aspek[] = $request->aspek0;
