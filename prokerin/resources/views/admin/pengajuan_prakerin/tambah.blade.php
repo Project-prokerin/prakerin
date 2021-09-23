@@ -1,6 +1,6 @@
 @extends('template.master')
 @push('link')
-    <link rel="stylesheet" href="{{ asset('template/') }}/node_modules/select2/dist/css/select2.min.css">
+    <link rel="stylesheet" href="{{ asset('/mainapp/public/template/') }}/node_modules/select2/dist/css/select2.min.css">
 
     <style>
         #inputState {
@@ -122,13 +122,7 @@
                                                 <option disabled>Semua Siswa telah melakukan Pengajuan!</option>
                                             @endforelse
                                         </select>
-                                            @if ($errors->has(`id_data_prakerin0`))
-                                                <span class="text-danger">
-                                                    <small>
-                                                        {{ $errors->first('id_data_prakerin0') }}
-                                                    </small>
-                                                </span>
-                                            @endif
+                                       
                                       </td>
                                       <td><button type="button" name="add" id="add" class="btn btn-success">Add More</button></td>
                                     </tr>
@@ -147,13 +141,7 @@
                                                   <option disabled>Semua Siswa telah melakukan Pengajuan!</option>
                                               @endforelse
                                           </select>
-                                              @if ($errors->has(`id_data_prakerin.*`))
-                                                  <span class="text-danger">
-                                                      <small>
-                                                          {{ $errors->first('id_data_prakerin.*') }}
-                                                      </small>
-                                                  </span>
-                                              @endif
+                                              
                                         </td>
                                         <td>
                                             <button type="button" name="remove" id="{{$i}}" class="btn btn-danger btn_remove">X</button>
@@ -205,5 +193,5 @@ $(document).ready(function(){
         });
         
     </script>
-    <script src="{{ asset('template/') }}/node_modules/select2/dist/js/select2.full.min.js"></script>
+    <script src="{{ asset('/mainapp/public/template/') }}/node_modules/select2/dist/js/select2.full.min.js"></script>
 @endpush

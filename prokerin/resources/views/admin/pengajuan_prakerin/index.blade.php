@@ -127,7 +127,7 @@
 @endsection
 @push('script')
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-    <script src="{{ asset('assets/js/pages-admin/pengajuan_prakerin.js') }}" ></script>
+    <script src="{{ asset('mainapp/public/assets/js/pages-admin/pengajuan_prakerin.js') }}" ></script>
 
   
     {{-- <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script> --}}

@@ -8,12 +8,12 @@
     </style>
 
 @endpush
-@section('title', 'Prakerin | Data Prakerin')
-@section('judul', 'DATA PRAKERIN')
+@section('title', 'Prakerin | Data TTD')
+@section('judul', 'DATA Tanda Tangan')
 @section('breadcrump')
     <div class="breadcrumb-item "><a href="{{ route('admin.dashboard') }}"><i class="fas fa-tachometer-alt"></i>
             DASBOARD</a></div>
-    <div class="breadcrumb-item"> <i class="fas fa-th mr-2"></i>DATA PRAKERIN</div>
+    <div class="breadcrumb-item"> <i class="fas fa-th mr-2"></i>DATA TTD</div>
 @endsection
 @section('main')
     @if (session('pesan'))
@@ -37,7 +37,7 @@
             <div class="col-12">
               <div class="card">
                 <div class="card-header">
-                  <h4>Data Guru</h4>
+                  <h4>Data Tanda Tangan</h4>
                 </div>
                 <div>
                 <a href="{{ route('tanda-tangan.tambah') }}" class="btn btn-primary ml-4" >Tambah Data <i class="fas fa-plus"></i></a>
@@ -63,13 +63,11 @@
                           <td>{{$loop->iteration}}</td>
                           <td>{{$tandatangan->nama}}</td>
                           <td>
-                              <img src="{{asset("$tandatangan->path_gambar")}}" style="max-width: 278px; width: 150px; height: 75px; margin-top: 5px;" alt=""
+                              <img src="{{asset("mainapp/public/$tandatangan->path_gambar")}}" style="max-width: 278px; width: 150px; height: 75px; margin-top: 5px;" alt=""
                               srcset="">
                           </td>
                           <td>
                               <form action="{{route('tanda-tangan.delete',$tandatangan->id)}}" method="POST">
-                              <a href="" class="btn btn-primary">Preview</a>
-                              <a href="" class="btn btn-warning">Edit</a>
                                 @method('DELETE')
                                 @csrf
                                 <button class="btn btn-danger">Hapus</button>
@@ -147,7 +145,7 @@
 
 @endsection
 @push('script')
-    {{-- <script src="{{ asset('assets/js/pages-admin/datap.js') }}" ></script> --}}
+    {{-- <script src="{{ asset('mainapp/public/assets/js/pages-admin/datap.js') }}" ></script> --}}
     {{-- <script>
         $(document).ready(function(e) {
 

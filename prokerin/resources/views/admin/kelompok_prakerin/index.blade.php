@@ -71,7 +71,7 @@
 @endsection
 @push('script')
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-    <script src="{{ asset('assets/js/pages-admin/kelompok.js') }}" ></script>
+    <script src="{{ asset('mainapp/public/assets/js/pages-admin/kelompok.js') }}" ></script>
 
     <script>
 

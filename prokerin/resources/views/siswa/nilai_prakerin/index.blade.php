@@ -43,17 +43,13 @@
             <div class="card-body">
                 <div class="row">
                     <div class="col-md-6">
-                        @if ($nilaiPrakerin->isEmpty())
-                        <a href="{{route('Siswanilais_prakerin.tambah')}}" class="btn btn-primary ml-3 "> Tambah Data <i
-                                class="fas fa-plus"></i></a>
-                        @else 
-
-                        @endif
+                        {{-- <a href="/admin/nilai_prakerin/tambah" class="btn btn-primary ml-3 "> Tambah Data <i
+                                class="fas fa-plus"></i></button></a> --}}
                     </div>
                     <div class="col-md-6">
                         <div class="row">
                             <div class="col-md-7">
-                                <input type="hidden" class="form-control mb-2  jurusan  @error('')  is-invalid  @enderror select2" value="{{$jurusan_id}}">
+                                <input type="hidden" class="form-control mb-2  jurusan  @error('')  is-invalid  @enderror select2" value="{{Auth::user()->siswa->kelas->jurusan->id}}">
                                 {{-- <select name="" class="form-control mb-2  jurusan  @error('')  is-invalid  @enderror select2"> --}}
                                     {{-- <option value="RPL">--Pilih Jurusan--</option>
                                     <option value="RPL" selected>RPL</option>
@@ -102,5 +98,5 @@
 @endsection
 @push('script')
 
-<script src="{{ asset('assets/js/pages-user/nilai-prakerin.js') }}"></script>
+<script src="{{ asset('mainapp/public/assets/js/pages-user/nilai-prakerin.js') }}"></script>
 @endpush

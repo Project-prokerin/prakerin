@@ -118,5 +118,5 @@
 @push('script')
     <script src="{{ asset('template/') }}/node_modules/select2/dist/js/select2.full.min.js"></script>
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
-    <script src="{{ asset('assets/js/pages-admin/jurnalp.js') }}" ></script>
+    <script src="{{ asset('mainapp/public/assets/js/pages-admin/jurnalp.js') }}" ></script>
 @endpush

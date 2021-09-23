@@ -96,6 +96,6 @@
 <span class="d-none"id="role" data-role="{{ $role }}"></span>
 @endsection
 @push('script')
-<script src="{{ asset('assets/js/pages-admin/surat-masuk.js') }}" ></script>
+<script src="{{ asset('mainapp/public/assets/js/pages-admin/surat-masuk.js') }}" ></script>
 @endpush
 

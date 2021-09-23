@@ -114,5 +114,5 @@
   <span  id="role" data-role="{{ Auth::user()->role }}"></span>
 @endsection
 @push('script')
-<script src="{{ asset('assets/js/pages-admin/perusahaan.js') }}" ></script>
+<script src="{{ asset('mainapp/public/assets/js/pages-admin/perusahaan.js') }}" ></script>
 @endpush

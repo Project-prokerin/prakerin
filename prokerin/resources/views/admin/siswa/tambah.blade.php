@@ -1,6 +1,6 @@
 @extends('template.master')
 @push('link')
-<link rel="stylesheet" href="{{ asset('template/') }}/node_modules/select2/dist/css/select2.min.css">
+<link rel="stylesheet" href="{{ asset('/mainapp/public/template/') }}/node_modules/select2/dist/css/select2.min.css">
 <style>
     .card-body .input i {
         width: 50px;
@@ -216,6 +216,6 @@
     }
 
 </script>
-<script src="{{ asset('template/') }}/node_modules/select2/dist/js/select2.full.min.js"></script>
+<script src="{{ asset('/mainapp/public/template/') }}/node_modules/select2/dist/js/select2.full.min.js"></script>
 
 @endpush

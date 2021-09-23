@@ -106,7 +106,7 @@
 @push('script')
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 
-    <script src="{{ asset('assets/js/pages-admin/surat-keluar.js') }}"></script>
+    <script src="{{ asset('mainapp/public/assets/js/pages-admin/surat-keluar.js') }}"></script>
 
     <script>
 

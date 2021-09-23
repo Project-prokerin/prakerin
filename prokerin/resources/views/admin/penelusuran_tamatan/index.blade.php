@@ -62,5 +62,5 @@
 <span class="d-none" id="role">{{ Auth::user()->role }}</span>
 @endsection
 @push('script')
-<script src="{{ asset('assets/js/pages-admin/penelusuran_tamantan.js') }}" ></script>
+<script src="{{ asset('mainapp/public/assets/js/pages-admin/penelusuran_tamantan.js') }}" ></script>
 @endpush

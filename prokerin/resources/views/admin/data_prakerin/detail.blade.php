@@ -69,7 +69,7 @@
                   <div class="row g-3 align-items-center">
                     <label class="form-label col-7 pleft">Tanggal Mulai</label>
                     @if ($dataPrakerin->status === 'Magang')
-                        <label class="form-label">: {{$dataPrakerin->tgl_mulai->isoFormat('dddd, D MMMM Y');}}</label>
+                        <label class="form-label">: {{$dataPrakerin->tgl_mulai->isoFormat('dddd, D MMMM Y')}}</label>
                     @else
                     <label class="form-label">: </label>
 
@@ -78,7 +78,7 @@
                   <div class="row g-3 align-items-center">
                     <label class="form-label col-7 pleft">Tanggal Selesai</label>
                     @if ($dataPrakerin->status === 'Magang')
-                        <label class="form-label">: {{$dataPrakerin->tgl_selesai->isoFormat('dddd, D MMMM Y');}}</label>
+                        <label class="form-label">: {{$dataPrakerin->tgl_selesai->isoFormat('dddd, D MMMM Y')}}</label>
                     @else
                     <label class="form-label">:</label>
 

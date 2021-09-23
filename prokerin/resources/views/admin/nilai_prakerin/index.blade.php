@@ -101,5 +101,5 @@
 </div>
 @endsection
 @push('script')
-<script src="{{ asset('assets/js/pages-admin/nilai-prakerin.js') }}"></script>
+<script src="{{ asset('mainapp/public/assets/js/pages-admin/nilai-prakerin.js') }}"></script>
 @endpush

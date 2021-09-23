@@ -39,7 +39,7 @@
             <div class="mb-3">
                     <label class="form-label">Tahap Psikotes</label>
             </div>
-                <div class="mb-3 form-check" style="margin-top: -20px">
+                <!-- <div class="mb-3 form-check" style="margin-top: -20px">
                     <input type="checkbox" name="psikotes" class="form-check-input psikotes"
                     value="sudah">
                     <label class="form-check-label" >Sudah</label>
@@ -48,20 +48,50 @@
                     value="belum">
                     <label class="form-check-label">Belum</label>
                     <li class="d-inline err-psikotes text-danger ml-4"></li>
+                </div> -->
+                <div class="row" style="margin-top: -20px; margin-bottom: 30px;">
+                    <div class="form-check mr-5 ml-3">
+                        <input class="form-check-input psikotes" type="radio" name="psikotes" id="" value="sudah">
+                        <label class="form-check-label" for="">
+                            SUDAH
+                        </label>
+                    </div>
+                    <div class="form-check ml-3">
+                        <input class="form-check-input psikotes" type="radio" name="psikotes" id="" value="belum">
+                        <label class="form-check-label" for="">
+                            BELUM
+                        </label>
+                    </div>
+                    <li class="d-inline err-psikotes text-danger ml-4"></li>
                 </div>
-
+                
             </div>
             <div>
 
                 <div class="mb-3">
                     <label class="form-label">Tahap Soft Skill</label>
                 </div>
-                <div class="mb-3 form-check" style="margin-top: -20px">
+                <!-- <div class="mb-3 form-check" style="margin-top: -20px">
                     <input type="checkbox" name="soft_skill" class="form-check-input skill" value="sudah">
                     <label class="form-check-label" >Sudah</label>
                     <span class="m-5"></span>
                     <input type="checkbox" name="soft_skill" class="form-check-input skill"  value="belum">
                     <label class="form-check-label">Belum</label>
+                    <li class="d-inline err-skill text-danger ml-4"></li>
+                </div> -->
+                <div class="row" style="margin-top: -20px; margin-bottom: 30px;">
+                    <div class="form-check mr-5 ml-3">
+                        <input class="form-check-input skill" type="radio" name="soft_skill" id="" value="sudah">
+                        <label class="form-check-label" for="">
+                            SUDAH
+                        </label>
+                    </div>
+                    <div class="form-check ml-3">
+                        <input class="form-check-input skill" type="radio" name="soft_skill" id="" value="belum">
+                        <label class="form-check-label" for="">
+                            BELUM
+                        </label>
+                    </div>
                     <li class="d-inline err-skill text-danger ml-4"></li>
                 </div>
             </div>

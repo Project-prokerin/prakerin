@@ -148,5 +148,5 @@
 </div>
 @endsection
 @push('script')
-<script src="{{ asset('assets/js/pages-admin/siswa.js') }}"></script>
+<script src="{{ asset('mainapp/public/assets/js/pages-admin/siswa.js') }}"></script>
 @endpush

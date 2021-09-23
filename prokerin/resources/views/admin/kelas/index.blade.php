@@ -66,5 +66,5 @@
   </div>
 @endsection
 @push('script')
-<script src="{{ asset('assets/js/pages-admin/kelas.js') }}" ></script>
+<script src="{{ asset('mainapp/public/assets/js/pages-admin/kelas.js') }}" ></script>
 @endpush

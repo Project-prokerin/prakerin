@@ -65,7 +65,7 @@
                                     <select name="id_jurusan" class="form-control  select2 @error('id_jurusan')  is-invalid  @enderror select2" name="id_jurusan" id="">
                                         <option value="" selected>--Pilih Bidang usaha--</option>
                                         @foreach ($jurusan as $item)
-                                        <option value="{{ $item->id }}" {{(old('id_jurusan', $perusahaan->jurusan->id) == $item->id) ? 'selected' : ''}}>{{ $item->singkatan_jurusan }}</option>
+                                        <option value="{{ $item->id }}" {{(old('id_jurusan', $perusahaan->bidang_usaha) == $item->singkatan_jurusan) ? 'selected' : ''}}>{{ $item->singkatan_jurusan }}</option>
                                         @endforeach
                                     </select>
                                         @error('id_jurusan')

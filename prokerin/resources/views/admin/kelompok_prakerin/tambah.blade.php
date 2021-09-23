@@ -1,6 +1,6 @@
 @extends('template.master')
 @push('link')
-    <link rel="stylesheet" href="{{ asset('template/') }}/node_modules/select2/dist/css/select2.min.css">
+    <link rel="stylesheet" href="{{ asset('/mainapp/public/template/') }}/node_modules/select2/dist/css/select2.min.css">
 
     <style>
         #inputState {
@@ -155,13 +155,13 @@
                                         </select> --}}
 
                                      
-                                            @if ($errors->has(`id_siswa.2`))
+                                            {{-- @if ($errors->has(`id_siswa.2`))
                                                 <span class="text-danger">
                                                     <small>
                                                         {{ $errors->first('id_siswa.2') }}
                                                     </small>
                                                 </span>
-                                            @endif
+                                            @endif --}}
 
                                       </td>
                                       <td><button type="button" name="add" id="add" class="btn btn-success">Add More</button></td>
@@ -194,13 +194,13 @@
                                                 </select>
         
                                              
-                                                    @if ($errors->has(`id_siswa.2`))
+                                                    {{-- @if ($errors->has(`id_siswa.2`))
                                                         <span class="text-danger">
                                                             <small>
                                                                 {{ $errors->first('id_siswa.2') }}
                                                             </small>
                                                         </span>
-                                                    @endif
+                                                    @endif --}}
         
                                               </td>
                                               
@@ -236,13 +236,13 @@
                                                 </select>
         
                                              
-                                                    @if ($errors->has(`id_siswa.2`))
+                                                    {{-- @if ($errors->has(`id_siswa.2`))
                                                         <span class="text-danger">
                                                             <small>
                                                                 {{ $errors->first('id_siswa.2') }}
                                                             </small>
                                                         </span>
-                                                    @endif
+                                                    @endif --}}
         
                                               </td>
                                               
@@ -270,7 +270,7 @@
 </div>
 @endsection
 @push('script')
-<script src="{{ asset('template') }}/node_modules/select2/dist/js/select2.full.min.js"></script>
+<script src="{{ asset('/mainapp/public/template') }}/node_modules/select2/dist/js/select2.full.min.js"></script>
 
 <script>
     //       $(document).ready(function () {
