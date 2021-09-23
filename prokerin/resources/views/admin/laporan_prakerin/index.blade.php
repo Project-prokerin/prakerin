@@ -184,7 +184,7 @@
 
 @endsection
 @push('script')
-    <script src="{{ asset('mainapp/public/assets/js/pages-admin/laporan.js') }}"></script>
+    <script src="{{ asset('assets/js/pages-admin/laporan.js') }}"></script>
     <script src="{{ asset('template/') }}/node_modules/select2/dist/js/select2.full.min.js"></script>
- 
+
 @endpush

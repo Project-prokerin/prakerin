@@ -55,15 +55,15 @@
                           <th>Action</th>
                         </tr>
                       </thead>
-                          
-                     
+
+
                       <tbody class="text-center">
                       @foreach ($ttd as $tandatangan)
                         <tr>
                           <td>{{$loop->iteration}}</td>
                           <td>{{$tandatangan->nama}}</td>
                           <td>
-                              <img src="{{asset("mainapp/public/$tandatangan->path_gambar")}}" style="max-width: 278px; width: 150px; height: 75px; margin-top: 5px;" alt=""
+                              <img src="{{asset("$tandatangan->path_gambar")}}" style="max-width: 278px; width: 150px; height: 75px; margin-top: 5px;" alt=""
                               srcset="">
                           </td>
                           <td>

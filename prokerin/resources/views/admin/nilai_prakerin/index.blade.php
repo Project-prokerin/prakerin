@@ -40,8 +40,8 @@
             <div class="card-header">
                 @if (Auth::user()->role === 'kaprog')
                 <h4>Nilai Sekolah Data Prakerin</h4>
-                
-                @else 
+
+                @else
                 <h4>Nilai Perusahaan Data Prakerin</h4>
 
                 @endif
@@ -52,8 +52,8 @@
                         @if (Auth::user()->role != 'kepsek' && Auth::user()->role != 'tu'  && Auth::user()->role != 'bkk'  )
                         <a href="/admin/nilai_prakerin/tambah" class="btn btn-primary ml-3 "> Tambah Data <i
                                 class="fas fa-plus"></i></button></a>
-                            
-                        @else 
+
+                        @else
 
                         @endif
                     </div>
@@ -101,5 +101,5 @@
 </div>
 @endsection
 @push('script')
-<script src="{{ asset('mainapp/public/assets/js/pages-admin/nilai-prakerin.js') }}"></script>
+<script src="{{ asset('assets/js/pages-admin/nilai-prakerin.js') }}"></script>
 @endpush

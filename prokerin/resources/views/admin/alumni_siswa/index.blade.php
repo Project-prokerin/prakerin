@@ -99,5 +99,5 @@
 </div>
 @endsection
 @push('script')
-<script src="{{ asset('mainapp/public/assets/js/pages-admin/alumni_siswa.js') }}"></script>
+<script src="{{ asset('assets/js/pages-admin/alumni_siswa.js') }}"></script>
 @endpush

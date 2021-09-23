@@ -73,7 +73,7 @@
                           <th>Action</th>
                         </tr>
                         @endif
-                        
+
                       </thead>
                       <tbody class="text-center">
                         {{-- <tr>
@@ -97,7 +97,7 @@
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-body" id="accBody">
-    
+
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -107,12 +107,12 @@
             </div>
             </form>
         </div>
-    
+
     <div class="modal fade" id="downloadModal" aria-labelledby="downloadModalLabel" aria-hidden="true" data-backdrop="false">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-body" id="downloadBody">
-    
+
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -127,9 +127,9 @@
 @endsection
 @push('script')
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-    <script src="{{ asset('mainapp/public/assets/js/pages-admin/pengajuan_prakerin.js') }}" ></script>
+    <script src="{{ asset('assets/js/pages-admin/pengajuan_prakerin.js') }}" ></script>
 
-  
+
     {{-- <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script> --}}
     <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>

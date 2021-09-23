@@ -58,7 +58,7 @@
                                         <th>status</th>
                                         <th>tanggal surat</th>
                                         <th>Action</th>
-                                    @elseif(Auth::user()->role == 'admin' or Auth::user()->role == 'kepsek' or 
+                                    @elseif(Auth::user()->role == 'admin' or Auth::user()->role == 'kepsek' or
                                         Auth::user()->role == 'kaprog')
                                         <th>
                                             No
@@ -89,7 +89,7 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-body" id="tandatanganBody">
-                    
+
                 </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -106,7 +106,7 @@
 @push('script')
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 
-    <script src="{{ asset('mainapp/public/assets/js/pages-admin/surat-keluar.js') }}"></script>
+    <script src="{{ asset('assets/js/pages-admin/surat-keluar.js') }}"></script>
 
     <script>
 

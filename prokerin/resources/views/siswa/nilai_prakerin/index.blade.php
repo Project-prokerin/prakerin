@@ -98,5 +98,5 @@
 @endsection
 @push('script')
 
-<script src="{{ asset('mainapp/public/assets/js/pages-user/nilai-prakerin.js') }}"></script>
+<script src="{{ asset('assets/js/pages-user/nilai-prakerin.js') }}"></script>
 @endpush

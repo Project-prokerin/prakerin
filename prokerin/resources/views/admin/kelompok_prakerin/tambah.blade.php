@@ -1,6 +1,6 @@
 @extends('template.master')
 @push('link')
-    <link rel="stylesheet" href="{{ asset('/mainapp/public/template/') }}/node_modules/select2/dist/css/select2.min.css">
+    <link rel="stylesheet" href="{{ asset('template/') }}/node_modules/select2/dist/css/select2.min.css">
 
     <style>
         #inputState {
@@ -39,9 +39,9 @@
     <div class="card-header">
         @if (Auth::user()->role === 'siswa')
         <h4>Ajukan Kelompok</h4>
-            
-        @else 
-        
+
+        @else
+
         <h4>Tambah Kelompok</h4>
 
         @endif
@@ -111,7 +111,7 @@
                     <a href="{{ route('user.kelompok_laporan') }}" type="submit" class="btn btn-danger"style="margin-top:20px;">
                         <i class="fas fa-times"></i> Cancel
                     </a>
-                    @else 
+                    @else
                     <a href="{{ route('kelompok.index') }}" type="submit" class="btn btn-danger"style="margin-top:20px;">
                         <i class="fas fa-times"></i> Cancel
                     </a>
@@ -137,24 +137,24 @@
                                                   {{-- @else  --}}
                                                   {{-- <option value="{{ $item->id }}" disabled>{{ $item->nama_siswa }}</option> --}}
                                                   @endif
-                                                  
-                                              @else 
+
+                                              @else
                                                       @if (empty($item->kelompok_laporan))
                                                           <option value="{{ $item->id }}">{{ $item->nama_siswa }}</option>
                                                       @endif
-    
-    
+
+
                                               @endif
-                                                  
+
                                               @empty
                                                   <option disabled>Semua Siswa telah mendapat kelompok!</option>
                                               @endforelse
-                                    
+
                                         </select>
                                         {{-- <select class="form-control select2 @error('id_siswa')  is-invalid  @enderror" name="id_siswa0" id="id_siswa">
                                         </select> --}}
 
-                                     
+
                                             {{-- @if ($errors->has(`id_siswa.2`))
                                                 <span class="text-danger">
                                                     <small>
@@ -183,17 +183,17 @@
                                                                     <option value="{{ $item->id }}">{{ $item->nama_siswa }}</option>
                                                                 @endif
                                                             @endif
-                                                     
-            
-            
-                                                          
+
+
+
+
                                                       @empty
                                                           <option disabled>Semua Siswa telah mendapat kelompok!</option>
                                                       @endforelse
-                                            
+
                                                 </select>
-        
-                                             
+
+
                                                     {{-- @if ($errors->has(`id_siswa.2`))
                                                         <span class="text-danger">
                                                             <small>
@@ -201,18 +201,18 @@
                                                             </small>
                                                         </span>
                                                     @endif --}}
-        
+
                                               </td>
-                                              
+
                                               </td>
                                               <td>
                                                  <button type="button" name="remove" id="{{$i}}" class="btn btn-danger btn_remove">X</button>
-        
+
                                                   {{-- <button type="button" name="remove" id="'+i+'" class="btn btn-danger btn_remove">X</button> --}}
                                                 </td>
-        
+
                                            </tr>
-                                        @else 
+                                        @else
 
                                         <tr id="row{{$i}}" style="display: none;">
                                             <td class="col-7" >
@@ -220,22 +220,22 @@
                                                     <option value="">--Cari Siswa--</option>
                                                     {{-- {{ dd($siswa) }} --}}
                                                     @forelse ($siswa as $item)
-                                                          
+
 
                                                                 @if (empty($item->kelompok_laporan))
                                                                     <option value="{{ $item->id }}">{{ $item->nama_siswa }}</option>
                                                                 @endif
-                                                     
-            
-            
-                                                          
+
+
+
+
                                                       @empty
                                                           <option disabled>Semua Siswa telah mendapat kelompok!</option>
                                                       @endforelse
-                                            
+
                                                 </select>
-        
-                                             
+
+
                                                     {{-- @if ($errors->has(`id_siswa.2`))
                                                         <span class="text-danger">
                                                             <small>
@@ -243,16 +243,16 @@
                                                             </small>
                                                         </span>
                                                     @endif --}}
-        
+
                                               </td>
-                                              
+
                                               </td>
                                               <td>
                                                  <button type="button" name="remove" id="{{$i}}" class="btn btn-danger btn_remove">X</button>
-        
+
                                                   {{-- <button type="button" name="remove" id="'+i+'" class="btn btn-danger btn_remove">X</button> --}}
                                                 </td>
-        
+
                                            </tr>
                                         @endif
                                     @endfor
@@ -270,7 +270,7 @@
 </div>
 @endsection
 @push('script')
-<script src="{{ asset('/mainapp/public/template') }}/node_modules/select2/dist/js/select2.full.min.js"></script>
+<script src="{{ asset('template') }}/node_modules/select2/dist/js/select2.full.min.js"></script>
 
 <script>
     //       $(document).ready(function () {

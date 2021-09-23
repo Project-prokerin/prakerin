@@ -65,5 +65,5 @@
   </div>
 @endsection
 @push('script')
-<script src="{{ asset('mainapp/public/assets/js/pages-admin/jurusan.js') }}" ></script>
+<script src="{{ asset('assets/js/pages-admin/jurusan.js') }}" ></script>
 @endpush

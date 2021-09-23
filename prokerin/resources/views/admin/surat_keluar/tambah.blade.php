@@ -1,10 +1,10 @@
 
 @extends('template.master')
 @push('link')
-    <link rel="stylesheet" href="{{asset('/mainapp/public/template/')}}/node_modules/select2/dist/css/select2.min.css">
+    <link rel="stylesheet" href="{{asset('template/')}}/node_modules/select2/dist/css/select2.min.css">
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
     <link rel="stylesheet"
-        href="{{ asset('/mainapp/public/template/') }}/node_modules/bootstrap-timepicker/css/bootstrap-timepicker.min.css">
+        href="{{ asset('template/') }}/node_modules/bootstrap-timepicker/css/bootstrap-timepicker.min.css">
 
     <style>
         .card-body .input i {
@@ -143,7 +143,7 @@
                                                             {{ $message }}
                                                         </div>
                                                     @enderror
-                                                  
+
                                             </div> --}}
 
                                     </div>
@@ -237,12 +237,12 @@
 
     @endsection
     @push('script')
-        <script src="{{asset('/mainapp/public/template/')}}/node_modules/select2/dist/js/select2.full.min.js"></script>
+        <script src="{{asset('template/')}}/node_modules/select2/dist/js/select2.full.min.js"></script>
         <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
         <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
-        <script src="{{ asset('/mainapp/public/template/') }}/node_modules/bootstrap-timepicker/js/bootstrap-timepicker.min.js"></script>
+        <script src="{{ asset('template/') }}/node_modules/bootstrap-timepicker/js/bootstrap-timepicker.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/tinymce/5.8.1/tinymce.min.js" integrity="sha512-DzR2RH5M2HEOaMkPDKIYIrSXhKtKncXM0rtO3Dlu7p9qUY1T8+lrTPPw+efglohND+HNb9PJJmxlqy/5l2bz5w==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-        
+
         <script type="text/javascript">
             tinymce.init({
           selector: 'textarea#basic-example',
@@ -260,7 +260,7 @@
           content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:14px }'
         });
         </script>
-        
+
         <script type="text/javascript">
             $(function() {
 
@@ -284,4 +284,3 @@
 
         </script>
     @endpush
-    

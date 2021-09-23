@@ -1,6 +1,6 @@
 @extends('template.master')
 @push('link')
-    <link rel="stylesheet" href="{{ asset('/mainapp/public/template/') }}/node_modules/select2/dist/css/select2.min.css">
+    <link rel="stylesheet" href="{{ asset('template/') }}/node_modules/select2/dist/css/select2.min.css">
 
     <style>
         #inputState {
@@ -51,7 +51,7 @@
                             <label class="d-block">Nomor Kelompok</label>
                             <select class="form-control select2 @error('no')  is-invalid  @enderror" name="no" id="">
                                 <option value="">--Pilih Nomor--</option>
-                              
+
                                 @foreach ($noKelompok as $item)
                                 <option value="{{$item}}">{{$item}}</option>
                             @endforeach
@@ -122,7 +122,7 @@
                                                 <option disabled>Semua Siswa telah melakukan Pengajuan!</option>
                                             @endforelse
                                         </select>
-                                       
+
                                       </td>
                                       <td><button type="button" name="add" id="add" class="btn btn-success">Add More</button></td>
                                     </tr>
@@ -141,7 +141,7 @@
                                                   <option disabled>Semua Siswa telah melakukan Pengajuan!</option>
                                               @endforelse
                                           </select>
-                                              
+
                                         </td>
                                         <td>
                                             <button type="button" name="remove" id="{{$i}}" class="btn btn-danger btn_remove">X</button>
@@ -162,7 +162,7 @@
 </div>
 @endsection
 @push('script')
-    
+
 
     <script>
 
@@ -191,7 +191,7 @@ $(document).ready(function(){
 
 
         });
-        
+
     </script>
-    <script src="{{ asset('/mainapp/public/template/') }}/node_modules/select2/dist/js/select2.full.min.js"></script>
+    <script src="{{ asset('template/') }}/node_modules/select2/dist/js/select2.full.min.js"></script>
 @endpush

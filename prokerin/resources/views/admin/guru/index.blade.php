@@ -90,5 +90,5 @@
           </div>
 @endsection
 @push('script')
-<script src="{{ asset('mainapp/public/assets/js/pages-admin/guru.js') }}" ></script>
+<script src="{{ asset('assets/js/pages-admin/guru.js') }}" ></script>
 @endpush
