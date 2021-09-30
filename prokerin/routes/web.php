@@ -49,12 +49,19 @@ use App\Http\Controllers\Excel\ImportExcelController;
 |
 */
 
+header('Access-Control-Allow-Origin: http://localhost');
+header('Access-Control-Allow-Methods: *');
+header('Access-Control-Allow-Headers: *');
+
 
 // Auth
 Route::get('/', [AuthController::class, 'index'])->name('login')->middleware('guest');
 Route::post('/postlogin', [AuthController::class, 'postlogin']);
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 Route::post('/time', [AuthController::class,'time_log'])->name('time_log');
+
+// route post api here
+Route::get('/api/prakerin/{token}',[AuthController::class,'token'])->name('api-token')->middleware('sitakols_cookies');
 
 
 // all admin

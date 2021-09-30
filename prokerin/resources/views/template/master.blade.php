@@ -38,12 +38,12 @@
           font-size: 16px;
           border: none;
         }
-        
+
         .dropup-secondary {
           position: relative;
           display: inline-block;
         }
-        
+
         .dropup-secondary-content {
           display: none;
           position: absolute;
@@ -52,30 +52,30 @@
           bottom: 50px;
           z-index: 1;
         }
-        
+
         .dropup-secondary-content span{
           color: black;
           padding: 12px 16px;
           text-decoration: none;
           display: block;
         }
-        
+
         .dropup-secondary-content span:hover {background-color: #ccc}
-        
+
         .dropup-secondary:hover .dropup-secondary-content {
           display: block;
         }
-        
+
         .dropup-secondary:hover .dropupp-secondary {
           background-color: #e6e4e4;
-        
+
         }
-        
-        
-        
-        
-        
-        
+
+
+
+
+
+
         .dropupp-primary {
           background-color: #3498DB;
           color: white;
@@ -83,12 +83,12 @@
           font-size: 16px;
           border: none;
         }
-        
+
         .dropup-primary {
           position: relative;
           display: inline-block;
         }
-        
+
         .dropup-primary-content {
           display: none;
           position: absolute;
@@ -97,20 +97,20 @@
           bottom: 50px;
           z-index: 1;
         }
-        
+
         .dropup-primary-content span{
           color: black;
           padding: 12px 16px;
           text-decoration: none;
           display: block;
         }
-        
+
         .dropup-primary-content span:hover {background-color: #ccc}
-        
+
         .dropup-primary:hover .dropup-primary-content {
           display: block;
         }
-        
+
         .dropup-primary:hover .dropupp-primary {
           background-color: #2980B9;
         }

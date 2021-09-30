@@ -81,8 +81,7 @@ class userController extends Controller
     public function index(Request $request)
 
     {
-        $siswa = siswa::where('id_user',Auth::user()->id)->first();
-
+    $siswa = siswa::where('id_user',Auth::user()->siswa->id)->first();
      $pembekalan_magang =   pembekalan_magang::where('id_siswa',$siswa->id)->first();
      $jurnalH_siswa = jurnal_harian::where('id_siswa',$siswa->id)->get();
      $jurnalP_siswa = jurnal_prakerin::where('id_siswa',$siswa->id)->get();
@@ -100,7 +99,7 @@ class userController extends Controller
     // dd($statusMagang_siswa);
     $kelompokLaporan_siswa = kelompok_laporan::where('id_siswa',$siswa->id)->first();
     // dd($kelompokLaporan_siswa);
-        return view('siswa.dashboard',compact('pembekalan_magang','jurnalH_siswa','jurnalP_siswa','perusahaan','statusMagang_siswa','kelompokLaporan_siswa'));
+    return view('siswa.dashboard',compact('pembekalan_magang','jurnalH_siswa','jurnalP_siswa','perusahaan','statusMagang_siswa','kelompokLaporan_siswa'));
 
     }
 
@@ -661,12 +660,12 @@ class userController extends Controller
 
         $laporan =  !empty(siswa('main')->kelompok_laporan->laporan_prakerin->nama) ? siswa('main')->kelompok_laporan->laporan_prakerin->nama : 'Judul lapora belum di tentukan';
 
-        
+
         // dd(Auth::user()->siswa->id);
         // $laporan = kelompok_laporan
         $kelompok = kelompok_laporan::select('*')->where('id_guru', $id_guru)->where('no', $no_kelompok)->wherehas('siswa')->get();
             // dd($kelompok);
-        if (empty($laporan)) {  
+        if (empty($laporan)) {
             $laporan = 'Belum ada judul Laporan';
         }else {
             $laporan = laporan_prakerin::where('no',$no_kelompok)->first();
@@ -690,7 +689,7 @@ class userController extends Controller
         kelompok_laporan::where('id_siswa', $id)->delete();
 
         $kelompok = kelompok_laporan::where('no', $id_siswa->no)->get()->toArray();
-        
+
 
             // dd(count($jml_kelompok));
             // $data = $request->all();
@@ -699,7 +698,7 @@ class userController extends Controller
             // dd($no);/
 
             // $perusahaan = perusahaan::where('id', $data['id_perusahaan'])->first();
-        //  for ($i=0; $i < ; $i++) { 
+        //  for ($i=0; $i < ; $i++) {
                 # code...
             //  }
             foreach ($kelompok as $key => $value) {
@@ -711,7 +710,7 @@ class userController extends Controller
                 $nama[] = Siswa::where('id',$value['id_siswa'])->first();
                 // dd($nama);
                 $new_name = str_replace(' ', '', $nama[0]->nama_siswa);
-                // dd($new_name); 
+                // dd($new_name);
                 $pengajuan_prakerin = kelompok_laporan::where('id_siswa',$value['id_siswa'])->update([
                     'no'   => 'Kelompok '.$no." - ".$new_name,
                     // 'id_guru'   => $data['id_guru'],
@@ -722,9 +721,9 @@ class userController extends Controller
 
 
                 ]);
-            
+
             }
-            
+
                     if (count($jml_kelompok) > 1) {
                         return redirect()->route('user.kelompok_laporan')->with(['success' => 'Anda keluar dari Kelompok  '.$no." - ".$new_name,' ']);
                     }else{

@@ -19,11 +19,8 @@ $(document).ready( function () {
 
                     data:'',
                     success: function (data) {
-                    //        Swal.fire(
-                    //     'success',
-                    //     'Anda berhasil logout!.',
-                    //     'success'
-                    // )
+                        // mengambil token jika memakai url
+                        // jika tidak redirect ke dashboard
                         root = window.location.protocol + '//' + window.location.host;
                         window.location.href = root + "/";
                     },

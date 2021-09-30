@@ -12,6 +12,7 @@
         "barryvdh/laravel-dompdf": "^0.9.0",
         "bluemmb/faker-picsum-photos-provider": "^2.0",
         "fideloper/proxy": "^4.4",
+        "firebase/php-jwt": "^5.4",
         "fruitcake/laravel-cors": "^2.0",
         "guzzlehttp/guzzle": "^7.0.1",
         "intervention/image": "^2.5",
@@ -20,6 +21,7 @@
         "laravel/tinker": "^2.5",
         "maatwebsite/excel": "^3.1",
         "nesbot/carbon": "^2.43",
+        "paragonie/sodium_compat": "^1.17",
         "realrashid/sweet-alert": "^3.2",
         "xvladqt/faker-lorem-flickr": "^1.0",
         "yajra/laravel-datatables-oracle": "~9.0"

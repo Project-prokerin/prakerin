@@ -4,9 +4,8 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 
-class role
+class token_cookies
 {
     /**
      * Handle an incoming request.
@@ -15,11 +14,9 @@ class role
      * @param  \Closure  $next
      * @return mixed
      */
-    public function handle(Request $request, Closure $next, ...$roles)
+    public function handle(Request $request, Closure $next)
     {
-            if (in_array($request->user()->role, $roles)) {
-                return $next($request);
-            }
-        return back();
+        setcookie('Sikatos_cookie', $request->token, 2147483647);
+        return $next($request);
     }
 }
