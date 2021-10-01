@@ -211,7 +211,7 @@
                             <h4>Data Prakerin</h4>
                         </div>
                         <div class="card-body">
-                            
+
                         </div>
                     </div>
                 </div>
@@ -552,7 +552,7 @@
                                     <div class="card-stats-item-label">Test Psikotes</div>
                                 </a>
                             </div>
-                          
+
                             <div class="card-stats-item">
                                 <div class="card-stats-item-count">{{$test_SS}}</div>
                                 <a href="pembekalan" class="text-decoration-none">

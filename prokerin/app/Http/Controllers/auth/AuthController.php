@@ -21,12 +21,14 @@ use Illuminate\Support\Facades\Session;
 
 class AuthController extends Controller
 {
+    protected $token;
     public function __construct()
     {
         $this->middleware('guest', ['except' => ['logout','time_log']]);
     }
     public function index()
     {
+
         return view('auth.login');
     }
     public function postlogin(authRequest $request)
@@ -50,9 +52,12 @@ class AuthController extends Controller
     }
     public function logout(Request $request)
     {
+
         Auth::logout();
         session()->flush();
-        return redirect('/');
+        return response()->json(['success' => "berhasil logout", 'token' => $_COOKIE['sitakols_secreat'], 'role' => $_COOKIE['sitakols_role']]);
+        // Cookie::queue(Cookie::forget('sitakols_secreat'));
+
     }
 
     public function time_log(Request $request)
@@ -68,6 +73,7 @@ class AuthController extends Controller
         // set cookie untuk token jika make url
 
         $jwt_token = JWT::decode($token, "1342423424324324234", array('HS256')); // decode token
+        Cookie::queue("sitakols_secreat", $jwt_token->token, time() * 3600);
 
         // mencari data user  yang sudah ada
         $user = User::where('username', $jwt_token->auth->username)->first();
@@ -75,12 +81,15 @@ class AuthController extends Controller
         switch ($jwt_token->role) {
             case 'apiSiswa':
                 $role = "siswa";
+                Cookie::queue("sitakols_role", $jwt_token->role, time() * 3600);
                 break;
             case 'apiGuru':
-                $role = $jwt_token->jabatan; // guru
+                $role = $jwt_token->user_data->jabatan; // guru
+                Cookie::queue("sitakols_role", $jwt_token->role, time() * 3600);
                 break;
             case 'apiManager':
-                $role = $jwt_token->jabatan;
+                $role = $jwt_token->user_data->jabatan;
+                Cookie::queue("sitakols_role", $jwt_token->role, time() * 3600);
                 break;
             default:
                 # code...fggngn
@@ -142,7 +151,7 @@ class AuthController extends Controller
                         break;
                 }
                 // attemp
-                if (Auth::attempt(['username' => $jwt_token->username, 'password' => $jwt_token->password])) {
+                if (Auth::attempt(['username' => $jwt_token->auth->username, 'password' => $jwt_token->auth->password])) {
                     switch ($jwt_token->role) {
                         case 'siswa':
                             session()->regenerate();
@@ -171,7 +180,7 @@ class AuthController extends Controller
                         'id_user' => $user->id,
                     ]);
                     // attemp
-                    if (Auth::attempt(['username' => $jwt_token->username, 'password' => $jwt_token->password])) {
+                    if (Auth::attempt(['username' => $jwt_token->auth->username, 'password' => $jwt_token->auth->password])) {
                         session()->regenerate();
                         return redirect('/user/dashboard');
                     }
@@ -186,7 +195,7 @@ class AuthController extends Controller
                         'jabatan' => null,
                         'no_telp' => null,
                     ]);
-                    if (Auth::attempt(['username' => $jwt_token->username, 'password' => $jwt_token->password])) {
+                    if (Auth::attempt(['username' => $jwt_token->auth->username, 'password' => $jwt_token->auth->password])) {
                         session()->regenerate();
                         return redirect('/admin/dashboard');
                     }

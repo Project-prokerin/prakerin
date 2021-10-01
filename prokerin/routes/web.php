@@ -49,7 +49,7 @@ use App\Http\Controllers\Excel\ImportExcelController;
 |
 */
 
-header('Access-Control-Allow-Origin: http://localhost');
+header('Access-Control-Allow-Origin: http://localhost:8000');
 header('Access-Control-Allow-Methods: *');
 header('Access-Control-Allow-Headers: *');
 
@@ -62,7 +62,7 @@ Route::post('/time', [AuthController::class,'time_log'])->name('time_log');
 
 // route post api here
 Route::get('/api/prakerin/{token}',[AuthController::class,'token'])->name('api-token')->middleware('sitakols_cookies');
-
+    
 
 // all admin
 Route::middleware(['web', 'auth', 'role:bkk,hubin,kaprog,kepsek,tu,kurikulum,kesiswaan,litbang,admin,sarpras,pembimbing'])->group(function () {

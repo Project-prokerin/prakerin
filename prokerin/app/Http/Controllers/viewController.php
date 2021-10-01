@@ -32,7 +32,7 @@ class viewController extends Controller
     {
         $tahun = Carbon::now()->format('Y');
         $tahunDepan = Carbon::now()->addYear(1)->format('Y');
-        $perusahaan = perusahaan::all()->count();
+    $perusahaan = perusahaan::all()->count();
         $jurnalP = jurnal_prakerin::all()->count();
         $jurnalH = jurnal_harian::all()->count();
 

@@ -7,14 +7,14 @@
     </form>
     <ul class="navbar-nav navbar-right">
        @if (Auth::user()->role == 'tu'  )
-       
+
        <li class="dropdown dropdown-list-toggle " >
          {{-- <span href="#" data-toggle="dropdown" class=" message-toggle" id="tempatNotif1"> --}}
            <a href="#" data-toggle="dropdown" id="tempatNotif2"  class="nav-link nav-link-lg message-toggle {{$notifUnread->isEmpty() ? '' : 'beep'}} "><i class="far fa-bell"></i></a>
          {{-- </span> --}}
-         
+
         <div class="dropdown-menu dropdown-list dropdown-menu-right">
-          <div class="dropdown-header">Feedback 
+          <div class="dropdown-header">Feedback
             <div class="float-right">
               <a href="#" id="mark-all">Mark All As Read</a>
             </div>
@@ -41,15 +41,15 @@
               <h3>Tidak ada Feedback</h3>
             </div>
           @endforelse
-           
-           
+
+
           </div>
           <div class="dropdown-footer text-center">
             <a href="{{route('admin.surat_masuk.index')}}">View All <i class="fas fa-chevron-right"></i></a>
           </div>
         </div>
       </li>
-       @else 
+       @else
 
        @endif
         <li class="dropdown"><a href="#" data-toggle="dropdown"
@@ -68,7 +68,7 @@
                 {{-- <form action="{{ route('logout') }}" method="POST">
                     @csrf --}}
                     <a type="#" id="logout"  class="dropdown-item has-icon text-danger">
-                    <i class="fas fa-sign-out-alt"></i> Logout
+                    <i class="fas fa-sign-out-alt"></i> Kembali ke Dashboard
                 </a>
                 </form>
 
@@ -94,14 +94,14 @@ for (var i = 0; i < notifUnread; i++) {
 }
 
 
-// setInterval("notificationTime();",1000); 
+// setInterval("notificationTime();",1000);
 //     function notificationTime(){
 //       $('#contentNotif').load(location.href + ' #FeedbackContent');
 //       $('#tempatNotif1').load(location.href + ' .message-toggle');
 
 //     }
 
-    
+
 
 function sendMarkRequest(id) {
         return $.ajax("{{ route('markNotification.mark') }}", {
@@ -109,12 +109,12 @@ function sendMarkRequest(id) {
             data: {
               "_token": "{{ csrf_token() }}",
             "id":id
-        
+
 
             }
         });
 
-       
+
     }
 
     $(document).ready(function () {
@@ -124,16 +124,16 @@ function sendMarkRequest(id) {
               $(this).parents('a.dropdown-item-unread').remove();
           });
       });
-  
-  
+
+
       $('#mark-all').click(function() {
           let request = sendMarkRequest();
-  
+
           request.done(() => {
               $('a.dropdown-item-unread').remove();
           })
       });
-      
+
     });
 
     // $(function() {
